@@ -29,8 +29,14 @@ DESKTOP.EventBind = function () {
     });
 }
 
+///显示或收缩开始菜单
 DESKTOP.ToggleStartMenu = function () {
     $(".startmenu").toggle();
+}
+
+///显示或收缩通知中心
+DESKTOP.ToggleNoticeCenter = function () {
+    $(".notice_center").toggle();
 }
 
 ///桌面初始化

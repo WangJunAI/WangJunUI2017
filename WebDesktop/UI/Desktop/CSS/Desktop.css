@@ -47,6 +47,13 @@
         margin-left: 0.5em;
     }
 
+    .dockDown .topbtn2 {
+        color: white;
+        text-decoration: none;
+        line-height: 2em;
+        margin-right: 0.5em;
+        float:right;
+    }
 
 
 
@@ -157,4 +164,34 @@
 
     .startmenu li span:first-child {
         margin-right:.5em;
+    }
+
+.notice_center {
+    position: absolute;
+    background-color: #2a2f32;
+    width: 23em;
+    height: 90%;
+    z-index: 999;
+    right: 0;
+    bottom: 2em;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    display: none;
+}
+
+    .notice_center ul {
+        list-style: none;
+        margin: 1em 0 0 -1em;
+    }
+
+    .notice_center a {
+        text-decoration: none;
+        color: white;
+        display: block;
+        width: 100%;
+        height: 3em;
+    }
+
+    .notice_center li span:first-child {
+        margin-right: .5em;
     }
