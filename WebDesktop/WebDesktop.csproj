@@ -103,6 +103,7 @@
     <Content Include="UI\Desktop\Desktop.html" />
     <Content Include="UI\Desktop\JS\Desktop.js" />
     <Content Include="UI\Login\CSS\style.css" />
+    <Content Include="UI\Login\JS\base64.js" />
     <Content Include="UI\Login\JS\jquery.js" />
     <Content Include="UI\Login\JS\Particleground.js" />
     <Content Include="UI\Login\JS\verificationNumbers.js" />
