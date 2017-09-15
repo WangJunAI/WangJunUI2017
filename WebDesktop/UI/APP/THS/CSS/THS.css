@@ -41,13 +41,87 @@
     margin-left:0.5em;
 }
 
-.rightArea {
+.mainArea {
     /*右侧详细界面*/
-    background-color:white;
-    position:absolute;
-    right:0;
-    bottom:0;
-    left:20em;
-    top:0;
+    background-color: white;
+    position: absolute;
+    right: 20em;
+    bottom: 0;
+    left: 20em;
+    top: 0;
 }
 
+.mainArea .head{
+    /**/
+    width:100%;
+    height:3em;
+    background-color:burlywood;
+}
+
+    .mainArea .tab {
+        /**/
+        width: 100%;
+        height: 2em;
+    }
+
+    .mainArea .tab ul{
+        /**/
+        list-style:none;
+    }
+    .mainArea .tab li {
+        /**/
+        float:left; 
+    }
+
+    
+
+/**业务CSS**/
+.listwrap {
+    width:100%;
+}
+.list1 {
+    /*第一种列表样式*/
+    list-style: none;
+    margin-top: 0.5em;
+    margin-left: -30px;
+}
+
+.list1 .box{
+    background-color:aqua;
+}
+    .list1 .box .pic {
+        /**/
+        float:left;
+    }
+    .list1 .box .rbox .title {
+        /**/
+        background-color:bisque;
+    }
+
+    .list1 .box .rbox .title a{
+        /**/
+        text-decoration:none;
+        color:#000;
+        font-size:1.3em;
+    }
+
+    .list1 .box .rbox .summary {
+        /**/
+    }
+    .list1 .box .rbox .info {
+        /**/
+        width:100%;
+    }
+    .list1 .box .rbox .info ul{
+        /**/
+        list-style:none;
+    }
+    .list1 .box .rbox .info li {
+        /**/
+        float:left;
+        margin-left:0.2em;
+        margin-right:0.2em;
+    }
+ 
+
+    /**/

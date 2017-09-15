@@ -13,7 +13,7 @@ DESKTOP.CreateDialog = function () {
     var id = "test";
     var url ="../../UI/APP/THS/THS.html";
     var html ='<div class="desktop_dialog" id="'+id+'">'
-        + '<div class="title"><a href="javascript:void(0)" class="name">浏览器</a><a href="javascript:void(0)" class="button" onclick="$(this).parents(\'.desktop_dialog\').remove()">关闭</a><a href="javascript:void(0)" class="button">最大化</a><a href="javascript:void(0)" class="button">最小化</a></div>'
+        + '<div class="title"><a href="javascript:void(0)" class="name">同花顺智能平台</a><a href="javascript:void(0)" class="fa fa-window-close button" onclick="$(this).parents(\'.desktop_dialog\').remove()"></a><a href="javascript:void(0)" class="fa fa-window-maximize button"></a><a class="fa fa-window-minimize button" href="javascript:void(0)"></a></div>'
         +'<iframe style="border:none; width:100%;height:calc(100% - (2em));" src="'+url+'"></iframe>'
             +'</div>';
     $(document.body).append($(html));
