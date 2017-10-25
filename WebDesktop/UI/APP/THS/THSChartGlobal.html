@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>同花顺应用</title>
+    <link href="CSS/THS.css" rel="stylesheet" />
+    <script src="https://cdn.bootcss.com/echarts/3.7.1/echarts.min.js"></script>
+    <script src="JS/area.js"></script>
+</head>
+<body class="fill">
+    <div class="leftArea">
+        <ul>
+            <li><a href="javascript:void(0)" class="btn"><span>今日汇总</span></a></li>
+            <li><a href="javascript:void(0)" class="btn"><span>个股分析</span></a></li>
+            <li><a href="javascript:void(0)" class="btn"><span>龙虎榜分析</span></a></li>
+            <li><a href="javascript:void(0)" class="btn"><span>资金流分析</span> </a></li>
+            <li><a href="javascript:void(0)" class="btn"><span>作业监控</span></a></li>
+            <li><a href="javascript:void(0)" class="btn"><span>智能选股</span></a></li>
+            <li><a href="javascript:void(0)" class="btn"><span>总体概览</span></a></li>
+            <li><a href="javascript:void(0)" class="btn"><span>要闻分析</span></a></li>
+
+        </ul>
+    </div>
+    <div class="mainArea">
+        <div class="head"><span class="title">全局概览</span></div>
+        <div class="tab">
+            <ul>
+                <li><a href="javascript:void(0)">地域分布</a></li>
+                <li><a href="javascript:void(0)">概念分布</a></li>
+                <li><a href="javascript:void(0)">每股净资产</a></li>
+                <li><a href="javascript:void(0)">每股收益</a></li>
+                <li><a href="javascript:void(0)">净利润增长率</a></li>
+                <li><a href="javascript:void(0)">每股现金流</a></li>
+            </ul>
+        </div>
+        <div class="listwrap">
+            <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+            <div id="main" style="width: 1200px;height:800px;"></div>
+            <script type="text/javascript">
+
+                var Axis = [];
+                var seriesData = [];
+                for (var key in areaData) {
+                    Axis.push(key);
+                    seriesData.push(areaData[key].length);
+                }
+
+
+
+
+                // 基于准备好的dom，初始化echarts实例
+                var myChart = echarts.init(document.getElementById('main'));
+
+
+
+                // 指定图表的配置项和数据
+                var option = {
+                    title: {
+                        text: '地域分布数据图'
+                    },
+                    tooltip: {},
+                    legend: {
+                        data: ['销量']
+                    },
+                    xAxis: {
+                        
+                    },
+                    yAxis: { data: Axis},
+                    series: [{
+                        name: '分布数量',
+                        type: 'bar',
+                        data: seriesData
+                    }]
+                };
+
+
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+            </script>     
+
+
+
+        </div>
+         
+    </div>
+</body>
+</html>
