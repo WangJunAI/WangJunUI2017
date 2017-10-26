@@ -101,6 +101,7 @@
     <Content Include="JS\Base\jquery-ui-1.12.1\LICENSE.txt" />
     <Content Include="UI\APP\THS\CSS\THS.css" />
     <Content Include="UI\APP\THS\JS\area.js" />
+    <Content Include="UI\APP\THS\JS\THSLHB.js" />
     <Content Include="UI\APP\THS\THSChartConception.html" />
     <Content Include="UI\APP\THS\THSChartGlobal.html" />
     <Content Include="UI\APP\THS\THSLHB.html" />

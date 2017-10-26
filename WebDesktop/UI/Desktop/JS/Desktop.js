@@ -44,18 +44,3 @@ DESKTOP.Initial = function () {
     DESKTOP.EventBind();
 }
 
-var context = {
-        CMD: "加密服务",
-        Method: "MD5",
-        Args: "汪俊" 
-
-};
-
-    $.ajax({
-        url: "http://localhost:8990",
-        data: context,
-        type:"POST",
-        success: function (data, textStatus) {
-            console.log(JSON.stringify(data));
-        }
-    });
