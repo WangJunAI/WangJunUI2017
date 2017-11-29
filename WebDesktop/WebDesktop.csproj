@@ -67,6 +67,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="HtmlPage1.html" />
+    <Content Include="JS\Base\NET.js" />
+    <Content Include="JS\Base\PARAM_CHECKER.js" />
     <Content Include="packages.config" />
     <Content Include="JS\Base\jquery-ui-1.12.1.zip" />
     <Content Include="JS\Base\jquery-ui-1.12.1\package.json" />
@@ -99,11 +101,15 @@
     <Content Include="JS\Base\jquery-ui-1.12.1\jquery-ui.theme.css" />
     <Content Include="JS\Base\jquery-ui-1.12.1\jquery-ui.theme.min.css" />
     <Content Include="JS\Base\jquery-ui-1.12.1\LICENSE.txt" />
+    <Content Include="UI\APP\SYS\CSS\SYS.css" />
+    <Content Include="UI\APP\SYS\JS\SYS.js" />
+    <Content Include="UI\APP\SYS\SYS.html" />
     <Content Include="UI\APP\THS\CSS\THS.css" />
-    <Content Include="UI\APP\THS\JS\area.js" />
+    <Content Include="UI\APP\THS\JS\THSHQStock.js" />
     <Content Include="UI\APP\THS\JS\THSLHB.js" />
     <Content Include="UI\APP\THS\THSChartConception.html" />
     <Content Include="UI\APP\THS\THSChartGlobal.html" />
+    <Content Include="UI\APP\THS\THSHQStock.html" />
     <Content Include="UI\APP\THS\THSLHB.html" />
     <Content Include="UI\APP\THS\THSNews.html" />
     <Content Include="UI\Desktop\CSS\Desktop.css" />
@@ -120,6 +126,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
