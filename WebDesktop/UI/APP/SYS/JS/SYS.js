@@ -20,11 +20,22 @@ var SYS = {
 }
 
 ///创建一个新任务
-SYS.CreateTask = function (data) {
+SYS.CreateTask = function () {
+
+    ///搜集信息
+    var formData = {};
+    $("[data-form1]").each(function (index,ele) {
+        var name = $(this).attr("data-form1");
+        var val = $(this).val();
+        formData[name] = val;
+    });
+
+    console.log(formData);
+
     var context = {
         CMD: "系统任务",
         Method: "CreateTask",
-        Args: {"ContentType":"测试任务添加"}
+        Args: formData
     };
 
     SYS.POST(context, function (res) {
@@ -34,7 +45,7 @@ SYS.CreateTask = function (data) {
 
 SYS.Initial = function () {
     $(document).ready(function () {
-        SYS.CreateTask();
+        
     });
 };
 

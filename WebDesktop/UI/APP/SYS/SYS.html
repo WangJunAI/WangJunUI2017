@@ -59,11 +59,11 @@
                                     </div>
                                 </li>
                                 <li>
-                                    <div class="listitem"><span class="itemkey">过期时间：</span><span id="过期时间"><input data-form1="StartTime"  type="text" placeholder="请选择过期时间" /></span></div>
+                                    <div class="listitem"><span class="itemkey">过期时间：</span><span id="过期时间"><input data-form1="ExpireTime"  type="text" placeholder="请选择过期时间" /></span></div>
 
                                 </li>
                                 <li>
-                                    <div class="listitem"><span class="itemkey">间隔秒数：</span><span id="间隔秒数"><input type="text" placeholder="请选择间隔秒数" /></span></div>
+                                    <div class="listitem"><span class="itemkey">间隔秒数：</span><span id="间隔秒数"><input data-form1="IntervalSeconds" type="text" placeholder="请选择间隔秒数" /></span></div>
 
                                 </li>
                             </ul>
@@ -77,22 +77,22 @@
                             <ul class="list1">
                                 <li>
                                     <div class="listitem">
-                                        <span class="itemkey">方法名称：</span><span id="方法名称"><input type="text" placeholder="请输入方法名称" /></span>
+                                        <span class="itemkey">方法名称：</span><span id="方法名称"><input  type="text" data-form1="MethodName"  placeholder="请输入方法名称" /></span>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="listitem">
-                                        <span class="itemkey">类型全名：</span><span id="类型全名"><input type="text" placeholder="请输入类型全名" /></span>
+                                        <span class="itemkey">类型全名：</span><span id="类型全名"><input type="text" data-form1="TypeFullName"  placeholder="请输入类型全名" /></span>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="listitem">
-                                        <span class="itemkey">DLL物理路径：</span><span id="DLL物理路径"><input type="text" placeholder="请输入DLL物理路径" /></span>
+                                        <span class="itemkey">DLL物理路径：</span><span id="DLL物理路径"><input type="text" data-form1="PhysicalPath" placeholder="请输入DLL物理路径" /></span>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="listitem">
-                                        <span class="itemkey">参数：</span><span id="参数"><input type="text" placeholder="参数" /></span>
+                                        <span class="itemkey">参数：</span><span id="参数"><input type="text"  data-form1="Param" placeholder="参数" /></span>
                                     </div>
                                 </li>
                             </ul>
@@ -105,7 +105,7 @@
                         <div class="content">
                             <ul class="list1">
                                 <li>
-                                    <a class="formbtn" href="javascript:;">保存</a><a class="formbtn" href="javascript:;">草稿</a><a class="formbtn" href="javascript:;">暂停</a><a class="formbtn" href="javascript:;">废弃</a>
+                                    <a class="formbtn" href="javascript:;" onclick="SYS.CreateTask()">保存</a><a class="formbtn" href="javascript:;">草稿</a><a class="formbtn" href="javascript:;">暂停</a><a class="formbtn" href="javascript:;">废弃</a>
                                 </li>
                             </ul>
                         </div>
