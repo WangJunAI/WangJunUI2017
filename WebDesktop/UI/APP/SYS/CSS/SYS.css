@@ -290,3 +290,43 @@
 .listitem{
     height:3em;
 }
+
+
+.noticewapper {
+    /*通知框容器*/
+    width: 30em;
+    height: 9em;
+    position: absolute;
+    background-color: cadetblue;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 10em;
+    margin: auto;
+    color:white;
+    display:none;
+}
+    .noticewapper .title {
+        width: 100%;
+        font-size: 1.5em;
+        text-align: center;
+    }
+
+
+    .noticewapper .description {
+        width: 100%;
+        font-size: 0.9em;
+    }
+
+    .noticewapper .btn {
+        width: 100%;
+        text-align: right;
+        position: absolute;
+        bottom: 0.2em;
+        right: 0.5em;
+    }
+    .noticewapper .btn a{
+        text-decoration:none;
+        color:white;
+        margin-left:0.2em;
+    }
