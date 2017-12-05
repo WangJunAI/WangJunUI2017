@@ -75,7 +75,3 @@ var PARAM_CHECKER = {
     }
 }
 
-/*以下是导出函数*/
- 
-
-module.exports = PARAM_CHECKER;

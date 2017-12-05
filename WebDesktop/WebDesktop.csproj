@@ -101,6 +101,9 @@
     <Content Include="JS\Base\jquery-ui-1.12.1\jquery-ui.theme.css" />
     <Content Include="JS\Base\jquery-ui-1.12.1\jquery-ui.theme.min.css" />
     <Content Include="JS\Base\jquery-ui-1.12.1\LICENSE.txt" />
+    <Content Include="UI\APP\GeGu\CSS\gegu.css" />
+    <Content Include="UI\APP\GeGu\JS\gegu.js" />
+    <Content Include="UI\APP\GeGu\gegu.html" />
     <Content Include="UI\APP\SYS\CSS\SYS.css" />
     <Content Include="UI\APP\SYS\JS\SYS.js" />
     <Content Include="UI\APP\SYS\SYS.html" />

@@ -1,11 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2005
+VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebDesktop", "WebDesktop\WebDesktop.csproj", "{19E13B3E-499A-4664-87B8-AA3A6449D768}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{57AC08C4-BF2E-41EA-A179-88C375D6D2BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WangJun.DB", "..\..\WangJun2017\WangJun.DB\WangJun.DB.csproj", "{AF918729-03E8-443F-BD76-79BC604E286E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WangJun.Tools", "..\..\WangJun2017\WangJun.Tools\WangJun.Tools.csproj", "{79474114-39E0-4FEC-A040-F2E867CA82A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WangJun.Stock", "..\..\WangJun2017\WangJun.Stock\WangJun.Stock.csproj", "{73325152-D226-46CB-B333-B5EEA545209B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +27,18 @@ Global
 		{57AC08C4-BF2E-41EA-A179-88C375D6D2BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57AC08C4-BF2E-41EA-A179-88C375D6D2BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57AC08C4-BF2E-41EA-A179-88C375D6D2BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF918729-03E8-443F-BD76-79BC604E286E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF918729-03E8-443F-BD76-79BC604E286E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF918729-03E8-443F-BD76-79BC604E286E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF918729-03E8-443F-BD76-79BC604E286E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79474114-39E0-4FEC-A040-F2E867CA82A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79474114-39E0-4FEC-A040-F2E867CA82A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79474114-39E0-4FEC-A040-F2E867CA82A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79474114-39E0-4FEC-A040-F2E867CA82A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73325152-D226-46CB-B333-B5EEA545209B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73325152-D226-46CB-B333-B5EEA545209B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73325152-D226-46CB-B333-B5EEA545209B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73325152-D226-46CB-B333-B5EEA545209B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -85,6 +85,16 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\WangJun2017\WangJun.Stock\WangJun.Stock.csproj">
+      <Project>{73325152-D226-46CB-B333-B5EEA545209B}</Project>
+      <Name>WangJun.Stock</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\WangJun2017\WangJun.Tools\WangJun.Tools.csproj">
+      <Project>{79474114-39E0-4FEC-A040-F2E867CA82A7}</Project>
+      <Name>WangJun.Tools</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -100,7 +110,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50613</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:49959/</IISUrl>
+          <IISUrl>http://localhost:9990/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
