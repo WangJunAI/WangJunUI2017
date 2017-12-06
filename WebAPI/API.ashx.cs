@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using WangJun.Data;
 using WangJun.Stock;
@@ -33,8 +34,14 @@ namespace WebAPI
             //var param =Convertor.FromJsonToDict2(context.Request.Form[0]);
             var className = context.Request.QueryString["c"];
             var methodName = context.Request.QueryString["m"];
-            var res = StockAPI.GetInstance().GetStockCodeList();
-            var json = Convertor.FromObjectToJson(res);
+            var dllPath = context.Server.MapPath("./bin/WangJun.Stock.dll");
+            Assembly ass = Assembly.LoadFrom(dllPath);
+            var obj = ass.CreateInstance("WangJun.Stock.StockAPI");
+            var param = new object[] { };
+            var method = obj.GetType().GetMethod(methodName);
+            var res1 = method.Invoke(obj, param);
+
+            var json = Convertor.FromObjectToJson(res1);
             context.Response.Write(json);
         }
 
