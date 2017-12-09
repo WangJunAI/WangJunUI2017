@@ -32,19 +32,30 @@ namespace WebAPI
         public void Execute(HttpContext context)
         {
             //var param =Convertor.FromJsonToDict2(context.Request.Form[0]);
-            var className = context.Request.QueryString["c"];
+            var classFullName = context.Request.QueryString["c"];
             var methodName = context.Request.QueryString["m"];
-            var dllPath = context.Server.MapPath("./bin/WangJun.Stock.dll");
-            Assembly ass = Assembly.LoadFrom(dllPath);
-            var obj = ass.CreateInstance("WangJun.Stock.StockAPI");
+            //var dllPath = context.Server.MapPath("./bin/WangJun.Stock.dll");
+            //Assembly ass = Assembly.LoadFrom(dllPath);
+            //var obj = ass.CreateInstance("WangJun.Stock.StockAPI");
+            var target = this.GetTargetObject(classFullName, methodName);
             var param = new object[] { };
-            var method = obj.GetType().GetMethod(methodName);
-            var res1 = method.Invoke(obj, param);
+            var method = target.GetType().GetMethod(methodName);
+            var res1 = method.Invoke(target, param);
 
             var json = Convertor.FromObjectToJson(res1);
             context.Response.Write(json);
         }
+        protected object GetTargetObject(string classFullName,string methodName)
+        {
+            var dict = new Dictionary<string, string>();
+            dict.Add("WangJun.Stock.StockAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Stock.dll"));
+            dict.Add("WangJun.NetLoader.So360." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.NetLoader.dll"));
+            var dllPath = dict[classFullName+"." + methodName];
+            Assembly ass = Assembly.LoadFrom(dllPath);
+            var obj = ass.CreateInstance(classFullName);
+            return obj;
 
+        }
         public bool IsReusable
         {
             get
