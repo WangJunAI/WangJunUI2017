@@ -77,6 +77,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="1.html" />
+    <Content Include="wdl.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

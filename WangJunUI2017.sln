@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2010
+VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebDesktop", "WebDesktop\WebDesktop.csproj", "{19E13B3E-499A-4664-87B8-AA3A6449D768}"
 EndProject
@@ -12,6 +12,28 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WangJun.Tools", "..\..\WangJun2017\WangJun.Tools\WangJun.Tools.csproj", "{79474114-39E0-4FEC-A040-F2E867CA82A7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WangJun.Stock", "..\..\WangJun2017\WangJun.Stock\WangJun.Stock.csproj", "{73325152-D226-46CB-B333-B5EEA545209B}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WangJunTouTiaoPC", "WangJunTouTiaoPC\", "{4DE10EB4-A0BA-4027-B2DC-5B817F2E0C28}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_39641"
+		Debug.AspNetCompiler.PhysicalPath = "WangJunTouTiaoPC\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_39641\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_39641"
+		Release.AspNetCompiler.PhysicalPath = "WangJunTouTiaoPC\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_39641\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "39641"
+		SlnRelativePath = "WangJunTouTiaoPC\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +61,10 @@ Global
 		{73325152-D226-46CB-B333-B5EEA545209B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73325152-D226-46CB-B333-B5EEA545209B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73325152-D226-46CB-B333-B5EEA545209B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DE10EB4-A0BA-4027-B2DC-5B817F2E0C28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DE10EB4-A0BA-4027-B2DC-5B817F2E0C28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DE10EB4-A0BA-4027-B2DC-5B817F2E0C28}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DE10EB4-A0BA-4027-B2DC-5B817F2E0C28}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
