@@ -140,22 +140,22 @@
 .global > .right {
     width: 340px;
     height: 1000px;
-    background-color: #f4f5f6;
+    background-color: #fAfAfA;
     float: left;
 }
 
 
     .global > .right .search {
         width: 100%;
-        background-color: aliceblue;
-        height: 2em;
+        /*background-color: aliceblue;*/
+        height:34px;
         margin-top: 0.5em;
     }
 
     .global > .right .input {
         width: 80%;
         /*background-color: aquamarine;*/
-        height: 100%;
+        height: 30px;
         float: left;
     }
 
@@ -173,12 +173,12 @@
     .global >  .right .button {
         width: 20%;
         background-color: #208eda;
-        height: 100%;
+        height: 34px;
         float: left;
         text-decoration: none;
         color: #FFF;
         display: block;
-        line-height: 2em;
+        line-height: 34px;
         text-align: center;
         border-radius: 0 4px 4px 0;
     }
