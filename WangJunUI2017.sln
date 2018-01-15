@@ -35,6 +35,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WangJunTouTiaoPC", "WangJun
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WangJun.Doc", "..\..\WangJun2017\WangJun.Doc\WangJun.Doc.csproj", "{F778D22C-042F-4535-A9E1-10BFB9E23A7F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +67,10 @@ Global
 		{4DE10EB4-A0BA-4027-B2DC-5B817F2E0C28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DE10EB4-A0BA-4027-B2DC-5B817F2E0C28}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{4DE10EB4-A0BA-4027-B2DC-5B817F2E0C28}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{F778D22C-042F-4535-A9E1-10BFB9E23A7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F778D22C-042F-4535-A9E1-10BFB9E23A7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F778D22C-042F-4535-A9E1-10BFB9E23A7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F778D22C-042F-4535-A9E1-10BFB9E23A7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

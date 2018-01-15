@@ -30,43 +30,54 @@ namespace WebAPI
 
         public void Execute(HttpContext context)
         {
-            if(0 == context.Request.Form.Count) ///Get方式调用
-            {
-                var classFullName = context.Request.QueryString["c"];
-                var methodName = context.Request.QueryString["m"];
-                var paramString = context.Request.QueryString["p"];// Convertor.DecodeBase64(context.Request.QueryString["p"]);
-                 
-                var target = this.GetTargetObject(classFullName, methodName);
-                var param = (!string.IsNullOrWhiteSpace(paramString)) ? new object[] { paramString } : new object[] { };
-                var method = target.GetType().GetMethod(methodName);
-                var res1 = method.Invoke(target, param);
-                if(res1 is string)
-                {
-                    context.Response.ContentType = "text/html";
-                    context.Response.Write(res1);
-                }
-                else if(res1 is object)
-                {
-                    context.Response.ContentType = "application/json";
-                var json = Convertor.FromObjectToJson(res1);
-                context.Response.Write(json);   
-                }
 
-            }
-            else
+            var classFullName = context.Request.QueryString["c"];
+            var methodName = context.Request.QueryString["m"];
+            var paramString = context.Request.QueryString["p"];// Convertor.DecodeBase64(context.Request.QueryString["p"]);
+            var httpMethod = context.Request.HttpMethod;
+            var res1 = new object();
+            var target = this.GetTargetObject(classFullName, methodName);
+            var method = target.GetType().GetMethod(methodName);
+            var param = new object[] { };
+            if ("GET" == httpMethod)
             {
-                //var param =Convertor.FromJsonToDict2(context.Request.Form[0]);
+                param = new object[] { paramString };
             }
+            else if ("POST" == httpMethod)
+            {
+                if (1 == context.Request.Form.Count)
+                {
+                    param = Convertor.FromJsonToObject<object[]>(context.Request.Form[0]);
+                }
+            }
+
+            res1 = method.Invoke(target, param);
+            if (res1 is string)
+            {
+                context.Response.ContentType = "text/html";
+                context.Response.Write(res1);
+            }
+            else if (res1 is object)
+            {
+                context.Response.ContentType = "application/json";
+                var json = Convertor.FromObjectToJson(res1);
+                context.Response.Write(json);
+            }
+
 
         }
-        protected object GetTargetObject(string classFullName,string methodName)
+        protected object GetTargetObject(string classFullName, string methodName)
         {
             var dict = new Dictionary<string, string>();
             dict.Add("WangJun.Stock.StockAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Stock.dll"));
             dict.Add("WangJun.Stock.DataSourceSINA." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Stock.dll"));
             dict.Add("WangJun.NetLoader.So360." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.NetLoader.dll"));
             dict.Add("WangJun.DB.YunConfig." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.DB.dll"));
-            var dllPath = dict[classFullName+"." + methodName];
+            dict.Add("WangJun.Doc.DocManager." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Doc.dll"));
+            dict.Add("WangJun.Doc.DocItem." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Doc.dll"));
+            dict.Add("WangJun.Doc.CommentManager." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Doc.dll"));
+            dict.Add("WangJun.Doc.CommentItem." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Doc.dll"));
+            var dllPath = dict[classFullName + "." + methodName];
             Assembly ass = Assembly.LoadFrom(dllPath);
             var obj = ass.CreateInstance(classFullName);
             return obj;

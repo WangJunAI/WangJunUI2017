@@ -4,6 +4,14 @@
     <meta charset="utf-8" />
     <title>头条文章</title>
     <link href="CSS/TouTiaoArticle.css" rel="stylesheet" />
+    <script src="JS/jquery-3.1.1.min.js"></script>
+    <script src="JS/NET.js"></script>
+    <script src="JS/PARAM_CHECKER.js"></script>
+    <script src="JS/DEBUG.js"></script>
+    <script src="JS/Convertor.js"></script>
+    <script src="JS/TouTiao.js"></script>
+
+
 </head>
 <body>
     <div class="head">
@@ -13,7 +21,7 @@
     <div class="global">
         <div class="head">
             <div class="path">
-                <div class="logo"></div><a href="javascript:;">路径1</a> <a>/</a><a href="javascript:;">路径1</a> <a>/</a><a href="javascript:;">路径1</a> 
+                <div class="logo"></div><a href="javascript:;">路径1</a> <a>/</a><a href="javascript:;">路径1</a> <a>/</a><a href="javascript:;">路径1</a>
                 <div class="search">
                     <div class="input"><input type="text" placeholder="请搜索" /></div>
                     <a href="javascript:;" class="button">搜索</a>
@@ -21,59 +29,41 @@
             </div>
         </div>
         <div class="left">
-            
+
             <ul>
-                <li><a href="/" target="_self" ga_event="channel_recommand_click" class="channel-item active"><span>评论</span></a></li>
+                <li><a href="/" target="_self" ga_event="channel_recommand_click" class="channel-item active"><span>说说</span></a></li>
                 <li><a href="/ch/news_hot/" target="_self" ga_event="channel_hot_click" class="channel-item"><span>点赞</span></a></li>
                 <li><a href="/ch/news_image/" target="_blank" ga_event="channel_image_click" class="channel-item"><span>收藏</span></a></li>
                 <li><a href="/ch/news_tech/" target="_self" ga_event="channel_technology_click" class="channel-item"><span>分享</span></a></li>
             </ul>
         </div>
         <div class="main">
-            <div class="title">Somnox：一款能助你入眠的机器人</div>
-            <div class="info"><span>cnBeta.COM </span><span>2018-01-10 12:29:28</span></div>
-            <div class="content">
+            <div class="title" id="title">[标题]</div>
+            <div class="info"><span id="CreatorName">[创建人]</span><span id="CreateTime">[创建时间]</span></div>
+            <div class="content" id="Content">
                 <p>据外媒Cnet报道，<strong>Somnox是一款能助你入眠的机器人。然而它看起来更像是一个枕头，而不是一个机器人。</strong>Somnox配备了一个加速度计，一个音频传感器和一个二氧化碳传感器。</p><p>当用户难以入睡时，把Somnox放在胸前，会感觉到Somnox好像在呼吸一般。这个机器人的目的是帮助用户放松并调节呼吸，以便入睡。</p><img src="http://p1.pstatp.com/large/566b000b435bfcb2fe1c" img_width="574" img_height="382" alt="Somnox：一款能助你入眠的机器人" inline="0"><p>Somnox将于今年秋天上市销售，售价为550美元（约合人民币3587元），Somnox可以使用其二氧化碳传感器来告诉用户他们入睡的时间，它会自行关闭。</p><p>Somnox研发人员认为，在倍感压力时，有节奏的呼吸会帮助用户平静下来。它旨在帮助那些存在睡眠问题的人在没有服用任何药物的情况下得到更好的休息。</p>
             </div>
             <div class="comment">
                 <div class="input"></div>
-                <ul>
-                    <li>
-                        <div class="commentItem">
-                            <div class="header"><a href="javascript:;">评论人</a><span>2小时前</span></div>
-                            <div class="content"><p>温先生，我是传统弓爱好者，背负式和腰挂式箭囊我都用过。 1、图中陶俑和图画中的箭囊并非背负式，其实还是腰挂式，取箭时是右手从腰后捏住箭杆前端取出。背负式则是从肩后捏住箭尾取出。 2、确实之前没看过中国古时有背负使用的箭囊（我是说没看过，不是肯定说没有哈），只有软硬不同的腰挂式，比如步弓多用硬的，箭就一把直接收纳进去，骑弓则多为皮质挤压式，防止掉落。 3、记得西北民国时期的民间刀客们有用背负式箭囊，不确定是现代改造的还是古代就有。</p></div>
-                            <div class="footer"><a href="javascript:;">回复</a><a href="javascript:;">相关评论</a><a href="javascript:;">点赞</a></div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="commentItem">
-                            <div class="header"><a href="javascript:;">评论人</a><span>2小时前</span></div>
-                            <div class="content"><p>温先生，我是传统弓爱好者，背负式和腰挂式箭囊我都用过。 1、图中陶俑和图画中的箭囊并非背负式，其实还是腰挂式，取箭时是右手从腰后捏住箭杆前端取出。背负式则是从肩后捏住箭尾取出。 2、确实之前没看过中国古时有背负使用的箭囊（我是说没看过，不是肯定说没有哈），只有软硬不同的腰挂式，比如步弓多用硬的，箭就一把直接收纳进去，骑弓则多为皮质挤压式，防止掉落。 3、记得西北民国时期的民间刀客们有用背负式箭囊，不确定是现代改造的还是古代就有。</p></div>
-                            <div class="footer"><a href="javascript:;">回复</a><a href="javascript:;">相关评论</a><a href="javascript:;">点赞</a></div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="commentItem">
-                            <div class="header"><a href="javascript:;">评论人</a><span>2小时前</span></div>
-                            <div class="content"><p>温先生，我是传统弓爱好者，背负式和腰挂式箭囊我都用过。 1、图中陶俑和图画中的箭囊并非背负式，其实还是腰挂式，取箭时是右手从腰后捏住箭杆前端取出。背负式则是从肩后捏住箭尾取出。 2、确实之前没看过中国古时有背负使用的箭囊（我是说没看过，不是肯定说没有哈），只有软硬不同的腰挂式，比如步弓多用硬的，箭就一把直接收纳进去，骑弓则多为皮质挤压式，防止掉落。 3、记得西北民国时期的民间刀客们有用背负式箭囊，不确定是现代改造的还是古代就有。</p></div>
-                            <div class="footer"><a href="javascript:;">回复</a><a href="javascript:;">相关评论</a><a href="javascript:;">点赞</a></div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="commentItem">
-                            <div class="header"><a href="javascript:;">评论人</a><span>2小时前</span></div>
-                            <div class="content"><p>温先生，我是传统弓爱好者，背负式和腰挂式箭囊我都用过。 1、图中陶俑和图画中的箭囊并非背负式，其实还是腰挂式，取箭时是右手从腰后捏住箭杆前端取出。背负式则是从肩后捏住箭尾取出。 2、确实之前没看过中国古时有背负使用的箭囊（我是说没看过，不是肯定说没有哈），只有软硬不同的腰挂式，比如步弓多用硬的，箭就一把直接收纳进去，骑弓则多为皮质挤压式，防止掉落。 3、记得西北民国时期的民间刀客们有用背负式箭囊，不确定是现代改造的还是古代就有。</p></div>
-                            <div class="footer"><a href="javascript:;">回复</a><a href="javascript:;">相关评论</a><a href="javascript:;">点赞</a></div>
-                        </div>
-                    </li>
+                <ul id="commentList">
                 </ul>
             </div>
         </div>
         <div class="right">
- 
-
         </div>
-        </div>
+    </div>
+    <script type="text/javascript">
+        TouTiao.Initial("article");
+    </script>
 
+    <script type="text/html" id="tplCommentItem">
+        <li>
+            <div class="commentItem">
+                <div class="header"><a href="javascript:;">[CreatorName]</a><span>[CreateTime]</span></div>
+                <div class="content"><p>[Content]</p></div>
+                <div class="footer"><a href="javascript:;">回复</a><a href="javascript:;">相关说说</a><a href="javascript:;">点赞[LikeCount]</a></div>
+            </div>
+        </li>
+    </script>
 </body>
 </html>

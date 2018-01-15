@@ -87,6 +87,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\WangJun2017\WangJun.Doc\WangJun.Doc.csproj">
+      <Project>{f778d22c-042f-4535-a9e1-10bfb9e23a7f}</Project>
+      <Name>WangJun.Doc</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\WangJun2017\WangJun.Stock\WangJun.Stock.csproj">
       <Project>{73325152-D226-46CB-B333-B5EEA545209B}</Project>
       <Name>WangJun.Stock</Name>

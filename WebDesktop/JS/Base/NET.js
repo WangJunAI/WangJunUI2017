@@ -2,25 +2,21 @@
 
 var NET = {}
 
-NET.GETJSON = function (url,callback,context) {
+NET.LoadData = function (url, callback, context,method) {
+    if (true === PARAM_CHECKER.IsObject(context)) {
+        context = JSON.stringify(context);
+    }
+
+    method = "GET";
+
     $.ajax({
         url: url,
         data: context,
-        type: "GET",
+        type: method,
         success: function (data, textStatus) {
             callback(data);
         }
     });
 }
 
-NET.POSTJSON = function (url, data) {
-    $.ajax({
-        url: url,
-        data: context,
-        type: "POST",
-        success: function (data, textStatus) {
-            callback(data);
-        }
-    });
-}
 
