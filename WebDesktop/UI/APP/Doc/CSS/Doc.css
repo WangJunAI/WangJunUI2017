@@ -1,0 +1,216 @@
+﻿body {
+    margin:0;
+}
+
+.head {
+    position: absolute;
+    top: 0;
+    height: 2em;
+    left: 0;
+    right: 0;
+    background-color: #2a2f32;
+}
+
+.left {
+    position: absolute;
+    top: 2em;
+    bottom: 0;
+    left: 0;
+    width: 10em;
+    background-color: #293038;
+}
+
+.right {
+    position: absolute;
+    top: 2em;
+    bottom: 0;
+    right: 0;
+    width: 20em;
+    background-color: #eaedf1;
+}
+
+.main {
+    background-color: #eaedf1;
+}
+
+.main > .top {
+    position: absolute;
+    top: 2em;
+    left: 10em;
+    right: 20em;
+    height: 3em;
+    border-bottom: 1px solid #DDD;
+}
+
+    .main > .top a {
+        text-decoration: none;
+        color: #333;
+    }
+
+    .main > .top > .btn {
+        display: inline-block;
+        height: 100%;
+        line-height: 3em;
+        margin-right:0.5em;
+        margin-left:0.5em;
+        padding-left:0.5em;
+        padding-right:0.5em;
+    }
+
+        .main > .top  a:hover {
+            background-color: #00C1DE;
+            color:#FFF;
+        }
+        
+        .main > .top > .search {
+            width: 40em;
+            height: 100%;
+            float: right;
+        }
+
+        .main > .top > .search >.input{
+            height:100%;
+            float:right;
+        }
+        
+        
+        .main > .top > .search [type='text'] {
+            border: none;
+            height: 95%;
+        }
+
+        .main > .top > .search .btn {
+            width: 4em;
+            height: 100%;
+            float: right;
+            line-height: 3em;
+            text-align: center;
+        }
+        
+        
+        .main > .content {
+            position: absolute;
+            top: 5em;
+            left: 10em;
+            right: 20em;
+        }
+
+            .main > .content table {
+                width: 100%;
+                border-collapse: collapse;
+                color: #666;
+                font-size:0.9em;
+            }
+
+            .main > .content thead {
+                background-color: #F5F6FA;
+                border: 1px solid #e1e6eb;
+                height: 2em;
+                line-height: 2em;
+                color:#999;
+            }
+
+            .main > .content tbody tr {
+                height:2.5em;
+                line-height:2.5em;
+                text-align:center;
+            }
+
+                .main > .content tbody tr:hover{
+                    background-color:#F9F9FA;
+                }
+                
+                
+                .main > .content a {
+                    text-decoration: none;
+                }
+
+            .main > .content > .Pager {
+                width: 100%;
+                height: 3em;
+                background-color: #F5F6FA;
+                border: 1px solid #e1e6eb;
+                text-align: right;
+            }
+
+                .main > .content > .Pager a {
+                    height: 100%;
+                    width: 3em;
+                    display: inline-block;
+                    line-height: 3em;
+                    text-align: center;
+                    color:#999;
+                }
+
+                    .main > .content > .Pager a:hover {
+                        background-color: #00C1DE;
+                        color: #FFF;
+                    }
+                    
+                    
+                    .main > .content > .Pager > a:last-child {
+                        margin-right: 1em;
+                    }
+
+                .main > .content > .Pager > a:first-child {
+                    width: auto;
+                }
+                        
+                        .main > .content > .Pager select {
+                            margin-left: 0.5em;
+                            height: 95%;
+                            margin-right: 0.5em;
+                            width: 3em;
+                            border: none;
+                            vertical-align: middle;
+                        }
+
+
+.left  a
+{
+   text-decoration:none;
+   color:#AAA;
+}
+
+
+.left > ul {
+    list-style: none;
+    margin-left: -40px;
+    margin-top:0;
+    margin-bottom:0;
+}
+
+.left .menuItem.groupItem {
+    font-size: 1.5em;
+    background-color: #4a5064;
+}
+
+
+.left .menuItem {
+    width: 100%;
+    height: 3em;
+    background-color: #293038;
+    display: inline-block;
+    text-align: center;
+    line-height: 3em;
+    color:#FFF;
+}
+
+.left a:hover {
+    background-color: #00C1DE;
+    color: #FFF;
+}
+
+
+.head a {
+    text-decoration: none;
+    color: #FFF;
+    display: inline-block;
+    line-height: 2em;
+    
+}
+
+    .head a:first-child {
+        margin-left: 0.5em;
+    }
+
