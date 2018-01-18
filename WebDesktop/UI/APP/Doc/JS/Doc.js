@@ -16,12 +16,17 @@ Doc.ShowAppInfo = function (data) {
 
 Doc.LoadMenu = function (menuArray) {
     var menuArray = [];
-    menuArray.push({ Name: "普通菜单", ID: "ptcd", Method: "", Position: "", ParentID: null });
+    menuArray.push({ Name: "文档操作", ID: "ptcd", Method: "", Position: "", ParentID: null });
     menuArray.push({ Name: "菜单1", ID: "", Method: "", Position: "", ParentID: "ptcd" });
     menuArray.push({ Name: "菜单1", ID: "", Method: "", Position: "", ParentID: "ptcd" });
     menuArray.push({ Name: "菜单1", ID: "", Method: "", Position: "", ParentID: "ptcd" });
     menuArray.push({ Name: "菜单1", ID: "", Method: "", Position: "", ParentID: "ptcd" });
-    menuArray.push({ Name: "管理菜单", ID: "glcd", Method: "", Position: "", ParentID: null });
+    menuArray.push({ Name: "数据分析", ID: "glcd", Method: "", Position: "", ParentID: null });
+    menuArray.push({ Name: "菜单1", ID: "", Method: "", Position: "", ParentID: "glcd" });
+    menuArray.push({ Name: "菜单1", ID: "", Method: "", Position: "", ParentID: "glcd" });
+    menuArray.push({ Name: "菜单1", ID: "", Method: "", Position: "", ParentID: "glcd" });
+    menuArray.push({ Name: "菜单1", ID: "", Method: "", Position: "", ParentID: "glcd" });
+    menuArray.push({ Name: "系统管理", ID: "glcd", Method: "", Position: "", ParentID: null });
     menuArray.push({ Name: "菜单1", ID: "", Method: "", Position: "", ParentID: "glcd" });
     menuArray.push({ Name: "菜单1", ID: "", Method: "", Position: "", ParentID: "glcd" });
     menuArray.push({ Name: "菜单1", ID: "", Method: "", Position: "", ParentID: "glcd" });

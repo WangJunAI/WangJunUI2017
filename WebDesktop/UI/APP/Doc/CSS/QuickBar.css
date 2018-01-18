@@ -35,6 +35,11 @@
             line-height: 2em;
         }
 
+        .block1 > .content a:hover {
+            
+            font-weight:700;
+        }
+
 
 
 .block2 {
@@ -79,12 +84,18 @@
             margin-top: 0.2em;
         }
 
-        .block2 > .content .icon {
-            background-color: #eaedf1;
-            height: 100%;
-            width: 3em;
-            float: left;
-        }
+            .block2 > .content .item:hover
+            {
+                background-color:#F8F8F8;
+            }
+            
+            
+            .block2 > .content .icon {
+                background-color: #eaedf1;
+                height: 100%;
+                width: 3em;
+                float: left;
+            }
 
         .block2 > .content .text {
             width: 19em;
@@ -141,7 +152,12 @@
             line-height: 2em;
         }
 
-    .block3 > .content {
+            .block3 > .head > a:hover {
+                background-color: #00C1DE;
+                color: #FFF;
+            }
+
+            .block3 > .content {
     }
 
         .block3 > .content ul {
@@ -154,4 +170,8 @@
             text-decoration: none;
             color: #222;
             line-height: 2em;
+        }
+
+        .block3 > .content a:hover {
+            font-weight:700;
         }
