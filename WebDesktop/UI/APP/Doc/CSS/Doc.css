@@ -108,16 +108,20 @@
                 height: 2em;
                 line-height: 2em;
                 color:#999;
+                text-align:left;
             }
 
             .main > .content tbody tr {
                 height:2.5em;
                 line-height:2.5em;
-                text-align:center;
+                text-align:left;
             }
 
-                .main > .content tbody tr:hover{
-                    background-color:#F9F9FA;
+            .main > .content tr td:first-child {
+                padding-left:1.5em;
+            }
+                .main > .content tbody tr:hover {
+                    background-color: #F9F9FA;
                 }
                 
                 
@@ -214,3 +218,57 @@
         margin-left: 0.5em;
     }
 
+
+
+#detailWindow {
+    position: absolute;
+    background-color: #F2F2F2;
+    z-index: 2000;
+    left: 10%;
+    right: 10%;
+    top: 5%;
+    bottom: 7%;
+    display: none;
+    box-shadow: 10px 10px 10px rgba(0,0,0,0.35);
+    border-right: 1px solid #ebecec;
+    border-left: 1px solid #ebecec;
+    border-bottom: 1px solid #ebecec;
+}
+
+    #detailWindow iframe
+    {
+        width:100%;
+        height:95%;
+        border:none;
+        overflow-y:scroll;
+    }
+    
+    
+    #detailWindow a {
+        text-decoration: none;
+        color: #FFF;
+    }
+
+        #detailWindow a:hover {
+            text-decoration: none;
+            color: #FFF;
+            background-color: #ff9900;
+        }
+
+    #detailWindow > .header {
+        height: 2em;
+        line-height: 2em;
+        width: 100%;
+        background-color: #00C1DE;
+        color:#FFF;
+    }
+
+    #detailWindow .title { 
+        margin-left:1em;
+    }
+
+    #detailWindow .btn.close {
+       float:right;
+       margin-right:1em;
+
+    }

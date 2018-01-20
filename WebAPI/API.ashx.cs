@@ -47,7 +47,7 @@ namespace WebAPI
             {
                 if (1 == context.Request.Form.Count)
                 {
-                    param = Convertor.FromJsonToObject<object[]>(context.Request.Form[0]);
+                    param = Convertor.FromJsonToObject<object[]>(context.Request.Form[0].Replace("«", "<").Replace("»", ">"));
                 }
             }
 

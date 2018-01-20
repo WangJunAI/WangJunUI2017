@@ -1,5 +1,12 @@
 ﻿var Doc = {
-    AppInfo: {}
+    AppInfo: {},
+    Server: {
+        Url1: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocManager&m=Find&p=0",
+        Url2: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocManager&m=Count&p=0",
+        Url3: "Detail.html",
+        Url4: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocManager&m=Save&p=0",
+        Url5: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocManager&m=Get&p=0",
+    },
 };
 
 ///加载APP信息
@@ -59,8 +66,8 @@ Doc.LoadTopButton = function () {
     var buttonArray = [];
     buttonArray.push({ Name: "文档中心", ID: "ptcd", Method: "", Position: "", ParentID: null });
     buttonArray.push({ Name: "|", ID: "", Method: "", Position: "", ParentID: "ptcd" });
-    buttonArray.push({ Name: "菜单1", ID: "", Method: "", Position: "", ParentID: "ptcd" });
-    buttonArray.push({ Name: "菜单1", ID: "", Method: "", Position: "", ParentID: "ptcd" });
+    buttonArray.push({ Name: "新建", ID: "", Method: "Doc.ShowWindow", Param:"Url3", Position: "", ParentID: "ptcd" });
+    buttonArray.push({ Name: "菜单1", ID: "", Method: "Doc.LoadArticle", Position: "", ParentID: "ptcd" });
     buttonArray.push({ Name: "|", ID: "", Method: "", Position: "", ParentID: "ptcd" });
     buttonArray.push({ Name: "菜单1", ID: "", Method: "", Position: "", ParentID: "glcd" });
     buttonArray.push({ Name: "菜单1", ID: "", Method: "", Position: "", ParentID: "glcd" });
@@ -74,7 +81,7 @@ Doc.ShowTopButton = function (data) {
         var topButtonHtml = $("#topButton1").html();
         for (var k = 0; k < data.length; k++) {
             var itemData = data[k];
-            var html = topButtonHtml.replace("[Name]", itemData.Name);
+            var html = topButtonHtml.replace("[Name]", itemData.Name).replace("[Method]", itemData.Method).replace("[Param]", itemData.Param);
  
             $(html).appendTo("#topButton");
         }
@@ -82,38 +89,48 @@ Doc.ShowTopButton = function (data) {
 }
 
 Doc.LoadTable = function () {
-    var tableData = {
-        Column: [], Rows: [], Pager: {}
-    };
 
-    tableData.Column.push({ ID: "", Text: "列名1", Method: "", Sort: "" });
-    tableData.Column.push({ ID: "", Text: "列名1", Method: "", Sort: "" });
-    tableData.Column.push({ ID: "", Text: "列名1", Method: "", Sort: "" });
-    tableData.Column.push({ ID: "", Text: "列名1", Method: "", Sort: "" });
-    tableData.Column.push({ ID: "", Text: "列名1", Method: "", Sort: "" });
+    var callback = function (res) {
+
+        var tableData = {
+            Column: [], Rows: [], Pager: {}
+        };
+
+        tableData.Column.push({ ID: "", Text: "标题", Method: "", Sort: "" });
+        tableData.Column.push({ ID: "", Text: "分类", Method: "", Sort: "" });
+        tableData.Column.push({ ID: "", Text: "阅读量", Method: "", Sort: "" });
+        tableData.Column.push({ ID: "", Text: "点赞量", Method: "", Sort: "" });
+        tableData.Column.push({ ID: "", Text: "收藏量", Method: "", Sort: "" });
+        tableData.Column.push({ ID: "", Text: "详细", Method: "", Sort: "" });
+        var rows = res;
+
+        for (var k = 0; k < rows.length; k++) {
+            var title = rows[k].Title;
+            var readCount = rows[k].ReadCount;
+            var likeCount = rows[k].LikeCount;
+            var commentCount = rows[k].CommentCount;
+            tableData.Rows.push([{ ID: "", Text: title, Method: "Doc.LoadDetail" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: readCount, Method: "" }, { ID: "", Text: likeCount, Method: "" }, { ID: "", Text: commentCount, Method: "Doc.LoadComment" }, { ID: "", Text: "详细", Method: "Doc.LoadDetail" }]);
+        }
+
+         
+        tableData.Pager = { Count: 1088, Index: 3, Size: 20 };
 
 
-    tableData.Rows.push([{ ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }]);
-    tableData.Rows.push([{ ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }]);
-    tableData.Rows.push([{ ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }]);
-    tableData.Rows.push([{ ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }]);
-    tableData.Rows.push([{ ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }]);
-    tableData.Rows.push([{ ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }]);
-    tableData.Rows.push([{ ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }]);
-    tableData.Rows.push([{ ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }]);
-    tableData.Rows.push([{ ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }]);
-    tableData.Rows.push([{ ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }]);
-    tableData.Rows.push([{ ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }]);
-    tableData.Rows.push([{ ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }]);
-    tableData.Rows.push([{ ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }]);
-    tableData.Rows.push([{ ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }]);
-    tableData.Rows.push([{ ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }]);
-    tableData.Rows.push([{ ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }, { ID: "", Text: "数值1", Method: "" }]);
+        Doc.ShowTable(tableData);
 
-    tableData.Pager = { Count: 1088, Index: 3, Size: 20 };
+        Doc.LoadPager();
+    }
+    var context = ["{}", JSON.stringify({ "Content": 0 }), 0, 20];
+    NET.LoadData(Doc.Server.Url1, callback, context,NET.POST);
+}
 
-    Doc.ShowTable(tableData);
-    Doc.ShowPager(tableData.Pager);
+Doc.LoadPager = function () {
+    var callback = function (res) {
+        var pagerInfo = { Count: res.Count, Index: 3, Size: 20 }
+        Doc.ShowPager(pagerInfo);
+    }
+    var context = ["{}"];
+    NET.LoadData(Doc.Server.Url2, callback, context, NET.POST);
 }
 
 Doc.ShowTable = function (tableData) {
@@ -132,8 +149,13 @@ Doc.ShowTable = function (tableData) {
             var rowHtml = "<tr>";
             for (var m = 0; m < itemArray.length; m++) {
                 var itemData = itemArray[m];
-                var itemHtml = "<td>[Text]</td>";
-                rowHtml += itemHtml.replace("[Text]",itemData.Text);
+                var itemHtml = "<td><a href=\"[Href]\" onclick=\"[Method]\">[Text]</a></td>";
+                if (PARAM_CHECKER.IsEmptyString(itemData.Method)) {
+                    rowHtml += itemHtml.replace("[Text]", itemData.Text).replace("href=\"[Href]\"", "");
+                }
+                else {
+                    rowHtml += itemHtml.replace("[Text]", itemData.Text).replace("[Href]", "javascript:;").replace("[Method]", itemData.Method);
+                }
             }
             rowHtml += "</tr>";
             rowsHtml += rowHtml;
@@ -171,11 +193,52 @@ Doc.ShowPager = function (pagerInfo) {
         $("#pager").html(html);
     }
 }
+ 
+Doc.ShowWindow = function () {
+    var urlid = $(event.target).attr("data-param");
+    var url = Doc.Server[urlid];
+    $("#detailWindow iframe").attr("src", url);
+    $("#detailWindow").show();
+}
 
-Doc.LoadPager = function (pagerData) {
+Doc.LoadDetail = function () {
+    var id = NET.GetQueryParam("id");
+    var context = [id];
+
+    var callback = function (res) {
+        LOGGER.Log(res);
+        Doc.ShowDetail(res);
+    }
+    NET.LoadData(Doc.Server.Url5, callback, context,NET.POST);
+}
+
+Doc.SaveDetail = function () {
+    var item = {};
+    item.Title = $("#Title").val().trim();
+    item.Content = UE.getEditor('editor').getContent();
+    item.CreatorName = "创建人姓名";
+    item.CreatorID = "创建人ID";
+
+    item.Content = item.Content.replace(/</g, "«").replace(/>/g,"»");
+    var context = [item.Title, item.Content, item.CreatorName, item.CreatorID];
+    
+    var callback = function (res) {
+        LOGGER.Log(res);
+    }
+    NET.PostData(Doc.Server.Url4, callback, context);
 
 }
- 
+
+Doc.ShowDetail = function (data) {
+    if (PARAM_CHECKER.IsObject(data)) {
+        var html = data.Content.substring(data.Content.indexOf("&lt;"), data.Content.lastIndexOf("&gt;") + 4);
+        var $div = $("<div></div>").html(html);
+        data.Content = $div.text();
+        $("#Title").val(data.Title);
+        UE.getEditor('editor').setHeight(400);
+        UE.getEditor('editor').setContent(data.Content);
+    }
+}
 
 Doc.Initial = function () {
     $(document).ready(function () {
