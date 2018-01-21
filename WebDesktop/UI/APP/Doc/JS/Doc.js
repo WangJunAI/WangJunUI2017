@@ -6,6 +6,8 @@
         Url3: "Detail.html",
         Url4: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocManager&m=Save&p=0",
         Url5: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocManager&m=Get&p=0",
+        Url6: "Category.html",
+        Url7: "http://localhost:9990/API.ashx?c=WangJun.Doc.CategoryManager&m=Save&p=0",
     },
 };
 
@@ -24,19 +26,19 @@ Doc.ShowAppInfo = function (data) {
 Doc.LoadMenu = function (menuArray) {
     var menuArray = [];
     menuArray.push({ Name: "文档操作", ID: "ptcd", Method: "", Position: "", ParentID: null });
-    menuArray.push({ Name: "菜单1", ID: "", Method: "", Position: "", ParentID: "ptcd" });
-    menuArray.push({ Name: "菜单1", ID: "", Method: "", Position: "", ParentID: "ptcd" });
-    menuArray.push({ Name: "菜单1", ID: "", Method: "", Position: "", ParentID: "ptcd" });
-    menuArray.push({ Name: "菜单1", ID: "", Method: "", Position: "", ParentID: "ptcd" });
+    menuArray.push({ Name: "新建文章", ID: "", Method: "", Position: "", ParentID: "ptcd" });
+    menuArray.push({ Name: "新建目录", ID: "", Method: "", Position: "", ParentID: "ptcd" });
+    menuArray.push({ Name: "草稿箱", ID: "", Method: "", Position: "", ParentID: "ptcd" });
+    menuArray.push({ Name: "已发布", ID: "", Method: "", Position: "", ParentID: "ptcd" });
     menuArray.push({ Name: "数据分析", ID: "glcd", Method: "", Position: "", ParentID: null });
-    menuArray.push({ Name: "菜单1", ID: "", Method: "", Position: "", ParentID: "glcd" });
-    menuArray.push({ Name: "菜单1", ID: "", Method: "", Position: "", ParentID: "glcd" });
-    menuArray.push({ Name: "菜单1", ID: "", Method: "", Position: "", ParentID: "glcd" });
-    menuArray.push({ Name: "菜单1", ID: "", Method: "", Position: "", ParentID: "glcd" });
+    menuArray.push({ Name: "热词", ID: "", Method: "", Position: "", ParentID: "glcd" });
+    menuArray.push({ Name: "统计", ID: "", Method: "", Position: "", ParentID: "glcd" });
+    menuArray.push({ Name: "评论", ID: "", Method: "", Position: "", ParentID: "glcd" });
+    menuArray.push({ Name: "用户", ID: "", Method: "", Position: "", ParentID: "glcd" });
     menuArray.push({ Name: "系统管理", ID: "glcd", Method: "", Position: "", ParentID: null });
-    menuArray.push({ Name: "菜单1", ID: "", Method: "", Position: "", ParentID: "glcd" });
-    menuArray.push({ Name: "菜单1", ID: "", Method: "", Position: "", ParentID: "glcd" });
-    menuArray.push({ Name: "菜单1", ID: "", Method: "", Position: "", ParentID: "glcd" });
+    menuArray.push({ Name: "回收站", ID: "", Method: "", Position: "", ParentID: "glcd" });
+    menuArray.push({ Name: "存储", ID: "", Method: "", Position: "", ParentID: "glcd" });
+    menuArray.push({ Name: "应用信息", ID: "", Method: "", Position: "", ParentID: "glcd" });
     menuArray.push({ Name: "菜单1", ID: "", Method: "", Position: "", ParentID: "glcd" });
     Doc.ShowMenu(menuArray);
 }
@@ -66,8 +68,8 @@ Doc.LoadTopButton = function () {
     var buttonArray = [];
     buttonArray.push({ Name: "文档中心", ID: "ptcd", Method: "", Position: "", ParentID: null });
     buttonArray.push({ Name: "|", ID: "", Method: "", Position: "", ParentID: "ptcd" });
-    buttonArray.push({ Name: "新建", ID: "", Method: "Doc.ShowWindow", Param:"Url3", Position: "", ParentID: "ptcd" });
-    buttonArray.push({ Name: "菜单1", ID: "", Method: "Doc.LoadArticle", Position: "", ParentID: "ptcd" });
+    buttonArray.push({ Name: "新建文章", ID: "", Method: "Doc.ShowWindow", Param:"Url3", Position: "", ParentID: "ptcd" });
+    buttonArray.push({ Name: "新建目录", ID: "", Method: "Doc.ShowWindow", Param: "Url6", Position: "", ParentID: "ptcd" });
     buttonArray.push({ Name: "|", ID: "", Method: "", Position: "", ParentID: "ptcd" });
     buttonArray.push({ Name: "菜单1", ID: "", Method: "", Position: "", ParentID: "glcd" });
     buttonArray.push({ Name: "菜单1", ID: "", Method: "", Position: "", ParentID: "glcd" });
@@ -229,12 +231,30 @@ Doc.SaveDetail = function () {
 
 }
 
+Doc.SaveCategory = function () {
+    var item = {};
+    item.Title = $("#Title").val().trim();
+    //item.Content = UE.getEditor('editor').getContent();
+    item.CreatorName = "创建人姓名";
+    item.CreatorID = "创建人ID";
+
+   // item.Content = item.Content.replace(/</g, "«").replace(/>/g, "»");
+    var context = [item.Title, item.Content, item.CreatorName, item.CreatorID];
+
+    var callback = function (res) {
+        LOGGER.Log(res);
+    }
+    NET.PostData(Doc.Server.Url7, callback, context);
+
+}
+
 Doc.ShowDetail = function (data) {
     if (PARAM_CHECKER.IsObject(data)) {
         var html = data.Content.substring(data.Content.indexOf("&lt;"), data.Content.lastIndexOf("&gt;") + 4);
         var $div = $("<div></div>").html(html);
         data.Content = $div.text();
         $("#Title").val(data.Title);
+        $("#id").val(data.id);
         UE.getEditor('editor').setHeight(400);
         UE.getEditor('editor').setContent(data.Content);
     }

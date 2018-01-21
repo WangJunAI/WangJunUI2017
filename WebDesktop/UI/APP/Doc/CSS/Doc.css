@@ -86,12 +86,21 @@
             line-height: 3em;
             text-align: center;
         }
-        
+
+
+    .main > .list {
+        position: absolute;
+        top: 5em;
+        left: 10em;
+        bottom: 0;
+        width: 12em;
+        background-color: #F9F9FA;
+    }
         
         .main > .content {
             position: absolute;
             top: 5em;
-            left: 10em;
+            left: 22em;
             right: 20em;
         }
 

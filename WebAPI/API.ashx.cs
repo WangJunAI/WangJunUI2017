@@ -77,6 +77,7 @@ namespace WebAPI
             dict.Add("WangJun.Doc.DocItem." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Doc.dll"));
             dict.Add("WangJun.Doc.CommentManager." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Doc.dll"));
             dict.Add("WangJun.Doc.CommentItem." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Doc.dll"));
+            dict.Add("WangJun.Doc.CategoryManager." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Doc.dll"));
             var dllPath = dict[classFullName + "." + methodName];
             Assembly ass = Assembly.LoadFrom(dllPath);
             var obj = ass.CreateInstance(classFullName);
