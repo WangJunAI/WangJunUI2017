@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
-    <link href="CSS/Detail.css" rel="stylesheet" />
+    <link href="CSS/Category.css" rel="stylesheet" />
     <script src="../../../JS/Base/jquery-3.1.1.min.js"></script>
     <script src="../../../JS/Base/NET.js"></script>
     <script src="../../../JS/Base/PARAM_CHECKER.js"></script>
     <script src="../../../JS/Base/DEBUG.js"></script>
     <script src="../../../JS/Base/Convertor.js"></script>
- 
+
 
     <script src="JS/Doc.js"></script>
 
@@ -21,7 +21,8 @@
     <link href="../../../JS/Base/zTree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
     <script src="../../../JS/Base/zTree/js/jquery.ztree.all.js"></script>
 
- 
+
+    <script src="JS/AppInfo.Doc.js"></script>
 
 </head>
 <body>
@@ -36,7 +37,7 @@
                     <div class="item">
                         <div class="key">上级目录</div>
                         <div class="value">
-                            <a href="javascript:;" class="checkbox" data-property="" data-value="" onclick="$('#category').toggle();">默认分类</a>
+                            <a href="javascript:;" class="checkbox" data-property="" data-value="" onclick="$('#category').toggle();" id="parentNode">默认分类</a>
                             <div style="position: absolute;">
                                 <div id="category" class="dropdownlist">
                                     <ul id="treeDemo" class="ztree"></ul>
@@ -61,7 +62,7 @@
                 </li>
                 <li>
                     <div class="item">
-                        <div class="key">数据检查</div>
+                        <div class="key">数据统计</div>
                         <div class="value">
                             </div>
                         </div>
@@ -70,84 +71,13 @@
         </div>
         <div class="buttons">
             <a href="jajavscript:;" class="btn" onclick="Doc.SaveCategory()">保存</a>
-            <a href="jajavscript:;" class="btn" onclick="Doc.SaveCategory()">存稿</a>
-            <a href="jajavscript:;" class="btn" onclick="$(window.parent.document).find('#detailWindow').hide(); window.close();">取消</a>
+            <a href="jajavscript:;" class="btn" onclick="Doc.SaveCategory()">删除</a>
+            <a href="jajavscript:;" class="btn" onclick="$(window.parent.document).find('#detailWindow').hide(); var href = window.location.href;  window.open(href,'_self','');  window.close();  ">取消</a>
         </div>
     </div>
-
-
-
- 
-    <SCRIPT type="text/javascript">
-		<!--
-        var setting = {};
-
-        var zNodes = [
-            {
-                name: "父节点1 - 展开", open: true,
-                children: [
-                    {
-                        name: "父节点11 - 折叠",
-                        children: [
-                            { name: "叶子节点111" },
-                            { name: "叶子节点112" },
-                            { name: "叶子节点113" },
-                            { name: "叶子节点114" }
-                        ]
-                    },
-                    {
-                        name: "父节点12 - 折叠",
-                        children: [
-                            { name: "叶子节点121" },
-                            { name: "叶子节点122" },
-                            { name: "叶子节点123" },
-                            { name: "叶子节点124" }
-                        ]
-                    },
-                    { name: "父节点13 - 没有子节点", isParent: true }
-                ]
-            },
-            {
-                name: "父节点2 - 折叠",
-                children: [
-                    {
-                        name: "父节点21 - 展开", open: true,
-                        children: [
-                            { name: "叶子节点211" },
-                            { name: "叶子节点212" },
-                            { name: "叶子节点213" },
-                            { name: "叶子节点214" }
-                        ]
-                    },
-                    {
-                        name: "父节点22 - 折叠",
-                        children: [
-                            { name: "叶子节点221" },
-                            { name: "叶子节点222" },
-                            { name: "叶子节点223" },
-                            { name: "叶子节点224" }
-                        ]
-                    },
-                    {
-                        name: "父节点23 - 折叠",
-                        children: [
-                            { name: "叶子节点231" },
-                            { name: "叶子节点232" },
-                            { name: "叶子节点233" },
-                            { name: "叶子节点234" }
-                        ]
-                    }
-                ]
-            },
-            { name: "父节点3 - 没有子节点", isParent: true }
-
-        ];
-
-        $(document).ready(function () {
-            $.fn.zTree.init($("#treeDemo"), setting, zNodes);
-        });
-                    //-->
-    </SCRIPT>
+     <script type="text/javascript">
+         Doc.LoadCategory("#treeDemo");
+     </script>
  
 </body>
 </html>

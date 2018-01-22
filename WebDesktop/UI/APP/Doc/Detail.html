@@ -28,6 +28,8 @@
     <link href="../../../JS/Base/jquery-ui-1.12.1/jquery-ui.theme.css" rel="stylesheet" />
     <script src="../../../JS/Base/jquery-ui-1.12.1/jquery-ui.js"></script>
 
+    <script src="JS/AppInfo.Doc.js"></script>
+
 </head>
 <body>
     <input type="hidden" id="id" />
@@ -47,7 +49,7 @@
                     <div class="item">
                         <div class="key">分类</div>
                         <div class="value">
-                            <a href="javascript:;" class="checkbox" data-property="" data-value="" onclick="$('#category').toggle();">默认分类</a>
+                            <a href="javascript:;" class="checkbox" data-property="" data-value="" onclick="$('#category').toggle();"  id="parentNode">所有分类</a>
                             <div style="position: absolute;">
                                 <div id="category" class="dropdownlist">
                                     <ul id="treeDemo" class="ztree"></ul>
@@ -60,7 +62,7 @@
                 <li>
                     <div class="item">
                         <div class="key">定时</div>
-                        <div class="value"><input id="publishDate" type="text" placeholder="日期" /><select><option>08</option>  </select><span>时</span> <select><option>05</option></select><span>分</span> </div>
+                        <div class="value"><input id="publishDate" type="text" placeholder="日期" /><select id="publishHour"><option>08</option>  </select><span>时</span> <select id="publishMinute"><option>05</option></select><span>分</span> </div>
                     </div>
                 </li>
             </ul>
@@ -82,80 +84,21 @@
         var ue = UE.getEditor('editor');
     </script>
 
-    <SCRIPT type="text/javascript">
-		<!--
-        var setting = {};
 
-        var zNodes = [
-            {
-                name: "父节点1 - 展开", open: true,
-                children: [
-                    {
-                        name: "父节点11 - 折叠",
-                        children: [
-                            { name: "叶子节点111" },
-                            { name: "叶子节点112" },
-                            { name: "叶子节点113" },
-                            { name: "叶子节点114" }
-                        ]
-                    },
-                    {
-                        name: "父节点12 - 折叠",
-                        children: [
-                            { name: "叶子节点121" },
-                            { name: "叶子节点122" },
-                            { name: "叶子节点123" },
-                            { name: "叶子节点124" }
-                        ]
-                    },
-                    { name: "父节点13 - 没有子节点", isParent: true }
-                ]
-            },
-            {
-                name: "父节点2 - 折叠",
-                children: [
-                    {
-                        name: "父节点21 - 展开", open: true,
-                        children: [
-                            { name: "叶子节点211" },
-                            { name: "叶子节点212" },
-                            { name: "叶子节点213" },
-                            { name: "叶子节点214" }
-                        ]
-                    },
-                    {
-                        name: "父节点22 - 折叠",
-                        children: [
-                            { name: "叶子节点221" },
-                            { name: "叶子节点222" },
-                            { name: "叶子节点223" },
-                            { name: "叶子节点224" }
-                        ]
-                    },
-                    {
-                        name: "父节点23 - 折叠",
-                        children: [
-                            { name: "叶子节点231" },
-                            { name: "叶子节点232" },
-                            { name: "叶子节点233" },
-                            { name: "叶子节点234" }
-                        ]
-                    }
-                ]
-            },
-            { name: "父节点3 - 没有子节点", isParent: true }
-
-        ];
-
-        $(document).ready(function () {
-            $.fn.zTree.init($("#treeDemo"), setting, zNodes);
-        });
-                    //-->
-    </SCRIPT>
     <script type="text/javascript">
         $("#publishDate").datepicker({
             //inline: true
+            dateFormat: "yy/mm/dd"
         });
     </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            Doc.LoadDetail();
+            Doc.LoadCategory("#treeDemo");
+        });
+
+
+    </script>
+
 </body>
 </html>

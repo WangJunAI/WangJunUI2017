@@ -21,6 +21,7 @@ Convertor.DateFormat = function (date, format) {
 
 Convertor.ToBase64String = function (input) {
     var str = CryptoJS.enc.Utf8.parse(input);
-    var base64 = CryptoJS.enc.Base64.stringify(str);
+    var base64 = CryptoJS.enc.Base64.stringify(str);
+
     return base64;
 }

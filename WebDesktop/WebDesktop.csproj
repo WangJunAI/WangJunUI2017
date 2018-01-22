@@ -76,6 +76,7 @@
     <Content Include="JS\Base\CryptoJS\core-min.js" />
     <Content Include="JS\Base\CryptoJS\enc-base64-min.js" />
     <Content Include="JS\Base\DEBUG.js" />
+    <Content Include="JS\Base\JsonDB.js" />
     <Content Include="JS\Base\NET.js" />
     <Content Include="JS\Base\PARAM_CHECKER.js" />
     <Content Include="JS\Base\zTree\api\apiCss\api.js" />
@@ -881,6 +882,7 @@
     <Content Include="JS\Base\zTree\package.json" />
     <Content Include="JS\Base\zTree\README.md" />
     <Content Include="JS\Base\zTree\zTree.v3.jquery.json" />
+    <Content Include="UI\APP\Doc\JS\AppInfo.Doc.js" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
