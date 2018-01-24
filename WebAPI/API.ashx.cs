@@ -13,6 +13,8 @@ namespace WebAPI
     /// </summary>
     public class API : IHttpHandler
     {
+
+        
         /// <summary>
         /// 服务发现
         /// 服务路由
@@ -21,12 +23,12 @@ namespace WebAPI
         /// <param name="context"></param>
         public void ProcessRequest(HttpContext context)
         {
+
             context.Response.Headers.Add("Access-Control-Allow-Origin", "*"); //设置请求来源不受限制
             context.Response.Headers.Add("Access-Control-Allow-Headers", "X-Requested-With");
             context.Response.Headers.Add("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS"); //请求方式
             this.Execute(context);
         }
-
 
         public void Execute(HttpContext context)
         {
@@ -38,6 +40,7 @@ namespace WebAPI
             var res1 = new object();
             var target = this.GetTargetObject(classFullName, methodName);
             var method = target.GetType().GetMethod(methodName);
+            var parameters = method.GetParameters();
             var param = new object[] { };
             if ("GET" == httpMethod)
             {
@@ -47,7 +50,23 @@ namespace WebAPI
             {
                 if (1 == context.Request.Form.Count)
                 {
-                    param = Convertor.FromJsonToObject<object[]>(context.Request.Form[0].Replace("«", "<").Replace("»", ">"));
+                    param = Convertor.FromJsonToObject<object[]>(context.Request.Form[0]);
+                    var decodeParam = new object[param.Length-1];
+                    for (int k = 0; k < param.Length-1; k++)
+                    {
+                        decodeParam[k] = param[k];
+                    }
+
+                    if(param.Length==(parameters.Length+1))
+                    {
+                        var dict=param[param.Length-1] as Dictionary<string,object>;
+
+                        foreach (var item in dict)
+                        {
+                            decodeParam[int.Parse(item.Key)] = Convertor.DecodeBase64(param[int.Parse(item.Key)].ToString().Replace("加号", "+").Replace("斜杠", "/").Replace("等于", "=").Replace("空格", " "));
+                        }
+                        param = decodeParam;
+                    }
                 }
             }
 

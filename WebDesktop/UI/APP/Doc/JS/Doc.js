@@ -56,10 +56,21 @@ Doc.LoadTopButton = function () {
 
 Doc.ShowTopButton = function (data) {
     if (PARAM_CHECKER.IsArray(data)) {
-        var topButtonHtml = $("#topButton1").html();
+        var topButtonHtml1 = $("#topButton1").html();
+        var topButtonHtml2 = $("#topButton2").html();
+
         for (var k = 0; k < data.length; k++) {
             var itemData = data[k];
-            var html = topButtonHtml.replace("[Name]", itemData.Name).replace("[Method]", itemData.Method).replace("[Param]", itemData.Param);
+            var html = "";
+            if ("dropdownlist" === itemData.Type) {
+                html = topButtonHtml2.replace("[Name]", itemData.Name).replace("[Method]", itemData.Method).replace("[Param]", itemData.Param);
+            }
+            else if ("|" === itemData.Name) {
+                html = topButtonHtml1.replace("btn", "").replace("javascript:;", "").replace("href", "_href").replace("onclick", "_onclick").replace("[Name]", itemData.Name);
+            }
+            else {
+                html = topButtonHtml1.replace("[Name]", itemData.Name).replace("[Method]", itemData.Method).replace("[Param]", itemData.Param);
+            }
 
             $(html).appendTo("#topButton");
         }
@@ -78,12 +89,15 @@ Doc.LoadTable = function (pageIndex, pageSize) {
         var tableData = {
             Column: [], Rows: [], Pager: {}
         };
+        tableData.Column.push({ ID: "", Text: "全选", Method: "", Sort: "" });
         tableData.Column.push({ ID: "", Text: "标题", Method: "", Sort: "" });
         tableData.Column.push({ ID: "", Text: "分类", Method: "", Sort: "" });
         tableData.Column.push({ ID: "", Text: "阅读量", Method: "", Sort: "" });
         tableData.Column.push({ ID: "", Text: "点赞量", Method: "", Sort: "" });
         tableData.Column.push({ ID: "", Text: "收藏量", Method: "", Sort: "" });
+        tableData.Column.push({ ID: "", Text: "发布时间", Method: "", Sort: "" });
         tableData.Column.push({ ID: "", Text: "创建时间", Method: "", Sort: "" });
+        tableData.Column.push({ ID: "", Text: "状态", Method: "", Sort: "" });
         tableData.Column.push({ ID: "", Text: "详细", Method: "", Sort: "" });
         var rows = res;
 
@@ -95,8 +109,8 @@ Doc.LoadTable = function (pageIndex, pageSize) {
             var id = rows[k].id;
             var url = App.Doc.Server.Url3 + "?id=" + id;
             var categoryName = rows[k].CategoryName;
-            var createTime = Convertor.DateFormat(eval(rows[k].CreateTime.replace(/\//g,"")),"yyyy-MM-dd hh:mm");
-            tableData.Rows.push([{ ID: id, Text: title, Method: "Doc.ShowWindow", Param: url }, { ID: "", Text: categoryName, Method: "" }, { ID: "", Text: readCount, Method: "" }, { ID: "", Text: likeCount, Method: "" }, { ID: "", Text: commentCount, Method: "" }, { ID: "", Text: createTime, Method: "" }, { ID: id, Text: "详细", Method: "Doc.ShowWindow", Param: url }]);
+            var createTime = Convertor.DateFormat(eval(rows[k].CreateTime.replace(/\//g,"")),"yyyy/MM/dd hh:mm");
+            tableData.Rows.push([{ ID: id, Text: "checkbox", Method: "", Param: url },{ ID: id, Text: title, Method: "Doc.ShowWindow", Param: url }, { ID: "", Text: categoryName, Method: "" }, { ID: "", Text: readCount, Method: "" }, { ID: "", Text: likeCount, Method: "" }, { ID: "", Text: commentCount, Method: "" }, { ID: "", Text: createTime, Method: "" }, { ID: "", Text: createTime, Method: "" }, { ID: "", Text: "已发布", Method: "" }, { ID: id, Text: "详细", Method: "Doc.ShowWindow", Param: url }]);
         }
 
 
@@ -123,6 +137,10 @@ Doc.ShowTable = function (tableData) {
         for (var k = 0; k < tableData.Column.length; k++) {
             var itemData = tableData.Column[k];
             var html = "<th>[Text]</th>";
+            if (0 == k) {
+                html = "<th><input type='checkbox' /></th>"
+            } 
+
             columnHtml += html.replace("[Text]", itemData.Text);
         }
         columnHtml += "</tr>";
@@ -134,6 +152,10 @@ Doc.ShowTable = function (tableData) {
             for (var m = 0; m < itemArray.length; m++) {
                 var itemData = itemArray[m];
                 var itemHtml = "<td><a href=\"[Href]\" onclick=\"[Method]()\" data-param=\"[Param]\">[Text]</a></td>";
+                if (0 == m) {
+                    itemHtml = "<td><input type='checkbox' data-param='[id]'/></td>".replace("[id]", itemData.ID);
+                } 
+
                 if (PARAM_CHECKER.IsEmptyString(itemData.Method)) {
                     rowHtml += itemHtml.replace("[Text]", itemData.Text).replace("href=\"[Href]\"", "");
                 }
@@ -199,14 +221,25 @@ Doc.LoadDetail = function () {
 
 Doc.SaveDetail = function () {
     var item = {};
+    item.id = $("#id").val();
     item.Title = $("#Title").val().trim();
     item.Content = UE.getEditor('editor').getContent();
     item.CategoryID = $("#parentNode").attr("data-Param");
     item.CreatorID = "创建人ID";
-    item.Content = item.Content.replace(/</g, "«").replace(/>/g, "»");
+    item.Content =   item.Content;//.replace(/</g, "«").replace(/>/g, "»");
+    item.Status = $("[data-single='status'].selected").text();
     item.PublistTime = $("#publishDate").val() + " " + $("#publishHour").val() + ":" + $("#publishMinute").val()+":00";
 
-    var context = [item.Title, item.Content, item.CategoryID, item.PublistTime];
+    ///Html转义
+    //$div = $("<div></div>");
+    //$div.text(item.Content);
+    item.Title = Convertor.ToBase64String(item.Title).replace(/\+/g, "加号").replace(/\//g, "斜杠").replace(/=/g, "等于").replace(/ /g, "空格");
+    item.Content = Convertor.ToBase64String(item.Content).replace(/\+/g, "加号").replace(/\//g, "斜杠").replace(/=/g, "等于").replace(/ /g, "空格");
+
+
+
+
+    var context = [item.Title, item.Content, item.CategoryID, item.PublistTime, item.Status, item.id, { 0: "base64", 1: "base64"}];
 
     var callback = function (res) {
         LOGGER.Log(res);
@@ -283,15 +316,51 @@ Doc.ShowCategory = function (target, setting, zNodes) {
 
 Doc.ShowDetail = function (data) {
     if (PARAM_CHECKER.IsObject(data)) {
-        var html = data.Content.substring(data.Content.indexOf("&lt;"), data.Content.lastIndexOf("&gt;") + 4);
-        var $div = $("<div></div>").html(html);
-        data.Content = $div.text();
+
+
+
+        if (true === PARAM_CHECKER.IsNotEmptyString(data.Content) && "<" === data.Content[0]) {
+            UE.getEditor('editor').setContent(data.Content);
+            UE.getEditor('editor').setHeight(400);
+        }
+        else if (true === PARAM_CHECKER.IsNotEmptyString(data.Content)) {
+            var html = data.Content.substring(data.Content.indexOf("&lt;"), data.Content.lastIndexOf("&gt;") + 4);
+            var $div = $("<div></div>").html(html);
+            data.Content = $div.text();
+            UE.getEditor('editor').setContent(data.Content);
+            UE.getEditor('editor').setHeight(400);
+        }
         $("#Title").val(data.Title);
         $("#id").val(data.id);
-        UE.getEditor('editor').setContent(data.Content);
-        UE.getEditor('editor').setHeight(400);
+
+
+        if (true === !PARAM_CHECKER.IsNotEmptyString(data.CategoryName)) {
+            data.CategoryName = "选择分类";
+        }
+        $("#parentNode").text(data.CategoryName);
+        $("#parentNode").attr("data-param", data.CategoryID);
+    }
+}
+
+Doc.RemoveDetail = function () {
+
+    var query = { _id: { $in: [] } };
+    var source = $("[type='checkbox'][data-param]").each(function () {
+        if (true == $(this).prop("checked")) {
+            var id = $(this).attr("data-param");
+            query._id.$in.push("_ObjectId('" + id + "')_");
+        }
+    });
+
+    query = JSON.stringify(query).replace(/"_ObjectId/g, "ObjectId").replace(/\)_"/g, ")");
+
+    var context = [query];
+
+    var callback = function (res) {
+        LOGGER.Log(res);
 
     }
+    NET.PostData(App.Doc.Server.Url9, callback, context);
 }
 
 Doc.Initial = function () {

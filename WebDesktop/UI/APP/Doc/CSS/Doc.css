@@ -57,16 +57,47 @@
         padding-right:0.5em;
     }
 
-        .main > .top  a:hover {
-            background-color: #00C1DE;
-            color:#FFF;
+        .main > .top > .btn .dropdownlist {
+            position: absolute;
+            z-index: 2000;
+            line-height: 2em;
+            background-color: #f7f8fa;
+            width: 7em;
+            text-align: center;
+            margin-left: -0.5em;
+            box-shadow: 3px 3px 3px rgba(0,0,0,0.35);
+            display: none;
         }
+            .main > .top > .btn .dropdownlist span {
+                float: none;
+                clear: both;
+                width: 100%;
+                display:block;
+            }
+
         
-        .main > .top > .search {
-            width: 40em;
-            height: 100%;
-            float: right;
+        .main > .top .btn:hover{
+            background-color: #00C1DE;
+            color: #FFF;
         }
+
+            .main > .top a:hover .dropdownlist
+            {
+                color:#000;
+            }
+
+                .main > .top .btn:hover .dropdownlist > div > .item:hover {
+                    background-color: #ebecec;
+                    color: #000;
+                }
+                
+                
+                
+                .main > .top > .search {
+                    width: 40em;
+                    height: 100%;
+                    float: right;
+                }
 
         .main > .top > .search >.input{
             height:100%;
@@ -120,11 +151,15 @@
                 text-align:left;
             }
 
+                .main > .content thead th:first-child {
+                    padding-left: 1.5em;
+                }
+            
             .main > .content tbody tr {
-                height:2.5em;
-                line-height:2.5em;
-                text-align:left;
-            }
+                    height: 2.5em;
+                    line-height: 2.5em;
+                    text-align: left;
+                }
 
             .main > .content tr td:first-child {
                 padding-left:1.5em;
@@ -281,3 +316,8 @@
        margin-right:1em;
 
     }
+
+
+
+
+

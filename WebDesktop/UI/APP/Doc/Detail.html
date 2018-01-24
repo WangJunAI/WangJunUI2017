@@ -39,10 +39,10 @@
         </script>
         <div class="options">
             <ul>
-                <li style="display:none;">
+                <li>
                     <div class="item">
-                        <div class="key">封面</div>
-                        <div class="value"><a href="javascript:;" class="checkbox">选项1</a><a href="javascript:;" class="checkbox">选项1</a><a href="javascript:;" class="checkbox">选项1</a></div>
+                        <div class="key">状态</div>
+                        <div class="value"><a href="javascript:;" class="checkbox" data-single="status">已发布</a><a href="javascript:;" class="checkbox" data-single="status">待发布</a><a href="javascript:;" class="checkbox" data-single="status">已删除</a></div>
                     </div>
                 </li>
                 <li>
@@ -61,8 +61,9 @@
                 </li>
                 <li>
                     <div class="item">
-                        <div class="key">定时</div>
-                        <div class="value"><input id="publishDate" type="text" placeholder="日期" /><select id="publishHour"><option>08</option>  </select><span>时</span> <select id="publishMinute"><option>05</option></select><span>分</span> </div>
+                        <div class="key">发布</div>
+                        <div class="value"><a href="javascript:;" class="checkbox selected" data-single="publishTime">立刻发布</a><a href="javascript:;" class="checkbox"  data-single="publishTime">定时发布</a>
+                        <input id="publishDate" type="text" placeholder="日期" /><select id="publishHour"><option>08</option>  </select><span>时</span> <select id="publishMinute"><option>05</option></select><span>分</span> </div>
                     </div>
                 </li>
             </ul>
@@ -70,7 +71,7 @@
         <div class="buttons">
             <a href="jajavscript:;" class="btn" onclick="Doc.SaveDetail()">发表</a>
             <a href="jajavscript:;" class="btn" onclick="Doc.SaveDetail()">存稿</a>
-            <a href="jajavscript:;" class="btn">预览</a>
+            <a href="http://localhost:39641/TouTiao/TouTiaoArticle.html" target="_blank" class="btn">预览</a>
             <a href="jajavscript:;" class="btn" onclick="$(window.parent.document).find('#detailWindow').hide(); window.close();">取消</a>
         </div>
     </div>
@@ -95,6 +96,12 @@
         $(document).ready(function () {
             Doc.LoadDetail();
             Doc.LoadCategory("#treeDemo");
+
+            $("[data-single]").on("click", function () {
+                var val = $(this).attr("data-single");
+                $("[data-single='"+val+"']").removeClass("selected");
+                $(this).addClass("selected");
+            });
         });
 
 
