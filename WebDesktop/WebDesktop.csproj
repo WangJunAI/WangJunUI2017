@@ -882,6 +882,7 @@
     <Content Include="JS\Base\zTree\package.json" />
     <Content Include="JS\Base\zTree\README.md" />
     <Content Include="JS\Base\zTree\zTree.v3.jquery.json" />
+    <Content Include="UI\APP\Doc\JS\AppInfo.QuickBar.js" />
     <Content Include="UI\APP\Doc\JS\AppInfo.Doc.js" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

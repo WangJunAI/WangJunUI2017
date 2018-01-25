@@ -106,12 +106,15 @@
         .block2 > .content .title {
             width: 100%;
             height: 1.5em;
+            font-weight:700;
         }
 
         .block2 > .content .summary {
             width: 100%;
             height: 3.3em;
             font-size: 0.9em;
+            text-decoration:none;
+            color:#222;
         }
 
         .block2 > .content .link {

@@ -263,7 +263,18 @@ Doc.SaveCategory = function () {
         $(window.parent.document).find('#detailWindow').hide(); window.close();
     }
     NET.PostData(Doc.Server.Url7, callback, context);
+}
 
+
+Doc.RemoveCategory = function () {
+    var id = $("#id").val();
+    var context = ["{\"_id\":ObjectId('" + id + "')}"];
+
+    var callback = function (res) {
+        LOGGER.Log(res);
+
+    }
+    NET.PostData(App.Doc.Server.Url10, callback, context);
 }
 
 Doc.LoadCategory = function (target) {
@@ -276,7 +287,7 @@ Doc.LoadCategory = function (target) {
     }
 
     var zTreeOnDblClick = function (event, treeId, treeNode) {
-        Doc.ShowWindow("Category.html");
+        Doc.ShowWindow("Category.html?id=" + treeNode.id);
     }
     var setting = {
         data: {
@@ -308,6 +319,29 @@ Doc.LoadCategory = function (target) {
 
 }
 
+Doc.LoadCategoryDetail = function () {
+    var id = NET.GetQueryParam("id");
+    var context = [id];
+
+    var callback = function (res) {
+        LOGGER.Log(res);
+        Doc.ShowCategoryDetail(res);
+    }
+    NET.LoadData(App.Doc.Server.Url11, callback, context, NET.POST);
+}
+
+Doc.ShowCategoryDetail = function (data) {
+    if (PARAM_CHECKER.IsObject(data)) {
+        $("#Title").val(data.Name);
+        $("#id").val(data.id);
+        if (true === !PARAM_CHECKER.IsNotEmptyString(data.ParentName)) {
+            data.CategoryName = "选择分类";
+        }
+        $("#parentNode").text(data.ParentName);
+        $("#parentNode").attr("data-param", data.ParentID);
+    }
+}
+
 
 Doc.ShowCategory = function (target, setting, zNodes) {
     $.fn.zTree.init($(target), setting, zNodes);
@@ -316,9 +350,6 @@ Doc.ShowCategory = function (target, setting, zNodes) {
 
 Doc.ShowDetail = function (data) {
     if (PARAM_CHECKER.IsObject(data)) {
-
-
-
         if (true === PARAM_CHECKER.IsNotEmptyString(data.Content) && "<" === data.Content[0]) {
             UE.getEditor('editor').setContent(data.Content);
             UE.getEditor('editor').setHeight(400);

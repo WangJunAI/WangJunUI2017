@@ -14,7 +14,10 @@ App.Doc.Server = {
     Url6: "Category.html",
     Url7: "http://localhost:9990/API.ashx?c=WangJun.Doc.CategoryManager&m=Save&p=0",
     Url8: "http://localhost:9990/API.ashx?c=WangJun.Doc.CategoryManager&m=Find&p=0",
-    Url9: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocManager&m=Remove&p=0"
+    Url9: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocManager&m=Remove&p=0",
+    Url10: "http://localhost:9990/API.ashx?c=WangJun.Doc.CategoryManager&m=Remove&p=0",
+    Url11: "http://localhost:9990/API.ashx?c=WangJun.Doc.CategoryManager&m=Get&p=0"
+
 };
 
 
