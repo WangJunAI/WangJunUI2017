@@ -77,7 +77,7 @@ Doc.ShowTopButton = function (data) {
     }
 }
 
-Doc.LoadTable = function (pageIndex, pageSize) {
+Doc.LoadTable = function (pageIndex, pageSize,query) {
 
     if (!PARAM_CHECKER.IsInt(pageIndex)) {
         pageIndex = 0;
@@ -116,18 +116,18 @@ Doc.LoadTable = function (pageIndex, pageSize) {
 
         Doc.ShowTable(tableData);
 
-        Doc.LoadPager();
+        Doc.LoadPager(query);
     }
-    var context = ["{}", JSON.stringify({ "Content": 0, "PlainText": 0 }),"{CreateTime:-1}", pageIndex, pageSize];
+    var context = [query, JSON.stringify({ "Content": 0, "PlainText": 0 }),"{CreateTime:-1}", pageIndex, pageSize];
     NET.LoadData(Doc.Server.Url1, callback, context, NET.POST);
 }
 
-Doc.LoadPager = function () {
+Doc.LoadPager = function (query) {
     var callback = function (res) {
         var pagerInfo = { Count: res.Count, Index: 3, Size: 20 }
         Doc.ShowPager(pagerInfo);
     }
-    var context = ["{}"];
+    var context = [query];
     NET.LoadData(Doc.Server.Url2, callback, context, NET.POST);
 }
 
@@ -138,7 +138,7 @@ Doc.ShowTable = function (tableData) {
             var itemData = tableData.Column[k];
             var html = "<th>[Text]</th>";
             if (0 == k) {
-                html = "<th><input type='checkbox' /></th>"
+                html = "<th><input type='checkbox' onclick=Doc.ToggleTableRows() /></th>"
             } 
 
             columnHtml += html.replace("[Text]", itemData.Text);
@@ -183,7 +183,7 @@ Doc.ShowPager = function (pagerInfo) {
             var aItemHtml = "<a href=\"javascript:;\" onclick=[Method]([Param])>[Text]</a>";
             var optionHtml = "<option value=[Value]>[Text]</option>";
             if (k <= 3) {
-                aHtml += aItemHtml.replace("[Text]", k + 1).replace("[Method]", "Doc.LoadTable").replace("[Param]", k);
+                aHtml += aItemHtml.replace("[Text]", k + 1).replace("[Method]", "Doc.LoadTable").replace("[Param]", k + "," + pagerInfo.Size + ",'" + '{"Status":"已发布"}'+"'");
             }
             else if (3 <= k && k <= pagerCount - 3 && 6 < pagerCount) {
                 ellipsisHtml = "<a href=\"javascript:;\">....</a>";
@@ -395,13 +395,37 @@ Doc.RemoveDetail = function () {
     NET.PostData(App.Doc.Server.Url9, callback, context);
 }
 
+Doc.UpdateDoc = function () {
+    var query = { _id: { $in: [] } };
+    var source = $("[type='checkbox'][data-param]").each(function () {
+        if (true == $(this).prop("checked")) {
+            var id = $(this).attr("data-param");
+            query._id.$in.push("_ObjectId('" + id + "')_");
+        }
+    });
+
+    query = JSON.stringify(query).replace(/"_ObjectId/g, "ObjectId").replace(/\)_"/g, ")");
+    var updateJson = JSON.stringify({"Status":"已回收"});
+    var context = [query,updateJson];
+
+    var callback = function (res) {
+        LOGGER.Log(res);
+
+    }
+    NET.PostData(App.Doc.Server.Url12, callback, context);
+}
+
+Doc.ToggleTableRows = function () {
+    var checked = $(event.target).prop("checked");
+    $("#tbody1").find("[type='checkbox'][data-param]").prop("checked", checked);
+}
+
 Doc.Initial = function () {
     $(document).ready(function () {
         Doc.LoadAppInfo();
         Doc.LoadMenu();
         Doc.LoadTopButton();
-        Doc.LoadTable();
-        Doc.LoadPager();
+        Doc.LoadTable(0,20,'{"Status":"已发布"}');
         Doc.LoadCategory();
     });
 }

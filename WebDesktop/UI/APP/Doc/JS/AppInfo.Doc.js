@@ -16,7 +16,8 @@ App.Doc.Server = {
     Url8: "http://localhost:9990/API.ashx?c=WangJun.Doc.CategoryManager&m=Find&p=0",
     Url9: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocManager&m=Remove&p=0",
     Url10: "http://localhost:9990/API.ashx?c=WangJun.Doc.CategoryManager&m=Remove&p=0",
-    Url11: "http://localhost:9990/API.ashx?c=WangJun.Doc.CategoryManager&m=Get&p=0"
+    Url11: "http://localhost:9990/API.ashx?c=WangJun.Doc.CategoryManager&m=Get&p=0",
+    Url12: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocManager&m=UpdateStatus&p=0"
 
 };
 
@@ -47,6 +48,6 @@ App.Doc.Content.TopButton.push({ Name: "新建文章", ID: "", Method: "Doc.Show
 App.Doc.Content.TopButton.push({ Name: "新建目录", ID: "", Method: "Doc.ShowWindow", Param: App.Doc.Server.Url6, Position: "", ParentID: "ptcd" });
 App.Doc.Content.TopButton.push({ Name: "|", ID: "", Method: "", Position: "", ParentID: "ptcd" });
 App.Doc.Content.TopButton.push({ Name: "移动至", ID: "", Method: "", Position: "", ParentID: "glcd", Type: "dropdownlist", Menu: [{ Text: "回收站" }, { Text: "草稿箱" }] });
-App.Doc.Content.TopButton.push({ Name: "删除", ID: "", Method: "Doc.RemoveDetail", Position: "", ParentID: "glcd" });
+App.Doc.Content.TopButton.push({ Name: "删除", ID: "", Method: "Doc.UpdateDoc", Position: "", ParentID: "glcd" });
 App.Doc.Content.TopButton.push({ Name: "|", ID: "", Method: "", Position: "", ParentID: "glcd" });
 App.Doc.Content.TopButton.push({ Name: "刷新", ID: "", Method: "", Position: "", ParentID: "glcd" });
