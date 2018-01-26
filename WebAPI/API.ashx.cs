@@ -4,14 +4,16 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using WangJun.Data;
+using WangJun.Doc;
 using WangJun.Stock;
+//using System.Web.SessionState;
 
 namespace WebAPI
 {
     /// <summary>
     /// API 的摘要说明
     /// </summary>
-    public class API : IHttpHandler
+    public class API : IHttpHandler/*,IRequiresSessionState*/
     {
 
         
@@ -32,7 +34,6 @@ namespace WebAPI
 
         public void Execute(HttpContext context)
         {
-
             var classFullName = context.Request.QueryString["c"];
             var methodName = context.Request.QueryString["m"];
             var paramString = context.Request.QueryString["p"];// Convertor.DecodeBase64(context.Request.QueryString["p"]);
@@ -42,6 +43,7 @@ namespace WebAPI
             var method = target.GetType().GetMethod(methodName);
             var parameters = method.GetParameters();
             var param = new object[] { };
+            var decodeParam = new object[1];
             if ("GET" == httpMethod)
             {
                 param = new object[] { paramString };
@@ -51,7 +53,7 @@ namespace WebAPI
                 if (1 == context.Request.Form.Count)
                 {
                     param = Convertor.FromJsonToObject<object[]>(context.Request.Form[0]);
-                    var decodeParam = new object[param.Length-1];
+                    decodeParam = new object[param.Length-1];
                     for (int k = 0; k < param.Length-1; k++)
                     {
                         decodeParam[k] = param[k];
@@ -70,7 +72,27 @@ namespace WebAPI
                 }
             }
 
+
+            #region 调用前记录
+            var log = new LogItem();
+            log.ClassName = classFullName;
+            log.MethodName = methodName;
+            log.HttpMethod = httpMethod;
+            log.FormalParameter = parameters.ToDictionary(k=>k.Name,v=>v.ParameterType.Name);
+            log.ActualParameter = decodeParam;
+            log.StartTime = DateTime.Now;
+            #endregion
+
+
             res1 = method.Invoke(target, param);
+
+            #region 调用后记录
+            log.EndTime = DateTime.Now;
+            log.TimeCost = log.EndTime - log.StartTime;
+            log.Success = true;
+            log.Save();
+            #endregion
+
             if (res1 is string)
             {
                 context.Response.ContentType = "text/html";

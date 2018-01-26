@@ -118,7 +118,7 @@ Doc.LoadTable = function (pageIndex, pageSize) {
 
         Doc.LoadPager();
     }
-    var context = ["{}", JSON.stringify({ "Content": 0 }),"{CreateTime:-1}", pageIndex, pageSize];
+    var context = ["{}", JSON.stringify({ "Content": 0, "PlainText": 0 }),"{CreateTime:-1}", pageIndex, pageSize];
     NET.LoadData(Doc.Server.Url1, callback, context, NET.POST);
 }
 
@@ -235,17 +235,18 @@ Doc.SaveDetail = function () {
     //$div.text(item.Content);
     item.Title = Convertor.ToBase64String(item.Title).replace(/\+/g, "加号").replace(/\//g, "斜杠").replace(/=/g, "等于").replace(/ /g, "空格");
     item.Content = Convertor.ToBase64String(item.Content).replace(/\+/g, "加号").replace(/\//g, "斜杠").replace(/=/g, "等于").replace(/ /g, "空格");
+    item.PlainText = UE.getEditor('editor').getContentTxt();
 
 
 
 
-    var context = [item.Title, item.Content, item.CategoryID, item.PublistTime, item.Status, item.id, { 0: "base64", 1: "base64"}];
+    var context = [item.Title, item.Content, item.CategoryID, item.PublistTime, item.Status, item.id,item.PlainText, { 0: "base64", 1: "base64"}];
 
     var callback = function (res) {
         LOGGER.Log(res);
         $(window.parent.document).find('#detailWindow').hide(); window.close();
     }
-    NET.PostData(Doc.Server.Url4, callback, context);
+    NET.PostData(App.Doc.Server.Url4, callback, context);
 }
 
 Doc.SaveCategory = function () {
