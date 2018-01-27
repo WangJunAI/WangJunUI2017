@@ -79,6 +79,14 @@ Doc.ShowTopButton = function (data) {
 
 Doc.LoadTable = function (pageIndex, pageSize,query) {
 
+    if (true === PARAM_CHECKER.IsObject(event) && true === PARAM_CHECKER.IsObject(event.target) &&  true === PARAM_CHECKER.IsNotEmptyString($(event.target).attr("data-param"))) {
+        var pStr = $(event.target).attr("data-param");
+        var p = eval(pStr);
+        pageIndex = p[0];
+        pageSize = p[1];
+        query = JSON.stringify(p[2]);
+    }
+
     if (!PARAM_CHECKER.IsInt(pageIndex)) {
         pageIndex = 0;
     }
@@ -245,6 +253,7 @@ Doc.SaveDetail = function () {
     var callback = function (res) {
         LOGGER.Log(res);
         $(window.parent.document).find('#detailWindow').hide(); window.close();
+        Doc.ShowDialog();
     }
     NET.PostData(App.Doc.Server.Url4, callback, context);
 }
@@ -261,6 +270,8 @@ Doc.SaveCategory = function () {
 
     var callback = function (res) {
         LOGGER.Log(res);
+        Doc.ShowDialog();
+
         $(window.parent.document).find('#detailWindow').hide(); window.close();
     }
     NET.PostData(Doc.Server.Url7, callback, context);
@@ -284,7 +295,8 @@ Doc.LoadCategory = function (target) {
         var name = treeNode.Name;
         $('#category').hide();
         $("#parentNode").text(name);
-        $("#parentNode").attr("data-param",treeNode.id);
+        $("#parentNode").attr("data-param", treeNode.id);
+        Doc.LoadTable(0, 20, '{"CategoryID":"' + treeNode.id + '"}');
     }
 
     var zTreeOnDblClick = function (event, treeId, treeNode) {
@@ -418,6 +430,22 @@ Doc.UpdateDoc = function () {
 Doc.ToggleTableRows = function () {
     var checked = $(event.target).prop("checked");
     $("#tbody1").find("[type='checkbox'][data-param]").prop("checked", checked);
+}
+
+Doc.CloseDialog = function () {
+    $('#modal').css("display", "none");
+    $('#dialog').css("display", "none");
+}
+
+Doc.ShowDialog = function () {
+    $('#modal').css("display","block");
+    $('#dialog').css("display", "block");
+    $(window.parent).find('#modal').show();
+    $(window.parent).find('#dialog').show();
+    setTimeout(function () {
+        Doc.CloseDialog();
+    }, 1000 * 2);
+
 }
 
 Doc.Initial = function () {

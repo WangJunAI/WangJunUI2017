@@ -36,7 +36,7 @@ App.Doc.LeftMenu.push({ Name: "统计", ID: "", Method: "", Position: "", Parent
 App.Doc.LeftMenu.push({ Name: "评论", ID: "", Method: "", Position: "", ParentID: "glcd" });
 App.Doc.LeftMenu.push({ Name: "用户", ID: "", Method: "", Position: "", ParentID: "glcd" });
 App.Doc.LeftMenu.push({ Name: "系统管理", ID: "glcd", Method: "", Position: "", ParentID: null });
-App.Doc.LeftMenu.push({ Name: "回收站", ID: "", Method: "", Position: "", ParentID: "glcd" });
+App.Doc.LeftMenu.push({ Name: "回收站", ID: "左侧菜单.回收站", Method: "Doc.LoadTable", Param:"[0,20,{'Status':'已回收'}]", Position: "", ParentID: "glcd" });
 App.Doc.LeftMenu.push({ Name: "存储管理", ID: "", Method: "", Position: "", ParentID: "glcd" });
 App.Doc.LeftMenu.push({ Name: "应用信息", ID: "", Method: "", Position: "", ParentID: "glcd" });
 

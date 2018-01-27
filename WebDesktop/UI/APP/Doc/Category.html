@@ -29,7 +29,7 @@
     <input type="hidden" id="id" />
     <div class="global">
         <div class="title"><input type="text" id="Title" placeholder="请输入目录名称" /></div>
- 
+
         <div class="options">
             <ul>
 
@@ -64,9 +64,9 @@
                     <div class="item">
                         <div class="key">数据统计</div>
                         <div class="value">
-                            </div>
                         </div>
-</li>
+                    </div>
+                </li>
             </ul>
         </div>
         <div class="buttons">
@@ -75,13 +75,18 @@
             <a href="jajavscript:;" class="btn" onclick="$(window.parent.document).find('#detailWindow').hide(); var href = window.location.href;  window.open(href,'_self','');  window.close();  ">取消</a>
         </div>
     </div>
-     <script type="text/javascript">
+    <script type="text/javascript">
 
-         $(document).ready(function () {
-             Doc.LoadCategoryDetail();
-             Doc.LoadCategory("#treeDemo");
-         });
-     </script>
- 
+        $(document).ready(function () {
+            Doc.LoadCategoryDetail();
+            Doc.LoadCategory("#treeDemo");
+        });
+    </script>
+    <div id="modal"></div>
+    <div id="dialog">
+        <div>标题</div>
+        <div class="message">操作成功！</div>
+        <div><a href="javascript:;" onclick="$('#modal').hide();$('#dialog').hide()">关闭</a></div>
+    </div>
 </body>
 </html>

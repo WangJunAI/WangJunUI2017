@@ -54,7 +54,7 @@
                     <div class="item">
                         <div class="key">分类</div>
                         <div class="value">
-                            <a href="javascript:;" class="checkbox" data-property="" data-value="" onclick="$('#category').toggle();"  id="parentNode">所有分类</a>
+                            <a href="javascript:;" class="checkbox" data-property="" data-value="" onclick="$('#category').toggle();" id="parentNode">所有分类</a>
                             <div style="position: absolute;">
                                 <div id="category" class="dropdownlist">
                                     <ul id="treeDemo" class="ztree"></ul>
@@ -67,8 +67,10 @@
                 <li>
                     <div class="item">
                         <div class="key">发布</div>
-                        <div class="value"><a href="javascript:;" class="checkbox selected" data-single="publishTime">立刻发布</a><a href="javascript:;" class="checkbox"  data-single="publishTime">定时发布</a>
-                        <input id="publishDate" type="text" placeholder="日期" /><select id="publishHour"><option>08</option>  </select><span>时</span> <select id="publishMinute"><option>05</option></select><span>分</span> </div>
+                        <div class="value">
+                            <a href="javascript:;" class="checkbox selected" data-single="publishTime">立刻发布</a><a href="javascript:;" class="checkbox" data-single="publishTime">定时发布</a>
+                            <input id="publishDate" type="text" placeholder="日期" /><select id="publishHour"><option>08</option>  </select><span>时</span> <select id="publishMinute"><option>05</option></select><span>分</span>
+                        </div>
                     </div>
                 </li>
             </ul>
@@ -104,13 +106,18 @@
 
             $("[data-single]").on("click", function () {
                 var val = $(this).attr("data-single");
-                $("[data-single='"+val+"']").removeClass("selected");
+                $("[data-single='" + val + "']").removeClass("selected");
                 $(this).addClass("selected");
             });
         });
 
 
     </script>
-
+    <div id="modal"></div>
+    <div id="dialog">
+        <div>标题</div>
+        <div class="message">操作成功！</div>
+        <div><a href="javascript:;" onclick="$('#modal').hide();$('#dialog').hide()">关闭</a></div>
+    </div>
 </body>
 </html>
