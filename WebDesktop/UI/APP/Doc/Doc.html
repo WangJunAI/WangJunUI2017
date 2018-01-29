@@ -3,16 +3,24 @@
 <head>
     <meta charset="utf-8" />
     <title>文档管理</title>
+    <script type="text/javascript">var App = {}; App.Doc = {};</script>
+
     <link href="CSS/Doc.css" rel="stylesheet" />
+    <link href="CSS/Doc.Font.css" rel="stylesheet" />
     <link href="CSS/QuickBar.css" rel="stylesheet" />
     <script src="../../../JS/Base/jquery-3.1.1.min.js"></script>
     <script src="../../../JS/Base/NET.js"></script>
     <script src="../../../JS/Base/PARAM_CHECKER.js"></script>
     <script src="../../../JS/Base/DEBUG.js"></script>
     <script src="../../../JS/Base/Convertor.js"></script>
-    <script src="JS/Doc.js"></script>
 
     <script src="JS/AppInfo.Doc.js"></script>
+    <script src="JS/Doc.js"></script>
+    <script src="JS/Doc.LeftMenu.js"></script>
+    <script src="JS/Doc.TopButton.js"></script>
+    <script src="JS/Doc.Nav.Ztree.js"></script>
+    <script src="JS/Doc.Nav.SummaryList.js"></script>
+    <script src="JS/Doc.Table.js"></script>
 
     <link href="../../../JS/Base/zTree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
     <script src="../../../JS/Base/zTree/js/jquery.ztree.all.js"></script>
@@ -20,7 +28,6 @@
 
     <script src="JS/AppInfo.QuickBar.js"></script>
     <script src="JS/QuickBar.js"></script>
-
 </head>
 <body>
     <div class="global">
@@ -35,8 +42,9 @@
                     <div class="input"><input type="text" placeholder="请搜索..." /><a class="btn" href="javascript:;">搜索</a></div>
                 </div>
             </div>
-            <div class="list">
-                <ul id="treeDemo" class="ztree"></ul>
+            <div class="list" id="leftList">
+                 
+                
             </div>
             <div class="content">
                 <table>
@@ -56,16 +64,16 @@
         </div>
     </div>
 
-    <script type="text/html" id="menuItem1">
-        <li><a href="javascript:;" class="menuItem groupItem">[Name]</a></li>
+    <script type="text/html" id="leftMenuItem1">
+        <li><a href="javascript:;" class="menuItem groupItem" onclick="[Method]()" data-id="[ID]">[Name]</a></li>
     </script>
 
-    <script type="text/html" id="menuItem2">
-        <li><a href="javascript:;" class="menuItem" onclick="[Method]()" data-param="[Param]">[Name]</a></li>
+    <script type="text/html" id="leftMenuItem2">
+        <li data-parentID="[ParentID]"><a href="javascript:;" class="menuItem" onclick="[Method]()" data-id="[ID]" data-param="[Param]">[Name]</a></li data-parentID="[ParentID]">
     </script>
 
     <script type="text/html" id="topButton1">
-        <a href="javascript:;" class="btn" onclick="[Method]()" data-param="[Param]">[Name]</a>
+        <a href="javascript:;" class="[Class]" onclick="[Method]()" data-param="[Param]">[Name]</a>
     </script>
     <script type="text/html" id="topButton2">
         <a href="javascript:;" class="btn" onclick="$(this).find('.dropdownlist').toggle();" data-param="[Param]">
@@ -143,6 +151,43 @@
         <div class="message">操作成功！</div>
         <div><a href="javascript:;" onclick="$('#modal').hide();$('#dialog').hide()">关闭</a></div>
     </div>
+
+    <script type="text/html" id="tplSummaryList">
+        <div class="filter">
+            <span>[ListTitle]</span><a href="javascript:;" onclick="$(this).next().toggle();">筛选器</a>
+            <div class="dropdownlist">
+                <div>
+                    <ul>
+                        <li><a href="jaavscript:;">状态1</a></li>
+                        <li><a href="jaavscript:;">状态1</a></li>
+                        <li><a href="jaavscript:;">状态1</a></li>
+                        <li><a href="jaavscript:;">状态1</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <ul id="summaryList">
+            [列表]
+        </ul>
+    </script>
+
+    <script type="text/html" id="tplSummaryListItem">
+        <li>
+            <a class="listItem3" a="" href="javascript:;">
+                <div class="row1">
+                    <span class="waring">紧急</span><span class="category">呈批件</span>
+                </div>
+                <div class="row2">
+                    <div>有个很经典的试验，把青蛙直接扔到开水里则一定会蹦出来，但是把水慢慢加温，直到煮熟，青蛙也不会跳出来 。“温水煮青蛙”的哲学道理是“量变到质变”，就是说数量的积累到一定的程度会导致本质的变化。“温水煮青蛙”的道</div>
+                </div>
+                <div class="row3">
+                    <span>
+                        来自
+                    </span><span>张德凯</span><span>12-11 8:05</span>
+                </div>
+            </a>
+        </li>
+    </script>
 
 </body>
 </html>
