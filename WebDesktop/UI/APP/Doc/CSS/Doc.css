@@ -133,6 +133,7 @@
             top: 5em;
             left: 22em;
             right: 20em;
+            bottom:0;
         }
 
             .main > .content table {

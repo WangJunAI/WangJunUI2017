@@ -36,6 +36,7 @@ Doc.LeftMenuClick = function () {
         ///加载TopButton
         ///刷新列表
         Doc.LoadTopButton(topButtonId);
+        Doc.CloseLeftList();
         Doc.LoadTable(0, 20, "{'Status':'已回收'}");
         //Doc.LoadSummaryList(0, 20, "{'Status':'已回收'}");
     }
@@ -43,11 +44,11 @@ Doc.LeftMenuClick = function () {
         ///加载TopButton
         ///刷新列表
         Doc.LoadTopButton(topButtonId);
-        ///加载树状目录
+        ///加载树状目录 
         Doc.LoadTree();
         Doc.LoadTable(0, 20, "{'Status':'已发布'}");
     }
-    if ("LeftMenu.待发布" == id) {
+    else if ("LeftMenu.待发布" == id) {
         ///加载TopButton
         ///刷新列表
         Doc.LoadTopButton(topButtonId);
@@ -71,6 +72,13 @@ Doc.LeftMenuClick = function () {
         Doc.LoadTree();
         Doc.LoadTable(0, 20, "{}");
     }
+    else if ("LeftMenu.存储管理" == id) {
+        Doc.ShowContent("Chart1.html");
+    }
+    else if ("LeftMenu.应用信息" == id) {
+        Doc.ShowContent("AppInfo.html");
+    }
+
 
 }
 

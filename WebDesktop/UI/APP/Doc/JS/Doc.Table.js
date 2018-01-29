@@ -9,6 +9,9 @@ Doc.LoadTable = function (pageIndex, pageSize, query) {
     //    query = JSON.stringify(p[2]);
     //}
 
+    var tplTable = $("#tplTable").html();
+    Doc.ShowContent(tplTable);
+
     if (!PARAM_CHECKER.IsInt(pageIndex)) {
         pageIndex = 0;
     }

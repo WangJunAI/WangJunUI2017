@@ -1,5 +1,5 @@
 ﻿Doc.LoadTree = function (target) {
-
+    Doc.ShowLeftList();
     Doc.LoadHtmlTo("#leftList", "<ul id='treeDemo' class='ztree'></ul>");
 
     target = "#treeDemo";

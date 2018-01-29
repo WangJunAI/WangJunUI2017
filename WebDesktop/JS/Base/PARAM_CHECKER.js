@@ -4,43 +4,43 @@ var PARAM_CHECKER = {
     IsString: function (input) {
         return PARAM_CHECKER.IsValid(input) && "string" == typeof (input);
     },
-    
+
     ///是否是空字符串
-    IsEmptyString: function (input) { 
+    IsEmptyString: function (input) {
         return PARAM_CHECKER.IsString(input) && "" == input;
     },
-    
+
     ///是否不是空字符串
     IsNotEmptyString: function (input) {
         return PARAM_CHECKER.IsString(input) && 0 < input.length;
     },
 
-    
+
     ///是否有意义
     IsValid: function (input) {
         return null != input && undefined != input;
     },
-    
+
     ///若是对象
     IsObject: function (input) {
         return PARAM_CHECKER.IsValid(input) && "object" == typeof (input);
     },
-    
+
     ///若是数值
     IsArray: function (input) {
         return PARAM_CHECKER.IsValid(input) && "object" == typeof (input) && input.constructor == Array;
     },
-    
+
     ///判断是否是函数
     IsFunction: function (input) {
         return PARAM_CHECKER.IsValid(input) && "function" == typeof (input);
     },
-    
+
     ///判断是否是日期
     IsDate: function (input) {
         return PARAM_CHECKER.IsValid(input) && "Invalid Date" != new Date(input.toString()).toString();
     },
-    
+
     ///是否是JS路径
     IsJSUrl: function (input) {
         var reg = new RegExp(/.js/i);
@@ -63,15 +63,31 @@ var PARAM_CHECKER = {
     },
 
     ///是否包含指定的字符
-    Contains: function (keyword,input) {
-        var reg = new RegExp(keyword,"ig");
+    Contains: function (keyword, input) {
+        var reg = new RegExp(keyword, "ig");
         var res = reg.test(input);
         return res;
     },
 
     ///是否是指定类型的对象
-    IsInstanceOf: function (obj,cls) {
+    IsInstanceOf: function (obj, cls) {
         return (obj instanceof cls);
+    },
+
+    IsUrl: function (input) {
+        var res = (true === PARAM_CHECKER.IsNotEmptyString(input) && ("http://" === input.substring(0, 7) || "http://" === input.substring(0, 8)))
+        return res;
+    },
+
+    IsHtml: function (input) {
+        var source = input.trim();
+        if (true === PARAM_CHECKER.IsNotEmptyString(source)) {
+            var char1 = source[0];
+            var char2 = source[source.length - 1];
+            return ("<" === char1) && (">" === char2);
+        }
+        return false;
     }
+
 }
 

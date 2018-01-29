@@ -11,16 +11,6 @@
     },
 };
 
-///加载APP信息
-Doc.LoadAppInfo = function () {
-    var appInfo = App.Doc.Info;
-    Doc.ShowAppInfo(appInfo);
-}
-
-
-Doc.ShowAppInfo = function (data) {
-    $("#appName").text(data.Name);
-}
 
 
 
@@ -42,7 +32,7 @@ Doc.LoadDetail = function () {
             LOGGER.Log(res);
             Doc.ShowDetail(res);
         }
-        NET.LoadData(Doc.Server.Url5, callback, context, NET.POST);
+        NET.LoadData(App.Doc.Server.Url5, callback, context, NET.POST);
     });
 }
 
@@ -93,7 +83,7 @@ Doc.SaveCategory = function () {
 
         $(window.parent.document).find('#detailWindow').hide(); window.close();
     }
-    NET.PostData(Doc.Server.Url7, callback, context);
+    NET.PostData(App.Doc.Server.Url7, callback, context);
 }
 
 
