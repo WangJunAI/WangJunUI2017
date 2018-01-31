@@ -32,13 +32,13 @@ Doc.LeftMenuClick = function () {
     var id = $(event.target).attr("data-id");
     var topButtonId = Doc.FindLeftMenuData(id)[0].TopButtonGroupID;
     Doc.LeftMenuSetSelecled();
+    Doc.CloseWindow();
     if ("LeftMenu.回收站" == id) {
         ///加载TopButton
         ///刷新列表
         Doc.LoadTopButton(topButtonId);
         Doc.CloseLeftList();
-        Doc.LoadTable(0, 20, "{'Status':'已回收'}");
-        //Doc.LoadSummaryList(0, 20, "{'Status':'已回收'}");
+        Doc.LoadTable2(0, 20, "{}", App.Doc.Server.Url14, App.Doc.Data.RecycleBin.Load.Column);
     }
     if ("LeftMenu.已发布" == id) {
         ///加载TopButton

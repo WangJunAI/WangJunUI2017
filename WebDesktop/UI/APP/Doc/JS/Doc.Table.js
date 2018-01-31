@@ -1,14 +1,6 @@
 ﻿
 Doc.LoadTable = function (pageIndex, pageSize, query) {
-
-    //if (true === PARAM_CHECKER.IsObject(event) && true === PARAM_CHECKER.IsObject(event.target) && true === PARAM_CHECKER.IsNotEmptyString($(event.target).attr("data-param"))) {
-    //    var pStr = $(event.target).attr("data-param");
-    //    var p = eval(pStr);
-    //    pageIndex = p[0];
-    //    pageSize = p[1];
-    //    query = JSON.stringify(p[2]);
-    //}
-
+ 
     var tplTable = $("#tplTable").html();
     Doc.ShowContent(tplTable);
 
@@ -136,4 +128,46 @@ Doc.ShowPager = function (pagerInfo) {
 Doc.TableRowClick = function () {
     var url = $(event.target).attr("data-param");
     Doc.ShowWindow(url);
+}
+
+
+////
+Doc.LoadTable2 = function (pageIndex, pageSize, query,url,columnArray) {
+
+    var tplTable = $("#tplTable").html();
+    Doc.ShowContent(tplTable);
+
+    if (!PARAM_CHECKER.IsInt(pageIndex)) {
+        pageIndex = 0;
+    }
+    pageSize = 20;
+
+    var callback = function (res) {
+
+        var tableData = {
+            Column: [], Rows: [], Pager: {}
+        };
+        tableData.Column = columnArray;
+ 
+        var rows = res;
+
+        for (var k = 0; k < rows.length; k++) {
+             var id = rows[k].id;
+             var rowData = [{ ID: id, Text: "checkbox", Method: "" }];
+
+            for (var m = 1; m < tableData.Column.length; m++) {
+                var column = tableData.Column[m];
+                var propertyName = column.PropertyName;
+                rowData.push({ ID: id, Text: rows[k][propertyName], Method: "Doc.TableRowClick"});
+            }
+            tableData.Rows.push(rowData);
+        }
+
+
+        Doc.ShowTable(tableData);
+
+        Doc.LoadPager(query);
+    }
+    var context = [query,"{}", "{DeleteTime:-1}", pageIndex, pageSize];
+    NET.LoadData(url, callback, context, NET.POST);
 }

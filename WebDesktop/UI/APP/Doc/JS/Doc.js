@@ -2,10 +2,6 @@
 var Doc = {};
 
 
-Doc.ShowWindow = function (url) {
-    $("#detailWindow iframe").attr("src", url);
-    $("#detailWindow").show();
-}
 
 
 
@@ -86,7 +82,30 @@ Doc.RemoveCategory = function () {
  
 
 
+Doc.MoveToRecycleBin = function () {
+    var idArray = [];
+    var source = $("[type='checkbox'][data-param]").each(function () {
+        if (true == $(this).prop("checked")) {
+            var id = $(this).attr("data-param");
+            idArray.push(id);
+        }
+    });
 
+    for (var k = 0; k < idArray.length; k++) {
+        var context = ["DocService", "DocItem", idArray[k]];
+
+        var callback = function (res) {
+            LOGGER.Log(res);
+            if (k === idArray.length - 1) {
+                Doc.LoadTopButton(topButtonId);
+                Doc.CloseLeftList();
+                Doc.LoadTable(0, 20, "{'Status':'已发布'}");
+            }
+        }
+        NET.PostData(App.Doc.Server.Url13, callback, context);
+    }
+
+}
 
 
 Doc.RemoveDetail = function () {
@@ -130,10 +149,7 @@ Doc.UpdateDoc = function () {
     NET.PostData(App.Doc.Server.Url12, callback, context);
 }
 
-Doc.ToggleTableRows = function () {
-    var checked = $(event.target).prop("checked");
-    $("#tbody1").find("[type='checkbox'][data-param]").prop("checked", checked);
-}
+
 
 Doc.CloseDialog = function () {
     $('#modal').css("display", "none");
@@ -166,10 +182,4 @@ Doc.LoadHtmlTo = function (target,html) {
     $(target).empty();
     $(target).append(html);
 }
-
-///
-
-
-Doc.TopButtonClick = function () {
-
-}
+ 

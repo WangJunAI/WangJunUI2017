@@ -53,3 +53,27 @@ Doc.ShowCategoryDetail = function (data) {
 }
 
 
+Doc.ToggleTableRows = function () {
+    var checked = $(event.target).prop("checked");
+    $("#tbody1").find("[type='checkbox'][data-param]").prop("checked", checked);
+}
+
+Doc.ShowWindow = function (url) {
+    $("#detailWindow iframe").attr("src", url);
+    $("#detailWindow").show();
+}
+
+
+Doc.CloseWindow = function (url) {
+    url = "redirect.html";
+    if (false === PARAM_CHECKER.IsTopWindow()) {
+        top.window.Doc.LoadTable(0, 20, "{'Status':'已发布'}");
+        $(window.parent.document).find('#detailWindow').hide(); window.close();
+        Doc.ShowDialog();
+    }
+    else {
+        $("#detailWindow iframe").attr("src", url);
+        $("#detailWindow").hide();
+    }
+
+}

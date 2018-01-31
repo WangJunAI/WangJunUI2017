@@ -18,7 +18,9 @@ App.Doc.Server = {
     Url9: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocManager&m=Remove&p=0",
     Url10: "http://localhost:9990/API.ashx?c=WangJun.Doc.CategoryManager&m=Remove&p=0",
     Url11: "http://localhost:9990/API.ashx?c=WangJun.Doc.CategoryManager&m=Get&p=0",
-    Url12: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocManager&m=UpdateStatus&p=0"
+    Url12: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocManager&m=UpdateStatus&p=0",
+    Url13: "http://localhost:9990/API.ashx?c=WangJun.Doc.RecycleBinManager&m=MoveToRecycleBin",
+    Url14: "http://localhost:9990/API.ashx?c=WangJun.Doc.RecycleBinManager&m=Find"
 
 };
 
@@ -55,7 +57,7 @@ App.Doc.Content.TopButton.push({ Name: "新建文章", ID: "TopButton.新建文�
 App.Doc.Content.TopButton.push({ Name: "新建目录", ID: "TopButton.新建目录", Method: "Doc.TopButtonClick",   ParentID: "ptcd", GroupID: "左侧菜单.已发布.TopButton" });
 App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "",  ParentID: "ptcd", GroupID: "左侧菜单.已发布.TopButton"});
 App.Doc.Content.TopButton.push({ Name: "移动至", ID: "TopButton.移动至", Method: "",  ParentID: "glcd", Type: "dropdownlist", Menu: [{ Text: "回收站" }, { Text: "草稿箱" }], GroupID: "左侧菜单.已发布.TopButton"});
-App.Doc.Content.TopButton.push({ Name: "删除", ID: "TopButton.删除", Method: "Doc.UpdateDoc",  ParentID: "glcd", GroupID: "左侧菜单.已发布.TopButton"});
+App.Doc.Content.TopButton.push({ Name: "删除", ID: "TopButton.删除", Method: "Doc.TopButtonClick",  ParentID: "glcd", GroupID: "左侧菜单.已发布.TopButton"});
 
 ///待发布TopButton菜单
 App.Doc.Content.TopButton.push({ Name: "待发布文档", ID: "TopButton.待发布文档", Method: "",  ParentID: null, GroupID: "", Type: "Title", GroupID: "左侧菜单.待发布.TopButton" });
@@ -89,5 +91,17 @@ App.Doc.Content.TopButton.push({ Name: "删除", ID: "", Method: "Doc.UpdateDoc"
 App.Doc.Content.TopButton.push({ Name: "回收站", ID: "TopButton.回收站", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.回收站.TopButton", Type: "Title" });
 App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "",  ParentID: "ptcd", GroupID: "左侧菜单.回收站.TopButton"});
 App.Doc.Content.TopButton.push({ Name: "彻底删除", ID: "TopButton.彻底删除", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.回收站.TopButton", Type: "Button" });  
+App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", ParentID: "ptcd", GroupID: "左侧菜单.回收站.TopButton" });
 App.Doc.Content.TopButton.push({ Name: "清空回收站", ID: "TopButton.清空回收站", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.回收站.TopButton", Type: "Button" });  
 
+
+App.Doc.Data = {};
+App.Doc.Data.RecycleBin = {};
+App.Doc.Data.RecycleBin.Load = {};
+App.Doc.Data.RecycleBin.Load.Pager = {};
+App.Doc.Data.RecycleBin.Load.Column = [];
+App.Doc.Data.RecycleBin.Load.Column.push({ ID: "", Text: "全选", Method: "", Sort: "", PropertyName:"Type" });
+App.Doc.Data.RecycleBin.Load.Column.push({ ID: "", Text: "标题", Method: "", Sort: "", PropertyName: "Title" });
+App.Doc.Data.RecycleBin.Load.Column.push({ ID: "", Text: "类别", Method: "", Sort: "", PropertyName: "Type"});
+App.Doc.Data.RecycleBin.Load.Column.push({ ID: "", Text: "删除时间", Method: "", Sort: "", PropertyName: "DeleteTime"});
+App.Doc.Data.RecycleBin.Load.Column.push({ ID: "", Text: "详细", Method: "", Sort: "", PropertyName: "Type" });
