@@ -78,6 +78,14 @@ Doc.LeftMenuClick = function () {
     else if ("LeftMenu.应用信息" == id) {
         Doc.ShowContent("AppInfo.html");
     }
+    else if ("LeftMenu.新建目录" === id) {
+        var url = App.Doc.Server.Url6 + "?t=" + (new Date().getTime());
+        Doc.ShowWindow(url);
+    }
+    else if ("LeftMenu.新建文章" === id) {
+        var url = App.Doc.Server.Url3 + "?t=" + (new Date().getTime());
+        Doc.ShowWindow(url);
+    }
 
 
 }

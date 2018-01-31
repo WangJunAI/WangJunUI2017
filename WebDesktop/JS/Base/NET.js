@@ -28,7 +28,7 @@ NET.POST = "POST";
 
 NET.GET = "GET";
 
-NET.GetQueryParam = function (key,url) {
+NET.GetQueryParam = function (name,url) {
     if (!PARAM_CHECKER.IsNotEmptyString(url)) {
         url = window.location.href;
     }
@@ -42,8 +42,8 @@ NET.GetQueryParam = function (key,url) {
             param[key] = value;
         }
     }
-    if (PARAM_CHECKER.IsNotEmptyString(key)) {
-        return param[key];
+    if (PARAM_CHECKER.IsNotEmptyString(name)) {
+        return param[name];
     }
     return param;
 }

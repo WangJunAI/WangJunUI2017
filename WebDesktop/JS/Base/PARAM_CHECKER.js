@@ -87,6 +87,11 @@ var PARAM_CHECKER = {
             return ("<" === char1) && (">" === char2);
         }
         return false;
+    },
+
+
+    IsTopWindow:function () {
+        return window === top.window;
     }
 
 }

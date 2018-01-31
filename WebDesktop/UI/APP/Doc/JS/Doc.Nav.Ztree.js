@@ -1,4 +1,4 @@
-﻿Doc.LoadTree = function (target) {
+﻿Doc.LoadTree = function (target,excludeIdArray) {
     Doc.ShowLeftList();
     Doc.LoadHtmlTo("#leftList", "<ul id='treeDemo' class='ztree'></ul>");
 
@@ -36,6 +36,11 @@
 
     var callback = function (res) {
         LOGGER.Log(res);
+        var arr = {};
+        if (true === PARAM_CHECKER.IsArray(excludeIdArray)) {
+            
+        }
+
         Doc.ShowTree(target, setting, res);
     }
     NET.PostData(App.Doc.Server.Url8, callback, context);

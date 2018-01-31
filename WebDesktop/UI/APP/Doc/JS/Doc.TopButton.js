@@ -20,7 +20,7 @@ Doc.ShowTopButton = function (data) {
             }
             else {
                 html = topButtonHtml1.replace("[Name]", itemData.Name).replace("[Method]", itemData.Method).replace("[Param]", itemData.Param)
-                    .replace("[Class]", ("Title" === itemData.Type) ? "btn fw700" : "btn");
+                    .replace("[Class]", ("Title" === itemData.Type) ? "btn fw700" : "btn").replace("[ID]", itemData.ID);;
             }
 
             $(html).appendTo("#topButton");
@@ -38,4 +38,17 @@ Doc.FindTopButtons = function (groupID) {
         }
     }
     return buttonArray;
+}
+
+
+Doc.TopButtonClick = function () {
+    var id = $(event.target).attr("data-id");
+    if ("TopButton.新建文章" == id) {
+        var url = App.Doc.Server.Url3 + "?t=" + (new Date().getTime());
+        Doc.ShowWindow(url);
+    }
+    else if ("TopButton.新建目录" == id) {
+        var url = App.Doc.Server.Url6 + "?t=" + (new Date().getTime());
+        Doc.ShowWindow(url);
+    }
 }

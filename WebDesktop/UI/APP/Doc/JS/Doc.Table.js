@@ -43,7 +43,7 @@ Doc.LoadTable = function (pageIndex, pageSize, query) {
             var url = App.Doc.Server.Url3 + "?id=" + id;
             var categoryName = rows[k].CategoryName;
             var createTime = Convertor.DateFormat(eval(rows[k].CreateTime.replace(/\//g, "")), "yyyy/MM/dd hh:mm");
-            tableData.Rows.push([{ ID: id, Text: "checkbox", Method: "", Param: url }, { ID: id, Text: title, Method: "Doc.ShowWindow", Param: url }, { ID: "", Text: categoryName, Method: "" }, { ID: "", Text: readCount, Method: "" }, { ID: "", Text: likeCount, Method: "" }, { ID: "", Text: commentCount, Method: "" }, { ID: "", Text: createTime, Method: "" }, { ID: "", Text: createTime, Method: "" }, { ID: "", Text: "已发布", Method: "" }, { ID: id, Text: "详细", Method: "Doc.ShowWindow", Param: url }]);
+            tableData.Rows.push([{ ID: id, Text: "checkbox", Method: "", Param: url }, { ID: id, Text: title, Method: "Doc.TableRowClick", Param: url }, { ID: "", Text: categoryName, Method: "" }, { ID: "", Text: readCount, Method: "" }, { ID: "", Text: likeCount, Method: "" }, { ID: "", Text: commentCount, Method: "" }, { ID: "", Text: createTime, Method: "" }, { ID: "", Text: createTime, Method: "" }, { ID: "", Text: "已发布", Method: "" }, { ID: id, Text: "详细", Method: "Doc.ShowWindow", Param: url }]);
         }
 
 
@@ -52,7 +52,7 @@ Doc.LoadTable = function (pageIndex, pageSize, query) {
         Doc.LoadPager(query);
     }
     var context = [query, JSON.stringify({ "Content": 0, "PlainText": 0 }), "{CreateTime:-1}", pageIndex, pageSize];
-    NET.LoadData(Doc.Server.Url1, callback, context, NET.POST);
+    NET.LoadData(App.Doc.Server.Url1, callback, context, NET.POST);
 }
 
 Doc.LoadPager = function (query) {
@@ -61,7 +61,7 @@ Doc.LoadPager = function (query) {
         Doc.ShowPager(pagerInfo);
     }
     var context = [query];
-    NET.LoadData(Doc.Server.Url2, callback, context, NET.POST);
+    NET.LoadData(App.Doc.Server.Url2, callback, context, NET.POST);
 }
 
 Doc.ShowTable = function (tableData) {
@@ -131,4 +131,9 @@ Doc.ShowPager = function (pagerInfo) {
         var html = aHtml + selectionHtml + "<a href=\"javascript:;\" onclick=[Method]([Param])>跳转</a>".replace("[Method]", "Doc.LoadTable").replace("[Param]", 0);
         $("#pager").html(html);
     }
+}
+
+Doc.TableRowClick = function () {
+    var url = $(event.target).attr("data-param");
+    Doc.ShowWindow(url);
 }

@@ -1,40 +1,13 @@
-﻿var Doc = {
-    //AppInfo: {},
-    Server: {
-        Url1: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocManager&m=Find&p=0",
-        Url2: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocManager&m=Count&p=0",
-        Url3: "Detail.html",
-        Url4: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocManager&m=Save&p=0",
-        Url5: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocManager&m=Get&p=0",
-        Url6: "Category.html",
-        Url7: "http://localhost:9990/API.ashx?c=WangJun.Doc.CategoryManager&m=Save&p=0",
-    },
-};
-
-
-
-
-
+﻿ 
+var Doc = {};
 
 
 Doc.ShowWindow = function (url) {
-    url = (PARAM_CHECKER.IsNotEmptyString(url)) ? url : $(event.target).attr("data-param");
     $("#detailWindow iframe").attr("src", url);
     $("#detailWindow").show();
 }
 
-Doc.LoadDetail = function () {
-    $(document).ready(function () {
-        var id = NET.GetQueryParam("id");
-        var context = [id];
 
-        var callback = function (res) {
-            LOGGER.Log(res);
-            Doc.ShowDetail(res);
-        }
-        NET.LoadData(App.Doc.Server.Url5, callback, context, NET.POST);
-    });
-}
 
 Doc.SaveDetail = function () {
     var item = {};
@@ -61,27 +34,35 @@ Doc.SaveDetail = function () {
 
     var callback = function (res) {
         LOGGER.Log(res);
-        $(window.parent.document).find('#detailWindow').hide(); window.close();
-        Doc.ShowDialog();
+        if (false === PARAM_CHECKER.IsTopWindow()) {
+            top.window.Doc.LoadTable(0, 20, "{'Status':'已发布'}");
+            $(window.parent.document).find('#detailWindow').hide(); window.close();
+            Doc.ShowDialog();
+        }
     }
     NET.PostData(App.Doc.Server.Url4, callback, context);
 }
 
 Doc.SaveCategory = function () {
     var item = {};
+    item.id = $("#id").val();
     item.Title = $("#Title").val().trim();
     //item.Content = UE.getEditor('editor').getContent();
     item.CreatorName = "创建人姓名";
     item.CreatorID = "创建人ID";
     item.ParentID = $("#parentNode").attr("data-param");
     // item.Content = item.Content.replace(/</g, "«").replace(/>/g, "»");
-    var context = [item.Title, item.ParentID, item.CreatorName, item.CreatorID];
+    var context = [item.Title, item.ParentID, item.id, item.CreatorID];
 
     var callback = function (res) {
         LOGGER.Log(res);
-        Doc.ShowDialog();
+        if (false === PARAM_CHECKER.IsTopWindow()) {
+            $(window.parent.document).find('#detailWindow').hide(); window.close();
+            Doc.ShowDialog();
+            top.window.Doc.LoadTree();
+        }
 
-        $(window.parent.document).find('#detailWindow').hide(); window.close();
+
     }
     NET.PostData(App.Doc.Server.Url7, callback, context);
 }
@@ -89,67 +70,24 @@ Doc.SaveCategory = function () {
 
 Doc.RemoveCategory = function () {
     var id = $("#id").val();
-    var context = ["{\"_id\":ObjectId('" + id + "')}"];
+    var context = [id];
 
     var callback = function (res) {
         LOGGER.Log(res);
-
+        if (false === PARAM_CHECKER.IsTopWindow()) {
+            $(window.parent.document).find('#detailWindow').hide(); window.close();
+            Doc.ShowDialog();
+            top.window.Doc.LoadTree();
+        }
     }
     NET.PostData(App.Doc.Server.Url10, callback, context);
 }
 
  
 
-Doc.LoadCategoryDetail = function () {
-    var id = NET.GetQueryParam("id");
-    var context = [id];
-
-    var callback = function (res) {
-        LOGGER.Log(res);
-        Doc.ShowCategoryDetail(res);
-    }
-    NET.LoadData(App.Doc.Server.Url11, callback, context, NET.POST);
-}
-
-Doc.ShowCategoryDetail = function (data) {
-    if (PARAM_CHECKER.IsObject(data)) {
-        $("#Title").val(data.Name);
-        $("#id").val(data.id);
-        if (true === !PARAM_CHECKER.IsNotEmptyString(data.ParentName)) {
-            data.CategoryName = "选择分类";
-        }
-        $("#parentNode").text(data.ParentName);
-        $("#parentNode").attr("data-param", data.ParentID);
-    }
-}
 
 
 
-
-Doc.ShowDetail = function (data) {
-    if (PARAM_CHECKER.IsObject(data)) {
-        if (true === PARAM_CHECKER.IsNotEmptyString(data.Content) && "<" === data.Content[0]) {
-            UE.getEditor('editor').setContent(data.Content);
-            UE.getEditor('editor').setHeight(400);
-        }
-        else if (true === PARAM_CHECKER.IsNotEmptyString(data.Content)) {
-            var html = data.Content.substring(data.Content.indexOf("&lt;"), data.Content.lastIndexOf("&gt;") + 4);
-            var $div = $("<div></div>").html(html);
-            data.Content = $div.text();
-            UE.getEditor('editor').setContent(data.Content);
-            UE.getEditor('editor').setHeight(400);
-        }
-        $("#Title").val(data.Title);
-        $("#id").val(data.id);
-
-
-        if (true === !PARAM_CHECKER.IsNotEmptyString(data.CategoryName)) {
-            data.CategoryName = "选择分类";
-        }
-        $("#parentNode").text(data.CategoryName);
-        $("#parentNode").attr("data-param", data.CategoryID);
-    }
-}
 
 Doc.RemoveDetail = function () {
 
@@ -217,9 +155,10 @@ Doc.Initial = function () {
     $(document).ready(function () {
         Doc.LoadAppInfo();
         Doc.LoadMenu();
-        Doc.LoadTopButton();
-        Doc.LoadTable(0,20,'{"Status":"已发布"}');
+
+        Doc.LoadTopButton("左侧菜单.已发布.TopButton");
         Doc.LoadTree();
+        Doc.LoadTable(0, 20, "{'Status':'已发布'}");
     });
 }
 

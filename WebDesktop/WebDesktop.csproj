@@ -1368,6 +1368,7 @@
     <Content Include="UI\APP\Doc\CSS\QuickBar.css" />
     <Content Include="UI\APP\Doc\JS\Doc.App.js" />
     <Content Include="UI\APP\Doc\JS\Doc.ClientUI.js" />
+    <Content Include="UI\APP\Doc\JS\Doc.Detail.js" />
     <Content Include="UI\APP\Doc\JS\Doc.LeftMenu.js" />
     <Content Include="UI\APP\Doc\JS\Doc.Nav.SummaryList.js" />
     <Content Include="UI\APP\Doc\JS\Doc.Nav.Ztree.js" />
