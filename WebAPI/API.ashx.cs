@@ -36,7 +36,6 @@ namespace WebAPI
         {
             var classFullName = context.Request.QueryString["c"];
             var methodName = context.Request.QueryString["m"];
-            var paramString = context.Request.QueryString["p"];// Convertor.DecodeBase64(context.Request.QueryString["p"]);
             var httpMethod = context.Request.HttpMethod;
             var res1 = new object();
             var target = this.GetTargetObject(classFullName, methodName);
@@ -46,7 +45,12 @@ namespace WebAPI
             var decodeParam = new object[1];
             if ("GET" == httpMethod)
             {
-                param = new object[] { paramString };
+                var keys = context.Request.QueryString.AllKeys.Where((p)=> { return !String.IsNullOrWhiteSpace(p)&& p.StartsWith("p"); });
+                param = new object[parameters.Length];
+                for (int k = 0; k < keys.Count(); k++)
+                {
+                    param[k] = context.Request.QueryString["p"+k];
+                }
             }
             else if ("POST" == httpMethod)
             {
@@ -120,6 +124,8 @@ namespace WebAPI
             dict.Add("WangJun.Doc.CommentItem." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Doc.dll"));
             dict.Add("WangJun.Doc.CategoryManager." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Doc.dll"));
             dict.Add("WangJun.Doc.RecycleBinManager." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Doc.dll"));
+            dict.Add("WangJun.Doc.DataAnalysor." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Doc.dll"));
+            dict.Add("WangJun.Doc.ClientBehaviorManager." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Doc.dll"));
             var dllPath = dict[classFullName + "." + methodName];
             Assembly ass = Assembly.LoadFrom(dllPath);
             var obj = ass.CreateInstance(classFullName);

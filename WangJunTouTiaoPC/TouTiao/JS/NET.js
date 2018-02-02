@@ -14,12 +14,21 @@ NET.LoadData = function (url, callback, context,method) {
         data: context,
         type: method,
         success: function (data, textStatus) {
+            LOGGER.Log(data);
             callback(data);
         }
     });
 }
 
-NET.GetQueryParam = function (key,url) {
+NET.PostData = function (url, callback, context) {
+    NET.LoadData(url, callback, context, NET.POST);
+}
+
+NET.POST = "POST";
+
+NET.GET = "GET";
+
+NET.GetQueryParam = function (name,url) {
     if (!PARAM_CHECKER.IsNotEmptyString(url)) {
         url = window.location.href;
     }
@@ -32,6 +41,9 @@ NET.GetQueryParam = function (key,url) {
             var value = paramArray[k].split("=")[1];
             param[key] = value;
         }
+    }
+    if (PARAM_CHECKER.IsNotEmptyString(name)) {
+        return param[name];
     }
     return param;
 }

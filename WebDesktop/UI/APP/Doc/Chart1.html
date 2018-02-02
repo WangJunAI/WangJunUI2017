@@ -3,6 +3,26 @@
 <head>
     <meta charset="utf-8">
     <title>第一个 Highcharts 图表</title>
+
+
+    <script src="../../../JS/Base/jquery-3.1.1.min.js"></script>
+    <script src="../../../JS/Base/NET.js"></script>
+    <script src="../../../JS/Base/PARAM_CHECKER.js"></script>
+    <script src="../../../JS/Base/DEBUG.js"></script>
+    <script src="../../../JS/Base/Convertor.js"></script>
+
+    <script src="JS/AppInfo.Doc.js"></script>
+    <script src="JS/Doc.js"></script>
+    <script src="JS/Doc.LeftMenu.js"></script>
+    <script src="JS/Doc.TopButton.js"></script>
+    <script src="JS/Doc.Nav.Ztree.js"></script>
+    <script src="JS/Doc.Nav.SummaryList.js"></script>
+    <script src="JS/Doc.Table.js"></script>
+    <script src="JS/Doc.ClientUI.js"></script>
+    <script src="JS/Doc.App.js"></script>
+    <script src="JS/Doc.Detail.js"></script>
+
+    <script src="JS/Doc.Chart.js"></script>
 </head>
 <body>
     <!-- 图表容器 DOM -->
@@ -41,11 +61,192 @@
                 data: [5, 7, 3]
             }]
         };
+
+        var option2 = {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: '2014 某网站各浏览器浏览量占比'
+            },
+            tooltip: {
+                headerFormat: '{series.name}<br>',
+                pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: '浏览器访问量占比',
+                data: [
+                    ['Firefox', 45.0],
+                    ['IE', 26.8],
+                    {
+                        name: 'Chrome',
+                        y: 12.8,
+                        sliced: true,
+                        selected: true
+                    },
+                    ['Safari', 8.5],
+                    ['Opera', 6.2],
+                    ['其他', 0.7]
+                ]
+            }]
+        }
+
+
+        var options3 = {
+            title: {
+                text: '2010 ~ 2016 年太阳能行业就业人员发展情况'
+            },
+            subtitle: {
+                text: '数据来源：thesolarfoundation.com'
+            },
+            yAxis: {
+                title: {
+                    text: '就业人数'
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle'
+            },
+            plotOptions: {
+                series: {
+                    label: {
+                        connectorAllowed: false
+                    },
+                    pointStart: 2010
+                }
+            },
+            series: [{
+                name: '安装，实施人员',
+                data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+            }, {
+                name: '工人',
+                data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
+            }, {
+                name: '销售',
+                data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
+            }, {
+                name: '项目开发',
+                data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
+            }, {
+                name: '其他',
+                data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
+            }],
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+        }
+        var option4 = {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: '全球各大城市人口排行'
+            },
+            subtitle: {
+                text: '数据截止 2017-03，来源: <a href="https://en.wikipedia.org/wiki/List_of_cities_proper_by_population">Wikipedia</a>'
+            },
+            xAxis: {
+                type: 'category',
+                labels: {
+                    rotation: -45,
+                    style: {
+                        fontSize: '13px',
+                        fontFamily: 'Verdana, sans-serif'
+                    }
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: '人口 (百万)'
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            tooltip: {
+                pointFormat: '人口总量: <b>{point.y:.1f} 百万</b>'
+            },
+            series: [{
+                name: '总人口',
+                data: [
+                    ['上海', 24.25],
+                    ['卡拉奇', 23.50],
+                    ['北京', 21.51],
+                    ['德里', 16.78],
+                    ['拉各斯', 16.06],
+                    ['天津', 15.20],
+                    ['伊斯坦布尔', 14.16],
+                    ['东京', 13.51],
+                    ['广州', 13.08],
+                    ['孟买', 12.44],
+                    ['莫斯科', 12.19],
+                    ['圣保罗', 12.03],
+                    ['深圳', 10.46],
+                    ['雅加达', 10.07],
+                    ['拉合尔', 10.05],
+                    ['首尔', 9.99],
+                    ['武汉', 9.78],
+                    ['金沙萨', 9.73],
+                    ['开罗', 9.27],
+                    ['墨西哥', 8.87]
+                ],
+                dataLabels: {
+                    enabled: true,
+                    rotation: -90,
+                    color: '#FFFFFF',
+                    align: 'right',
+                    format: '{point.y:.1f}', // one decimal
+                    y: 10, // 10 pixels down from the top
+                    style: {
+                        fontSize: '13px',
+                        fontFamily: 'Verdana, sans-serif'
+                    }
+                }
+            }]
+        }
         // 图表初始化函数
         var chart = Highcharts.chart('container1', options);
-        var chart = Highcharts.chart('container2', options);
-        var chart = Highcharts.chart('container3', options);
-        var chart = Highcharts.chart('container4', options);
+        var chart = Highcharts.chart('container2', option2);
+        var chart = Highcharts.chart('container3', options3);
+        //var chart = Highcharts.chart('container4', option4);
+    </script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            Doc.LoadChart("container4", App.Doc.Server.Url15, { Title: "今日热词", yAxisName: "计数", DataSourceName:"汪俊"});
+        });
+        
     </script>
 </body>
 </html>

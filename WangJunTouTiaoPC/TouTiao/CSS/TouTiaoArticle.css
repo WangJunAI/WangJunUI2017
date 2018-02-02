@@ -94,6 +94,8 @@
                 float: left;
             }
 
+
+
                 .global > .head > .path > .search > .input [type=text] {
                     border: none;
                     height: 100%;
@@ -206,10 +208,24 @@
     background-color:#777;
 }
 
-.commentItem {
-    /*background-color:aqua;*/
-    margin-top: 1em;
-}
+    .global > .main > .comment > .input > textarea {
+        border: none;
+        background-color: #EEE;
+        width: 90%;
+        height: 100%;
+    }
+
+    .global > .main > .comment > .input > a{
+        text-decoration:none;
+        color:#222;
+    }
+    
+    
+    
+    .commentItem {
+        /*background-color:aqua;*/
+        margin-top: 1em;
+    }
 
     .commentItem > .header {
         color: #777;

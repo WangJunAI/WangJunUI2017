@@ -20,8 +20,8 @@ App.Doc.Server = {
     Url11: "http://localhost:9990/API.ashx?c=WangJun.Doc.CategoryManager&m=Get&p=0",
     Url12: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocManager&m=UpdateStatus&p=0",
     Url13: "http://localhost:9990/API.ashx?c=WangJun.Doc.RecycleBinManager&m=MoveToRecycleBin",
-    Url14: "http://localhost:9990/API.ashx?c=WangJun.Doc.RecycleBinManager&m=Find"
-
+    Url14: "http://localhost:9990/API.ashx?c=WangJun.Doc.RecycleBinManager&m=Find",
+    Url15: "http://localhost:9990/API.ashx?c=WangJun.Doc.DataAnalysor&m=GetHotWords"
 };
 
 
