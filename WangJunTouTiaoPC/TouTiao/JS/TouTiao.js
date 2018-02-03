@@ -20,7 +20,7 @@ TouTiao.ShowCategory = function (res) {
     var html = "";
     for (var k = 0; k < res.length; k++) {
         var item = res[k];
-        html += "<li><a href=\"javascript:;\"><span>[Name]</span></a></li>".replace("[Name]", item.Name);
+        html += "<li><a href=\"javascript:;\" data-param=\"[CategoryID]\" onclick='TouTiao.LoadList()'><span data-param=\"[CategoryID]\">[Name]</span></a></li>".replace("[Name]", item.Name).replace(/\[CategoryID\]/g, item.id);
     }
 
     $("#category").html(html);
@@ -28,8 +28,19 @@ TouTiao.ShowCategory = function (res) {
 
 
 ///加载列表
-TouTiao.LoadList = function (param,callback) { 
-    var context = ["{}", JSON.stringify({ "Content": 0, "PlainText": 0 }), "{CreateTime:-1}", 0, 20];
+TouTiao.LoadList = function (param) { 
+    var query = "{}";
+
+    if (true === PARAM_CHECKER.IsNotEmptyString(param)) {
+        query = "{'CategoryID':'[CategoryID]'}".replace('[CategoryID]', param);
+    }
+
+    else if (event != null && true === PARAM_CHECKER.IsNotEmptyString($(event.target).attr("data-param"))) {
+        var categoeyID = $(event.target).attr("data-param");
+        query = "{'CategoryID':'[CategoryID]'}".replace('[CategoryID]', categoeyID);
+    }
+
+    var context = [query, JSON.stringify({ "Content": 0, "PlainText": 0 }), "{CreateTime:-1}", 0, 20];
     var callback = function (res) {
         LOGGER.Log(res);
         TouTiao.ShowList(res);
@@ -75,7 +86,7 @@ TouTiao.AddComment = function () {
     var item = {};
     item.Content = $("#comment").val().trim();
     var targetId = NET.GetQueryParam("id");
-    var context = [item.Content,targetId,"E1000","测试员"];
+    var context = [item.Content,targetId,"E1000","测试员","text"];
     var callback = function (res) {
         LOGGER.Log(res);
         //TouTiao.ShowList(res);
@@ -84,6 +95,35 @@ TouTiao.AddComment = function () {
 
     NET.PostData(App.TouTiao.Server.Url4, callback, context);
 }
+
+TouTiao.AddLikeCount= function () {
+    var item = {};
+    item.Content = $("#comment").val().trim();
+    var targetId = NET.GetQueryParam("id");
+    var context = ["1", targetId, "E1000", "测试员", "LikeCount"];
+    var callback = function (res) {
+        LOGGER.Log(res);
+        //TouTiao.ShowList(res);
+        //TouTiao.LoadCommentList();
+    }
+
+    NET.PostData(App.TouTiao.Server.Url4, callback, context);
+}
+
+TouTiao.AddAppend = function () {
+    var item = {};
+    item.Content = $("#comment").val().trim();
+    var targetId = NET.GetQueryParam("id");
+    var context = ["追加", targetId, "E1000", "测试员", "Append"];
+    var callback = function (res) {
+        LOGGER.Log(res);
+        //TouTiao.ShowList(res);
+        //TouTiao.LoadCommentList();
+    }
+
+    NET.PostData(App.TouTiao.Server.Url4, callback, context);
+}
+
 
 TouTiao.LoadArticle = function (param,callback) {
     var id = NET.GetQueryParam("id");
@@ -100,6 +140,7 @@ TouTiao.LoadArticle = function (param,callback) {
 TouTiao.ShowList = function (data) {
     if (PARAM_CHECKER.IsArray(data)) {
         var html = $("#tplListItem").html();
+        $("#list1").empty();
         var array = [];
         for (var k = 0; k < data.length; k++) {
             var itemData = data[k];
