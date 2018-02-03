@@ -95,6 +95,10 @@
       <Project>{f778d22c-042f-4535-a9e1-10bfb9e23a7f}</Project>
       <Name>WangJun.Doc</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\WangJun2017\WangJun.HumanResource\WangJun.HumanResource.csproj">
+      <Project>{06F3A647-D026-4847-94A5-20643223CC96}</Project>
+      <Name>WangJun.HumanResource</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\WangJun2017\WangJun.Stock\WangJun.Stock.csproj">
       <Project>{73325152-D226-46CB-B333-B5EEA545209B}</Project>
       <Name>WangJun.Stock</Name>
@@ -103,6 +107,9 @@
       <Project>{79474114-39E0-4FEC-A040-F2E867CA82A7}</Project>
       <Name>WangJun.Tools</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Pic\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

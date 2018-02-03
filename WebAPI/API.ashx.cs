@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Web;
 using WangJun.Data;
 using WangJun.Doc;
+using WangJun.HumanResource;
 using WangJun.Stock;
 //using System.Web.SessionState;
 
@@ -139,5 +140,16 @@ namespace WebAPI
                 return false;
             }
         }
+
+        public SESSION CurrentSession {
+
+            get
+            {
+                var inst = SESSION.Current;
+                return inst;
+            }
+        }
+
+ 
     }
 }

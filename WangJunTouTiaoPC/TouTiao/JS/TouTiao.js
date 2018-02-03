@@ -86,7 +86,7 @@ TouTiao.AddComment = function () {
     var item = {};
     item.Content = $("#comment").val().trim();
     var targetId = NET.GetQueryParam("id");
-    var context = [item.Content,targetId,"E1000","测试员","text"];
+    var context = [item.Content,targetId,"text"];
     var callback = function (res) {
         LOGGER.Log(res);
         //TouTiao.ShowList(res);
@@ -100,7 +100,7 @@ TouTiao.AddLikeCount= function () {
     var item = {};
     item.Content = $("#comment").val().trim();
     var targetId = NET.GetQueryParam("id");
-    var context = ["1", targetId, "E1000", "测试员", "LikeCount"];
+    var context = ["1", targetId, "LikeCount"];
     var callback = function (res) {
         LOGGER.Log(res);
         //TouTiao.ShowList(res);
@@ -171,6 +171,10 @@ TouTiao.ShowArticle = function (data) {
         $("#title").text(data.Title);
         $("#CreatorName").text(data.CreatorName);
         $("#CreateTime").text(data.CreateTime);
+
+
+        data.Content = data.Content.replace(/js\/ueditor\/net\/upload\/image/g,"http://localhost:14324/js/ueditor/net/upload/image/")
+
         $("#Content").html(data.Content);
     }
     else {
