@@ -40,9 +40,8 @@ TouTiao.LoadList = function (param,callback) {
 
 ///加载评论列表
 TouTiao.LoadCommentList = function (param) {
-    var url = "http://localhost:9990/API.ashx?c=WangJun.Doc.CommentManager&m=Find&p=0";
     var data = [JSON.stringify({"RootID":param}),"{}","{}", 0, 50];
-    NET.LoadData(url, function (res) {
+    NET.LoadData(App.TouTiao.Server.Url5, function (res) {
         LOGGER.Log(res);
         TouTiao.ShowCommentList(res);
     }, data, "POST");    
@@ -53,6 +52,7 @@ TouTiao.LoadCommentList = function (param) {
 
 TouTiao.ShowCommentList = function (data) {
     if (PARAM_CHECKER.IsArray(data)) {
+        $("#commentList").empty();
         var html = $("#tplCommentItem").html();
         var array = [];
         for (var k = 0; k < data.length; k++) {
@@ -72,10 +72,14 @@ TouTiao.ShowCommentList = function (data) {
 }
 
 TouTiao.AddComment = function () {
-    var context = ["1","2","3","4"];
+    var item = {};
+    item.Content = $("#comment").val().trim();
+    var targetId = NET.GetQueryParam("id");
+    var context = [item.Content,targetId,"E1000","测试员"];
     var callback = function (res) {
         LOGGER.Log(res);
         //TouTiao.ShowList(res);
+        TouTiao.LoadCommentList();
     }
 
     NET.PostData(App.TouTiao.Server.Url4, callback, context);
@@ -144,6 +148,7 @@ TouTiao.Initial = function (type) {
         else if ("article" === type) {
             var id = NET.GetQueryParam("id");
             TouTiao.LoadArticle(id);
+            TouTiao.LoadCommentList();
         }
     });
 }

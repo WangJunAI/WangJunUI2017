@@ -11,6 +11,7 @@ App.TouTiao.Server = {
     Url2: "http://localhost:9990/API.ashx?c=WangJun.Doc.CategoryManager&m=Find",
     Url3: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocManager&m=Get",
     Url4: "http://localhost:9990/API.ashx?c=WangJun.Doc.CommentManager&m=Add",
+    Url5:"http://localhost:9990/API.ashx?c=WangJun.Doc.CommentManager&m=Find"
 
 };
  
