@@ -34,11 +34,13 @@ Doc.ShowDetail = function (data) {
         $("#parentNode").text(data.CategoryName);
         $("#parentNode").attr("data-param", data.CategoryID);
 
-        $("[data-single='status']").each(function () {
-            $(this).removeClass("selected");
-            if (data.Status === $(this).text()) {
-                $(this).addClass("selected");
-            }
-        });
+        if (PARAM_CHECKER.IsNotEmptyString(data.Status)) {
+            $("[data-single='status']").each(function () {
+                $(this).removeClass("selected");
+                if (data.Status === $(this).text()) {
+                    $(this).addClass("selected");
+                }
+            });
+        }
     }
 }

@@ -41,15 +41,15 @@ Doc.LoadTable = function (pageIndex, pageSize, query) {
 
         Doc.ShowTable(tableData);
 
-        Doc.LoadPager(query);
+        Doc.LoadPager(pageIndex, pageSize, query);
     }
     var context = [query, JSON.stringify({ "Content": 0, "PlainText": 0 }), "{CreateTime:-1}", pageIndex, pageSize];
     NET.LoadData(App.Doc.Server.Url1, callback, context, NET.POST);
 }
 
-Doc.LoadPager = function (query) {
+Doc.LoadPager = function (pageIndex, pageSize, query) {
     var callback = function (res) {
-        var pagerInfo = { Count: res.Count, Index: 3, Size: 20 }
+        var pagerInfo = { Count: res.Count, Index: pageIndex, Size: pageSize }
         Doc.ShowPager(pagerInfo);
     }
     var context = [query];
@@ -105,23 +105,27 @@ Doc.ShowPager = function (pagerInfo) {
         var ellipsisHtml = "";
 
         for (var k = 0; k < pagerCount; k++) {
-            var aItemHtml = "<a href=\"javascript:;\" onclick=[Method]([Param])>[Text]</a>";
+            var aItemHtml = "<a href=\"javascript:;\" class=\"[Class]\" onclick=[Method]([Param]) data-param=\"[Index]\">[Text]</a>";
             var optionHtml = "<option value=[Value]>[Text]</option>";
-            if (k <= 3) {
-                aHtml += aItemHtml.replace("[Text]", k + 1).replace("[Method]", "Doc.LoadTable").replace("[Param]", k + "," + pagerInfo.Size + ",'" + '{"Status":"已发布"}' + "'");
+            if (k === 0 || ((pagerInfo.Index - 2) <= k  && k <= (pagerInfo.Index+2)) ) {
+                aHtml += aItemHtml.replace("[Text]", k + 1).replace("[Method]", "Doc.LoadTable").replace("[Param]", k + "," + pagerInfo.Size + ",'" + '{"Status":"已发布"}' + "'").replace("[Index]",k);
             }
-            else if (3 <= k && k <= pagerCount - 3 && 6 < pagerCount) {
+            else if (1 <= k && k < pagerCount - 1 && 2<pagerCount) {
                 ellipsisHtml = "<a href=\"javascript:;\">....</a>";
             }
-            else if (pagerCount - 3 <= k) {
-                aHtml += ellipsisHtml + aItemHtml.replace("[Text]", k + 1).replace("[Method]", "Doc.LoadTable").replace("[Param]", k);
-                ellipsisHtml = "";
-            }
+            else if (k === pagerCount - 1) {
+                if (pagerCount <=2 ) {
+                    ellipsisHtml = "";
+                }
+                aHtml += ellipsisHtml + aItemHtml.replace("[Text]", k + 1).replace("[Method]", "Doc.LoadTable").replace("[Param]", k + "," + pagerInfo.Size + ",'" + '{"Status":"已发布"}' + "'").replace("[Index]", k);
+            } 
             selectionHtml += optionHtml.replace("[Text]", k + 1).replace("[Value]", k);
         }
         selectionHtml += "</select>";
         var html = aHtml + selectionHtml + "<a href=\"javascript:;\" onclick=[Method]([Param])>跳转</a>".replace("[Method]", "Doc.LoadTable").replace("[Param]", 0);
         $("#pager").html(html);
+
+        $("#pager").find("[data-param=\"" + pagerInfo.Index + "\"]").addClass("selected");
     }
 }
 

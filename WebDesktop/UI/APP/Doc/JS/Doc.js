@@ -22,11 +22,12 @@ Doc.SaveDetail = function () {
     item.Title = Convertor.ToBase64String(item.Title).replace(/\+/g, "加号").replace(/\//g, "斜杠").replace(/=/g, "等于").replace(/ /g, "空格");
     item.Content = Convertor.ToBase64String(item.Content).replace(/\+/g, "加号").replace(/\//g, "斜杠").replace(/=/g, "等于").replace(/ /g, "空格");
     item.PlainText = UE.getEditor('editor').getContentTxt();
+    item.PlainText = Convertor.ToBase64String(item.PlainText).replace(/\+/g, "加号").replace(/\//g, "斜杠").replace(/=/g, "等于").replace(/ /g, "空格");
 
 
 
 
-    var context = [item.Title, item.Content, item.CategoryID, item.PublistTime, item.Status, item.id,item.PlainText, { 0: "base64", 1: "base64"}];
+    var context = [item.Title, item.Content, item.CategoryID, item.PublistTime, item.Status, item.id, item.PlainText, { 0: "base64", 1: "base64", 6: "base64"}];
 
     var callback = function (res) {
         LOGGER.Log(res);
@@ -36,7 +37,7 @@ Doc.SaveDetail = function () {
             Doc.ShowDialog();
         }
     }
-    NET.PostData(App.Doc.Server.Url4, callback, context);
+    NET.PostData2(App.Doc.Server.Url4, callback, context);
 }
 
 Doc.SaveCategory = function () {

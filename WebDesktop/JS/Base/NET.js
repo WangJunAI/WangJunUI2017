@@ -20,8 +20,30 @@ NET.LoadData = function (url, callback, context,method) {
     });
 }
 
+NET.LoadData2 = function (url, callback, context, method) {
+    if (true === PARAM_CHECKER.IsObject(context)) {
+        context = JSON.stringify(context);
+    }
+
+    method = (PARAM_CHECKER.IsNotEmptyString(method) && "GET" != method.toUpperCase()) ? "POST" : "GET";
+
+    $.ajax({
+        url: url,
+        data: "FormData="+context,
+        type: method,
+        success: function (data, textStatus) {
+            LOGGER.Log(data);
+            callback(data);
+        }
+    });
+}
+
 NET.PostData = function (url, callback, context) {
     NET.LoadData(url, callback, context, NET.POST);
+}
+
+NET.PostData2 = function (url, callback, context) {
+    NET.LoadData2(url, callback, context, NET.POST);
 }
 
 NET.POST = "POST";

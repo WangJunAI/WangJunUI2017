@@ -191,6 +191,11 @@
                     color:#999;
                 }
 
+                    .main > .content > .Pager a.selected {
+                        background-color: #00C1DE;
+                        color: #FFF;
+                    }
+
                     .main > .content > .Pager a:hover {
                         background-color: #00C1DE;
                         color: #FFF;
