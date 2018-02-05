@@ -55,7 +55,7 @@ TouTiao.LoadList = function (categoryId, pageIndex, append) {
         pageIndex = parseInt(pageIndex);
     }
 
-    var context = [query, JSON.stringify({ "Content": 0, "PlainText": 0 }), "{CreateTime:-1}", pageIndex, pageSize];
+    var context = [categoryId, JSON.stringify({ "Content": 0, "PlainText": 0 }), "{CreateTime:-1}", pageIndex, pageSize];
     var callback = function (res) {
         LOGGER.Log(res);
         TouTiao.ShowList(res, pageIndex, categoryId, append);
@@ -91,7 +91,8 @@ TouTiao.ShowList = function (data, pageIndex, categoryId, append) {
 
 ///加载评论列表
 TouTiao.LoadCommentList = function (param) {
-    var data = [JSON.stringify({"RootID":param}),"{}","{}", 0, 50];
+    var targetId = NET.GetQueryParam("id");
+    var data = [JSON.stringify({"RootID":targetId}),"{}","{}", 0, 50];
     NET.LoadData(App.TouTiao.Server.Url5, function (res) {
         LOGGER.Log(res);
         TouTiao.ShowCommentList(res);
@@ -140,9 +141,7 @@ TouTiao.AddLikeCount= function () {
     var targetId = NET.GetQueryParam("id");
     var context = ["1", targetId, "LikeCount"];
     var callback = function (res) {
-        LOGGER.Log(res);
-        //TouTiao.ShowList(res);
-        //TouTiao.LoadCommentList();
+        LOGGER.Log(res); 
     }
 
     NET.PostData(App.TouTiao.Server.Url4, callback, context);
@@ -193,7 +192,7 @@ TouTiao.ShowArticle = function (data) {
         $("#CreateTime").text(data.CreateTime);
 
 
-        data.Content = data.Content.replace(/js\/ueditor\/net\/upload\/image/g,"http://localhost:14324/js/ueditor/net/upload/image/")
+        //data.Content = data.Content.replace(/js\/ueditor\/net\/upload\/image/g,"http://localhost:14324/js/ueditor/net/upload/image/")
 
         $("#Content").html(data.Content);
     }

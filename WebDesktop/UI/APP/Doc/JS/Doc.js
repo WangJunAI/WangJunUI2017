@@ -75,6 +75,7 @@ Doc.RemoveCategory = function () {
             $(window.parent.document).find('#detailWindow').hide(); window.close();
             Doc.ShowDialog();
             top.window.Doc.LoadTree();
+            top.window.Doc.LoadTable(0, 20, "{'Status':'已发布'}");
         }
     }
     NET.PostData(App.Doc.Server.Url10, callback, context);

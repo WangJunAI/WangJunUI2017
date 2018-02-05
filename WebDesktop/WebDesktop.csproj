@@ -417,6 +417,7 @@
     <Content Include="JS\Base\Highcharts\index.htm" />
     <Content Include="JS\Base\Highcharts\readme.txt" />
     <Content Include="JS\Base\JsonDB.js" />
+    <Content Include="JS\Base\jsplumb.js" />
     <Content Include="JS\Base\NET.js" />
     <Content Include="JS\Base\PARAM_CHECKER.js" />
     <Content Include="JS\Base\zTree\api\apiCss\api.js" />
@@ -1380,6 +1381,7 @@
     <Content Include="UI\APP\Doc\Doc.html" />
     <Content Include="UI\APP\Doc\JS\Doc.js" />
     <Content Include="UI\APP\Doc\JS\QuickBar.js" />
+    <Content Include="UI\APP\Doc\Workflow.html" />
     <Content Include="UI\APP\GeGu\CSS\gegu.css" />
     <Content Include="UI\APP\GeGu\JS\gegu.js" />
     <Content Include="UI\APP\GeGu\gegu.html" />

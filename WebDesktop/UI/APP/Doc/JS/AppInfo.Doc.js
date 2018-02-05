@@ -21,7 +21,9 @@ App.Doc.Server = {
     Url12: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocManager&m=UpdateStatus&p=0",
     Url13: "http://localhost:9990/API.ashx?c=WangJun.Doc.RecycleBinManager&m=MoveToRecycleBin",
     Url14: "http://localhost:9990/API.ashx?c=WangJun.Doc.RecycleBinManager&m=Find",
-    Url15: "http://localhost:9990/API.ashx?c=WangJun.Doc.DataAnalysor&m=GetHotWords"
+    Url15: "http://localhost:9990/API.ashx?c=WangJun.Doc.DataAnalysor&m=GetHotWords",
+    Url16: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocManager&m=Aggregate",
+    Url17: "http://localhost:9990/API.ashx?c=WangJun.Doc.ClientBehaviorManager&m=Aggregate"
 };
 
 
