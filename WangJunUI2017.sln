@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WangJun.Doc", "..\..\WangJu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WangJun.HumanResource", "..\..\WangJun2017\WangJun.HumanResource\WangJun.HumanResource.csproj", "{06F3A647-D026-4847-94A5-20643223CC96}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WangJun.TouTiaoPhone", "WangJun.TouTiaoPhone\WangJun.TouTiaoPhone.csproj", "{95D43335-C00B-4D14-BDD4-677940977453}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{06F3A647-D026-4847-94A5-20643223CC96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06F3A647-D026-4847-94A5-20643223CC96}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06F3A647-D026-4847-94A5-20643223CC96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95D43335-C00B-4D14-BDD4-677940977453}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95D43335-C00B-4D14-BDD4-677940977453}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95D43335-C00B-4D14-BDD4-677940977453}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95D43335-C00B-4D14-BDD4-677940977453}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
