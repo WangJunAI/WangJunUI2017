@@ -148,8 +148,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Article.html" />
+    <Content Include="List2.html" />
+    <Content Include="List - 复制.html" />
     <Content Include="List.html" />
     <Content Include="Web.config" />
+    <Content Include="weui-master\dist\example\example2.js" />
     <Content Include="weui-master\dist\example\example.css" />
     <Content Include="weui-master\dist\example\example.js" />
     <Content Include="weui-master\dist\example\images\icon_footer.png" />
