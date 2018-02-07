@@ -1368,6 +1368,7 @@
     <Content Include="UI\APP\Doc\CSS\QuickBar.css" />
     <Content Include="UI\APP\Doc\JS\ClientDetector.js" />
     <Content Include="UI\APP\Doc\JS\Doc.App.js" />
+    <Content Include="UI\APP\Doc\JS\Doc.Biz.js" />
     <Content Include="UI\APP\Doc\JS\Doc.Chart.js" />
     <Content Include="UI\APP\Doc\JS\Doc.ClientUI.js" />
     <Content Include="UI\APP\Doc\JS\Doc.Detail.js" />
@@ -1376,6 +1377,7 @@
     <Content Include="UI\APP\Doc\JS\Doc.Nav.Ztree.js" />
     <Content Include="UI\APP\Doc\JS\Doc.Table.js" />
     <Content Include="UI\APP\Doc\JS\Doc.TopButton.js" />
+    <Content Include="UI\APP\Doc\JS\Doc.View.js" />
     <Content Include="UI\APP\Doc\redirect.html" />
     <Content Include="UI\APP\Doc\Detail.html" />
     <Content Include="UI\APP\Doc\Doc.html" />

@@ -36,6 +36,8 @@ TouTiao.LoadMore = function () {
 
 TouTiao.CategoryButtonClick = function () {
     var categoryId = $(event.target).attr("data-param");
+    $("#category").find(".selected").removeClass("selected");
+    $("#category").find("[data-param='" + categoryId + "']").addClass("selected");
     TouTiao.LoadList(categoryId, 0, false);
 }
 
@@ -43,7 +45,7 @@ TouTiao.CategoryButtonClick = function () {
 TouTiao.LoadList = function (categoryId, pageIndex, append) { 
     
     var query = "{}";
-    var pageSize = 10;
+    var pageSize = App.TouTiao.Pager.Size;
     if (true === PARAM_CHECKER.IsNotEmptyString(categoryId)) {
         query = "{'CategoryID':'[CategoryID]'}".replace('[CategoryID]', categoryId);
     }
@@ -74,7 +76,7 @@ TouTiao.ShowList = function (data, pageIndex, categoryId, append) {
         for (var k = 0; k < data.length; k++) {
             var itemData = data[k];
             itemData.CreateTime = Convertor.DateFormat(eval(itemData.CreateTime.replace(/\//g, "")), "yyyy-MM-dd hh:mm");
-            var itemHtml = html.replace("[Title]", itemData.Title).replace("[ImageUrl]", "http:" + itemData.ImageUrl).replace("[CreatorName]", itemData.CreatorName)
+            var itemHtml = html.replace("[Title]", itemData.Title).replace("[ImageUrl]", itemData.ImageUrl).replace("[CreatorName]", itemData.CreatorName)
                 .replace("[CommentCount]", itemData.CommentCount).replace("[CreateTime]", itemData.CreateTime).replace("[id]", itemData.id);
 
             array.push(itemHtml);

@@ -59,7 +59,7 @@
             text-align: center;
             vertical-align: middle;
             line-height: 50px;
-            background-image: url(https://s3.pstatp.com/toutiao/static/img/logo.201f80d.png);
+            background-image: url(http://aifuwu.wang/logo/toutiao216_54.png);
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
@@ -153,6 +153,8 @@
                 background-color: #ed4040;
                 color: #FFF;
             }
+
+
 
 .global > .main {
     width: 660px;
@@ -266,4 +268,27 @@
             text-decoration: none;
             color: #406599;
             margin-right: 0.5em;
+        }
+
+
+.likeCount {
+    width: 100%;
+    height: 3em;
+    margin-bottom:0.3em;
+}
+
+    .likeCount a {
+        text-decoration: none;
+        display: inline-block;
+        float: right;
+        color: #222;
+        height: 3em;
+        width: 5em;
+        text-align: center;
+        line-height: 3em;
+        font-weight: 700;
+    }
+
+        .likeCount a:hover {
+            background-color: #F2F2F2;
         }

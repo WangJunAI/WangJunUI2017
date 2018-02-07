@@ -6,6 +6,9 @@ App.TouTiao.Info = {};
 App.TouTiao.Info.ID = "WJTT";
 App.TouTiao.Info.Name = "汪俊头条";
 
+App.TouTiao.Pager = {};
+App.TouTiao.Pager.Size = 5;
+
 App.TouTiao.Server = {
     Url1: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocManager&m=LoadAllDocInSubFolder", 
     Url2: "http://localhost:9990/API.ashx?c=WangJun.Doc.CategoryManager&m=Find",

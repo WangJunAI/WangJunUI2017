@@ -86,6 +86,25 @@ Doc.LeftMenuClick = function () {
         var url = App.Doc.Server.Url3 + "?t=" + (new Date().getTime());
         Doc.ShowWindow(url);
     }
+    else if ("LeftMenu.数据分析" === id){
+        Doc.ShowContent("Chart1.html");
+    }
+    else if ("LeftMenu.文档分析" === id) {
+        Doc.ShowContent("Chart1.html");
+        Doc.ShowView3();
+        Doc.LoadSummaryList(0, 10, [{ Title: "目录下文档比例" }, { Title: "目录活跃度" },  { Title: "文章热度" }, { Title: "发文计数" }, { Title: "最活跃用户" }]);
+    }
+    else if ("LeftMenu.评论分析" === id) {
+        Doc.ShowContent("Chart1.html");
+    }
+    else if ("LeftMenu.用户参与" === id) {
+        Doc.ShowContent("Chart1.html");
+    }
+    else if ("LeftMenu.外网热闻" === id) {
+        Doc.LoadSummaryList(0, 10, [{ Title: "今日热词" }, { Title: "订阅热词" }, { Title: "行业要闻" }, { Title: "局势分析" }]);
+
+        Doc.ShowContent("Chart1.html");
+    }
 
 
 }

@@ -24,7 +24,7 @@
     <script src="JS/Doc.ClientUI.js"></script>
     <script src="JS/Doc.App.js"></script>
     <script src="JS/Doc.Detail.js"></script>
-
+    <script src="JS/Doc.View.js"></script>
 
 
     <link href="../../../JS/Base/zTree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
@@ -51,8 +51,8 @@
                 </div>
             </div>
             <div class="list" id="leftList">
-                 
-                
+
+
             </div>
             <div class="content" id="content">
 
@@ -69,7 +69,7 @@
     </script>
 
     <script type="text/html" id="leftMenuItem2">
-        <li data-parentID="[ParentID]"><a href="javascript:;" class="menuItem" onclick="[Method]()" data-id="[ID]" data-param="[Param]">[Name]</a></li data-parentID="[ParentID]">
+        <li data-parentID="[ParentID]"><a href="javascript:;" class="menuItem" onclick="[Method]()" data-id="[ID]" data-param="[Param]">[Name]</a></li>
     </script>
 
     <script type="text/html" id="topButton1">
@@ -171,11 +171,11 @@
         </ul>
     </script>
 
-    <script type="text/html" id="tplSummaryListItem">
+    <script type="text/html" id="tplSummaryListItem1">
         <li>
             <a class="listItem3" a="" href="javascript:;">
                 <div class="row1">
-                    <span class="waring">紧急</span><span class="category">呈批件</span>
+                    <span class="waring">紧急</span><span class="category">[Title]</span>
                 </div>
                 <div class="row2">
                     <div>有个很经典的试验，把青蛙直接扔到开水里则一定会蹦出来，但是把水慢慢加温，直到煮熟，青蛙也不会跳出来 。“温水煮青蛙”的哲学道理是“量变到质变”，就是说数量的积累到一定的程度会导致本质的变化。“温水煮青蛙”的道</div>
@@ -188,6 +188,11 @@
             </a>
         </li>
     </script>
+    <script type="text/html" id="tplSummaryListItem2">
+        <li>
+            <a class="listItem4"  href="javascript:;">[Title]</a>
+        </li>
+    </script>
     <script type="text/html" id="tplTable">
         <table>
             <thead id="thead1">
@@ -198,6 +203,11 @@
         </table>
         <div class="Pager" id="pager">
         </div>
+    </script>
+
+    <script type="text/html" id="tplView1">
+        <div style="width: 12em;height: 100%;background-color: antiquewhite;float: left;"></div>
+        <div style="width: 18em;height: 100%;background-color: brown;float: left;"></div>
     </script>
 
 </body>

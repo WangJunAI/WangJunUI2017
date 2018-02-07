@@ -6,6 +6,17 @@ App.Doc.Info = {};
 App.Doc.Info.ID = "WDGL";
 App.Doc.Info.Name = "汪俊文档管理";
 
+App.Doc.CSS = {};
+App.Doc.CSS.LeftMenu = {};
+App.Doc.CSS.LeftMenu.Width = { Value: 10, Unit: "em" };
+
+App.Doc.CSS.LeftList = {};
+App.Doc.CSS.LeftList.View1 = {};
+App.Doc.CSS.LeftList.View1.Width = { Value: 30, Unit: "em" };
+
+App.Doc.CSS.LeftList.View3 = {};
+App.Doc.CSS.LeftList.View3.Width = { Value: 12, Unit: "em" };
+
 App.Doc.Server = {
     Url1: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocManager&m=Find&p=0",
     Url2: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocManager&m=Count&p=0",
@@ -41,7 +52,7 @@ App.Doc.LeftMenu.push({ Name: "数据分析", ID: "LeftMenu.数据分析", Metho
 App.Doc.LeftMenu.push({ Name: "文档分析", ID: "LeftMenu.文档分析", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析" });
 App.Doc.LeftMenu.push({ Name: "评论分析", ID: "LeftMenu.评论分析", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析" });
 App.Doc.LeftMenu.push({ Name: "用户参与", ID: "LeftMenu.用户参与", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析" });
-App.Doc.LeftMenu.push({ Name: "外网关联", ID: "LeftMenu.外网关联", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析" });
+App.Doc.LeftMenu.push({ Name: "外网关联", ID: "LeftMenu.外网热闻", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析" });
 
 ///系统管理
 App.Doc.LeftMenu.push({ Name: "系统管理", ID: "LeftMenu.系统管理", Method: "Doc.LeftMenuGroupToggle",   ParentID: null });
@@ -107,3 +118,4 @@ App.Doc.Data.RecycleBin.Load.Column.push({ ID: "", Text: "标题", Method: "", S
 App.Doc.Data.RecycleBin.Load.Column.push({ ID: "", Text: "类别", Method: "", Sort: "", PropertyName: "Type"});
 App.Doc.Data.RecycleBin.Load.Column.push({ ID: "", Text: "删除时间", Method: "", Sort: "", PropertyName: "DeleteTime"});
 App.Doc.Data.RecycleBin.Load.Column.push({ ID: "", Text: "详细", Method: "", Sort: "", PropertyName: "Type" });
+ 

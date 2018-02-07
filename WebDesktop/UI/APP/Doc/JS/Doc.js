@@ -15,7 +15,8 @@ Doc.SaveDetail = function () {
     item.Content =   item.Content;//.replace(/</g, "«").replace(/>/g, "»");
     item.Status = $("[data-single='status'].selected").text();
     item.PublistTime = $("#publishDate").val() + " " + $("#publishHour").val() + ":" + $("#publishMinute").val()+":00";
-
+    ///获取图片
+    item.ThumbnailSrc = $(item.Content).find("img").attr("src");
     ///Html转义
     //$div = $("<div></div>");
     //$div.text(item.Content);
@@ -27,7 +28,8 @@ Doc.SaveDetail = function () {
 
 
 
-    var context = [item.Title, item.Content, item.CategoryID, item.PublistTime, item.Status, item.id, item.PlainText, { 0: "base64", 1: "base64", 6: "base64"}];
+
+    var context = [item.Title, item.Content, item.CategoryID, item.PublistTime, item.Status, item.id, item.PlainText,item.ThumbnailSrc, { 0: "base64", 1: "base64", 6: "base64"}];
 
     var callback = function (res) {
         LOGGER.Log(res);
