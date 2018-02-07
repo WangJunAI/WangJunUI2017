@@ -140,6 +140,7 @@ $(function () {
                 }
             }
             page.isBind = true;
+            EventBind();
         }
     };
 
@@ -261,7 +262,8 @@ $(function () {
                 template: '#' + tpl.id
             };
         }
-        pages.home.url = '#';
+       // pages.home.url = '#';
+        pages.list.url = '#';
 
         for (var page in pages) {
             pageManager.push(pages[page]);
@@ -277,7 +279,7 @@ $(function () {
                     $foot.removeClass('j_bottom');
                 }
             })
-            .setDefault('home')
+            .setDefault('list')
             .init();
     }
 
@@ -295,3 +297,11 @@ $(function () {
     }
     init();
 });
+
+
+var EventBind = function () {
+    $('.js_item').on('click', function () {
+        var id = $(this).data('id');
+        window.pageManager.go(id);
+    });
+}
