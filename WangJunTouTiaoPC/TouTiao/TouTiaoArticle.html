@@ -22,23 +22,24 @@
     <div class="global">
         <div class="head">
             <div class="path">
-                <div class="logo"></div><a href="javascript:;">路径1</a> <a>/</a><a href="javascript:;">路径1</a> <a>/</a><a href="javascript:;">路径1</a>
-                <div class="search">
-                    <div class="input"><input type="text" placeholder="请搜索" /></div>
-                    <a href="javascript:;" class="button">搜索</a>
-                </div>
-            </div>
+                    <div class="logo"></div>
+                <a href="TouTiao.html" target="_blank">汪俊头条</a> <a>/</a><a href="javascript:;">路径1</a> <a>/</a><a href="javascript:;">路径1</a>
+                    <div class="search">
+                        <div class="input"><input type="text" placeholder="请搜索" /></div>
+                        <a href="javascript:;" class="button">搜索</a>
+                    </div>
+</div>
         </div>
         <div class="left">
 
             <ul>
-                <li><a href="/" target="_self" ga_event="channel_recommand_click" class="channel-item active"><span>说说</span></a></li>
-                <li><a href="/ch/news_hot/" target="_self" ga_event="channel_hot_click" class="channel-item"><span>点赞</span></a></li>
-                <li><a href="/ch/news_image/" target="_blank" ga_event="channel_image_click" class="channel-item"><span>收藏</span></a></li>
-                <li><a href="/ch/news_tech/" target="_self" ga_event="channel_technology_click" class="channel-item"><span>分享</span></a></li>
+                <li><a href="javascript:;" onclick="TouTiao.AddLikeCount()" class="selected">说说</a></li>
+                <li><a href="javascript:;" onclick="TouTiao.AddLikeCount()">点赞</a></li>
+                <li><a href="javascript:;" onclick="TouTiao.AddLikeCount()">收藏</a></li>
             </ul>
         </div>
         <div class="main">
+            
             <div class="title" id="title">[标题]</div>
             <div class="info"><span id="CreatorName">[创建人]</span><span id="CreateTime">[创建时间]</span></div>
             <div class="content" id="Content">
@@ -47,8 +48,9 @@
             <div class="likeCount"><a href="javascript:;" onclick="TouTiao.AddLikeCount()">点赞</a><a href="javascript:;" onclick="TouTiao.AddLikeCount()">收藏</a></div>
             <div class="comment">
                 <div class="input"> <textarea id="comment"></textarea><a href="javascript:;" onclick="TouTiao.AddComment()">提交</a></div>
-                <ul id="commentList">
-                </ul>
+                <div id="message"><div>评论成功....</div></div>
+                <ul id="commentList"></ul>
+                <a href="javascript:;" id="loadMore" onclick="TouTiao.LoadMoreComment()">加载更多....</a>
             </div>
         </div>
         <div class="right">

@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Web;
-using WangJun.Data;
 using WangJun.Doc;
 using WangJun.HumanResource;
-using WangJun.Stock;
+using WangJun.Utility;
 //using System.Web.SessionState;
 
 namespace WebAPI

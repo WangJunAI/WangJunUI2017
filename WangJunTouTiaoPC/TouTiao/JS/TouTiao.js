@@ -60,6 +60,7 @@ TouTiao.LoadList = function (categoryId, pageIndex, append) {
     var context = [categoryId, JSON.stringify({ "Content": 0, "PlainText": 0 }), "{CreateTime:-1}", pageIndex, pageSize];
     var callback = function (res) {
         LOGGER.Log(res);
+        TouTiao.ShowMessage();
         TouTiao.ShowList(res, pageIndex, categoryId, append);
     }
 
@@ -77,7 +78,7 @@ TouTiao.ShowList = function (data, pageIndex, categoryId, append) {
             var itemData = data[k];
             itemData.CreateTime = Convertor.DateFormat(eval(itemData.CreateTime.replace(/\//g, "")), "yyyy-MM-dd hh:mm");
             var itemHtml = html.replace("[Title]", itemData.Title).replace("[ImageUrl]", itemData.ImageUrl).replace("[CreatorName]", itemData.CreatorName)
-                .replace("[CommentCount]", itemData.CommentCount).replace("[CreateTime]", itemData.CreateTime).replace("[id]", itemData.id);
+                .replace("[CommentCount]", itemData.CommentCount).replace("[ReadCount]", itemData.ReadCount).replace("[CreateTime]", itemData.CreateTime).replace("[id]", itemData.id);
 
             array.push(itemHtml);
             $("#list1").append(itemHtml);
@@ -94,7 +95,7 @@ TouTiao.ShowList = function (data, pageIndex, categoryId, append) {
 ///加载评论列表
 TouTiao.LoadCommentList = function (param) {
     var targetId = NET.GetQueryParam("id");
-    var data = [JSON.stringify({"RootID":targetId}),"{}","{}", 0, 50];
+    var data = [JSON.stringify({"RootID":targetId}),"{}","{'CreateTime':-1}", 0, 10];
     NET.LoadData(App.TouTiao.Server.Url5, function (res) {
         LOGGER.Log(res);
         TouTiao.ShowCommentList(res);
@@ -132,18 +133,23 @@ TouTiao.AddComment = function () {
         LOGGER.Log(res);
         //TouTiao.ShowList(res);
         TouTiao.LoadCommentList();
+        $("#comment").val("");
+        TouTiao.ShowMessage();
     }
 
     NET.PostData(App.TouTiao.Server.Url4, callback, context);
 }
 
-TouTiao.AddLikeCount= function () {
+TouTiao.AddLikeCount = function () {
+    var $btn = $(event.target);
     var item = {};
-    item.Content = $("#comment").val().trim();
     var targetId = NET.GetQueryParam("id");
     var context = ["1", targetId, "LikeCount"];
     var callback = function (res) {
         LOGGER.Log(res); 
+        $btn.text("已" + $btn.text().replace("已", ""));
+        $btn.attr("click", "_click");
+        $btn.removeAttr("href");
     }
 
     NET.PostData(App.TouTiao.Server.Url4, callback, context);
@@ -217,5 +223,14 @@ TouTiao.Initial = function (type) {
             TouTiao.LoadCommentList();
         }
     });
+}
+
+TouTiao.ShowMessage = function () {
+    $("#message").hide();
+    $("#message").show();
+    var tId = setTimeout(function () {
+        $("#message").hide();
+        clearTimeout(tId);
+    },500);
 }
 

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>头条前端</title>
+    <title>汪俊头条</title>
     <link href="./CSS/TouTiao.css" rel="stylesheet" />
     <script src="JS/jquery-3.1.1.min.js"></script>
     <script src="JS/NET.js"></script>
@@ -17,18 +17,19 @@
 <body>
     <div class="head">
         <div class="left"><a href="javascript:;">下载APP</a></div>
-        <div class="right"><a href="javascript:;">进入后台</a></div>
+        <div class="right"><a target="_blank" href="http://localhost:14324/UI/APP/Doc/Doc.html">进入后台</a></div>
     </div>
     <div class="global">
 
         <div class="left">
-            <div class="logo"></div>
+            <a href="TouTiao.html"  target="_blank"><div class="logo"></div></a>
             <ul id="category">
                
             </ul>
 
         </div>
         <div class="main">
+            <div id="message">加载成功....</div>
             <ul id="list1"></ul>
             <a href="javascript:;" id="loadMore"  onclick="TouTiao.LoadMore()">加载更多....</a>
         </div>
@@ -51,7 +52,7 @@
                 <div class="text">
                     <div class="rows">
                         <div class="row1"><a class="title" target="_blank" href="TouTiaoArticle.html?id=[id]">[Title]</a></div>
-                        <div class="row3"><a href="javascript:;">[CreatorName]</a><a href="javascript:;">[CommentCount]说说</a><a href="javascript:;">[CreateTime]</a></div>
+                        <div class="row3"><a href="javascript:;">[CreatorName]</a><a href="javascript:;">[ReadCount]阅读</a><a href="javascript:;">[CommentCount]说说</a><a href="javascript:;">[CreateTime]</a></div>
                     </div>
                 </div>
             </div>

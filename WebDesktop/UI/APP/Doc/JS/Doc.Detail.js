@@ -42,5 +42,7 @@ Doc.ShowDetail = function (data) {
                 }
             });
         }
+
+        $("#preView").attr("href", "http://localhost:39641/TouTiao/TouTiaoArticle.html?id=[id]".replace("[id]", data.id));
     }
 }
