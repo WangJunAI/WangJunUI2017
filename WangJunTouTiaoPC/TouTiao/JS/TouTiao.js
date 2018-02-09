@@ -76,7 +76,7 @@ TouTiao.ShowList = function (data, pageIndex, categoryId, append) {
         var array = [];
         for (var k = 0; k < data.length; k++) {
             var itemData = data[k];
-            itemData.CreateTime = Convertor.DateFormat(eval(itemData.CreateTime.replace(/\//g, "")), "yyyy-MM-dd hh:mm");
+            itemData.CreateTime = Convertor.DateFormat(eval("new "+itemData.CreateTime.replace(/\//g, "")), "yyyy-MM-dd hh:mm");
             var itemHtml = html.replace("[Title]", itemData.Title).replace("[ImageUrl]", itemData.ImageUrl).replace("[CreatorName]", itemData.CreatorName)
                 .replace("[CommentCount]", itemData.CommentCount).replace("[ReadCount]", itemData.ReadCount).replace("[CreateTime]", itemData.CreateTime).replace("[id]", itemData.id);
 
