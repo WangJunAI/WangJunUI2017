@@ -19,9 +19,11 @@ Convertor.DateFormat = function (date, format) {
 }
 
 
-Convertor.ToBase64String = function (input) {
+Convertor.ToBase64String = function (input,safeMode) {
     var str = CryptoJS.enc.Utf8.parse(input);
     var base64 = CryptoJS.enc.Base64.stringify(str);
-
+    if (true === safeMode) {
+        base64 = base64.replace(/\+/g, "加号").replace(/\//g, "斜杠").replace(/=/g, "等于").replace(/ /g, "空格");
+    }
     return base64;
 }

@@ -77,3 +77,20 @@ Doc.CloseWindow = function (url) {
     }
 
 }
+
+Doc.SubmitStart = function () {
+    Doc.ShowDialog("正在提交数据...");
+    var id = new Date().getTime();
+    $(event.target).attr("data-submitBtnId",id);
+    var prevText = $(event.target).text();
+    $(event.target).text("正在" + prevText);
+    $(event.target).attr("_onclick", $(event.target).attr("onclick")).removeAttr("onclick");
+    return id;
+}
+
+Doc.SubmitEnd = function (id) {
+    var $filter = $("[data-submitBtnId='" + id + "']");
+    $filter.attr("onclick", $filter.attr("_onclick")).removeAttr("_onclick");
+    $filter.text($filter.text().replace("正在", ""));
+    Doc.ShowDialog("提交成功...");
+}

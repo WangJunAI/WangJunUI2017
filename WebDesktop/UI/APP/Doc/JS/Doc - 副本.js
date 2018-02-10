@@ -5,7 +5,38 @@ var Doc = {};
 
 
 
+Doc.SaveDetail = function () {
+    var item = {};
+    item.id = $("#id").val();
+    item.Title = $("#Title").val().trim();
+    item.Content = UE.getEditor('editor').getContent();
+    item.CategoryID = $("#parentNode").attr("data-Param");
+    item.CreatorID = "创建人ID";
+    item.Content =   item.Content;//.replace(/</g, "«").replace(/>/g, "»");
+    item.Status = $("[data-single='status'].selected").text();
+    item.PublistTime = $("#publishDate").val() + " " + $("#publishHour").val() + ":" + $("#publishMinute").val()+":00";
+    ///获取图片
+    item.ThumbnailSrc = $(item.Content).find("img").attr("src");
+    ///Html转义
+    //$div = $("<div></div>");
+    //$div.text(item.Content);
+    item.Title = Convertor.ToBase64String(item.Title).replace(/\+/g, "加号").replace(/\//g, "斜杠").replace(/=/g, "等于").replace(/ /g, "空格");
+    item.Content = Convertor.ToBase64String(item.Content).replace(/\+/g, "加号").replace(/\//g, "斜杠").replace(/=/g, "等于").replace(/ /g, "空格");
+    item.PlainText = UE.getEditor('editor').getContentTxt();
+    item.PlainText = Convertor.ToBase64String(item.PlainText).replace(/\+/g, "加号").replace(/\//g, "斜杠").replace(/=/g, "等于").replace(/ /g, "空格");
+ 
+    var context = [item.Title, item.Content, item.CategoryID, item.PublistTime, item.Status, item.id, item.PlainText,item.ThumbnailSrc, { 0: "base64", 1: "base64", 6: "base64"}];
 
+    var callback = function (res) {
+        LOGGER.Log(res);
+        if (false === PARAM_CHECKER.IsTopWindow()) {
+            top.window.Doc.LoadTable(0, 20, "{'Status':'已发布'}");
+            $(window.parent.document).find('#detailWindow').hide(); window.close();
+            Doc.ShowDialog();
+        }
+    }
+    NET.PostData2(App.Doc.Server.Url4, callback, context);
+}
 
 Doc.SaveCategory = function () {
     var item = {};
@@ -52,8 +83,6 @@ Doc.RemoveCategory = function () {
 
 
 Doc.MoveToRecycleBin = function () {
-    var submitId = Doc.SubmitStart();
-    var topButtonId = $(event.target).attr("data-id");
     var idArray = [];
     var source = $("[type='checkbox'][data-param]").each(function () {
         if (true == $(this).prop("checked")) {
@@ -61,30 +90,16 @@ Doc.MoveToRecycleBin = function () {
             idArray.push(id);
         }
     });
-    var count = idArray.length;
+
     for (var k = 0; k < idArray.length; k++) {
         var context = ["DocService", "DocItem", idArray[k]];
 
         var callback = function (res) {
             LOGGER.Log(res);
-            count--;
-            Doc.SubmitEnd(submitId);
-
-            if (count === 0) {
-                var categoryId = $("#topButton").attr("data-categoryId");
-                var status = $("#topButton").attr("data-status");
-                var query = "{}";
-                if (true === PARAM_CHECKER.IsNotEmptyString(status) || true === PARAM_CHECKER.IsNotEmptyString(categoryId)) {
-                    query = "{'CategoryID':'[CategoryID]','Status':'[Status]'}".replace("[CategoryID]", categoryId).replace("[Status]", status);
-                }
-                else if (true === PARAM_CHECKER.IsNotEmptyString(status) || false=== PARAM_CHECKER.IsNotEmptyString(categoryId)) {
-                    query = "{'Status':'[Status]'}".replace("[Status]", status);
-                }
-                else if (false === PARAM_CHECKER.IsNotEmptyString(status) || true === PARAM_CHECKER.IsNotEmptyString(categoryId)) {
-                    query = "{'CategoryID':'[CategoryID]'}".replace("[CategoryID]", categoryId);
-                }        
-
-                Doc.LoadTable(0, App.Doc.Data.Pager.Size, query);
+            if (k === idArray.length - 1) {
+                Doc.LoadTopButton(topButtonId);
+                Doc.CloseLeftList();
+                Doc.LoadTable(0, 20, "{'Status':'已发布'}");
             }
         }
         NET.PostData(App.Doc.Server.Url13, callback, context);
@@ -141,12 +156,11 @@ Doc.CloseDialog = function () {
     $('#dialog').css("display", "none");
 }
 
-Doc.ShowDialog = function (message,type,title) {
+Doc.ShowDialog = function () {
     $('#modal').css("display","block");
     $('#dialog').css("display", "block");
     $(window.parent).find('#modal').show();
     $(window.parent).find('#dialog').show();
-    $('#dialog').find(".message").text(message);
     setTimeout(function () {
         Doc.CloseDialog();
     }, 1000 * 2);

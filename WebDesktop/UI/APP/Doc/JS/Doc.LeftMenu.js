@@ -36,46 +36,63 @@ Doc.LeftMenuClick = function () {
     if ("LeftMenu.回收站" == id) {
         ///加载TopButton
         ///刷新列表
+        Doc.ShowView2();
         Doc.LoadTopButton(topButtonId);
-        Doc.CloseLeftList();
-        Doc.LoadTable2(0, 20, "{}", App.Doc.Server.Url14, App.Doc.Data.RecycleBin.Load.Column);
+        //Doc.CloseLeftList();
+        Doc.LoadTable2(0, App.Doc.Data.Pager.Size, "{}", App.Doc.Server.Url14, App.Doc.Data.RecycleBin.Load.Column);
     }
     if ("LeftMenu.已发布" == id) {
         ///加载TopButton
         ///刷新列表
+        Doc.ShowView3();
         Doc.LoadTopButton(topButtonId);
         ///加载树状目录 
-        Doc.LoadTree();
-        Doc.LoadTable(0, 20, "{'Status':'已发布'}");
+        var callback1 = function (res1) {
+            Doc.LoadTreeTo("#leftList", res1, [], {});
+        }
+        Doc.LoadData_Category(["{}", "{}", 0, 1000], callback1);
+ 
+        Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{'Status':'已发布'}");
+        $("#topButton").attr("data-status", "已发布");
     }
     else if ("LeftMenu.待发布" == id) {
         ///加载TopButton
         ///刷新列表
+        Doc.ShowView3();
         Doc.LoadTopButton(topButtonId);
         ///加载树状目录
         Doc.LoadTree();
-        Doc.LoadTable(0, 20, "{'Status':'待发布'}");
+        Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{'Status':'待发布'}");
+        $("#topButton").attr("data-status", "待发布");
     }
     else if ("LeftMenu.草稿箱" == id) {
         ///加载TopButton
         ///刷新列表
+        Doc.ShowView3();
         Doc.LoadTopButton(topButtonId);
         ///加载树状目录
         Doc.LoadTree();
-        Doc.LoadTable(0, 20, "{'Status':'草稿'}");
+        Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{'Status':'草稿'}");
+        $("#topButton").attr("data-status", "草稿");
+
     }
     else if ("LeftMenu.全部文档" == id) {
         ///加载TopButton
         ///刷新列表
+        Doc.ShowView3();
         Doc.LoadTopButton(topButtonId);
         ///加载树状目录
         Doc.LoadTree();
-        Doc.LoadTable(0, 20, "{}");
+        Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{}");
+        $("#topButton").removeAttr("data-status");
+
     }
     else if ("LeftMenu.存储管理" == id) {
+        Doc.ShowView3();
         Doc.ShowContent("Chart1.html");
     }
     else if ("LeftMenu.应用信息" == id) {
+        Doc.ShowView2();
         Doc.ShowContent("AppInfo.html");
     }
     else if ("LeftMenu.新建目录" === id) {
@@ -86,24 +103,43 @@ Doc.LeftMenuClick = function () {
         var url = App.Doc.Server.Url3 + "?t=" + (new Date().getTime());
         Doc.ShowWindow(url);
     }
-    else if ("LeftMenu.数据分析" === id){
+    else if ("LeftMenu.数据分析" === id) {
+        Doc.ShowView1();
         Doc.ShowContent("Chart1.html");
     }
     else if ("LeftMenu.文档分析" === id) {
         Doc.ShowContent("Chart1.html");
         Doc.ShowView3();
-        Doc.LoadSummaryList(0, 10, [{ Title: "目录下文档比例" }, { Title: "目录活跃度" },  { Title: "文章热度" }, { Title: "发文计数" }, { Title: "最活跃用户" }]);
+        Doc.LoadSummaryList(0, 10, [{ Title: "目录下文档比例" }, { Title: "目录活跃度" }, { Title: "文章热度" }, { Title: "发文计数" }, { Title: "最活跃用户" }]);
     }
     else if ("LeftMenu.评论分析" === id) {
+        Doc.ShowView3();
         Doc.ShowContent("Chart1.html");
     }
     else if ("LeftMenu.用户参与" === id) {
+        Doc.ShowView3();
         Doc.ShowContent("Chart1.html");
     }
     else if ("LeftMenu.外网热闻" === id) {
+        Doc.ShowView3();
         Doc.LoadSummaryList(0, 10, [{ Title: "今日热词" }, { Title: "订阅热词" }, { Title: "行业要闻" }, { Title: "局势分析" }]);
 
         Doc.ShowContent("Chart1.html");
+    }
+    else if ("LeftMenu.云笔记测试" === id) {
+
+        var callback1 = function (res1) {
+            Doc.LoadTreeTo("#leftPart1", res1, [], {});
+            Doc.ShowContent("redirect.html");
+            
+            var callback2 = function (res2) {
+                Doc.LoadSummaryListTo("#leftPart2", res2);
+            }
+            Doc.LoadData_Doc(context = ["{}", JSON.stringify({ "Content": 0, "PlainText": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size], callback2);
+
+        }
+        Doc.ShowView1(); 
+        Doc.LoadData_Category(["{}", "{}", 0, 1000], callback1);
     }
 
 

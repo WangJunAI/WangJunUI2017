@@ -1374,6 +1374,7 @@
     <Content Include="UI\APP\Doc\JS\Doc.Detail.js" />
     <Content Include="UI\APP\Doc\JS\Doc.LeftMenu.js" />
     <Content Include="UI\APP\Doc\JS\Doc.Nav.SummaryList.js" />
+    <Content Include="UI\APP\Doc\JS\Doc.Nav.View1.js" />
     <Content Include="UI\APP\Doc\JS\Doc.Nav.Ztree.js" />
     <Content Include="UI\APP\Doc\JS\Doc.Table.js" />
     <Content Include="UI\APP\Doc\JS\Doc.TopButton.js" />
