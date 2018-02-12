@@ -6,7 +6,7 @@
 var TouTiao = {};
 
 TouTiao.LoadCategory = function () {
-    var context = ["{}", "{}", 0, 1000];
+    var context = ["{}","{}", "{}", 0, 1000];
 
     var callback = function (res) {
         LOGGER.Log(res);
