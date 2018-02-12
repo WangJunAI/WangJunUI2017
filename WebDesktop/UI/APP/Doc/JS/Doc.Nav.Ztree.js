@@ -8,7 +8,7 @@
         $('#category').hide();
         $("#parentNode").text(name);
         $("#parentNode").attr("data-param", treeNode.id);
-        Doc.LoadTable(0, 20, '{"CategoryID":"' + treeNode.id + '"}');
+        Doc.LoadTable(0, App.Doc.Data.Pager.Size, '{"CategoryID":"' + treeNode.id + '"}');
     }
 
     var zTreeOnDblClick = function (event, treeId, treeNode) {
@@ -32,7 +32,7 @@
         }
     };
 
-    var context = ["{}", "{}", 0, 1000];
+    var param = ["{}", "{}", 0, 1000];
 
     var callback = function (res) {
         LOGGER.Log(res);
@@ -43,7 +43,7 @@
 
         Doc.ShowTree(target, setting, res);
     }
-    NET.PostData(App.Doc.Server.Url8, callback, context);
+    NET.PostData(App.Doc.Server.Url8, callback, param);
 
 
 

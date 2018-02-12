@@ -3,11 +3,7 @@
 
     var callback = function (res) {
         var option = dataDownloadedEvent(res);
-        
-        //var option = Doc.GetChartOption(type, customOption);
-        //option.series[0].data = arr;
-        //option.title.text = setting.Title;
-        //option.yAxis.title.text = setting.yAxisName;
+         
         Doc.ShowChart(targetId, option);
     }
     NET.LoadData(url, callback, context, NET.POST);

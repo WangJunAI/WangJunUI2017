@@ -48,7 +48,7 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            Doc.LoadChart("container1", App.Doc.Server.Url16, ["{$match:{}}", "{$group:{_id:'$CategoryName',Count:{$sum:1}}}"], function (res) {
+            Doc.LoadChart("container1", App.Doc.Server.Url16, ["Doc","{$match:{}}", "{$group:{_id:'$CategoryName',Count:{$sum:1}}}"], function (res) {
                 //return[item["_id"], item["total"]];
                 var arr = [];
                 for (var k = 0; k < res.length; k++) {
@@ -60,7 +60,7 @@
                 option.title.text = "目录下文件占比";
                 return option;
             });
-            Doc.LoadChart("container2", App.Doc.Server.Url16, ["{$match:{}}", "{$group:{_id:'$CategoryName',ReadCount:{$sum:'$ReadCount'},LikeCount:{$sum:'$LikeCount'},CommentCount:{$sum:'$CommentCount'}}}"], function (res) {
+            Doc.LoadChart("container2", App.Doc.Server.Url16, ["Doc","{$match:{}}", "{$group:{_id:'$CategoryName',ReadCount:{$sum:'$ReadCount'},LikeCount:{$sum:'$LikeCount'},CommentCount:{$sum:'$CommentCount'}}}"], function (res) {
                  var categories = [];
                 var likeCountData = { name: "点赞", data: [] };
                 var readCountData = { name: "阅读", data: [] };
@@ -83,7 +83,7 @@
 
                 return option;
             });
-            Doc.LoadChart("container3", App.Doc.Server.Url16, ["{$match:{}}", "{$group:{ _id : {  year: { $year: '$CreateTime' },month:{$month: '$CreateTime'} ,day:{$dayOfMonth: '$CreateTime'} }, PublishCount:{$sum:1},ReadCount:{$sum:'$ReadCount'},LikeCount:{$sum:'$LikeCount'},CommentCount:{$sum:'$CommentCount'}}}"], function (res) {
+            Doc.LoadChart("container3", App.Doc.Server.Url16, ["Doc","{$match:{}}", "{$group:{ _id : {  year: { $year: '$CreateTime' },month:{$month: '$CreateTime'} ,day:{$dayOfMonth: '$CreateTime'} }, PublishCount:{$sum:1},ReadCount:{$sum:'$ReadCount'},LikeCount:{$sum:'$LikeCount'},CommentCount:{$sum:'$CommentCount'}}}"], function (res) {
                 var categories = [];
                 var likeCountData = { name: "点赞", data: [] };
                 var readCountData = { name: "阅读", data: [] };
@@ -109,7 +109,7 @@
                 return option;
 
             });
-            Doc.LoadChart("container4", App.Doc.Server.Url16, ["{$match:{}}", "{$group:{ _id : {  year: { $year: '$CreateTime' },month:{$month: '$CreateTime'} ,day:{$dayOfMonth: '$CreateTime'} }, Count:{$sum:1}}}"], function (res) {
+            Doc.LoadChart("container4", App.Doc.Server.Url16, ["Doc","{$match:{}}", "{$group:{ _id : {  year: { $year: '$CreateTime' },month:{$month: '$CreateTime'} ,day:{$dayOfMonth: '$CreateTime'} }, Count:{$sum:1}}}"], function (res) {
                 var categories = [];
                 var publishCountData = { name: "发文计数", data: [] };
 
@@ -132,7 +132,7 @@
                 return option;
 
             });
-            Doc.LoadChart("container5", App.Doc.Server.Url16, ["{$match:{}}", "{$group:{ _id : {  year: { $year: '$CreateTime' },month:{$month: '$CreateTime'} ,day:{$dayOfMonth: '$CreateTime'} }, Count:{$sum:1}}}"], function (res) {
+            Doc.LoadChart("container5", App.Doc.Server.Url16, ["Doc","{$match:{}}", "{$group:{ _id : {  year: { $year: '$CreateTime' },month:{$month: '$CreateTime'} ,day:{$dayOfMonth: '$CreateTime'} }, Count:{$sum:1}}}"], function (res) {
                 var categories = [];
                 var publishCountData = { name: "发文计数", data: [] };
 

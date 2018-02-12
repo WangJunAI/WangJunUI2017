@@ -112,7 +112,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             Doc.LoadDetail();
-            Doc.LoadTree();
+            Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#treeDemo", res1, [], {}); }); ///加载目录
 
             $("[data-single]").on("click", function () {
                 var val = $(this).attr("data-single");

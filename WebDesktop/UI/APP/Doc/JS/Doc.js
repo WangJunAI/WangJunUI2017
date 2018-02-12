@@ -7,29 +7,7 @@ var Doc = {};
 
 
 
-Doc.SaveCategory = function () {
-    var item = {};
-    item.id = $("#id").val();
-    item.Title = $("#Title").val().trim();
-    //item.Content = UE.getEditor('editor').getContent();
-    item.CreatorName = "创建人姓名";
-    item.CreatorID = "创建人ID";
-    item.ParentID = $("#parentNode").attr("data-param");
-    // item.Content = item.Content.replace(/</g, "«").replace(/>/g, "»");
-    var context = [item.Title, item.ParentID, item.id, item.CreatorID];
 
-    var callback = function (res) {
-        LOGGER.Log(res);
-        if (false === PARAM_CHECKER.IsTopWindow()) {
-            $(window.parent.document).find('#detailWindow').hide(); window.close();
-            Doc.ShowDialog();
-            top.window.Doc.LoadTree();
-        }
-
-
-    }
-    NET.PostData(App.Doc.Server.Url7, callback, context);
-}
 
 
 Doc.RemoveCategory = function () {
@@ -92,7 +70,7 @@ Doc.MoveToRecycleBin = function () {
 
 }
 
-
+///暂未用上
 Doc.RemoveDetail = function () {
 
     var query = { _id: { $in: [] } };
@@ -155,14 +133,14 @@ Doc.ShowDialog = function (message,type,title) {
 
 Doc.Initial = function () {
     $(document).ready(function () {
+ 
         Doc.LoadAppInfo();
         Doc.LoadMenu();
-
-        Doc.ShowView3();
-        Doc.LoadTopButton("左侧菜单.已发布.TopButton");
-        Doc.LoadTree();
-        Doc.LoadTable(0, 20, "{'Status':'已发布'}");
-    });
+        //Doc.ShowView3();
+        //Doc.LoadTopButton("左侧菜单.已发布.TopButton");
+        //Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], {}); });
+        Doc.LeftMenuClick("LeftMenu.已发布");
+     });
 }
 
 Doc.LoadHtmlTo = function (target,html) {

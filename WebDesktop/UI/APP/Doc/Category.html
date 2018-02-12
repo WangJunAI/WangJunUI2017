@@ -21,7 +21,8 @@
     <script src="JS/Doc.ClientUI.js"></script>
     <script src="JS/Doc.App.js"></script>
     <script src="JS/Doc.Detail.js"></script>
-
+    <script src="JS/Doc.View.js"></script>
+    <script src="JS/Doc.Biz.js"></script>
 
 
 
@@ -89,14 +90,15 @@
 
         $(document).ready(function () {
             Doc.LoadCategoryDetail();
-            Doc.LoadTree("#treeDemo");
+            Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#treeDemo", res1, [], {}); });
+
         });
     </script>
     <div id="modal"></div>
     <div id="dialog">
-        <div>标题</div>
+        <div class="title">标题</div>
         <div class="message">操作成功！</div>
-        <div><a href="javascript:;" onclick="$('#modal').hide();$('#dialog').hide()">关闭</a></div>
+        <div class="bottom"><a href="javascript:;" onclick="$('#modal').hide();$('#dialog').hide()">关闭</a></div>
     </div>
 </body>
 </html>

@@ -114,18 +114,20 @@ namespace WebAPI
         protected object GetTargetObject(string classFullName, string methodName)
         {
             var dict = new Dictionary<string, string>();
-            dict.Add("WangJun.Stock.StockAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Stock.dll"));
-            dict.Add("WangJun.Stock.DataSourceSINA." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Stock.dll"));
-            dict.Add("WangJun.NetLoader.So360." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.NetLoader.dll"));
+            //dict.Add("WangJun.Stock.StockAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Stock.dll"));
+            //dict.Add("WangJun.Stock.DataSourceSINA." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Stock.dll"));
+            //dict.Add("WangJun.NetLoader.So360." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.NetLoader.dll"));
             dict.Add("WangJun.DB.YunConfig." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.DB.dll"));
-            dict.Add("WangJun.Doc.DocManager." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Doc.dll"));
-            dict.Add("WangJun.Doc.DocItem." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Doc.dll"));
-            dict.Add("WangJun.Doc.CommentManager." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Doc.dll"));
-            dict.Add("WangJun.Doc.CommentItem." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Doc.dll"));
-            dict.Add("WangJun.Doc.CategoryManager." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Doc.dll"));
-            dict.Add("WangJun.Doc.RecycleBinManager." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Doc.dll"));
-            dict.Add("WangJun.Doc.DataAnalysor." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Doc.dll"));
-            dict.Add("WangJun.Doc.ClientBehaviorManager." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Doc.dll"));
+            //dict.Add("WangJun.Doc.DocManager." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Doc.dll"));
+            //dict.Add("WangJun.Doc.DocItem." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Doc.dll"));
+            //dict.Add("WangJun.Doc.CommentManager." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Doc.dll"));
+            //dict.Add("WangJun.Doc.CommentItem." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Doc.dll"));
+            //dict.Add("WangJun.Doc.CategoryManager." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Doc.dll"));
+            //dict.Add("WangJun.Doc.RecycleBinManager." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Doc.dll"));
+            //dict.Add("WangJun.Doc.DataAnalysor." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Doc.dll"));
+            //dict.Add("WangJun.Doc.ClientBehaviorManager." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Doc.dll"));
+            dict.Add("WangJun.Doc.DocWebAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Doc.dll"));
+
             var dllPath = dict[classFullName + "." + methodName];
             Assembly ass = Assembly.LoadFrom(dllPath);
             var obj = ass.CreateInstance(classFullName);

@@ -125,7 +125,7 @@
 #dialog {
     width: 30em;
     height: 9em;
-    background-color: antiquewhite;
+    background-color: #baecbb;
     z-index: 3000;
     position: fixed;
     left: 0;
@@ -137,10 +137,12 @@
     margin-top: auto;
     margin-bottom: auto;
     display: none;
+    border: 1px solid #3c763d;
+    color: #3c763d;
 }
 
 #modal {
-    background: beige;
+    background: #3c763d;
     position: absolute;
     z-index: 2999;
     left: 0;
@@ -149,4 +151,32 @@
     bottom: 0;
     opacity: 0.3;
     display: none;
+}
+
+#dialog > .title {
+    padding-left: 0.5em;
+    font-weight: 700;
+}
+
+#dialog > .bottom {
+    width: 100%;
+    height: 2.5em;
+    text-align: right;
+}
+
+    #dialog > .bottom a {
+        display: inline-block;
+        text-decoration: none;
+        color: #3c763d;
+        width: 4em;
+        height: 100%;
+        text-align: center;
+    }
+
+
+#dialog > .message {
+    font-size: 2em;
+    line-height: 2.5em;
+    width: 100%;
+    text-align: center;
 }

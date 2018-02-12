@@ -7,7 +7,7 @@ Doc.LoadTable = function (pageIndex, pageSize, query) {
     if (!PARAM_CHECKER.IsInt(pageIndex)) {
         pageIndex = 0;
     }
-    pageSize = 20;
+    //pageSize = 20;
 
     var callback = function (res) {
 
@@ -35,7 +35,8 @@ Doc.LoadTable = function (pageIndex, pageSize, query) {
             var url = App.Doc.Server.Url3 + "?id=" + id;
             var categoryName = rows[k].CategoryName;
             var createTime = Convertor.DateFormat(eval(rows[k].CreateTime.replace(/\//g, "")), "yyyy/MM/dd hh:mm");
-            tableData.Rows.push([{ ID: id, Text: "checkbox", Method: "", Param: url }, { ID: id, Text: title, Method: "Doc.TableRowClick", Param: url }, { ID: "", Text: categoryName, Method: "" }, { ID: "", Text: readCount, Method: "" }, { ID: "", Text: likeCount, Method: "" }, { ID: "", Text: commentCount, Method: "" }, { ID: "", Text: createTime, Method: "" }, { ID: "", Text: createTime, Method: "" }, { ID: "", Text: "已发布", Method: "" }, { ID: id, Text: "详细", Method: "Doc.ShowWindow", Param: url }]);
+            var status = rows[k].Status;
+            tableData.Rows.push([{ ID: id, Text: "checkbox", Method: "", Param: url }, { ID: id, Text: title, Method: "Doc.TableRowClick", Param: url }, { ID: "", Text: categoryName, Method: "" }, { ID: "", Text: readCount, Method: "" }, { ID: "", Text: likeCount, Method: "" }, { ID: "", Text: commentCount, Method: "" }, { ID: "", Text: createTime, Method: "" }, { ID: "", Text: createTime, Method: "" }, { ID: "", Text: status, Method: "" }, { ID: id, Text: "详细", Method: "Doc.TableRowClick", Param: url }]);
         }
 
 
@@ -100,29 +101,45 @@ Doc.ShowTable = function (tableData) {
 Doc.ShowPager = function (pagerInfo) {
     if (PARAM_CHECKER.IsObject(pagerInfo)) {
         var pagerCount = (0 === pagerInfo.Count % pagerInfo.Size) ? parseInt(pagerInfo.Count / pagerInfo.Size) : parseInt(pagerInfo.Count / pagerInfo.Size) + 1;
-        var aHtml = "<a href=\"javascript:;\">共" + pagerInfo.Count + "个&nbsp;&nbsp;每页" + pagerInfo.Size + "个</a>";
+        var aSummaryHtml = "<a href=\"javascript:;\">共" + pagerInfo.Count + "个&nbsp;&nbsp;每页" + pagerInfo.Size + "个</a>";
         var selectionHtml = "<select onchange='var index=$(this).val();var method=\"Doc.LoadTable(\"+index+\")\";$(this).next().attr(\"onclick\",method)'>";
         var ellipsisHtml = "";
+        var aItemTplHtml = "<a href=\"javascript:;\" class=\"[Class]\" onclick=[Method]([Param]) data-param=\"[Index]\">[Text]</a>";
+        var ellipsisTplHtml = "<a href=\"javascript:;\">....</a>";
+        ///生成页码
+        var aIndexHtml = "";
+        for (var k = pagerInfo.Index - 2; k <= pagerInfo.Index + 2; k++) {
+            ///生成前两个和后两个
+            if (0<= k&&k<pagerCount-1) {
+                aIndexHtml += aItemTplHtml.replace("[Text]", k + 1).replace("[Method]", "Doc.LoadTable").replace("[Param]", k + "," + pagerInfo.Size + ",'" + '{"Status":"已发布"}' + "'").replace("[Index]", k);
+            }
+        }
+        ///若Index小于等于3,则不生成
+        if (3 <= pagerInfo.Index) {
+            //生成1和省略
+            aIndexHtml = aItemTplHtml.replace("[Text]", 0 + 1).replace("[Method]", "Doc.LoadTable").replace("[Param]", 0 + "," + pagerInfo.Size + ",'" + '{"Status":"已发布"}' + "'").replace("[Index]", 0) + ellipsisTplHtml + aIndexHtml ;
+        }
+
+        if (pagerInfo.Index < pagerCount-2) {
+            ///生成最后一页和省略
+            aIndexHtml = aIndexHtml + ellipsisTplHtml + aItemTplHtml.replace("[Text]", (pagerCount - 1) + 1).replace("[Method]", "Doc.LoadTable").replace("[Param]", (pagerCount - 1) + "," + pagerInfo.Size + ",'" + '{"Status":"已发布"}' + "'").replace("[Index]", (pagerCount - 1)) ;
+        }
+        else if (pagerInfo.Index === pagerCount-2) {
+            ///生成最后一页和省略
+            aIndexHtml = aIndexHtml  + aItemTplHtml.replace("[Text]", (pagerCount - 1) + 1).replace("[Method]", "Doc.LoadTable").replace("[Param]", (pagerCount - 1) + "," + pagerInfo.Size + ",'" + '{"Status":"已发布"}' + "'").replace("[Index]", (pagerCount - 1));
+        }
+        else if (pagerInfo.Index === pagerCount - 1) {
+            ///生成最后一页和省略
+            aIndexHtml = aIndexHtml + aItemTplHtml.replace("[Text]", (pagerCount - 1) + 1).replace("[Method]", "Doc.LoadTable").replace("[Param]", (pagerCount - 1) + "," + pagerInfo.Size + ",'" + '{"Status":"已发布"}' + "'").replace("[Index]", (pagerCount - 1));
+        }
 
         for (var k = 0; k < pagerCount; k++) {
-            var aItemHtml = "<a href=\"javascript:;\" class=\"[Class]\" onclick=[Method]([Param]) data-param=\"[Index]\">[Text]</a>";
             var optionHtml = "<option value=[Value]>[Text]</option>";
-            if (k === 0 || ((pagerInfo.Index - 2) <= k  && k <= (pagerInfo.Index+2)) ) {
-                aHtml += aItemHtml.replace("[Text]", k + 1).replace("[Method]", "Doc.LoadTable").replace("[Param]", k + "," + pagerInfo.Size + ",'" + '{"Status":"已发布"}' + "'").replace("[Index]",k);
-            }
-            else if (1 <= k && k < pagerCount - 1 && 2<pagerCount) {
-                ellipsisHtml = "<a href=\"javascript:;\">....</a>";
-            }
-            else if (k === pagerCount - 1) {
-                if (pagerCount <=2 ) {
-                    ellipsisHtml = "";
-                }
-                aHtml += ellipsisHtml + aItemHtml.replace("[Text]", k + 1).replace("[Method]", "Doc.LoadTable").replace("[Param]", k + "," + pagerInfo.Size + ",'" + '{"Status":"已发布"}' + "'").replace("[Index]", k);
-            } 
             selectionHtml += optionHtml.replace("[Text]", k + 1).replace("[Value]", k);
         }
-        selectionHtml += "</select>";
-        var html = aHtml + selectionHtml + "<a href=\"javascript:;\" onclick=[Method]([Param])>跳转</a>".replace("[Method]", "Doc.LoadTable").replace("[Param]", 0);
+
+        selectionHtml += "</select><a href=\"javascript:;\" onclick=[Method]([Param])>跳转</a>".replace("[Method]", "Doc.LoadTable").replace("[Param]", 0+ "," + pagerInfo.Size + ",'" + '{"Status":"已发布"}' + "'");
+        var html = aSummaryHtml + aIndexHtml + selectionHtml;
         $("#pager").html(html);
 
         $("#pager").find("[data-param=\"" + pagerInfo.Index + "\"]").addClass("selected");
@@ -143,8 +160,7 @@ Doc.LoadTable2 = function (pageIndex, pageSize, query,url,columnArray) {
 
     if (!PARAM_CHECKER.IsInt(pageIndex)) {
         pageIndex = 0;
-    }
-    pageSize = 20;
+    } 
 
     var callback = function (res) {
 
@@ -170,7 +186,7 @@ Doc.LoadTable2 = function (pageIndex, pageSize, query,url,columnArray) {
 
         Doc.ShowTable(tableData);
 
-        Doc.LoadPager(query);
+        Doc.LoadPager(pageIndex, pageSize, query);
     }
     var context = [query,"{}", "{DeleteTime:-1}", pageIndex, pageSize];
     NET.LoadData(url, callback, context, NET.POST);

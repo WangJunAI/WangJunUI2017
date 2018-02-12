@@ -41,3 +41,32 @@ Doc.SaveDetail = function () {
     }
     NET.PostData(App.Doc.Server.Url4, callback, context);
 }
+
+///保存一个目录
+Doc.SaveCategory = function () {
+    var submitId = Doc.SubmitStart();
+    var item = {};
+    item.id = $("#id").val();
+    item.Title = $("#Title").val().trim();
+    item.ParentID = $("#parentNode").attr("data-param");
+    var param = [item.Title, item.ParentID, item.id];
+
+    var callback = function (res) {
+        LOGGER.Log(res);
+        Doc.SubmitEnd(submitId);
+       
+        if (false === PARAM_CHECKER.IsTopWindow()) {
+            //top.window.Doc.ShowView3();
+            //$(top.window.find("[data-id=\"LeftMenu.已发布\"]")).first().click();
+            //var callback1 = function (res1) {
+            //    Doc.LoadTreeTo("#leftList", res1, [], {});
+            //}
+            //Doc.LoadData_Category(["{}", "{}", 0, 1000], callback1);
+            top.window.Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#treeDemo", res1, [], {}); });
+
+        }
+         Doc.CloseWindow();
+
+    }
+    NET.PostData(App.Doc.Server.Url7, callback, param);
+}

@@ -8,6 +8,7 @@ Doc.ShowTopButton = function (data) {
     if (PARAM_CHECKER.IsArray(data)) {
         var topButtonHtml1 = $("#topButton1").html();
         var topButtonHtml2 = $("#topButton2").html();
+        var topButtonSearchHtml = $("#topButtonSearch").html();
         $("#topButton").empty();
         for (var k = 0; k < data.length; k++) {
             var itemData = data[k];
@@ -25,6 +26,7 @@ Doc.ShowTopButton = function (data) {
 
             $(html).appendTo("#topButton");
         }
+        $(topButtonSearchHtml).appendTo("#topButton");
     }
 }
 
@@ -53,5 +55,7 @@ Doc.TopButtonClick = function () {
     }
     else if ("TopButton.删除" === id) {
         Doc.MoveToRecycleBin();
+    }
+    else if ("TopButton.删除" === id) {
     }
 }
