@@ -57,5 +57,11 @@ Doc.TopButtonClick = function () {
         Doc.MoveToRecycleBin();
     }
     else if ("TopButton.删除" === id) {
+        ;
+    }
+    else if ("TopButton.搜索" === id)
+    {
+        var keywords = $("#searchInput").val();
+        Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{'Status':'已发布','Title':{ '$regex': '" + keywords+"', '$options': 'g' }}");
     }
 }
