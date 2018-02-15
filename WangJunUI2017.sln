@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WangJun.Doc", "..\..\WangJu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WangJun.DB", "..\..\WangJun2017\WangJun.DB\WangJun.DB.csproj", "{AF918729-03E8-443F-BD76-79BC604E286E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WangJun.Entity", "..\..\WangJun2017\WangJun.Entity\WangJun.Entity.csproj", "{41FE0A71-2098-483A-8E1B-ED4BEBB4DD72}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{AF918729-03E8-443F-BD76-79BC604E286E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF918729-03E8-443F-BD76-79BC604E286E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF918729-03E8-443F-BD76-79BC604E286E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41FE0A71-2098-483A-8E1B-ED4BEBB4DD72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41FE0A71-2098-483A-8E1B-ED4BEBB4DD72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41FE0A71-2098-483A-8E1B-ED4BEBB4DD72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41FE0A71-2098-483A-8E1B-ED4BEBB4DD72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -127,6 +127,7 @@ namespace WebAPI
             //dict.Add("WangJun.Doc.DataAnalysor." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Doc.dll"));
             //dict.Add("WangJun.Doc.ClientBehaviorManager." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Doc.dll"));
             dict.Add("WangJun.Doc.DocWebAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Doc.dll"));
+            dict.Add("WangJun.HumanResource.StaffWebAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.HumanResource.dll"));
 
             var dllPath = dict[classFullName + "." + methodName];
             Assembly ass = Assembly.LoadFrom(dllPath);
