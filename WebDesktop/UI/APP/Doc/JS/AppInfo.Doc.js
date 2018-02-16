@@ -34,7 +34,9 @@ App.Doc.CSS.LeftList.View3.Width = { Value: 12, Unit: "em" };
     Url14: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocWebAPI&m=LoadRecycleBinItem",///加载回收站
     Url15: "http://localhost:9990/API.ashx?c=WangJun.Doc.DataAnalysor&m=GetHotWords",///暂未使用
     Url16: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocWebAPI&m=Aggregate",///聚合查询
-    Url17: "http://localhost:9990/API.ashx?c=WangJun.Doc.ClientBehaviorManager&m=Aggregate"
+    Url17: "http://localhost:9990/API.ashx?c=WangJun.Doc.ClientBehaviorManager&m=Aggregate",
+    Url18: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocWebAPI&m=RecycleBinCount",///回收站数量
+
 };
 
 
@@ -147,11 +149,11 @@ App.Doc.Data.RecycleBin = {};
 App.Doc.Data.RecycleBin.Load = {};
 App.Doc.Data.RecycleBin.Load.Pager = {};
 App.Doc.Data.RecycleBin.Load.Column = [];
-App.Doc.Data.RecycleBin.Load.Column.push({ ID: "", Text: "全选", Method: "", Sort: "", PropertyName:"Type",DataType:"" });
-App.Doc.Data.RecycleBin.Load.Column.push({ ID: "", Text: "标题", Method: "", Sort: "", PropertyName: "Title", DataType:"" });
-App.Doc.Data.RecycleBin.Load.Column.push({ ID: "", Text: "类别", Method: "", Sort: "", PropertyName: "Type", DataType:""});
-App.Doc.Data.RecycleBin.Load.Column.push({ ID: "", Text: "删除时间", Method: "", Sort: "", PropertyName: "DeleteTime", DataType:""});
-App.Doc.Data.RecycleBin.Load.Column.push({ ID: "", Text: "详细", Method: "", Sort: "", PropertyName: "Type", DataType:"" });
+App.Doc.Data.RecycleBin.Load.Column.push({ ID: "", Text: "全选", Method: "", Sort: "", PropertyName:"Type",DataType:"checkbox" });
+App.Doc.Data.RecycleBin.Load.Column.push({ ID: "", Text: "标题", Method: "Doc.TableRowClick", Sort: "", PropertyName: "Title", DataType:"string" });
+App.Doc.Data.RecycleBin.Load.Column.push({ ID: "", Text: "类别", Method: "", Sort: "", PropertyName: "Type", DataType:"string"});
+App.Doc.Data.RecycleBin.Load.Column.push({ ID: "", Text: "删除时间", Method: "", Sort: "", PropertyName: "DeleteTime", DataType:"date"});
+App.Doc.Data.RecycleBin.Load.Column.push({ ID: "", Text: "详细", Method: "Doc.TableRowClick", Sort: "", PropertyName: "Type", DataType:"link",Value:"详细" });
 
 App.Doc.Data.DocTable = {};
 App.Doc.Data.DocTable.Load = {};
@@ -167,4 +169,47 @@ App.Doc.Data.DocTable.Load.Column.push({ ID: "", Text: "发布时间", Method: "
 App.Doc.Data.DocTable.Load.Column.push({ ID: "", Text: "创建时间", Method: "", Sort: "", PropertyName: "CreateTime" });
 App.Doc.Data.DocTable.Load.Column.push({ ID: "", Text: "状态", Method: "", Sort: "", PropertyName: "Status" });
 App.Doc.Data.DocTable.Load.Column.push({ ID: "", Text: "详细", Method: "", Sort: "", PropertyName: "Type" });
- 
+
+App.Doc.Data.DocTable.Info = {
+    Column: [],
+    Pager: {
+        Url: App.Doc.Server.Url2, PagerIndexClick: function () { }
+    },
+    Data: { Url: App.Doc.Server.Url1 }
+}
+App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "全选", Method: "", Sort: "", PropertyName: "Type", DataType: "checkbox" });
+App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "标题", Method: "Doc.TableRowClick", Sort: "", PropertyName: "Title", DataType: "string"});
+App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "分类", Method: "", Sort: "", PropertyName: "CategoryName", DataType: "string" });
+App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "阅读量", Method: "", Sort: "", PropertyName: "ReadCount", DataType: "string"});
+App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "点赞量", Method: "", Sort: "", PropertyName: "LikeCount", DataType: "string" });
+App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "评论量", Method: "", Sort: "", PropertyName: "CommentCount", DataType: "string" });
+App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "发布时间", Method: "", Sort: "", PropertyName: "PublishTime", DataType: "date" });
+App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "创建时间", Method: "", Sort: "", PropertyName: "CreateTime", DataType: "date"  });
+App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "状态", Method: "", Sort: "", PropertyName: "Status", DataType: "string" });
+App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "详细", Method: "", Sort: "", PropertyName: "Type", DataType: "link", Value: "详细"  });
+
+App.Doc.Data.DocTable.Info.Pager.PagerIndexClick = function () {
+    LOGGER.Log("App.Doc.Data.DocTable.Info.Pager.PagerIndexClick");
+    var index = $(event.target).attr("data-Index");
+    
+    Doc.LoadTable(parseInt(index), App.Doc.Data.Pager.Size, "{}", App.Doc.Data.DocTable.Info);
+}
+
+
+App.Doc.Data.RecycleBin.Info = {
+    Column: [],
+    Pager: {
+        Url: App.Doc.Server.Url18, PagerIndexClick: function () { }
+    },
+    Data: { Url: App.Doc.Server.Url14}
+}
+App.Doc.Data.RecycleBin.Info.Column.push({ ID: "", Text: "全选", Method: "", Sort: "", PropertyName: "Type", DataType: "checkbox" });
+App.Doc.Data.RecycleBin.Info.Column.push({ ID: "", Text: "标题", Method: "Doc.TableRowClick", Sort: "", PropertyName: "Title", DataType: "string" });
+App.Doc.Data.RecycleBin.Info.Column.push({ ID: "", Text: "类别", Method: "", Sort: "", PropertyName: "Type", DataType: "string" });
+App.Doc.Data.RecycleBin.Info.Column.push({ ID: "", Text: "删除时间", Method: "", Sort: "", PropertyName: "DeleteTime", DataType: "date" });
+App.Doc.Data.RecycleBin.Info.Column.push({ ID: "", Text: "详细", Method: "Doc.TableRowClick", Sort: "", PropertyName: "Type", DataType: "link", Value: "详细" });
+App.Doc.Data.RecycleBin.Info.Pager.PagerIndexClick = function () {
+    LOGGER.Log("App.Doc.Data.RecycleBin.Info.Pager.PagerIndexClick");
+    var index = $(event.target).attr("data-Index");
+    Doc.LoadTable(parseInt(index), App.Doc.Data.Pager.Size, "{}", App.Doc.Data.RecycleBin.Info);
+}

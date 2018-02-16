@@ -41,7 +41,7 @@ Doc.LeftMenuClick = function (id) {
         $("#topButton").removeAttr("data-status");
         $("#topButton").removeAttr("data-categoryId");
 
-        Doc.LoadTable2(0, App.Doc.Data.Pager.Size, "{}", App.Doc.Server.Url14, App.Doc.Data.RecycleBin.Load.Column);
+        Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{}", App.Doc.Data.RecycleBin.Info);
     }
     if ("LeftMenu.已发布" == id) {
         ///加载TopButton
@@ -50,8 +50,8 @@ Doc.LeftMenuClick = function (id) {
         Doc.LoadTopButton(topButtonId);
         ///加载树状目录 
         Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], {}); });
-        Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{'Status':'已发布'}");
-        //Doc.LoadTable2(0, App.Doc.Data.Pager.Size, "{'Status':'已发布'}", App.Doc.Server.Url1, App.Doc.Data.DocTable.Load.Column);
+        //Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{'Status':'已发布'}");
+        Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{'Status':'已发布'}", App.Doc.Data.DocTable.Info);
 
         $("#topButton").attr("data-status", "已发布");
     }
@@ -62,7 +62,7 @@ Doc.LeftMenuClick = function (id) {
         Doc.LoadTopButton(topButtonId);
         ///加载树状目录
         Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], {}); });
-        Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{'Status':'待发布'}");
+        Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{'Status':'待发布'}", App.Doc.Data.DocTable.Info);
         $("#topButton").attr("data-status", "待发布");
     }
     else if ("LeftMenu.草稿箱" == id) {
@@ -72,7 +72,7 @@ Doc.LeftMenuClick = function (id) {
         Doc.LoadTopButton(topButtonId);
         ///加载树状目录
         Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], {}); });
-        Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{'Status':'草稿'}");
+        Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{'Status':'草稿'}", App.Doc.Data.DocTable.Info);
         $("#topButton").attr("data-status", "草稿");
 
     }
@@ -83,7 +83,7 @@ Doc.LeftMenuClick = function (id) {
         Doc.LoadTopButton(topButtonId);
         ///加载树状目录
         Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], {}); });
-        Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{}");
+        Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{}", App.Doc.Data.DocTable.Info);
         $("#topButton").removeAttr("data-status");
 
     }

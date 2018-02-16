@@ -33,47 +33,7 @@ Doc.LeftMenuClick = function (id) {
     var topButtonId = Doc.FindLeftMenuData(id)[0].TopButtonGroupID;
     Doc.LeftMenuSetSelecled(id);
     Doc.CloseWindow();
-     if ("LeftMenu.新建人员" === id) {
-        var url = App.Doc.Server.Url3 + "?t=" + (new Date().getTime());
-        Doc.ShowWindow(url);
-     }
-     else if ("LeftMenu.新建组织" === id) {
-         var url = App.Doc.Server.Url6 + "?t=" + (new Date().getTime());
-         Doc.ShowWindow(url);
-     }
-     else if ("LeftMenu.在职人员" == id) {
-         Doc.ShowView3();
-         Doc.LoadTopButton(topButtonId);
-         Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], {}); });
-         Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{}");
-         $("#topButton").attr("data-status", "已发布");
-     }
-     else if ("LeftMenu.离职人员" == id) {
-         Doc.ShowView3();
-         Doc.LoadTopButton(topButtonId);
-         ///加载树状目录
-         Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], {}); });
-         Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{}");
-         $("#topButton").attr("data-status", "待发布");
-     }
-     else if ("LeftMenu.新建角色" === id) {
-         var url = App.Doc.Server.Url6 + "?t=" + (new Date().getTime());
-         Doc.ShowWindow(url);
-     }
-     else if ("LeftMenu.角色列表" == id) {
-         Doc.ShowView3();
-         Doc.LoadTopButton(topButtonId);
-         ///加载树状目录
-         Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], {}); });
-         Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{'Status':'待发布'}");
-         $("#topButton").attr("data-status", "待发布");
-     }
-     else if ("LeftMenu.使用说明" == id) {
-         Doc.ShowView2();
-         Doc.LoadTopButton(topButtonId);
-         Doc.ShowContent("AppInfo.html");
-     }
-    else if ("LeftMenu.回收站" == id) {
+    if ("LeftMenu.回收站" == id) {
         ///加载TopButton
         ///刷新列表
         Doc.ShowView2();
@@ -81,7 +41,29 @@ Doc.LeftMenuClick = function (id) {
         $("#topButton").removeAttr("data-status");
         $("#topButton").removeAttr("data-categoryId");
 
-        Doc.LoadTable2(0, App.Doc.Data.Pager.Size, "{}", App.Doc.Server.Url14, App.Doc.Data.RecycleBin.Load.Column, null, { Url: App.Doc.Server.Url18 });
+        Doc.LoadTable2(0, App.Doc.Data.Pager.Size, "{}", App.Doc.Data.RecycleBin.Info);
+    }
+    if ("LeftMenu.已发布" == id) {
+        ///加载TopButton
+        ///刷新列表
+        Doc.ShowView3();
+        Doc.LoadTopButton(topButtonId);
+        ///加载树状目录 
+        Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], {}); });
+        //Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{'Status':'已发布'}");
+        Doc.LoadTable2(0, App.Doc.Data.Pager.Size, "{'Status':'已发布'}", App.Doc.Data.DocTable.Info);
+
+        $("#topButton").attr("data-status", "已发布");
+    }
+    else if ("LeftMenu.待发布" == id) {
+        ///加载TopButton
+        ///刷新列表
+        Doc.ShowView3();
+        Doc.LoadTopButton(topButtonId);
+        ///加载树状目录
+        Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], {}); });
+        Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{'Status':'待发布'}");
+        $("#topButton").attr("data-status", "待发布");
     }
     else if ("LeftMenu.草稿箱" == id) {
         ///加载TopButton
@@ -94,7 +76,9 @@ Doc.LeftMenuClick = function (id) {
         $("#topButton").attr("data-status", "草稿");
 
     }
-    else if ("LeftMenu.角色列表" == id) {
+    else if ("LeftMenu.全部文档" == id) {
+        ///加载TopButton
+        ///刷新列表
         Doc.ShowView3();
         Doc.LoadTopButton(topButtonId);
         ///加载树状目录
@@ -113,18 +97,26 @@ Doc.LeftMenuClick = function (id) {
         Doc.LoadTopButton(topButtonId);
         Doc.ShowContent("AppInfo.html");
     }
-    else if ("LeftMenu.人员分析" === id) {
+    else if ("LeftMenu.新建目录" === id) {
+        var url = App.Doc.Server.Url6 + "?t=" + (new Date().getTime());
+        Doc.ShowWindow(url);
+    }
+    else if ("LeftMenu.新建文章" === id) {
+        var url = App.Doc.Server.Url3 + "?t=" + (new Date().getTime());
+        Doc.ShowWindow(url);
+    }
+    else if ("LeftMenu.文档分析" === id) {
         Doc.LoadTopButton(topButtonId);
         Doc.ShowContent("Chart1.html");
         Doc.ShowView3();
         Doc.LoadSummaryList(0, 10, [{ Title: "目录下文档比例" }, { Title: "目录活跃度" }, { Title: "文章热度" }, { Title: "发文计数" }, { Title: "最活跃用户" }]);
     }
-    else if ("LeftMenu.组织分析" === id) {
+    else if ("LeftMenu.评论分析" === id) {
         Doc.ShowView3();
         Doc.LoadTopButton(topButtonId);
         Doc.ShowContent("Chart1.html");
     }
-    else if ("LeftMenu.角色分析" === id) {
+    else if ("LeftMenu.用户参与" === id) {
         Doc.ShowView3();
         Doc.LoadTopButton(topButtonId);
         Doc.ShowContent("Chart1.html");
@@ -137,14 +129,14 @@ Doc.LeftMenuClick = function (id) {
         Doc.ShowContent("Chart1.html");
     }
     else if ("LeftMenu.云笔记测试" === id) {
-        Doc.ShowView1();
+        Doc.ShowView1(); 
 
         Doc.LoadTopButton(topButtonId);
 
         var callback1 = function (res1) {
             Doc.LoadTreeTo("#leftPart1", res1, [], {});
             Doc.ShowContent("redirect.html");
-
+            
             var callback2 = function (res2) {
                 Doc.LoadSummaryListTo("#leftPart2", res2);
             }
@@ -178,7 +170,7 @@ Doc.LeftMenuGroupToggle = function () {
 Doc.LeftMenuSetSelecled = function (id) {
     $("#leftMenu .menuItem").removeAttr("style");
     if (true === PARAM_CHECKER.IsNotEmptyString(id)) {
-        $("[data-id='" + id + "']").css("background-color", "#00c1de");
+        $("[data-id='" + id+"']").css("background-color", "#00c1de");
     }
     else {
         $(event.target).css("background-color", "#00c1de");
