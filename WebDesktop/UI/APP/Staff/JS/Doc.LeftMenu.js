@@ -45,7 +45,7 @@ Doc.LeftMenuClick = function (id) {
          Doc.ShowView3();
          Doc.LoadTopButton(topButtonId);
          Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], {}); });
-         Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{}");
+         Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{}", App.Doc.Data.DocTable.Info);
          $("#topButton").attr("data-status", "已发布");
      }
      else if ("LeftMenu.离职人员" == id) {
@@ -81,7 +81,7 @@ Doc.LeftMenuClick = function (id) {
         $("#topButton").removeAttr("data-status");
         $("#topButton").removeAttr("data-categoryId");
 
-        Doc.LoadTable2(0, App.Doc.Data.Pager.Size, "{}", App.Doc.Server.Url14, App.Doc.Data.RecycleBin.Load.Column, null, { Url: App.Doc.Server.Url18 });
+        Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{}", App.Doc.Data.RecycleBin.Info);
     }
     else if ("LeftMenu.草稿箱" == id) {
         ///加载TopButton

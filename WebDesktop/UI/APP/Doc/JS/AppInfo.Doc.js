@@ -144,32 +144,8 @@ App.Doc.Data = {};
 App.Doc.Data.Pager = {};
 
 App.Doc.Data.Pager.Size = 10;
-
-App.Doc.Data.RecycleBin = {};
-App.Doc.Data.RecycleBin.Load = {};
-App.Doc.Data.RecycleBin.Load.Pager = {};
-App.Doc.Data.RecycleBin.Load.Column = [];
-App.Doc.Data.RecycleBin.Load.Column.push({ ID: "", Text: "全选", Method: "", Sort: "", PropertyName:"Type",DataType:"checkbox" });
-App.Doc.Data.RecycleBin.Load.Column.push({ ID: "", Text: "标题", Method: "Doc.TableRowClick", Sort: "", PropertyName: "Title", DataType:"string" });
-App.Doc.Data.RecycleBin.Load.Column.push({ ID: "", Text: "类别", Method: "", Sort: "", PropertyName: "Type", DataType:"string"});
-App.Doc.Data.RecycleBin.Load.Column.push({ ID: "", Text: "删除时间", Method: "", Sort: "", PropertyName: "DeleteTime", DataType:"date"});
-App.Doc.Data.RecycleBin.Load.Column.push({ ID: "", Text: "详细", Method: "Doc.TableRowClick", Sort: "", PropertyName: "Type", DataType:"link",Value:"详细" });
-
+ 
 App.Doc.Data.DocTable = {};
-App.Doc.Data.DocTable.Load = {};
-App.Doc.Data.DocTable.Load.Pager = {};
-App.Doc.Data.DocTable.Load.Column = [];
-App.Doc.Data.DocTable.Load.Column.push({ ID: "", Text: "全选", Method: "", Sort: "", PropertyName: "Type" });
-App.Doc.Data.DocTable.Load.Column.push({ ID: "", Text: "标题", Method: "", Sort: "", PropertyName: "Title" });
-App.Doc.Data.DocTable.Load.Column.push({ ID: "", Text: "分类", Method: "", Sort: "", PropertyName: "CategoryName" });
-App.Doc.Data.DocTable.Load.Column.push({ ID: "", Text: "阅读量", Method: "", Sort: "", PropertyName: "ReadCount" });
-App.Doc.Data.DocTable.Load.Column.push({ ID: "", Text: "点赞量", Method: "", Sort: "", PropertyName: "LikeCount" });
-App.Doc.Data.DocTable.Load.Column.push({ ID: "", Text: "评论量", Method: "", Sort: "", PropertyName: "CommentCount" });
-App.Doc.Data.DocTable.Load.Column.push({ ID: "", Text: "发布时间", Method: "", Sort: "", PropertyName: "PublishTime" });
-App.Doc.Data.DocTable.Load.Column.push({ ID: "", Text: "创建时间", Method: "", Sort: "", PropertyName: "CreateTime" });
-App.Doc.Data.DocTable.Load.Column.push({ ID: "", Text: "状态", Method: "", Sort: "", PropertyName: "Status" });
-App.Doc.Data.DocTable.Load.Column.push({ ID: "", Text: "详细", Method: "", Sort: "", PropertyName: "Type" });
-
 App.Doc.Data.DocTable.Info = {
     Column: [],
     Pager: {
@@ -195,7 +171,7 @@ App.Doc.Data.DocTable.Info.Pager.PagerIndexClick = function () {
     Doc.LoadTable(parseInt(index), App.Doc.Data.Pager.Size, "{}", App.Doc.Data.DocTable.Info);
 }
 
-
+App.Doc.Data.RecycleBin = {};
 App.Doc.Data.RecycleBin.Info = {
     Column: [],
     Pager: {
