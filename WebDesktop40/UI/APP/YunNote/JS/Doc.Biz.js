@@ -35,7 +35,7 @@ Doc.SaveDetail = function () {
         LOGGER.Log(res);
         Doc.SubmitEnd(submitId);
         if (false === PARAM_CHECKER.IsTopWindow()) {
-            top.window.Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{'Status':'已发布'}");
+            //top.window.Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{'Status':'已发布'}");
             Doc.CloseWindow();
         }
     }
@@ -55,18 +55,26 @@ Doc.SaveCategory = function () {
         LOGGER.Log(res);
         Doc.SubmitEnd(submitId);
        
-        if (false === PARAM_CHECKER.IsTopWindow()) {
-            //top.window.Doc.ShowView3();
-            //$(top.window.find("[data-id=\"LeftMenu.已发布\"]")).first().click();
-            //var callback1 = function (res1) {
-            //    Doc.LoadTreeTo("#leftList", res1, [], {});
-            //}
-            //Doc.LoadData_Category(["{}", "{}", 0, 1000], callback1);
-            top.window.Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#treeDemo", res1, [], {}); });
-
+        if (false === PARAM_CHECKER.IsTopWindow()) { 
+            top.window.Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { top.window.Doc.LoadTreeTo("#treeDemo", res1, [], {}); });
         }
          Doc.CloseWindow();
 
     }
     NET.PostData(App.Doc.Server.Url7, callback, param);
+}
+
+Doc.RemoveCategory = function () {
+    var id = $("#id").val();
+    var context = [id];
+
+    var callback = function (res) {
+        LOGGER.Log(res);
+        if (false === PARAM_CHECKER.IsTopWindow()) { 
+            top.window.Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { top.window.Doc.LoadTreeTo("#treeDemo", res1, [], {}); });
+        }
+         Doc.CloseWindow();
+
+    }
+    NET.PostData(App.Doc.Server.Url10, callback, context);
 }

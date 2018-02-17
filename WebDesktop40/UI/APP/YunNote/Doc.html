@@ -31,8 +31,8 @@
     <script src="../../../JS/Base/zTree/js/jquery.ztree.all.js"></script>
 
 
-    <script src="JS/AppInfo.QuickBar.js"></script>
-    <script src="JS/QuickBar.js"></script>
+    <!--<script src="JS/AppInfo.QuickBar.js"></script>
+    <script src="JS/QuickBar.js"></script>-->
 
     <script src="JS/ClientDetector.js"></script>
 
@@ -137,7 +137,6 @@
 
     <script type="text/javascript">
         Doc.Initial();
-        QuickBar.Initial();
     </script>
     <div id="detailWindow">
         <div class="header"><a class="title">标题</a><a href="javascript:;" class="btn close" onclick="$('#detailWindow').hide()">关闭</a></div>
@@ -176,7 +175,7 @@
                     <span class="waring">紧急</span><span class="category">[Title]</span>
                 </div>
                 <div class="row2">
-                    <div>有个很经典的试验，把青蛙直接扔到开水里则一定会蹦出来，但是把水慢慢加温，直到煮熟，青蛙也不会跳出来 。“温水煮青蛙”的哲学道理是“量变到质变”，就是说数量的积累到一定的程度会导致本质的变化。“温水煮青蛙”的道</div>
+                    <div>[Summary]</div>
                 </div>
                 <div class="row3">
                     <span>
@@ -205,7 +204,7 @@
 
     <script type="text/html" id="tplView1">
         <div id="leftPart1" style="width: 12em;height: 100%;background-color: #F9F9FA;float: left;"></div>
-        <div id="leftPart2"  style="width: 18em;height: 100%;background-color: #FFF;float: left;"></div>
+        <div id="leftPart2"  style="width: 18em;height: 100%;background-color: #FFF;float: left;overflow-y:scroll;"></div>
     </script>
 
     <script type="text/html" id="topButtonSearch">

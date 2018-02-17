@@ -12,17 +12,18 @@
 }
 
 Doc.ShowDetail = function (data) {
+    var ue = UE.getEditor('editor', { initialFrameWidth: $(top.window.document).find("#content").width() - 20, initialFrameHeight: 300 });
     if (true === PARAM_CHECKER.IsObject(data)) {
         if (true === PARAM_CHECKER.IsNotEmptyString(data.Content) && "<" === data.Content[0]) {
-            UE.getEditor('editor').setContent(data.Content);
-            UE.getEditor('editor').setHeight(400);
+            ue.setContent(data.Content);
+            ue.setHeight(400);
         }
         else if (true === PARAM_CHECKER.IsNotEmptyString(data.Content)) {
             var html = data.Content.substring(data.Content.indexOf("&lt;"), data.Content.lastIndexOf("&gt;") + 4);
             var $div = $("<div></div>").html(html);
             data.Content = $div.text();
-            UE.getEditor('editor').setContent(data.Content);
-            UE.getEditor('editor').setHeight(400);
+            ue.setContent(data.Content);
+            ue.setHeight(400);
         }
         $("#Title").val(data.Title);
         $("#id").val(data.id);

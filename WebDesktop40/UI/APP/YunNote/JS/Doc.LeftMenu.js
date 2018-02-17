@@ -33,17 +33,15 @@ Doc.LeftMenuClick = function (id) {
     var topButtonId = Doc.FindLeftMenuData(id)[0].TopButtonGroupID;
     Doc.LeftMenuSetSelecled(id);
     Doc.CloseWindow();
-    if ("LeftMenu.回收站" == id) {
-        ///加载TopButton
-        ///刷新列表
-        Doc.ShowView2();
-        Doc.LoadTopButton(topButtonId);
-        $("#topButton").removeAttr("data-status");
-        $("#topButton").removeAttr("data-categoryId");
-
-        Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{}", App.Doc.Data.RecycleBin.Info);
+    if ("LeftMenu.新建笔记" === id) {
+        var url = App.Doc.Server.Url3 + "?t=" + (new Date().getTime());
+        Doc.ShowWindow(url);
     }
-    if ("LeftMenu.个人笔记" == id) {
+    else if ("LeftMenu.新建目录" === id) {
+        var url = App.Doc.Server.Url6 + "?t=" + (new Date().getTime());
+        Doc.ShowWindow(url);
+    }
+    else if ("LeftMenu.个人笔记" == id) {
         Doc.ShowView1();
 
         Doc.LoadTopButton(topButtonId);
@@ -55,12 +53,45 @@ Doc.LeftMenuClick = function (id) {
             var callback2 = function (res2) {
                 Doc.LoadSummaryListTo("#leftPart2", res2);
             }
-            Doc.LoadData_Doc(context = ["{}", JSON.stringify({ "Content": 0, "PlainText": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size], callback2);
+            Doc.LoadData_Doc(context = ["{}", JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size], callback2);
         }
 
         var param = ["{}", "{}", "{}", 0, 1000]
         Doc.LoadData_Category(param, callback1);
-        //$("#topButton").attr("data-status", "所有笔记");
+    }
+    else if ("LeftMenu.共享笔记" == id) {
+        Doc.ShowView1();
+
+        Doc.LoadTopButton(topButtonId);
+
+        var callback1 = function (res1) {
+            Doc.LoadTreeTo("#leftPart1", res1, [], {});
+            Doc.ShowContent("redirect.html");
+
+            var callback2 = function (res2) {
+                Doc.LoadSummaryListTo("#leftPart2", res2);
+            }
+            Doc.LoadData_Doc(context = ["{}", JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size], callback2);
+        }
+
+        var param = ["{}", "{}", "{}", 0, 1000]
+        Doc.LoadData_Category(param, callback1);
+    }
+    else if ("LeftMenu.文档分析" === id) {
+        Doc.LoadTopButton(topButtonId);
+        Doc.ShowContent("Chart1.html");
+        Doc.ShowView3();
+        Doc.LoadSummaryList(0, 10, [{ Title: "目录下文档比例" }, { Title: "目录活跃度" }, { Title: "文章热度" }, { Title: "发文计数" }, { Title: "最活跃用户" }]);
+    }
+   else if ("LeftMenu.回收站" == id) {
+        ///加载TopButton
+        ///刷新列表
+        Doc.ShowView2();
+        Doc.LoadTopButton(topButtonId);
+        $("#topButton").removeAttr("data-status");
+        $("#topButton").removeAttr("data-categoryId");
+
+        Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{}", App.Doc.Data.RecycleBin.Info);
     }
     else if ("LeftMenu.待发布" == id) {
         ///加载TopButton
@@ -103,14 +134,6 @@ Doc.LeftMenuClick = function (id) {
         Doc.ShowView2();
         Doc.LoadTopButton(topButtonId);
         Doc.ShowContent("AppInfo.html");
-    }
-    else if ("LeftMenu.新建目录" === id) {
-        var url = App.Doc.Server.Url6 + "?t=" + (new Date().getTime());
-        Doc.ShowWindow(url);
-    }
-    else if ("LeftMenu.新建笔记" === id) {
-        var url = App.Doc.Server.Url3 + "?t=" + (new Date().getTime());
-        Doc.ShowWindow(url);
     }
     else if ("LeftMenu.文档分析" === id) {
         Doc.LoadTopButton(topButtonId);

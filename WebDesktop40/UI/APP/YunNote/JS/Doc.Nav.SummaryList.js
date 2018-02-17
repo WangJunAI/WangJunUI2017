@@ -37,7 +37,7 @@ Doc.LoadSummaryListTo = function (target,data, option) {
     for (var k = 0; k < data.length; k++) {
         var item = data[k];
         listHtml += tplListItem.replace("[Title]", item.Title).replace("[Method]", "Doc.SummaryListItemClick()")
-            .replace("[Param]", item.id);
+            .replace("[Param]", item.id).replace("[Summary]",item.PlainText);
     }
 
     var html = tplHtml.replace("[列表]", listHtml);

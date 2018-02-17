@@ -45,15 +45,14 @@ App.Doc.LeftMenu = [];
 App.Doc.LeftMenu.push({ Name: "我的笔记", ID: "LeftMenu.文档操作", Method: "Doc.LeftMenuGroupToggle",    ParentID: null });
 App.Doc.LeftMenu.push({ Name: "新建笔记", ID: "LeftMenu.新建笔记", Method: "Doc.LeftMenuClick",    ParentID: "LeftMenu.文档操作" });
 App.Doc.LeftMenu.push({ Name: "新建目录", ID: "LeftMenu.新建目录", Method: "Doc.LeftMenuClick",  ParentID: "LeftMenu.文档操作" });
-App.Doc.LeftMenu.push({ Name: "草稿箱", ID: "LeftMenu.草稿箱", Method: "Doc.LeftMenuClick",   ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.草稿箱.TopButton" });
 App.Doc.LeftMenu.push({ Name: "个人笔记", ID: "LeftMenu.个人笔记", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID:"左侧菜单.个人笔记.TopButton" });
 App.Doc.LeftMenu.push({ Name: "共享笔记", ID: "LeftMenu.共享笔记", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.个人笔记.TopButton" });
 
 
 
 App.Doc.LeftMenu.push({ Name: "数据分析", ID: "LeftMenu.数据分析", Method: "Doc.LeftMenuGroupToggle" , ParentID: null });
-App.Doc.LeftMenu.push({ Name: "文档分析", ID: "LeftMenu.文档分析", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析", TopButtonGroupID: "左侧菜单.文档分析.TopButton"});
-App.Doc.LeftMenu.push({ Name: "评论分析", ID: "LeftMenu.评论分析", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析", TopButtonGroupID: "左侧菜单.评论分析.TopButton" });
+App.Doc.LeftMenu.push({ Name: "笔记分析", ID: "LeftMenu.文档分析", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析", TopButtonGroupID: "左侧菜单.文档分析.TopButton"});
+App.Doc.LeftMenu.push({ Name: "共享分析", ID: "LeftMenu.评论分析", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析", TopButtonGroupID: "左侧菜单.评论分析.TopButton" });
 App.Doc.LeftMenu.push({ Name: "用户参与", ID: "LeftMenu.用户参与", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析", TopButtonGroupID: "左侧菜单.用户参与.TopButton" });
 App.Doc.LeftMenu.push({ Name: "外网关联", ID: "LeftMenu.外网关联", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析", TopButtonGroupID: "左侧菜单.外网关联.TopButton" });
 
@@ -143,7 +142,7 @@ App.Doc.Data = {};
 
 App.Doc.Data.Pager = {};
 
-App.Doc.Data.Pager.Size = 10;
+App.Doc.Data.Pager.Size = 30;
  
 App.Doc.Data.DocTable = {};
 App.Doc.Data.DocTable.Info = {
