@@ -68,6 +68,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="1.html" />
     <Content Include="API.ashx" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
@@ -78,7 +79,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="1.html" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -96,12 +96,8 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\WangJun2017\WangJun.Doc\WangJun.Doc.csproj">
-      <Project>{F778D22C-042F-4535-A9E1-10BFB9E23A7F}</Project>
+      <Project>{f778d22c-042f-4535-a9e1-10bfb9e23a7f}</Project>
       <Name>WangJun.Doc</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\WangJun2017\WangJun.HumanResource\WangJun.HumanResource.csproj">
-      <Project>{06F3A647-D026-4847-94A5-20643223CC96}</Project>
-      <Name>WangJun.HumanResource</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\WangJun2017\WangJun.Utility\WangJun.Utility.csproj">
       <Project>{DDC51285-3F85-4D6D-A10B-F835B9C5058A}</Project>
