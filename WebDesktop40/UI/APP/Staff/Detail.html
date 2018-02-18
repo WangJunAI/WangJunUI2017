@@ -3,16 +3,16 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
+
     <link href="CSS/Detail.css" rel="stylesheet" />
+    <link href="../../../CSS/Doc.Color.css" rel="stylesheet" />
+
     <script src="../../../JS/Base/jquery-3.1.1.min.js"></script>
     <script src="../../../JS/Base/NET.js"></script>
     <script src="../../../JS/Base/PARAM_CHECKER.js"></script>
     <script src="../../../JS/Base/DEBUG.js"></script>
     <script src="../../../JS/Base/Convertor.js"></script>
 
-    <script src="../../../JS/ueditor/ueditor.config.js"></script>
-    <script src="../../../JS/ueditor/ueditor.all.js"></script>
-    <script src="../../../JS/ueditor/lang/zh-cn/zh-cn.js"></script>
 
 
     <script src="../../../JS/Base/CryptoJS/core-min.js"></script>
@@ -44,63 +44,123 @@
 <body>
     <input type="hidden" id="id" />
     <div class="global">
-        <div class="title"><input type="text" id="Title" placeholder="请输入标题" /></div>
-        <script id="editor" type="text/plain" style="width:1024px;" data-property="Content">
-        </script>
-        <div class="options">
-            <ul>
-                <li>
-                    <div class="item">
-                        <div class="key">状态</div>
-                        <div class="value">
-                            <a href="javascript:;" class="checkbox selected" data-single="status">已发布</a>
-                            <a href="javascript:;" class="checkbox" data-single="status">待发布</a>
-                            <a href="javascript:;" class="checkbox" data-single="status">已删除</a>
-                            <a href="javascript:;" class="checkbox" data-single="status">草稿</a>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="item">
-                        <div class="key">分类</div>
-                        <div class="value">
-                            <a href="javascript:;" class="checkbox" data-property="" data-value="" onclick="$('#category').toggle();" id="parentNode">所有分类</a>
-                            <div style="position: absolute;">
-                                <div id="category" class="dropdownlist">
-                                    <ul id="treeDemo" class="ztree"></ul>
-                                </div>
-                            </div>
+        <div class="title"><input type="text" id="Title" placeholder="请输入姓名" /></div>
+         <div class="options">
+             <ul>
+                 <li>
+                     <div class="item">
+                         <div class="key">性别</div>
+                         <div class="value">
+                             <a href="javascript:;" class="checkbox selected" data-single="status">男</a>
+                             <a href="javascript:;" class="checkbox" data-single="status">女</a>
+                         </div>
+                     </div>
+                 </li>
+                 <li>
+                     <div class="item">
+                         <div class="key">工号</div>
+                         <div class="value">
+                             <input id="publishDate" type="text" placeholder="工号" />
+                         </div>
+                     </div>
+                 </li>
+                 <li>
+                     <div class="item">
+                         <div class="key">邮箱</div>
+                         <div class="value">
+                             <input id="publishDate" type="text" placeholder="邮箱，多个邮箱用逗号分隔" />
+                         </div>
+                     </div>
+                 </li>
+                 <li>
+                     <div class="item">
+                         <div class="key">手机</div>
+                         <div class="value">
+                             <input id="publishDate" type="text" placeholder="手机，多个邮箱用逗号分隔" />
+                         </div>
+                     </div>
+                 </li>
+                 <li>
+                     <div class="item">
+                         <div class="key">部门</div>
+                         <div class="value">
+                             <a href="javascript:;" class="checkbox" data-property="" data-value="" onclick="$('#category').toggle();" id="parentNode">所有分类</a>
+                             <div style="position: absolute;">
+                                 <div id="category" class="dropdownlist">
+                                     <ul id="treeDemo" class="ztree"></ul>
+                                 </div>
+                             </div>
 
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="item">
-                        <div class="key">发布</div>
-                        <div class="value">
-                            <a href="javascript:;" class="checkbox selected" data-single="publishTime">立刻发布</a><a href="javascript:;" class="checkbox" data-single="publishTime">定时发布</a>
-                            <input id="publishDate" type="text" placeholder="日期" /><select id="publishHour"><option>08</option>  </select><span>时</span> <select id="publishMinute"><option>05</option></select><span>分</span>
-                        </div>
-                    </div>
-                </li>
-            </ul>
+                         </div>
+                     </div>
+                 </li>
+                 <li>
+                     <div class="item">
+                         <div class="key">岗位</div>
+                         <div class="value">
+                             <a href="javascript:;" class="checkbox" data-property="" data-value="" onclick="$('#category').toggle();" id="parentNode">所有分类</a>
+                             <div style="position: absolute;">
+                                 <div id="category" class="dropdownlist">
+                                     <ul id="treeDemo" class="ztree"></ul>
+                                 </div>
+                             </div>
+
+                         </div>
+                     </div>
+                 </li>
+                 <li>
+                     <div class="item">
+                         <div class="key">角色</div>
+                         <div class="value">
+                             <a href="javascript:;" class="checkbox" data-property="" data-value="" onclick="$('#category').toggle();" id="parentNode">所有分类</a>
+                             <div style="position: absolute;">
+                                 <div id="category" class="dropdownlist">
+                                     <ul id="treeDemo" class="ztree"></ul>
+                                 </div>
+                             </div>
+
+                         </div>
+                     </div>
+                 </li>
+                 <li>
+                     <div class="item">
+                         <div class="key">工作区域</div>
+                         <div class="value">
+                             <a href="javascript:;" class="checkbox" data-property="" data-value="" onclick="$('#category').toggle();" id="parentNode">所有分类</a>
+                             <div style="position: absolute;">
+                                 <div id="category" class="dropdownlist">
+                                     <ul id="treeDemo" class="ztree"></ul>
+                                 </div>
+                             </div>
+
+                         </div>
+                     </div>
+                 </li>
+                 <li>
+                     <div class="item">
+                         <div class="key">入职时间</div>
+                         <div class="value">
+                             <input id="publishDate" type="text" placeholder="日期" /><span>合同期限</span><select id="publishHour"><option>08</option>  </select><span>年</span>
+                         </div>
+                     </div>
+                 </li>
+                 <li>
+                     <div class="item">
+                         <div class="key">离职时间</div>
+                         <div class="value">
+                             <input id="publishDate" type="text" placeholder="日期" /><select id="publishHour"><option>08</option>  </select>
+                         </div>
+                     </div>
+                 </li>
+             </ul>
         </div>
         <div class="buttons">
-            <a href="jajavscript:;" class="btn" onclick="Doc.SaveDetail()">发表</a>
-            <a href="jajavscript:;" class="btn" onclick="Doc.SaveDetail()">存稿</a>
-            <a href="http://localhost:39641/TouTiao/TouTiaoArticle.html?id=[id]" id="preView" target="_blank" class="btn">预览</a>
+            <a href="jajavscript:;" class="btn" onclick="Doc.SaveDetail()">保存</a>
             <a href="jajavscript:;" class="btn" onclick="$(window.parent.document).find('#detailWindow').hide(); window.close();">取消</a>
         </div>
     </div>
 
-
-
-    <script type="text/javascript">
-
-        //实例化编辑器
-        //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
-        var ue = UE.getEditor('editor');
-    </script>
+ 
 
 
     <script type="text/javascript">

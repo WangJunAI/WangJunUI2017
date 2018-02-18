@@ -62,6 +62,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="1.html" />
     <Content Include="JS\Base\Convertor.js" />
     <Content Include="JS\Base\CryptoJS\core-min.js" />
     <Content Include="JS\Base\CryptoJS\enc-base64-min.js" />
@@ -1247,6 +1248,7 @@
     <Content Include="UI\APP\Staff\Chart1.html" />
     <Content Include="UI\APP\Staff\CSS\Category.css" />
     <Content Include="UI\APP\Staff\CSS\Detail.css" />
+    <Content Include="CSS\Doc.Color.css" />
     <Content Include="UI\APP\Staff\CSS\Doc.css" />
     <Content Include="UI\APP\Staff\CSS\Doc.Font.css" />
     <Content Include="UI\APP\Staff\CSS\QuickBar.css" />
