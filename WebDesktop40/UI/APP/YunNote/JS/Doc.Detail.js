@@ -1,13 +1,15 @@
 ﻿Doc.LoadDetail = function () {
     $(document).ready(function () {
         var id = NET.GetQueryParam("id");
-        var context = [id];
+        if (id.length === 24) {
+            var context = [id];
 
-        var callback = function (res) {
-            LOGGER.Log(res);
-            Doc.ShowDetail(res);
+            var callback = function (res) {
+                LOGGER.Log(res);
+                Doc.ShowDetail(res);
+            }
+            NET.LoadData(App.Doc.Server.Url5, callback, context, NET.POST);
         }
-        NET.LoadData(App.Doc.Server.Url5, callback, context, NET.POST);
     });
 }
 
@@ -44,6 +46,12 @@ Doc.ShowDetail = function (data) {
             });
         }
 
-        $("#preView").attr("href", "http://localhost:39641/TouTiao/TouTiaoArticle.html?id=[id]".replace("[id]", data.id));
+        $("#deleteBtn").removeAttr("style");
     }
+}
+
+Doc.RemoveDetail = function () {
+    var submitId = Doc.SubmitStart();
+    var id = $(event.target).attr("data-id");
+
 }

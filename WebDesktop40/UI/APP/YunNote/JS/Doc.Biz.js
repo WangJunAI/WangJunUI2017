@@ -16,8 +16,8 @@ Doc.SaveDetail = function () {
     item.Content = UE.getEditor('editor').getContent();
     item.CategoryID = $("#parentNode").attr("data-Param");
     item.Content = item.Content;
-    item.Status = $("[data-single='status'].selected").text();
-    item.PublistTime = $("#publishDate").val() + " " + $("#publishHour").val() + ":" + $("#publishMinute").val() + ":00";
+    //item.Status = $("[data-single='status'].selected").text();
+    //item.PublistTime = $("#publishDate").val() + " " + $("#publishHour").val() + ":" + $("#publishMinute").val() + ":00";
     ///获取图片
     item.ThumbnailSrc = $(item.Content).find("img").attr("src");
     ///Html转义
@@ -29,7 +29,7 @@ Doc.SaveDetail = function () {
     item.PlainText = UE.getEditor('editor').getContentTxt();
     item.PlainText = Convertor.ToBase64String(item.PlainText, true);
 
-    var context = [item.Title, item.Content, item.CategoryID, item.PublistTime, item.Status, item.id, item.PlainText, item.ThumbnailSrc, { 0: "base64", 1: "base64", 6: "base64" }];
+    var context = [item.Title, item.Content, item.CategoryID, item.id, item.PlainText, item.ThumbnailSrc, { 0: "base64", 1: "base64", 4: "base64" }];
 
     var callback = function (res) {
         LOGGER.Log(res);

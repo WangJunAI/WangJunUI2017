@@ -21,7 +21,7 @@ App.Doc.CSS.LeftList.View3.Width = { Value: 12, Unit: "em" };
     Url1: "http://aifuwu.wang/API.ashx?c=WangJun.Doc.DocWebAPI&m=LoadDocList", ///加载文档目录
     Url2: "http://aifuwu.wang/API.ashx?c=WangJun.Doc.DocWebAPI&m=DocCount",///文档数量
     Url3: "Detail.html",
-    Url4: "http://aifuwu.wang/API.ashx?c=WangJun.Doc.DocWebAPI&m=SaveDoc",///保存一个文档
+    Url4: "http://aifuwu.wang/API.ashx?c=WangJun.Doc.YunNoteWebAPI&m=SaveNote",///保存一个文档
     Url5: "http://aifuwu.wang/API.ashx?c=WangJun.Doc.DocWebAPI&m=GetDoc",///获取一个文档
     Url6: "Category.html",
     Url7: "http://aifuwu.wang/API.ashx?c=WangJun.Doc.DocWebAPI&m=SaveCategory",///保存一个目录
@@ -30,7 +30,7 @@ App.Doc.CSS.LeftList.View3.Width = { Value: 12, Unit: "em" };
     Url10: "http://aifuwu.wang/API.ashx?c=WangJun.Doc.DocWebAPI&m=RemoveCategory",///移除一个目录
     Url11: "http://aifuwu.wang/API.ashx?c=WangJun.Doc.DocWebAPI&m=GetCategory", ///获取一个目录
     Url12: "http://aifuwu.wang/API.ashx?c=WangJun.Doc.DocManager&m=UpdateStatus&p=0",///暂未使用
-    Url13: "http://aifuwu.wang/API.ashx?c=WangJun.Doc.DocWebAPI&m=MoveToRecycleBin", ///移除到回收站
+    Url13: "http://aifuwu.wang/API.ashx?c=WangJun.Doc.YunNoteWebAPI&m=MoveToRecycleBin", ///移除到回收站
     Url14: "http://aifuwu.wang/API.ashx?c=WangJun.Doc.DocWebAPI&m=LoadRecycleBinItem",///加载回收站
     Url15: "http://aifuwu.wang/API.ashx?c=WangJun.Doc.DataAnalysor&m=GetHotWords",///暂未使用
     Url16: "http://aifuwu.wang/API.ashx?c=WangJun.Doc.DocWebAPI&m=Aggregate",///聚合查询
@@ -142,7 +142,7 @@ App.Doc.Data = {};
 
 App.Doc.Data.Pager = {};
 
-App.Doc.Data.Pager.Size = 30;
+App.Doc.Data.Pager.Size = 100;
  
 App.Doc.Data.DocTable = {};
 App.Doc.Data.DocTable.Info = {

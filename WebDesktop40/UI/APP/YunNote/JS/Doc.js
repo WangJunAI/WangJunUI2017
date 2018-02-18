@@ -9,14 +9,9 @@ var Doc = {};
 
 Doc.MoveToRecycleBin = function () {
     var submitId = Doc.SubmitStart();
-    var topButtonId = $(event.target).attr("data-id");
-    var idArray = [];
-    var source = $("[type='checkbox'][data-param]").each(function () {
-        if (true == $(this).prop("checked")) {
-            var id = $(this).attr("data-param");
-            idArray.push(id);
-        }
-    });
+    var docId = $("#id").val();
+    var idArray = [docId];
+
     var count = idArray.length;
     for (var k = 0; k < idArray.length; k++) {
         var context = ["DocService", "DocItem", idArray[k]];
@@ -26,29 +21,12 @@ Doc.MoveToRecycleBin = function () {
             count--;
             Doc.SubmitEnd(submitId);
 
-            if (count === 0) {
-                var categoryId = $("#topButton").attr("data-categoryId");
-                var status = $("#topButton").attr("data-status");
-                var query = "{}";
-                if (true === PARAM_CHECKER.IsNotEmptyString(status) || true === PARAM_CHECKER.IsNotEmptyString(categoryId)) {
-                    query = "{'CategoryID':'[CategoryID]','Status':'[Status]'}".replace("[CategoryID]", categoryId).replace("[Status]", status);
-                }
-                else if (true === PARAM_CHECKER.IsNotEmptyString(status) || false=== PARAM_CHECKER.IsNotEmptyString(categoryId)) {
-                    query = "{'Status':'[Status]'}".replace("[Status]", status);
-                }
-                else if (false === PARAM_CHECKER.IsNotEmptyString(status) || true === PARAM_CHECKER.IsNotEmptyString(categoryId)) {
-                    query = "{'CategoryID':'[CategoryID]'}".replace("[CategoryID]", categoryId);
-                }        
-
-                Doc.LoadTable(0, App.Doc.Data.Pager.Size, query);
-            }
         }
         NET.PostData(App.Doc.Server.Url13, callback, context);
     }
 
 }
 
-///暂未用上
 Doc.RemoveDetail = function () {
 
     var query = { _id: { $in: [] } };
