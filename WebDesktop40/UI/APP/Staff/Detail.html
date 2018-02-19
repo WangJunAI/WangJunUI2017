@@ -44,15 +44,15 @@
 <body>
     <input type="hidden" id="id" />
     <div class="global">
-        <div class="title"><input type="text" id="Title" placeholder="请输入姓名" /></div>
+        <div class="title"><input type="text" placeholder="请输入姓名" data-Name="1111" /></div>
          <div class="options">
              <ul>
                  <li>
-                     <div class="item">
+                     <div class="item ">
                          <div class="key">性别</div>
-                         <div class="value">
-                             <a href="javascript:;" class="checkbox selected" data-single="status">男</a>
-                             <a href="javascript:;" class="checkbox" data-single="status">女</a>
+                         <div class="value" data-Sex="111">
+                             <a href="javascript:;" class="checkbox selected" data-single="sex">男</a>
+                             <a href="javascript:;" class="checkbox" data-single="sex">女</a>
                          </div>
                      </div>
                  </li>
@@ -60,15 +60,23 @@
                      <div class="item">
                          <div class="key">工号</div>
                          <div class="value">
-                             <input id="publishDate" type="text" placeholder="工号" />
+                             <input type="text" placeholder="工号" data-StaffID="111" />
                          </div>
                      </div>
                  </li>
                  <li>
-                     <div class="item">
+                     <div class="item ">
                          <div class="key">邮箱</div>
                          <div class="value">
-                             <input id="publishDate" type="text" placeholder="邮箱，多个邮箱用逗号分隔" />
+                             <input id="publishDate" type="text" placeholder="邮箱，多个邮箱用逗号分隔" data-Email="111" />
+                         </div>
+                     </div>
+                 </li>
+                 <li>
+                     <div class="item ">
+                         <div class="key">微信/QQ</div>
+                         <div class="value">
+                             <input   type="text" placeholder="邮箱，多个邮箱用逗号分隔" data-QQ="111" />
                          </div>
                      </div>
                  </li>
@@ -76,14 +84,14 @@
                      <div class="item">
                          <div class="key">手机</div>
                          <div class="value">
-                             <input id="publishDate" type="text" placeholder="手机，多个邮箱用逗号分隔" />
+                             <input   type="text" placeholder="手机，多个手机用逗号分隔" data-Phone="111" />
                          </div>
                      </div>
                  </li>
                  <li>
-                     <div class="item">
-                         <div class="key">部门</div>
-                         <div class="value">
+                     <div class="item ">
+                         <div class="key" >部门</div>
+                         <div class="value" data-DepartmentID="111">
                              <a href="javascript:;" class="checkbox" data-property="" data-value="" onclick="$('#category').toggle();" id="parentNode">所有分类</a>
                              <div style="position: absolute;">
                                  <div id="category" class="dropdownlist">
@@ -95,9 +103,9 @@
                      </div>
                  </li>
                  <li>
-                     <div class="item">
+                     <div class="item ">
                          <div class="key">岗位</div>
-                         <div class="value">
+                         <div class="value" data-position="1111">
                              <a href="javascript:;" class="checkbox" data-property="" data-value="" onclick="$('#category').toggle();" id="parentNode">所有分类</a>
                              <div style="position: absolute;">
                                  <div id="category" class="dropdownlist">
@@ -109,9 +117,9 @@
                      </div>
                  </li>
                  <li>
-                     <div class="item">
+                     <div class="item ">
                          <div class="key">角色</div>
-                         <div class="value">
+                         <div class="value" data-roleID="111">
                              <a href="javascript:;" class="checkbox" data-property="" data-value="" onclick="$('#category').toggle();" id="parentNode">所有分类</a>
                              <div style="position: absolute;">
                                  <div id="category" class="dropdownlist">
@@ -125,7 +133,7 @@
                  <li>
                      <div class="item">
                          <div class="key">工作区域</div>
-                         <div class="value">
+                         <div class="value"  data-areaID="111">
                              <a href="javascript:;" class="checkbox" data-property="" data-value="" onclick="$('#category').toggle();" id="parentNode">所有分类</a>
                              <div style="position: absolute;">
                                  <div id="category" class="dropdownlist">
@@ -139,15 +147,23 @@
                  <li>
                      <div class="item">
                          <div class="key">入职时间</div>
-                         <div class="value">
-                             <input id="publishDate" type="text" placeholder="日期" /><span>合同期限</span><select id="publishHour"><option>08</option>  </select><span>年</span>
+                         <div class="value" data-EntryTime=""111>
+                             <input type="text" placeholder="日期" /><span>合同期限</span><select id="publishHour"><option>08</option>  </select><span>年</span>
                          </div>
                      </div>
                  </li>
                  <li>
                      <div class="item">
                          <div class="key">离职时间</div>
-                         <div class="value">
+                         <div class="value" data-DepartureTime="111">
+                             <input type="text" placeholder="日期" /><select id="publishHour"><option>08</option>  </select>
+                         </div>
+                     </div>
+                 </li>
+                 <li>
+                     <div class="item">
+                         <div class="key">证件附件</div>
+                         <div class="value" data-Attachment="111">
                              <input id="publishDate" type="text" placeholder="日期" /><select id="publishHour"><option>08</option>  </select>
                          </div>
                      </div>

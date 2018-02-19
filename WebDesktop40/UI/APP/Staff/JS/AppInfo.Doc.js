@@ -21,7 +21,7 @@ App.Doc.CSS.LeftList.View3.Width = { Value: 18, Unit: "em" };
      Url1: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=LoadStaffList", ///加载人员列表
      Url2: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=StaffCount",///文档数量
     Url3: "Detail.html",
-    Url4: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocWebAPI&m=SaveDoc",///保存一个文档
+    Url4: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=SaveStaff",///保存一个文档
     Url5: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocWebAPI&m=GetDoc",///获取一个文档
     Url6: "Category.html",
     Url7: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocWebAPI&m=SaveCategory",///保存一个目录
