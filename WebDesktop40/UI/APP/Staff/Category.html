@@ -39,14 +39,14 @@
 <body>
     <input type="hidden" id="id" />
     <div class="global">
-        <div class="title"><input type="text" id="Title" placeholder="请输入目录名称" /></div>
+        <div class="title"><input type="text" id="Name" placeholder="请输入组织名称" /></div>
 
         <div class="options">
             <ul>
 
                 <li>
                     <div class="item">
-                        <div class="key">上级目录</div>
+                        <div class="key">上级组织</div>
                         <div class="value">
                             <a href="javascript:;" class="checkbox" data-property="" data-value="" onclick="$('#category').toggle();" id="parentNode">默认分类</a>
                             <div style="position: absolute;">
@@ -81,7 +81,7 @@
             </ul>
         </div>
         <div class="buttons">
-            <a href="jajavscript:;" class="btn" onclick="Doc.SaveCategory()">保存</a>
+            <a href="jajavscript:;" class="btn" onclick="Doc.SaveOrg()">保存</a>
             <a href="jajavscript:;" class="btn" id="deleteBtn" style="display:none;" onclick="Doc.RemoveCategory()">删除</a>
             <a href="jajavscript:;" class="btn" onclick="$(window.parent.document).find('#detailWindow').hide(); var href = window.location.href;  window.open(href,'_self','');  window.close();  ">取消</a>
         </div>
