@@ -10,7 +10,21 @@ var Doc = {};
 
 
 
+Doc.RemoveCategory = function () {
+    var id = $("#id").val();
+    var context = [id];
 
+    var callback = function (res) {
+        LOGGER.Log(res);
+        if (false === PARAM_CHECKER.IsTopWindow()) {
+            $(window.parent.document).find('#detailWindow').hide(); window.close();
+            Doc.ShowDialog();
+            top.window.Doc.LoadTree();
+            top.window.Doc.LoadTable(0, 20, "{'Status':'已发布'}");
+        }
+    }
+    NET.PostData(App.Doc.Server.Url10, callback, context);
+}
 
  
 

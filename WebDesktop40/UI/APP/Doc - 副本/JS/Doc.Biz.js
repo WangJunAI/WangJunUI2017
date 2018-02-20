@@ -1,52 +1,4 @@
-﻿///保存一个目录
-Doc.SaveCategory = function () {
-    var submitId = Doc.SubmitStart();
-    var item = {};
-
-    var $ctrls = $("[data-FormName='Default']").each(function () {
-        var propertyName = $(this).attr("data-propertyName");
-        var propertyValue = $(this).attr("data-propertyValue");
-        if (PARAM_CHECKER.IsNotEmptyString(propertyName)) {
-            item[propertyName.trim()] = propertyValue;
-        }
-    });
-
-    var param = [Convertor.ToBase64String(JSON.stringify(item), true), { 0: "base64" }];
-
-    var callback = function (res) {
-        LOGGER.Log(res);
-        Doc.SubmitEnd(submitId);
-
-        if (false === PARAM_CHECKER.IsTopWindow()) {
-            //top.window.Doc.ShowView3();
-            //$(top.window.find("[data-id=\"LeftMenu.已发布\"]")).first().click();
-            //var callback1 = function (res1) {
-            //    Doc.LoadTreeTo("#leftList", res1, [], {});
-            //}
-            //Doc.LoadData_Category(["{}", "{}", 0, 1000], callback1);
-            top.window.Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#treeDemo", res1, [], {}); });
-
-        }
-        Doc.CloseWindow();
-
-    }
-    NET.PostData(App.Doc.Server.Url7, callback, param);
-}
-
-///移除一个目录
-Doc.RemoveCategory = function () {
-    var id = $("#ID").val();
-    var context = [id];
-
-    var callback = function (res) {
-        LOGGER.Log(res);
-        if (false === PARAM_CHECKER.IsTopWindow()) {
-             Doc.ShowDialog(); 
-        }
-    }
-    NET.PostData(App.Doc.Server.Url10, callback, context);
-}
-
+﻿///加载目录信息
 Doc.LoadData_Category = function (param, callback) {
     NET.PostData(App.Doc.Server.Url8, callback, param);
 }
@@ -90,3 +42,31 @@ Doc.SaveDetail = function () {
     NET.PostData(App.Doc.Server.Url4, callback, context);
 }
 
+///保存一个目录
+Doc.SaveCategory = function () {
+    var submitId = Doc.SubmitStart();
+    var item = {};
+    item.id = $("#id").val();
+    item.Title = $("#Title").val().trim();
+    item.ParentID = $("#parentNode").attr("data-param");
+    var param = [item.Title, item.ParentID, item.id];
+
+    var callback = function (res) {
+        LOGGER.Log(res);
+        Doc.SubmitEnd(submitId);
+       
+        if (false === PARAM_CHECKER.IsTopWindow()) {
+            //top.window.Doc.ShowView3();
+            //$(top.window.find("[data-id=\"LeftMenu.已发布\"]")).first().click();
+            //var callback1 = function (res1) {
+            //    Doc.LoadTreeTo("#leftList", res1, [], {});
+            //}
+            //Doc.LoadData_Category(["{}", "{}", 0, 1000], callback1);
+            top.window.Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#treeDemo", res1, [], {}); });
+
+        }
+         Doc.CloseWindow();
+
+    }
+    NET.PostData(App.Doc.Server.Url7, callback, param);
+}

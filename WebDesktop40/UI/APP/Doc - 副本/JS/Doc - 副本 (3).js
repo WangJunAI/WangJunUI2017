@@ -10,7 +10,21 @@ var Doc = {};
 
 
 
+Doc.RemoveCategory = function () {
+    var id = $("#id").val();
+    var context = [id];
 
+    var callback = function (res) {
+        LOGGER.Log(res);
+        if (false === PARAM_CHECKER.IsTopWindow()) {
+            $(window.parent.document).find('#detailWindow').hide(); window.close();
+            Doc.ShowDialog();
+            top.window.Doc.LoadTree();
+            top.window.Doc.LoadTable(0, 20, "{'Status':'已发布'}");
+        }
+    }
+    NET.PostData(App.Doc.Server.Url10, callback, context);
+}
 
  
 
@@ -56,7 +70,7 @@ Doc.MoveToRecycleBin = function () {
 
 }
 
-///暂未用上
+
 Doc.RemoveDetail = function () {
 
     var query = { _id: { $in: [] } };
@@ -119,14 +133,18 @@ Doc.ShowDialog = function (message,type,title) {
 
 Doc.Initial = function () {
     $(document).ready(function () {
- 
         Doc.LoadAppInfo();
         Doc.LoadMenu();
-        //Doc.ShowView3();
-        //Doc.LoadTopButton("左侧菜单.已发布.TopButton");
-        //Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], {}); });
-        Doc.LeftMenuClick("LeftMenu.已发布");
-     });
+        //$("[data-id='LeftMenu.已发布']").click();
+        Doc.ShowView3();
+        Doc.LoadTopButton("左侧菜单.已发布.TopButton");
+        //Doc.LoadTree();
+
+         
+        Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) {Doc.LoadTreeTo("#leftList", res1, [], {});});
+
+        //Doc.LoadTable(0, 20, "{'Status':'已发布'}");
+    });
 }
 
 Doc.LoadHtmlTo = function (target,html) {
