@@ -1487,6 +1487,7 @@
     <Content Include="UI\APP\Workflow\JS\ClientDetector.js" />
     <Content Include="UI\APP\Workflow\JS\Doc.App.js" />
     <Content Include="UI\APP\Workflow\JS\Doc.Biz.js" />
+    <Content Include="UI\APP\Workflow\JS\Doc.Category.js" />
     <Content Include="UI\APP\Workflow\JS\Doc.Chart.js" />
     <Content Include="UI\APP\Workflow\JS\Doc.ClientUI.js" />
     <Content Include="UI\APP\Workflow\JS\Doc.Detail.js" />
@@ -1578,6 +1579,7 @@
     <Content Include="UI\APP\YunProject\JS\ClientDetector.js" />
     <Content Include="UI\APP\YunProject\JS\Doc.App.js" />
     <Content Include="UI\APP\YunProject\JS\Doc.Biz.js" />
+    <Content Include="UI\APP\YunProject\JS\Doc.Category.js" />
     <Content Include="UI\APP\YunProject\JS\Doc.Chart.js" />
     <Content Include="UI\APP\YunProject\JS\Doc.ClientUI.js" />
     <Content Include="UI\APP\YunProject\JS\Doc.Detail.js" />

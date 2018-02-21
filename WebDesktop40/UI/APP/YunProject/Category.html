@@ -2,8 +2,11 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
-    <link href="CSS/Category.css" rel="stylesheet" />
+    <title>目录,群组,部门操作</title>
+
+    <link href="../../../CSS/TPL.Category.css" rel="stylesheet" />
+    <link href="CSS/TPL.css" rel="stylesheet" />
+
     <script src="../../../JS/Base/jquery-3.1.1.min.js"></script>
     <script src="../../../JS/Base/NET.js"></script>
     <script src="../../../JS/Base/PARAM_CHECKER.js"></script>
@@ -23,9 +26,8 @@
     <script src="JS/Doc.Detail.js"></script>
     <script src="JS/Doc.View.js"></script>
     <script src="JS/Doc.Biz.js"></script>
-
-
-
+    <script src="JS/Doc.Category.js"></script>
+    
     <script src="../../../JS/Base/CryptoJS/core-min.js"></script>
     <script src="../../../JS/Base/CryptoJS/enc-base64-min.js"></script>
 
@@ -37,61 +39,37 @@
 
 </head>
 <body>
-    <input type="hidden" id="id" />
+    <input type="hidden" id="ID"  data-FormName="Default" data-propertyName="ID" />
+    <input type="hidden" id="page" value="Category" />
     <div class="global">
-        <div class="title"><input type="text" id="Title" placeholder="请输入目录名称" /></div>
+        <div class="title"><input type="text" data-FormName="Default" data-propertyName="Name" data-propertyValue="" placeholder="请输入目录名称" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());"/></div>
 
         <div class="options">
             <ul>
-
                 <li>
                     <div class="item">
                         <div class="key">上级目录</div>
-                        <div class="value">
-                            <a href="javascript:;" class="checkbox" data-property="" data-value="" onclick="$('#category').toggle();" id="parentNode">默认分类</a>
+                        <div class="value"  data-FormName="Default" data-propertyName="ParentID" data-propertyValue="">
+                            <a href="javascript:;" class="checkbox" onclick="$('#category').toggle();" id="parentNode"  data-FormName="Default"  data-propertyName="ParentName" data-propertyValue="">默认分类</a>
                             <div style="position: absolute;">
                                 <div id="category" class="dropdownlist">
-                                    <ul id="treeDemo" class="ztree"></ul>
                                 </div>
                             </div>
-
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="item">
-                        <div class="key">权限设置</div>
-                        <div class="value">
-                            <a href="javascript:;" class="checkbox" data-property="" data-value="" onclick="$('#category').toggle();">默认分类</a>
-                            <div style="position: absolute;">
-                                <div id="category" class="dropdownlist">
-                                    <ul id="treeDemo" class="ztree"></ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="item">
-                        <div class="key">数据统计</div>
-                        <div class="value">
                         </div>
                     </div>
                 </li>
             </ul>
         </div>
         <div class="buttons">
-            <a href="jajavscript:;" class="btn" onclick="Doc.SaveCategory()">保存</a>
-            <a href="jajavscript:;" class="btn" id="deleteBtn" style="display:none;" onclick="Doc.RemoveCategory()">删除</a>
-            <a href="jajavscript:;" class="btn" onclick="$(window.parent.document).find('#detailWindow').hide(); var href = window.location.href;  window.open(href,'_self','');  window.close();  ">取消</a>
+            <a href="javascript:;" class="btn" onclick="Doc.SaveCategory()">保存</a>
+            <a href="javascript:;" class="btn" id="deleteBtn" style="display:none;" onclick="Doc.RemoveCategory()">删除</a>
+            <a href="javascript:;" class="btn" onclick="Doc.CloseWindow();">取消</a>
         </div>
     </div>
     <script type="text/javascript">
-
         $(document).ready(function () {
             Doc.LoadCategoryDetail();
-            Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#treeDemo", res1, [], {}); });
-
+            Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#category", res1, [], {}); });
         });
     </script>
     <div id="modal"></div>
