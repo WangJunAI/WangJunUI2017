@@ -17,13 +17,7 @@ Doc.SaveCategory = function () {
         LOGGER.Log(res);
         Doc.SubmitEnd(submitId);
 
-        if (false === PARAM_CHECKER.IsTopWindow()) {
-            //top.window.Doc.ShowView3();
-            //$(top.window.find("[data-id=\"LeftMenu.已发布\"]")).first().click();
-            //var callback1 = function (res1) {
-            //    Doc.LoadTreeTo("#leftList", res1, [], {});
-            //}
-            //Doc.LoadData_Category(["{}", "{}", 0, 1000], callback1);
+        if (false === PARAM_CHECKER.IsTopWindow()) { 
             top.window.Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#treeDemo", res1, [], {}); });
 
         }

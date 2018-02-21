@@ -27,8 +27,8 @@ App.Doc.CSS.LeftList.View3.Width = { Value: 18, Unit: "em" };
     Url7: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=SaveOrg",///保存一个目录
     Url8: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=LoadOrgList",///加载组织列表
     Url9: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocWebAPI&m=RemoveDoc",///移除一份文档,暂未使用
-    Url10: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocWebAPI&m=RemoveCategory",///移除一个目录
-    Url11: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocWebAPI&m=GetCategory", ///获取一个目录
+    Url10: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=RemoveOrg",///移除一个目录
+    Url11: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=GetOrg", ///获取一个目录
     Url12: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocManager&m=UpdateStatus&p=0",///暂未使用
     Url13: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocWebAPI&m=MoveToRecycleBin", ///移除到回收站
     Url14: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=LoadRecycleBinItem",///加载回收站

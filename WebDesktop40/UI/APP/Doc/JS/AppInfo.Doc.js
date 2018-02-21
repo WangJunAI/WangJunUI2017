@@ -25,7 +25,7 @@ App.Doc.CSS.LeftList.View3.Width = { Value: 12, Unit: "em" };
     Url5: "http://aifuwu.wang/API.ashx?c=WangJun.Doc.DocWebAPI&m=GetDoc",///获取一个文档
     Url6: "Category.html",
     Url7: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocWebAPI&m=SaveCategory",///保存一个目录
-    Url8: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocWebAPI&m=LoadCategory",///加载目录列表
+    Url8: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocWebAPI&m=LoadCategoryList",///加载目录列表
     Url9: "http://aifuwu.wang/API.ashx?c=WangJun.Doc.DocWebAPI&m=RemoveDoc",///移除一份文档,暂未使用
     Url10: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocWebAPI&m=RemoveCategory",///移除一个目录
     Url11: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocWebAPI&m=GetCategory", ///获取一个目录

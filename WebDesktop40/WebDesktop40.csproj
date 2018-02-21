@@ -1454,9 +1454,9 @@
     <Content Include="UI\APP\Staff\Detail.html" />
     <Content Include="UI\APP\Staff\JS\AppInfo.Doc.js" />
     <Content Include="UI\APP\Staff\JS\AppInfo.QuickBar.js" />
-    <Content Include="UI\APP\Staff\JS\ClientDetector.js" />
     <Content Include="UI\APP\Staff\JS\Doc.App.js" />
     <Content Include="UI\APP\Staff\JS\Doc.Biz.js" />
+    <Content Include="UI\APP\Staff\JS\Doc.Category.js" />
     <Content Include="UI\APP\Staff\JS\Doc.Chart.js" />
     <Content Include="UI\APP\Staff\JS\Doc.ClientUI.js" />
     <Content Include="UI\APP\Staff\JS\Doc.Detail.js" />
