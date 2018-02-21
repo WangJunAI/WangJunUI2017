@@ -21,12 +21,12 @@ App.Doc.CSS.LeftList.View3.Width = { Value: 12, Unit: "em" };
     Url1: "http://aifuwu.wang/API.ashx?c=WangJun.Doc.DocWebAPI&m=LoadDocList", ///加载文档目录
     Url2: "http://aifuwu.wang/API.ashx?c=WangJun.Doc.DocWebAPI&m=DocCount",///文档数量
     Url3: "Detail.html",
-    Url4: "http://aifuwu.wang/API.ashx?c=WangJun.Doc.YunNoteWebAPI&m=SaveNote",///保存一个文档
-    Url5: "http://aifuwu.wang/API.ashx?c=WangJun.Doc.DocWebAPI&m=GetDoc",///获取一个文档
+    Url4: "http://localhost:9990/API.ashx?c=WangJun.Doc.YunNoteWebAPI&m=SaveEntity",///保存一个文档
+    Url5: "http://localhost:9990/API.ashx?c=WangJun.Doc.YunNoteWebAPI&m=GetEntity",///获取一个文档
     Url6: "Category.html",
     Url7: "http://localhost:9990/API.ashx?c=WangJun.Doc.YunNoteWebAPI&m=SaveCategory",///保存一个目录
     Url8: "http://localhost:9990/API.ashx?c=WangJun.Doc.YunNoteWebAPI&m=LoadCategoryList",///加载目录列表
-    Url9: "http://aifuwu.wang/API.ashx?c=WangJun.Doc.DocWebAPI&m=RemoveDoc",///移除一份文档,暂未使用
+    Url9: "http://localhost:9990/API.ashx?c=WangJun.Doc.YunNoteWebAPI&m=RemoveEntity",///移除一份文档,暂未使用
     Url10: "http://localhost:9990/API.ashx?c=WangJun.Doc.YunNoteWebAPI&m=RemoveCategory",///移除一个目录
     Url11: "http://localhost:9990/API.ashx?c=WangJun.Doc.YunNoteWebAPI&m=GetCategory", ///获取一个目录
     Url12: "http://aifuwu.wang/API.ashx?c=WangJun.Doc.DocManager&m=UpdateStatus&p=0",///暂未使用

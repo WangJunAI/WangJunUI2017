@@ -1511,11 +1511,11 @@
     <Content Include="UI\APP\YunNote\CSS\Doc.css" />
     <Content Include="UI\APP\YunNote\CSS\Doc.Font.css" />
     <Content Include="UI\APP\YunNote\CSS\QuickBar.css" />
+    <Content Include="UI\APP\YunNote\Detai1l.html" />
     <Content Include="UI\APP\YunNote\Detail.html" />
     <Content Include="UI\APP\YunNote\Doc.html" />
     <Content Include="UI\APP\YunNote\JS\AppInfo.Doc.js" />
     <Content Include="UI\APP\YunNote\JS\AppInfo.QuickBar.js" />
-    <Content Include="UI\APP\YunNote\JS\Category.html" />
     <Content Include="UI\APP\YunNote\JS\ClientDetector.js" />
     <Content Include="UI\APP\YunNote\JS\Doc.App.js" />
     <Content Include="UI\APP\YunNote\JS\Doc.Biz.js" />
