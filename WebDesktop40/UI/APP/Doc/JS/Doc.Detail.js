@@ -1,5 +1,13 @@
 ﻿Doc.LoadDetail = function () {
     $(document).ready(function () {
+
+        $("[data-single]").on("click", function () {
+            var val = $(this).attr("data-single");
+            $("[data-single='" + val + "']").removeClass("selected");
+            $(this).addClass("selected");
+            $("[data-propertyName='" + val + "'").attr("data-propertyValue", $(this).text());
+        });
+
         var id = NET.GetQueryParam("id");
         var context = [id];
 
@@ -24,24 +32,36 @@ Doc.ShowDetail = function (data) {
             UE.getEditor('editor').setContent(data.Content);
             UE.getEditor('editor').setHeight(400);
         }
-        $("#Title").val(data.Title);
-        $("#id").val(data.id);
 
+        var $ctrls = $("[data-FormName='Default']").each(function () {
+            var propertyName = $(this).attr("data-propertyName");
+            if (PARAM_CHECKER.IsNotEmptyString(propertyName)) {
+                var propertyValue = data[propertyName];
+                $(this).attr("data-propertyValue", propertyValue);
+                $(this).val(propertyValue);
+            }
+        });
 
-        if (true === !PARAM_CHECKER.IsNotEmptyString(data.CategoryName)) {
-            data.CategoryName = "选择分类";
+        if (true === !PARAM_CHECKER.IsNotEmptyString(data.ParentName)) {
+            data.ParentName = "选择分类";
         }
-        $("#parentNode").text(data.CategoryName);
-        $("#parentNode").attr("data-param", data.CategoryID);
+        $("#parentNode").text(data.ParentName);
+        $("#deleteBtn").removeAttr("style");
 
-        if (PARAM_CHECKER.IsNotEmptyString(data.Status)) {
-            $("[data-single='status']").each(function () {
-                $(this).removeClass("selected");
-                if (data.Status === $(this).text()) {
-                    $(this).addClass("selected");
-                }
-            });
-        }
+        $("[data-single]").each(function () {
+            var propertyName = $(this).attr("data-single");
+            var text = $(this).text();
+            var propertyValue = data[propertyName];
+            if (text === propertyValue) {
+                $("[data-single='" + propertyName + "']").removeClass("selected");
+
+                $(this).addClass("selected");
+            }
+
+
+        });
+
+   
 
         $("#preView").attr("href", "http://localhost:39641/TouTiao/TouTiaoArticle.html?id=[id]".replace("[id]", data.id));
     }

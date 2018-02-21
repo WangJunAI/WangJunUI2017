@@ -1,5 +1,9 @@
 ﻿Doc.LoadDetail = function () {
     $(document).ready(function () {
+
+
+
+
         var id = NET.GetQueryParam("id");
         var context = [id];
 
@@ -12,6 +16,7 @@
 }
 
 Doc.ShowDetail = function (data) {
+ 
     if (true === PARAM_CHECKER.IsObject(data)) {
         if (true === PARAM_CHECKER.IsNotEmptyString(data.Content) && "<" === data.Content[0]) {
             UE.getEditor('editor').setContent(data.Content);
@@ -44,5 +49,7 @@ Doc.ShowDetail = function (data) {
         }
 
         $("#preView").attr("href", "http://localhost:39641/TouTiao/TouTiaoArticle.html?id=[id]".replace("[id]", data.id));
+
+
     }
 }
