@@ -10,10 +10,6 @@
     <script src="../../../JS/Base/DEBUG.js"></script>
     <script src="../../../JS/Base/Convertor.js"></script>
 
-    <script src="../../../JS/ueditor/ueditor.config.js"></script>
-    <script src="../../../JS/ueditor/ueditor.all.js"></script>
-    <script src="../../../JS/ueditor/lang/zh-cn/zh-cn.js"></script>
-
 
     <script src="../../../JS/Base/CryptoJS/core-min.js"></script>
     <script src="../../../JS/Base/CryptoJS/enc-base64-min.js"></script>
@@ -40,29 +36,22 @@
     <script src="JS/Doc.Detail.js"></script>
     <script src="JS/Doc.Biz.js"></script>
 
+    <link href="../../../JS/webuploader/dist/webuploader.css" rel="stylesheet" />
+    <script src="../../../JS/webuploader/dist/webuploader.html5only.js"></script>
+
 </head>
 <body>
     <input type="hidden" id="id" />
     <div class="global">
-        <div class="title"><input type="text" id="Title" placeholder="请输入标题" /></div>
+        <div class="title"><input type="text" id="Title" placeholder="请输入文件名称" /></div>
         <script id="editor" type="text/plain" style="width:1024px;" data-property="Content">
         </script>
         <div class="options">
             <ul>
+
                 <li>
                     <div class="item">
-                        <div class="key">状态</div>
-                        <div class="value">
-                            <a href="javascript:;" class="checkbox selected" data-single="status">已发布</a>
-                            <a href="javascript:;" class="checkbox" data-single="status">待发布</a>
-                            <a href="javascript:;" class="checkbox" data-single="status">已删除</a>
-                            <a href="javascript:;" class="checkbox" data-single="status">草稿</a>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="item">
-                        <div class="key">分类</div>
+                        <div class="key">所在目录</div>
                         <div class="value">
                             <a href="javascript:;" class="checkbox" data-property="" data-value="" onclick="$('#category').toggle();" id="parentNode">所有分类</a>
                             <div style="position: absolute;">
@@ -76,10 +65,25 @@
                 </li>
                 <li>
                     <div class="item">
-                        <div class="key">发布</div>
+                        <div class="key">权限</div>
+                        <div class="value" data-FormName="Default" data-propertyName="Permission" data-propertyValue="私人笔记">
+                            <a href="javascript:;" class="checkbox selected" data-single="Permission">私人笔记</a><a href="javascript:;" class="checkbox" data-single="Permission">共享到</a>
+
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item">
+                        <div class="key">上传</div>
                         <div class="value">
-                            <a href="javascript:;" class="checkbox selected" data-single="publishTime">立刻发布</a><a href="javascript:;" class="checkbox" data-single="publishTime">定时发布</a>
-                            <input id="publishDate" type="text" placeholder="日期" /><select id="publishHour"><option>08</option>  </select><span>时</span> <select id="publishMinute"><option>05</option></select><span>分</span>
+                            <div id="uploader" class="wu-example">
+                                <!--用来存放文件信息-->
+                                <div id="thelist" class="uploader-list"></div>
+                                <div class="btns">
+                                    <div id="picker">选择文件</div>
+                                    <button id="ctlBtn" class="btn btn-default" onclick="uploader.upload()">开始上传</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </li>
@@ -94,13 +98,6 @@
     </div>
 
 
-
-    <script type="text/javascript">
-
-        //实例化编辑器
-        //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
-        var ue = UE.getEditor('editor');
-    </script>
 
 
     <script type="text/javascript">
@@ -123,7 +120,68 @@
 
 
     </script>
+    <script type="text/javascript">
+        var uploader = WebUploader.create({
 
+            // swf文件路径
+            swf: '../../../JS/webuploader/dist/js/Uploader.swf',
+
+            // 文件接收服务端。
+            server: 'http://localhost:14000/JS/ueditor/net/controller.ashx?action=uploadfile&encode=utf-8',
+
+            // 选择文件的按钮。可选。
+            // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+            pick: '#picker',
+
+            // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+            resize: false
+        });
+    </script>
+    <script type="text/javascript">
+        // 当有文件被添加进队列的时候
+        uploader.on('fileQueued', function (file) {
+            var $list = $("#thelist");
+            $list.append('<div id="' + file.id + '" class="item">' +
+                '<h4 class="info">' + file.name + '</h4>' +
+                '<p class="state">等待上传...</p>' +
+                '</div>');
+        });
+    </script>
+    <script type="text/javascript">
+        // 文件上传过程中创建进度条实时显示。
+        uploader.on('uploadProgress', function (file, percentage) {
+            var $li = $('#' + file.id),
+                $percent = $li.find('.progress .progress-bar');
+
+            // 避免重复创建
+            if (!$percent.length) {
+                $percent = $('<div class="progress progress-striped active">' +
+                    '<div class="progress-bar" role="progressbar" style="width: 0%">' +
+                    '</div>' +
+                    '</div>').appendTo($li).find('.progress-bar');
+            }
+
+            $li.find('p.state').text('上传中');
+
+            $percent.css('width', percentage * 100 + '%');
+        });
+    </script>
+    <script type="text/javascript">
+        uploader.on('uploadSuccess', function (file) {
+            $('#' + file.id).find('p.state').text('已上传');
+        });
+
+        uploader.on('uploadError', function (file) {
+            $('#' + file.id).find('p.state').text('上传出错');
+        });
+
+        uploader.on('uploadComplete', function (file) {
+            $('#' + file.id).find('.progress').fadeOut();
+        });
+    </script>
+    <script type="text/javascript">
+
+    </script>
     <div id="modal"></div>
     <div id="dialog">
         <div class="title">标题</div>

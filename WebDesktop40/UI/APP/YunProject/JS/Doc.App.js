@@ -7,4 +7,5 @@ Doc.LoadAppInfo = function () {
 
 Doc.ShowAppInfo = function (data) {
     $("#appName").text(data.Name);
+    document.title = App.Doc.Info.Name;
 }

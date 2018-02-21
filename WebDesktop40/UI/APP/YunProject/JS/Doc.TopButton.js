@@ -45,7 +45,7 @@ Doc.FindTopButtons = function (groupID) {
 
 Doc.TopButtonClick = function () {
     var id = $(event.target).attr("data-id");
-    if ("TopButton.新建文章" === id) {
+    if ("TopButton.新建笔记" === id) {
         var url = App.Doc.Server.Url3 + "?t=" + (new Date().getTime());
         Doc.ShowWindow(url);
     }

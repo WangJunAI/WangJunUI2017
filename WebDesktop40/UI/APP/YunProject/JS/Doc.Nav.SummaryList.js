@@ -17,7 +17,7 @@
 
 Doc.ShowSummaryList = function (source, type) {
     var tplHtml = $("#tplSummaryList").html();
-    var tplListItem = $("#tplSummaryListItem2").html();
+    var tplListItem = $("#tplSummaryListItem1").html();
     
     var listHtml = "";
     for (var k = 0; k < source.length; k++) {
@@ -31,19 +31,22 @@ Doc.ShowSummaryList = function (source, type) {
 
 Doc.LoadSummaryListTo = function (target,data, option) {
     var tplHtml = $("#tplSummaryList").html();
-    var tplListItem = $("#tplSummaryListItem2").html();
+    var tplListItem = $("#tplSummaryListItem1").html();
 
     var listHtml = "";
     for (var k = 0; k < data.length; k++) {
         var item = data[k];
-        listHtml += tplListItem.replace("[Title]", item.Title).replace("[Method]", "Doc.SummaryListItemClick()");
+        listHtml += tplListItem.replace("[Title]", item.Title).replace("[Method]", "Doc.SummaryListItemClick()")
+            .replace("[Param]", item.id).replace("[Summary]",item.PlainText);
     }
 
     var html = tplHtml.replace("[列表]", listHtml);
     Doc.LoadHtmlTo(target, html);
+ 
 }
 
 Doc.SummaryListItemClick = function () {
     ///加载详细
-    Doc.ShowContent("detail.html");
+    var id = $(event.target).attr("data-param");
+    Doc.ShowContent("detail.html?id=[id]".replace("[id]", id));
 }
