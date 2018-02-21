@@ -54,6 +54,15 @@ public class UEditorHandler : IHttpHandler
                     UploadFieldName = Config.GetString("fileFieldName")
                 });
                 break;
+            case "fromWebUploader":
+                foreach(string filedName in context.Request.Files)
+                {
+                    var file = context.Request.Files[filedName];
+                    file.SaveAs(@"E:\Test"+file.FileName);
+                }
+                context.Response.Write("OK");
+                    return;
+                break;
             case "listimage":
                 action = new ListFileManager(context, Config.GetString("imageManagerListPath"), Config.GetStringList("imageManagerAllowFiles"));
                 break;

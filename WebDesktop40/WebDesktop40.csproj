@@ -1533,6 +1533,7 @@
     <Content Include="UI\APP\YunProject\JS\Doc.View.js" />
     <Content Include="UI\APP\YunProject\JS\QuickBar.js" />
     <Content Include="UI\APP\YunProject\redirect.html" />
+    <Content Include="UI\APP\YunProject\Time.html" />
     <Content Include="UI\APP\YunProject\Workflow.html" />
     <Content Include="UI\APP\YunNote\AppInfo.html" />
     <Content Include="UI\APP\YunNote\Category.html" />
