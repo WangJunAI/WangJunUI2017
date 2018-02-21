@@ -1547,6 +1547,7 @@
     <Content Include="UI\APP\YunPan\JS\ClientDetector.js" />
     <Content Include="UI\APP\YunPan\JS\Doc.App.js" />
     <Content Include="UI\APP\YunPan\JS\Doc.Biz.js" />
+    <Content Include="UI\APP\YunPan\JS\Doc.Category.js" />
     <Content Include="UI\APP\YunPan\JS\Doc.Chart.js" />
     <Content Include="UI\APP\YunPan\JS\Doc.ClientUI.js" />
     <Content Include="UI\APP\YunPan\JS\Doc.Detail.js" />
