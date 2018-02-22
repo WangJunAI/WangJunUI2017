@@ -55,21 +55,24 @@ namespace WebAPI
                 if (1 == context.Request.Form.Count)
                 {
                     param = Convertor.FromJsonToObject<object[]>(context.Request.Form[0]);
-                    decodeParam = new object[param.Length-1];
-                    for (int k = 0; k < param.Length-1; k++)
+                    if (0 < param.Length)
                     {
-                        decodeParam[k] = param[k];
-                    }
-
-                    if(param.Length==(parameters.Length+1))
-                    {
-                        var dict=param[param.Length-1] as Dictionary<string,object>;
-
-                        foreach (var item in dict)
+                        decodeParam = new object[param.Length - 1];
+                        for (int k = 0; k < param.Length - 1; k++)
                         {
-                            decodeParam[int.Parse(item.Key)] = Convertor.DecodeBase64(param[int.Parse(item.Key)].ToString().Replace("加号", "+").Replace("斜杠", "/").Replace("等于", "=").Replace("空格", " "));
+                            decodeParam[k] = param[k];
                         }
-                        param = decodeParam;
+
+                        if (param.Length == (parameters.Length + 1))
+                        {
+                            var dict = param[param.Length - 1] as Dictionary<string, object>;
+
+                            foreach (var item in dict)
+                            {
+                                decodeParam[int.Parse(item.Key)] = Convertor.DecodeBase64(param[int.Parse(item.Key)].ToString().Replace("加号", "+").Replace("斜杠", "/").Replace("等于", "=").Replace("空格", " "));
+                            }
+                            param = decodeParam;
+                        }
                     }
                 }
             }

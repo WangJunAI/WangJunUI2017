@@ -36,7 +36,7 @@ App.Doc.CSS.LeftList.View3.Width = { Value: 12, Unit: "em" };
     Url16: "http://aifuwu.wang/API.ashx?c=WangJun.Doc.DocWebAPI&m=Aggregate",///聚合查询
     Url17: "http://aifuwu.wang/API.ashx?c=WangJun.Doc.ClientBehaviorManager&m=Aggregate",
     Url18: "http://aifuwu.wang/API.ashx?c=WangJun.Doc.DocWebAPI&m=RecycleBinCount",///回收站数量
-
+    Url19: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=LoadAll",///回收站数量
 };
 
 

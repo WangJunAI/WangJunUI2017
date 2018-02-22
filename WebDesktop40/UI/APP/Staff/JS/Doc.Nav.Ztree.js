@@ -26,7 +26,7 @@ Doc.LoadTreeTo = function (target, data,excludeIdArray,option) {
             var query = JSON.parse($("#tableQuery").val());
             query.ParentID = $("#selectedTreeNode").val();
             query = JSON.stringify(query);
-            Doc.LoadTable(0, App.Doc.Data.Pager.Size, query, App.Doc.Data.DocTable.Info);
+            Doc.LoadData_Doc(context = [query, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size], function (res2) { Doc.LoadSummaryListTo("#leftPart2", res2); });
         }
 
     }
@@ -51,6 +51,18 @@ Doc.LoadTreeTo = function (target, data,excludeIdArray,option) {
             onDblClick: zTreeOnDblClick
         }
     };
+
+
+    if (PARAM_CHECKER.IsObject(option)) {
+        if ("checkbox" === option.ShowMode) {
+            setting.check={
+                enable: true,
+                    chkStyle: "checkbox",
+                        chkboxType: { "Y": "ps", "N": "ps" }
+            }
+        }
+    }
+
     Doc.ShowTree(ztreeID, setting, data);
  
 

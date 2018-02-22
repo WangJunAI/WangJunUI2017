@@ -51,6 +51,18 @@ Doc.LoadTreeTo = function (target, data,excludeIdArray,option) {
             onDblClick: zTreeOnDblClick
         }
     };
+
+
+    if (PARAM_CHECKER.IsObject(option)) {
+        if ("checkbox" === option.ShowMode) {
+            setting.check={
+                enable: true,
+                    chkStyle: "checkbox",
+                        chkboxType: { "Y": "ps", "N": "ps" }
+            }
+        }
+    }
+
     Doc.ShowTree(ztreeID, setting, data);
  
 

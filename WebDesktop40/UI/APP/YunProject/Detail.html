@@ -62,7 +62,6 @@
                             <a href="javascript:;" class="checkbox" onclick="$('#category').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
                             <div style="position: absolute;">
                                 <div id="category" class="dropdownlist">
-                                    <ul id="treeDemo" class="ztree"></ul>
                                 </div>
                             </div>
 
@@ -73,8 +72,14 @@
                     <div class="item">
                         <div class="key">参与人员</div>
                         <div class="value" data-FormName="Default" data-propertyName="Permission" data-propertyValue="私人笔记">
-                            <a href="javascript:;" class="checkbox selected" data-single="Permission">私人笔记</a><a href="javascript:;" class="checkbox" data-single="Permission">参与人员</a>
+                            <div class="value" data-FormName="Default" data-propertyName="ParentID" data-propertyValue="">
+                                <a href="javascript:;" class="checkbox" onclick="$('#category2').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
+                                <div style="position: absolute;">
+                                    <div id="category2" class="dropdownlist">
+                                    </div>
+                                </div>
 
+                            </div>
                         </div>
                     </div>
                 </li>
@@ -115,7 +120,8 @@
     <script type="text/javascript">
         $(document).ready(function () {
             Doc.LoadDetail();
-            Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#treeDemo", res1, [], {}); }); ///加载目录
+            Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#category", res1, [], {}); }); ///加载目录
+            Doc.LoadData_All([], function (res1) { Doc.LoadTreeTo("#category2", res1, [], { ShowMode:"checkbox"}); }); ///加载目录
 
 
         });
