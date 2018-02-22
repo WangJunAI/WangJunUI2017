@@ -33,7 +33,7 @@ Doc.LeftMenuClick = function (id) {
     var topButtonId = Doc.FindLeftMenuData(id)[0].TopButtonGroupID;
     Doc.LeftMenuSetSelecled(id);
     Doc.CloseWindow();
-    if ("LeftMenu.新建笔记" === id) {
+    if ("LeftMenu.新建项目" === id) {
         var url = App.Doc.Server.Url3 + "?t=" + (new Date().getTime());
         Doc.ShowWindow(url);
     }
@@ -41,11 +41,11 @@ Doc.LeftMenuClick = function (id) {
         var url = App.Doc.Server.Url6 + "?t=" + (new Date().getTime());
         Doc.ShowWindow(url);
     }
-    else if ("LeftMenu.个人笔记" == id) {
+    else if ("LeftMenu.个人项目" == id) {
         Doc.ShowView1();
 
         Doc.LoadTopButton(topButtonId);
-
+        var listQuery = "{}";
         var callback1 = function (res1) {
             Doc.LoadTreeTo("#leftPart1", res1, [], {});
             Doc.ShowContent("redirect.html");
@@ -53,29 +53,29 @@ Doc.LeftMenuClick = function (id) {
             var callback2 = function (res2) {
                 Doc.LoadSummaryListTo("#leftPart2", res2);
             }
-            Doc.LoadData_Doc(context = ["{}", JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size], callback2);
+            Doc.LoadData_Doc(context = [listQuery, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size], function (res2) { Doc.LoadSummaryListTo("#leftPart2", res2); });
         }
 
         var param = ["{}", "{}", "{}", 0, 1000]
         Doc.LoadData_Category(param, callback1);
+        $("#tableQuery").val(listQuery);
     }
-    else if ("LeftMenu.共享笔记" == id) {
+    else if ("LeftMenu.共享项目" == id) {
         Doc.ShowView1();
 
         Doc.LoadTopButton(topButtonId);
-
+        var listQuery = "{}";
         var callback1 = function (res1) {
             Doc.LoadTreeTo("#leftPart1", res1, [], {});
             Doc.ShowContent("redirect.html");
-
-            var callback2 = function (res2) {
-                Doc.LoadSummaryListTo("#leftPart2", res2);
-            }
-            Doc.LoadData_Doc(context = ["{}", JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size], callback2);
+             
+            Doc.LoadData_Doc(context = [listQuery, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size],   function (res2) { Doc.LoadSummaryListTo("#leftPart2", res2);  });
         }
 
         var param = ["{}", "{}", "{}", 0, 1000]
         Doc.LoadData_Category(param, callback1);
+        $("#tableQuery").val(listQuery);
+
     }
     else if ("LeftMenu.文档分析" === id) {
         Doc.LoadTopButton(topButtonId);
@@ -158,7 +158,7 @@ Doc.LeftMenuClick = function (id) {
 
         Doc.ShowContent("Chart1.html");
     }
-    else if ("LeftMenu.云笔记测试" === id) {
+    else if ("LeftMenu.云项目测试" === id) {
         Doc.ShowView1(); 
 
         Doc.LoadTopButton(topButtonId);
