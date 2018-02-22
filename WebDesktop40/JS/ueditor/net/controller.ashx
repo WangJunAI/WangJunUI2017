@@ -55,13 +55,29 @@ public class UEditorHandler : IHttpHandler
                 });
                 break;
             case "fromWebUploader":
-                foreach(string filedName in context.Request.Files)
+
+                foreach (string filedName in context.Request.Files)
                 {
                     var file = context.Request.Files[filedName];
-                    file.SaveAs(@"E:\Test"+file.FileName);
+                    var serverFileName = Guid.NewGuid();
+                    var folderPath = string.Format(@"{0}{1}", context.Server.MapPath("~"), "uploadFiles");
+                    Directory.CreateDirectory(folderPath);
+                    var filePath = string.Format(@"{0}\{1}", folderPath, serverFileName);
+                    file.SaveAs(filePath);
+                    var fileInfo = new
+                    {
+                        ServerFileName = serverFileName,
+                        ServerFilePath = filePath,
+                        FileNameInClient = file.FileName,
+                        FileLengtth = file.ContentLength,
+                        HttpUrl=string.Format("http://localhost:14000/uploadFiles/{0}.txt",serverFileName)
+                    };
+ 
+                    File.WriteAllText(string.Format(@"{0}\{1}", folderPath, serverFileName + ".txt"), new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(fileInfo), System.Text.Encoding.UTF8);
+                    context.Response.Write(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(fileInfo));
+
                 }
-                context.Response.Write("OK");
-                    return;
+                return;
                 break;
             case "listimage":
                 action = new ListFileManager(context, Config.GetString("imageManagerListPath"), Config.GetStringList("imageManagerAllowFiles"));

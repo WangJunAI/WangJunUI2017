@@ -1609,6 +1609,9 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\API.ashx.cs">
+      <DependentUpon>API.ashx</DependentUpon>
+    </Compile>
     <Compile Include="JS\ueditor\net\App_Code\Config.cs" />
     <Compile Include="JS\ueditor\net\App_Code\ConfigHandler.cs" />
     <Compile Include="JS\ueditor\net\App_Code\CrawlerHandler.cs" />
@@ -1862,6 +1865,7 @@
     <Content Include="JS\webuploader\_draft\flash_cpp\hashlib\Makefile" />
     <Content Include="JS\webuploader\_draft\flash_cpp\makefile" />
     <Content Include="JS\webuploader\_draft\flash_cpp\Test.swc" />
+    <Content Include="API\API.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
