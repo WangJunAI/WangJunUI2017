@@ -18,7 +18,7 @@ App.Doc.CSS.LeftList.View3 = {};
 App.Doc.CSS.LeftList.View3.Width = { Value: 12, Unit: "em" };
 
  App.Doc.Server = {
-    Url1: "http://aifuwu.wang/API.ashx?c=WangJun.Doc.DocWebAPI&m=LoadDocList", ///加载文档目录
+     Url1: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocWebAPI&m=LoadEntityList", ///加载文档目录
     Url2: "http://aifuwu.wang/API.ashx?c=WangJun.Doc.DocWebAPI&m=DocCount",///文档数量
     Url3: "Detail.html",
     Url4: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocWebAPI&m=SaveEntity",///保存一个文档
@@ -155,7 +155,7 @@ App.Doc.Data.DocTable.Info = {
 }
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "全选", Method: "", Sort: "", PropertyName: "Type", DataType: "checkbox" });
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "标题", Method: "Doc.TableRowClick", Sort: "", PropertyName: "Title", DataType: "string"});
-App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "分类", Method: "", Sort: "", PropertyName: "CategoryName", DataType: "string" });
+App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "分类", Method: "", Sort: "", PropertyName: "ParentName", DataType: "string" });
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "阅读量", Method: "", Sort: "", PropertyName: "ReadCount", DataType: "string"});
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "点赞量", Method: "", Sort: "", PropertyName: "LikeCount", DataType: "string" });
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "评论量", Method: "", Sort: "", PropertyName: "CommentCount", DataType: "string" });

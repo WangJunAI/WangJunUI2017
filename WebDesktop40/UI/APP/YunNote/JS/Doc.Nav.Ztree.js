@@ -10,10 +10,10 @@ Doc.ShowTree = function (target, setting, zNodes) {
 }
  
 Doc.LoadTreeTo = function (target, data,excludeIdArray,option) {
-
+    $("#selectedTreeNode").val("");
     var ztreeID = "ztree"+(Doc.GetTreeCount()+1);
     Doc.LoadHtmlTo(target, "<ul id='" + ztreeID + "' class='ztree'></ul>");
-    
+    var pageName = $("#pageName").val();
     var zTreeOnClick = function (event, treeId, treeNode) {
         var name = treeNode.Name;
         
@@ -21,6 +21,14 @@ Doc.LoadTreeTo = function (target, data,excludeIdArray,option) {
         $("#parentNode").text(name);
         $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.id);
         $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
+        $("#selectedTreeNode").val(treeNode.id);
+        if ("Main" === pageName) {
+            var query = JSON.parse($("#tableQuery").val());
+            query.ParentID = $("#selectedTreeNode").val();
+            query = JSON.stringify(query);
+            Doc.LoadData_Doc(context = [query, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size], function (res2) { Doc.LoadSummaryListTo("#leftPart2", res2); });
+        }
+
     }
 
     var zTreeOnDblClick = function (event, treeId, treeNode) {

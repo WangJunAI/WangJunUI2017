@@ -42,19 +42,20 @@ Doc.LeftMenuClick = function (id) {
          Doc.ShowWindow(url);
      }
      else if ("LeftMenu.在职人员" == id) {
+         var query = '{}';
          Doc.ShowView3();
          Doc.LoadTopButton(topButtonId);
          Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], {}); });
-         Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{}", App.Doc.Data.DocTable.Info);
-         $("#topButton").attr("data-status", "已发布");
+         Doc.LoadTable(0, App.Doc.Data.Pager.Size, query, App.Doc.Data.DocTable.Info);
+         $("#tableQuery").val(query);
      }
      else if ("LeftMenu.离职人员" == id) {
+         var query = '{}';
          Doc.ShowView3();
          Doc.LoadTopButton(topButtonId);
-         ///加载树状目录
          Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], {}); });
-         Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{}");
-         $("#topButton").attr("data-status", "待发布");
+         Doc.LoadTable(0, App.Doc.Data.Pager.Size, query, App.Doc.Data.DocTable.Info);
+         $("#tableQuery").val(query);
      }
      else if ("LeftMenu.新建角色" === id) {
          var url = App.Doc.Server.Url6 + "?t=" + (new Date().getTime());

@@ -2,13 +2,11 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>汪俊人员和组织管理</title>
+    <title>人员和组织管理</title>
     <script type="text/javascript"></script>
 
     <link href="CSS/Doc.css" rel="stylesheet" />
     <link href="CSS/Doc.Font.css" rel="stylesheet" />
-    <link href="../../../CSS/Doc.Color.css" rel="stylesheet" />
-
     <link href="CSS/QuickBar.css" rel="stylesheet" />
     <script src="../../../JS/Base/jquery-3.1.1.min.js"></script>
     <script src="../../../JS/Base/NET.js"></script>
@@ -33,16 +31,13 @@
     <script src="../../../JS/Base/zTree/js/jquery.ztree.all.js"></script>
 
 
-    <!--<script src="JS/AppInfo.QuickBar.js"></script>
+    <script src="JS/AppInfo.QuickBar.js"></script>
     <script src="JS/QuickBar.js"></script>
 
-    <script src="JS/ClientDetector.js"></script>-->
+    <script src="JS/ClientDetector.js"></script>
 
 </head>
-<body>
-    <input type="hidden" id="tableQuery" />
-    <input type="hidden" id="selectedTreeNode" />
-    <input type="hidden" id="pageName" value="Main" />
+<body onmousemove="ClientDetector.MouseMove()">
     <div class="global">
         <div class="head"><a href="javascript:;" id="appName">文档管理</a> <a href="javascript:;" id="userName" class="right">用户信息</a></div>
         <div class="left">
@@ -142,7 +137,7 @@
 
     <script type="text/javascript">
         Doc.Initial();
-        //QuickBar.Initial();
+        QuickBar.Initial();
     </script>
     <div id="detailWindow">
         <div class="header"><a class="title">标题</a><a href="javascript:;" class="btn close" onclick="$('#detailWindow').hide()">关闭</a></div>
@@ -152,7 +147,7 @@
     <div id="dialog">
         <div class="title">标题</div>
         <div class="message">操作成功！</div>
-        <div class="bottom"><a href="javascript:;" onclick="$('#modal').hide();$('#dialog').hide()">取消</a><a href="javascript:;" onclick="$('#modal').hide();$('#dialog').hide()">关闭</a><a href="javascript:;" onclick="$('#modal').hide();$('#dialog').hide()">确定</a></div>
+        <div class="bottom"><a href="javascript:;" onclick="$('#modal').hide();$('#dialog').hide()">关闭</a></div>
     </div>
 
     <script type="text/html" id="tplSummaryList">
@@ -193,7 +188,7 @@
     </script>
     <script type="text/html" id="tplSummaryListItem2">
         <li>
-            <a class="listItem4" href="javascript:;" onclick="[Method]">[Title]</a>
+            <a class="listItem4"  href="javascript:;" onclick="[Method]">[Title]</a>
         </li>
     </script>
     <script type="text/html" id="tplTable">
@@ -210,14 +205,13 @@
 
     <script type="text/html" id="tplView1">
         <div id="leftPart1" style="width: 12em;height: 100%;background-color: #F9F9FA;float: left;"></div>
-        <div id="leftPart2" style="width: 18em;height: 100%;background-color: #FFF;float: left;"></div>
+        <div id="leftPart2"  style="width: 18em;height: 100%;background-color: #FFF;float: left;"></div>
     </script>
 
     <script type="text/html" id="topButtonSearch">
         <div class="search">
-            <div class="input">
-                <input id="searchInput" type="text" placeholder="请搜索..." />
-                <a class="btn" href="javascript:;" data-id="TopButton.搜索" onclick="Doc.TopButtonClick()">搜索</a>
+            <div class="input"><input id="searchInput" type="text" placeholder="请搜索..." />
+            <a class="btn" href="javascript:;" data-id="TopButton.搜索" onclick="Doc.TopButtonClick()">搜索</a>
             </div>
         </div>
     </script>

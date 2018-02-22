@@ -1545,7 +1545,7 @@
     <Content Include="UI\APP\YunNote\CSS\QuickBar.css" />
     <Content Include="UI\APP\YunNote\Detai1l.html" />
     <Content Include="UI\APP\YunNote\Detail.html" />
-    <Content Include="UI\APP\YunNote\Doc.html" />
+    <Content Include="UI\APP\YunNote\Main.html" />
     <Content Include="UI\APP\YunNote\JS\AppInfo.Doc.js" />
     <Content Include="UI\APP\YunNote\JS\AppInfo.QuickBar.js" />
     <Content Include="UI\APP\YunNote\JS\ClientDetector.js" />
