@@ -34,12 +34,12 @@ Doc.LoadTreeTo = function (target, data,excludeIdArray,option) {
         
         if ("Main" === pageName) {
             var query = JSON.parse($("#tableQuery").val());
-            query.ParentID = $("#selectedTreeNode").val();
+            query.ParentID = treeNode.ID;
             query = JSON.stringify(query);
-            Doc.LoadData_Doc(context = [query, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size], function (res2) { Doc.LoadSummaryListTo("#leftPart2", res2); });
+            Doc.LoadTable(0, App.Doc.Data.Pager.Size, query, App.Doc.Data.DocTable.Info);
         }
         else if ("Detail" == pageName) {
-            option.Click(event, treeId, treeNode);
+            option.Click(event, treeId, treeNode);///根据业务自定义事件
         }
 
     }

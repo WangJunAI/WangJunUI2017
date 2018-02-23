@@ -45,7 +45,17 @@ Doc.LeftMenuClick = function (id) {
          var query = '{}';
          Doc.ShowView3();
          Doc.LoadTopButton(topButtonId);
-         Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], {}); });
+         Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) {
+             Doc.LoadTreeTo("#leftList", res1, [], {
+                 Click: function (event, treeId, treeNode) {
+                     var name = treeNode.Name;
+                     $('#category').hide();
+                     $("#parentNode").text(name);
+                     $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.id);
+                     $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
+                     $("#selectedTreeNode").val(treeNode.id);
+                 }
+             }); });
          Doc.LoadTable(0, App.Doc.Data.Pager.Size, query, App.Doc.Data.DocTable.Info);
          $("#tableQuery").val(query);
      }
