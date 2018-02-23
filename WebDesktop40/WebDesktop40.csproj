@@ -1523,7 +1523,6 @@
     <Content Include="UI\APP\YunProject\JS\Doc.Chart.js" />
     <Content Include="UI\APP\YunProject\JS\Doc.ClientUI.js" />
     <Content Include="UI\APP\YunProject\JS\Doc.Detail.js" />
-    <Content Include="UI\APP\YunProject\JS\Doc.html" />
     <Content Include="UI\APP\YunProject\JS\Doc.js" />
     <Content Include="UI\APP\YunProject\JS\Doc.LeftMenu.js" />
     <Content Include="UI\APP\YunProject\JS\Doc.Nav.SummaryList.js" />
