@@ -138,11 +138,11 @@
         .dropdownlist > .header > a {
             margin-right: 1em;
         }
-    
-    
-    #ui-datepicker-div {
-        z-index: 2500 !important;
-    }
+
+
+#ui-datepicker-div {
+    z-index: 2500 !important;
+}
 
 
 #dialog {

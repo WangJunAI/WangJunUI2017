@@ -49,6 +49,11 @@ Doc.LoadData_Doc = function (param, callback) {
     NET.PostData(App.Doc.Server.Url1, callback, param);
 }
 
+Doc.LoadData_All = function (param, callback) {
+    NET.PostData(App.Doc.Server.Url19, callback, param);
+}
+
+
 Doc.SaveDetail = function () {
     var submitId = Doc.SubmitStart();
     

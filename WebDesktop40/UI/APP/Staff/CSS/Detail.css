@@ -126,6 +126,18 @@
         position: absolute;
     }
 
+    .dropdownlist > .header {
+        width: 100%;
+        height: 2em;
+        background-color: #EEE;
+        text-align: right;
+        line-height: 2em;
+    }
+
+        .dropdownlist > .header > a {
+            margin-right: 1em;
+        }
+
 
 #ui-datepicker-div {
     z-index: 2500 !important;

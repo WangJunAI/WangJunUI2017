@@ -39,15 +39,16 @@
     <link href="../../../JS/webuploader/dist/webuploader.css" rel="stylesheet" />
     <script src="../../../JS/webuploader/dist/webuploader.html5only.js"></script>
     <style type="text/css">
-        #uploadList
-        {
+        #uploadList {
             /*list-style:none;*/
             /*margin-left:-40px;*/
         }
-        #uploadList div{
-            float:left;
-            margin-right:1em;
-        }
+
+            #uploadList div {
+                float: left;
+                margin-right: 1em;
+            }
+
             #uploadList a {
                 float: left;
                 text-decoration: none;
@@ -55,7 +56,8 @@
     </style>
 </head>
 <body>
-    <input type="hidden" id="id" />
+    <input type="hidden" id="ID" data-FormName="Default" data-propertyName="ID" />
+    <input type="hidden" id="pageName" value="Detail" />
     <div class="global">
         <div class="title">请上传文件</div>
         <script id="editor" type="text/plain" style="width:1024px;" data-property="Content">
@@ -70,7 +72,6 @@
                             <a href="javascript:;" class="checkbox" data-property="" data-value="" onclick="$('#category').toggle();" id="parentNode">所有分类</a>
                             <div style="position: absolute;">
                                 <div id="category" class="dropdownlist">
-                                    <ul id="treeDemo" class="ztree"></ul>
                                 </div>
                             </div>
 
@@ -81,17 +82,22 @@
                     <div class="item">
                         <div class="key">权限</div>
                         <div class="value" data-FormName="Default" data-propertyName="Permission" data-propertyValue="私人笔记">
-                            <a href="javascript:;" class="checkbox selected" data-single="Permission">私人笔记</a><a href="javascript:;" class="checkbox" data-single="Permission">共享到</a>
-
+                            <div class="value" data-FormName="Default" data-propertyName="ParentID" data-propertyValue="">
+                                <a href="javascript:;" class="checkbox" onclick="$('#category2').toggle();" id="selectedNodeArray" data-FormName="Default" data-propertyName="AttributeIDArray" data-propertyValue="">默认分类</a>
+                                <div style="position: absolute;">
+                                    <div id="category2" class="dropdownlist">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </li>
                 <li>
-                    <div  class="item">
+                    <div class="item">
                         <div class="key">上传文件</div>
                         <a href="javascript:;" class="checkbox selected" data-single="Permission1" onclick="$('[name=file]').click()">添加文件</a><a href="javascript:;" class="checkbox" data-single="Permission1" onclick="uploader.upload()">开始上传</a>
                         <div id="uploader" style="display:none;">
-                                <div id="picker">选择文件</div>
+                            <div id="picker">选择文件</div>
                         </div>
                     </div>
                 </li>
@@ -116,7 +122,18 @@
     <script type="text/javascript">
         $(document).ready(function () {
             Doc.LoadDetail();
-            Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#treeDemo", res1, [], {}); }); ///加载目录
+            Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) {
+                Doc.LoadTreeTo("#category", res1, [], {
+                    Click: function (event, treeId, treeNode) {
+                        var name = treeNode.Name;
+                        $('#category').hide();
+                        $("#parentNode").text(name);
+                        $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.id);
+                        $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
+                        $("#selectedTreeNode").val(treeNode.id);
+                    }
+                });
+            }); ///加载目录
 
             $("[data-single]").on("click", function () {
                 var val = $(this).attr("data-single");
@@ -125,6 +142,17 @@
             });
         });
 
+        Doc.LoadData_All([], function (res1) {
+            Doc.LoadTreeTo("#category2", res1, [], {
+                ShowMode: "checkbox", Check: function (event, treeId, treeNode) {//
+                    var nodeJson = Doc.GetCheckedTreeNodes("ztree2");
+                    $("[data-propertyName='AttributeIDArray']").attr("data-propertyValue", JSON.stringify(nodeJson));//
+                }
+            });
+        }); ///加载目录
+    </script>
+
+    <script type="text/javascript">
 
     </script>
     <script type="text/javascript">
@@ -147,7 +175,7 @@
     <script type="text/javascript">
         // 当有文件被添加进队列的时候
         uploader.on('fileQueued', function (file) {
-            var $list = $("#uploadList"); 
+            var $list = $("#uploadList");
             var listItemHtml = "<li id=[ID]><div>[PIC]</div><span style='display:none;''>[FileName2]</span><div>[FileName]</div><div>[Percentage]</div><div>[Status]</div><a href='javascript:;'>删除</a></li>";
             listItemHtml = listItemHtml.replace("[ID]", file.id).replace("[FileName]", file.name).replace("[FileName2]", file.name).replace("[Percentage]", "0%").replace("[Status]", "尚未开始");
             $list.append(listItemHtml);
@@ -158,7 +186,7 @@
         uploader.on('uploadProgress', function (file, percentage) {
             var $li = $('#' + file.id)
             var listItemHtml = "<li id=[ID]><div>[PIC]</div><span style='display:none;''>[FileName2]</span><div>[FileName]</div><div>[Percentage]</div><div>[Status]</div><a href='javascript:;'>删除</a></li>";
-            listItemHtml = listItemHtml.replace("[ID]", file.id).replace("[FileName]", file.name).replace("[FileName2]", file.name).replace("[Percentage]", percentage+"%").replace("[Status]", "上传中");
+            listItemHtml = listItemHtml.replace("[ID]", file.id).replace("[FileName]", file.name).replace("[FileName2]", file.name).replace("[Percentage]", percentage + "%").replace("[Status]", "上传中");
             $li.html(listItemHtml);
         });
     </script>
