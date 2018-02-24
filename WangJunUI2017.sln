@@ -39,8 +39,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WangJun.DB", "..\..\WangJun
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WangJun.Entity", "..\..\WangJun2017\WangJun.Entity\WangJun.Entity.csproj", "{41FE0A71-2098-483A-8E1B-ED4BEBB4DD72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WangJun.UEditorAPI", "WangJun.UEditorAPI\WangJun.UEditorAPI.csproj", "{A49C0F9D-5709-4887-8CA4-75D32B142AB5}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebDesktop40", "WebDesktop40\WebDesktop40.csproj", "{0D43FC69-1C02-4289-84EC-1CFDDE415FAE}"
 EndProject
 Global
@@ -81,10 +79,6 @@ Global
 		{41FE0A71-2098-483A-8E1B-ED4BEBB4DD72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41FE0A71-2098-483A-8E1B-ED4BEBB4DD72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41FE0A71-2098-483A-8E1B-ED4BEBB4DD72}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A49C0F9D-5709-4887-8CA4-75D32B142AB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A49C0F9D-5709-4887-8CA4-75D32B142AB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A49C0F9D-5709-4887-8CA4-75D32B142AB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A49C0F9D-5709-4887-8CA4-75D32B142AB5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0D43FC69-1C02-4289-84EC-1CFDDE415FAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0D43FC69-1C02-4289-84EC-1CFDDE415FAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D43FC69-1C02-4289-84EC-1CFDDE415FAE}.Release|Any CPU.ActiveCfg = Release|Any CPU

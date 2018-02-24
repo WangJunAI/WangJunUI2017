@@ -11,6 +11,9 @@ Doc.SaveCategory = function () {
         }
     });
 
+    ///几种群组设置
+    item.UserAllowedArray = Doc.GetCheckedTreeNodes("ztree2");
+
     var param = [Convertor.ToBase64String(JSON.stringify(item), true), { 0: "base64" }];
 
     var callback = function (res) {
@@ -65,6 +68,7 @@ Doc.SaveDetail = function () {
             item[propertyName.trim()] = propertyValue;
         }
     });
+    item.UserAllowedArray = Doc.GetCheckedTreeNodes("ztree2");
 
 
     var param = [Convertor.ToBase64String(JSON.stringify(item), true), { 0: "base64" }];
