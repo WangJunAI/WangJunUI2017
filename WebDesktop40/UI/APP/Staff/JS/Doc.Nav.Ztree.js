@@ -24,7 +24,6 @@ Doc.GetCheckedTreeNodes=function(target)
 }
  
 Doc.LoadTreeTo = function (target, data,excludeIdArray,option) {
-    $("#selectedTreeNode").val("");
     var ztreeID = "ztree"+(Doc.GetTreeCount()+1);
     Doc.LoadHtmlTo(target, "<div class='header'><a href='javascript:;' >清空</a><a href='javascript:;' >取消</a><a href='javascript: ;' onclick='$(this).parent().parent().hide()' >确定</a></div><ul id='" + ztreeID + "' class='ztree'></ul>");
     var pageName = $("#pageName").val();

@@ -53,7 +53,6 @@ Doc.LeftMenuClick = function (id) {
                      $("#parentNode").text(name);
                      $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.id);
                      $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
-                     $("#selectedTreeNode").val(treeNode.id);
                  }
              }); });
          Doc.LoadTable(0, App.Doc.Data.Pager.Size, query, App.Doc.Data.DocTable.Info);

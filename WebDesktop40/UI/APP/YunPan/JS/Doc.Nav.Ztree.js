@@ -24,7 +24,6 @@ Doc.GetCheckedTreeNodes=function(target)
 }
  
 Doc.LoadTreeTo = function (target, data,excludeIdArray,option) {
-    $("#selectedTreeNode").val("");
     var ztreeID = "ztree"+(Doc.GetTreeCount()+1);
     Doc.LoadHtmlTo(target, "<div class='header'><a href='javascript:;' >清空</a><a href='javascript:;' >取消</a><a href='javascript: ;' onclick='$(this).parent().parent().hide()' >确定</a></div><ul id='" + ztreeID + "' class='ztree'></ul>");
     var pageName = $("#pageName").val();
@@ -34,9 +33,9 @@ Doc.LoadTreeTo = function (target, data,excludeIdArray,option) {
         
         if ("Main" === pageName) {
             var query = JSON.parse($("#tableQuery").val());
-            query.ParentID = $("#selectedTreeNode").val();
+            query.ParentID = treeNode.ID;
             query = JSON.stringify(query);
-            Doc.LoadData_Doc(context = [query, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size], function (res2) { Doc.LoadSummaryListTo("#leftPart2", res2); });
+            Doc.LoadTable(0, App.Doc.Data.Pager.Size, query, App.Doc.Data.DocTable.Info);
         }
         else if ("Detail" == pageName) {
             option.Click(event, treeId, treeNode);
