@@ -6,10 +6,19 @@ Doc.SaveCategory = function () {
     var $ctrls = $("[data-FormName='Default']").each(function () {
         var propertyName = $(this).attr("data-propertyName");
         var propertyValue = $(this).attr("data-propertyValue");
+        var propertyType = $(this).attr("data-propertyType");
         if (PARAM_CHECKER.IsNotEmptyString(propertyName)) {
-            item[propertyName.trim()] = propertyValue;
+            if ("CheckBoxArray" === propertyType) {
+                var ztreeId = $(this).find(".ztree").first().attr("id");
+                item[propertyName] = Doc.GetCheckedTreeNodes(ztreeId);
+            }
+            else {
+                item[propertyName.trim()] = propertyValue;
+            }
         }
     });
+
+    ///几种群组设置
 
     var param = [Convertor.ToBase64String(JSON.stringify(item), true), { 0: "base64" }];
 
@@ -17,7 +26,7 @@ Doc.SaveCategory = function () {
         LOGGER.Log(res);
         Doc.SubmitEnd(submitId);
 
-        if (false === PARAM_CHECKER.IsTopWindow()) { 
+        if (false === PARAM_CHECKER.IsTopWindow()) {
             top.window.Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#treeDemo", res1, [], {}); });
 
         }
@@ -26,6 +35,7 @@ Doc.SaveCategory = function () {
     }
     NET.PostData(App.Doc.Server.Url7, callback, param);
 }
+
 
 ///移除一个目录
 Doc.RemoveCategory = function () {
@@ -54,38 +64,41 @@ Doc.LoadData_All = function (param, callback) {
 }
 
 
-Doc.SaveDetail = function () {
-    var submitId = Doc.SubmitStart();
-    
+///保存一个文档
+Doc.SaveDetail = function (resInfo) {
+    //var submitId = Doc.SubmitStart();
+
     var item = {};
-    item.id = $("#id").val();
-    item.Title = $("#Title").val().trim();
-    item.Content = UE.getEditor('editor').getContent();
-    item.CategoryID = $("#parentNode").attr("data-Param");
-    item.Content = item.Content;
-    item.Status = $("[data-single='status'].selected").text();
-    item.PublistTime = $("#publishDate").val() + " " + $("#publishHour").val() + ":" + $("#publishMinute").val() + ":00";
-    ///获取图片
-    item.ThumbnailSrc = $(item.Content).find("img").attr("src");
-    ///Html转义
-    //$div = $("<div></div>");
-    //$div.text(item.Content);
-    item.Title = Convertor.ToBase64String(item.Title, true);
-    item.Content = Convertor.ToBase64String(item.Content, true);
 
-    item.PlainText = UE.getEditor('editor').getContentTxt();
-    item.PlainText = Convertor.ToBase64String(item.PlainText, true);
+    var $ctrls = $("[data-FormName='Default']").each(function () {
+        var propertyName = $(this).attr("data-propertyName");
+        var propertyValue = $(this).attr("data-propertyValue");
+        var propertyType = $(this).attr("data-propertyType");
+        if (PARAM_CHECKER.IsNotEmptyString(propertyName)) {
+            if ("CheckBoxArray" === propertyType) {
+                var ztreeId = $(this).find(".ztree").first().attr("id");
+                item[propertyName] = Doc.GetCheckedTreeNodes(ztreeId);
+            }
+            else {
+                item[propertyName.trim()] = propertyValue;
+            }
+        }
+    });
 
-    var context = [item.Title, item.Content, item.CategoryID, item.PublistTime, item.Status, item.id, item.PlainText, item.ThumbnailSrc, { 0: "base64", 1: "base64", 6: "base64" }];
+    item.Content = resInfo.HttpUrl;
+    item.Name = resInfo.ServerFileName;
+    item.Title = resInfo.FileNameInClient;
+
+
+
+    var param = [Convertor.ToBase64String(JSON.stringify(item), true), { 0: "base64" }];
+
 
     var callback = function (res) {
         LOGGER.Log(res);
-        Doc.SubmitEnd(submitId);
-        if (false === PARAM_CHECKER.IsTopWindow()) {
-            top.window.Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{'Status':'已发布'}");
-            Doc.CloseWindow();
-        }
+        //Doc.SubmitEnd(submitId);
+        Doc.ShowDialog("上传成功");
     }
-    NET.PostData(App.Doc.Server.Url4, callback, context);
+    NET.PostData(App.Doc.Server.Url4, callback, param);
 }
 

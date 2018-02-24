@@ -6,10 +6,19 @@ Doc.SaveCategory = function () {
     var $ctrls = $("[data-FormName='Default']").each(function () {
         var propertyName = $(this).attr("data-propertyName");
         var propertyValue = $(this).attr("data-propertyValue");
+        var propertyType = $(this).attr("data-propertyType");
         if (PARAM_CHECKER.IsNotEmptyString(propertyName)) {
-            item[propertyName.trim()] = propertyValue;
+            if ("CheckBoxArray" === propertyType) {
+                var ztreeId = $(this).find(".ztree").first().attr("id");
+                item[propertyName] = Doc.GetCheckedTreeNodes(ztreeId);
+            }
+            else {
+                item[propertyName.trim()] = propertyValue;
+            }
         }
     });
+
+    ///几种群组设置
 
     var param = [Convertor.ToBase64String(JSON.stringify(item), true), { 0: "base64" }];
 
@@ -17,7 +26,7 @@ Doc.SaveCategory = function () {
         LOGGER.Log(res);
         Doc.SubmitEnd(submitId);
 
-        if (false === PARAM_CHECKER.IsTopWindow()) { 
+        if (false === PARAM_CHECKER.IsTopWindow()) {
             top.window.Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#treeDemo", res1, [], {}); });
 
         }
@@ -59,13 +68,21 @@ Doc.SaveDetail = function () {
     
      var item = {};
      var editor = UE.getEditor('editor');
-    var $ctrls = $("[data-FormName='Default']").each(function () {
-        var propertyName = $(this).attr("data-propertyName");
-        var propertyValue = $(this).attr("data-propertyValue");
-        if (PARAM_CHECKER.IsNotEmptyString(propertyName)) {
-            item[propertyName.trim()] = propertyValue;
-        }
-    });
+     var $ctrls = $("[data-FormName='Default']").each(function () {
+         var propertyName = $(this).attr("data-propertyName");
+         var propertyValue = $(this).attr("data-propertyValue");
+         var propertyType = $(this).attr("data-propertyType");
+         if (PARAM_CHECKER.IsNotEmptyString(propertyName)) {
+             if ("CheckBoxArray" === propertyType) {
+                 var ztreeId = $(this).find(".ztree").first().attr("id");
+                 item[propertyName] = Doc.GetCheckedTreeNodes(ztreeId);
+             }
+             else {
+                 item[propertyName.trim()] = propertyValue;
+             }
+         }
+     });
+
     item.Content = editor.getContent();
     item.ThumbnailSrc = $(item.Content).find("img").attr("src");
     item.PlainText = editor.getContentTxt();

@@ -6,13 +6,19 @@ Doc.SaveCategory = function () {
     var $ctrls = $("[data-FormName='Default']").each(function () {
         var propertyName = $(this).attr("data-propertyName");
         var propertyValue = $(this).attr("data-propertyValue");
+        var propertyType = $(this).attr("data-propertyType");
         if (PARAM_CHECKER.IsNotEmptyString(propertyName)) {
-            item[propertyName.trim()] = propertyValue;
+            if ("CheckBoxArray" === propertyType) {
+                var ztreeId = $(this).find(".ztree").first().attr("id");
+                item[propertyName] = Doc.GetCheckedTreeNodes(ztreeId);
+            }
+            else {
+                item[propertyName.trim()] = propertyValue;
+            }
         }
     });
 
     ///几种群组设置
-    item.UserAllowedArray = Doc.GetCheckedTreeNodes("ztree2");
 
     var param = [Convertor.ToBase64String(JSON.stringify(item), true), { 0: "base64" }];
 
@@ -64,11 +70,18 @@ Doc.SaveDetail = function () {
     var $ctrls = $("[data-FormName='Default']").each(function () {
         var propertyName = $(this).attr("data-propertyName");
         var propertyValue = $(this).attr("data-propertyValue");
+        var propertyType = $(this).attr("data-propertyType");
         if (PARAM_CHECKER.IsNotEmptyString(propertyName)) {
-            item[propertyName.trim()] = propertyValue;
+            if ("CheckBoxArray" === propertyType) {
+                var ztreeId = $(this).find(".ztree").first().attr("id");
+                item[propertyName] = Doc.GetCheckedTreeNodes(ztreeId);
+            }
+            else {
+                item[propertyName.trim()] = propertyValue;
+            }
         }
     });
-    item.UserAllowedArray = Doc.GetCheckedTreeNodes("ztree2");
+
 
 
     var param = [Convertor.ToBase64String(JSON.stringify(item), true), { 0: "base64" }];
