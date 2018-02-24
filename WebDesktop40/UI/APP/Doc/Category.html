@@ -40,7 +40,7 @@
 </head>
 <body>
     <input type="hidden" id="ID"  data-FormName="Default" data-propertyName="ID" />
-    <input type="hidden" id="page" value="Category" />
+    <input type="hidden" id="pageName" value="Detail" />
     <div class="global">
         <div class="title"><input type="text" data-FormName="Default" data-propertyName="Name" data-propertyValue="" placeholder="请输入目录名称" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());"/></div>
 
@@ -69,7 +69,17 @@
     <script type="text/javascript">
         $(document).ready(function () {
             Doc.LoadCategoryDetail();
-            Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#category", res1, [], {}); });
+            Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) {
+                Doc.LoadTreeTo("#category", res1, [], {
+                    Click: function (event, treeId, treeNode) {
+                        var name = treeNode.Name;
+                        $('#category').hide();
+                        $("#parentNode").text(name);
+                        $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.id);
+                        $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
+                        $("#selectedTreeNode").val(treeNode.id);
+                    }
+                }); });
         });
     </script>
     <div id="modal"></div>

@@ -17,7 +17,7 @@ Doc.GetCheckedTreeNodes=function(target)
     for (var k = 0; k < selectedNodes.length; k++) {
         var treeNode = selectedNodes[k];
         if (undefined === treeNode.children) {
-            IDArray.push({ "选中": treeNode.ID });
+            IDArray.push( treeNode.ID);
         }
     }
     return IDArray;
