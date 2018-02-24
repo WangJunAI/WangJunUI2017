@@ -1503,6 +1503,7 @@
     <Content Include="UI\APP\Workflow\JS\QuickBar.js" />
     <Content Include="UI\APP\Workflow\redirect.html" />
     <Content Include="UI\APP\Workflow\Workflow.html" />
+    <Content Include="UI\APP\YunNote\CategoryVer2.html" />
     <Content Include="UI\APP\YunPan\CategoryVer2.html" />
     <Content Include="UI\APP\YunProject\AppInfo.html" />
     <Content Include="UI\APP\YunProject\Category.html" />
