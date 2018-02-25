@@ -4,6 +4,9 @@
     <meta charset="utf-8" />
     <title></title>
     <link href="CSS/Detail.css" rel="stylesheet" />
+    <link href="CSS/milestone.css" rel="stylesheet" />
+    <script src="JS/MileStone.js"></script>
+
     <script src="../../../JS/Base/jquery-3.1.1.min.js"></script>
     <script src="../../../JS/Base/NET.js"></script>
     <script src="../../../JS/Base/PARAM_CHECKER.js"></script>
@@ -114,91 +117,152 @@
                 </li>
             </ul>
         </div>
+
+        <div>
+            <h1>项目进度设置</h1>
+            <ul id="milestone">
+                <li>
+                    <h2 class="checkpoint"><span class="title">完成界面布局</span><span class="separator">|</span><span class="progress">预计2017年12月18日结束，当前完成度13.5%，剩余时间 3天</span></h2>
+                    <ul>
+                        <li>
+                            <div class="row">
+                                <div class="content">Caltech-UCSD-200-2011 是一个具有 200 种鸟类照片、总数为 11,788 的图像数据集。</div>
+                                <div class="info"><span class="status">已完成</span><span class="time">预计2017年12月02日结束</span><span class="time">实际2017年12月02日结束</span></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row">
+                                <div class="content">Caltech-UCSD-200-2011 是一个具有 200 种鸟类照片、总数为 11,788 的图像数据集。</div>
+                                <div class="info"><span class="status">未开始</span><span class="time">预计2017年12月02日结束</span><a href="javascript:;" class="btn">删除</a><a href="javascript:;" class="btn">开始处理</a></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row">
+                                <div class="content">Caltech-UCSD-200-2011 是一个具有 200 种鸟类照片、总数为 11,788 的图像数据集。</div>
+                                <div class="info"><span class="status">进行中</span><span class="time">预计2017年12月02日结束</span><a href="javascript:;" class="btn">确认完成</a></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row">
+                                <div class="content"><input type="text" value="简述要完成的工作项"></div>
+                                <div class="info"><span class="status">未开始</span><span class="time"> <input type="text" value="请填写预计结束时间"> </span><a href="javascript:;" class="btn">保存</a></div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:;" class="addbtn">添加新任务</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="checkpoint"><input type="text" value="简述时间节点任务" /><span class="separator">|</span><span class="progress"> <input type="text" value="请填写预计结束时间" /></span><a href="javascript:;" class="addbtn">保存</a><a href="javascript:;" class="addbtn">删除</a></div>
+                    <ul>
+                        <li>
+                            <div class="row">
+                                <div class="content"><input type="text" value="简述要完成的工作项"></div>
+                                <div class="info"><span class="status">未开始</span><span class="time"> <input type="text" value="请填写预计结束时间"> </span><a href="javascript:;" class="btn">删除</a><a href="javascript:;" class="btn">保存</a></div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:;" class="addbtn" onclick="Milestone.AddTask()">添加新任务</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:;" class="addbtn" onclick="Milestone.AddCheckPoint()">添加新时间节点</a>
+                </li>
+            </ul>
+        </div>
         <div class="buttons">
             <a href="jajavscript:;" class="btn" onclick="Doc.SaveDetail()">启动项目</a>
             <a href="jajavscript:;" class="btn" onclick="Doc.SaveDetail()">存稿</a>
             <a href="http://localhost:39641/TouTiao/TouTiaoArticle.html?id=[id]" id="preView" target="_blank" class="btn">预览</a>
             <a href="jajavscript:;" class="btn" onclick="$(window.parent.document).find('#detailWindow').hide(); window.close();">取消</a>
         </div>
-        <div>
-            <h1>项目进度</h1>
+    </div>
+
+    <script type="text/html" id="tpl_Milestone_1">
+        <li>
+            <div class="checkpoint"><input type="text" value="简述时间节点任务" /><span class="separator">|</span><span class="progress"> <input type="text" value="请填写预计结束时间" /></span><a href="javascript:;" class="addbtn">保存</a><a href="javascript:;" class="addbtn">删除</a></div>
             <ul>
                 <li>
-                    <h2>时间轴节点1</h2>
-                    <ul>
-                        <li><span>进度记录</span></li>
-                        <li><span>进度记录</span></li>
-                        <li><span>进度记录</span></li>
-                        <li><span>进度记录</span></li>
-                        <li><span>添加进度</span></li>
-                    </ul>
+                    <div class="row">
+                        <div class="content"><input type="text" value="简述要完成的工作项"></div>
+                        <div class="info"><span class="status">未开始</span><span class="time"> <input type="text" value="请填写预计结束时间"> </span><a href="javascript:;" class="btn">删除</a><a href="javascript:;" class="btn">保存</a></div>
+                    </div>
                 </li>
-                <li><h2>时间轴节点1</h2></li>
-                <li><h2>时间轴节点1</h2></li>
-                <li><h2>添加事件节点</h2></li>
+                <li>
+                    <a href="javascript:;" class="addbtn" onclick="Milestone.AddTask()">添加新任务</a>
+                </li>
             </ul>
+        </li>
+    </script>
+    <script type="text/html" id="tpl_Milestone_2">
+        <li>
+            <div class="row">
+                <div class="content"><input type="text" value="简述要完成的工作项"></div>
+                <div class="info"><span class="status">未开始</span><span class="time"> <input type="text" value="请填写预计结束时间"> </span><a href="javascript:;" class="btn">删除</a><a href="javascript:;" class="btn">保存</a></div>
+            </div>
+        </li>
+    </script>
+
+
+        <script type="text/javascript">
+
+            //实例化编辑器
+            //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+            var ue = UE.getEditor('editor');
+        </script>
+
+
+        <script type="text/javascript">
+            $("#publishDate").datepicker({
+                //inline: true
+                dateFormat: "yy/mm/dd"
+            });
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                Doc.LoadDetail();
+                Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) {
+                    Doc.LoadTreeTo("#category", res1, [], {
+                        Click: function (event, treeId, treeNode) {
+                            var name = treeNode.Name;
+                            $('#category').hide();
+                            $("#parentNode").text(name);
+                            $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.id);
+                            $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
+                        }
+                    });
+                }); ///加载目录
+                Doc.LoadData_All([], function (res1) {
+                    Doc.LoadTreeTo("#category2", res1, [], {
+                        ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
+                    });
+                }); ///加载目录
+
+                Doc.LoadData_All([], function (res1) {
+                    Doc.LoadTreeTo("#category3", res1, [], {
+                        ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
+                    });
+                }); ///加载目录
+
+                Doc.LoadData_All([], function (res1) {
+                    Doc.LoadTreeTo("#category4", res1, [], {
+                        ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
+                    });
+                }); ///加载目录
+
+            });
+
+
+        </script>
+
+        <div id="modal"></div>
+        <div id="dialog">
+            <div class="title">标题</div>
+            <div class="message">操作成功！</div>
+            <div class="bottom"><a href="javascript:;" onclick="$('#modal').hide();$('#dialog').hide()">关闭</a></div>
         </div>
-    </div>
-
-
-
-    <script type="text/javascript">
-
-        //实例化编辑器
-        //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
-        var ue = UE.getEditor('editor');
-    </script>
-
-
-    <script type="text/javascript">
-        $("#publishDate").datepicker({
-            //inline: true
-            dateFormat: "yy/mm/dd"
-        });
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            Doc.LoadDetail();
-            Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) {
-                Doc.LoadTreeTo("#category", res1, [], {
-                    Click: function (event, treeId, treeNode) {
-                        var name = treeNode.Name;
-                        $('#category').hide();
-                        $("#parentNode").text(name);
-                        $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.id);
-                        $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
-                    }
-                });
-            }); ///加载目录
-            Doc.LoadData_All([], function (res1) {
-                Doc.LoadTreeTo("#category2", res1, [], {
-                    ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
-                });
-            }); ///加载目录
-
-            Doc.LoadData_All([], function (res1) {
-                Doc.LoadTreeTo("#category3", res1, [], {
-                    ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
-                });
-            }); ///加载目录
-
-            Doc.LoadData_All([], function (res1) {
-                Doc.LoadTreeTo("#category4", res1, [], {
-                    ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
-                });
-            }); ///加载目录
-
-        });
-
-
-    </script>
-
-    <div id="modal"></div>
-    <div id="dialog">
-        <div class="title">标题</div>
-        <div class="message">操作成功！</div>
-        <div class="bottom"><a href="javascript:;" onclick="$('#modal').hide();$('#dialog').hide()">关闭</a></div>
-    </div>
 
 </body>
 </html>

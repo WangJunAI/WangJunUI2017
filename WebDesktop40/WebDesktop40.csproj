@@ -1514,6 +1514,7 @@
     <Content Include="UI\APP\YunProject\CSS\Detail.css" />
     <Content Include="UI\APP\YunProject\CSS\Doc.css" />
     <Content Include="UI\APP\YunProject\CSS\Doc.Font.css" />
+    <Content Include="UI\APP\YunProject\CSS\milestone.css" />
     <Content Include="UI\APP\YunProject\CSS\QuickBar.css" />
     <Content Include="UI\APP\YunProject\Detail.html" />
     <Content Include="UI\APP\YunProject\Doc.html" />
@@ -1528,12 +1529,14 @@
     <Content Include="UI\APP\YunProject\JS\Doc.Detail.js" />
     <Content Include="UI\APP\YunProject\JS\Doc.js" />
     <Content Include="UI\APP\YunProject\JS\Doc.LeftMenu.js" />
+    <Content Include="UI\APP\YunProject\JS\Doc.Milestone.js" />
     <Content Include="UI\APP\YunProject\JS\Doc.Nav.SummaryList.js" />
     <Content Include="UI\APP\YunProject\JS\Doc.Nav.View1.js" />
     <Content Include="UI\APP\YunProject\JS\Doc.Nav.Ztree.js" />
     <Content Include="UI\APP\YunProject\JS\Doc.Table.js" />
     <Content Include="UI\APP\YunProject\JS\Doc.TopButton.js" />
     <Content Include="UI\APP\YunProject\JS\Doc.View.js" />
+    <Content Include="UI\APP\YunProject\JS\MileStone.js" />
     <Content Include="UI\APP\YunProject\JS\QuickBar.js" />
     <Content Include="UI\APP\YunProject\Main.html" />
     <Content Include="UI\APP\YunProject\redirect.html" />
