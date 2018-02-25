@@ -943,6 +943,7 @@
     <Content Include="JS\Base\zTree\js\jquery.ztree.exhide.js" />
     <Content Include="JS\Base\zTree\js\jquery.ztree.exhide.min.js" />
     <Content Include="JS\Base\zTree\log v3.x.txt" />
+    <Content Include="JS\SESSION.js" />
     <Content Include="JS\ueditor\dialogs\anchor\anchor.html" />
     <Content Include="JS\ueditor\dialogs\attachment\attachment.css" />
     <Content Include="JS\ueditor\dialogs\attachment\attachment.html" />

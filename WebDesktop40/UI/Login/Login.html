@@ -11,7 +11,7 @@
             right: 0;
             bottom: 0;
             background-color: #EEE;
-            overflow:hidden;
+            overflow: hidden;
         }
 
         .backcard {
@@ -56,6 +56,7 @@
             margin-right: auto;
             padding: 0 5%;
         }
+
         .button {
             height: 2.5em;
             line-height: 3em;
@@ -64,6 +65,7 @@
             display: block;
             margin-right: auto;
         }
+
         .foot {
             width: 100%;
             height: 4em;
@@ -78,6 +80,16 @@
             width: 100%;
         }
     </style>
+    <script src="../../JS/Base/jquery-3.1.1.min.js"></script>
+    <script src="../../JS/Base/NET.js"></script>
+    <script src="../../JS/Base/PARAM_CHECKER.js"></script>
+    <script src="../../JS/Base/Convertor.js"></script>
+    <script src="../../JS/Base/DEBUG.js"></script>
+    <script src="../../JS/SESSION.js"></script>
+
+    <script src="../../../JS/Base/CryptoJS/core-min.js"></script>
+    <script src="../../../JS/Base/CryptoJS/enc-base64-min.js"></script>
+
 </head>
 <body>
     <div class="global">
@@ -85,9 +97,9 @@
         <div class="panel">
             <div class="head"></div>
             <div class="body">
-                <div class="row"><input type="text" class="input" placeholder="请输入用户名" /></div>
-                <div class="row"><input type="text" class="input" placeholder="请输入密码"/></div>
-                <div class="row"><input type="button" class="button" value="登录" /></div>
+                <div class="row"><input type="text" class="input" placeholder="请输入用户名" data-FormName="Default" data-propertyName="UserID" data-propertyValue="111"   onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" /></div>
+                <div class="row"><input type="password" class="input" placeholder="请输入密码"  data-FormName="Default" data-propertyName="Password" data-propertyValue="111"   onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());"/></div>
+                <div class="row"><input type="button" class="button" value="登录" onclick="SESSION.Login()" /></div>
 
             </div>
             <div class="foot"></div>
