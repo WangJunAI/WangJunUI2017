@@ -120,7 +120,55 @@
 
         <div>
             <h1>项目进度设置</h1>
-            <ul id="milestone"></ul>
+            <ul id="milestone">
+                <li>
+                    <h2 class="checkpoint"><span class="title">完成界面布局</span><span class="separator">|</span><span class="progress">预计2017年12月18日结束，当前完成度13.5%，剩余时间 3天</span></h2>
+                    <ul>
+                        <li>
+                            <div class="row">
+                                <div class="content">Caltech-UCSD-200-2011 是一个具有 200 种鸟类照片、总数为 11,788 的图像数据集。</div>
+                                <div class="info"><span class="status">已完成</span><span class="time">预计2017年12月02日结束</span><span class="time">实际2017年12月02日结束</span></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row">
+                                <div class="content">Caltech-UCSD-200-2011 是一个具有 200 种鸟类照片、总数为 11,788 的图像数据集。</div>
+                                <div class="info"><span class="status">未开始</span><span class="time">预计2017年12月02日结束</span><a href="javascript:;" class="btn">删除</a><a href="javascript:;" class="btn">开始处理</a></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row">
+                                <div class="content">Caltech-UCSD-200-2011 是一个具有 200 种鸟类照片、总数为 11,788 的图像数据集。</div>
+                                <div class="info"><span class="status">进行中</span><span class="time">预计2017年12月02日结束</span><a href="javascript:;" class="btn">确认完成</a></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row">
+                                <div class="content"><input type="text" value="简述要完成的工作项"></div>
+                                <div class="info"><span class="status">未开始</span><span class="time"> <input type="text" value="请填写预计结束时间"> </span><a href="javascript:;" class="btn">保存</a></div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:;" class="addbtn">添加新任务</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="checkpoint"><input type="text" value="简述时间节点任务" /><span class="separator">|</span><span class="progress"> <input type="text" value="请填写预计结束时间" /></span><a href="javascript:;" class="addbtn">保存</a><a href="javascript:;" class="addbtn">删除</a></div>
+                    <ul>
+                        <li>
+                            <div class="row">
+                                <div class="content"><input type="text" value="简述要完成的工作项"></div>
+                                <div class="info"><span class="status">未开始</span><span class="time"> <input type="text" value="请填写预计结束时间"> </span><a href="javascript:;" class="btn">删除</a><a href="javascript:;" class="btn">保存</a></div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="javascript:;" class="addbtn" onclick="Milestone.AddTask()">添加新任务</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>  <a href="javascript:;" class="addbtn" onclick="Milestone.AddCheckPoint()">添加新时间节点</a>  </li>
+            </ul>
         </div>
         <div class="buttons">
             <a href="jajavscript:;" class="btn" onclick="Doc.SaveDetail()">启动项目</a>
@@ -157,38 +205,30 @@
     <script type="text/html" id="tpl_Milestone_3">
         <li>
             <div class="row">
-                <div class="content">[Content]</div>
-                <div class="info">
-                    <span class="status" data-propertyName="Status" data-propertyValue="">已完成</span>
-                    <span class="time" data-propertyName="ExpectedEndTime" data-propertyValue="">预计[ExpectedEndTime]结束</span>
-                    <span class="time" data-propertyName="ActualEndTime" data-propertyValue="">实际[ActualEndTime]结束</span>
-                </div>
+                <div class="content">Caltech-UCSD-200-2011 是一个具有 200 种鸟类照片、总数为 11,788 的图像数据集。</div>
+                <div class="info"><span class="status">已完成</span><span class="time">预计2017年12月02日结束</span><span class="time">实际2017年12月02日结束</span></div>
             </div>
         </li>
     </script>
     <script type="text/html" id="tpl_Milestone_4">
         <li>
             <div class="row">
-                <div class="content">[Content]</div>
-                <div class="info">
-                    <span class="status" data-propertyName="Status" data-propertyValue="">未开始</span>
-                    <span class="time" data-propertyName="ExpectedEndTime" data-propertyValue="">预计[ExpectedEndTime]结束</span>
-                    <a href="javascript:;" class="btn">删除</a><a href="javascript:;" class="btn">开始处理</a>
-                </div>
+                <div class="content">Caltech-UCSD-200-2011 是一个具有 200 种鸟类照片、总数为 11,788 的图像数据集。</div>
+                <div class="info"><span class="status">未开始</span><span class="time">预计2017年12月02日结束</span><a href="javascript:;" class="btn">删除</a><a href="javascript:;" class="btn">开始处理</a></div>
             </div>
         </li>
     </script>
     <script type="text/html" id="tpl_Milestone_5">
         <li>
             <div class="row">
-                <div class="content">[Content]</div>
-                <div class="info"><span class="status">进行中</span><span class="time">预计[ExpectedEndTime]结束</span><a href="javascript:;" class="btn">确认完成</a></div>
+                <div class="content">Caltech-UCSD-200-2011 是一个具有 200 种鸟类照片、总数为 11,788 的图像数据集。</div>
+                <div class="info"><span class="status">进行中</span><span class="time">预计2017年12月02日结束</span><a href="javascript:;" class="btn">确认完成</a></div>
             </div>
         </li>
     </script>
     <script type="text/html" id="tpl_Milestone_6">
         <li>
-            <h2 class="checkpoint"><span class="title">[CheckPointTitle]</span><span class="separator">|</span><span class="progress">[CheckPointSummary]</span></h2>
+            <h2 class="checkpoint"><span class="title">完成界面布局</span><span class="separator">|</span><span class="progress">预计2017年12月18日结束，当前完成度13.5%，剩余时间 3天</span></h2>
             <ul></ul>
         </li>
 
