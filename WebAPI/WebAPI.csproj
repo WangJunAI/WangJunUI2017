@@ -99,9 +99,17 @@
       <Project>{f778d22c-042f-4535-a9e1-10bfb9e23a7f}</Project>
       <Name>WangJun.Doc</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\WangJun2017\WangJun.HumanResource\WangJun.HumanResource.csproj">
+      <Project>{06f3a647-d026-4847-94a5-20643223cc96}</Project>
+      <Name>WangJun.HumanResource</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\WangJun2017\WangJun.Utility\WangJun.Utility.csproj">
       <Project>{DDC51285-3F85-4D6D-A10B-F835B9C5058A}</Project>
       <Name>WangJun.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WangJun.YunNote\WangJun.YunNote.csproj">
+      <Project>{766eed44-f19d-4ba4-ae75-ffd666d48066}</Project>
+      <Name>WangJun.YunNote</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

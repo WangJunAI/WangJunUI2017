@@ -19,7 +19,7 @@ App.Doc.CSS.LeftList.View3.Width = { Value: 12, Unit: "em" };
 
  App.Doc.Server = {
      Url1: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocWebAPI&m=LoadEntityList", ///加载文档目录
-    Url2: "http://aifuwu.wang/API.ashx?c=WangJun.Doc.DocWebAPI&m=DocCount",///文档数量
+     Url2: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocWebAPI&m=Count",///文档数量
     Url3: "Detail.html",
     Url4: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocWebAPI&m=SaveEntity",///保存一个文档
     Url5: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocWebAPI&m=GetEntity",///获取一个文档

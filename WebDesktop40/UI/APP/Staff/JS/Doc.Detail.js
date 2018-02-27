@@ -1,22 +1,29 @@
-﻿Doc.LoadDetail = function () {
-    $(document).ready(function () {
+﻿
+///加载数据
+Doc.LoadDetail = function () {
 
-        $("[data-single]").on("click", function () {
-            var val = $(this).attr("data-single");
-            $("[data-single='" + val + "']").removeClass("selected");
-            $(this).addClass("selected");
-            $("[data-propertyName='" + val + "'").attr("data-propertyValue", $(this).text());
+    if (PARAM_CHECKER.IsNotEmptyString(NET.GetQueryParam("ID"))) {
+
+
+        $(document).ready(function () {
+
+            $("[data-single]").on("click", function () {
+                var val = $(this).attr("data-single");
+                $("[data-single='" + val + "']").removeClass("selected");
+                $(this).addClass("selected");
+                $("[data-propertyName='" + val + "'").attr("data-propertyValue", $(this).text());
+            });
+
+            var id = NET.GetQueryParam("id");
+            var context = [id];
+
+            var callback = function (res) {
+                LOGGER.Log(res);
+                Doc.ShowDetail(res);
+            }
+            NET.LoadData(App.Doc.Server.Url5, callback, context, NET.POST);
         });
-
-        var id = NET.GetQueryParam("id");
-        var context = [id];
-
-        var callback = function (res) {
-            LOGGER.Log(res);
-            Doc.ShowDetail(res);
-        }
-        NET.LoadData(App.Doc.Server.Url5, callback, context, NET.POST);
-    });
+    }
 }
 
 Doc.ShowDetail = function (data) {
@@ -38,7 +45,8 @@ Doc.ShowDetail = function (data) {
             if (PARAM_CHECKER.IsNotEmptyString(propertyName)) {
                 var propertyValue = data[propertyName];
                 $(this).attr("data-propertyValue", propertyValue);
-                $(this).val(propertyValue);
+
+                $(this).val(eval(propertyValue));
             }
         });
 

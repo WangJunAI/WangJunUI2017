@@ -11,16 +11,19 @@ Doc.ShowTree = function (target, setting, zNodes) {
 
 Doc.GetCheckedTreeNodes=function(target)
 {
-    var ztree = $.fn.zTree.getZTreeObj(target);
-    var selectedNodes = ztree.getCheckedNodes();
-    var IDArray = [];
-    for (var k = 0; k < selectedNodes.length; k++) {
-        var treeNode = selectedNodes[k];
-        if (undefined === treeNode.children) {
-            IDArray.push(treeNode.ID);
+    if (true === PARAM_CHECKER.IsNotEmptyString(target)) {
+        var ztree = $.fn.zTree.getZTreeObj(target);
+        var selectedNodes = ztree.getCheckedNodes();
+        var IDArray = [];
+        for (var k = 0; k < selectedNodes.length; k++) {
+            var treeNode = selectedNodes[k];
+            if (undefined === treeNode.children) {
+                IDArray.push(treeNode.ID);
+            }
         }
+        return IDArray;
     }
-    return IDArray;
+    return [];
 }
  
 Doc.LoadTreeTo = function (target, data,excludeIdArray,option) {

@@ -4,6 +4,8 @@
     <meta charset="utf-8" />
     <title></title>
     <link href="CSS/Detail.css" rel="stylesheet" />
+    <link href="../../../CSS/TPL.SIZE.PC.1080.css" rel="stylesheet" />
+
     <script src="../../../JS/Base/jquery-3.1.1.min.js"></script>
     <script src="../../../JS/Base/NET.js"></script>
     <script src="../../../JS/Base/PARAM_CHECKER.js"></script>
@@ -59,7 +61,7 @@
                     <div class="item">
                         <div class="key">分类</div>
                         <div class="value" data-FormName="Default" data-propertyName="ParentID" data-propertyValue="">
-                            <a href="javascript:;" class="checkbox" onclick="$('#category').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
+                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
                             <div style="position: absolute;">
                                 <div id="category" class="dropdownlist">
                                 </div>
@@ -72,7 +74,7 @@
                     <div class="item">
                         <div class="key">添加组织</div>
                         <div class="value" data-FormName="Default" data-propertyName="OrgAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
-                            <a href="javascript:;" class="checkbox" onclick="$('#category2').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
+                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category2').toggle();"  data-FormName="Default" data-propertyName="OrgAllowedArrayText" data-propertyValue="">默认分类</a>
                             <div style="position: absolute;">
                                 <div id="category2" class="dropdownlist">
                                 </div>
@@ -84,7 +86,7 @@
                     <div class="item">
                         <div class="key">添加人员</div>
                         <div class="value" data-FormName="Default" data-propertyName="UserAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
-                            <a href="javascript:;" class="checkbox" onclick="$('#category3').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
+                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category3').toggle();"  data-FormName="Default" data-propertyName="UserAllowedArrayText" data-propertyValue="">默认分类</a>
                             <div style="position: absolute;">
                                 <div id="category3" class="dropdownlist">
                                 </div>
@@ -96,7 +98,7 @@
                     <div class="item">
                         <div class="key">添加角色</div>
                         <div class="value" data-FormName="Default" data-propertyName="RoleAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
-                            <a href="javascript:;" class="checkbox" onclick="$('#category4').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
+                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category4').toggle();"  data-FormName="Default" data-propertyName="RoleAllowedArrayText" data-propertyValue="">默认分类</a>
                             <div style="position: absolute;">
                                 <div id="category4" class="dropdownlist">
                                 </div>
@@ -136,11 +138,11 @@
             Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) {
                 Doc.LoadTreeTo("#category", res1, [], {
                     Click: function (event, treeId, treeNode) {
-                        var name = treeNode.Name;
                         $('#category').hide();
-                        $("#parentNode").text(name);
-                        $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.id);
+                        var name = treeNode.Name;
+                        $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.ID);
                         $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
+                        $("[data-propertyName='ParentName']").text(name);
                     }
                 });
             }); ///加载目录

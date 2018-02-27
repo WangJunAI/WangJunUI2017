@@ -3,7 +3,7 @@ App = {};
 App.Doc = {};
 App.Doc.Info = {};
 
-App.Doc.Info.ID = "RYZZ";
+App.Doc.Info.ID = "汪俊人员和组织管理";
 App.Doc.Info.Name = "汪俊人员和组织管理";
 
 App.Doc.CSS = {};
@@ -17,9 +17,13 @@ App.Doc.CSS.LeftList.View1.Width = { Value: 30, Unit: "em" };
 App.Doc.CSS.LeftList.View3 = {};
 App.Doc.CSS.LeftList.View3.Width = { Value: 18, Unit: "em" };
 
+
+App.Doc.Tree = {};
+App.Doc.Tree.RootID1 = "5a956c1926b01f56ac3e8d26";
+
  App.Doc.Server = {
      Url1: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=LoadStaffList", ///加载人员列表
-     Url2: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=StaffCount",///文档数量
+     Url2: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=Count",///文档数量
     Url3: "Detail.html",
     Url4: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=SaveEntity",///保存一个文档
     Url5: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=GetEntity",///获取一个文档
@@ -167,13 +171,11 @@ App.Doc.Data.DocTable.Info = {
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "全选", Method: "", Sort: "", PropertyName: "Type", DataType: "checkbox" });
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "姓名", Method: "Doc.TableRowClick", Sort: "", PropertyName: "Name", DataType: "string" });
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "部门", Method: "", Sort: "", PropertyName: "ParentName", DataType: "string" });
+App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "岗位", Method: "", Sort: "", PropertyName: "PositionName", DataType: "string" });
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "邮箱", Method: "", Sort: "", PropertyName: "Email", DataType: "string" });
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "电话", Method: "", Sort: "", PropertyName: "Phone", DataType: "string" });
-//App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "评论量", Method: "", Sort: "", PropertyName: "CommentCount", DataType: "string" });
-//App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "发布时间", Method: "", Sort: "", PropertyName: "PublishTime", DataType: "date" });
-//App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "创建时间", Method: "", Sort: "", PropertyName: "CreateTime", DataType: "date" });
-//App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "状态", Method: "", Sort: "", PropertyName: "Status", DataType: "string" });
-//App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "详细", Method: "", Sort: "", PropertyName: "Type", DataType: "link", Value: "详细" });
+App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "QQ/微信", Method: "", Sort: "", PropertyName: "QQ", DataType: "string" });
+
 
 App.Doc.Data.DocTable.Info.Pager.PagerIndexClick = function () {
     LOGGER.Log("App.Doc.Data.DocTable.Info.Pager.PagerIndexClick");

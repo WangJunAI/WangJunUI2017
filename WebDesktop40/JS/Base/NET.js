@@ -32,7 +32,7 @@ NET.GET = "GET";
 
 NET.GetQueryParam = function (name,url) {
     if (!PARAM_CHECKER.IsNotEmptyString(url)) {
-        url = window.location.href;
+        url = window.location.href.toLowerCase();
     }
     var param = {};
     var index = url.indexOf("?")+1;
@@ -45,7 +45,7 @@ NET.GetQueryParam = function (name,url) {
         }
     }
     if (PARAM_CHECKER.IsNotEmptyString(name)) {
-        return param[name];
+        return param[name.toLowerCase()];
     }
     return param;
 }

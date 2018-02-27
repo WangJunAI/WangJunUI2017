@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="1.html" />
+    <Content Include="CSS\TPL.SIZE.PC.1080.css" />
     <Content Include="JS\Base\Convertor.js" />
     <Content Include="JS\Base\CryptoJS\core-min.js" />
     <Content Include="JS\Base\CryptoJS\enc-base64-min.js" />
@@ -1550,7 +1551,6 @@
     <Content Include="UI\APP\YunNote\CSS\Doc.css" />
     <Content Include="UI\APP\YunNote\CSS\Doc.Font.css" />
     <Content Include="UI\APP\YunNote\CSS\QuickBar.css" />
-    <Content Include="UI\APP\YunNote\Detai1l.html" />
     <Content Include="UI\APP\YunNote\Detail.html" />
     <Content Include="UI\APP\YunNote\Main.html" />
     <Content Include="UI\APP\YunNote\JS\AppInfo.Doc.js" />
