@@ -165,7 +165,7 @@
         <div class="buttons">
             <a href="jajavscript:;" class="btn" onclick="Doc.SaveDetail()">保存</a>
             <a href="jajavscript:;" class="btn" onclick="Doc.SaveDetail()">删除</a>
-            <a href="jajavscript:;" class="btn" onclick="$(window.parent.document).find('#detailWindow').hide(); window.close();">取消</a>
+            <a href="jajavscript:;" class="btn" onclick="Doc.CloseWindow();">取消</a>
         </div>
     </div>
 
@@ -212,7 +212,7 @@
             }); ///加载目录
 
         });
-
+        window.parent.document.getElementById("iframeTitle").innerText = document.title;
 
     </script>
 

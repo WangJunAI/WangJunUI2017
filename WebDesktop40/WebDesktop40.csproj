@@ -1445,7 +1445,6 @@
     <Content Include="UI\APP\Doc\redirect.html" />
     <Content Include="UI\APP\Doc\Workflow.html" />
     <Content Include="UI\APP\Staff\AppInfo.html" />
-    <Content Include="UI\APP\Staff\CategoryVer2.html" />
     <Content Include="UI\APP\Staff\Category.html" />
     <Content Include="UI\APP\Staff\Chart1.html" />
     <Content Include="UI\APP\Staff\CSS\Category.css" />
@@ -1474,7 +1473,6 @@
     <Content Include="UI\APP\Staff\JS\QuickBar.js" />
     <Content Include="UI\APP\Staff\redirect.html" />
     <Content Include="UI\APP\Staff\Main.html" />
-    <Content Include="UI\APP\Staff\Workflow.html" />
     <Content Include="UI\APP\Workflow\AppInfo.html" />
     <Content Include="UI\APP\Workflow\Category.html" />
     <Content Include="UI\APP\Workflow\Chart1.html" />
@@ -1505,7 +1503,7 @@
     <Content Include="UI\APP\Workflow\JS\QuickBar.js" />
     <Content Include="UI\APP\Workflow\redirect.html" />
     <Content Include="UI\APP\Workflow\Workflow.html" />
-    <Content Include="UI\APP\YunNote\CategoryVer2.html" />
+    <Content Include="UI\APP\YunNote\Category.html" />
     <Content Include="UI\APP\YunPan\CategoryVer2.html" />
     <Content Include="UI\APP\YunProject\AppInfo.html" />
     <Content Include="UI\APP\YunProject\Category.html" />
@@ -1544,7 +1542,6 @@
     <Content Include="UI\APP\YunProject\Time.html" />
     <Content Include="UI\APP\YunProject\Workflow.html" />
     <Content Include="UI\APP\YunNote\AppInfo.html" />
-    <Content Include="UI\APP\YunNote\Category.html" />
     <Content Include="UI\APP\YunNote\Chart1.html" />
     <Content Include="UI\APP\YunNote\CSS\Category.css" />
     <Content Include="UI\APP\YunNote\CSS\Detail.css" />
