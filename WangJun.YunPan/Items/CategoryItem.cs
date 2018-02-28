@@ -6,7 +6,7 @@ using WangJun.DB;
 using WangJun.Entity;
 using WangJun.Utility;
 
-namespace WangJun.YunNote
+namespace WangJun.YunPan
 {
     /// <summary>
     /// 文档实体 
@@ -19,7 +19,7 @@ namespace WangJun.YunNote
             this._CollectionName = CONST.DB.CollectionName_CategoryItem;
              this.ClassFullName = this.GetType().FullName;
             this.Version = 1;
-            this.AppCode = Entity.CONST.APP.YunNote;
+            this.AppCode = Entity.CONST.APP.YunPan;
             this.AppName = Entity.CONST.APP.GetString(this.AppCode);
         }
   

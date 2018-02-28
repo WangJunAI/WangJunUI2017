@@ -1,0 +1,1 @@
+﻿{"ServerFileName":"208b402f-4f29-40bb-856f-ba640c11f638","ServerFilePath":"E:\\WangJunUI2017\\WangJunUI2017\\WebDesktop40\\uploadFiles\\208b402f-4f29-40bb-856f-ba640c11f638","FileNameInClient":"2.gif","FileLengtth":854371,"HttpUrl":"http://localhost:14000/uploadFiles/208b402f-4f29-40bb-856f-ba640c11f638.txt"}

@@ -111,6 +111,10 @@
       <Project>{766eed44-f19d-4ba4-ae75-ffd666d48066}</Project>
       <Name>WangJun.YunNote</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WangJun.YunPan\WangJun.YunPan.csproj">
+      <Project>{7264576f-0e49-4b34-8d91-9f43eeadd777}</Project>
+      <Name>WangJun.YunPan</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WangJun.YunProject\WangJun.YunProject.csproj">
       <Project>{8fd45de8-adfa-4705-9e6f-da5a748c5c30}</Project>
       <Name>WangJun.YunProject</Name>

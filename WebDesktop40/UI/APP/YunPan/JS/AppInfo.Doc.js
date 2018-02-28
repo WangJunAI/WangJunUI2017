@@ -18,24 +18,24 @@ App.Doc.CSS.LeftList.View3 = {};
 App.Doc.CSS.LeftList.View3.Width = { Value: 12, Unit: "em" };
 
  App.Doc.Server = {
-     Url1: "http://localhost:9990/API.ashx?c=WangJun.Doc.YunPanWebAPI&m=LoadEntityList", ///加载文档目录
-     Url2: "http://localhost:9990/API.ashx?c=WangJun.Doc.YunPanWebAPI&m=Count",///文档数量
+     Url1: "http://localhost:9990/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=LoadEntityList", ///加载文档目录
+     Url2: "http://localhost:9990/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=Count",///文档数量
     Url3: "Detail.html",
-    Url4: "http://localhost:9990/API.ashx?c=WangJun.Doc.YunPanWebAPI&m=SaveEntity",///保存一个文档
-    Url5: "http://localhost:9990/API.ashx?c=WangJun.Doc.YunPanWebAPI&m=GetEntity",///获取一个文档
+    Url4: "http://localhost:9990/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=SaveEntity",///保存一个文档
+    Url5: "http://localhost:9990/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=GetEntity",///获取一个文档
     Url6: "Category.html",
-    Url7: "http://localhost:9990/API.ashx?c=WangJun.Doc.YunPanWebAPI&m=SaveCategory",///保存一个目录
-    Url8: "http://localhost:9990/API.ashx?c=WangJun.Doc.YunPanWebAPI&m=LoadCategoryList",///加载目录列表
-    Url9: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocWebAPI&m=RemoveDoc",///移除一份文档,暂未使用
-    Url10: "http://localhost:9990/API.ashx?c=WangJun.Doc.YunPanWebAPI&m=RemoveCategory",///移除一个目录
-    Url11: "http://localhost:9990/API.ashx?c=WangJun.Doc.YunPanWebAPI&m=GetCategory", ///获取一个目录
-    Url12: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocManager&m=UpdateStatus&p=0",///暂未使用
-    Url13: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocWebAPI&m=MoveToRecycleBin", ///移除到回收站
-    Url14: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocWebAPI&m=LoadRecycleBinItem",///加载回收站
-    Url15: "http://localhost:9990/API.ashx?c=WangJun.Doc.DataAnalysor&m=GetHotWords",///暂未使用
-    Url16: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocWebAPI&m=Aggregate",///聚合查询
-    Url17: "http://localhost:9990/API.ashx?c=WangJun.Doc.ClientBehaviorManager&m=Aggregate",
-    Url18: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocWebAPI&m=RecycleBinCount",///回收站数量
+    Url7: "http://localhost:9990/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=SaveCategory",///保存一个目录
+    Url8: "http://localhost:9990/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=LoadCategoryList",///加载目录列表
+    Url9: "http://localhost:9990/API.ashx?c=WangJun.YunPan.DocWebAPI&m=RemoveDoc",///移除一份文档,暂未使用
+    Url10: "http://localhost:9990/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=RemoveCategory",///移除一个目录
+    Url11: "http://localhost:9990/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=GetCategory", ///获取一个目录
+    Url12: "http://localhost:9990/API.ashx?c=WangJun.YunPan.DocManager&m=UpdateStatus&p=0",///暂未使用
+    Url13: "http://localhost:9990/API.ashx?c=WangJun.YunPan.DocWebAPI&m=MoveToRecycleBin", ///移除到回收站
+    Url14: "http://localhost:9990/API.ashx?c=WangJun.YunPan.DocWebAPI&m=LoadRecycleBinItem",///加载回收站
+    Url15: "http://localhost:9990/API.ashx?c=WangJun.YunPan.DataAnalysor&m=GetHotWords",///暂未使用
+    Url16: "http://localhost:9990/API.ashx?c=WangJun.YunPan.DocWebAPI&m=Aggregate",///聚合查询
+    Url17: "http://localhost:9990/API.ashx?c=WangJun.YunPan.ClientBehaviorManager&m=Aggregate",
+    Url18: "http://localhost:9990/API.ashx?c=WangJun.YunPan.DocWebAPI&m=RecycleBinCount",///回收站数量
     Url19: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=LoadAll",///回收站数量
 
 };

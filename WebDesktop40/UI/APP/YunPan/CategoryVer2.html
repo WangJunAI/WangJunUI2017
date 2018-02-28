@@ -50,7 +50,7 @@
                     <div class="item">
                         <div class="key">上级目录</div>
                         <div class="value" data-FormName="Default" data-propertyName="ParentID" data-propertyValue="">
-                            <a href="javascript:;" class="checkbox" onclick="$('#category').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
+                            <a href="javascript:;" class="checkbox" onclick="$('#category').toggle();"  data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
                             <div style="position: absolute;">
                                 <div id="category" class="dropdownlist">
                                 </div>
@@ -110,9 +110,9 @@
                     Click: function (event, treeId, treeNode) {
                         var name = treeNode.Name;
                         $('#category').hide();
-                        $("#parentNode").text(name);
-                        $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.id);
+                        $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.ID);
                         $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
+                        $("[data-propertyName='ParentName']").text( name);
                     }
                 });
             });

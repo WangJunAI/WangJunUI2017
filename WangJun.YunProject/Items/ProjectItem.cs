@@ -18,9 +18,7 @@ namespace WangJun.YunProject
         {
             this._DbName = CONST.DB.DBName_DocService;
             this._CollectionName = CONST.DB.CollectionName_YunProjectItem;
-            this.BizModeCode = Entity.CONST.BizMode.BizYunNote;
-            this.BizMode = Entity.CONST.BizMode.GetString(this.BizModeCode);
-            this.ClassFullName = this.GetType().FullName;
+             this.ClassFullName = this.GetType().FullName;
             this.Version = 1;
             this.AppCode = Entity.CONST.APP.YunNote;
             this.AppName = Entity.CONST.APP.GetString(this.AppCode);
