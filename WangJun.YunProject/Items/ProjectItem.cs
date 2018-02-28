@@ -1,29 +1,29 @@
 ﻿using MongoDB.Bson;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using WangJun.DB;
 using WangJun.Entity;
 using WangJun.Utility;
 
-namespace WangJun.YunNote
+namespace WangJun.YunProject
 {
     /// <summary>
     /// 文档实体 
     /// </summary>
-    public class YunNoteItem: BaseItem
+    public class ProjectItem : BaseItem
     {
-        public YunNoteItem()
+        public ProjectItem()
         {
             this._DbName = CONST.DB.DBName_DocService;
-            this._CollectionName = CONST.DB.CollectionName_YunNoteItem;
+            this._CollectionName = CONST.DB.CollectionName_YunProjectItem;
             this.BizModeCode = Entity.CONST.BizMode.BizYunNote;
             this.BizMode = Entity.CONST.BizMode.GetString(this.BizModeCode);
             this.ClassFullName = this.GetType().FullName;
             this.Version = 1;
             this.AppCode = Entity.CONST.APP.YunNote;
             this.AppName = Entity.CONST.APP.GetString(this.AppCode);
-
         }
 
         public string ShowMode { get; set; }
@@ -41,7 +41,7 @@ namespace WangJun.YunNote
         public int PlainTextLength { get; set; }
 
         public string Summary { get; set; }
- 
+
         public int ReadCount { get; set; }
 
         public int LikeCount { get; set; }
@@ -49,12 +49,14 @@ namespace WangJun.YunNote
         public int CommentCount { get; set; }
 
         public string ImageUrl { get; set; }
- 
+
         public DateTime PublishTime { get; set; }
 
         public string PublishMode { get; set; }
 
         public string Permission { get; set; }
+
+        public ArrayList Milestone  { get;set;}
 
 
         /// <summary>
@@ -62,17 +64,17 @@ namespace WangJun.YunNote
         /// </summary>
         public void Save()
         {
-            EntityManager.GetInstance().Save<YunNoteItem>(this);
+            EntityManager.GetInstance().Save<ProjectItem>(this);
         }
         public static void Save(string jsonInput)
         {
             var dict = Convertor.FromJsonToDict2(jsonInput);
-            var inst = new YunNoteItem();
+            var inst = new ProjectItem();
             if (dict.ContainsKey("ID") && null != dict["ID"])
             {
                 inst.ID = dict["ID"].ToString();
             }
-            inst = EntityManager.GetInstance().Get<YunNoteItem>(inst);
+            inst = EntityManager.GetInstance().Get<ProjectItem>(inst);
             foreach (var kv in dict)
             {
                 inst.GetType().GetProperty(kv.Key).SetValue(inst, kv.Value);

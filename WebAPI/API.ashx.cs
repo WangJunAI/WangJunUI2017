@@ -120,7 +120,7 @@ namespace WebAPI
             dict.Add("WangJun.HumanResource.StaffWebAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.HumanResource.dll"));
             dict.Add("WangJun.YunNote.YunNoteWebAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.YunNote.dll"));
             dict.Add("WangJun.Doc.YunPanWebAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Doc.dll"));
-            dict.Add("WangJun.Doc.YunProjectWebAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Doc.dll"));
+            dict.Add("WangJun.YunProject.YunProjectWebAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.YunProject.dll"));
             dict.Add("WangJun.Doc.WorkflowWebAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Doc.dll"));
 
 
