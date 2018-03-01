@@ -4,17 +4,17 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using WangJun.Utility;
-//using System.Web.SessionState;
+using System.Web.SessionState;
 
 namespace WebAPI
 {
     /// <summary>
     /// API 的摘要说明
     /// </summary>
-    public class API : IHttpHandler/*,IRequiresSessionState*/
+    public class API : IHttpHandler, IRequiresSessionState
     {
 
-        
+
         /// <summary>
         /// 服务发现
         /// 服务路由
@@ -23,7 +23,6 @@ namespace WebAPI
         /// <param name="context"></param>
         public void ProcessRequest(HttpContext context)
         {
-
             context.Response.Headers.Add("Access-Control-Allow-Origin", "*"); //设置请求来源不受限制
             context.Response.Headers.Add("Access-Control-Allow-Headers", "X-Requested-With");
             context.Response.Headers.Add("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS"); //请求方式
@@ -43,11 +42,11 @@ namespace WebAPI
             var decodeParam = new object[1];
             if ("GET" == httpMethod)
             {
-                var keys = context.Request.QueryString.AllKeys.Where((p)=> { return !String.IsNullOrWhiteSpace(p)&& p.StartsWith("p"); });
+                var keys = context.Request.QueryString.AllKeys.Where((p) => { return !String.IsNullOrWhiteSpace(p) && p.StartsWith("p"); });
                 param = new object[parameters.Length];
                 for (int k = 0; k < keys.Count(); k++)
                 {
-                    param[k] = context.Request.QueryString["p"+k];
+                    param[k] = context.Request.QueryString["p" + k];
                 }
             }
             else if ("POST" == httpMethod)
@@ -138,8 +137,8 @@ namespace WebAPI
             }
         }
 
- 
 
- 
+
+
     }
 }

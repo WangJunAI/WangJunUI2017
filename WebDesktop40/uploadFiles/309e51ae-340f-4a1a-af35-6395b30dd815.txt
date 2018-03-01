@@ -1,0 +1,1 @@
+﻿{"ServerFileName":"309e51ae-340f-4a1a-af35-6395b30dd815","ServerFilePath":"E:\\WangJunUI2017\\WangJunUI2017\\WebDesktop40\\uploadFiles\\309e51ae-340f-4a1a-af35-6395b30dd815","FileNameInClient":"1.png","FileLengtth":1412176,"HttpUrl":"http://localhost:14000/uploadFiles/309e51ae-340f-4a1a-af35-6395b30dd815.txt"}

@@ -6,7 +6,9 @@ NET.LoadData = function (url, callback, context,method) {
     if (true === PARAM_CHECKER.IsObject(context)) {
         context = JSON.stringify(context);
     }
-    url = url.replace("?", "?_=" + new Date().getTime() + "&");
+    var sid = "&_SID=" + SESSION.Current().UserID;
+    var prefix = "?_=" + new Date().getTime() + sid + "&";
+    url = url.replace("?", prefix);
     method = (PARAM_CHECKER.IsNotEmptyString(method) && "GET" != method.toUpperCase()) ? "POST" : "GET";
 
     $.ajax({

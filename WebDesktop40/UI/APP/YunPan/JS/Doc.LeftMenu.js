@@ -53,7 +53,7 @@ Doc.LeftMenuClick = function (id) {
         $("#tableQuery").val(query);
 
     }
-    else if ("LeftMenu.共享云盘" == id) {
+    else if ("LeftMenu.企业云盘" == id) {
         var query = '{}';
         Doc.ShowView3();
         Doc.LoadTopButton(topButtonId);

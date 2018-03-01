@@ -9,7 +9,7 @@ using WangJun.Utility;
 namespace WangJun.YunPan
 {
     /// <summary>
-    /// 文档实体 
+    /// 云盘文件实体
     /// </summary>
     public class YunPanItem: BaseItem
     {
@@ -21,42 +21,37 @@ namespace WangJun.YunPan
             this.Version = 1;
             this.AppCode = Entity.CONST.APP.YunPan;
             this.AppName = Entity.CONST.APP.GetString(this.AppCode);
-
-        }
-
-        public string ShowMode { get; set; }
-
-        public string Title { get; set; }
-
+        } 
+         
         public string Keyword { get; set; }
+           
+         public int DownloadCount { get; set; }
 
-        public string Content { get; set; }
-
-        public int ContentLength { get; set; }
-
-        public string PlainText { get; set; }
-
-        public int PlainTextLength { get; set; }
-
-        public string Summary { get; set; }
+        public int CollectCount { get; set; }
  
-        public int ReadCount { get; set; }
-
-        public int LikeCount { get; set; }
-
-        public int CommentCount { get; set; }
-
         public string ImageUrl { get; set; }
+
+        /// <summary>
+        /// 文件大小
+        /// </summary>
+        public long FileLength { get; set; }
+         
+        /// <summary>
+        /// 文件下载查看路径
+        /// </summary>
+        public string FileHttpUrl { get; set; }
+
+        public string ServerFileName { get; set; }
  
-        public DateTime PublishTime { get; set; }
-
-        public string PublishMode { get; set; } 
-
-        public string Type { get; set; }
+ 
+        /// <summary>
+        /// 文件夹/文件类型
+        /// </summary>
+        public string FileType { get; set; }
 
 
         /// <summary>
-        /// [OK]
+        /// 保存
         /// </summary>
         public void Save()
         {
@@ -77,6 +72,10 @@ namespace WangJun.YunPan
             }
             inst.Save();
         }
+
+        /// <summary>
+        /// 删除
+        /// </summary>
         public void Remove()
         {
             EntityManager.GetInstance().Remove(this);

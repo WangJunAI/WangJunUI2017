@@ -60,8 +60,18 @@
 
         .global > .options .checkbox {
             display: inline-block;
-            margin-left:2em;
-            margin-right:2em;
+            width: 6em;
+            text-align: center;
+        }
+
+            .global > .options .checkbox.selected {
+                background-color: #ed4040;
+                color: #FFF;
+            }
+
+        .global > .options .button {
+            display: inline-block;
+            text-align: center;
         }
 
         .global > .options .item [type="text"] {

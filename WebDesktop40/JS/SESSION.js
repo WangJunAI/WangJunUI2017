@@ -16,7 +16,14 @@ SESSION.Login = function () {
 
         var callback = function (res) {
             LOGGER.Log(res);
-            window.location.href = "../Desktop/Desktop.html";
-        }
+            //window.location.href = "../Desktop/Desktop.html";
+            $.cookie("SESSION", JSON.stringify(res), { path: '/' });
+         }
         NET.PostData(url, callback, param);
- }
+}
+
+SESSION.Current = function () {
+    //return $.cookie("SESSION");
+    var res = JSON.parse($.cookie("SESSION"));
+    return res;
+}

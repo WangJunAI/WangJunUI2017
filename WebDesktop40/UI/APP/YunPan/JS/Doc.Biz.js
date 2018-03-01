@@ -85,9 +85,10 @@ Doc.SaveDetail = function (resInfo) {
         }
     });
 
-    item.Content = resInfo.HttpUrl;
-    item.Name = resInfo.ServerFileName;
-    item.Title = resInfo.FileNameInClient;
+    item.FileHttpUrl = resInfo.HttpUrl;
+    item.ServerFileName = resInfo.ServerFileName;
+    item.Name = resInfo.FileNameInClient;
+    item.FileLength = resInfo.FileLength;
 
 
 
