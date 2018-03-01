@@ -2,8 +2,14 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>上传文件</title>
     <link href="CSS/Detail.css" rel="stylesheet" />
+    <link href="../../../CSS/TPL.SIZE.PC.1080.css" rel="stylesheet" />
+
+
+
+
+
     <script src="../../../JS/Base/jquery-3.1.1.min.js"></script>
     <script src="../../../JS/Base/NET.js"></script>
     <script src="../../../JS/Base/PARAM_CHECKER.js"></script>
@@ -60,8 +66,6 @@
     <input type="hidden" id="pageName" value="Detail" />
     <div class="global">
         <div class="title">请上传文件</div>
-        <script id="editor" type="text/plain" style="width:1024px;" data-property="Content">
-        </script>
         <div class="options">
             <ul>
 
@@ -69,7 +73,7 @@
                     <div class="item">
                         <div class="key">所在目录</div>
                         <div class="value">
-                            <a href="javascript:;" class="checkbox" data-property="" data-value="" onclick="$('#category').toggle();" id="parentNode">所有分类</a>
+                            <a href="javascript:;" class="button w20em txtleft" data-property="" data-value="" onclick="$('#category').toggle();" id="parentNode">所有分类</a>
                             <div style="position: absolute;">
                                 <div id="category" class="dropdownlist">
                                 </div>
@@ -82,7 +86,7 @@
                     <div class="item">
                         <div class="key">添加组织</div>
                         <div class="value" data-FormName="Default" data-propertyName="OrgAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
-                            <a href="javascript:;" class="checkbox" onclick="$('#category2').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
+                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category2').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
                             <div style="position: absolute;">
                                 <div id="category2" class="dropdownlist">
                                 </div>
@@ -94,7 +98,7 @@
                     <div class="item">
                         <div class="key">添加人员</div>
                         <div class="value" data-FormName="Default" data-propertyName="UserAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
-                            <a href="javascript:;" class="checkbox" onclick="$('#category3').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
+                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category3').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
                             <div style="position: absolute;">
                                 <div id="category3" class="dropdownlist">
                                 </div>
@@ -106,7 +110,7 @@
                     <div class="item">
                         <div class="key">添加角色</div>
                         <div class="value" data-FormName="Default" data-propertyName="RoleAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
-                            <a href="javascript:;" class="checkbox" onclick="$('#category4').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
+                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category4').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
                             <div style="position: absolute;">
                                 <div id="category4" class="dropdownlist">
                                 </div>
@@ -125,7 +129,6 @@
                 </li>
                 <li>
                     <ul id="uploadList">
-                        <li><div>PIC</div><div>FileName</div><div>上传百分比</div><div>状态</div><a href="javascript:;">查看</a><a href="javascript:;">删除</a></li>
                     </ul>
                 </li>
             </ul>
@@ -175,6 +178,9 @@
                 ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
             });
         }); ///加载目录
+
+        window.parent.document.getElementById("iframeTitle").innerText = document.title;
+
     </script>
 
     <script type="text/javascript">
@@ -201,7 +207,7 @@
         // 当有文件被添加进队列的时候
         uploader.on('fileQueued', function (file) {
             var $list = $("#uploadList");
-            var listItemHtml = "<li id=[ID]><div>[PIC]</div><span style='display:none;''>[FileName2]</span><div>[FileName]</div><div>[Percentage]</div><div>[Status]</div><a href='javascript:;'>删除</a></li>";
+            var listItemHtml = "<li id=[ID]><div>[PIC]</div><span style='display:none;''>[FileName2]</span><div>[FileName]</div><div>[Percentage]</div><div>[Status]</div></li>";
             listItemHtml = listItemHtml.replace("[ID]", file.id).replace("[FileName]", file.name).replace("[FileName2]", file.name).replace("[Percentage]", "0%").replace("[Status]", "尚未开始");
             $list.append(listItemHtml);
         });
@@ -210,7 +216,7 @@
         // 文件上传过程中创建进度条实时显示。
         uploader.on('uploadProgress', function (file, percentage) {
             var $li = $('#' + file.id)
-            var listItemHtml = "<li id=[ID]><div>[PIC]</div><span style='display:none;''>[FileName2]</span><div>[FileName]</div><div>[Percentage]</div><div>[Status]</div><a href='javascript:;'>删除</a></li>";
+            var listItemHtml = "<li id=[ID]><div>[PIC]</div><span style='display:none;''>[FileName2]</span><div>[FileName]</div><div>[Percentage]</div><div>[Status]</div></li>";
             listItemHtml = listItemHtml.replace("[ID]", file.id).replace("[FileName]", file.name).replace("[FileName2]", file.name).replace("[Percentage]", percentage + "%").replace("[Status]", "上传中");
             $li.html(listItemHtml);
         });
@@ -218,7 +224,7 @@
     <script type="text/javascript">
         uploader.on('uploadSuccess', function (file) {
             var $li = $('#' + file.id)
-            var listItemHtml = "<li id=[ID]><div>[PIC]</div><span style='display:none;''>[FileName2]</span><div>[FileName]</div><div>[Percentage]</div><div>[Status]</div><a href='javascript:;'>查看</a><a href='javascript:;'>删除</a></li>";
+            var listItemHtml = "<li id=[ID]><div>[PIC]</div><span style='display:none;''>[FileName2]</span><div>[FileName]</div><div>[Percentage]</div><div>[Status]</div><a href='javascript:;'>查看</a></li>";
             listItemHtml = listItemHtml.replace("[ID]", file.id).replace("[FileName]", file.name).replace("[FileName2]", file.name).replace("[Percentage]", 100 + "%").replace("[Status]", "已上传");
             $li.html(listItemHtml);
             var resInfo = arguments[1];
@@ -227,12 +233,14 @@
         });
 
         uploader.on('uploadError', function (file) {
-            $('#' + file.id).text('上传出错');
+            var $li = $('#' + file.id)
+            var listItemHtml = "<li id=[ID]><div>[PIC]</div><span style='display:none;''>[FileName2]</span><div>[FileName]</div><div>[Percentage]</div><div>[Status]</div></li>";
+            listItemHtml = listItemHtml.replace("[ID]", file.id).replace("[FileName]", file.name).replace("[FileName2]", file.name).replace("[Status]", "上传出错");
+            $li.html(listItemHtml);
         });
 
         uploader.on('uploadComplete', function (file) {
-            $('#' + file.id).fadeOut();
-            ///上传完一个记录URL一个,开始上传就是写Url到Content里
+             ///上传完一个记录URL一个,开始上传就是写Url到Content里
         });
     </script>
     <script type="text/javascript">

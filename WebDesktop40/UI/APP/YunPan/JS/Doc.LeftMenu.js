@@ -33,8 +33,18 @@ Doc.LeftMenuClick = function (id) {
     var topButtonId = Doc.FindLeftMenuData(id)[0].TopButtonGroupID;
     Doc.LeftMenuSetSelecled(id);
     Doc.CloseWindow();
-   if ("LeftMenu.个人云盘" == id) {
-        var query = '{"Status":"待发布"}';
+    if ("LeftMenu.上传文件" == id) {
+        var url = App.Doc.Server.Url3 + "?t=" + (new Date().getTime());
+        Doc.ShowWindow(url);
+    }
+    else if ("LeftMenu.新建文件夹" == id)
+    {
+        var url = App.Doc.Server.Url6 + "?t=" + (new Date().getTime());
+        Doc.ShowWindow(url);
+
+    }
+   else if ("LeftMenu.个人云盘" == id) {
+        var query = '{}';
         Doc.ShowView3();
         Doc.LoadTopButton(topButtonId);
         Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], {}); });
@@ -44,7 +54,7 @@ Doc.LeftMenuClick = function (id) {
 
     }
     else if ("LeftMenu.共享云盘" == id) {
-        var query = '{"Status":"已发布"}';
+        var query = '{}';
         Doc.ShowView3();
         Doc.LoadTopButton(topButtonId);
         Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], {}); });

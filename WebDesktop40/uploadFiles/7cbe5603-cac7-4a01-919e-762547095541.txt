@@ -1,0 +1,1 @@
+﻿{"ServerFileName":"7cbe5603-cac7-4a01-919e-762547095541","ServerFilePath":"E:\\WangJunUI2017\\WangJunUI2017\\WebDesktop40\\uploadFiles\\7cbe5603-cac7-4a01-919e-762547095541","FileNameInClient":"图灵AI-通讯录模板.xls","FileLengtth":9216,"HttpUrl":"http://localhost:14000/uploadFiles/7cbe5603-cac7-4a01-919e-762547095541.txt"}

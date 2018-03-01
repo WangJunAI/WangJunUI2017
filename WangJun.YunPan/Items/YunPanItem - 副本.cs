@@ -52,8 +52,6 @@ namespace WangJun.YunPan
 
         public string PublishMode { get; set; } 
 
-        public string Type { get; set; }
-
 
         /// <summary>
         /// [OK]

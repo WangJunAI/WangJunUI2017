@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>目录,群组,部门操作</title>
+    <title>目录,群组,部门操作,包含加人功能</title>
 
     <link href="../../../CSS/TPL.Category.css" rel="stylesheet" />
     <link href="CSS/TPL.css" rel="stylesheet" />
@@ -39,20 +39,56 @@
 
 </head>
 <body>
-    <input type="hidden" id="ID"  data-FormName="Default" data-propertyName="ID" />
-    <input type="hidden" id="page" value="Category" />
+    <input type="hidden" id="ID" data-FormName="Default" data-propertyName="ID" />
+    <input type="hidden" id="pageName" value="Detail" />
     <div class="global">
-        <div class="title"><input type="text" data-FormName="Default" data-propertyName="Name" data-propertyValue="" placeholder="请输入目录名称" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());"/></div>
+        <div class="title"><input type="text" data-FormName="Default" data-propertyName="Name" data-propertyValue="" placeholder="请输入目录名称" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" /></div>
 
         <div class="options">
             <ul>
                 <li>
                     <div class="item">
                         <div class="key">上级目录</div>
-                        <div class="value"  data-FormName="Default" data-propertyName="ParentID" data-propertyValue="">
-                            <a href="javascript:;" class="checkbox" onclick="$('#category').toggle();" id="parentNode"  data-FormName="Default"  data-propertyName="ParentName" data-propertyValue="">默认分类</a>
+                        <div class="value" data-FormName="Default" data-propertyName="ParentID" data-propertyValue="">
+                            <a href="javascript:;" class="checkbox" onclick="$('#category').toggle();"  data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
                             <div style="position: absolute;">
                                 <div id="category" class="dropdownlist">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item">
+                        <div class="key">添加组织</div>
+                        <div class="value" data-FormName="Default" data-propertyName="OrgAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
+                            <a href="javascript:;" class="checkbox" onclick="$('#category2').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
+                            <div style="position: absolute;">
+                                <div id="category2" class="dropdownlist">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item">
+                        <div class="key">添加人员</div>
+                        <div class="value" data-FormName="Default" data-propertyName="UserAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
+                            <a href="javascript:;" class="checkbox" onclick="$('#category3').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
+                            <div style="position: absolute;">
+                                <div id="category3" class="dropdownlist">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item">
+                        <div class="key">添加角色</div>
+                        <div class="value" data-FormName="Default" data-propertyName="RoleAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
+                            <a href="javascript:;" class="checkbox" onclick="$('#category4').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
+                            <div style="position: absolute;">
+                                <div id="category4" class="dropdownlist">
                                 </div>
                             </div>
                         </div>
@@ -69,8 +105,39 @@
     <script type="text/javascript">
         $(document).ready(function () {
             Doc.LoadCategoryDetail();
-            Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#category", res1, [], {}); });
+            Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) {
+                Doc.LoadTreeTo("#category", res1, [], {
+                    Click: function (event, treeId, treeNode) {
+                        var name = treeNode.Name;
+                        $('#category').hide();
+                        $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.ID);
+                        $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
+                        $("[data-propertyName='ParentName']").text( name);
+                    }
+                });
+            });
+
+            Doc.LoadData_All([], function (res1) {
+                Doc.LoadTreeTo("#category2", res1, [], {
+                    ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
+                });
+            }); ///加载目录
+
+            Doc.LoadData_All([], function (res1) {
+                Doc.LoadTreeTo("#category3", res1, [], {
+                    ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
+                });
+            }); ///加载目录
+
+            Doc.LoadData_All([], function (res1) {
+                Doc.LoadTreeTo("#category4", res1, [], {
+                    ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
+                });
+            }); ///加载目录
         });
+
+        window.parent.document.getElementById("iframeTitle").innerText = document.title;
+
     </script>
     <div id="modal"></div>
     <div id="dialog">

@@ -71,6 +71,13 @@
                 color: #FFF;
             }
 
+
+
+        .global > .options .button {
+            display: inline-block;
+            text-align: center;
+        }
+
         .global > .options .item [type="text"] {
             border: none;
             height: 2.5em;
