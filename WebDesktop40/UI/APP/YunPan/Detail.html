@@ -44,6 +44,11 @@
 
     <link href="../../../JS/webuploader/dist/webuploader.css" rel="stylesheet" />
     <script src="../../../JS/webuploader/dist/webuploader.html5only.js"></script>
+
+
+    <script src="../../../JS/jquery.cookie.js"></script>
+    <script src="../../../JS/SESSION.js"></script>
+
     <style type="text/css">
         #uploadList {
             /*list-style:none;*/
@@ -68,12 +73,20 @@
         <div class="title">请上传文件</div>
         <div class="options">
             <ul>
-
+                <li>
+                    <div class="item">
+                        <div class="key">权限</div>
+                        <div class="value">
+                            <a href="javascript:;" class="checkbox selected" data-single="private" data-show="hide">个人云盘</a>
+                            <a href="javascript:;" class="checkbox" data-single="private" data-show="show">企业云盘</a>
+                        </div>
+                    </div>
+                </li>
                 <li>
                     <div class="item">
                         <div class="key">所在目录</div>
-                        <div class="value">
-                            <a href="javascript:;" class="button w20em txtleft" data-property="" data-value="" onclick="$('#category').toggle();" id="parentNode">所有分类</a>
+                        <div class="value"  data-FormName="Default" data-propertyName="ParentID" data-propertyValue="">
+                            <a href="javascript:;" class="button w20em txtleft"  onclick="$('#category').toggle();"  data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">所有分类</a>
                             <div style="position: absolute;">
                                 <div id="category" class="dropdownlist">
                                 </div>
@@ -82,16 +95,8 @@
                         </div>
                     </div>
                 </li>
-                <li>
-                    <div class="item">
-                        <div class="key" data-FormName="Default" data-propertyName="Sex" data-propertyValue="男">私人/共享</div>
-                        <div class="value">
-                            <a href="javascript:;" class="checkbox selected" data-single="Status">男</a>
-                            <a href="javascript:;" class="checkbox" data-single="Status">女</a>
-                        </div>
-                    </div>
-                </li>
-                <li>
+                
+                <li  style="display:none;" data-ClientGroupID="private">
                     <div class="item">
                         <div class="key">添加组织</div>
                         <div class="value" data-FormName="Default" data-propertyName="OrgAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
@@ -103,7 +108,7 @@
                         </div>
                     </div>
                 </li>
-                <li>
+                <li  style="display:none;" data-ClientGroupID="private">
                     <div class="item">
                         <div class="key">添加人员</div>
                         <div class="value" data-FormName="Default" data-propertyName="UserAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
@@ -115,7 +120,7 @@
                         </div>
                     </div>
                 </li>
-                <li>
+                <li style="display:none;" data-ClientGroupID="private">
                     <div class="item">
                         <div class="key">添加角色</div>
                         <div class="value" data-FormName="Default" data-propertyName="RoleAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
@@ -127,7 +132,7 @@
                         </div>
                     </div>
                 </li>
-                <li>
+                <li >
                     <div class="item">
                         <div class="key">上传文件</div>
                         <a href="javascript:;" class="checkbox selected" data-single="Permission1" onclick="$('[name=file]').click()">添加文件</a><a href="javascript:;" class="checkbox" data-single="Permission1" onclick="uploader.upload()">开始上传</a>
@@ -160,9 +165,10 @@
                     Click: function (event, treeId, treeNode) {
                         var name = treeNode.Name;
                         $('#category').hide();
-                        $("#parentNode").text(name);
-                        $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.id);
-                        $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
+                         $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.ID);
+                         $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
+                         $("[data-propertyName='ParentName']").text(name);
+
                     }
                 });
             }); ///加载目录

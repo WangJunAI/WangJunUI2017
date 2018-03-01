@@ -1,0 +1,1 @@
+﻿{"ServerFileName":"49616db9-96c2-4873-b970-d6d0f13e8c31","ServerFilePath":"E:\\WangJunUI2017\\WangJunUI2017\\WebDesktop40\\uploadFiles\\49616db9-96c2-4873-b970-d6d0f13e8c31","FileNameInClient":"实拍B-52轰炸机装炸弹，看看装了多少，你能数清楚吗？.mp4","FileLength":3671569,"FileLengthText":"3671040MB","HttpUrl":"http://localhost:14000/uploadFiles/49616db9-96c2-4873-b970-d6d0f13e8c31.txt"}

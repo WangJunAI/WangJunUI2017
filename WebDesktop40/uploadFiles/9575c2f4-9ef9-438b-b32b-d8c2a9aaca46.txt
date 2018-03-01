@@ -1,0 +1,1 @@
+﻿{"ServerFileName":"9575c2f4-9ef9-438b-b32b-d8c2a9aaca46","ServerFilePath":"E:\\WangJunUI2017\\WangJunUI2017\\WebDesktop40\\uploadFiles\\9575c2f4-9ef9-438b-b32b-d8c2a9aaca46","FileNameInClient":"螺杆带动轮盘机械结构，看看设计思维.mp4","FileLengtth":1365822,"HttpUrl":"http://localhost:14000/uploadFiles/9575c2f4-9ef9-438b-b32b-d8c2a9aaca46.txt"}

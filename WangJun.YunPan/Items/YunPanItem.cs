@@ -35,6 +35,27 @@ namespace WangJun.YunPan
         /// 文件大小
         /// </summary>
         public long FileLength { get; set; }
+
+        public string FileLengthText
+        {
+            get
+            {
+                if(0<this.FileLength/(1024*1024*1024))
+                {
+                    return this.FileLength / (1024 * 1024 * 1024) + "GB";
+                }
+                else if (0 < this.FileLength / (1024 * 1024 ))
+                {
+                    return this.FileLength / (1024 * 1024 ) + "MB";
+                }
+                else if (0 < this.FileLength / (1024 ))
+                {
+                    return this.FileLength / (1024 ) + "KB";
+                }
+                return this.FileLength + "B";
+            }
+        }
+
          
         /// <summary>
         /// 文件下载查看路径

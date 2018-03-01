@@ -1,0 +1,1 @@
+﻿{"ServerFileName":"84754f35-0793-4d56-873c-d3e771f1dcbe","ServerFilePath":"E:\\WangJunUI2017\\WangJunUI2017\\WebDesktop40\\uploadFiles\\84754f35-0793-4d56-873c-d3e771f1dcbe","FileNameInClient":"Anjey Satori - The Rain.mp3","FileLength":17998445,"FileLengthText":"17997824MB","HttpUrl":"http://localhost:14000/uploadFiles/84754f35-0793-4d56-873c-d3e771f1dcbe.txt"}

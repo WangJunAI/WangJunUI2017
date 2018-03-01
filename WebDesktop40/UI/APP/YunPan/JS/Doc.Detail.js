@@ -1,14 +1,27 @@
 ﻿Doc.LoadDetail = function () {
-    $(document).ready(function () {
-        var id = NET.GetQueryParam("id");
-        var context = [id];
 
-        var callback = function (res) {
-            LOGGER.Log(res);
-            Doc.ShowDetail(res);
+    $("[data-single]").on("click", function () {
+        var val = $(this).attr("data-single");
+        var isShow = $(this).attr("data-show");
+        $("[data-single='" + val + "']").removeClass("selected");
+        $(this).addClass("selected");
+        if ("show" === isShow) {
+            $('[data-ClientGroupID="' + val + '"]').show();
         }
-        NET.LoadData(App.Doc.Server.Url5, callback, context, NET.POST);
+        else if ("hide" === isShow) {
+            $('[data-ClientGroupID="' + val + '"]').hide();
+        }
     });
+
+     
+    var id = NET.GetQueryParam("id");
+    var context = [id];
+
+    var callback = function (res) {
+        LOGGER.Log(res);
+        Doc.ShowDetail(res);
+    }
+    NET.LoadData(App.Doc.Server.Url5, callback, context, NET.POST);
 }
 
 Doc.ShowDetail = function (data) {
