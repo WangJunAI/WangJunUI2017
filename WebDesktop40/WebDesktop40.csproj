@@ -1509,7 +1509,6 @@
     <Content Include="UI\APP\YunPan\Category.html" />
     <Content Include="UI\APP\YunProject\AppInfo.html" />
     <Content Include="UI\APP\YunProject\Category.html" />
-    <Content Include="UI\APP\YunProject\CategoryVer2.html" />
     <Content Include="UI\APP\YunProject\Chart1.html" />
     <Content Include="UI\APP\YunProject\CSS\Category.css" />
     <Content Include="UI\APP\YunProject\CSS\Detail.css" />
@@ -1605,6 +1604,8 @@
     <Content Include="UI\Desktop\CSS\Desktop.css" />
     <Content Include="UI\Desktop\Desktop.html" />
     <Content Include="UI\Desktop\JS\Desktop.js" />
+    <Content Include="UI\Login\FindPassword.html" />
+    <Content Include="UI\Login\Register.html" />
     <Content Include="UI\Login\Login.html" />
     <Content Include="UI\Login\login.mp4" />
     <Content Include="Web.config" />

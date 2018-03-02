@@ -8,6 +8,8 @@
             $("[data-propertyName='" + val + "'").attr("data-propertyValue", $(this).text());
         });
 
+        Milestone.LoadData();
+
         var id = NET.GetQueryParam("id");
         var context = [id];
 

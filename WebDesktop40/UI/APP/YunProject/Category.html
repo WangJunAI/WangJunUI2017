@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>目录,群组,部门操作</title>
+    <title>新建目录</title>
 
     <link href="../../../CSS/TPL.Category.css" rel="stylesheet" />
     <link href="CSS/TPL.css" rel="stylesheet" />
@@ -37,6 +37,10 @@
     <script src="../../../JS/Base/zTree/js/jquery.ztree.all.js"></script>
 
 
+    <script src="../../../JS/jquery.cookie.js"></script>
+    <script src="../../../JS/SESSION.js"></script>
+
+
 </head>
 <body>
     <input type="hidden" id="ID" data-FormName="Default" data-propertyName="ID" />
@@ -50,9 +54,54 @@
                     <div class="item">
                         <div class="key">上级目录</div>
                         <div class="value" data-FormName="Default" data-propertyName="ParentID" data-propertyValue="">
-                            <a href="javascript:;" class="checkbox" onclick="$('#category').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
+                            <a href="javascript:;" class="checkbox" onclick="$('#category').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
                             <div style="position: absolute;">
                                 <div id="category" class="dropdownlist">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item">
+                        <div class="key" data-FormName="Default">权限</div>
+                        <div class="value">
+                            <a href="javascript:;" class="checkbox selected" data-single="private" data-show="hide">个人云盘</a>
+                            <a href="javascript:;" class="checkbox" data-single="private" data-show="show">企业云盘</a>
+                        </div>
+                    </div>
+                </li>
+                <li style="display:none;" data-ClientGroupID="private">
+                    <div class="item">
+                        <div class="key">添加组织</div>
+                        <div class="value" data-FormName="Default" data-propertyName="OrgAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
+                            <a href="javascript:;" class="checkbox" onclick="$('#category2').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
+                            <div style="position: absolute;">
+                                <div id="category2" class="dropdownlist">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li style="display:none;" data-ClientGroupID="private">
+                    <div class="item">
+                        <div class="key">添加人员</div>
+                        <div class="value" data-FormName="Default" data-propertyName="UserAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
+                            <a href="javascript:;" class="checkbox" onclick="$('#category3').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
+                            <div style="position: absolute;">
+                                <div id="category3" class="dropdownlist">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li style="display:none;" data-ClientGroupID="private">
+                    <div class="item">
+                        <div class="key">添加角色</div>
+                        <div class="value" data-FormName="Default" data-propertyName="RoleAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
+                            <a href="javascript:;" class="checkbox" onclick="$('#category4').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
+                            <div style="position: absolute;">
+                                <div id="category4" class="dropdownlist">
                                 </div>
                             </div>
                         </div>
@@ -74,13 +123,34 @@
                     Click: function (event, treeId, treeNode) {
                         var name = treeNode.Name;
                         $('#category').hide();
-                        $("#parentNode").text(name);
-                        $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.id);
+                        $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.ID);
                         $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
+                        $("[data-propertyName='ParentName']").text( name);
                     }
                 });
             });
+
+            Doc.LoadData_All([], function (res1) {
+                Doc.LoadTreeTo("#category2", res1, [], {
+                    ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
+                });
+            }); ///加载目录
+
+            Doc.LoadData_All([], function (res1) {
+                Doc.LoadTreeTo("#category3", res1, [], {
+                    ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
+                });
+            }); ///加载目录
+
+            Doc.LoadData_All([], function (res1) {
+                Doc.LoadTreeTo("#category4", res1, [], {
+                    ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
+                });
+            }); ///加载目录
         });
+
+        window.parent.document.getElementById("iframeTitle").innerText = document.title;
+
     </script>
     <div id="modal"></div>
     <div id="dialog">

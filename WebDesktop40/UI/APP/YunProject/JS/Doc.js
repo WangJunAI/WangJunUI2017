@@ -91,11 +91,8 @@ Doc.Initial = function () {
     $(document).ready(function () {
  
         Doc.LoadAppInfo();
-        Doc.LoadMenu();
-        //Doc.ShowView3();
-        //Doc.LoadTopButton("左侧菜单.已发布.TopButton");
-        //Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], {}); });
-        Doc.LeftMenuClick("LeftMenu.已发布");
+        Doc.LoadMenu(); 
+        Doc.LeftMenuClick("LeftMenu.个人项目");
      });
 }
 

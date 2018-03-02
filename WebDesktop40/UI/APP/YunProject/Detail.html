@@ -46,6 +46,9 @@
     <script src="JS/Doc.Biz.js"></script>
     <script src="JS/Doc.Category.js"></script>
 
+    <script src="../../../JS/jquery.cookie.js"></script>
+    <script src="../../../JS/SESSION.js"></script>
+
 
 </head>
 <body>
@@ -124,14 +127,8 @@
 
     <script type="text/html" id="tpl_Milestone_1">
         <li>
-            <div class="checkpoint"><input type="text" value="简述时间节点任务" /><span class="separator">|</span><span class="progress"> <input type="text" value="请填写预计结束时间" /></span><a href="javascript:;" class="addbtn">保存</a><a href="javascript:;" class="addbtn">删除</a></div>
+            <div class="checkpoint"><input type="text" value="简述时间节点任务" data-propertyName="Title" /><span class="separator">|</span><span class="progress"> <input type="text" value="请填写预计结束时间" data-propertyName="Summary"/></span><a href="javascript:;" class="addbtn" onclick="Milestone.EditCheckPoint('readonly')">确定</a><a href="javascript:;" class="addbtn">删除</a></div>
             <ul>
-                <li>
-                    <div class="row">
-                        <div class="content"><input type="text" value="简述要完成的工作项"></div>
-                        <div class="info"><span class="status">未开始</span><span class="time"> <input type="text" value="请填写预计结束时间"> </span><a href="javascript:;" class="btn">删除</a><a href="javascript:;" class="btn">保存</a></div>
-                    </div>
-                </li>
                 <li>
                     <a href="javascript:;" class="addbtn" onclick="Milestone.AddTask()">添加新任务</a>
                 </li>
@@ -142,14 +139,14 @@
         <li>
             <div class="row">
                 <div class="content"><input type="text" value="简述要完成的工作项"></div>
-                <div class="info"><span class="status">未开始</span><span class="time"> <input type="text" value="请填写预计结束时间"> </span><a href="javascript:;" class="btn">删除</a><a href="javascript:;" class="btn">保存</a></div>
+                <div class="info"><span class="status">未开始</span><span class="time"> <input type="text" value="请填写预计结束时间"> </span><a href="javascript:;" class="btn">删除</a><a href="javascript:;" class="btn" onclick="Milestone.EditTask('readonly')">保存</a></div>
             </div>
         </li>
     </script>
     <script type="text/html" id="tpl_Milestone_3">
         <li>
             <div class="row">
-                <div class="content">[Content]</div>
+                <div class="content" data-propertyName="Content">[Content]</div>
                 <div class="info">
                     <span class="status" data-propertyName="Status" data-propertyValue="">已完成</span>
                     <span class="time" data-propertyName="ExpectedEndTime" data-propertyValue="">预计[ExpectedEndTime]结束</span>
@@ -161,7 +158,7 @@
     <script type="text/html" id="tpl_Milestone_4">
         <li>
             <div class="row">
-                <div class="content">[Content]</div>
+                <div class="content" data-propertyName="Content">[Content]</div>
                 <div class="info">
                     <span class="status" data-propertyName="Status" data-propertyValue="">未开始</span>
                     <span class="time" data-propertyName="ExpectedEndTime" data-propertyValue="">预计[ExpectedEndTime]结束</span>
@@ -173,14 +170,14 @@
     <script type="text/html" id="tpl_Milestone_5">
         <li>
             <div class="row">
-                <div class="content">[Content]</div>
-                <div class="info"><span class="status">进行中</span><span class="time">预计[ExpectedEndTime]结束</span><a href="javascript:;" class="btn">确认完成</a></div>
+                <div class="content" data-propertyName="Content">[Content]</div>
+                <div class="info"><span class="status" data-propertyName="Status">进行中</span><span class="time" data-propertyName="ExpectedEndTime">预计[ExpectedEndTime]结束</span><a href="javascript:;" class="btn">确认完成</a></div>
             </div>
         </li>
     </script>
     <script type="text/html" id="tpl_Milestone_6">
         <li>
-            <h2 class="checkpoint"><span class="title">[CheckPointTitle]</span><span class="separator">|</span><span class="progress">[CheckPointSummary]</span></h2>
+            <h2 class="checkpoint"><span class="title" data-propertyName="Title">[CheckPointTitle]</span><span class="separator">|</span><span class="progress" data-propertyName="Summary">[CheckPointSummary]</span></h2>
             <ul></ul>
         </li>
 
@@ -189,7 +186,7 @@
         <li>
             <div class="row">
                 <div class="content"><input type="text" value="简述要完成的工作项"></div>
-                <div class="info"><span class="status">未开始</span><span class="time"> <input type="text" value="请填写预计结束时间"> </span><a href="javascript:;" class="btn">保存</a></div>
+                <div class="info"><span class="status">未开始</span><span class="time"> <input type="text" value="请填写预计结束时间"> </span><a href="javascript:;" class="btn" onclick="Milestone.EditTask('readonly')">保存</a></div>
             </div>
         </li>
     </script>
@@ -204,6 +201,11 @@
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
+            $(".global").width(window.parent.$("#content").width() - 30);
+            UE.getEditor('editor', { initialFrameWidth: $(".global").width() }); ///创建编辑器
+
+
+
             Doc.LoadDetail();
             Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) {
                 Doc.LoadTreeTo("#category", res1, [], {

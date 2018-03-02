@@ -13,12 +13,36 @@ Milestone.AddCheckPoint = function (target, data) {
             $(target).append("<li>  <a href='javascript:;' class='addbtn' onclick='Milestone.AddCheckPoint()'>添加新时间节点</a>  </li>");
         }
         else {
-
             var itemHtml = $("#tpl_Milestone_6").html().replace("[CheckPointTitle]", data.Title).replace("[CheckPointSummary]", data.Summary);
             $(target).append(itemHtml);
         }
     }
 }
+
+Milestone.EditCheckPoint = function (mode) {
+    if ("readonly" === mode) {
+
+        var data = {};
+        $(event.target).parent().find("[data-PropertyName]").each(function () {
+            var propertyName = $(this).attr("data-PropertyName");
+            data[propertyName] = "Test";
+        });
+
+        var itemHtml = $("#tpl_Milestone_6").html().replace("[Title]", data.Title).replace("[ExpectedEndTime]", data.Title);
+        $(itemHtml).insertBefore($(event.target).parent().parent());
+
+        $(event.target).parent().remove();
+    }
+}
+
+Milestone.EditTask = function (mode) {
+    if ("readonly" === mode) {
+        var itemHtml = $("#tpl_Milestone_5").html();
+        $(itemHtml).insertBefore($(event.target).parent().parent());
+        $(event.target).parent().remove();
+    }
+}
+
 
 Milestone.AddTask = function (target, data) {
     var itemHtml = "";
@@ -56,11 +80,36 @@ Milestone.LoadData = function () {
 
         }
         , { Status: "新增按钮", TaskArray: [] }];
+
+    data = [{ Status: "新增按钮", TaskArray: [] }];
     Milestone.ShowData(data);
 }
 
 Milestone.GetData = function () {
+    var dataArray = [];
+    var checkPointArray = $("#milestone").find(".checkpoint");
+    for (var k = 0; k < checkPointArray.length; k++) {
+        var $checkPoint = $(checkPointArray[k]);
+        var checkPoint = { TaskArray: [] };
+        dataArray.push(checkPoint);
+        $checkPoint.find("[data-PropertyName]").each(function () {
+            var propertyName = $(this).attr("data-PropertyName");
+            checkPoint[propertyName] = "Test";
+        })
 
+        var taskArray = $checkPoint.next("ul").find("li");
+        for (var m = 0; m < taskArray.length; m++) {
+            var $taskItem = $(taskArray[m]);
+            var taskItem = {};
+            $taskItem.find("[data-PropertyName]").each(function () {
+                var propertyName = $(this).attr("data-PropertyName");
+                taskItem[propertyName] = "Test";
+            })
+            checkPoint.TaskArray.push(taskItem);
+        }
+    }
+
+    return dataArray;
 }
 
 Milestone.ShowData = function (dataArray) {
