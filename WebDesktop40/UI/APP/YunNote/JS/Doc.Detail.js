@@ -1,11 +1,18 @@
 ﻿Doc.LoadDetail = function () {
+
     $(document).ready(function () {
 
         $("[data-single]").on("click", function () {
             var val = $(this).attr("data-single");
+            var isShow = $(this).attr("data-show");
             $("[data-single='" + val + "']").removeClass("selected");
             $(this).addClass("selected");
-            $("[data-propertyName='" + val + "'").attr("data-propertyValue", $(this).text());
+            if ("show" === isShow) {
+                $('[data-ClientGroupID="' + val + '"]').show();
+            }
+            else if ("hide" === isShow) {
+                $('[data-ClientGroupID="' + val + '"]').hide();
+            }
         });
 
         var id = NET.GetQueryParam("id");

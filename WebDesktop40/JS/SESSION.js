@@ -24,6 +24,12 @@ SESSION.Login = function () {
 
 SESSION.Current = function () {
     //return $.cookie("SESSION");
-    var res = JSON.parse($.cookie("SESSION"));
-    return res;
+    var session = $.cookie("SESSION");
+    if (undefined === session) {
+        return { UserID: "_" };
+    }
+    else {
+        var res = JSON.parse(session);
+        return res;
+    }
 }

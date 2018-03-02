@@ -153,7 +153,7 @@ App.Doc.Data.DocTable.Info = {
 }
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "全选", Method: "", Sort: "", PropertyName: "Type", DataType: "checkbox" });
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "文件名", Method: "Doc.TableRowClick", Sort: "", PropertyName: "Name", DataType: "string" });
-App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "大小", Method: "", Sort: "", PropertyName: "FileLengthText", DataType: "string" });
+App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "大小", Method: "", Sort: "", PropertyName: "FileLengthText ", DataType: "string" });
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "上传时间", Method: "", Sort: "", PropertyName: "UpdateTime", DataType: "date" });
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "详细", Method: "", Sort: "", PropertyName: "Type", DataType: "link", Value: "详细" });
 

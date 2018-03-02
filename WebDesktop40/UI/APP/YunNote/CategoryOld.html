@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>新建笔记目录</title>
+    <title>[已验证]目录,群组,部门操作,包含加人功能</title>
 
     <link href="../../../CSS/TPL.Category.css" rel="stylesheet" />
     <link href="CSS/TPL.css" rel="stylesheet" />
@@ -27,7 +27,7 @@
     <script src="JS/Doc.View.js"></script>
     <script src="JS/Doc.Biz.js"></script>
     <script src="JS/Doc.Category.js"></script>
-    
+
     <script src="../../../JS/Base/CryptoJS/core-min.js"></script>
     <script src="../../../JS/Base/CryptoJS/enc-base64-min.js"></script>
 
@@ -36,10 +36,8 @@
     <link href="../../../JS/Base/zTree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
     <script src="../../../JS/Base/zTree/js/jquery.ztree.all.js"></script>
 
-
     <script src="../../../JS/jquery.cookie.js"></script>
     <script src="../../../JS/SESSION.js"></script>
-
 
 </head>
 <body>
@@ -54,7 +52,7 @@
                     <div class="item">
                         <div class="key">上级目录</div>
                         <div class="value" data-FormName="Default" data-propertyName="ParentID" data-propertyValue="">
-                            <a href="javascript:;" class="checkbox" onclick="$('#category').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
+                            <a href="javascript:;" class="checkbox" onclick="$('#category').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">顶级分组</a>
                             <div style="position: absolute;">
                                 <div id="category" class="dropdownlist">
                                 </div>
@@ -63,15 +61,6 @@
                     </div>
                 </li>
                 <li>
-                    <div class="item">
-                        <div class="key" data-FormName="Default">权限</div>
-                        <div class="value">
-                            <a href="javascript:;" class="checkbox selected" data-single="private" data-show="hide">个人笔记</a>
-                            <a href="javascript:;" class="checkbox" data-single="private" data-show="show">企业笔记</a>
-                        </div>
-                    </div>
-                </li>
-                <li style="display:none;" data-ClientGroupID="private">
                     <div class="item">
                         <div class="key">添加组织</div>
                         <div class="value" data-FormName="Default" data-propertyName="OrgAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
@@ -83,7 +72,7 @@
                         </div>
                     </div>
                 </li>
-                <li style="display:none;" data-ClientGroupID="private">
+                <li>
                     <div class="item">
                         <div class="key">添加人员</div>
                         <div class="value" data-FormName="Default" data-propertyName="UserAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
@@ -95,7 +84,7 @@
                         </div>
                     </div>
                 </li>
-                <li style="display:none;" data-ClientGroupID="private">
+                <li>
                     <div class="item">
                         <div class="key">添加角色</div>
                         <div class="value" data-FormName="Default" data-propertyName="RoleAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
@@ -123,9 +112,9 @@
                     Click: function (event, treeId, treeNode) {
                         var name = treeNode.Name;
                         $('#category').hide();
+                        $("#parentNode").text(name);
                         $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.ID);
                         $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
-                        $("[data-propertyName='ParentName']").text( name);
                     }
                 });
             });

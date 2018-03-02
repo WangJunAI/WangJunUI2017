@@ -39,7 +39,7 @@ namespace WangJun.YunPan
         public List<CategoryItem> LoadCategoryList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
         {
             //{$and:[{},{"OwnerID":"5a97ac8426b0184e8825cf20"}]}
-            query = "{$and:[" + query + ",{'OwnerID':'" + SESSION.Current.UserID + "'}]}";
+            query = "{$and:[" + query + ",{'OwnerID':'" + SESSION.Current.UserID + "','AppCode':"+Entity.CONST.APP.YunPan+"}]}";
             var res = EntityManager.GetInstance().Find<CategoryItem>(CONST.DB.DBName_DocService, CONST.DB.CollectionName_CategoryItem, query, protection, sort, pageIndex, pageSize);
             return res;
         }

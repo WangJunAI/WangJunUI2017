@@ -2,16 +2,33 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>新建笔记目录</title>
-
-    <link href="../../../CSS/TPL.Category.css" rel="stylesheet" />
-    <link href="CSS/TPL.css" rel="stylesheet" />
+    <title>笔记详细</title>
+    <link href="CSS/Detail.css" rel="stylesheet" />
+    <link href="../../../CSS/TPL.SIZE.PC.1080.css" rel="stylesheet" />
 
     <script src="../../../JS/Base/jquery-3.1.1.min.js"></script>
     <script src="../../../JS/Base/NET.js"></script>
     <script src="../../../JS/Base/PARAM_CHECKER.js"></script>
     <script src="../../../JS/Base/DEBUG.js"></script>
     <script src="../../../JS/Base/Convertor.js"></script>
+
+    <script src="../../../JS/ueditor/ueditor.config.js"></script>
+    <script src="../../../JS/ueditor/ueditor.all.js"></script>
+    <script src="../../../JS/ueditor/lang/zh-cn/zh-cn.js"></script>
+
+
+    <script src="../../../JS/Base/CryptoJS/core-min.js"></script>
+    <script src="../../../JS/Base/CryptoJS/enc-base64-min.js"></script>
+
+
+
+    <link href="../../../JS/Base/zTree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
+    <script src="../../../JS/Base/zTree/js/jquery.ztree.all.js"></script>
+
+    <link href="../../../JS/Base/jquery-ui-1.12.1/jquery-ui.structure.css" rel="stylesheet" />
+    <link href="../../../JS/Base/jquery-ui-1.12.1/jquery-ui.theme.css" rel="stylesheet" />
+    <script src="../../../JS/Base/jquery-ui-1.12.1/jquery-ui.js"></script>
+
 
 
     <script src="JS/AppInfo.Doc.js"></script>
@@ -27,15 +44,6 @@
     <script src="JS/Doc.View.js"></script>
     <script src="JS/Doc.Biz.js"></script>
     <script src="JS/Doc.Category.js"></script>
-    
-    <script src="../../../JS/Base/CryptoJS/core-min.js"></script>
-    <script src="../../../JS/Base/CryptoJS/enc-base64-min.js"></script>
-
-
-
-    <link href="../../../JS/Base/zTree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
-    <script src="../../../JS/Base/zTree/js/jquery.ztree.all.js"></script>
-
 
     <script src="../../../JS/jquery.cookie.js"></script>
     <script src="../../../JS/SESSION.js"></script>
@@ -46,19 +54,22 @@
     <input type="hidden" id="ID" data-FormName="Default" data-propertyName="ID" />
     <input type="hidden" id="pageName" value="Detail" />
     <div class="global">
-        <div class="title"><input type="text" data-FormName="Default" data-propertyName="Name" data-propertyValue="" placeholder="请输入目录名称" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" /></div>
-
+        <div class="title"><input type="text" placeholder="请输入标题" data-FormName="Default" data-propertyName="Title" data-propertyValue=""  onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" /></div>
+        <script id="editor" type="text/plain" >
+        </script>
         <div class="options">
             <ul>
+
                 <li>
                     <div class="item">
-                        <div class="key">上级目录</div>
+                        <div class="key">分类</div>
                         <div class="value" data-FormName="Default" data-propertyName="ParentID" data-propertyValue="">
-                            <a href="javascript:;" class="checkbox" onclick="$('#category').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
+                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
                             <div style="position: absolute;">
                                 <div id="category" class="dropdownlist">
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </li>
@@ -110,26 +121,38 @@
             </ul>
         </div>
         <div class="buttons">
-            <a href="javascript:;" class="btn" onclick="Doc.SaveCategory()">保存</a>
-            <a href="javascript:;" class="btn" id="deleteBtn" style="display:none;" onclick="Doc.RemoveCategory()">删除</a>
-            <a href="javascript:;" class="btn" onclick="Doc.CloseWindow();">取消</a>
+            <a href="jajavscript:;" class="btn" onclick="Doc.SaveDetail()">发表</a>
+            <a href="jajavscript:;" class="btn" onclick="Doc.SaveDetail()">存稿</a>
+            <a href="http://localhost:39641/TouTiao/TouTiaoArticle.html?id=[id]" id="preView" target="_blank" class="btn">预览</a>
+            <a href="jajavscript:;" class="btn" onclick="$(window.parent.document).find('#detailWindow').hide(); window.close();">取消</a>
         </div>
     </div>
+ 
+    <script type="text/javascript">
+        $("#publishDate").datepicker({
+            //inline: true
+            dateFormat: "yy/mm/dd"
+        });
+    </script>
     <script type="text/javascript">
         $(document).ready(function () {
-            Doc.LoadCategoryDetail();
+            $(".global").width(window.parent.$("#content").width()-30);
+            UE.getEditor('editor', { autoHeightEnabled: true, initialFrameWidth: $(".global").width() }); ///创建编辑器
+
+
+
+            Doc.LoadDetail();
             Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) {
                 Doc.LoadTreeTo("#category", res1, [], {
                     Click: function (event, treeId, treeNode) {
-                        var name = treeNode.Name;
                         $('#category').hide();
+                        var name = treeNode.Name;
                         $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.ID);
                         $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
-                        $("[data-propertyName='ParentName']").text( name);
+                        $("[data-propertyName='ParentName']").text(name);
                     }
                 });
-            });
-
+            }); ///加载目录
             Doc.LoadData_All([], function (res1) {
                 Doc.LoadTreeTo("#category2", res1, [], {
                     ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
@@ -148,15 +171,16 @@
                 });
             }); ///加载目录
         });
-
         window.parent.document.getElementById("iframeTitle").innerText = document.title;
 
     </script>
+
     <div id="modal"></div>
     <div id="dialog">
         <div class="title">标题</div>
         <div class="message">操作成功！</div>
         <div class="bottom"><a href="javascript:;" onclick="$('#modal').hide();$('#dialog').hide()">关闭</a></div>
     </div>
+
 </body>
 </html>
