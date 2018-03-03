@@ -46,7 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\YunProjectWebAPI.cs" />
-    <Compile Include="CONST.cs" />
     <Compile Include="Items\CategoryItem.cs" />
     <Compile Include="Items\ProjectItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,6 +70,10 @@
     <ProjectReference Include="..\..\..\WangJun2017\WangJun.Utility\WangJun.Utility.csproj">
       <Project>{ddc51285-3f85-4d6d-a10b-f835b9c5058a}</Project>
       <Name>WangJun.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WangJun.Config\WangJun.Config.csproj">
+      <Project>{EEBD1F1F-3DCD-4329-87BE-AC4C7DF19348}</Project>
+      <Name>WangJun.Config</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

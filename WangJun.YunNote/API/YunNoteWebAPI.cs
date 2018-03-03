@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WangJun.Config;
 using WangJun.Entity;
 using WangJun.HumanResource;
 
@@ -38,9 +39,9 @@ namespace WangJun.YunNote
         /// <returns></returns>
         public List<CategoryItem> LoadCategoryList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
         {
-            query = "{$and:[" + query + ",{'OwnerID':'" + SESSION.Current.UserID + "','AppCode':" + Entity.CONST.APP.YunNote + "}]}";
+            query = "{$and:[" + query + ",{'OwnerID':'" + SESSION.Current.UserID + "','AppCode':" +CONST.APP.YunNote.Code + "}]}";
 
-            var res = EntityManager.GetInstance().Find<CategoryItem>(CONST.DB.DBName_DocService, CONST.DB.CollectionName_CategoryItem, query, protection, sort, pageIndex, pageSize);
+            var res = EntityManager.GetInstance().Find<CategoryItem>(query, protection, sort, pageIndex, pageSize);
             return res;
         }
 
@@ -93,7 +94,7 @@ namespace WangJun.YunNote
         /// <returns></returns>
         public List<YunNoteItem> LoadEntityList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
         {
-            var res = EntityManager.GetInstance().Find<YunNoteItem>(CONST.DB.DBName_DocService, CONST.DB.CollectionName_YunNoteItem, query, protection, sort, pageIndex, pageSize);
+            var res = EntityManager.GetInstance().Find<YunNoteItem>(query, protection, sort, pageIndex, pageSize);
             return res;
         }
 

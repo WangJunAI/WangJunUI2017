@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="1.html" />
+    <Content Include="CSS\TPL.Main.css" />
     <Content Include="CSS\TPL.SIZE.PC.1080.css" />
     <Content Include="JS\Base\Convertor.js" />
     <Content Include="JS\Base\CryptoJS\core-min.js" />
@@ -946,6 +947,7 @@
     <Content Include="JS\Base\zTree\log v3.x.txt" />
     <Content Include="JS\jquery.cookie.js" />
     <Content Include="JS\SESSION.js" />
+    <Content Include="JS\TPL\TPL.Table.js" />
     <Content Include="JS\ueditor\dialogs\anchor\anchor.html" />
     <Content Include="JS\ueditor\dialogs\attachment\attachment.css" />
     <Content Include="JS\ueditor\dialogs\attachment\attachment.html" />
@@ -1452,7 +1454,7 @@
     <Content Include="UI\APP\Staff\CSS\Detail.css" />
     <Content Include="UI\APP\Doc\CSS\TPL.css" />
     <Content Include="UI\APP\Staff\CSS\Doc.css" />
-    <Content Include="UI\APP\Staff\CSS\Doc.Font.css" />
+    <Content Include="CSS\TPL.Font.css" />
     <Content Include="UI\APP\Staff\CSS\QuickBar.css" />
     <Content Include="UI\APP\Staff\Detail.html" />
     <Content Include="UI\APP\Staff\JS\AppInfo.Doc.js" />
@@ -1611,9 +1613,6 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\API.ashx.cs">
-      <DependentUpon>API.ashx</DependentUpon>
-    </Compile>
     <Compile Include="JS\ueditor\net\App_Code\Config.cs" />
     <Compile Include="JS\ueditor\net\App_Code\ConfigHandler.cs" />
     <Compile Include="JS\ueditor\net\App_Code\CrawlerHandler.cs" />
@@ -1867,7 +1866,6 @@
     <Content Include="JS\webuploader\_draft\flash_cpp\hashlib\Makefile" />
     <Content Include="JS\webuploader\_draft\flash_cpp\makefile" />
     <Content Include="JS\webuploader\_draft\flash_cpp\Test.swc" />
-    <Content Include="API\API.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

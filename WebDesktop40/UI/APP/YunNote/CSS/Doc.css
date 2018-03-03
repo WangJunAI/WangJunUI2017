@@ -20,7 +20,7 @@
     background-color: #293038;
 }
 
-.right {
+.global > .right {
     position: absolute;
     top: 2em;
     bottom: 0;

@@ -22,7 +22,7 @@ App.Doc.Tree = {};
 App.Doc.Tree.RootID1 = "5a956c1926b01f56ac3e8d26";
 
  App.Doc.Server = {
-     Url1: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=LoadStaffList", ///加载人员列表
+     Url1: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=LoadEntityList", ///加载人员列表
      Url2: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=Count",///文档数量
     Url3: "Detail.html",
     Url4: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=SaveEntity",///保存一个文档

@@ -16,8 +16,9 @@ SESSION.Login = function () {
 
         var callback = function (res) {
             LOGGER.Log(res);
-            //window.location.href = "../Desktop/Desktop.html";
             $.cookie("SESSION", JSON.stringify(res), { path: '/' });
+            alert("登陆成功" + res.UserName);
+            window.location.href = "../Desktop/Desktop.html";
          }
         NET.PostData(url, callback, param);
 }
@@ -30,6 +31,12 @@ SESSION.Current = function () {
     }
     else {
         var res = JSON.parse(session);
+        $("#userName").text(res.UserName);
         return res;
     }
+}
+
+///
+SESSION.SendHeartbeat = function () {
+
 }

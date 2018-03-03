@@ -59,7 +59,7 @@ public class UEditorHandler : IHttpHandler
                 foreach (string filedName in context.Request.Files)
                 {
                     var file = context.Request.Files[filedName];
-                    var serverFileName = Guid.NewGuid();
+                    var serverFileName = Guid.NewGuid() + file.FileName;
                     var folderPath = string.Format(@"{0}{1}", context.Server.MapPath("~"), "uploadFiles");
                     Directory.CreateDirectory(folderPath);
                     var filePath = string.Format(@"{0}\{1}", folderPath, serverFileName);
@@ -71,7 +71,7 @@ public class UEditorHandler : IHttpHandler
                         FileNameInClient = file.FileName,
                         FileLength = file.ContentLength,
                         FileLengthText = (1024 <= file.ContentLength) ? ((1024*1024 <= file.ContentLength) ? ((1024*1024*1024 <= file.ContentLength) ? (file.ContentLength / 1024*1024*1024)+"GB" : (file.ContentLength/1024*1024)+"MB") : (file.ContentLength/1024)+"KB") : file.ContentLength+"B",
-                        HttpUrl = string.Format("http://localhost:14000/uploadFiles/{0}.txt", serverFileName)
+                        HttpUrl = string.Format("http://localhost:14000/uploadFiles/{0}", serverFileName)
                     };
 
                     File.WriteAllText(string.Format(@"{0}\{1}", folderPath, serverFileName + ".txt"), new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(fileInfo), System.Text.Encoding.UTF8);

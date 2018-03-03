@@ -107,6 +107,10 @@
       <Project>{DDC51285-3F85-4D6D-A10B-F835B9C5058A}</Project>
       <Name>WangJun.Utility</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WangJun.Admin\WangJun.Admin.csproj">
+      <Project>{4f722223-ac4d-4085-a348-6942a2650f54}</Project>
+      <Name>WangJun.Admin</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WangJun.YunNote\WangJun.YunNote.csproj">
       <Project>{766eed44-f19d-4ba4-ae75-ffd666d48066}</Project>
       <Name>WangJun.YunNote</Name>

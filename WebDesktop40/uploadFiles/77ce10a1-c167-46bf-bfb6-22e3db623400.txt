@@ -1,1 +1,0 @@
-﻿{"ServerFileName":"77ce10a1-c167-46bf-bfb6-22e3db623400","ServerFilePath":"E:\\WangJunUI2017\\WangJunUI2017\\WebDesktop40\\uploadFiles\\77ce10a1-c167-46bf-bfb6-22e3db623400","FileNameInClient":"2.png","FileLengtth":1321093,"HttpUrl":"http://localhost:14000/uploadFiles/77ce10a1-c167-46bf-bfb6-22e3db623400.txt"}

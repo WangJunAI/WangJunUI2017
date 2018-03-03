@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using WangJun.Config;
 using WangJun.DB;
 using WangJun.Entity;
 using WangJun.Utility;
@@ -16,12 +17,12 @@ namespace WangJun.YunProject
     {
         public ProjectItem()
         {
-            this._DbName = CONST.DB.DBName_DocService;
-            this._CollectionName = CONST.DB.CollectionName_YunProjectItem;
-             this.ClassFullName = this.GetType().FullName;
+            this._DbName = CONST.APP.YunProject.DB;
+            this._CollectionName = CONST.APP.YunProject.TableYunProject;
+            this.ClassFullName = this.GetType().FullName;
             this.Version = 1;
-            this.AppCode = Entity.CONST.APP.YunNote;
-            this.AppName = Entity.CONST.APP.GetString(this.AppCode);
+            this.AppCode = CONST.APP.YunProject.Code;
+            this.AppName = CONST.APP.YunProject.Name;
         }
 
         public string ShowMode { get; set; }

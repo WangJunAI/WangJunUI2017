@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using WangJun.Config;
 using WangJun.DB;
 using WangJun.Entity;
 using WangJun.Utility;
@@ -15,12 +16,12 @@ namespace WangJun.YunProject
     {
         public CategoryItem()
         {
-            this._DbName = CONST.DB.DBName_DocService;
-            this._CollectionName = CONST.DB.CollectionName_CategoryItem;
+            this._DbName = CONST.APP.YunProject.DB;
+            this._CollectionName = CONST.APP.YunProject.TableCategory;
             this.ClassFullName = this.GetType().FullName;
             this.Version = 1;
-            this.AppCode = Entity.CONST.APP.YunProject;
-            this.AppName = Entity.CONST.APP.GetString(this.AppCode);
+            this.AppCode = CONST.APP.YunProject.Code;
+            this.AppName = CONST.APP.YunProject.Name;
         }
   
          

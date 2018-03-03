@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WangJun.Config;
 using WangJun.Entity;
 using WangJun.HumanResource;
 
@@ -23,6 +24,7 @@ namespace WangJun.YunPan
         /// <returns></returns>
         public int SaveCategory(string jsonInput)
         {
+            var categoryCount = this.LoadCategoryList("{}", "{}", "{}", 0, 1).Count;
             CategoryItem.Save(jsonInput);
             return 0;
         }
@@ -37,13 +39,12 @@ namespace WangJun.YunPan
         /// <param name="pageSize"></param>
         /// <returns></returns>
         public List<CategoryItem> LoadCategoryList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
-        {
-            //{$and:[{},{"OwnerID":"5a97ac8426b0184e8825cf20"}]}
-            query = "{$and:[" + query + ",{'OwnerID':'" + SESSION.Current.UserID + "','AppCode':"+Entity.CONST.APP.YunPan+"}]}";
-            var res = EntityManager.GetInstance().Find<CategoryItem>(CONST.DB.DBName_DocService, CONST.DB.CollectionName_CategoryItem, query, protection, sort, pageIndex, pageSize);
+        { 
+            query = "{$and:[" + query + ",{'OwnerID':'" + SESSION.Current.UserID + "','AppCode':"+CONST.APP.YunPan.Code+"}]}";
+            var res = EntityManager.GetInstance().Find<CategoryItem>(query, protection, sort, pageIndex, pageSize);
             return res;
         }
-
+         
 
         /// <summary>
         /// 删除一个目录
@@ -93,7 +94,7 @@ namespace WangJun.YunPan
         /// <returns></returns>
         public List<YunPanItem> LoadEntityList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
         {
-            var res = EntityManager.GetInstance().Find<YunPanItem>(CONST.DB.DBName_DocService, CONST.DB.CollectionName_YunPanItem, query, protection, sort, pageIndex, pageSize);
+            var res = EntityManager.GetInstance().Find<YunPanItem>( query, protection, sort, pageIndex, pageSize);
             return res;
         }
 
@@ -137,7 +138,7 @@ namespace WangJun.YunPan
         }
         #endregion
 
-
+         
 
 
  

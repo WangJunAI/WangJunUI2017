@@ -1,1 +1,0 @@
-﻿{"ServerFileName":"7352e220-01cf-48db-bdfe-6eba2a5eef04","ServerFilePath":"E:\\WangJunUI2017\\WangJunUI2017\\WebDesktop40\\uploadFiles\\7352e220-01cf-48db-bdfe-6eba2a5eef04","FileNameInClient":"1.jpg","FileLengtth":104946,"HttpUrl":"http://localhost:14000/uploadFiles/7352e220-01cf-48db-bdfe-6eba2a5eef04.txt"}

@@ -1,1 +1,0 @@
-﻿{"ServerFileName":"1b0c30a8-71d4-464d-afb9-87dbbb755b8d","ServerFilePath":"E:\\WangJunUI2017\\WangJunUI2017\\WebDesktop40\\uploadFiles\\1b0c30a8-71d4-464d-afb9-87dbbb755b8d","FileNameInClient":"2.gif","FileLengtth":854371}

@@ -1,1 +1,0 @@
-﻿{"ServerFileName":"d0e5576d-8aff-41ae-9eb6-818f315a0914","ServerFilePath":"E:\\WangJunUI2017\\WangJunUI2017\\WebDesktop40\\uploadFiles\\d0e5576d-8aff-41ae-9eb6-818f315a0914","FileNameInClient":"2015EU007BLFK.doc","FileLength":62976,"FileLengthText":"61KB","HttpUrl":"http://localhost:14000/uploadFiles/d0e5576d-8aff-41ae-9eb6-818f315a0914.txt"}

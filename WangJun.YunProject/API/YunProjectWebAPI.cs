@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WangJun.Config;
 using WangJun.Entity;
 using WangJun.HumanResource;
 
@@ -37,8 +38,8 @@ namespace WangJun.YunProject
         /// <returns></returns>
         public List<CategoryItem> LoadCategoryList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
         {
-            query = "{$and:[" + query + ",{'OwnerID':'" + SESSION.Current.UserID + "','AppCode':" + Entity.CONST.APP.YunProject + "}]}";
-            var res = EntityManager.GetInstance().Find<CategoryItem>(CONST.DB.DBName_DocService, CONST.DB.CollectionName_CategoryItem, query, protection, sort, pageIndex, pageSize);
+            query = "{$and:[" + query + ",{'OwnerID':'" + SESSION.Current.UserID + "','AppCode':" + CONST.APP.YunProject.Code + "}]}";
+            var res = EntityManager.GetInstance().Find<CategoryItem>(query, protection, sort, pageIndex, pageSize);
             return res;
         }
 
@@ -92,7 +93,7 @@ namespace WangJun.YunProject
         /// <returns></returns>
         public List<ProjectItem> LoadEntityList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
         {
-            var res = EntityManager.GetInstance().Find<ProjectItem>(WangJun.YunProject.CONST.DB.DBName_DocService, WangJun.YunProject.CONST.DB.CollectionName_YunProjectItem, query, protection, sort, pageIndex, pageSize);
+            var res = EntityManager.GetInstance().Find<ProjectItem>(query, protection, sort, pageIndex, pageSize);
             return res;
         }
 

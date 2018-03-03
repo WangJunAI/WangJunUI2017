@@ -1,1 +1,0 @@
-﻿{"ServerFileName":"4b87061e-e7ad-49f6-94e4-499e2e64ac52","ServerFilePath":"E:\\WangJunUI2017\\WangJunUI2017\\WebDesktop40\\uploadFiles\\4b87061e-e7ad-49f6-94e4-499e2e64ac52","FileNameInClient":"1.jpg","FileLengtth":49691}
