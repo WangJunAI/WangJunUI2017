@@ -134,6 +134,16 @@ namespace WangJun.Admin
             categoryYunProject.OwnerID = staff.ID;
             categoryYunProject.Save();
             #endregion
+
+            #region 初始化云文档库
+            var categoryYunDoc = new WangJun.YunDoc.CategoryItem();
+            categoryYunDoc.Name = "我的云文档库";
+            categoryYunDoc.OwnerID = staff.ID;
+            categoryYunDoc.CompanyID = staff.CompanyID;
+            categoryYunDoc.CompanyName = staff.CompanyName;
+            categoryYunDoc.OwnerID = staff.ID;
+            categoryYunDoc.Save();
+            #endregion
             return 0;
         }
         #endregion
