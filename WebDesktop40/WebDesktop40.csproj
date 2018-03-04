@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="1.html" />
+    <Content Include="CSS\TPL.Color.css" />
     <Content Include="CSS\TPL.Main.css" />
     <Content Include="CSS\TPL.SIZE.PC.1080.css" />
     <Content Include="JS\Base\Convertor.js" />
@@ -1451,7 +1452,7 @@
     <Content Include="UI\APP\Staff\Category.html" />
     <Content Include="UI\APP\Staff\Chart1.html" />
     <Content Include="UI\APP\Staff\CSS\Category.css" />
-    <Content Include="UI\APP\Staff\CSS\Detail.css" />
+    <Content Include="CSS\TPL.Detail.css" />
     <Content Include="UI\APP\Doc\CSS\TPL.css" />
     <Content Include="UI\APP\Staff\CSS\Doc.css" />
     <Content Include="CSS\TPL.Font.css" />
@@ -1468,8 +1469,7 @@
     <Content Include="UI\APP\Staff\JS\Doc.js" />
     <Content Include="UI\APP\Staff\JS\Doc.LeftMenu.js" />
     <Content Include="UI\APP\Staff\JS\Doc.Nav.SummaryList.js" />
-    <Content Include="UI\APP\Staff\JS\Doc.Nav.View1.js" />
-    <Content Include="UI\APP\Staff\JS\Doc.Nav.Ztree.js" />
+    <Content Include="JS\TPL\TPL.Nav.Ztree.js" />
     <Content Include="UI\APP\Staff\JS\Doc.Table.js" />
     <Content Include="UI\APP\Staff\JS\Doc.TopButton.js" />
     <Content Include="UI\APP\Staff\JS\Doc.View.js" />
@@ -1518,25 +1518,23 @@
     <Content Include="UI\APP\YunProject\CSS\milestone.css" />
     <Content Include="UI\APP\YunProject\CSS\QuickBar.css" />
     <Content Include="UI\APP\YunProject\Detail.html" />
-    <Content Include="UI\APP\YunProject\Doc.html" />
     <Content Include="UI\APP\YunProject\JS\AppInfo.Doc.js" />
     <Content Include="UI\APP\YunProject\JS\AppInfo.QuickBar.js" />
-    <Content Include="UI\APP\YunProject\JS\ClientDetector.js" />
-    <Content Include="UI\APP\YunProject\JS\Doc.App.js" />
+    <Content Include="JS\ClientDetector.js" />
+    <Content Include="JS\TPL\TPL.App.js" />
     <Content Include="UI\APP\YunProject\JS\Doc.Biz.js" />
-    <Content Include="UI\APP\YunProject\JS\Doc.Category.js" />
+    <Content Include="JS\TPL\TPL.Category.js" />
     <Content Include="UI\APP\YunProject\JS\Doc.Chart.js" />
-    <Content Include="UI\APP\YunProject\JS\Doc.ClientUI.js" />
+    <Content Include="JS\TPL\TPL.ClientUI.js" />
     <Content Include="UI\APP\YunProject\JS\Doc.Detail.js" />
     <Content Include="UI\APP\YunProject\JS\Doc.js" />
     <Content Include="UI\APP\YunProject\JS\Doc.LeftMenu.js" />
     <Content Include="UI\APP\YunProject\JS\Doc.Milestone.js" />
-    <Content Include="UI\APP\YunProject\JS\Doc.Nav.SummaryList.js" />
-    <Content Include="UI\APP\YunProject\JS\Doc.Nav.View1.js" />
+    <Content Include="JS\TPL\TPL.Nav.SummaryList.js" />
     <Content Include="UI\APP\YunProject\JS\Doc.Nav.Ztree.js" />
     <Content Include="UI\APP\YunProject\JS\Doc.Table.js" />
     <Content Include="UI\APP\YunProject\JS\Doc.TopButton.js" />
-    <Content Include="UI\APP\YunProject\JS\Doc.View.js" />
+    <Content Include="JS\TPL\TPL.View.js" />
     <Content Include="UI\APP\YunProject\JS\MileStone.js" />
     <Content Include="UI\APP\YunProject\JS\QuickBar.js" />
     <Content Include="UI\APP\YunProject\Main.html" />
