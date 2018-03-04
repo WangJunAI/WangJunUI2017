@@ -100,7 +100,7 @@ namespace WangJun.Config
 
             }
 
-            public static class Doc
+            public static class YunDoc
             {
                 public static long Code { get { return 1803001007; } }
 
@@ -110,7 +110,7 @@ namespace WangJun.Config
 
                 public static string TableCategory { get { return "Category"; } }
 
-                public static string TableNews { get { return "Doc"; } }
+                public static string TableYunDoc { get { return "YunDoc"; } }
 
 
             }

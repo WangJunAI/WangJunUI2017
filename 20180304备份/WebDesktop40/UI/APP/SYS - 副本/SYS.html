@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>系统管理</title>
+    <link href="CSS/SYS.css" rel="stylesheet" />
+    <script src="../../../JS/Base/jquery-3.1.1.min.js"></script>
+    <script src="../../../JS/Base/PARAM_CHECKER.js"></script>
+    <script src="JS/SYS.js"></script>
+</head>
+<body class="fill">
+    <div class="leftArea">
+        <ul>
+            <li><a href="javascript:void(0)" class="btn"><span>全局图表</span></a></li>
+            <li><a href="javascript:void(0)" class="btn"><span>任务中心</span></a></li>
+            <li><a href="javascript:void(0)" class="btn"><span>新建任务</span></a></li>
+            <li><a href="javascript:void(0)" class="btn"><span>数据库管理</span></a></li>
+            <li><a href="javascript:void(0)" class="btn"><span>异常信息</span></a></li>
+
+        </ul>
+    </div>
+    <div class="mainArea">
+        <div class="head"><span class="title">任务管理</span></div>
+        <div class="tab">
+            <ul>
+                <li><a href="javascript:void(0)">新建任务</a></li>
+                <li><a href="javascript:void(0)">运行中</a></li>
+                <li><a href="javascript:void(0)">异常</a></li>
+                <li><a href="javascript:void(0)">统计</a></li>
+            </ul>
+        </div>
+        <div class="list2wrap">
+            <ul class="list2" id="stockList"></ul>
+
+        </div>
+        <div class="content2">
+            <ul class="list1">
+                <li>
+                    <div class="item">
+                        <div class="head"><span class="title">任务概要</span> </div>
+                        <div class="content">
+                            <ul class="list1">
+                                <li>
+                                    <div class="listitem"><span class="itemkey">标题：</span><span id="标题"><input type="text" placeholder="请输入任务标题" data-form1="Title" /></span></div>
+                                </li>
+                                <li>
+                                    <div class="listitem">
+                                        <span class="itemkey">描述：</span><span id="描述"><textarea placeholder="请输入任务描述" data-form1="Description" ></textarea></span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="listitem">
+                                        <span class="itemkey">状态：</span><span id="状态"><select data-form1="Status"><option selected="selected">待执行</option><option selected="selected">暂停</option></select></span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="listitem">
+                                        <span class="itemkey">开始时间：</span><span id="开始时间"><input data-form1="StartTime" type="text" placeholder="请选择开始时间" /></span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="listitem"><span class="itemkey">过期时间：</span><span id="过期时间"><input data-form1="ExpireTime"  type="text" placeholder="请选择过期时间" /></span></div>
+
+                                </li>
+                                <li>
+                                    <div class="listitem"><span class="itemkey">间隔秒数：</span><span id="间隔秒数"><input data-form1="IntervalSeconds" type="text" placeholder="请选择间隔秒数" /></span></div>
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item">
+                        <div class="head"><span class="title">方法调用</span></div>
+                        <div class="content">
+                            <ul class="list1">
+                                <li>
+                                    <div class="listitem">
+                                        <span class="itemkey">方法名称：</span><span id="方法名称"><input  type="text" data-form1="MethodName"  placeholder="请输入方法名称" /></span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="listitem">
+                                        <span class="itemkey">类型全名：</span><span id="类型全名"><input type="text" data-form1="TypeFullName"  placeholder="请输入类型全名" /></span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="listitem">
+                                        <span class="itemkey">DLL物理路径：</span><span id="DLL物理路径"><input type="text" data-form1="PhysicalPath" placeholder="请输入DLL物理路径" /></span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="listitem">
+                                        <span class="itemkey">参数：</span><span id="参数"><input type="text"  data-form1="Param" placeholder="参数" /></span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item">
+                        <div class="head"><span class="title">操作</span></div>
+                        <div class="content">
+                            <ul class="list1">
+                                <li>
+                                    <a class="formbtn" href="javascript:;" onclick="SYS.CreateTask()">保存</a><a class="formbtn" href="javascript:;">草稿</a><a class="formbtn" href="javascript:;">暂停</a><a class="formbtn" href="javascript:;">废弃</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    <script type="text/template" templateID="THSHQStock001">
+        <li>
+            <div class="box" data-command="A002" data-param="">
+                <div class="rbox">
+                    <div class="title"><a href="javascript:void(0)"><span data-property="StockCode"></span><span data-property="StockName"></span></a></div>
+                    <div class="summary">买入股票和金额等概要信息</div>
+                    <div class="info">
+                        <ul>
+                            <li><a href="javascript:void(0)">分类值</a></li>
+                            <li><a href="javascript:void(0)">推荐值</a></li>
+                            <li><a href="javascript:void(0)">热度</a></li>
+                            <li><a href="javascript:void(0)">分类值</a></li>
+                            <li><a href="javascript:void(0)">推荐值</a></li>
+                            <li><a href="javascript:void(0)">时间</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </script>
+    <div id="test" class="noticewapper">
+        <div class="title">标题说明</div>
+        <div class="description"><div style="margin:0.5em 0.5em 0.5em 0.5em">地下综合管廊作为一种绿色发展方式，践行了新发展理念。地下综合管廊好比是城市“地下管线之家”，具有资源集约化、使用寿命长、安全性能高、环境效益佳、管线运行维护方便等优势。</div></div>
+        <div class="btn"><span><a href="javascript:;">确定</a></span><span><a href="javascript:;">关闭</a></span></div>
+    </div>
+</body>
+</html>

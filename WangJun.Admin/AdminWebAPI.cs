@@ -82,6 +82,18 @@ namespace WangJun.Admin
             categoryYunProject.Save();
             #endregion
 
+            #region 初始化云文档库
+            var categoryYunDoc = new WangJun.YunDoc.CategoryItem();
+            categoryYunDoc.Name = "企业云文档";
+            categoryYunDoc.OwnerID = admin.ID;
+            categoryYunDoc.CompanyID = company.ID;
+            categoryYunDoc.CompanyName = company.Name;
+            categoryYunDoc.Save();
+
+            categoryYunDoc.OwnerID = categoryYunDoc.CompanyID;
+            categoryYunDoc.Save();
+            #endregion
+
             return 0;
         }
         #endregion
