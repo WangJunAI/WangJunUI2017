@@ -1519,8 +1519,6 @@
     <Content Include="UI\APP\YunPan\JS\Doc.TopButton.js" />
     <Content Include="UI\APP\YunPan\JS\Doc.View.js" />
     <Content Include="UI\APP\YunPan\JS\QuickBar.js" />
-    <Content Include="UI\APP\YunPan\redirect.html" />
-    <Content Include="UI\APP\YunPan\Workflow.html" />
     <Content Include="UI\Desktop\CSS\Desktop.css" />
     <Content Include="UI\Desktop\Desktop.html" />
     <Content Include="UI\Desktop\JS\Desktop.js" />
