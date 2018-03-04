@@ -1507,7 +1507,6 @@
     <Content Include="UI\APP\Workflow\redirect.html" />
     <Content Include="UI\APP\Workflow\Workflow.html" />
     <Content Include="UI\APP\YunNote\Category.html" />
-    <Content Include="UI\APP\YunNote\CategoryOld.html" />
     <Content Include="UI\APP\YunPan\Category.html" />
     <Content Include="UI\APP\YunProject\AppInfo.html" />
     <Content Include="UI\APP\YunProject\Category.html" />
