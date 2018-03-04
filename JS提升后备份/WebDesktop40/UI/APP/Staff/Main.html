@@ -1,0 +1,235 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>汪俊人员和组织管理</title>
+    <script type="text/javascript"></script>
+
+    <!--共用样式表-->
+    <link href="../../../CSS/TPL.SIZE.PC.1080.css" rel="stylesheet" />
+    <link href="../../../CSS/TPL.Font.css" rel="stylesheet" />
+    <link href="../../../CSS/TPL.Color.css" rel="stylesheet" />
+
+    <!--Main页面样式-->
+    <link href="../../../CSS/TPL.Main.css" rel="stylesheet" />
+
+
+    <!--基础JS-->
+    <script src="../../../JS/Base/jquery-3.1.1.min.js"></script>
+    <script src="../../../JS/Base/PARAM_CHECKER.js"></script>
+    <script src="../../../JS/Base/DEBUG.js"></script>
+    <script src="../../../JS/Base/Convertor.js"></script>
+    <script src="../../../JS/Base/NET.js"></script>
+    <!--SESSION相关-->
+    <script src="../../../JS/jquery.cookie.js"></script>
+    <script src="../../../JS/SESSION.js"></script>
+
+    <!--ZTree组件-->
+    <link href="../../../JS/Base/zTree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
+    <script src="../../../JS/Base/zTree/js/jquery.ztree.all.js"></script>
+
+    <script src="JS/Doc.js"></script>
+    <script src="JS/AppInfo.Doc.js"></script>
+    <script src="JS/Doc.LeftMenu.js"></script>
+    <script src="JS/Doc.TopButton.js"></script>
+    <!--<script src="JS/Doc.Nav.Ztree.js"></script>
+    <script src="JS/Doc.Nav.SummaryList.js"></script>
+    <script src="JS/Doc.Table.js"></script>
+    <script src="JS/Doc.ClientUI.js"></script>
+    <script src="JS/Doc.App.js"></script>-->
+    <script src="JS/Doc.Detail.js"></script>
+    <!--<script src="JS/Doc.View.js"></script>-->
+    <script src="JS/Doc.Biz.js"></script>
+
+    <!--共用业务JS-->
+    <script src="../../../JS/TPL/TPL.App.js"></script>
+    <script src="../../../JS/TPL/TPL.Category.js"></script>
+    <script src="../../../JS/TPL/TPL.ClientUI.js"></script>
+    <script src="../../../JS/TPL/TPL.Nav.SummaryList.js"></script>
+    <script src="../../../JS/TPL/TPL.Nav.Ztree.js"></script>
+    <script src="../../../JS/TPL/TPL.Table.js"></script>
+    <script src="../../../JS/TPL/TPL.View.js"></script>
+
+</head>
+<body>
+    <input type="hidden" id="tableQuery" />
+    <input type="hidden" id="pageName" value="Main" />
+    <div class="global">
+        <div class="head"><a href="javascript:;" id="appName">文档管理</a> <a href="javascript:;" id="userName" class="right">用户信息</a></div>
+        <div class="left">
+            <ul id="leftMenu"></ul>
+
+        </div>
+        <div class="main">
+            <div class="top" id="topButton">
+
+            </div>
+            <div class="list" id="leftList">
+
+
+            </div>
+            <div class="content" id="content">
+
+            </div>
+        </div>
+        <div class="right" id="right">
+
+
+        </div>
+    </div>
+
+    <script type="text/html" id="leftMenuItem1">
+        <li><a href="javascript:;" class="menuItem groupItem" onclick="[Method]()" data-id="[ID]">[Name]</a></li>
+    </script>
+
+    <script type="text/html" id="leftMenuItem2">
+        <li data-parentID="[ParentID]"><a href="javascript:;" class="menuItem" onclick="[Method]()" data-id="[ID]" data-param="[Param]">[Name]</a></li>
+    </script>
+
+    <script type="text/html" id="topButton1">
+        <a href="javascript:;" class="[Class]" data-id="[ID]" onclick="[Method]()" data-param="[Param]">[Name]</a>
+    </script>
+    <script type="text/html" id="topButton2">
+        <a href="javascript:;" class="btn" onclick="$(this).find('.dropdownlist').toggle();" data-param="[Param]">
+            <span>[Name]</span><span>▼</span>
+            <div class="dropdownlist">
+                <div>
+                    <span class="item">回收站</span>
+                    <span class="item">回收站</span>
+                    <span class="item">回收站</span>
+                </div>
+            </div>
+        </a>
+
+
+    </script>
+
+    <script type="text/html" id="QuickBarBlock1">
+        <div class="block1">
+            <div class="head"><a href="javascript:;">[上级分类]</a></div>
+            <div class="content">
+                <ul>
+                    [列表]
+                </ul>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/html" id="QuickBarBlock2">
+        <div class="block2">
+            <div class="head"><a href="javascript:;">[上级分类]</a></div>
+            <div class="content">
+                <ul>
+                    [列表]
+                </ul>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/html" id="QuickBarBlock2Item">
+        <li>
+            <div class="item">
+                <div class="icon"></div><div class="text">
+                    <div class="title"><a href="javascript:;">[CategoryName]</a></div>
+                    <div class="summary"><a href="javascript:;">[Title]</a></div>
+                    <div class="link"><a href="javascript:;">查看详情</a></div>
+                </div>
+            </div>
+        </li>
+    </script>
+
+    <script type="text/html" id="QuickBarBlock3">
+        <div class="block3">
+            <div class="head"><a href="javascript:;">标题</a><a href="javascript:;">标题</a><a href="javascript:;">标题</a><a href="javascript:;">标题</a></div>
+            <div class="content">
+                <ul>
+                    <!--<li><a href="javascript:;">[CategoryName]</a><a href="javascript:;">[Title]</a></li>-->
+                    [列表]
+                </ul>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/javascript">
+        Doc.Initial();
+        //QuickBar.Initial();
+    </script>
+    <div id="detailWindow">
+        <div class="header"><a class="title" id="iframeTitle">[标题]</a><a href="javascript:;" class="btn close" onclick="$('#detailWindow').hide()">关闭</a></div>
+        <iframe src="redirect.html"></iframe>
+    </div>
+    <div id="modal"></div>
+    <div id="dialog">
+        <div class="title">标题</div>
+        <div class="message">操作成功！</div>
+        <div class="bottom"><a href="javascript:;" onclick="$('#modal').hide();$('#dialog').hide()">取消</a><a href="javascript:;" onclick="$('#modal').hide();$('#dialog').hide()">关闭</a><a href="javascript:;" onclick="$('#modal').hide();$('#dialog').hide()">确定</a></div>
+    </div>
+
+    <script type="text/html" id="tplSummaryList">
+        <div class="filter">
+            <span>[ListTitle]</span><a href="javascript:;" onclick="$(this).next().toggle();">筛选器</a>
+            <div class="dropdownlist">
+                <div>
+                    <ul>
+                        <li><a href="jaavscript:;">状态1</a></li>
+                        <li><a href="jaavscript:;">状态1</a></li>
+                        <li><a href="jaavscript:;">状态1</a></li>
+                        <li><a href="jaavscript:;">状态1</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <ul id="summaryList">
+            [列表]
+        </ul>
+    </script>
+
+    <script type="text/html" id="tplSummaryListItem1">
+        <li>
+            <a class="listItem3" a="" href="javascript:;">
+                <div class="row1">
+                    <span class="waring">紧急</span><span class="category">[Title]</span>
+                </div>
+                <div class="row2">
+                    <div>有个很经典的试验，把青蛙直接扔到开水里则一定会蹦出来，但是把水慢慢加温，直到煮熟，青蛙也不会跳出来 。“温水煮青蛙”的哲学道理是“量变到质变”，就是说数量的积累到一定的程度会导致本质的变化。“温水煮青蛙”的道</div>
+                </div>
+                <div class="row3">
+                    <span>
+                        来自
+                    </span><span>张德凯</span><span>12-11 8:05</span>
+                </div>
+            </a>
+        </li>
+    </script>
+    <script type="text/html" id="tplSummaryListItem2">
+        <li>
+            <a class="listItem4" href="javascript:;" onclick="[Method]">[Title]</a>
+        </li>
+    </script>
+    <script type="text/html" id="tplTable">
+        <table>
+            <thead id="thead1">
+            </thead>
+            <tbody id="tbody1"></tbody>
+            <tfoot>
+            </tfoot>
+        </table>
+        <div class="Pager" id="pager">
+        </div>
+    </script>
+
+    <script type="text/html" id="tplView1">
+        <div id="leftPart1" style="width: 12em;height: 100%;background-color: #F9F9FA;float: left;"></div>
+        <div id="leftPart2" style="width: 18em;height: 100%;background-color: #FFF;float: left;"></div>
+    </script>
+
+    <script type="text/html" id="topButtonSearch">
+        <div class="search">
+            <div class="input">
+                <input id="searchInput" type="text" placeholder="请搜索..." />
+                <a class="btn" href="javascript:;" data-id="TopButton.搜索" onclick="Doc.TopButtonClick()">搜索</a>
+            </div>
+        </div>
+    </script>
+</body>
+</html>
