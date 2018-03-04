@@ -1,4 +1,4 @@
-﻿Doc.LoadSummaryList = function (pageIndex, pageSize, query,type) {
+﻿Doc.LoadSummaryList = function (pageIndex, pageSize, query, type) {
 
     var callback = function (res) {
         LOGGER.Log(res);
@@ -9,7 +9,7 @@
         var context = [query, JSON.stringify({ "Content": 0, "PlainText": 0 }), "{CreateTime:-1}", pageIndex, pageSize];
         NET.LoadData(App.Doc.Server.Url1, callback, context, NET.POST);
     }
-    else if(PARAM_CHECKER.IsArray(query)) {
+    else if (PARAM_CHECKER.IsArray(query)) {
         callback(query);
     }
 }
@@ -18,7 +18,7 @@
 Doc.ShowSummaryList = function (source, type) {
     var tplHtml = $("#tplSummaryList").html();
     var tplListItem = $("#tplSummaryListItem1").html();
-    
+
     var listHtml = "";
     for (var k = 0; k < source.length; k++) {
         var item = source[k];
@@ -29,7 +29,7 @@ Doc.ShowSummaryList = function (source, type) {
     Doc.LoadHtmlTo("#leftList", html);
 }
 
-Doc.LoadSummaryListTo = function (target,data, option) {
+Doc.LoadSummaryListTo = function (target, data, option) {
     var tplHtml = $("#tplSummaryList").html();
     var tplListItem = $("#tplSummaryListItem1").html();
 
@@ -37,12 +37,12 @@ Doc.LoadSummaryListTo = function (target,data, option) {
     for (var k = 0; k < data.length; k++) {
         var item = data[k];
         listHtml += tplListItem.replace("[Title]", item.Title).replace("[Method]", "Doc.SummaryListItemClick()")
-            .replace("[Param]", item.id).replace("[Summary]",item.PlainText);
+            .replace("[Param]", item.ID).replace("[Summary]", item.PlainText);
     }
 
     var html = tplHtml.replace("[列表]", listHtml);
     Doc.LoadHtmlTo(target, html);
- 
+
 }
 
 Doc.SummaryListItemClick = function () {
