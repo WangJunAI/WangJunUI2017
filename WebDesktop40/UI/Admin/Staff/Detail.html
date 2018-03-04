@@ -217,6 +217,13 @@
             }); ///加载目录
 
         });
+
+        $('<input type="hidden" data-FormName="Default" data-propertyName="CompanyID" />').appendTo(document.body);
+        $('<input type="hidden" data-FormName="Default" data-propertyName="CompanyName" />').appendTo(document.body);
+        $("[data-propertyName='CompanyID']").attr("data-PropertyValue", SESSION.Current().CompanyID);
+        $("[data-propertyName='CompanyName']").attr("data-PropertyValue", SESSION.Current().CompanyName);
+
+
         window.parent.document.getElementById("iframeTitle").innerText = document.title;
 
     </script>

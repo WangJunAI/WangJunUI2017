@@ -72,7 +72,7 @@ Doc.LeftMenuClick = function (id) {
             Doc.LoadData_Doc(context = [listQuery, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size],   function (res2) { Doc.LoadSummaryListTo("#leftPart2", res2);  });
         }
 
-        var param = ["{}", "{}", "{}", 0, 1000]
+        var param = [JSON.stringify({ OwnerID: SESSION.Current().CompanyID }), "{}", "{}", 0, 1000]
         Doc.LoadData_Category(param, callback1);
         $("#tableQuery").val(listQuery);
 
