@@ -37,14 +37,17 @@ Doc.ShowCategoryDetail = function (data) {
             if (PARAM_CHECKER.IsNotEmptyString(propertyName)) {
                 var propertyValue = data[propertyName];
                 $(this).attr("data-propertyValue", propertyValue);
-                $(this).val(propertyValue);
+                
+                if (true === $(this).is("input")) {
+                    $(this).val(propertyValue);
+                }
+                else if (true === $(this).is("a")) {
+                    propertyValue = (true === PARAM_CHECKER.IsValid(propertyValue) || true === PARAM_CHECKER.IsEmptyString(propertyValue)) ? propertyValue : "请选择";
+                    $(this).text(propertyValue);
+                }
             }
         });
-
-        if (true === !PARAM_CHECKER.IsNotEmptyString(data.ParentName)) {
-            data.ParentName = "选择分类";
-        }
-        $("#parentNode").text(data.ParentName);
+ 
         $("#deleteBtn").removeAttr("style");
     }
 }

@@ -44,6 +44,7 @@ namespace WangJun.Admin
             admin.CompanyID = company.ID;
             admin.CompanyName = company.Name;
             admin.Email = "wj01admin";
+            admin.IsSuperAdmin = true;
             admin.Save();
             #endregion
 
@@ -53,7 +54,8 @@ namespace WangJun.Admin
             categoryYunPan.OwnerID = admin.ID;
             categoryYunPan.CompanyID = company.ID;
             categoryYunPan.CompanyName = company.Name;
-
+            categoryYunPan.Save();
+            categoryYunPan.OwnerID = categoryYunPan.CompanyID;
             categoryYunPan.Save();
             #endregion
 
@@ -63,7 +65,8 @@ namespace WangJun.Admin
             categoryYunNote.OwnerID = admin.ID;
             categoryYunNote.CompanyID = company.ID;
             categoryYunNote.CompanyName = company.Name;
-
+            categoryYunNote.Save();
+            categoryYunNote.OwnerID = categoryYunNote.CompanyID;
             categoryYunNote.Save();
             #endregion
 
@@ -73,6 +76,9 @@ namespace WangJun.Admin
             categoryYunProject.OwnerID = admin.ID;
             categoryYunProject.CompanyID = company.ID;
             categoryYunProject.CompanyName = company.Name;
+            categoryYunProject.Save();
+
+            categoryYunProject.OwnerID = categoryYunProject.CompanyID;
             categoryYunProject.Save();
             #endregion
 

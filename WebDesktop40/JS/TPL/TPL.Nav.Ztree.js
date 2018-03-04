@@ -46,7 +46,7 @@ Doc.LoadTreeTo = function (target, data,excludeIdArray,option) {
     }
 
     var zTreeOnDblClick = function (event, treeId, treeNode) {
-        Doc.ShowWindow("Category.html?id=" + treeNode.id);
+        Doc.ShowWindow("Category.html?id=" + treeNode.ID);
     }
 
     var zTreeOnCheck = function (event, treeId, treeNode) {

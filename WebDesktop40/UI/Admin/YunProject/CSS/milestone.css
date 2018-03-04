@@ -1,0 +1,86 @@
+﻿#milestone {
+    list-style: none;
+    border-left: 1px solid #222;
+}
+
+    #milestone > li {
+        position: relative;
+        left: -30px;
+    }
+
+        #milestone > li > ul {
+            list-style: none;
+        }
+
+            #milestone > li > ul > li {
+                position: relative;
+                left: -30px;
+            }
+
+    #milestone .checkpoint {
+        color: #000;
+        margin-top: 3em;
+    }
+
+        #milestone .checkpoint input {
+            border: none;
+            border-bottom: 1px solid #222;
+            vertical-align: bottom;
+            font-size: 1.5em;
+        }
+
+    #milestone .progress {
+        font-size: 0.6em;
+        font-weight: 500;
+    }
+
+    #milestone .row {
+        height: 4em;
+        width: 40em;
+        border-bottom: #999 solid 1px;
+        margin-top: 0.5em;
+    }
+
+    #milestone .content {
+        width: 100%;
+        margin-bottom: 0.5em;
+    }
+
+
+    #milestone .info {
+        height: 1em;
+        width: 100%;
+        font-size: 0.9em;
+        color: #666;
+    }
+
+
+    #milestone .status {
+        color: #060;
+        font-weight: 700;
+        margin-right: 0.5em;
+        border: #060 solid 1px;
+        padding: 1px 2px;
+    }
+
+    #milestone .time {
+        margin-right: 0.5em;
+    }
+
+    #milestone .btn {
+        float: right;
+        text-decoration: none;
+        margin-right: 0.5em;
+    }
+
+    #milestone .addbtn {
+        text-decoration: none;
+        vertical-align: bottom;
+        margin-left: 0.5em;
+    }
+
+    #milestone .content input {
+        border: none;
+        border-bottom: solid #222 1px;
+        width: 100%;
+    }

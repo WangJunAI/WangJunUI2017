@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using WangJun.Config;
 using WangJun.Entity;
 using WangJun.HumanResource;
+using WangJun.Utility;
 
 namespace WangJun.YunNote
 {
@@ -14,6 +15,9 @@ namespace WangJun.YunNote
     /// </summary>
     public class YunNoteWebAPI
     {
+        public long AppCode = CONST.APP.YunNote.Code;
+
+
         #region 目录操作
         /// <summary>
         /// 保存一个目录
@@ -39,8 +43,17 @@ namespace WangJun.YunNote
         /// <returns></returns>
         public List<CategoryItem> LoadCategoryList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
         {
-            query = "{$and:[" + query + ",{'OwnerID':'" + SESSION.Current.UserID + "','AppCode':" +CONST.APP.YunNote.Code + "}]}";
-
+            var dict = Convertor.FromJsonToDict2(query);
+            if (dict.ContainsKey("OwnerID") && dict["OwnerID"].ToString() == SESSION.Current.CompanyID) ///企业云盘查询
+            {
+                dict.Remove("OwnerID");
+                query = Convertor.FromObjectToJson(dict);
+                query = "{$and:[" + query + ",{'OwnerID':'" + SESSION.Current.CompanyID + "','AppCode':" + this.AppCode + "}]}";
+            }
+            else ///个人查询
+            {
+                query = "{$and:[" + query + ",{'OwnerID':'" + SESSION.Current.UserID + "','AppCode':" + this.AppCode + "}]}";
+            }
             var res = EntityManager.GetInstance().Find<CategoryItem>(query, protection, sort, pageIndex, pageSize);
             return res;
         }
