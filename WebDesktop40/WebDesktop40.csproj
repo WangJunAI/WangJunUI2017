@@ -1523,7 +1523,6 @@
     <Content Include="UI\APP\YunPan\Main.html" />
     <Content Include="UI\APP\YunPan\JS\AppInfo.Doc.js" />
     <Content Include="UI\APP\YunPan\JS\Doc.Biz.js" />
-    <Content Include="UI\APP\YunPan\JS\Doc.Chart.js" />
     <Content Include="UI\APP\YunPan\JS\Doc.Detail.js" />
     <Content Include="UI\APP\YunPan\JS\Doc.js" />
     <Content Include="UI\APP\YunPan\JS\Doc.LeftMenu.js" />

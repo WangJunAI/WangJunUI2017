@@ -47,6 +47,28 @@ Doc.CloseWindow = function (url) {
 
 }
 
+Doc.LoadHtmlTo = function (target, html) {
+    $(target).empty();
+    $(target).append(html);
+}
+
+Doc.CloseDialog = function () {
+    $('#modal').css("display", "none");
+    $('#dialog').css("display", "none");
+}
+
+Doc.ShowDialog = function (message, type, title) {
+    $('#modal').css("display", "block");
+    $('#dialog').css("display", "block");
+    $(window.parent).find('#modal').show();
+    $(window.parent).find('#dialog').show();
+    $('#dialog').find(".message").text(message);
+    setTimeout(function () {
+        Doc.CloseDialog();
+    }, 1000 * 2);
+
+}
+
 Doc.SubmitStart = function () {
     Doc.ShowDialog("正在提交数据...");
     var id = new Date().getTime();

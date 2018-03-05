@@ -103,3 +103,16 @@ Doc.SaveDetail = function (resInfo) {
     NET.PostData(App.Doc.Server.Url4, callback, param);
 }
 
+///移除一个文档
+Doc.RemoveDetail = function () {
+    var id = $("#ID").val();
+    var context = [id];
+
+    var callback = function (res) {
+        LOGGER.Log(res);
+        if (false === PARAM_CHECKER.IsTopWindow()) {
+            Doc.ShowDialog();
+        }
+    }
+    NET.PostData(App.Doc.Server.Url9, callback, context);
+}
