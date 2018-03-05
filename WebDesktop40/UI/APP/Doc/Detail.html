@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>笔记详细</title>
+    <title>文档详细</title>
     <!--共用样式表-->
     <link href="../../../CSS/TPL.SIZE.PC.1080.css" rel="stylesheet" />
     <link href="../../../CSS/TPL.Font.css" rel="stylesheet" />
@@ -88,8 +88,8 @@
                     <div class="item">
                         <div class="key" data-FormName="Default">权限</div>
                         <div class="value">
-                            <a href="javascript:;" class="checkbox selected" data-single="private" data-show="hide">个人笔记</a>
-                            <a href="javascript:;" class="checkbox" data-single="private" data-show="show">企业笔记</a>
+                            <a href="javascript:;" class="checkbox selected" data-single="private" data-show="hide">个人文档</a>
+                            <a href="javascript:;" class="checkbox" data-single="private" data-show="show">企业文档</a>
                         </div>
                     </div>
                 </li>
@@ -148,7 +148,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $(".global").width(window.parent.$("#content").width() - 30);
-            UE.getEditor('editor', { autoHeightEnabled: true, initialFrameWidth: $(".global").width() }); ///创建编辑器
+            UE.getEditor('editor', { autoHeightEnabled: false, initialFrameWidth: $(".global").width() }); ///创建编辑器
 
 
 

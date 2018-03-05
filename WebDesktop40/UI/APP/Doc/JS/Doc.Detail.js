@@ -52,7 +52,6 @@ Doc.ShowDetail = function (data) {
         if (true === !PARAM_CHECKER.IsNotEmptyString(data.ParentName)) {
             data.ParentName = "选择分类";
         }
-        $("#parentNode").text(data.ParentName);
         $("#deleteBtn").removeAttr("style");
 
         $("[data-single]").each(function () {

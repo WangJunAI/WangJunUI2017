@@ -151,7 +151,8 @@ App.Doc.Data.DocTable.Info = {
     Pager: {
         Url: App.Doc.Server.Url2, PagerIndexClick: function () { }
     },
-    Data: { Url: App.Doc.Server.Url1 }
+    Data: { Url: App.Doc.Server.Url1 },
+    RowClickDetailUrl:"Detail.html?"
 }
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "全选", Method: "", Sort: "", PropertyName: "Type", DataType: "checkbox" });
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "标题", Method: "Doc.TableRowClick", Sort: "", PropertyName: "Title", DataType: "string"});

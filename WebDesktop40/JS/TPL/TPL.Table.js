@@ -109,7 +109,8 @@ Doc.ShowPager = function (pagerInfo, tableInfo) {
 }
 
 Doc.TableRowClick = function () {
-    var url = $(event.target).attr("data-param");
+    var param = $(event.target).attr("data-param");
+    var url = App.Doc.Data.DocTable.Info.RowClickDetailUrl + "id=" + param;
     Doc.ShowWindow(url);
 }
 

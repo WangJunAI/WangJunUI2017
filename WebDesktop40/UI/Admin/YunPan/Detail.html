@@ -174,7 +174,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             Doc.LoadDetail();
-            Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) {
+            Doc.LoadData_Category([JSON.stringify({ OwnerID: SESSION.Current().CompanyID }), "{}", "{}", 0, 1000], function (res1) {
                 Doc.LoadTreeTo("#category", res1, [], {
                     Click: function (event, treeId, treeNode) {
                         var name = treeNode.Name;

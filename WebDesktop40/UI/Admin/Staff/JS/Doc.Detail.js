@@ -46,7 +46,7 @@ Doc.ShowDetail = function (data) {
                 var propertyValue = data[propertyName];
                 $(this).attr("data-propertyValue", propertyValue);
 
-                $(this).val(eval(propertyValue));
+                $(this).val(propertyValue);
             }
         });
 
