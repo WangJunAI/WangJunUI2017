@@ -41,7 +41,7 @@ Doc.LeftMenuClick = function (id) {
         var url = App.Doc.Server.Url6 + "?t=" + (new Date().getTime());
         Doc.ShowWindow(url);
     }
-    else if ("LeftMenu.个人项目" == id) {
+    else if ("LeftMenu.发起的项目" == id) {
         Doc.ShowView1();
 
         Doc.LoadTopButton(topButtonId);
@@ -60,7 +60,7 @@ Doc.LeftMenuClick = function (id) {
         Doc.LoadData_Category(param, callback1);
         $("#tableQuery").val(listQuery);
     }
-    else if ("LeftMenu.共享项目" == id) {
+    else if ("LeftMenu.参与的项目" == id) {
         Doc.ShowView1();
 
         Doc.LoadTopButton(topButtonId);
