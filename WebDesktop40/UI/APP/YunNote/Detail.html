@@ -64,19 +64,21 @@
     <input type="hidden" id="ID" data-FormName="Default" data-propertyName="ID" />
     <input type="hidden" id="pageName" value="Detail" />
     <div class="global">
-        <div class="buttons">
+        <div class="title"><input type="text" placeholder="请输入标题" data-FormName="Default" data-propertyName="Title" data-propertyValue="" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" /></div>
+
+        <div class="minibuttons">
             <a href="jajavscript:;" class="btn" onclick="Doc.SaveDetail()">发表</a>
             <a href="jajavscript:;" class="btn" onclick="Doc.SaveDetail()">存稿</a>
             <a href="http://localhost:39641/TouTiao/TouTiaoArticle.html?id=[id]" id="preView" target="_blank" class="btn">预览</a>
             <a href="jajavscript:;" class="btn" onclick="$(window.parent.document).find('#detailWindow').hide(); window.close();">取消</a>
         </div>
-        <div class="options">
+        <div class="minioptions">
             <ul>
                 <li>
                     <div class="item">
                         <div class="key">分类</div>
                         <div class="value" data-FormName="Default" data-propertyName="ParentID" data-propertyValue="">
-                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category').toggle();"  data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
+                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
                             <div style="position: absolute;z-index:3990;">
                                 <div id="category" class="dropdownlist">
                                 </div>
@@ -98,7 +100,7 @@
                     <div class="item">
                         <div class="key">添加组织</div>
                         <div class="value" data-FormName="Default" data-propertyName="OrgAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
-                            <a href="javascript:;" class="checkbox" onclick="$('#category2').toggle();"  data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
+                            <a href="javascript:;" class="checkbox" onclick="$('#category2').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
                             <div style="position: absolute;z-index:3990;">
                                 <div id="category2" class="dropdownlist">
                                 </div>
@@ -132,7 +134,6 @@
                 </li>
             </ul>
         </div>
-        <div class="title"><input type="text" placeholder="请输入标题" data-FormName="Default" data-propertyName="Title" data-propertyValue="" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" /></div>
         <script id="editor" type="text/plain">
         </script>
 
