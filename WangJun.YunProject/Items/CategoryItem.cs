@@ -22,10 +22,13 @@ namespace WangJun.YunProject
             this.Version = 1;
             this.AppCode = CONST.APP.YunProject.Code;
             this.AppName = CONST.APP.YunProject.Name;
+            this.StatusCode = CONST.APP.YunProject.Status.正常;
+            this.Status = CONST.APP.YunProject.Status.GetString(this.StatusCode);
+
         }
-  
-         
- 
+
+
+
 
         public int ItemCount { get; set; }
 

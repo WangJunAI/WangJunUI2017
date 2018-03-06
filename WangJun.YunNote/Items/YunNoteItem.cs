@@ -22,7 +22,8 @@ namespace WangJun.YunNote
             this.Version = 1;
             this.AppCode = CONST.APP.YunNote.Code;
             this.AppName = CONST.APP.YunNote.Name;
-
+            this.StatusCode = CONST.APP.YunNote.Status.正常;
+            this.Status = CONST.APP.YunNote.Status.GetString(this.StatusCode);
         }
 
         public string ShowMode { get; set; }

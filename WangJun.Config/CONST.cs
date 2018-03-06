@@ -23,6 +23,48 @@ namespace WangJun.Config
                 public static string TableOrg { get { return "Org"; } }
 
                 public static string TableCompany { get { return "Company"; } }
+
+                public static class OrgStatus
+                {
+                    public static int 正常 { get { return 1; } }
+                    public static int 删除 { get { return -1; } } ///等待系统回收
+
+                    public static string GetString(int statusCode)
+                    {
+                        if(statusCode == OrgStatus.正常)
+                        {
+                            return "正常";
+                        }
+                        else if (statusCode == OrgStatus.删除)
+                        {
+                            return "删除";
+                        }
+                        return "未定义";
+                    }
+
+                }
+                public static class StaffStatus
+                {
+                    public static int 在职 { get { return 1; } }
+                    public static int 离职 { get { return 0; } }
+                    public static int 删除 { get { return -1; } } ///等待系统回收
+                    public static string GetString(int statusCode)
+                    {
+                        if (statusCode == StaffStatus.在职)
+                        {
+                            return "在职";
+                        }
+                        else if (statusCode == StaffStatus.离职)
+                        {
+                            return "离职";
+                        }
+                        else if (statusCode == StaffStatus.删除)
+                        {
+                            return "删除";
+                        }
+                        return "未定义";
+                    }
+                }
             }
 
             public static class YunNote
@@ -36,7 +78,23 @@ namespace WangJun.Config
                 public static string TableCategory { get { return "Category"; } }
 
                 public static string TableYunNote { get { return "YunNote"; } }
-
+                public static class Status
+                {
+                    public static int 正常 { get { return 1; } }
+                    public static int 删除 { get { return -1; } } ///等待系统回收
+                    public static string GetString(int statusCode)
+                    {
+                        if (statusCode == Status.正常)
+                        {
+                            return "正常";
+                        }
+                        else if (statusCode == Status.删除)
+                        {
+                            return "删除";
+                        }
+                        return "未定义";
+                    }
+                }
             }
 
             public static class YunProject
@@ -50,7 +108,41 @@ namespace WangJun.Config
                 public static string TableCategory { get { return "Category"; } }
 
                 public static string TableYunProject { get { return "YunProject"; } }
+                public static class Status
+                {
+                    public static int 正常 { get { return 5; } } ///目录使用
+                    public static int 未启动 { get { return 1; } }
+                    public static int 进行中 { get { return 2; } }
+                    public static int 暂停 { get { return 3; } }
+                    public static int 已完成 { get { return 4; } }
+                    public static int 删除 { get { return -1; } } ///等待系统回收
 
+                    public static string GetString(int statusCode)
+                    {
+                        if (statusCode == Status.未启动)
+                        {
+                            return "未启动";
+                        }
+                        else if (statusCode == Status.进行中)
+                        {
+                            return "进行中";
+                        }
+                        else if (statusCode == Status.暂停)
+                        {
+                            return "暂停";
+                        }
+                        else if (statusCode == Status.已完成)
+                        {
+                            return "已完成";
+                        }
+                        else if (statusCode == Status.删除)
+                        {
+                            return "删除";
+                        }
+                        return "未定义";
+                    }
+
+                }
             }
 
             public static class YunPan
@@ -64,6 +156,23 @@ namespace WangJun.Config
                 public static string TableCategory { get { return "Category"; } }
 
                 public static string TableYunPan { get { return "YunPan"; } }
+                public static class Status
+                {
+                    public static int 正常 { get { return 1; } }
+                    public static int 删除 { get { return -1; } } ///等待系统回收
+                    public static string GetString(int statusCode)
+                    {
+                        if (statusCode == Status.正常)
+                        {
+                            return "正常";
+                        }
+                        else if (statusCode == Status.删除)
+                        {
+                            return "删除";
+                        }
+                        return "未定义";
+                    }
+                }
 
             }
 
@@ -97,7 +206,29 @@ namespace WangJun.Config
                 public static string TableNews { get { return "News"; } }
 
                 public static string TableComment { get { return "NewsComment"; } }
+                public static class Status
+                {
+                    public static int 待发布 { get { return 1; } }
 
+                    public static int 已发布 { get { return 2; } }
+                    public static int 删除 { get { return -1; } } ///等待系统回收
+                    public static string GetString(int statusCode)
+                    {
+                        if (statusCode == Status.待发布)
+                        {
+                            return "待发布";
+                        }
+                        else if (statusCode == Status.已发布)
+                        {
+                            return "已发布";
+                        }
+                        else if (statusCode == Status.删除)
+                        {
+                            return "删除";
+                        }
+                        return "未定义";
+                    }
+                }
             }
 
             public static class YunDoc
@@ -112,7 +243,23 @@ namespace WangJun.Config
 
                 public static string TableYunDoc { get { return "YunDoc"; } }
 
-
+                public static class Status
+                {
+                    public static int 正常 { get { return 1; } }
+                    public static int 删除 { get { return -1; } } ///等待系统回收
+                    public static string GetString(int statusCode)
+                    {
+                        if (statusCode == Status.正常)
+                        {
+                            return "正常";
+                        }
+                        else if (statusCode == Status.删除)
+                        {
+                            return "删除";
+                        }
+                        return "未定义";
+                    }
+                }
             }
 
             public static class RecycleBin
@@ -122,8 +269,7 @@ namespace WangJun.Config
                 public static string Name { get { return "回收站"; } }
 
                 public static string DB { get { return "WangJun"; } }
-                 
-
+                  
                 public static string TableRecycleBin { get { return "RecycleBin"; } }
 
 

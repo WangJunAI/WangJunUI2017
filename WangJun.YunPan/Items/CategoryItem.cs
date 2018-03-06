@@ -22,6 +22,8 @@ namespace WangJun.YunPan
             this.Version = 1;
             this.AppCode = CONST.APP.YunPan.Code;
             this.AppName = CONST.APP.YunPan.Name;
+            this.StatusCode = CONST.APP.YunPan.Status.正常;
+            this.Status = CONST.APP.YunPan.Status.GetString(this.StatusCode);
         }
 
 
