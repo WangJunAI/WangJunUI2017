@@ -53,12 +53,12 @@ Doc.TopButtonClick = function () {
         var url = App.Doc.Server.Url6 + "?t=" + (new Date().getTime());
         Doc.ShowWindow(url);
     }
-    else if ("TopButton.删除" === id) {
-        Doc.MoveToRecycleBin();
+    else if ("TopButton.彻底删除" === id) {
+
     }
-    else if ("TopButton.删除" === id) {
-        ;
-    }
+    else if ("TopButton.清空回收站" === id) {
+        Doc.EmptyRecycleBin();
+    } 
     else if ("TopButton.搜索" === id)
     {
         var keywords = $("#searchInput").val();

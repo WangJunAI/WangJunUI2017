@@ -89,9 +89,6 @@ Doc.LeftMenuClick = function (id) {
     else if ("LeftMenu.回收站" == id) {
         Doc.ShowView2();
         Doc.LoadTopButton(topButtonId);
-        $("#topButton").removeAttr("data-status");
-        $("#topButton").removeAttr("data-categoryId");
-
         Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{}", App.Doc.Data.RecycleBin.Info);
     }
     else if ("LeftMenu.存储管理" == id) {

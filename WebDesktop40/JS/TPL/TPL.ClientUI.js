@@ -28,6 +28,18 @@ Doc.ToggleTableRows = function () {
     $("#tbody1").find("[type='checkbox'][data-param]").prop("checked", checked);
 }
 
+///获取选中行
+Doc.GetSelectedTableRow = function () {
+    var $source = $("#tbody1 [type='checkbox'][data-param]").each(function () {
+        if (true == $(this).prop("checked")) {
+            var id = $(this).attr("data-param");
+            idArray.push(id);
+        }
+    });
+    return idArray;
+}
+
+
 Doc.ShowWindow = function (url) {
     $("#detailWindow iframe").attr("src", url);
     $("#detailWindow").show();

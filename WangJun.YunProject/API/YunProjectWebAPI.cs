@@ -152,9 +152,37 @@ namespace WangJun.YunProject
 
 
 
+        #region 回收站
+        public List<ProjectItem> LoadRecycleBinEntityList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
+        {
+            query = "{$and:[" + "{}" + ",{'OwnerID':'" + SESSION.Current.UserID + "','AppCode':" + this.AppCode + "},{'StatusCode':{$eq:" + CONST.APP.Status.删除 + "}}]}";
 
+            var res = EntityManager.GetInstance().Find<ProjectItem>(query, protection, sort, pageIndex, pageSize);
+            return res;
+        }
 
         /// <summary>
-        /// ///////////////////////
+        /// 彻底删除实体
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public int DeleteEntity(string id)
+        {
+            var inst = new ProjectItem();
+            inst.ID = id;
+            inst.Delete();
+            return 0;
+        }
+
+        public int EmptyRecycleBin()
+        {
+            var list = this.LoadRecycleBinEntityList("{}", "{}", "{}", 0, int.MaxValue);
+            foreach (ProjectItem item in list)
+            {
+                item.Delete();
+            }
+            return 0;
+        }
+        #endregion
     }
 }

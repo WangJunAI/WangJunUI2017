@@ -31,12 +31,13 @@ App.Doc.Server = {
     Url11: "http://localhost:9990/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=GetCategory", ///获取一个目录
     Url12: "http://localhost:9990/API.ashx?c=WangJun.YunPan.DocManager&m=UpdateStatus&p=0",///暂未使用
     Url13: "http://localhost:9990/API.ashx?c=WangJun.YunPan.DocWebAPI&m=MoveToRecycleBin", ///移除到回收站
-    Url14: "http://localhost:9990/API.ashx?c=WangJun.YunPan.DocWebAPI&m=LoadRecycleBinItem",///加载回收站
+    Url14: "http://localhost:9990/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=LoadRecycleBinEntityList",///加载回收站
     Url15: "http://localhost:9990/API.ashx?c=WangJun.YunPan.DataAnalysor&m=GetHotWords",///暂未使用
     Url16: "http://localhost:9990/API.ashx?c=WangJun.YunPan.DocWebAPI&m=Aggregate",///聚合查询
     Url17: "http://localhost:9990/API.ashx?c=WangJun.YunPan.ClientBehaviorManager&m=Aggregate",
     Url18: "http://localhost:9990/API.ashx?c=WangJun.YunPan.DocWebAPI&m=RecycleBinCount",///回收站数量
     Url19: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=LoadAll",///回收站数量
+    Url90: "http://localhost:9990/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=EmptyRecycleBin",///加载回收站
 
 };
 

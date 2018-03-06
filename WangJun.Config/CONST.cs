@@ -10,6 +10,25 @@ namespace WangJun.Config
     {
         public static class APP
         {
+            public static class Status
+            {
+                public static int 正常 { get { return 1; } }
+                public static int 删除 { get { return -1; } } ///等待系统回收
+
+                public static string GetString(int statusCode)
+                {
+                    if (statusCode == Status.正常)
+                    {
+                        return "正常";
+                    }
+                    else if (statusCode == Status.删除)
+                    {
+                        return "删除";
+                    }
+                    return "未定义";
+                }
+
+            }
             public static class OrgStaff
             {
                 public static long Code { get { return 1803001001; } }
@@ -110,11 +129,15 @@ namespace WangJun.Config
                 public static string TableYunProject { get { return "YunProject"; } }
                 public static class Status
                 {
-                    public static int 正常 { get { return 5; } } ///目录使用
+                    
                     public static int 未启动 { get { return 1; } }
                     public static int 进行中 { get { return 2; } }
                     public static int 暂停 { get { return 3; } }
-                    public static int 已完成 { get { return 4; } }
+                    public static int 如期完成 { get { return 4; } }
+                    public static int 非正常结束 { get { return 5; } } ///目录使用
+
+                    public static int 超期完成 { get { return 6; } } ///目录使用
+
                     public static int 删除 { get { return -1; } } ///等待系统回收
 
                     public static string GetString(int statusCode)
@@ -131,9 +154,13 @@ namespace WangJun.Config
                         {
                             return "暂停";
                         }
-                        else if (statusCode == Status.已完成)
+                        else if (statusCode == Status.如期完成)
                         {
-                            return "已完成";
+                            return "如期完成";
+                        }
+                        else if (statusCode == Status.超期完成)
+                        {
+                            return "超期完成";
                         }
                         else if (statusCode == Status.删除)
                         {

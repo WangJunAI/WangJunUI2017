@@ -31,12 +31,13 @@ App.Doc.CSS.LeftList.View3.Width = { Value: 12, Unit: "em" };
     Url11: "http://localhost:9990/API.ashx?c=WangJun.YunNote.YunNoteWebAPI&m=GetCategory", ///获取一个目录
     Url12: "http://aifuwu.wang/API.ashx?c=WangJun.YunNote.DocManager&m=UpdateStatus&p=0",///暂未使用
     Url13: "http://aifuwu.wang/API.ashx?c=WangJun.YunNote.YunNoteWebAPI&m=MoveToRecycleBin", ///移除到回收站
-    Url14: "http://aifuwu.wang/API.ashx?c=WangJun.YunNote.DocWebAPI&m=LoadRecycleBinItem",///加载回收站
+    Url14: "http://localhost:9990/API.ashx?c=WangJun.YunNote.YunNoteWebAPI&m=LoadRecycleBinEntityList",///加载回收站
     Url15: "http://aifuwu.wang/API.ashx?c=WangJun.YunNote.DataAnalysor&m=GetHotWords",///暂未使用
     Url16: "http://aifuwu.wang/API.ashx?c=WangJun.YunNote.DocWebAPI&m=Aggregate",///聚合查询
     Url17: "http://aifuwu.wang/API.ashx?c=WangJun.YunNote.ClientBehaviorManager&m=Aggregate",
     Url18: "http://aifuwu.wang/API.ashx?c=WangJun.YunNote.DocWebAPI&m=RecycleBinCount",///回收站数量
     Url19: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=LoadAll",///回收站数量
+    Url90: "http://localhost:9990/API.ashx?c=WangJun.YunNote.YunNoteWebAPI&m=EmptyRecycleBin",///加载回收站
 
 };
 
