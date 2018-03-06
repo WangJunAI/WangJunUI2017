@@ -44,17 +44,17 @@ namespace WangJun.YunPan
         public List<CategoryItem> LoadCategoryList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
         {
             var dict = Convertor.FromJsonToDict2(query);
-            if(dict.ContainsKey("OwnerID") && dict["OwnerID"].ToString() == SESSION.Current.CompanyID) ///企业云盘查询
+            if (dict.ContainsKey("OwnerID") && dict["OwnerID"].ToString() == SESSION.Current.CompanyID) ///企业云盘查询
             {
                 dict.Remove("OwnerID");
                 query = Convertor.FromObjectToJson(dict);
-                query = "{$and:[" + query + ",{'OwnerID':'" + SESSION.Current.CompanyID + "','AppCode':" +this.AppCode + "}]}";
+                query = "{$and:[" + query + ",{'OwnerID':'" + SESSION.Current.CompanyID + "','AppCode':" + this.AppCode + "},{'StatusCode':{$ne:" + CONST.APP.Status.删除 + "}}]}";
             }
             else ///个人查询
             {
-                query = "{$and:[" + query + ",{'OwnerID':'" + SESSION.Current.UserID + "','AppCode':" + this.AppCode + "}]}";
+                query = "{$and:[" + query + ",{'OwnerID':'" + SESSION.Current.UserID + "','AppCode':" + this.AppCode + "},{'StatusCode':{$ne:" + CONST.APP.Status.删除 + "}}]}";
             }
-            
+
             var res = EntityManager.GetInstance().Find<CategoryItem>(query, protection, sort, pageIndex, pageSize);
             return res;
         }
@@ -108,6 +108,8 @@ namespace WangJun.YunPan
         /// <returns></returns>
         public List<YunPanItem> LoadEntityList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
         {
+            query = "{$and:[" + query + ",{'StatusCode':{$ne:" + CONST.APP.Status.删除 + "}}]}";
+
             var res = EntityManager.GetInstance().Find<YunPanItem>( query, protection, sort, pageIndex, pageSize);
             return res;
         }

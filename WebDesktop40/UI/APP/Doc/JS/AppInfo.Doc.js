@@ -38,6 +38,8 @@ App.Doc.CSS.LeftList.View3.Width = { Value: 12, Unit: "em" };
     Url18: "http://aifuwu.wang/API.ashx?c=WangJun.YunDoc.DocWebAPI&m=RecycleBinCount",///回收站数量
     Url19: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=LoadAll",///回收站数量
     Url90: "http://localhost:9990/API.ashx?c=WangJun.YunDoc.YunDocWebAPI&m=EmptyRecycleBin",///加载回收站
+    Url91: "http://localhost:9990/API.ashx?c=WangJun.YunDoc.YunDocWebAPI&m=DeleteEntity",///加载回收站
+
 };
 
 

@@ -99,8 +99,8 @@ Doc.SaveDetail = function () {
 }
 
 ///移除一个文档
-Doc.RemoveDetail = function () {
-    var id = $("#ID").val();
+Doc.RemoveDetail = function (id) {
+    var id = (true === PARAM_CHECKER.IsNotEmptyString(id)) ? id : $("#ID").val();
     var context = [id];
 
     var callback = function (res) {

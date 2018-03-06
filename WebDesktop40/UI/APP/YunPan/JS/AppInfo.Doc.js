@@ -26,7 +26,7 @@ App.Doc.Server = {
     Url6: "Category.html",
     Url7: "http://localhost:9990/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=SaveCategory",///保存一个目录
     Url8: "http://localhost:9990/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=LoadCategoryList",///加载目录列表
-    Url9: "http://localhost:9990/API.ashx?c=WangJun.YunPan.DocWebAPI&m=RemoveDoc",///移除一份文档,暂未使用
+    Url9: "http://localhost:9990/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=RemoveEntity",///移除一份文档,暂未使用
     Url10: "http://localhost:9990/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=RemoveCategory",///移除一个目录
     Url11: "http://localhost:9990/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=GetCategory", ///获取一个目录
     Url12: "http://localhost:9990/API.ashx?c=WangJun.YunPan.DocManager&m=UpdateStatus&p=0",///暂未使用
@@ -38,6 +38,7 @@ App.Doc.Server = {
     Url18: "http://localhost:9990/API.ashx?c=WangJun.YunPan.DocWebAPI&m=RecycleBinCount",///回收站数量
     Url19: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=LoadAll",///回收站数量
     Url90: "http://localhost:9990/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=EmptyRecycleBin",///加载回收站
+    Url91: "http://localhost:9990/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=DeleteEntity",///加载回收站
 
 };
 
@@ -158,7 +159,7 @@ App.Doc.Data.RecycleBin.Info = {
     Data: { Url: App.Doc.Server.Url14 }
 }
 App.Doc.Data.RecycleBin.Info.Column.push({ ID: "", Text: "全选", Method: "", Sort: "", PropertyName: "Type", DataType: "checkbox" });
-App.Doc.Data.RecycleBin.Info.Column.push({ ID: "", Text: "标题", Method: "Doc.TableRowClick", Sort: "", PropertyName: "Title", DataType: "string" });
+App.Doc.Data.RecycleBin.Info.Column.push({ ID: "", Text: "标题", Method: "Doc.TableRowClick", Sort: "", PropertyName: "Name", DataType: "string" });
 App.Doc.Data.RecycleBin.Info.Column.push({ ID: "", Text: "类别", Method: "", Sort: "", PropertyName: "Type", DataType: "string" });
 App.Doc.Data.RecycleBin.Info.Column.push({ ID: "", Text: "删除时间", Method: "", Sort: "", PropertyName: "DeleteTime", DataType: "date" });
 App.Doc.Data.RecycleBin.Info.Column.push({ ID: "", Text: "详细", Method: "Doc.TableRowClick", Sort: "", PropertyName: "Type", DataType: "link", Value: "详细" });

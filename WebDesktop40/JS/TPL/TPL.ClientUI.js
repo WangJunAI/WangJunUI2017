@@ -30,6 +30,7 @@ Doc.ToggleTableRows = function () {
 
 ///获取选中行
 Doc.GetSelectedTableRow = function () {
+    var idArray = [];
     var $source = $("#tbody1 [type='checkbox'][data-param]").each(function () {
         if (true == $(this).prop("checked")) {
             var id = $(this).attr("data-param");
@@ -38,6 +39,16 @@ Doc.GetSelectedTableRow = function () {
     });
     return idArray;
 }
+
+Doc.RemoveSelectedDetail = function () {
+    var idArray = Doc.GetSelectedTableRow();
+    for (var k = 0; k < idArray.length; k++) {
+        var id = idArray[k];
+        Doc.RemoveDetail(id);
+    }
+}
+
+
 
 
 Doc.ShowWindow = function (url) {
