@@ -40,3 +40,13 @@ SESSION.Current = function () {
 SESSION.SendHeartbeat = function () {
 
 }
+SESSION.Initial = function () {
+    $(document).ready(function () {
+        if (true === SESSION.Current().IsSuperAdmin) {
+            $('<input type="hidden" data-FormName="Default" data-propertyName="OwnerID" />').appendTo(document.body);
+            $("[data-propertyName='OwnerID']").attr("data-PropertyValue", SESSION.Current().CompanyID);
+        }
+    });
+}
+
+SESSION.Initial();

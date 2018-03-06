@@ -32,6 +32,7 @@ namespace WangJun.Admin
             org.RootID = company.ID;
             org.CompanyID = company.ID;
             org.CompanyName = company.Name;
+            org.OwnerID = company.ID;
             org.Save();
 
             #endregion
@@ -45,6 +46,9 @@ namespace WangJun.Admin
             admin.CompanyName = company.Name;
             admin.Email = "wj01admin";
             admin.IsSuperAdmin = true;
+            admin.Level = 16;
+            admin.IsAdmin = true;
+            org.OwnerID = company.ID;
             admin.Save();
             #endregion
 
@@ -98,7 +102,7 @@ namespace WangJun.Admin
         }
         #endregion
 
-        #region 创建人员
+        #region 激活人员
         public int ActiveStaff(string staffID)
         {
             #region 查找人员

@@ -42,7 +42,7 @@ Doc.LeftMenuClick = function (id) {
          Doc.ShowWindow(url);
      }
      else if ("LeftMenu.在职人员" == id) {
-         var query = '{}';
+         var query = JSON.stringify({ OwnerID: SESSION.Current().CompanyID });
          Doc.ShowView3();
          Doc.LoadTopButton(topButtonId);
          Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) {
@@ -51,7 +51,7 @@ Doc.LeftMenuClick = function (id) {
                      var name = treeNode.Name;
                      $('#category').hide();
                      $("#parentNode").text(name);
-                     $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.id);
+                     $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.ID);
                      $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
                  }
              }); });
@@ -100,12 +100,9 @@ Doc.LeftMenuClick = function (id) {
          Doc.ShowContent("Chart1.html");
      }
     else if ("LeftMenu.回收站" == id) {
-        Doc.ShowView2();
-        Doc.LoadTopButton(topButtonId);
-        $("#topButton").removeAttr("data-status");
-        $("#topButton").removeAttr("data-categoryId");
-
-        Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{}", App.Doc.Data.RecycleBin.Info);
+         Doc.ShowView2();
+         Doc.LoadTopButton(topButtonId);
+         Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{}", App.Doc.Data.RecycleBin.Info);
     }  
     else if ("LeftMenu.存储管理" == id) {
         Doc.ShowView3();

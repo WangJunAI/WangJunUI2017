@@ -1420,55 +1420,16 @@
     <Content Include="JS\webuploader\_draft\music\success.png" />
     <Content Include="JS\webuploader\_draft\music\upload.js" />
     <Content Include="JS\webuploader\_draft\music\webuploader.js" />
-    <Content Include="UI\Admin\Staff\AppInfo.html" />
-    <Content Include="UI\Admin\Staff\Category.html" />
-    <Content Include="UI\Admin\Staff\Detail.html" />
-    <Content Include="UI\Admin\Staff\JS\AppInfo.Doc.js" />
-    <Content Include="UI\Admin\Staff\JS\Doc.Biz.js" />
-    <Content Include="UI\Admin\Staff\JS\Doc.Detail.js" />
-    <Content Include="UI\Admin\Staff\JS\Doc.js" />
-    <Content Include="UI\Admin\Staff\JS\Doc.LeftMenu.js" />
-    <Content Include="UI\Admin\Staff\JS\Doc.TopButton.js" />
-    <Content Include="UI\Admin\Staff\Main.html" />
-    <Content Include="UI\Admin\YunNote\AppInfo.html" />
-    <Content Include="UI\Admin\YunNote\Category.html" />
-    <Content Include="UI\Admin\YunNote\Detail.html" />
-    <Content Include="UI\Admin\YunNote\JS\AppInfo.Doc.js" />
-    <Content Include="UI\Admin\YunNote\JS\Doc.Biz.js" />
-    <Content Include="UI\Admin\YunNote\JS\Doc.Detail.js" />
-    <Content Include="UI\Admin\YunNote\JS\Doc.js" />
-    <Content Include="UI\Admin\YunNote\JS\Doc.LeftMenu.js" />
-    <Content Include="UI\Admin\YunNote\JS\Doc.TopButton.js" />
-    <Content Include="UI\Admin\YunNote\Main.html" />
-    <Content Include="UI\Admin\YunPan\AppInfo.html" />
-    <Content Include="UI\Admin\YunPan\Category.html" />
-    <Content Include="UI\Admin\YunPan\Chart1.html" />
-    <Content Include="UI\Admin\YunPan\CSS\Category.css" />
-    <Content Include="UI\Admin\YunPan\CSS\Detail.css" />
-    <Content Include="UI\Admin\YunPan\CSS\Doc.css" />
-    <Content Include="UI\Admin\YunPan\CSS\Doc.Font.css" />
-    <Content Include="UI\Admin\YunPan\CSS\QuickBar.css" />
-    <Content Include="UI\Admin\YunPan\Detail.html" />
-    <Content Include="UI\Admin\YunPan\JS\AppInfo.Doc.js" />
-    <Content Include="UI\Admin\YunPan\JS\Doc.Biz.js" />
-    <Content Include="UI\Admin\YunPan\JS\Doc.Chart.js" />
-    <Content Include="UI\Admin\YunPan\JS\Doc.Detail.js" />
-    <Content Include="UI\Admin\YunPan\JS\Doc.js" />
-    <Content Include="UI\Admin\YunPan\JS\Doc.LeftMenu.js" />
-    <Content Include="UI\Admin\YunPan\JS\Doc.TopButton.js" />
-    <Content Include="UI\Admin\YunPan\Main.html" />
-    <Content Include="UI\Admin\YunProject\AppInfo.html" />
-    <Content Include="UI\Admin\YunProject\Category.html" />
-    <Content Include="UI\Admin\YunProject\CSS\milestone.css" />
-    <Content Include="UI\Admin\YunProject\Detail.html" />
-    <Content Include="UI\Admin\YunProject\JS\AppInfo.Doc.js" />
-    <Content Include="UI\Admin\YunProject\JS\Doc.Biz.js" />
-    <Content Include="UI\Admin\YunProject\JS\Doc.Detail.js" />
-    <Content Include="UI\Admin\YunProject\JS\Doc.js" />
-    <Content Include="UI\Admin\YunProject\JS\Doc.LeftMenu.js" />
-    <Content Include="UI\Admin\YunProject\JS\Doc.TopButton.js" />
-    <Content Include="UI\Admin\YunProject\JS\MileStone.js" />
-    <Content Include="UI\Admin\YunProject\Main.html" />
+    <Content Include="UI\APP\Staff\AppInfo.html" />
+    <Content Include="UI\APP\Staff\Category.html" />
+    <Content Include="UI\APP\Staff\Detail.html" />
+    <Content Include="UI\APP\Staff\JS\AppInfo.Doc.js" />
+    <Content Include="UI\APP\Staff\JS\Doc.Biz.js" />
+    <Content Include="UI\APP\Staff\JS\Doc.Detail.js" />
+    <Content Include="UI\APP\Staff\JS\Doc.js" />
+    <Content Include="UI\APP\Staff\JS\Doc.LeftMenu.js" />
+    <Content Include="UI\APP\Staff\JS\Doc.TopButton.js" />
+    <Content Include="UI\APP\Staff\Main.html" />
     <Content Include="CSS\TPL.Category.css" />
     <Content Include="CSS\TPL.Detail.css" />
     <Content Include="CSS\TPL.Font.css" />
@@ -1799,9 +1760,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="UI\Admin\Staff\CSS\" />
-    <Folder Include="UI\Admin\YunNote\CSS\" />
     <Folder Include="UI\APP\Doc\CSS\" />
+    <Folder Include="UI\APP\Staff\CSS\" />
     <Folder Include="UI\APP\YunNote\CSS\" />
   </ItemGroup>
   <PropertyGroup>
