@@ -45,7 +45,7 @@ Doc.LeftMenuClick = function (id) {
         Doc.ShowView1();
 
         Doc.LoadTopButton(topButtonId);
-        var listQuery = "{}";
+        var listQuery = JSON.stringify({});
         var callback1 = function (res1) {
             Doc.LoadTreeTo("#leftPart1", res1, [], {});
             Doc.ShowContent("redirect.html");
@@ -58,13 +58,13 @@ Doc.LeftMenuClick = function (id) {
 
         var param = ["{}", "{}", "{}", 0, 1000]
         Doc.LoadData_Category(param, callback1);
-        $("#tableQuery").val(listQuery);
+        Doc.SetQuery(listQuery); 
     }
     else if ("LeftMenu.企业笔记" == id) {
         Doc.ShowView1();
 
         Doc.LoadTopButton(topButtonId);
-        var listQuery = "{}"
+        var listQuery = JSON.stringify({});
         var callback1 = function (res1) {
             Doc.LoadTreeTo("#leftPart1", res1, [], {});
             Doc.ShowContent("redirect.html");
@@ -74,7 +74,7 @@ Doc.LeftMenuClick = function (id) {
 
         var param = [JSON.stringify({ OwnerID: SESSION.Current().CompanyID }), "{}", "{}", 0, 1000]
         Doc.LoadData_Category(param, callback1);
-        $("#tableQuery").val(listQuery);
+        Doc.SetQuery(listQuery); 
 
     }
     else if ("LeftMenu.笔记分析" === id) {

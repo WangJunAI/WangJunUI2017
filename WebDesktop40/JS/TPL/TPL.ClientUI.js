@@ -1,4 +1,6 @@
 ﻿
+
+
 Doc.CloseLeftList = function () {
     $("#leftList").hide();
     $("#content").css("left", "10em");
@@ -41,10 +43,21 @@ Doc.GetSelectedTableRow = function () {
 }
 
 Doc.RemoveSelectedDetail = function () {
+    var submitId = Doc.SubmitStart();
+
     var idArray = Doc.GetSelectedTableRow();
-    for (var k = 0; k < idArray.length; k++) {
-        var id = idArray[k];
-        Doc.RemoveDetail(id);
+
+    var successCount = idArray.length;
+    while (0 < idArray.length) {
+        var id = idArray.pop();
+        Doc.RemoveDetail(id, function () {
+            successCount--;
+            if (0 === successCount) {
+                Doc.SubmitEnd(submitId);
+                var query = Doc.GetQuery();
+                Doc.LoadTable(0, App.Doc.Data.Pager.Size, query, App.Doc.Data.DocTable.Info);
+             }
+        });
     }
 }
 

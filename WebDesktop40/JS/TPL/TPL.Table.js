@@ -1,4 +1,30 @@
 ﻿ 
+Doc.SetQuery = function (query,replace) {
+    if (true === PARAM_CHECKER.IsNotEmptyString(query)) {
+        query = JSON.parse(query);
+    }
+
+
+    if (true === replace) {
+        $("#tableQuery").val(JSON.stringify(query));
+    }
+    else {
+        var oldQuery = Doc.GetQuery();
+        for (var key in query) {
+            oldQuery[key] = query[key];
+        }
+        $("#tableQuery").val(JSON.stringify(oldQuery));
+    }
+}
+
+Doc.GetQuery = function () {
+    var query = $("#tableQuery").val();
+    if (true ===  PARAM_CHECKER.IsNotEmptyString(query)) {
+        return JSON.parse(query);
+    }
+    return {};
+}
+
 
 Doc.LoadPager = function (pageIndex, pageSize, query, tableInfo) {
     var pagerUrl = tableInfo.Pager.Url;
@@ -116,7 +142,14 @@ Doc.TableRowClick = function () {
 
 
 ////
-Doc.LoadTable = function (pageIndex, pageSize, query,tableInfo) {
+Doc.LoadTable = function (pageIndex, pageSize, query, tableInfo) {
+    if (false === PARAM_CHECKER.IsNotEmptyString(query)) {
+        ///若不是非空字符串
+        query = JSON.stringify(query);
+    }
+
+
+
     var listDataUrl = tableInfo.Data.Url;
     var tplTable = $("#tplTable").html();
     Doc.ShowContent(tplTable);

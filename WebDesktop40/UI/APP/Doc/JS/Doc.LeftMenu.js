@@ -42,23 +42,22 @@ Doc.LeftMenuClick = function (id) {
         Doc.ShowWindow(url);
     }
     else if ("LeftMenu.个人文档" == id) {
-        var query = '{}';
+        var query = {};
         Doc.ShowView3();
         Doc.LoadTopButton(topButtonId);
         Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], {}); });
         Doc.LoadTable(0, App.Doc.Data.Pager.Size, query, App.Doc.Data.DocTable.Info);
-
-        $("#tableQuery").val(query);
+        Doc.SetQuery(query); 
     }
     else if ("LeftMenu.企业文档" == id) {
   
-        var query = '{}';
+        var query = {};
         Doc.ShowView3();
         Doc.LoadTopButton(topButtonId);
         Doc.LoadData_Category([JSON.stringify({ OwnerID: SESSION.Current().CompanyID }), "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], {}); });
         Doc.LoadTable(0, App.Doc.Data.Pager.Size, query, App.Doc.Data.DocTable.Info);
 
-        $("#tableQuery").val(query);
+        Doc.SetQuery(query);
 
     }
     else if ("LeftMenu.文档分析" === id) {

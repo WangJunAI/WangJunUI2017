@@ -34,9 +34,8 @@ Doc.LoadTreeTo = function (target, data,excludeIdArray,option) {
         
         
         if ("Main" === pageName) {
-            var query = JSON.parse($("#tableQuery").val());
+            var query = Doc.GetQuery();
             query.ParentID = treeNode.ID;
-            query = JSON.stringify(query);
             Doc.LoadTable(0, App.Doc.Data.Pager.Size, query, App.Doc.Data.DocTable.Info);//还需要/Summary样式
         }
         else if ("Detail" == pageName) {

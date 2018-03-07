@@ -97,15 +97,9 @@ Doc.SaveDetail = function () {
 }
 
 ///移除一个文档
-Doc.RemoveDetail = function (id) {
+Doc.RemoveDetail = function (id, callback) {
     var id = (true === PARAM_CHECKER.IsNotEmptyString(id)) ? id : $("#ID").val();
     var context = [id];
 
-    var callback = function (res) {
-        LOGGER.Log(res);
-        if (false === PARAM_CHECKER.IsTopWindow()) {
-            Doc.ShowDialog();
-        }
-    }
     NET.PostData(App.Doc.Server.Url9, callback, context);
 }
