@@ -90,7 +90,8 @@ Doc.SaveDetail = function () {
     var callback = function (res) {
         LOGGER.Log(res);
         Doc.SubmitEnd(submitId);
- 
+        Doc.CloseWindow();
+
     }
     NET.PostData(App.Doc.Server.Url4, callback, param);
 }

@@ -11,10 +11,25 @@ body {
         float: right;
         margin-right: 1em;
     }
-/*头部定义 结束*/
+        .global > .head >    .personInfo {
+            float: right;
+            display:none;
+        }
 
-
-.head {
+            .global > .head > .personInfo > .downlist {
+                position: absolute;
+                color: #FFF;
+                margin-top: 2em;
+                z-index: 9999;
+                right: 0;
+                width: 10em;
+                background-color: #222;
+            }
+            .global > .head >   .personInfo > .downlist ul {
+                list-style:none;
+            }
+                /*头部定义 结束*/
+                .head {
     position: absolute;
     top: 0;
     height: 2em;

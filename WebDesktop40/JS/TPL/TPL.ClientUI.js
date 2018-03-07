@@ -1,5 +1,4 @@
-﻿
-
+﻿ 
 
 Doc.CloseLeftList = function () {
     $("#leftList").hide();
@@ -70,11 +69,15 @@ Doc.ShowWindow = function (url) {
 }
 
 
-Doc.CloseWindow = function (url) {
+Doc.CloseWindow = function (option) {
     url = "redirect.html";
     if (false === PARAM_CHECKER.IsTopWindow()) {
-        $(window.parent.document).find('#detailWindow').hide(); window.close();
         Doc.ShowDialog();
+        var tId = setTimeout(function () {
+            clearTimeout(tId);
+            $(window.parent.document).find('#detailWindow').hide();
+            window.close();
+        },1000);
     }
     else {
         $("#detailWindow iframe").attr("src", url);

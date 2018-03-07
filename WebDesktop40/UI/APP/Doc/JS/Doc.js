@@ -8,7 +8,7 @@ Doc.Initial = function () {
  
         Doc.LoadAppInfo();
         Doc.LoadMenu();
-        Doc.LeftMenuClick("LeftMenu.个人笔记");
+        Doc.LeftMenuClick("LeftMenu.个人文档");
      });
 }
  
