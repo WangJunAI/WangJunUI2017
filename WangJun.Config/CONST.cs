@@ -220,7 +220,7 @@ namespace WangJun.Config
 
             }
 
-            public static class News
+            public static class YunNews
             {
                 public static long Code { get { return 1803001006; } }
 
@@ -230,7 +230,7 @@ namespace WangJun.Config
 
                 public static string TableCategory { get { return "Category"; } }
 
-                public static string TableNews { get { return "News"; } }
+                public static string TableNews { get { return "YunNews"; } }
 
                 public static string TableComment { get { return "NewsComment"; } }
                 public static class Status

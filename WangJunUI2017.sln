@@ -5,30 +5,6 @@ VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{57AC08C4-BF2E-41EA-A179-88C375D6D2BF}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WangJunTouTiaoPC", "WangJunTouTiaoPC\", "{4DE10EB4-A0BA-4027-B2DC-5B817F2E0C28}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_39641"
-		Debug.AspNetCompiler.PhysicalPath = "WangJunTouTiaoPC\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_39641\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_39641"
-		Release.AspNetCompiler.PhysicalPath = "WangJunTouTiaoPC\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_39641\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "39641"
-		SlnRelativePath = "WangJunTouTiaoPC\"
-		DefaultWebSiteLanguage = "Visual C#"
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WangJun.TouTiaoPhone", "WangJun.TouTiaoPhone\WangJun.TouTiaoPhone.csproj", "{95D43335-C00B-4D14-BDD4-677940977453}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WangJun.Utility", "..\..\WangJun2017\WangJun.Utility\WangJun.Utility.csproj", "{DDC51285-3F85-4D6D-A10B-F835B9C5058A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WangJun.HumanResource", "..\..\WangJun2017\WangJun.HumanResource\WangJun.HumanResource.csproj", "{06F3A647-D026-4847-94A5-20643223CC96}"
@@ -61,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WangJun.Admin", "WangJun.Ad
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WangJun.YunDoc", "..\..\WangJun2017\WangJun.YunDoc\WangJun.YunDoc.csproj", "{F778D22C-042F-4535-A9E1-10BFB9E23A7F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WangJun.YunNews", "WangJun.YunNews\WangJun.YunNews.csproj", "{B3539DA2-9C83-47F4-BE30-DF49F932BF20}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,14 +49,6 @@ Global
 		{57AC08C4-BF2E-41EA-A179-88C375D6D2BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57AC08C4-BF2E-41EA-A179-88C375D6D2BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57AC08C4-BF2E-41EA-A179-88C375D6D2BF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4DE10EB4-A0BA-4027-B2DC-5B817F2E0C28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4DE10EB4-A0BA-4027-B2DC-5B817F2E0C28}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4DE10EB4-A0BA-4027-B2DC-5B817F2E0C28}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{4DE10EB4-A0BA-4027-B2DC-5B817F2E0C28}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{95D43335-C00B-4D14-BDD4-677940977453}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{95D43335-C00B-4D14-BDD4-677940977453}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{95D43335-C00B-4D14-BDD4-677940977453}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{95D43335-C00B-4D14-BDD4-677940977453}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DDC51285-3F85-4D6D-A10B-F835B9C5058A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DDC51285-3F85-4D6D-A10B-F835B9C5058A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDC51285-3F85-4D6D-A10B-F835B9C5058A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -127,6 +97,10 @@ Global
 		{F778D22C-042F-4535-A9E1-10BFB9E23A7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F778D22C-042F-4535-A9E1-10BFB9E23A7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F778D22C-042F-4535-A9E1-10BFB9E23A7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3539DA2-9C83-47F4-BE30-DF49F932BF20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3539DA2-9C83-47F4-BE30-DF49F932BF20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3539DA2-9C83-47F4-BE30-DF49F932BF20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3539DA2-9C83-47F4-BE30-DF49F932BF20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -137,6 +111,7 @@ Global
 		{06F3A647-D026-4847-94A5-20643223CC96} = {5555E47C-6247-48B7-B99A-6811E40E337A}
 		{AF918729-03E8-443F-BD76-79BC604E286E} = {18F9E736-69E0-4D87-A0F6-2308020BB1AE}
 		{41FE0A71-2098-483A-8E1B-ED4BEBB4DD72} = {18F9E736-69E0-4D87-A0F6-2308020BB1AE}
+		{0D43FC69-1C02-4289-84EC-1CFDDE415FAE} = {9B1F39CB-D80C-4267-96ED-122F5C24D20F}
 		{766EED44-F19D-4BA4-AE75-FFD666D48066} = {5555E47C-6247-48B7-B99A-6811E40E337A}
 		{8FD45DE8-ADFA-4705-9E6F-DA5A748C5C30} = {5555E47C-6247-48B7-B99A-6811E40E337A}
 		{7264576F-0E49-4B34-8D91-9F43EEADD777} = {5555E47C-6247-48B7-B99A-6811E40E337A}
@@ -144,6 +119,7 @@ Global
 		{952A70F6-06A9-405A-A3E6-62B24C218DAF} = {18F9E736-69E0-4D87-A0F6-2308020BB1AE}
 		{4F722223-AC4D-4085-A348-6942A2650F54} = {5555E47C-6247-48B7-B99A-6811E40E337A}
 		{F778D22C-042F-4535-A9E1-10BFB9E23A7F} = {5555E47C-6247-48B7-B99A-6811E40E337A}
+		{B3539DA2-9C83-47F4-BE30-DF49F932BF20} = {5555E47C-6247-48B7-B99A-6811E40E337A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {89E2C04D-C976-481B-8A8F-BBCE924EEC49}

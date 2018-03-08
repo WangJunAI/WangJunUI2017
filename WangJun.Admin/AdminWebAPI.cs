@@ -98,6 +98,18 @@ namespace WangJun.Admin
             categoryYunDoc.Save();
             #endregion
 
+            #region 初始化云新闻库
+            var categoryYunNews = new WangJun.YunNews.CategoryItem();
+            categoryYunNews.Name = "企业云新闻";
+            categoryYunNews.OwnerID = admin.ID;
+            categoryYunNews.CompanyID = company.ID;
+            categoryYunNews.CompanyName = company.Name;
+            categoryYunNews.Save();
+
+            categoryYunNews.OwnerID = categoryYunNews.CompanyID;
+            categoryYunNews.Save();
+            #endregion
+
             return 0;
         }
         #endregion

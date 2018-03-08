@@ -20,7 +20,7 @@ TouTiao.ShowCategory = function (res) {
     var html = "";
     for (var k = 0; k < res.length; k++) {
         var item = res[k];
-        html += "<li><a href=\"javascript:;\" data-param=\"[CategoryID]\" onclick='TouTiao.CategoryButtonClick()'><span data-param=\"[CategoryID]\">[Name]</span></a></li>".replace("[Name]", item.Name).replace(/\[CategoryID\]/g, item.id);
+        html += "<li><a href=\"javascript:;\" data-param=\"[CategoryID]\" onclick='TouTiao.CategoryButtonClick()'><span data-param=\"[CategoryID]\">[Name]</span></a></li>".replace("[Name]", item.Name).replace(/\[CategoryID\]/g, item.ID);
     }
 
     $("#category").html(html);
@@ -78,7 +78,7 @@ TouTiao.ShowList = function (data, pageIndex, categoryId, append) {
             var itemData = data[k];
             itemData.CreateTime = Convertor.DateFormat(eval("new "+itemData.CreateTime.replace(/\//g, "")), "yyyy-MM-dd hh:mm");
             var itemHtml = html.replace("[Title]", itemData.Title).replace("[ImageUrl]", itemData.ImageUrl).replace("[CreatorName]", itemData.CreatorName)
-                .replace("[CommentCount]", itemData.CommentCount).replace("[ReadCount]", itemData.ReadCount).replace("[CreateTime]", itemData.CreateTime).replace("[id]", itemData.id);
+                .replace("[CommentCount]", itemData.CommentCount).replace("[ReadCount]", itemData.ReadCount).replace("[CreateTime]", itemData.CreateTime).replace("[id]", itemData.ID);
 
             array.push(itemHtml);
             $("#list1").append(itemHtml);
@@ -112,7 +112,7 @@ TouTiao.ShowCommentList = function (data) {
             var itemData = data[k];
             itemData.CreateTime = Convertor.DateFormat(eval(itemData.CreateTime.replace(/\//g, "")), "yyyy-MM-dd hh:mm");
             var itemHtml = html.replace("[CreatorName]", itemData.CreatorName).replace("[CreatorID]", itemData.CreatorID)
-                .replace("[LikeCount]", itemData.LikeCount).replace("[CreateTime]", itemData.CreateTime).replace("[id]", itemData.id)
+                .replace("[LikeCount]", itemData.LikeCount).replace("[CreateTime]", itemData.CreateTime).replace("[id]", itemData.ID)
                 .replace("[Content]", itemData.Content);
 
             array.push(itemHtml);

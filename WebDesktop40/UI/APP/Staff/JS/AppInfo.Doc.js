@@ -42,6 +42,7 @@ App.Doc.CSS.LeftList.View3.Width = { Value: 18, Unit: "em" };
     Url90: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=EmptyRecycleBin",///加载回收站
     Url91: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=DeleteEntity",///加载回收站
 };
+ 
 
 
 App.Doc.LeftMenu = [];
