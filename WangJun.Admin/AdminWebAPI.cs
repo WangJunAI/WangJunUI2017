@@ -30,6 +30,7 @@ namespace WangJun.Admin
             org.Name = company.Name;
             org.RootName = company.Name;
             org.RootID = company.ID;
+            org.Save();
             org.CompanyID = company.ID;
             org.CompanyName = company.Name;
             org.OwnerID = company.ID;
@@ -42,23 +43,23 @@ namespace WangJun.Admin
             admin.Name = company.Name + "管理员";
             admin.ParentID = org.ID;
             admin.ParentName = org.RootName;
-            admin.CompanyID = company.ID;
-            admin.CompanyName = company.Name;
             admin.Email = "wj01admin";
             admin.IsSuperAdmin = true;
             admin.Level = 16;
             admin.IsAdmin = true;
-            org.OwnerID = company.ID;
+            admin.Save();
+            admin.CompanyID = company.ID;
+            admin.CompanyName = company.Name;
+            admin.OwnerID = company.ID;
             admin.Save();
             #endregion
 
             #region 初始化云盘
             var categoryYunPan = new WangJun.YunPan.CategoryItem();
             categoryYunPan.Name = "企业云盘";
-            categoryYunPan.OwnerID = admin.ID;
+            categoryYunPan.Save();
             categoryYunPan.CompanyID = company.ID;
             categoryYunPan.CompanyName = company.Name;
-            categoryYunPan.Save();
             categoryYunPan.OwnerID = categoryYunPan.CompanyID;
             categoryYunPan.Save();
             #endregion
@@ -66,10 +67,9 @@ namespace WangJun.Admin
             #region 初始化云笔记
             var categoryYunNote = new WangJun.YunNote.CategoryItem();
             categoryYunNote.Name = "企业云笔记";
-            categoryYunNote.OwnerID = admin.ID;
+            categoryYunNote.Save();
             categoryYunNote.CompanyID = company.ID;
             categoryYunNote.CompanyName = company.Name;
-            categoryYunNote.Save();
             categoryYunNote.OwnerID = categoryYunNote.CompanyID;
             categoryYunNote.Save();
             #endregion
@@ -77,11 +77,9 @@ namespace WangJun.Admin
             #region 初始化云项目
             var categoryYunProject = new WangJun.YunProject.CategoryItem();
             categoryYunProject.Name = "企业云项目";
-            categoryYunProject.OwnerID = admin.ID;
+            categoryYunProject.Save();
             categoryYunProject.CompanyID = company.ID;
             categoryYunProject.CompanyName = company.Name;
-            categoryYunProject.Save();
-
             categoryYunProject.OwnerID = categoryYunProject.CompanyID;
             categoryYunProject.Save();
             #endregion
@@ -89,11 +87,9 @@ namespace WangJun.Admin
             #region 初始化云文档库
             var categoryYunDoc = new WangJun.YunDoc.CategoryItem();
             categoryYunDoc.Name = "企业云文档";
-            categoryYunDoc.OwnerID = admin.ID;
+            categoryYunDoc.Save();
             categoryYunDoc.CompanyID = company.ID;
             categoryYunDoc.CompanyName = company.Name;
-            categoryYunDoc.Save();
-
             categoryYunDoc.OwnerID = categoryYunDoc.CompanyID;
             categoryYunDoc.Save();
             #endregion
@@ -101,11 +97,9 @@ namespace WangJun.Admin
             #region 初始化云新闻库
             var categoryYunNews = new WangJun.YunNews.CategoryItem();
             categoryYunNews.Name = "企业云新闻";
-            categoryYunNews.OwnerID = admin.ID;
+            categoryYunNews.Save();
             categoryYunNews.CompanyID = company.ID;
             categoryYunNews.CompanyName = company.Name;
-            categoryYunNews.Save();
-
             categoryYunNews.OwnerID = categoryYunNews.CompanyID;
             categoryYunNews.Save();
             #endregion

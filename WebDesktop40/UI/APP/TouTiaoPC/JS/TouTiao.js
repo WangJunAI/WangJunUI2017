@@ -1,12 +1,9 @@
-﻿/// <reference path="jquery-3.1.1.min.js" />
-/// <reference path="net.js" />
-/// <reference path="debug.js" />
-/// <reference path="convertor.js" />
+﻿ 
 
 var TouTiao = {};
 
 TouTiao.LoadCategory = function () {
-    var context = ["{}","{}", "{}", 0, 1000];
+    var context = [JSON.stringify({ "ParentID": { $ne: "000000000000000000000000" } }),"{}", "{}", 0, 1000];
 
     var callback = function (res) {
         LOGGER.Log(res);
@@ -47,7 +44,7 @@ TouTiao.LoadList = function (categoryId, pageIndex, append) {
     var query = "{}";
     var pageSize = App.TouTiao.Pager.Size;
     if (true === PARAM_CHECKER.IsNotEmptyString(categoryId)) {
-        query = "{'CategoryID':'[CategoryID]'}".replace('[CategoryID]', categoryId);
+        query = "{'ParentID':'[ParentID]'}".replace('[ParentID]', categoryId);
     }
 
     if (false === PARAM_CHECKER.IsInt(pageIndex)) {
@@ -57,7 +54,7 @@ TouTiao.LoadList = function (categoryId, pageIndex, append) {
         pageIndex = parseInt(pageIndex);
     }
 
-    var context = [categoryId, JSON.stringify({ "Content": 0, "PlainText": 0 }), "{CreateTime:-1}", pageIndex, pageSize];
+    var context = [query, JSON.stringify({ "Content": 0, "PlainText": 0 }), "{CreateTime:-1}", pageIndex, pageSize];
     var callback = function (res) {
         LOGGER.Log(res);
         TouTiao.ShowMessage();
