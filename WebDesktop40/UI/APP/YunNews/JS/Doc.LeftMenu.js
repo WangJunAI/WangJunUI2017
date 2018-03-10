@@ -33,15 +33,15 @@ Doc.LeftMenuClick = function (id) {
     var topButtonId = Doc.FindLeftMenuData(id)[0].TopButtonGroupID;
     Doc.LeftMenuSetSelecled(id);
     Doc.CloseWindow();
-    if ("LeftMenu.新建文档" === id) {
+    if ("LeftMenu.新建新闻" === id) {
         var url = App.Doc.Server.Url3 + "?t=" + (new Date().getTime());
         Doc.ShowWindow(url);
     }
-    else if ("LeftMenu.新建目录" === id) {
+    else if ("LeftMenu.新建分类" === id) {
         var url = App.Doc.Server.Url6 + "?t=" + (new Date().getTime());
         Doc.ShowWindow(url);
     }
-    else if ("LeftMenu.个人文档" == id) {
+    else if ("LeftMenu.个人新闻" == id) {
         var query = {};
         Doc.ShowView3();
         Doc.LoadTopButton(topButtonId);
@@ -49,7 +49,7 @@ Doc.LeftMenuClick = function (id) {
         Doc.LoadTable(0, App.Doc.Data.Pager.Size, query, App.Doc.Data.DocTable.Info);
         Doc.SetQuery(query); 
     }
-    else if ("LeftMenu.企业文档" == id) {
+    else if ("LeftMenu.企业新闻" == id) {
   
         var query = {};
         Doc.ShowView3();
@@ -60,29 +60,29 @@ Doc.LeftMenuClick = function (id) {
         Doc.SetQuery(query);
 
     }
-    else if ("LeftMenu.文档分析" === id) {
+    else if ("LeftMenu.新闻分析" === id) {
         Doc.LoadTopButton(topButtonId);
         Doc.ShowContent("Chart1.html");
         Doc.ShowView3();
-        Doc.LoadSummaryList(0, 10, [{ Title: "目录下文档比例" }, { Title: "目录活跃度" }, { Title: "文章热度" }, { Title: "发文计数" }, { Title: "最活跃用户" }]);
+        Doc.LoadSummaryList(0, 10, [{ Title: "分类下新闻比例" }, { Title: "分类活跃度" }, { Title: "文章热度" }, { Title: "发文计数" }, { Title: "最活跃用户" }]);
     }
     else if ("LeftMenu.共享分析" === id) {
         Doc.LoadTopButton(topButtonId);
         Doc.ShowContent("Chart1.html");
         Doc.ShowView3();
-        Doc.LoadSummaryList(0, 10, [{ Title: "目录下文档比例" }, { Title: "目录活跃度" }, { Title: "文章热度" }, { Title: "发文计数" }, { Title: "最活跃用户" }]);
+        Doc.LoadSummaryList(0, 10, [{ Title: "分类下新闻比例" }, { Title: "分类活跃度" }, { Title: "文章热度" }, { Title: "发文计数" }, { Title: "最活跃用户" }]);
     }
     else if ("LeftMenu.用户参与" === id) {
         Doc.LoadTopButton(topButtonId);
         Doc.ShowContent("Chart1.html");
         Doc.ShowView3();
-        Doc.LoadSummaryList(0, 10, [{ Title: "目录下文档比例" }, { Title: "目录活跃度" }, { Title: "文章热度" }, { Title: "发文计数" }, { Title: "最活跃用户" }]);
+        Doc.LoadSummaryList(0, 10, [{ Title: "分类下新闻比例" }, { Title: "分类活跃度" }, { Title: "文章热度" }, { Title: "发文计数" }, { Title: "最活跃用户" }]);
     }
     else if ("LeftMenu.外网关联" === id) {
         Doc.LoadTopButton(topButtonId);
         Doc.ShowContent("Chart1.html");
         Doc.ShowView3();
-        Doc.LoadSummaryList(0, 10, [{ Title: "目录下文档比例" }, { Title: "目录活跃度" }, { Title: "文章热度" }, { Title: "发文计数" }, { Title: "最活跃用户" }]);
+        Doc.LoadSummaryList(0, 10, [{ Title: "分类下新闻比例" }, { Title: "分类活跃度" }, { Title: "文章热度" }, { Title: "发文计数" }, { Title: "最活跃用户" }]);
     }
     else if ("LeftMenu.回收站" == id) {
         Doc.ShowView2();

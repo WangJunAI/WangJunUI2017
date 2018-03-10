@@ -45,11 +45,11 @@ Doc.FindTopButtons = function (groupID) {
 
 Doc.TopButtonClick = function () {
     var id = $(event.target).attr("data-id");
-    if ("TopButton.新建文档" === id) {
+    if ("TopButton.新建新闻" === id) {
         var url = App.Doc.Server.Url3 + "?t=" + (new Date().getTime());
         Doc.ShowWindow(url);
     }
-    else if ("TopButton.新建目录" === id) {
+    else if ("TopButton.新建分类" === id) {
         var url = App.Doc.Server.Url6 + "?t=" + (new Date().getTime());
         Doc.ShowWindow(url);
     }

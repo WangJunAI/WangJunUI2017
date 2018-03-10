@@ -24,9 +24,8 @@ namespace WangJun.Admin
             this.AppName = CONST.APP.OrgStaff.Name;
 
         }
-        public int ItemCount { get; set; }
-
-        public int SubCategoryCount { get; set; }
+ 
+        public string SuperAdminEmail { get; set; }
 
 
         #region 实体保存

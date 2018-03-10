@@ -15,11 +15,15 @@ namespace WangJun.Admin
     public class AdminWebAPI
     { 
         #region 公司创建
-        public int CreateCompany()
+        public object CreateCompany(string jsonString)
         {
+            var dict = Convertor.FromJsonToDict2(jsonString);
+            var company = Convertor.FromDictionaryToObject<CompanyItem>(dict);
+
             #region 创建公司
-            var company = new CompanyItem();
-            company.Name = "汪俊科技01";
+            //var company = new CompanyItem();
+            //company.Name = "汪俊科技01";
+            //company.SuperAdminEmail = "";
             company.Save();
 
             #endregion
@@ -38,13 +42,12 @@ namespace WangJun.Admin
 
             #endregion
 
-            #region 创建管理员
+            #region 创建超级管理员
             var admin = new StaffItem();
-            admin.Name = company.Name + "管理员";
+            admin.Name = company.Name + "超级管理员";
             admin.ParentID = org.ID;
             admin.ParentName = org.RootName;
-            admin.Email = "wj01admin";
-            admin.IsSuperAdmin = true;
+            admin.Email = company.SuperAdminEmail;
             admin.Level = 16;
             admin.IsAdmin = true;
             admin.Save();
@@ -104,7 +107,11 @@ namespace WangJun.Admin
             categoryYunNews.Save();
             #endregion
 
-            return 0;
+            #region 用超级管理员账号登录
+            var session = SESSION.Login(admin.Email, null);
+            #endregion
+
+            return session;
         }
         #endregion
 

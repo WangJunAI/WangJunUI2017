@@ -92,13 +92,15 @@
     <script src="../../JS/jquery.cookie.js"></script>
 </head>
 <body>
+    <input type="hidden" id="pageName" value="Login" />
+
     <div class="global">
         <div class="backcard"><video class="" autoplay="true" playsinline="true" webkit-playsinline="true" loop="loop" src="login.mp4"></video></div>
         <div class="panel">
             <div class="head"></div>
             <div class="body">
-                <div class="row"><input type="text" class="input" placeholder="请输入用户名" data-FormName="Default" data-propertyName="UserID" data-propertyValue="111"   onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" /></div>
-                <div class="row"><input type="password" class="input" placeholder="请输入密码"  data-FormName="Default" data-propertyName="Password" data-propertyValue="111"   onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());"/></div>
+                <div class="row"><input type="text" class="input" placeholder="请输入用户名" data-FormName="Default" data-propertyName="UserID" data-propertyValue="111" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" /></div>
+                <div class="row"><input type="password" class="input" placeholder="请输入密码" data-FormName="Default" data-propertyName="Password" data-propertyValue="111" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" /></div>
                 <div class="row"><input type="button" class="button" value="登录" onclick="SESSION.Login()" /></div>
 
             </div>

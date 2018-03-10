@@ -8,43 +8,52 @@
     <script src="../../JS/Base/jquery-3.1.1.min.js"></script>
     <script src="../../JS/Base/jquery-ui-1.12.1/jquery-ui.min.js"></script>
     <script src="JS/Desktop.js"></script>
+
+    <!--SESSION相关-->
+    <script src="../../../JS/jquery.cookie.js"></script>
+    <script src="../../../JS/SESSION.js"></script>
+
     <meta charset="utf-8" />
 </head>
 <body class="fill">
     <div class="dockTop">
         <a class="fa fa-home fa-2x topbtn1" href="javascript:void(0)"></a> <span class="text1">汪俊云桌面</span>
+        <a id="userName"  class="text1" href="javascript:;"style="text-decoration:none; float:right;margin-right:1em;line-height:2em;">当前用户</a>
     </div>
 
     <ul class="desktopIcon">
         <li>
-            <a class="item" target="_blank" href="../APP/YunDoc/Main.html" ><div class=" fa fa-globe  fa-3x  icon"></div><div class="item_name">文档管理</div></a>
+            <a class="item" target="_blank" href="../APP/YunDoc/Main.html"><div class=" fa fa-globe  fa-3x  icon"></div><div class="item_name">文档管理</div></a>
         </li>
         <li>
-            <a class="item"  target="_blank" href="../APP/YunNote/Main.html" ><div class =" fa fa-line-chart  fa-3x  icon"></div><div class="item_name" >云笔记</div></a>
+            <a class="item" target="_blank" href="../APP/YunNote/Main.html"><div class=" fa fa-line-chart  fa-3x  icon"></div><div class="item_name">云笔记</div></a>
         </li>
         <li>
-            <a class="item"  target="_blank" href="../APP/TouTiaoPC/TouTiao.html"><div class=" fa fa-newspaper-o  fa-3x  icon"></div><div class="item_name"> 企业头条</div></a>
+            <a class="item" target="_blank" href="../APP/TouTiaoPC/TouTiao.html"><div class=" fa fa-newspaper-o  fa-3x  icon"></div><div class="item_name"> 企业头条</div></a>
         </li>
         <li>
-            <a class="item"   target="_blank" href="http://weibo.com"><div class=" fa fa-weibo  fa-3x  icon"></div><div class="item_name">企业微博</div></a>
+            <a class="item" target="_blank" href="http://weibo.com"><div class=" fa fa-weibo  fa-3x  icon"></div><div class="item_name">企业微博</div></a>
         </li>
         <li>
-            <a class="item"  target="_blank" href="../APP/YunPan/Main.html"><div class=" fa fa-wrench  fa-3x  icon"></div><div class="item_name">云盘</div></a>
+            <a class="item" target="_blank" href="../APP/YunPan/Main.html"><div class=" fa fa-wrench  fa-3x  icon"></div><div class="item_name">云盘</div></a>
         </li>
         <li>
-            <a class="item"  target="_blank" href="../APP/YunProject/Main.html"><div class=" fa fa-object-group  fa-3x  icon"></div><div class="item_name">云项目</div></a>
+            <a class="item" target="_blank" href="../APP/YunProject/Main.html"><div class=" fa fa-object-group  fa-3x  icon"></div><div class="item_name">云项目</div></a>
         </li>
         <li>
-            <a class="item"   target="_blank" href="../APP/YunProject/Main.html"><div class=" fa fa-random  fa-3x  icon"></div><div class="item_name">快速审核</div></a>
+            <a class="item" target="_blank" href="../APP/YunProject/Main.html"><div class=" fa fa-random  fa-3x  icon"></div><div class="item_name">快速审核</div></a>
         </li>
-         <!--<li>
+        <li>
+            <a class="item" target="_blank" href="../APP/YunProject/Main.html"><div class=" fa fa-random  fa-3x  icon"></div><div class="item_name">使用帮助</div></a>
+        </li>
+        <li>
             <a class="item" href="javascript:void(0)" data-method="DESKTOP.CreateDialog" data-param=""><div class=" fa fa-server  fa-3x  icon"></div><div class="item_name">平台监控</div></a>
         </li>
         <li>
-            <a class="item" href="javascript:void(0)" data-method="DESKTOP.CreateDialog" data-param=""><div class=" fa fa-cog  fa-3x  icon"></div><div class="item_name">系统设置</div></a>
-        </li>-->
+            <a class="item" target="_blank" href="../APP/YunNews/Main.html"><div class=" fa fa-cog  fa-3x  icon"></div><div class="item_name">企业新闻</div></a>
+        </li>
         <li>
-            <a class="item"  target="_blank" href="../APP/Staff/Main.html"><div class=" fa fa-user  fa-3x  icon"></div><div class="item_name">人员组织</div></a>
+            <a class="item" target="_blank" href="../APP/Staff/Main.html"><div class=" fa fa-user  fa-3x  icon"></div><div class="item_name">人员组织</div></a>
         </li>
 
     </ul>
@@ -57,16 +66,16 @@
    <!--开始菜单 起始-->
     <div class="startmenu">
         <ul>
-            <li><a  target="_blank" href="../APP/YunDoc/Main.html"><span class="fa fa-globe"></span><span>文档管理</span></a></li>
-            <li><a  target="_blank" href="../APP/YunNote/Main.html" ><span class="fa fa-line-chart"></span><span>云笔记</span></a></li>
-            <li><a  target="_blank" href="../APP/TouTiaoPC/TouTiao.html"><span class="fa fa-newspaper-o"></span><span>企业头条</span></a></li>
-            <li><a    target="_blank" href="http://weibo.com"><span class="fa fa-weibo"></span><span>企业微博</span></a></li>
-            <li><a   target="_blank" href="../APP/YunPan/Main.html"><span class="fa fa-wrench"></span><span>云盘</span></a></li>
-            <li><a   target="_blank" href="../APP/YunProject/Main.html"><span class="fa fa-object-group"></span><span>云项目</span></a></li>
-            <li><a   target="_blank" href="../APP/YunProject/Main.html"><span class="fa fa-random"></span><span>快速审核</span></a></li>
-            <li><a  target="_blank" href="../APP/Staff/Main.html"><span class="fa fa-user"></span><span>人员组织</span></a></li>
-            <li><a href="javascript:void(0)"><span class="fa fa-user-times"></span><span>注销</span></a></li>
-            <li><a href="javascript:void(0)"><span class="fa fa-window-close"></span><span>关闭系统</span></a></li>
+            <li><a target="_blank" href="../APP/YunDoc/Main.html"><span class="fa fa-globe"></span><span>文档管理</span></a></li>
+            <li><a target="_blank" href="../APP/YunNote/Main.html"><span class="fa fa-line-chart"></span><span>云笔记</span></a></li>
+            <li><a target="_blank" href="../APP/TouTiaoPC/TouTiao.html"><span class="fa fa-newspaper-o"></span><span>企业头条</span></a></li>
+            <li><a target="_blank" href="http://weibo.com"><span class="fa fa-weibo"></span><span>企业微博</span></a></li>
+            <li><a target="_blank" href="../APP/YunPan/Main.html"><span class="fa fa-wrench"></span><span>云盘</span></a></li>
+            <li><a target="_blank" href="../APP/YunProject/Main.html"><span class="fa fa-object-group"></span><span>云项目</span></a></li>
+            <li><a target="_blank" href="../APP/YunProject/Main.html"><span class="fa fa-random"></span><span>快速审核</span></a></li>
+            <li><a target="_blank" href="../APP/YunNews/Main.html"><span class="fa fa-random"></span><span>企业新闻</span></a></li>
+            <li><a target="_blank" href="../APP/Staff/Main.html"><span class="fa fa-user"></span><span>人员组织</span></a></li>
+             <li><a href="javascript:void(0)" onclick="SESSION.Logout()"><span class="fa fa-window-close"></span><span>关闭系统</span></a></li>
         </ul>
     </div>
     <!--开始菜单 结束-->
