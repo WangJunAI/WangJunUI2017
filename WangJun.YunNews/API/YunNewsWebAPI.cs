@@ -7,6 +7,7 @@ using WangJun.Config;
 using WangJun.Entity;
 using WangJun.HumanResource;
 using WangJun.Utility;
+using WangJun.YunNews.Items;
 
 namespace WangJun.YunNews
 {
@@ -128,6 +129,58 @@ namespace WangJun.YunNews
         }
         #endregion
 
+        #region 评论操作
+        /// <summary>
+        /// 保存一个目录
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="parentId"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public int SaveComment(string jsonInput)
+        {
+            CommentItem.Save(jsonInput);
+            return 0;
+        }
+
+        /// <summary>
+        /// 加载目录
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="protection"></param>
+        /// <param name="sort"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public List<CommentItem> LoadCommentList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
+        {
+            query = "{$and:[" + query + ",{'StatusCode':{$ne:" + CONST.APP.Status.删除 + "}}]}";
+            var res = EntityManager.GetInstance().Find<CommentItem>(query, protection, sort, pageIndex, pageSize);
+            return res;
+        }
+
+
+        /// <summary>
+        /// 删除一个目录
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public int RemoveComment(string id)
+        {
+            var inst = new CommentItem();
+            inst.ID = id;
+            inst.Remove();
+            return 0;
+        }
+
+        public CommentItem GetComment(string id)
+        {
+            var inst = new CommentItem();
+            inst.ID = id;
+            inst = EntityManager.GetInstance().Get<CommentItem>(inst);
+            return inst;
+        }
+        #endregion
 
 
         #region 统计操作

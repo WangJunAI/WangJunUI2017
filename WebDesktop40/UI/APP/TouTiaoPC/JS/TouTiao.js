@@ -123,12 +123,12 @@ TouTiao.ShowCommentList = function (data) {
 
 TouTiao.AddComment = function () {
     var item = {};
-    item.Content = $("#comment").val().trim();
     var targetId = NET.GetQueryParam("id");
-    var context = [item.Content,targetId,"text"];
+    item.Content = $("#comment").val().trim();
+    item.RootID = targetId;
+    var context = [Convertor.ToBase64String(JSON.stringify(item), true), { 0: "base64" }];
     var callback = function (res) {
         LOGGER.Log(res);
-        //TouTiao.ShowList(res);
         TouTiao.LoadCommentList();
         $("#comment").val("");
         TouTiao.ShowMessage();

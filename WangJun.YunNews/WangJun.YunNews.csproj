@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="API\YunNewsWebAPI.cs" />
     <Compile Include="Items\CategoryItem.cs" />
+    <Compile Include="Items\CommentItem.cs" />
     <Compile Include="Items\YunNewsItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

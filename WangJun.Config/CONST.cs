@@ -97,6 +97,8 @@ namespace WangJun.Config
                 public static string TableCategory { get { return "Category"; } }
 
                 public static string TableYunNote { get { return "YunNote"; } }
+
+                public static string TableComment { get { return "Comment"; } }
                 public static class Status
                 {
                     public static int 正常 { get { return 1; } }
@@ -127,6 +129,8 @@ namespace WangJun.Config
                 public static string TableCategory { get { return "Category"; } }
 
                 public static string TableYunProject { get { return "YunProject"; } }
+
+                public static string TableComment { get { return "Comment"; } }
                 public static class Status
                 {
                     
@@ -183,6 +187,9 @@ namespace WangJun.Config
                 public static string TableCategory { get { return "Category"; } }
 
                 public static string TableYunPan { get { return "YunPan"; } }
+
+                public static string TableComment { get { return "Comment"; } }
+
                 public static class Status
                 {
                     public static int 正常 { get { return 1; } }
@@ -232,7 +239,8 @@ namespace WangJun.Config
 
                 public static string TableNews { get { return "YunNews"; } }
 
-                public static string TableComment { get { return "NewsComment"; } }
+                public static string TableComment { get { return "Comment"; } }
+
                 public static class Status
                 {
                     public static int 待发布 { get { return 1; } }
@@ -269,6 +277,7 @@ namespace WangJun.Config
                 public static string TableCategory { get { return "Category"; } }
 
                 public static string TableYunDoc { get { return "YunDoc"; } }
+                public static string TableComment { get { return "Comment"; } }
 
                 public static class Status
                 {
