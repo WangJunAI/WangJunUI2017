@@ -45,7 +45,7 @@ SESSION.Current = function () {
 SESSION.SendHeartbeat = function () {
     setInterval(function () {
         var current = SESSION.Current();
-    },2000);
+    },5000);
 }
 
 
@@ -60,10 +60,14 @@ SESSION.Initial = function () {
     $(document).ready(function () {
         var pageName = $("#pageName").val();
         if ("Login" === pageName) {
-            if (true === SESSION.Current().IsSuperAdmin) {
-                $('<input type="hidden" data-FormName="Default" data-propertyName="OwnerID" />').appendTo(document.body);
-                $("[data-propertyName='OwnerID']").attr("data-PropertyValue", SESSION.Current().CompanyID);
-            }
+
+        }
+        else if ("Desktop" === pageName) {
+            SESSION.Current();
+        }
+        if (("Detail" === pageName || "Category" === pageName) && true === SESSION.Current().IsSuperAdmin) {
+            $('<input type="hidden" data-FormName="Default" data-propertyName="OwnerID" />').appendTo(document.body);
+            $("[data-propertyName='OwnerID']").attr("data-PropertyValue", SESSION.Current().CompanyID);
         }
     });
 }
@@ -87,7 +91,7 @@ SESSION.Register = function () {
     var callback = function (res) {
         LOGGER.Log(res);
         $.cookie("SESSION", JSON.stringify(res), { path: '/' });
-        alert("登陆成功" + res.UserName);
+        alert("注册成功" + res.UserName);
         window.location.href = "../Desktop/Desktop.html";
     }
     NET.PostData(url, callback, param);

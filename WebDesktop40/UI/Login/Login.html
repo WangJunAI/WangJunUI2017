@@ -97,11 +97,19 @@
     <div class="global">
         <div class="backcard"><video class="" autoplay="true" playsinline="true" webkit-playsinline="true" loop="loop" src="login.mp4"></video></div>
         <div class="panel">
-            <div class="head"></div>
+            <div class="head">
+                <div style="    font-size: 2em;    width: 100%;line-height: 2em;margin-left: 0.5em;">汪俊企业云桌面</div>
+                <div style="margin-left: 1em;color: #F00;">简要说明</div>
+            </div>
             <div class="body">
+                <div class="row" style="height: 2em;margin-left: 1em;color:#F00;">错误提示</div>
                 <div class="row"><input type="text" class="input" placeholder="请输入用户名" data-FormName="Default" data-propertyName="UserID" data-propertyValue="111" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" /></div>
                 <div class="row"><input type="password" class="input" placeholder="请输入密码" data-FormName="Default" data-propertyName="Password" data-propertyValue="111" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" /></div>
                 <div class="row"><input type="button" class="button" value="登录" onclick="SESSION.Login()" /></div>
+                <div class="row" style="text-align: right;">
+                    <a href="./FindPassword.html" target="_blank" style="text-decoration: none;font-size: 0.8em;color: #9B9EA0;margin-right: 1em;">找回密码</a>
+                    <a href="./Register.html" target="_blank" style="text-decoration: none;font-size: 0.8em;color: #9B9EA0;margin-right: 1em;">企业注册</a>
+                </div>
 
             </div>
             <div class="foot"></div>
