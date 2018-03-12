@@ -4,7 +4,7 @@ App.Doc = {};
 App.Doc.Info = {};
 
 App.Doc.Info.ID = "YBJ";
-App.Doc.Info.Name = "汪俊云文档";
+App.Doc.Info.Name = "汪俊云审批";
 
 App.Doc.CSS = {};
 App.Doc.CSS.LeftMenu = {};
@@ -144,6 +144,7 @@ App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "分类", Method: "", Sor
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "阅读量", Method: "", Sort: "", PropertyName: "ReadCount", DataType: "string"});
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "点赞量", Method: "", Sort: "", PropertyName: "LikeCount", DataType: "string" });
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "评论量", Method: "", Sort: "", PropertyName: "CommentCount", DataType: "string" });
+App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "发布时间", Method: "", Sort: "", PropertyName: "PublishTime", DataType: "date" });
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "创建时间", Method: "", Sort: "", PropertyName: "CreateTime", DataType: "date"  });
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "状态", Method: "", Sort: "", PropertyName: "Status", DataType: "string" });
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "详细", Method: "", Sort: "", PropertyName: "Type", DataType: "link", Value: "详细"  });
