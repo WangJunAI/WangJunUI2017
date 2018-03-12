@@ -1,6 +1,4 @@
-﻿/// <reference path="appinfo.doc.js" />
-/// <reference path="doc.topbutton.js" />
-/// <reference path="doc.table.js" />
+﻿ 
 
 ///加载左侧菜单
 Doc.LoadMenu = function (menuArray) {
@@ -42,12 +40,19 @@ Doc.LeftMenuClick = function (id) {
         Doc.ShowWindow(url);
     }
     else if ("LeftMenu.个人文档" == id) {
-        var query = {};
+        var query = [{ _RedirectID: null }, {}, { CreateTime: -1 }];
         Doc.ShowView3();
         Doc.LoadTopButton(topButtonId);
         Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], {}); });
         Doc.LoadTable(0, App.Doc.Data.Pager.Size, query, App.Doc.Data.DocTable.Info);
         Doc.SetQuery(query); 
+    }
+    else if ("LeftMenu.共享文档" == id) {
+        var query = [{ '_RedirectID': {'$ne':null} }, {}, { CreateTime: -1 }];
+        Doc.ShowView2();
+        Doc.LoadTopButton(topButtonId);
+        Doc.LoadTable(0, App.Doc.Data.Pager.Size, query, App.Doc.Data.DocTable.Info);
+        Doc.SetQuery(query);
     }
     else if ("LeftMenu.企业文档" == id) {
   

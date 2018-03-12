@@ -60,7 +60,7 @@ Doc.LeftMenuClick = function (id) {
         Doc.LoadData_Category(param, callback1);
         Doc.SetQuery(listQuery); 
     }
-    else if ("LeftMenu.企业笔记" == id) {
+    else if ("LeftMenu.与我共享" == id) {
         Doc.ShowView1();
 
         Doc.LoadTopButton(topButtonId);

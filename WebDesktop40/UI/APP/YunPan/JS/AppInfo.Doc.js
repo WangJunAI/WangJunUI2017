@@ -4,7 +4,7 @@ App.Doc = {};
 App.Doc.Info = {};
 
 App.Doc.Info.ID = "WDGL";
-App.Doc.Info.Name = "汪俊云盘";
+App.Doc.Info.Name = "企业云盘";
 
 App.Doc.CSS = {};
 App.Doc.CSS.LeftMenu = {};
@@ -49,6 +49,7 @@ App.Doc.LeftMenu.push({ Name: "云盘管理", ID: "LeftMenu.文档操作", Metho
 App.Doc.LeftMenu.push({ Name: "上传文件", ID: "LeftMenu.上传文件", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作" });
 App.Doc.LeftMenu.push({ Name: "新建文件夹", ID: "LeftMenu.新建文件夹", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作" });
 App.Doc.LeftMenu.push({ Name: "个人云盘", ID: "LeftMenu.个人云盘", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.个人云盘.TopButton" });
+App.Doc.LeftMenu.push({ Name: "与我共享", ID: "LeftMenu.与我共享", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.与我共享.TopButton" })
 App.Doc.LeftMenu.push({ Name: "企业云盘", ID: "LeftMenu.企业云盘", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.企业云盘.TopButton" });
 
 App.Doc.LeftMenu.push({ Name: "数据分析", ID: "LeftMenu.数据分析", Method: "Doc.LeftMenuGroupToggle", ParentID: null });
@@ -74,6 +75,11 @@ App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", Gro
 //App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.企业云盘.TopButton" });
 //App.Doc.Content.TopButton.push({ Name: "移动至", ID: "TopButton.移动至", Method: "", Type: "dropdownlist", Menu: [{ Text: "回收站" }, { Text: "草稿箱" }], GroupID: "左侧菜单.企业云盘.TopButton" });
 //App.Doc.Content.TopButton.push({ Name: "删除", ID: "TopButton.删除", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.企业云盘.TopButton" });
+
+///与我共享TopButton菜单
+App.Doc.Content.TopButton.push({ Name: "与我共享", ID: "TopButton.与我共享", Method: "", Type: "Title", GroupID: "左侧菜单.与我共享.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.与我共享.TopButton" });
+
 
 ///个人云盘TopButton菜单
 App.Doc.Content.TopButton.push({ Name: "个人云盘", ID: "TopButton.个人云盘", Method: "", ParentID: null, GroupID: "", Type: "Title", GroupID: "左侧菜单.个人云盘.TopButton" });

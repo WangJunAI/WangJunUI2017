@@ -4,7 +4,7 @@ App.Doc = {};
 App.Doc.Info = {};
 
 App.Doc.Info.ID = "YBJ";
-App.Doc.Info.Name = "汪俊云文档";
+App.Doc.Info.Name = "汪俊云文档库";
 
 App.Doc.CSS = {};
 App.Doc.CSS.LeftMenu = {};
@@ -48,7 +48,8 @@ App.Doc.LeftMenu = [];
 App.Doc.LeftMenu.push({ Name: "我的文档", ID: "LeftMenu.文档操作", Method: "Doc.LeftMenuGroupToggle",    ParentID: null });
 App.Doc.LeftMenu.push({ Name: "新建文档", ID: "LeftMenu.新建文档", Method: "Doc.LeftMenuClick",    ParentID: "LeftMenu.文档操作" });
 App.Doc.LeftMenu.push({ Name: "新建目录", ID: "LeftMenu.新建目录", Method: "Doc.LeftMenuClick",  ParentID: "LeftMenu.文档操作" });
-App.Doc.LeftMenu.push({ Name: "个人文档", ID: "LeftMenu.个人文档", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID:"左侧菜单.个人文档.TopButton" });
+App.Doc.LeftMenu.push({ Name: "个人文档", ID: "LeftMenu.个人文档", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.个人文档.TopButton" });
+App.Doc.LeftMenu.push({ Name: "共享文档", ID: "LeftMenu.共享文档", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.共享文档.TopButton" });
 App.Doc.LeftMenu.push({ Name: "企业文档", ID: "LeftMenu.企业文档", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.企业文档.TopButton" });
 
 
@@ -76,6 +77,11 @@ App.Doc.Content.TopButton.push({ Name: "新建目录", ID: "TopButton.新建目�
 App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "",   GroupID: "左侧菜单.个人文档.TopButton"});
 //App.Doc.Content.TopButton.push({ Name: "移动至", ID: "TopButton.移动至", Method: "",  Type: "dropdownlist", Menu: [{ Text: "回收站" }, { Text: "草稿箱" }], GroupID: "左侧菜单.个人文档.TopButton"});
 App.Doc.Content.TopButton.push({ Name: "删除", ID: "TopButton.删除", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.个人文档.TopButton"});
+
+///共享文档TopButton菜单
+App.Doc.Content.TopButton.push({ Name: "共享文档", ID: "TopButton.共享文档", Method: "", Type: "Title", GroupID: "左侧菜单.共享文档.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.共享文档.TopButton" });
+
 
  ///企业文档TopButton菜单
 App.Doc.Content.TopButton.push({ Name: "企业文档", ID: "TopButton.企业文档", Method: "",   Type: "Title", GroupID: "左侧菜单.企业文档.TopButton"});

@@ -143,20 +143,48 @@ Doc.TableRowClick = function () {
 
 ////
 Doc.LoadTable = function (pageIndex, pageSize, query, tableInfo) {
-    if (false === PARAM_CHECKER.IsNotEmptyString(query)) {
-        ///若不是非空字符串
-        query = JSON.stringify(query);
+ 
+    var param = [0, 1, 2, 3, 4];
+    if (!PARAM_CHECKER.IsInt(pageIndex)) {
+        pageIndex = 0;
+    } 
+    if (true === PARAM_CHECKER.IsArray(query) && 3 === query.length) {
+        if (true === PARAM_CHECKER.IsObject(query[0])) {
+            param[0] = JSON.stringify(query[0]);
+        }
+        else if (true === PARAM_CHECKER.IsNotEmptyString(query[0])) {
+            param[0] = query[0];
+        }
+
+        if (true === PARAM_CHECKER.IsObject(query[1])) {
+            param[1] = JSON.stringify(query[1]);
+        }
+        else if (true === PARAM_CHECKER.IsNotEmptyString(query[1])) {
+            param[1] = query[1];
+        }
+
+        if (true === PARAM_CHECKER.IsObject(query[2])) {
+            param[2] = JSON.stringify(query[2]);
+        }
+        else if (true === PARAM_CHECKER.IsNotEmptyString(query[2])) {
+            param[2] = query[2];
+        }
+
+        param[3] = pageIndex;
+        param[4] = pageSize;
     }
-
-
+    else if (false === PARAM_CHECKER.IsNotEmptyString(query)) {
+        param = [JSON.stringify(query), "{}", "{DeleteTime:-1}", pageIndex, pageSize];
+    }
+    else {
+        param = [query, "{}", "{DeleteTime:-1}", pageIndex, pageSize];
+    }
 
     var listDataUrl = tableInfo.Data.Url;
     var tplTable = $("#tplTable").html();
     Doc.ShowContent(tplTable);
 
-    if (!PARAM_CHECKER.IsInt(pageIndex)) {
-        pageIndex = 0;
-    } 
+
 
     var callback = function (res) {
 
@@ -199,6 +227,6 @@ Doc.LoadTable = function (pageIndex, pageSize, query, tableInfo) {
 
         Doc.LoadPager(pageIndex, pageSize, query,tableInfo);
     }
-    var context = [query,"{}", "{DeleteTime:-1}", pageIndex, pageSize];
-    NET.LoadData(listDataUrl, callback, context, NET.POST);
+     
+    NET.LoadData(listDataUrl, callback, param, NET.POST);
 }
