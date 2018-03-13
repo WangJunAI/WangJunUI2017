@@ -1436,16 +1436,6 @@
     <Content Include="CSS\TPL.Font.css" />
     <Content Include="JS\QuickBar\QuickBar.css" />
     <Content Include="JS\TPL\TPL.Nav.Ztree.js" />
-    <Content Include="UI\APP\YunApproval\AppInfo.html" />
-    <Content Include="UI\APP\YunApproval\Category.html" />
-    <Content Include="UI\APP\YunApproval\Detail.html" />
-    <Content Include="UI\APP\YunApproval\JS\AppInfo.Doc.js" />
-    <Content Include="UI\APP\YunApproval\JS\Doc.Biz.js" />
-    <Content Include="UI\APP\YunApproval\JS\Doc.Detail.js" />
-    <Content Include="UI\APP\YunApproval\JS\Doc.js" />
-    <Content Include="UI\APP\YunApproval\JS\Doc.LeftMenu.js" />
-    <Content Include="UI\APP\YunApproval\JS\Doc.TopButton.js" />
-    <Content Include="UI\APP\YunApproval\Main.html" />
     <Content Include="UI\APP\YunNews\AppInfo.html" />
     <Content Include="UI\APP\YunNews\Category.html" />
     <Content Include="UI\APP\YunNews\Detail.html" />
@@ -2024,7 +2014,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="UI\APP\Staff\CSS\" />
-    <Folder Include="UI\APP\YunApproval\CSS\" />
     <Folder Include="UI\APP\YunDoc\CSS\" />
     <Folder Include="UI\APP\YunNews\CSS\" />
     <Folder Include="UI\APP\YunNote\CSS\" />
