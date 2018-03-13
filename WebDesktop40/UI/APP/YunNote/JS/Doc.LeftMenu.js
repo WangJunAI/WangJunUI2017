@@ -45,7 +45,8 @@ Doc.LeftMenuClick = function (id) {
         Doc.ShowView1();
 
         Doc.LoadTopButton(topButtonId);
-        var listQuery = JSON.stringify({});
+        var listQuery = JSON.stringify({ _RedirectID: null, OwnerID: SESSION.Current().UserID });//        var query = [, {}, { CreateTime: -1 }];
+
         var callback1 = function (res1) {
             Doc.LoadTreeTo("#leftPart1", res1, [], {});
             Doc.ShowContent("redirect.html");
@@ -61,19 +62,13 @@ Doc.LeftMenuClick = function (id) {
         Doc.SetQuery(listQuery); 
     }
     else if ("LeftMenu.与我共享" == id) {
-        Doc.ShowView1();
+        Doc.ShowView3();
 
         Doc.LoadTopButton(topButtonId);
-        var listQuery = JSON.stringify({});
-        var callback1 = function (res1) {
-            Doc.LoadTreeTo("#leftPart1", res1, [], {});
-            Doc.ShowContent("redirect.html");
-             
-            Doc.LoadData_Doc(context = [listQuery, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size],   function (res2) { Doc.LoadSummaryListTo("#leftPart2", res2);  });
-        }
+        var listQuery = JSON.stringify({ '_RedirectID': { '$ne': null },OwnerID: SESSION.Current().UserID });
+ 
+        Doc.LoadData_Doc(context = [listQuery, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size], function (res2) { Doc.LoadSummaryListTo("#leftList", res2); });
 
-        var param = [JSON.stringify({ OwnerID: SESSION.Current().CompanyID }), "{}", "{}", 0, 1000]
-        Doc.LoadData_Category(param, callback1);
         Doc.SetQuery(listQuery); 
 
     }

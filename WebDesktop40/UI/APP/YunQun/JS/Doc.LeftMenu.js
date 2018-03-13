@@ -33,7 +33,7 @@ Doc.LeftMenuClick = function (id) {
     var topButtonId = Doc.FindLeftMenuData(id)[0].TopButtonGroupID;
     Doc.LeftMenuSetSelecled(id);
     Doc.CloseWindow();
-    if ("LeftMenu.新建笔记" === id) {
+    if ("LeftMenu.新建群组" === id) {
         var url = App.Doc.Server.Url3 + "?t=" + (new Date().getTime());
         Doc.ShowWindow(url);
     }
@@ -41,7 +41,7 @@ Doc.LeftMenuClick = function (id) {
         var url = App.Doc.Server.Url6 + "?t=" + (new Date().getTime());
         Doc.ShowWindow(url);
     }
-    else if ("LeftMenu.个人笔记" == id) {
+    else if ("LeftMenu.个人群组" == id) {
         //Doc.ShowView1();
 
         //Doc.LoadTopButton(topButtonId);
@@ -80,7 +80,7 @@ Doc.LeftMenuClick = function (id) {
         Doc.SetQuery(listQuery); 
 
     }
-    else if ("LeftMenu.笔记分析" === id) {
+    else if ("LeftMenu.群组分析" === id) {
         Doc.LoadTopButton(topButtonId);
         Doc.ShowContent("Chart1.html");
         Doc.ShowView3();

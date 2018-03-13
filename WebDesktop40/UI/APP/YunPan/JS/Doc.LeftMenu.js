@@ -44,7 +44,7 @@ Doc.LeftMenuClick = function (id) {
 
     }
    else if ("LeftMenu.个人云盘" == id) {
-        var query = {};
+        var query = [{ _RedirectID: null, OwnerID: SESSION.Current().UserID }, {}, { CreateTime: -1 }];
         Doc.ShowView3();
         Doc.LoadTopButton(topButtonId);
         Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], {}); });
@@ -55,7 +55,7 @@ Doc.LeftMenuClick = function (id) {
     }
 
     else if ("LeftMenu.与我共享" == id) {
-        var query = {};
+        var query = [{ _RedirectID: { $ne: null }, OwnerID: SESSION.Current().UserID }, {}, { CreateTime: -1 }];
         Doc.ShowView3();
         Doc.LoadTopButton(topButtonId);
         Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], {}); });
@@ -73,25 +73,7 @@ Doc.LeftMenuClick = function (id) {
 
         Doc.SetQuery(query);
     }
-    else if ("LeftMenu.文档分析" === id) {
-        Doc.LoadTopButton(topButtonId);
-        Doc.ShowContent("Chart1.html");
-        Doc.ShowView3();
-        Doc.LoadSummaryList(0, 10, [{ Title: "目录下文档比例" }, { Title: "目录活跃度" }, { Title: "文章热度" }, { Title: "发文计数" }, { Title: "最活跃用户" }]);
-    }
-    else if ("LeftMenu.共享分析" === id) {
-        Doc.LoadTopButton(topButtonId);
-        Doc.ShowContent("Chart1.html");
-        Doc.ShowView3();
-        Doc.LoadSummaryList(0, 10, [{ Title: "目录下文档比例" }, { Title: "目录活跃度" }, { Title: "文章热度" }, { Title: "发文计数" }, { Title: "最活跃用户" }]);
-    }
-    else if ("LeftMenu.用户参与" === id) {
-        Doc.LoadTopButton(topButtonId);
-        Doc.ShowContent("Chart1.html");
-        Doc.ShowView3();
-        Doc.LoadSummaryList(0, 10, [{ Title: "目录下文档比例" }, { Title: "目录活跃度" }, { Title: "文章热度" }, { Title: "发文计数" }, { Title: "最活跃用户" }]);
-    }
-    else if ("LeftMenu.外网关联" === id) {
+    else if ("LeftMenu.云盘分析" === id) {
         Doc.LoadTopButton(topButtonId);
         Doc.ShowContent("Chart1.html");
         Doc.ShowView3();

@@ -310,6 +310,38 @@ namespace WangJun.Config
 
 
             }
+
+            public static class YunQun
+            {
+                public static long Code { get { return 1803001009; } }
+
+                public static string Name { get { return "群组"; } }
+
+                public static string DB { get { return "WangJun"; } }
+
+                public static string TableCategory { get { return "Category"; } }
+
+                public static string TableYunQun { get { return "YunQun"; } }
+                public static string TableComment { get { return "Comment"; } }
+
+                public static class Status
+                {
+                    public static int 正常 { get { return 1; } }
+                    public static int 删除 { get { return -1; } } ///等待系统回收
+                    public static string GetString(int statusCode)
+                    {
+                        if (statusCode == Status.正常)
+                        {
+                            return "正常";
+                        }
+                        else if (statusCode == Status.删除)
+                        {
+                            return "删除";
+                        }
+                        return "未定义";
+                    }
+                }
+            }
         }
     }
 }

@@ -64,6 +64,7 @@
   <ItemGroup>
     <Content Include="1.html" />
     <Content Include="CSS\TPL.Color.css" />
+    <Content Include="CSS\TPL.Comment.css" />
     <Content Include="CSS\TPL.Main.css" />
     <Content Include="CSS\TPL.SIZE.PC.1080.css" />
     <Content Include="JS\Base\Convertor.js" />

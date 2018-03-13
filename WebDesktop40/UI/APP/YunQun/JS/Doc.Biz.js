@@ -1,4 +1,5 @@
-﻿///保存一个目录
+﻿ 
+///保存一个目录
 Doc.SaveCategory = function () {
     var submitId = Doc.SubmitStart();
     var item = {};
@@ -102,4 +103,63 @@ Doc.RemoveDetail = function (id, callback) {
     var context = [id];
 
     NET.PostData(App.Doc.Server.Url9, callback, context);
+}
+
+
+
+///加载评论列表
+Doc.LoadCommentList = function (param) {
+    var targetId = NET.GetQueryParam("id");
+    var data = [JSON.stringify({ "RootID": targetId }), "{}", "{'CreateTime':-1}", 0, 10];
+    NET.LoadData(App.Doc.Server.Url71, function (res) {
+        LOGGER.Log(res);
+        Doc.ShowCommentList(res);
+    }, data, "POST");
+}
+
+
+Doc.ShowCommentList = function (data) {
+    if (PARAM_CHECKER.IsArray(data)) {
+        $("#commentList").empty();
+        var html = $("#tplCommentItem").html();
+        var array = [];
+        for (var k = 0; k < data.length; k++) {
+            var itemData = data[k];
+            itemData.CreateTime = Convertor.DateFormat(eval(itemData.CreateTime.replace(/\//g, "")), "yyyy-MM-dd hh:mm");
+            var itemHtml = html.replace("[CreatorName]", itemData.CreatorName).replace("[CreatorID]", itemData.CreatorID)
+                .replace("[LikeCount]", itemData.LikeCount).replace("[CreateTime]", itemData.CreateTime).replace("[id]", itemData.ID)
+                .replace("[Content]", itemData.Content);
+
+            array.push(itemHtml);
+            $("#commentList").append(itemHtml);
+        }
+    }
+    else {
+        LOGGER.log("数据格式不对，应该提供数组。");
+    }
+}
+
+Doc.AddComment = function () {
+    var item = {};
+    var targetId = NET.GetQueryParam("id");
+    item.Content = $("#comment").val().trim();
+    item.RootID = targetId;
+    var context = [Convertor.ToBase64String(JSON.stringify(item), true), { 0: "base64" }];
+    var callback = function (res) {
+        LOGGER.Log(res);
+        Doc.LoadCommentList();
+        $("#comment").val("");
+        Doc.ShowMessage();
+    }
+
+    NET.PostData(App.Doc.Server.Url70, callback, context);
+}
+
+Doc.ShowCommentMessage = function () {
+    $("#message").hide();
+    $("#message").show();
+    var tId = setTimeout(function () {
+        $("#message").hide();
+        clearTimeout(tId);
+    }, 500);
 }

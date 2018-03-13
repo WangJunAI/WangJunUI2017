@@ -40,6 +40,11 @@ Doc.LoadSummaryListTo = function (target, data, option) {
             .replace("[Param]", item.ID).replace("[Summary]", item.PlainText);
     }
 
+    //if (false === $(target).is("ul") && 0 === $(target).find("ul").length) {
+    //    $(target).html("<ul></ul>");
+    //    target = $(target).find("ul");
+    //}
+
     var html = tplHtml.replace("[列表]", listHtml);
     Doc.LoadHtmlTo(target, html);
 

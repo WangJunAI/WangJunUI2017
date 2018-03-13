@@ -5,6 +5,7 @@ using System.Linq;
 using WangJun.Config;
 using WangJun.DB;
 using WangJun.Entity;
+using WangJun.HumanResource;
 using WangJun.Utility;
 
 namespace WangJun.YunNote
@@ -77,13 +78,28 @@ namespace WangJun.YunNote
             {
                 inst.GetType().GetProperty(kv.Key).SetValue(inst, kv.Value);
             }
+            inst.Name = "[" + SESSION.Current.UserName + "]" + inst.Name;///调试用
+            inst.Title = "[" + SESSION.Current.UserName + "]" + inst.Title;///调试用
             inst.Save();
-        }
-        public void Remove()
-        {
-            EntityManager.GetInstance().Remove(this);
 
+            #region 创建共享文档
+            if (null != inst.UserAllowedArray)
+            {
+                var redirectID = inst.ID;
+                foreach (string id in inst.UserAllowedArray)
+                {
+                    var staff = StaffItem.Load(id);
+                    inst.ID = null;
+                    inst.Name = "[共享给" + staff.Name + "]" + inst.Name;
+                    inst.Title = "[共享给" + staff.Name + "]" + inst.Title;
+                    inst._RedirectID = redirectID;
+                    inst.OwnerID = id;
+                    inst.Save();
+                }
+            }
+            #endregion
         }
+ 
 
     }
 }

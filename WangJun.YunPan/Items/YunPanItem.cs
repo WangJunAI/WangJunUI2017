@@ -5,6 +5,7 @@ using System.Linq;
 using WangJun.Config;
 using WangJun.DB;
 using WangJun.Entity;
+using WangJun.HumanResource;
 using WangJun.Utility;
 
 namespace WangJun.YunPan
@@ -12,7 +13,7 @@ namespace WangJun.YunPan
     /// <summary>
     /// 云盘文件实体
     /// </summary>
-    public class YunPanItem: BaseItem
+    public class YunPanItem : BaseItem
     {
         public YunPanItem()
         {
@@ -28,11 +29,11 @@ namespace WangJun.YunPan
         }
 
         public string Keyword { get; set; }
-           
-         public int DownloadCount { get; set; }
+
+        public int DownloadCount { get; set; }
 
         public int CollectCount { get; set; }
- 
+
         public string ImageUrl { get; set; }
 
         /// <summary>
@@ -44,31 +45,31 @@ namespace WangJun.YunPan
         {
             get
             {
-                if(0<this.FileLength/(1024*1024*1024))
+                if (0 < this.FileLength / (1024 * 1024 * 1024))
                 {
                     return this.FileLength / (1024 * 1024 * 1024) + "GB";
                 }
-                else if (0 < this.FileLength / (1024 * 1024 ))
+                else if (0 < this.FileLength / (1024 * 1024))
                 {
-                    return this.FileLength / (1024 * 1024 ) + "MB";
+                    return this.FileLength / (1024 * 1024) + "MB";
                 }
-                else if (0 < this.FileLength / (1024 ))
+                else if (0 < this.FileLength / (1024))
                 {
-                    return this.FileLength / (1024 ) + "KB";
+                    return this.FileLength / (1024) + "KB";
                 }
                 return this.FileLength + "B";
             }
         }
 
-         
+
         /// <summary>
         /// 文件下载查看路径
         /// </summary>
         public string FileHttpUrl { get; set; }
 
         public string ServerFileName { get; set; }
- 
- 
+
+
         /// <summary>
         /// 文件夹/文件类型
         /// </summary>
@@ -95,17 +96,26 @@ namespace WangJun.YunPan
             {
                 inst.GetType().GetProperty(kv.Key).SetValue(inst, kv.Value);
             }
+            inst.Name = "[" + SESSION.Current.UserName + "]" + inst.Name;///调试用
             inst.Save();
-        }
 
-        /// <summary>
-        /// 删除
-        /// </summary>
-        public void Remove()
-        {
-            EntityManager.GetInstance().Remove(this);
-
+            #region 创建共享文档
+            if (null != inst.UserAllowedArray)
+            {
+                var redirectID = inst.ID;
+                foreach (string id in inst.UserAllowedArray)
+                {
+                    var staff = StaffItem.Load(id);
+                    inst.ID = null;
+                    inst.Name = "[共享给" + staff.Name + "]" + inst.Name;
+                    inst._RedirectID = redirectID;
+                    inst.OwnerID = id;
+                    inst.Save();
+                }
+            }
+            #endregion        }
         }
+ 
 
     }
 }

@@ -40,7 +40,7 @@ Doc.LeftMenuClick = function (id) {
         Doc.ShowWindow(url);
     }
     else if ("LeftMenu.个人文档" == id) {
-        var query = [{ _RedirectID: null }, {}, { CreateTime: -1 }];
+        var query = [{ _RedirectID: null,OwnerID:SESSION.Current().UserID }, {}, { CreateTime: -1 }];
         Doc.ShowView3();
         Doc.LoadTopButton(topButtonId);
         Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], {}); });
@@ -48,7 +48,7 @@ Doc.LeftMenuClick = function (id) {
         Doc.SetQuery(query); 
     }
     else if ("LeftMenu.与我共享" == id) {
-        var query = [{ '_RedirectID': {'$ne':null} }, {}, { CreateTime: -1 }];
+        var query = [{ '_RedirectID': { '$ne': null },OwnerID: SESSION.Current().UserID }, {}, { CreateTime: -1 }];
         Doc.ShowView2();
         Doc.LoadTopButton(topButtonId);
         Doc.LoadTable(0, App.Doc.Data.Pager.Size, query, App.Doc.Data.DocTable.Info);

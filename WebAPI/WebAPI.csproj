@@ -127,6 +127,10 @@
       <Project>{8fd45de8-adfa-4705-9e6f-da5a748c5c30}</Project>
       <Name>WangJun.YunProject</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WangJun.YunQun\WangJun.YunQun.csproj">
+      <Project>{c6bbf70b-468e-4ef2-a4fa-4028212343a1}</Project>
+      <Name>WangJun.YunQun</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

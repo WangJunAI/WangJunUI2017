@@ -4,7 +4,7 @@ App.Doc = {};
 App.Doc.Info = {};
 
 App.Doc.Info.ID = "YBJ";
-App.Doc.Info.Name = "汪俊云文档库";
+App.Doc.Info.Name = "汪俊企业知识库";
 
 App.Doc.CSS = {};
 App.Doc.CSS.LeftMenu = {};
