@@ -75,8 +75,8 @@
                     <div class="item">
                         <div class="key">分类</div>
                         <div class="value" data-FormName="Default" data-propertyName="ParentID" data-propertyValue="">
-                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
-                            <div style="position: absolute;">
+                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">未选择分类</a>
+                            <div style="position: absolute;z-index: 9999;">
                                 <div id="category" class="dropdownlist">
                                 </div>
                             </div>
@@ -88,14 +88,14 @@
                     <div class="item">
                         <div class="key" data-FormName="Default">权限</div>
                         <div class="value">
-                            <a href="javascript:;" class="checkbox selected" data-single="private" data-show="hide">个人文档</a>
-                            <a href="javascript:;" class="checkbox" data-single="private" data-show="show">企业文档</a>
+                            <a href="javascript:;" class="checkbox selected" data-single="private" data-show="hide">私有文档</a>
+                            <a href="javascript:;" class="checkbox" data-single="private" data-show="show">共享给</a>
                         </div>
                     </div>
                 </li>
-                <li style="display:none;" data-ClientGroupID="private">
+                <li style="display:none;" data-ClientGroupID="private1">
                     <div class="item">
-                        <div class="key">添加组织</div>
+                        <div class="key">共享组织</div>
                         <div class="value" data-FormName="Default" data-propertyName="OrgAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
                             <a href="javascript:;" class="checkbox" onclick="$('#category2').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
                             <div style="position: absolute;">
@@ -107,17 +107,17 @@
                 </li>
                 <li style="display:none;" data-ClientGroupID="private">
                     <div class="item">
-                        <div class="key">添加人员</div>
+                        <div class="key">共享人员</div>
                         <div class="value" data-FormName="Default" data-propertyName="UserAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
                             <a href="javascript:;" class="checkbox" onclick="$('#category3').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
-                            <div style="position: absolute;">
+                            <div style="position: absolute;z-index: 9999;">
                                 <div id="category3" class="dropdownlist">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </li>
-                <li style="display:none;" data-ClientGroupID="private">
+                <li style="display:none;" data-ClientGroupID="private1">
                     <div class="item">
                         <div class="key">添加角色</div>
                         <div class="value" data-FormName="Default" data-propertyName="RoleAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">

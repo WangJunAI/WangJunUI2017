@@ -1465,6 +1465,16 @@
     <Content Include="UI\APP\YunDoc\JS\Doc.LeftMenu.js" />
     <Content Include="UI\APP\YunDoc\JS\Doc.TopButton.js" />
     <Content Include="UI\APP\YunDoc\Main.html" />
+    <Content Include="UI\APP\YunQun\AppInfo.html" />
+    <Content Include="UI\APP\YunQun\Category.html" />
+    <Content Include="UI\APP\YunQun\Detail.html" />
+    <Content Include="UI\APP\YunQun\JS\AppInfo.Doc.js" />
+    <Content Include="UI\APP\YunQun\JS\Doc.Biz.js" />
+    <Content Include="UI\APP\YunQun\JS\Doc.Detail.js" />
+    <Content Include="UI\APP\YunQun\JS\Doc.js" />
+    <Content Include="UI\APP\YunQun\JS\Doc.LeftMenu.js" />
+    <Content Include="UI\APP\YunQun\JS\Doc.TopButton.js" />
+    <Content Include="UI\APP\YunQun\Main.html" />
     <Content Include="UI\APP\YunNote\Category.html" />
     <Content Include="UI\APP\YunPan\Category.html" />
     <Content Include="UI\APP\YunProject\AppInfo.html" />
@@ -2017,6 +2027,7 @@
     <Folder Include="UI\APP\YunDoc\CSS\" />
     <Folder Include="UI\APP\YunNews\CSS\" />
     <Folder Include="UI\APP\YunNote\CSS\" />
+    <Folder Include="UI\APP\YunQun\CSS\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

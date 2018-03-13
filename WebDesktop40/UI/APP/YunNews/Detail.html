@@ -76,7 +76,7 @@
                         <div class="key">分类</div>
                         <div class="value" data-FormName="Default" data-propertyName="ParentID" data-propertyValue="">
                             <a href="javascript:;" class="button w20em txtleft" onclick="$('#category').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
-                            <div style="position: absolute;">
+                            <div style="position: absolute;z-index:9999;">
                                 <div id="category" class="dropdownlist">
                                 </div>
                             </div>
@@ -84,7 +84,7 @@
                         </div>
                     </div>
                 </li>
-                <li>
+                <li style="display:none;">
                     <div class="item">
                         <div class="key" data-FormName="Default">权限</div>
                         <div class="value">
@@ -93,7 +93,7 @@
                         </div>
                     </div>
                 </li>
-                <li style="display:none;" data-ClientGroupID="private">
+                <li style="display:none;" data-ClientGroupID="private1">
                     <div class="item">
                         <div class="key">添加组织</div>
                         <div class="value" data-FormName="Default" data-propertyName="OrgAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
@@ -117,7 +117,7 @@
                         </div>
                     </div>
                 </li>
-                <li style="display:none;" data-ClientGroupID="private">
+                <li style="display:none;" data-ClientGroupID="private1">
                     <div class="item">
                         <div class="key">添加角色</div>
                         <div class="value" data-FormName="Default" data-propertyName="RoleAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">

@@ -49,7 +49,7 @@ App.Doc.LeftMenu.push({ Name: "我的文档", ID: "LeftMenu.文档操作", Metho
 App.Doc.LeftMenu.push({ Name: "新建文档", ID: "LeftMenu.新建文档", Method: "Doc.LeftMenuClick",    ParentID: "LeftMenu.文档操作" });
 App.Doc.LeftMenu.push({ Name: "新建目录", ID: "LeftMenu.新建目录", Method: "Doc.LeftMenuClick",  ParentID: "LeftMenu.文档操作" });
 App.Doc.LeftMenu.push({ Name: "个人文档", ID: "LeftMenu.个人文档", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.个人文档.TopButton" });
-App.Doc.LeftMenu.push({ Name: "共享文档", ID: "LeftMenu.共享文档", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.共享文档.TopButton" });
+App.Doc.LeftMenu.push({ Name: "与我共享", ID: "LeftMenu.与我共享", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.与我共享.TopButton" });
 App.Doc.LeftMenu.push({ Name: "企业文档", ID: "LeftMenu.企业文档", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.企业文档.TopButton" });
 
 
@@ -78,9 +78,9 @@ App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "",   G
 //App.Doc.Content.TopButton.push({ Name: "移动至", ID: "TopButton.移动至", Method: "",  Type: "dropdownlist", Menu: [{ Text: "回收站" }, { Text: "草稿箱" }], GroupID: "左侧菜单.个人文档.TopButton"});
 App.Doc.Content.TopButton.push({ Name: "删除", ID: "TopButton.删除", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.个人文档.TopButton"});
 
-///共享文档TopButton菜单
-App.Doc.Content.TopButton.push({ Name: "共享文档", ID: "TopButton.共享文档", Method: "", Type: "Title", GroupID: "左侧菜单.共享文档.TopButton" });
-App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.共享文档.TopButton" });
+///与我共享TopButton菜单
+App.Doc.Content.TopButton.push({ Name: "与我共享", ID: "TopButton.与我共享", Method: "", Type: "Title", GroupID: "左侧菜单.与我共享.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.与我共享.TopButton" });
 
 
  ///企业文档TopButton菜单
@@ -146,12 +146,11 @@ App.Doc.Data.DocTable.Info = {
 }
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "全选", Method: "", Sort: "", PropertyName: "Type", DataType: "checkbox" });
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "标题", Method: "Doc.TableRowClick", Sort: "", PropertyName: "Title", DataType: "string"});
-App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "分类", Method: "", Sort: "", PropertyName: "CategoryName", DataType: "string" });
-App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "阅读量", Method: "", Sort: "", PropertyName: "ReadCount", DataType: "string"});
-App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "点赞量", Method: "", Sort: "", PropertyName: "LikeCount", DataType: "string" });
-App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "评论量", Method: "", Sort: "", PropertyName: "CommentCount", DataType: "string" });
-App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "创建时间", Method: "", Sort: "", PropertyName: "CreateTime", DataType: "date"  });
-App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "状态", Method: "", Sort: "", PropertyName: "Status", DataType: "string" });
+App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "目录", Method: "", Sort: "", PropertyName: "ParentName", DataType: "string" });
+//App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "阅读量", Method: "", Sort: "", PropertyName: "ReadCount", DataType: "string"});
+//App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "点赞量", Method: "", Sort: "", PropertyName: "LikeCount", DataType: "string" });
+//App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "评论量", Method: "", Sort: "", PropertyName: "CommentCount", DataType: "string" });
+App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "创建时间", Method: "", Sort: "", PropertyName: "CreateTime", DataType: "date"  }); 
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "详细", Method: "", Sort: "", PropertyName: "Type", DataType: "link", Value: "详细"  });
 
 App.Doc.Data.DocTable.Info.Pager.PagerIndexClick = function () {

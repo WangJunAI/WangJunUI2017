@@ -225,6 +225,7 @@ body {
     height: 15em;
     overflow-y: scroll;
     box-shadow: 4px 4px 4px rgba(0,0,0,0.4);
+    top: -16em;
 }
 
     .dropdownlist > ul {
