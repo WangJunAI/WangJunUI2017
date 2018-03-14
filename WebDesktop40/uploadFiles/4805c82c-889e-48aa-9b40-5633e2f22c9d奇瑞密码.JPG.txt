@@ -1,0 +1,1 @@
+﻿{"ServerFileName":"4805c82c-889e-48aa-9b40-5633e2f22c9d奇瑞密码.JPG","ServerFilePath":"E:\\WangJunUI2017\\WangJunUI2017\\WebDesktop40\\uploadFiles\\4805c82c-889e-48aa-9b40-5633e2f22c9d奇瑞密码.JPG","FileNameInClient":"奇瑞密码.JPG","FileLength":40351,"FileLengthText":"39KB","HttpUrl":"http://localhost:14000/uploadFiles/4805c82c-889e-48aa-9b40-5633e2f22c9d奇瑞密码.JPG"}

@@ -20,7 +20,13 @@
 
         var callback = function (res) {
             LOGGER.Log(res);
-            Doc.ShowDetail(res);
+            if (null === res._RedirectID) {
+                Doc.ShowDetail(res);
+            }
+            else {
+
+                NET.LoadData(App.Doc.Server.Url5, function (res) { Doc.ShowDetail(res, { ReadOnly: true }); }, [res._RedirectID], NET.POST);
+            }
         }
         NET.LoadData(App.Doc.Server.Url5, callback, context, NET.POST);
     });
@@ -40,6 +46,14 @@ Doc.ShowDetail = function (data) {
             UE.getEditor('editor').setHeight(400);
         }
 
+        if (true === PARAM_CHECKER.IsObject(option) && true === option.ReadOnly) {
+            $("#editor").html(UE.getEditor('editor').getContent(data.Content));
+            $("#editor").css("height", "auto");
+            $("#editor img").parent().css("text-align", "center");
+            $(".options").remove();
+            $(".buttons").remove();
+        }
+
         var $ctrls = $("[data-FormName='Default']").each(function () {
             var propertyName = $(this).attr("data-propertyName");
             if (PARAM_CHECKER.IsNotEmptyString(propertyName)) {
@@ -48,6 +62,8 @@ Doc.ShowDetail = function (data) {
                 $(this).val(propertyValue);
             }
         });
+
+
 
         if (true === !PARAM_CHECKER.IsNotEmptyString(data.ParentName)) {
             data.ParentName = "选择分类";

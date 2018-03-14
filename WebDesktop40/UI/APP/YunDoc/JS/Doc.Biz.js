@@ -25,8 +25,12 @@ Doc.SaveCategory = function () {
         Doc.SubmitEnd(submitId);
 
         if (false === PARAM_CHECKER.IsTopWindow()) { 
-            top.window.Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#treeDemo", res1, [], {}); });
-
+            if (true === SESSION.IsSuperAdmin) {
+                top.window.Doc.LeftMenuClick("LeftMenu.企业云盘");
+            }
+            else {
+                top.window.Doc.LeftMenuClick("LeftMenu.个人云盘");
+            }
         }
         Doc.CloseWindow();
 

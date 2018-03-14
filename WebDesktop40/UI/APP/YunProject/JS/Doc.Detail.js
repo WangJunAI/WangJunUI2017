@@ -15,7 +15,13 @@
 
         var callback = function (res) {
             LOGGER.Log(res);
-            Doc.ShowDetail(res);
+            if (null === res._RedirectID) {
+                Doc.ShowDetail(res);
+            }
+            else {
+
+                NET.LoadData(App.Doc.Server.Url5, function (res) { Doc.ShowDetail(res, { ReadOnly: true }); }, [res._RedirectID], NET.POST);
+            }
         }
         NET.LoadData(App.Doc.Server.Url5, callback, context, NET.POST);
     });
@@ -33,6 +39,14 @@ Doc.ShowDetail = function (data) {
             data.Content = $div.text();
             UE.getEditor('editor').setContent(data.Content);
             UE.getEditor('editor').setHeight(400);
+        }
+
+        if (true === PARAM_CHECKER.IsObject(option) && true === option.ReadOnly) {
+            $("#editor").html(UE.getEditor('editor').getContent(data.Content));
+            $("#editor").css("height", "auto");
+            $("#editor img").parent().css("text-align", "center");
+            $(".options").remove();
+            $(".buttons").remove();
         }
 
         var $ctrls = $("[data-FormName='Default']").each(function () {
