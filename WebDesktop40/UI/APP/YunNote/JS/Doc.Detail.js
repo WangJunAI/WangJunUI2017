@@ -31,18 +31,18 @@
     });
 }
 
-Doc.ShowDetail = function (data) {
+Doc.ShowDetail = function (data, option) {
     if (true === PARAM_CHECKER.IsObject(data)) {
         if (true === PARAM_CHECKER.IsNotEmptyString(data.Content) && "<" === data.Content[0]) {
             UE.getEditor('editor').setContent(data.Content);
-            UE.getEditor('editor').setHeight(400);
+            //UE.getEditor('editor').setHeight(400);
         }
         else if (true === PARAM_CHECKER.IsNotEmptyString(data.Content)) {
             var html = data.Content.substring(data.Content.indexOf("&lt;"), data.Content.lastIndexOf("&gt;") + 4);
             var $div = $("<div></div>").html(html);
             data.Content = $div.text();
             UE.getEditor('editor').setContent(data.Content);
-            UE.getEditor('editor').setHeight(400);
+            //UE.getEditor('editor').setHeight(400);
         }
 
         if (true === PARAM_CHECKER.IsObject(option) && true === option.ReadOnly) {

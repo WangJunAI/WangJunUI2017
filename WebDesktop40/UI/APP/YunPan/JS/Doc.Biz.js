@@ -126,6 +126,8 @@ Doc.MoveEntities = function (targetId,targetName) {
             updateItem.ParentName = targetName;
             var param = [Convertor.ToBase64String(JSON.stringify(updateItem), true), { 0: "base64" }];
             NET.PostData(App.Doc.Server.Url4, function (res3) {
+                Doc.LeftMenuClick("LeftMenu.个人云盘");
+
                 Doc.ShowDialog("移动完毕");
             }, param);
         }, [id], NET.POST);

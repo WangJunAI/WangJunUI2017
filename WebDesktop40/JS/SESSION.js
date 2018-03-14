@@ -63,7 +63,8 @@ SESSION.Initial = function () {
 
         }
         else if ("Desktop" === pageName) {
-            SESSION.Current();
+            var session=SESSION.Current();
+            $("#personIcon").attr("href", "../APP/Staff/Detail.html?id=[id]".replace("[id]", session.UserID));
         }
         if (("Detail" === pageName || "Category" === pageName) && true === SESSION.Current().IsSuperAdmin) {
             $('<input type="hidden" data-FormName="Default" data-propertyName="OwnerID" />').appendTo(document.body);
