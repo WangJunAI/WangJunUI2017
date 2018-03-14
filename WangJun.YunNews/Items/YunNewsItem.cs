@@ -75,7 +75,11 @@ namespace WangJun.YunNews
             inst = EntityManager.GetInstance().Get<YunNewsItem>(inst);
             foreach (var kv in dict)
             {
-                inst.GetType().GetProperty(kv.Key).SetValue(inst, kv.Value);
+                var property = inst.GetType().GetProperty(kv.Key);
+                if (property.CanWrite)
+                {
+                    property.SetValue(inst, kv.Value);
+                }
             }
             inst.Save();
         }

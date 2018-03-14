@@ -45,7 +45,11 @@ namespace WangJun.YunNews.Items
             inst = EntityManager.GetInstance().Get<CommentItem>(inst);
             foreach (var kv in dict)
             {
-                inst.GetType().GetProperty(kv.Key).SetValue(inst, kv.Value);
+                var property = inst.GetType().GetProperty(kv.Key);
+                if (property.CanWrite)
+                {
+                    property.SetValue(inst, kv.Value);
+                }
             }
             inst.Save();
         }

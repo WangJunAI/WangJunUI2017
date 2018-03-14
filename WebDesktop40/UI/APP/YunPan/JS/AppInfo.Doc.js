@@ -67,6 +67,16 @@ App.Doc.LeftMenu.push({ Name: "应用信息", ID: "LeftMenu.应用信息", Metho
 App.Doc.Content = {};
 App.Doc.Content.TopButton = [];
 
+///个人云盘TopButton菜单
+App.Doc.Content.TopButton.push({ Name: "个人云盘", ID: "TopButton.个人云盘", Method: "", ParentID: null, GroupID: "", Type: "Title", GroupID: "左侧菜单.个人云盘.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.个人云盘.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "上传文件", ID: "TopButton.上传文件", Method: "Doc.TopButtonClick",   GroupID: "左侧菜单.个人云盘.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "新建文件夹", ID: "TopButton.新建文件夹", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.个人云盘.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.个人云盘.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "移动至", ID: "TopButton.移动至", Method: "", Type: "dropdownlist", Menu: [{ Text: "回收站" }, { Text: "草稿箱" }], GroupID: "左侧菜单.个人云盘.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "删除", ID: "TopButton.删除", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.个人云盘.TopButton" });
+
+
 ///企业云盘TopButton菜单
 App.Doc.Content.TopButton.push({ Name: "企业云盘", ID: "TopButton.企业云盘", Method: "", Type: "Title", GroupID: "左侧菜单.企业云盘.TopButton" });
 App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.企业云盘.TopButton" });
@@ -80,15 +90,6 @@ App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", Gro
 App.Doc.Content.TopButton.push({ Name: "与我共享", ID: "TopButton.与我共享", Method: "", Type: "Title", GroupID: "左侧菜单.与我共享.TopButton" });
 App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.与我共享.TopButton" });
 
-
-///个人云盘TopButton菜单
-App.Doc.Content.TopButton.push({ Name: "个人云盘", ID: "TopButton.个人云盘", Method: "", ParentID: null, GroupID: "", Type: "Title", GroupID: "左侧菜单.个人云盘.TopButton" });
-App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.个人云盘.TopButton" });
-App.Doc.Content.TopButton.push({ Name: "上传文件", ID: "TopButton.上传文件", Method: "Doc.TopButtonClick", Param: App.Doc.Server.Url3, GroupID: "左侧菜单.个人云盘.TopButton" });
-App.Doc.Content.TopButton.push({ Name: "新建文件夹", ID: "TopButton.新建文件夹", Method: "Doc.TopButtonClick", Param: App.Doc.Server.Url6, GroupID: "左侧菜单.个人云盘.TopButton" });
-App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.个人云盘.TopButton" });
-App.Doc.Content.TopButton.push({ Name: "移动至", ID: "TopButton.移动至", Method: "", Type: "dropdownlist", Menu: [{ Text: "回收站" }, { Text: "草稿箱" }], GroupID: "左侧菜单.个人云盘.TopButton" });
-App.Doc.Content.TopButton.push({ Name: "删除", ID: "TopButton.删除", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.个人云盘.TopButton" });
 
  
 

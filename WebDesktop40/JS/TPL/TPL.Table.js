@@ -10,8 +10,13 @@ Doc.SetQuery = function (query,replace) {
     }
     else {
         var oldQuery = Doc.GetQuery();
-        for (var key in query) {
-            oldQuery[key] = query[key];
+        if ((JSON.stringify({}) === JSON.stringify(oldQuery)) && true === PARAM_CHECKER.IsArray(query)) {
+            oldQuery = query;
+        }
+        else {
+            for (var key in query) {
+                oldQuery[key] = query[key];
+            }
         }
         $("#tableQuery").val(JSON.stringify(oldQuery));
     }

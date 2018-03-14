@@ -64,7 +64,11 @@ namespace WangJun.YunQun
             inst = EntityManager.GetInstance().Get<YunQunItem>(inst);
             foreach (var kv in dict)
             {
-                inst.GetType().GetProperty(kv.Key).SetValue(inst, kv.Value);
+                var property = inst.GetType().GetProperty(kv.Key);
+                if (property.CanWrite)
+                {
+                    property.SetValue(inst, kv.Value);
+                }
             }
             inst.Name = "[" + SESSION.Current.UserName + "]" + inst.Name;///调试用
             inst.Title = "[" + SESSION.Current.UserName + "]" + inst.Title;///调试用

@@ -31,11 +31,18 @@ Doc.LoadTreeTo = function (target, data,excludeIdArray,option) {
     var pageName = $("#pageName").val();
     var zTreeOnClick = function (event, treeId, treeNode) {
         var name = treeNode.Name;
-        
-        
-        if ("Main" === pageName) {
+
+        if (true === PARAM_CHECKER.IsObject(option)&& "TopButton" === option.Source) {
+            option.Click(event, treeId, treeNode);///根据业务自定义事件，来自于顶部按钮
+        }
+        else if ("Main" === pageName) {
             var query = Doc.GetQuery();
-            query.ParentID = treeNode.ID;
+            if (true === PARAM_CHECKER.IsArray(query)) {
+                query[0].ParentID = treeNode.ID;
+            }
+            else if (true === PARAM_CHECKER.IsObject(query)) {
+                query.ParentID = treeNode.ID;
+            }
             Doc.LoadTable(0, App.Doc.Data.Pager.Size, query, App.Doc.Data.DocTable.Info);//还需要/Summary样式
         }
         else if ("Detail" == pageName) {
