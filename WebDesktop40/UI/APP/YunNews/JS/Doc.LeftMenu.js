@@ -51,7 +51,7 @@ Doc.LeftMenuClick = function (id) {
     }
     else if ("LeftMenu.企业新闻" == id) {
   
-        var query = {};
+        var query = [{ _RedirectID: null, OwnerID: SESSION.Current().CompanyID, 'StatusCode': { $ne: -1 } }, {}, { CreateTime: -1 }];;
         Doc.ShowView3();
         Doc.LoadTopButton(topButtonId);
         Doc.LoadData_Category([JSON.stringify({ OwnerID: SESSION.Current().CompanyID }), "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], {}); });

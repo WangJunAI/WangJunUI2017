@@ -18,8 +18,8 @@ App.Doc.CSS.LeftList.View3 = {};
 App.Doc.CSS.LeftList.View3.Width = { Value: 12, Unit: "em" };
 
  App.Doc.Server = {
-     Url1: "http://localhost:9990//API.ashx?c=WangJun.YunDoc.YunDocWebAPI&m=LoadEntityList", ///加载文档目录
-     Url2: "http://aifuwu.wang/API.ashx?c=WangJun.YunDoc.YunDocWebAPI&m=Count",///文档数量
+     Url1: "http://localhost:9990/API.ashx?c=WangJun.YunDoc.YunDocWebAPI&m=LoadEntityList", ///加载文档目录
+     Url2: "http://localhost:9990/API.ashx?c=WangJun.YunDoc.YunDocWebAPI&m=Count",///文档数量
     Url3: "Detail.html",
     Url4: "http://localhost:9990/API.ashx?c=WangJun.YunDoc.YunDocWebAPI&m=SaveEntity",///保存一个文档
     Url5: "http://localhost:9990/API.ashx?c=WangJun.YunDoc.YunDocWebAPI&m=GetEntity",///获取一个文档
@@ -133,7 +133,7 @@ App.Doc.Data = {};
 
 App.Doc.Data.Pager = {};
 
-App.Doc.Data.Pager.Size = 100;
+App.Doc.Data.Pager.Size = 10;
  
 App.Doc.Data.DocTable = {};
 App.Doc.Data.DocTable.Info = {
@@ -156,8 +156,8 @@ App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "详细", Method: "", Sor
 App.Doc.Data.DocTable.Info.Pager.PagerIndexClick = function () {
     LOGGER.Log("App.Doc.Data.DocTable.Info.Pager.PagerIndexClick");
     var index = $(event.target).attr("data-Index");
-    
-    Doc.LoadTable(parseInt(index), App.Doc.Data.Pager.Size, "{}", App.Doc.Data.DocTable.Info);
+    var query = Doc.GetQuery();
+    Doc.LoadTable(parseInt(index), App.Doc.Data.Pager.Size, query, App.Doc.Data.DocTable.Info);
 }
 
 App.Doc.Data.RecycleBin = {};

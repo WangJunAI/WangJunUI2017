@@ -45,7 +45,7 @@ Doc.LeftMenuClick = function (id) {
         Doc.ShowView1();
 
         Doc.LoadTopButton(topButtonId);
-        var listQuery = JSON.stringify({});
+        var listQuery = JSON.stringify({ _RedirectID: null, OwnerID: SESSION.Current().UserID, 'StatusCode': { $ne: -1 }   });
         var callback1 = function (res1) {
             Doc.LoadTreeTo("#leftPart1", res1, [], {});
             Doc.ShowContent("redirect.html");

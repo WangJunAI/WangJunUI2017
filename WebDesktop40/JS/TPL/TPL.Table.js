@@ -34,12 +34,20 @@ Doc.GetQuery = function () {
 Doc.LoadPager = function (pageIndex, pageSize, query, tableInfo) {
     var pagerUrl = tableInfo.Pager.Url;
     var callback = function (res) {
-        var pagerInfo = { Count: res.Count, Index: pageIndex, Size: pageSize }
+        var data = res[0];
+        var pagerInfo = { Count: data.Count, Index: pageIndex, Size: pageSize }
         Doc.ShowPager(pagerInfo, tableInfo);
     }
-    var context = [query];
 
-    NET.LoadData(pagerUrl, callback, context, NET.POST);
+    var param = [];
+    if (true === PARAM_CHECKER.IsArray(query)) {
+        param = [JSON.stringify(query[0])];
+    }
+    else {
+        param = query;
+    }
+
+    NET.LoadData(pagerUrl, callback, param, NET.POST);
     
 }
 

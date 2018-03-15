@@ -44,7 +44,7 @@ Doc.LeftMenuClick = function (id) {
 
     }
    else if ("LeftMenu.个人云盘" == id) {
-        var query = [{ _RedirectID: null, OwnerID: SESSION.Current().UserID }, {}, { CreateTime: -1 }];
+        var query = [{ _RedirectID: null, OwnerID: SESSION.Current().UserID, 'StatusCode': { $ne: -1 }  }, {}, { CreateTime: -1 }];
         Doc.ShowView3();
         Doc.LoadTopButton(topButtonId);
         Doc.LoadData_Category([JSON.stringify({ OwnerID: SESSION.Current().OwnerID }), "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], {}); });
@@ -55,7 +55,7 @@ Doc.LeftMenuClick = function (id) {
     }
 
     else if ("LeftMenu.与我共享" == id) {
-        var query = [{ _RedirectID: { $ne: null }, OwnerID: SESSION.Current().UserID }, {}, { CreateTime: -1 }];
+        var query = [{ _RedirectID: { $ne: null }, OwnerID: SESSION.Current().UserID, 'StatusCode': { $ne: -1 }  }, {}, { CreateTime: -1 }];
         Doc.ShowView2();
         Doc.LoadTopButton(topButtonId);
         //Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], {}); });
@@ -65,7 +65,7 @@ Doc.LeftMenuClick = function (id) {
 
     }
     else if ("LeftMenu.企业云盘" == id) {
-        var query = [{ _RedirectID: null, OwnerID: SESSION.Current().CompanyID }, {}, { CreateTime: -1 }];;
+        var query = [{ _RedirectID: null, OwnerID: SESSION.Current().CompanyID, 'StatusCode': { $ne: -1 } }, {}, { CreateTime: -1 }];;
         Doc.ShowView3();
         Doc.LoadTopButton(topButtonId);
         Doc.LoadData_Category([JSON.stringify({ OwnerID: SESSION.Current().CompanyID }), "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], {}); });

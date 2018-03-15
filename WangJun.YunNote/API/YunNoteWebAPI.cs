@@ -146,7 +146,8 @@ namespace WangJun.YunNote
         public object Count(string json)
         {
             var item = new YunNoteItem();
-            var match = "{$match:{}}";
+            var match = "{$match:" + json + "}";
+
             var group = "{$group:{_id:'YunNoteItem总数',Count:{$sum:1}}}";
             var res = EntityManager.GetInstance().Aggregate(item._DbName, item._CollectionName, match, group);
             return res;

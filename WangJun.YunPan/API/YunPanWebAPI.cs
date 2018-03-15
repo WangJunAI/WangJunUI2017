@@ -149,7 +149,7 @@ namespace WangJun.YunPan
         public object Count(string json)
         {
             var item = new YunPanItem();
-            var match = "{$match:{}}";
+            var match = "{$match:" + json + "}";
             var group = "{$group:{_id:'YunPanItem总数',Count:{$sum:1}}}";
             var res = EntityManager.GetInstance().Aggregate(item._DbName, item._CollectionName, match, group);
             return res;

@@ -45,7 +45,7 @@ Doc.LeftMenuClick = function (id) {
         Doc.ShowView1();
 
         Doc.LoadTopButton(topButtonId);
-        var listQuery = JSON.stringify({ _RedirectID: null, OwnerID: SESSION.Current().UserID });//        var query = [, {}, { CreateTime: -1 }];
+        var listQuery = JSON.stringify({ _RedirectID: null, OwnerID: SESSION.Current().UserID, 'StatusCode': { $ne: -1 } });//        var query = [, {}, { CreateTime: -1 }];
 
         var callback1 = function (res1) {
             Doc.LoadTreeTo("#leftPart1", res1, [], {});
@@ -65,7 +65,7 @@ Doc.LeftMenuClick = function (id) {
         Doc.ShowView3();
 
         Doc.LoadTopButton(topButtonId);
-        var listQuery = JSON.stringify({ '_RedirectID': { '$ne': null },OwnerID: SESSION.Current().UserID });
+        var listQuery = JSON.stringify({ '_RedirectID': { '$ne': null }, OwnerID: SESSION.Current().UserID, 'StatusCode': { $ne: -1 }  });
  
         Doc.LoadData_Doc(context = [listQuery, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size], function (res2) { Doc.LoadSummaryListTo("#leftList", res2); });
 
