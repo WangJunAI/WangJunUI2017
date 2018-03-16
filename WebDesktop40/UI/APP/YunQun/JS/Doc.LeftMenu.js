@@ -41,42 +41,17 @@ Doc.LeftMenuClick = function (id) {
         var url = App.Doc.Server.Url6 + "?t=" + (new Date().getTime());
         Doc.ShowWindow(url);
     }
-    else if ("LeftMenu.个人群组" == id) {
-        //Doc.ShowView1();
-
-        //Doc.LoadTopButton(topButtonId);
-        //var listQuery = JSON.stringify({});
-        //var callback1 = function (res1) {
-        //    Doc.LoadTreeTo("#leftPart1", res1, [], {});
-        //    Doc.ShowContent("redirect.html");
-
-        //    var callback2 = function (res2) {
-        //        Doc.LoadSummaryListTo("#leftPart2", res2);
-        //    }
-        //    Doc.LoadData_Doc(context = [listQuery, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size], function (res2) { Doc.LoadSummaryListTo("#leftPart2", res2); });
-        //}
-
-        //var param = ["{}", "{}", "{}", 0, 1000]
-        //Doc.LoadData_Category(param, callback1);
-        //Doc.SetQuery(listQuery); 
+    else if ("LeftMenu.创建的群组" == id) {
+        var listQuery = JSON.stringify({ _RedirectID: null, OwnerID: SESSION.Current().UserID, 'StatusCode': { $ne: -1 } });
         Doc.ShowView3();
-        Doc.LoadSummaryList(0, 10, [{ Title: "我的群组" }, { Title: "目录活跃度" }, { Title: "文章热度" }, { Title: "发文计数" }, { Title: "最活跃用户" }]);
-
+        Doc.LoadData_Doc(context = [listQuery, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size], function (res2) { Doc.LoadSummaryListTo("#leftList", res2); });
+        Doc.SetQuery(listQuery); 
     }
-    else if ("LeftMenu.与我共享" == id) {
-        Doc.ShowView1();
+    else if ("LeftMenu.参与的群组" == id) {
+        var listQuery = JSON.stringify({ _RedirectID: { $ne: null }, OwnerID: SESSION.Current().UserID, 'StatusCode': { $ne: -1 } });
 
-        Doc.LoadTopButton(topButtonId);
-        var listQuery = JSON.stringify({});
-        var callback1 = function (res1) {
-            Doc.LoadTreeTo("#leftPart1", res1, [], {});
-            Doc.ShowContent("redirect.html");
-             
-            Doc.LoadData_Doc(context = [listQuery, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size],   function (res2) { Doc.LoadSummaryListTo("#leftPart2", res2);  });
-        }
-
-        var param = [JSON.stringify({ OwnerID: SESSION.Current().CompanyID }), "{}", "{}", 0, 1000]
-        Doc.LoadData_Category(param, callback1);
+        Doc.ShowView3();
+ 
         Doc.SetQuery(listQuery); 
 
     }

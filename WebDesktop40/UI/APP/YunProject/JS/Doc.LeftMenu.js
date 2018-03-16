@@ -49,10 +49,6 @@ Doc.LeftMenuClick = function (id) {
         var callback1 = function (res1) {
             Doc.LoadTreeTo("#leftPart1", res1, [], {});
             Doc.ShowContent("redirect.html");
-
-            var callback2 = function (res2) {
-                Doc.LoadSummaryListTo("#leftPart2", res2);
-            }
             Doc.LoadData_Doc(context = [listQuery, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size], function (res2) { Doc.LoadSummaryListTo("#leftPart2", res2); });
         }
 

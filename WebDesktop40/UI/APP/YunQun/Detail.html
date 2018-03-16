@@ -66,20 +66,18 @@
     <div class="global">
         <div class="title"><input type="text" placeholder="请输入标题" data-FormName="Default" data-propertyName="Title" data-propertyValue="" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" /></div>
 
-        <div class="minibuttons">
-            <a href="jajavscript:;" class="btn" onclick="Doc.SaveDetail()">发表</a>
-            <a href="jajavscript:;" class="btn" onclick="Doc.RemoveDetail()">删除</a>
-            <a href="http://localhost:39641/TouTiao/TouTiaoArticle.html?id=[id]" id="preView" target="_blank" class="btn">预览</a>
-            <a href="jajavscript:;" class="btn" onclick="$(window.parent.document).find('#detailWindow').hide(); window.close();">取消</a>
-        </div>
-        <div class="minioptions">
+
+
+        <script id="editor" type="text/plain">
+        </script>
+        <div class="options">
             <ul>
                 <li>
                     <div class="item">
                         <div class="key">分类</div>
                         <div class="value" data-FormName="Default" data-propertyName="ParentID" data-propertyValue="">
                             <a href="javascript:;" class="button w20em txtleft" onclick="$('#category').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
-                            <div style="position: absolute;z-index:3990;">
+                            <div style="position: absolute;z-index:9999;">
                                 <div id="category" class="dropdownlist">
                                 </div>
                             </div>
@@ -113,7 +111,7 @@
                         <div class="key">参与人员</div>
                         <div class="value" data-FormName="Default" data-propertyName="UserAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
                             <a href="javascript:;" class="checkbox" onclick="$('#category3').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
-                            <div style="position: absolute;">
+                            <div style="position: absolute;z-index:9999;">
                                 <div id="category3" class="dropdownlist">
                                 </div>
                             </div>
@@ -134,13 +132,17 @@
                 </li>
             </ul>
         </div>
-        <script id="editor" type="text/plain">
-        </script>
+        <div class="buttons">
+            <a href="jajavscript:;" class="btn" onclick="Doc.SaveDetail()">发表</a>
+            <a href="jajavscript:;" class="btn" onclick="Doc.RemoveDetail()">删除</a>
+            <a href="http://localhost:39641/TouTiao/TouTiaoArticle.html?id=[id]" id="preView" target="_blank" class="btn">预览</a>
+            <a href="jajavscript:;" class="btn" onclick="$(window.parent.document).find('#detailWindow').hide(); window.close();">取消</a>
+        </div>
         <div class="comment">
             <div class="input"> <textarea id="comment"></textarea><a href="javascript:;" onclick="Doc.AddComment()">提交</a></div>
             <div id="message"><div>评论成功....</div></div>
             <ul id="commentList"></ul>
-            <a href="javascript:;" id="loadMore" onclick="Doc.LoadMoreComment()">加载更多....</a>
+            <a href="javascript:;" id="loadMore" onclick="Doc.LoadCommentList()">加载更多....</a>
         </div>
 
     </div>
