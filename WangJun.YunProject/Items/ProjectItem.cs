@@ -67,6 +67,12 @@ namespace WangJun.YunProject
                 inst.ID = dict["ID"].ToString();
             }
             inst = EntityManager.GetInstance().Get<ProjectItem>(inst);
+            var milestone = new ArrayList();
+            if(dict.ContainsKey("Milestone"))
+            {
+                milestone = dict["Milestone"] as ArrayList;
+                dict.Remove("Milestone");
+            }
             foreach (var kv in dict)
             {
                 var property = inst.GetType().GetProperty(kv.Key);
@@ -75,7 +81,27 @@ namespace WangJun.YunProject
                     property.SetValue(inst, kv.Value);
                 }
             }
-            inst.Save();
+            inst.Milestone = new ArrayList();
+            foreach (Dictionary<string,object> milestoneItem in milestone)
+            {
+                var item = new { Title = milestoneItem["Title"], Summary = milestoneItem["Summary"], TaskArray = new ArrayList(), Status = "已完成" };
+                foreach (Dictionary<string, object> taskItem in milestoneItem["TaskArray"] as ArrayList)
+                {
+                    if (0 < taskItem.Count)
+                    {
+                        item.TaskArray.Add(new { Content = taskItem["Content"], ExpectedEndTime = taskItem["ExpectedEndTime"], Status = "已完成" });
+                    }
+                    else
+                    {
+                        item.TaskArray.Add(new {  Status = "新增按钮" });
+
+                    }
+                }
+                inst.Milestone.Add(item);
+            }
+
+
+             inst.Save();
         }
         public void Remove()
         {

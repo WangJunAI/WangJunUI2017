@@ -8,7 +8,6 @@
             $("[data-propertyName='" + val + "'").attr("data-propertyValue", $(this).text());
         });
 
-        Milestone.LoadData();
 
         var id = NET.GetQueryParam("id");
         var context = [id];
@@ -17,6 +16,8 @@
             LOGGER.Log(res);
             if (null === res._RedirectID) {
                 Doc.ShowDetail(res);
+                Milestone.LoadData(res.Milestone);
+
             }
             else {
 

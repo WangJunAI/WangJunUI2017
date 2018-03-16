@@ -84,8 +84,8 @@ Doc.SaveDetail = function () {
      });
 
     item.Content = editor.getContent();
-    item.ThumbnailSrc = $(item.Content).find("img").attr("src");
     item.PlainText = editor.getContentTxt();
+    item.Milestone = Milestone.GetData();
 
     var param = [Convertor.ToBase64String(JSON.stringify(item), true), { 0: "base64" }];
 
