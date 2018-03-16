@@ -43,21 +43,11 @@ namespace WangJun.YunProject
         public int PlainTextLength { get; set; }
 
         public string Summary { get; set; }
-
-        public int ReadCount { get; set; }
-
-        public int LikeCount { get; set; }
+ 
 
         public int CommentCount { get; set; }
 
-        public string ImageUrl { get; set; }
-
-        public DateTime PublishTime { get; set; }
-
-        public string PublishMode { get; set; }
-
-        public string Permission { get; set; }
-
+ 
         public ArrayList Milestone  { get;set;}
 
 

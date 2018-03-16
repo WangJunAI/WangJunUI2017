@@ -6,7 +6,7 @@
 Milestone.AddCheckPoint = function (target, data) {
     if (false === PARAM_CHECKER.IsValid(data)) {
         var itemHtml = $("#tpl_Milestone_1").html();
-        $(itemHtml).insertBefore($(event.target));
+        $(itemHtml).insertBefore($(event.target).parent());
     }
     else {
         if ("新增按钮" === data.Status) {
@@ -14,7 +14,7 @@ Milestone.AddCheckPoint = function (target, data) {
         }
         else {
             var itemHtml = $("#tpl_Milestone_6").html().replace("[CheckPointTitle]", data.Title).replace("[CheckPointSummary]", data.Summary);
-            $(target).append(itemHtml);
+            $(target).parent().append(itemHtml);
         }
     }
 }
@@ -25,21 +25,27 @@ Milestone.EditCheckPoint = function (mode) {
         var data = {};
         $(event.target).parent().find("[data-PropertyName]").each(function () {
             var propertyName = $(this).attr("data-PropertyName");
-            data[propertyName] = "Test";
+            data[propertyName] = $(this).val();
         });
 
-        var itemHtml = $("#tpl_Milestone_6").html().replace("[Title]", data.Title).replace("[ExpectedEndTime]", data.Title);
+        var itemHtml = $("#tpl_Milestone_6").html().replace("[CheckPointTitle]", data.Title).replace("[CheckPointSummary]", data.Summary);
         $(itemHtml).insertBefore($(event.target).parent().parent());
 
-        $(event.target).parent().remove();
+        $(event.target).parent().parent().remove();
     }
 }
 
 Milestone.EditTask = function (mode) {
     if ("readonly" === mode) {
-        var itemHtml = $("#tpl_Milestone_5").html();
-        $(itemHtml).insertBefore($(event.target).parent().parent());
-        $(event.target).parent().remove();
+        var data = {};
+        $(event.target).parentsUntil("li").find("[data-PropertyName]").each(function () {
+            var propertyName = $(this).attr("data-PropertyName");
+            data[propertyName] = $(this).val();
+        });
+
+        var itemHtml = $("#tpl_Milestone_5").html().replace("[Content]", data.Content).replace("[ExpectedEndTime]", data.ExpectedEndTime);
+        $(itemHtml).insertBefore($(event.target).parent().parent().parent());
+        $(event.target).parent().parent().parent().remove();
     }
 }
 
@@ -48,7 +54,7 @@ Milestone.AddTask = function (target, data) {
     var itemHtml = "";
     if (false === PARAM_CHECKER.IsValid(data)) {
         var itemHtml = $("#tpl_Milestone_7").html();
-        $(itemHtml).insertBefore($(event.target));
+        $(itemHtml).insertBefore($(event.target).parent());
     }
     else {
         if ("已完成" === data.Status) {
