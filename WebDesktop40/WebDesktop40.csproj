@@ -949,6 +949,7 @@
     <Content Include="JS\Base\zTree\log v3.x.txt" />
     <Content Include="JS\jquery.cookie.js" />
     <Content Include="JS\SESSION.js" />
+    <Content Include="JS\TPL\TPL.Chart.js" />
     <Content Include="JS\TPL\TPL.RecycleBin.js" />
     <Content Include="JS\TPL\TPL.Table.js" />
     <Content Include="JS\ueditor\dialogs\anchor\anchor.html" />
@@ -1423,6 +1424,7 @@
     <Content Include="JS\webuploader\_draft\music\webuploader.js" />
     <Content Include="UI\APP\Staff\AppInfo.html" />
     <Content Include="UI\APP\Staff\Category.html" />
+    <Content Include="UI\APP\Staff\Chart1.html" />
     <Content Include="UI\APP\Staff\Detail.html" />
     <Content Include="UI\APP\Staff\JS\AppInfo.Doc.js" />
     <Content Include="UI\APP\Staff\JS\Doc.Biz.js" />
@@ -1436,8 +1438,10 @@
     <Content Include="CSS\TPL.Font.css" />
     <Content Include="JS\QuickBar\QuickBar.css" />
     <Content Include="JS\TPL\TPL.Nav.Ztree.js" />
+    <Content Include="UI\APP\YunDoc\Chart1.html" />
     <Content Include="UI\APP\YunNews\AppInfo.html" />
     <Content Include="UI\APP\YunNews\Category.html" />
+    <Content Include="UI\APP\YunNews\Chart1.html" />
     <Content Include="UI\APP\YunNews\Detail.html" />
     <Content Include="UI\APP\YunNews\JS\AppInfo.Doc.js" />
     <Content Include="UI\APP\YunNews\JS\Doc.Biz.js" />
@@ -1456,8 +1460,11 @@
     <Content Include="UI\APP\YunDoc\JS\Doc.LeftMenu.js" />
     <Content Include="UI\APP\YunDoc\JS\Doc.TopButton.js" />
     <Content Include="UI\APP\YunDoc\Main.html" />
+    <Content Include="UI\APP\YunNote\Chart1.html" />
+    <Content Include="UI\APP\YunProject\Chart1.html" />
     <Content Include="UI\APP\YunQun\AppInfo.html" />
     <Content Include="UI\APP\YunQun\Category.html" />
+    <Content Include="UI\APP\YunQun\Chart1.html" />
     <Content Include="UI\APP\YunQun\Detail.html" />
     <Content Include="UI\APP\YunQun\JS\AppInfo.Doc.js" />
     <Content Include="UI\APP\YunQun\JS\Doc.Biz.js" />

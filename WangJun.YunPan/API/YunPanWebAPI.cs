@@ -190,6 +190,22 @@ namespace WangJun.YunPan
         }
         #endregion
 
+        #region 聚合计算
+        public object Aggregate(string itemType, string match, string group)
+        {
+            var item = new BaseItem();
+            if ("Entity" == itemType)
+            {
+                item = new YunPanItem();
+            }
+            else if ("Category" == itemType)
+            {
+                item = new CategoryItem();
+            }
+            var res = EntityManager.GetInstance().Aggregate(item._DbName, item._CollectionName, match, group);
+            return res;
 
+        }
+        #endregion
     }
 }
