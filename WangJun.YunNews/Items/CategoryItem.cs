@@ -39,6 +39,7 @@ namespace WangJun.YunNews
         public void Save()
         {
             EntityManager.GetInstance().Save<CategoryItem>(this);
+            ClientBehaviorItem.Save(this, ClientBehaviorItem.BehaviorType.修改, SESSION.Current);
         }
         public static void Save(string jsonInput)
         {

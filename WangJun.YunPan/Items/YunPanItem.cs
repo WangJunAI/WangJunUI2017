@@ -82,6 +82,7 @@ namespace WangJun.YunPan
         public void Save()
         {
             EntityManager.GetInstance().Save<YunPanItem>(this);
+            ClientBehaviorItem.Save(this, ClientBehaviorItem.BehaviorType.修改, SESSION.Current);
         }
         public static void Save(string jsonInput)
         {
