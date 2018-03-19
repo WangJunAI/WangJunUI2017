@@ -1,9 +1,5 @@
-﻿using MongoDB.Bson;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using WangJun.Config;
-using WangJun.DB;
 using WangJun.Entity;
 using WangJun.HumanResource;
 using WangJun.Utility;

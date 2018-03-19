@@ -95,8 +95,8 @@
     <Folder Include="Pic\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\WangJun2017\WangJun.Utility\WangJun.Utility.csproj">
-      <Project>{ddc51285-3f85-4d6d-a10b-f835b9c5058a}</Project>
+    <ProjectReference Include="..\WangJun.Utility\WangJun.Utility.csproj">
+      <Project>{ECA8641B-DDB9-481A-BF78-76FB5A8E1DE3}</Project>
       <Name>WangJun.Utility</Name>
     </ProjectReference>
   </ItemGroup>

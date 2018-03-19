@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WangJun.Admin;
-using WangJun.Config;
-using WangJun.Entity;
+﻿using WangJun.Entity;
 using WangJun.HumanResource;
 using WangJun.Net;
 using WangJun.Utility;
-
 
 namespace WangJun.Admin
 {

@@ -7,7 +7,7 @@ using WangJun.Config;
 using WangJun.Entity;
 using WangJun.Utility;
 
-namespace WangJun.YunNews.Items
+namespace WangJun.YunNews
 {
 
     public class CommentItem : BaseItem

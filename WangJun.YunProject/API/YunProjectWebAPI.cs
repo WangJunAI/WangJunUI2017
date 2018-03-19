@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using WangJun.Config;
 using WangJun.Entity;
-using WangJun.HumanResource;
 using WangJun.Utility;
 
 namespace WangJun.YunProject
