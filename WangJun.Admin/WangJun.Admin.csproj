@@ -60,6 +60,10 @@
       <Project>{06f3a647-d026-4847-94a5-20643223cc96}</Project>
       <Name>WangJun.HumanResource</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\WangJun2017\WangJun.Net\WangJun.Net.csproj">
+      <Project>{952A70F6-06A9-405A-A3E6-62B24C218DAF}</Project>
+      <Name>WangJun.Net</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\WangJun2017\WangJun.Utility\WangJun.Utility.csproj">
       <Project>{ddc51285-3f85-4d6d-a10b-f835b9c5058a}</Project>
       <Name>WangJun.Utility</Name>

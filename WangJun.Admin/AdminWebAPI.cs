@@ -7,6 +7,7 @@ using WangJun.Admin;
 using WangJun.Config;
 using WangJun.Entity;
 using WangJun.HumanResource;
+using WangJun.Net;
 using WangJun.Utility;
 
 
@@ -57,7 +58,7 @@ namespace WangJun.Admin
             admin.Save();
             #endregion
 
-            #region 初始化云盘
+            #region 初始化云盘///创建几个目录
             var categoryYunPan = new WangJun.YunPan.CategoryItem();
             categoryYunPan.Name = "企业云盘";
             categoryYunPan.Save();
@@ -87,7 +88,7 @@ namespace WangJun.Admin
             categoryYunProject.Save();
             #endregion
 
-            #region 初始化云文档库
+            #region 初始化云文档库///应该初始化几个基本文档
             var categoryYunDoc = new WangJun.YunDoc.CategoryItem();
             categoryYunDoc.Name = "企业云文档";
             categoryYunDoc.Save();
@@ -109,6 +110,11 @@ namespace WangJun.Admin
 
             #region 用超级管理员账号登录
             var session = SESSION.Login(admin.Email, null);
+            #endregion
+
+            #region 发送邮件
+            SMTP smtp = SMTP.GetInstance("smtp-mail.outlook.com", 587,"wangjun19850215@live.cn","111qqq!!!W");
+            smtp.SendMail("wangjun19850215@live.cn", admin.Email, "恭喜你注册成功！","汪俊云平台");
             #endregion
 
             return session;

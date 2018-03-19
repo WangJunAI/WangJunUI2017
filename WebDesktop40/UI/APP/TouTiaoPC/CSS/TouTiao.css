@@ -146,7 +146,6 @@
 .global > .right {
     width: 340px;
     height: 1000px;
-    background-color: #fAfAfA;
     float: left;
 }
 
@@ -189,14 +188,50 @@
         border-radius: 0 4px 4px 0;
     }
 
-#loadMore {
-    display: block;
-    text-decoration: none;
-    color: #222;
-    width: 100%;
-    text-align: center;
-    margin-bottom: 2em;
-}
+    .global > .right > .block {
+        width: 100%;
+        height: 15em;
+        background-color: #fAfAfA;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        border-top: 2px solid #ed4040;
+    }
+
+    .global > .right > .block >.title{
+        width: 100%;
+        height: 2em;
+       line-height:2em;
+       font-size:1em;
+       font-weight:700;
+       padding-left:1em;
+    }
+
+        .global > .right > .block > .row {
+            width: 100%;
+            height: 2em;
+            line-height: 2em;
+            font-size: 1em;
+            padding-left: 1em;
+        }
+
+        .global > .right > .block > .row span{
+            margin-right:0.5em;
+         }
+
+
+        .global > .right > .block > .row a {
+            text-decoration:none;
+            color:#222;
+        }
+
+            #loadMore {
+                display: block;
+                text-decoration: none;
+                color: #222;
+                width: 100%;
+                text-align: center;
+                margin-bottom: 2em;
+            }
 
 #message {
     width: 100%;
