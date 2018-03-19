@@ -19,8 +19,8 @@ TouTiao.ShowCategory = function (res) {
         var item = res[k];
         html += "<li><a href=\"javascript:;\" data-param=\"[CategoryID]\" onclick='TouTiao.CategoryButtonClick()'><span data-param=\"[CategoryID]\">[Name]</span></a></li>".replace("[Name]", item.Name).replace(/\[CategoryID\]/g, item.ID);
     }
-
     $("#category").html(html);
+    TouTiao.LoadList(null, 0, null, true);
 }
 
 TouTiao.LoadMore = function () {
@@ -122,6 +122,7 @@ TouTiao.ShowCommentList = function (data) {
 }
 
 TouTiao.AddComment = function () {
+    TouTiao.ShowMessage();
     var item = {};
     var targetId = NET.GetQueryParam("id");
     item.Content = $("#comment").val().trim();
@@ -129,9 +130,11 @@ TouTiao.AddComment = function () {
     var context = [Convertor.ToBase64String(JSON.stringify(item), true), { 0: "base64" }];
     var callback = function (res) {
         LOGGER.Log(res);
-        TouTiao.LoadCommentList();
+
+        //TouTiao.LoadCommentList();
         $("#comment").val("");
-        TouTiao.ShowMessage();
+        
+        
     }
 
     NET.PostData(App.TouTiao.Server.Url4, callback, context);
@@ -192,6 +195,7 @@ TouTiao.ShowArticle = function (data) {
             var $div = $("<div></div>").html(html);
             data.Content = $div.text();
         }
+        $("[data-PropertyName='ParentName']").text(data.ParentName);
         $("#title").text(data.Title);
         $("#CreatorName").text(data.CreatorName);
         $("#CreateTime").text(data.CreateTime);
@@ -211,8 +215,7 @@ TouTiao.ShowArticle = function (data) {
 TouTiao.Initial = function (type) {
     $(document).ready(function () {
         if ("list" === type) {
-            TouTiao.LoadCategory();
-            TouTiao.LoadList(null, 0, null, true);
+            TouTiao.LoadCategory();///先加载目录再加载文档
         }
         else if ("article" === type) {
             var id = NET.GetQueryParam("id");
@@ -223,11 +226,10 @@ TouTiao.Initial = function (type) {
 }
 
 TouTiao.ShowMessage = function () {
-    $("#message").hide();
-    $("#message").show();
-    var tId = setTimeout(function () {
-        $("#message").hide();
-        clearTimeout(tId);
-    },500);
+    $("#message").show({
+        effect: "blind", duration: 1000, complete: function () {
+            $("#message").hide({ effect: "blind", duration: 1000 });
+        }
+    });
 }
 
