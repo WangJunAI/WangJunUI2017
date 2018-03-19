@@ -251,5 +251,16 @@ namespace WangJun.YunNews
         #endregion
 
 
+        #region 用户行为
+        public object AddLikeCount(string id)
+        {
+            var inst = new YunNewsItem();
+            inst.ID = id;
+            var query = MongoDBFilterCreator.SearchByObjectId(id);
+            var updateJson = MongoDBFilterCreator.ByInc("LikeCount", 1);
+            EntityManager.GetInstance().UpdateField<YunNewsItem>(updateJson, query);
+            return 0;
+        }
+        #endregion
     }
 }

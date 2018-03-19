@@ -100,16 +100,12 @@
       <Name>WangJun.HumanResource</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\WangJun2017\WangJun.Utility\WangJun.Utility.csproj">
-      <Project>{DDC51285-3F85-4D6D-A10B-F835B9C5058A}</Project>
+      <Project>{ddc51285-3f85-4d6d-a10b-f835b9c5058a}</Project>
       <Name>WangJun.Utility</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\WangJun2017\WangJun.YunDoc\WangJun.YunDoc.csproj">
       <Project>{f778d22c-042f-4535-a9e1-10bfb9e23a7f}</Project>
       <Name>WangJun.YunDoc</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WangJun.Admin\WangJun.Admin.csproj">
-      <Project>{4f722223-ac4d-4085-a348-6942a2650f54}</Project>
-      <Name>WangJun.Admin</Name>
     </ProjectReference>
     <ProjectReference Include="..\WangJun.YunNews\WangJun.YunNews.csproj">
       <Project>{b3539da2-9c83-47f4-be30-df49f932bf20}</Project>

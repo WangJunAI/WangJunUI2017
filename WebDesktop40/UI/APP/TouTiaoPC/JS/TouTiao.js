@@ -144,7 +144,7 @@ TouTiao.AddLikeCount = function () {
     var $btn = $(event.target);
     var item = {};
     var targetId = NET.GetQueryParam("id");
-    var context = ["1", targetId, "LikeCount"];
+    var context = [targetId];
     var callback = function (res) {
         LOGGER.Log(res); 
         $btn.text("已" + $btn.text().replace("已", ""));
@@ -152,7 +152,7 @@ TouTiao.AddLikeCount = function () {
         $btn.removeAttr("href");
     }
 
-    NET.PostData(App.TouTiao.Server.Url4, callback, context);
+    NET.PostData(App.TouTiao.Server.Url6, callback, context);
 }
 
 TouTiao.AddAppend = function () {

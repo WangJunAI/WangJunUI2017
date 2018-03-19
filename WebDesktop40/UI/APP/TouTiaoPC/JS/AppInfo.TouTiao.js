@@ -14,6 +14,7 @@ App.TouTiao.Server = {
     Url2: "http://localhost:9990/API.ashx?c=WangJun.YunNews.YunNewsWebAPI&m=LoadCategoryList",
     Url3: "http://localhost:9990/API.ashx?c=WangJun.YunNews.YunNewsWebAPI&m=GetEntity",
     Url4: "http://localhost:9990/API.ashx?c=WangJun.YunNews.YunNewsWebAPI&m=SaveComment",
-    Url5:"http://localhost:9990/API.ashx?c=WangJun.YunNews.YunNewsWebAPI&m=LoadCommentList"
+    Url5: "http://localhost:9990/API.ashx?c=WangJun.YunNews.YunNewsWebAPI&m=LoadCommentList",
+    Url6: "http://localhost:9990/API.ashx?c=WangJun.YunNews.YunNewsWebAPI&m=AddLikeCount"
 };
  

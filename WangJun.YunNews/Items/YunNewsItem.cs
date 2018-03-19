@@ -48,6 +48,8 @@ namespace WangJun.YunNews
 
         public int CommentCount { get; set; }
 
+        public int FavoriteCount { get; set; }
+
         public string ImageUrl { get; set; }
  
         public DateTime PublishTime { get; set; }
