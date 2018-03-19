@@ -66,6 +66,47 @@ namespace WangJun.Admin
             categoryYunPan.CompanyName = company.Name;
             categoryYunPan.OwnerID = categoryYunPan.CompanyID;
             categoryYunPan.Save();
+
+            ///通用子目录
+            var categoryYunPan1 = new WangJun.YunPan.CategoryItem();
+            categoryYunPan1.Name = "培训资料";
+            categoryYunPan1.Save();
+            categoryYunPan1.CompanyID = company.ID;
+            categoryYunPan1.CompanyName = company.Name;
+            categoryYunPan1.OwnerID = categoryYunPan.CompanyID;
+            categoryYunPan1.ParentID = categoryYunPan.ID;
+            categoryYunPan1.ParentName = categoryYunPan.Name;
+            categoryYunPan1.Save();
+
+            var categoryYunPan2 = new WangJun.YunPan.CategoryItem();
+            categoryYunPan2.Name = "管理规程";
+            categoryYunPan2.Save();
+            categoryYunPan2.CompanyID = company.ID;
+            categoryYunPan2.CompanyName = company.Name;
+            categoryYunPan2.OwnerID = categoryYunPan.CompanyID;
+            categoryYunPan2.ParentID = categoryYunPan.ID;
+            categoryYunPan2.ParentName = categoryYunPan.Name;
+            categoryYunPan2.Save();
+
+            var categoryYunPan3 = new WangJun.YunPan.CategoryItem();
+            categoryYunPan3.Name = "人事制度";
+            categoryYunPan3.Save();
+            categoryYunPan3.CompanyID = company.ID;
+            categoryYunPan3.CompanyName = company.Name;
+            categoryYunPan3.OwnerID = categoryYunPan.CompanyID;
+            categoryYunPan3.ParentID = categoryYunPan.ID;
+            categoryYunPan3.ParentName = categoryYunPan.Name;
+            categoryYunPan3.Save();
+
+            var categoryYunPan4 = new WangJun.YunPan.CategoryItem();
+            categoryYunPan4.Name = "宣传视频";
+            categoryYunPan4.Save();
+            categoryYunPan4.CompanyID = company.ID;
+            categoryYunPan4.CompanyName = company.Name;
+            categoryYunPan4.OwnerID = categoryYunPan.CompanyID;
+            categoryYunPan4.ParentID = categoryYunPan.ID;
+            categoryYunPan4.ParentName = categoryYunPan.Name;
+            categoryYunPan4.Save();
             #endregion
 
             #region 初始化云笔记
@@ -90,22 +131,94 @@ namespace WangJun.Admin
 
             #region 初始化云文档库///应该初始化几个基本文档
             var categoryYunDoc = new WangJun.YunDoc.CategoryItem();
-            categoryYunDoc.Name = "企业云文档";
+            categoryYunDoc.Name = "企业知识库";
             categoryYunDoc.Save();
             categoryYunDoc.CompanyID = company.ID;
             categoryYunDoc.CompanyName = company.Name;
             categoryYunDoc.OwnerID = categoryYunDoc.CompanyID;
             categoryYunDoc.Save();
+
+
+            var categoryYunDoc1 = new WangJun.YunDoc.CategoryItem();
+            categoryYunDoc1.Name = "营销宝典";
+            categoryYunDoc1.Save();
+            categoryYunDoc1.CompanyID = company.ID;
+            categoryYunDoc1.CompanyName = company.Name;
+            categoryYunDoc1.OwnerID = categoryYunDoc.CompanyID;
+            categoryYunDoc1.ParentID = categoryYunDoc.ID;
+            categoryYunDoc1.ParentName = categoryYunDoc.Name;
+            categoryYunDoc1.Save();
+
+            var categoryYunDoc2 = new WangJun.YunDoc.CategoryItem();
+            categoryYunDoc2.Name = "企业管理";
+            categoryYunDoc2.Save();
+            categoryYunDoc2.CompanyID = company.ID;
+            categoryYunDoc2.CompanyName = company.Name;
+            categoryYunDoc2.OwnerID = categoryYunDoc.CompanyID;
+            categoryYunDoc2.ParentID = categoryYunDoc.ID;
+            categoryYunDoc2.ParentName = categoryYunDoc.Name;
+            categoryYunDoc2.Save();
             #endregion
 
             #region 初始化云新闻库
             var categoryYunNews = new WangJun.YunNews.CategoryItem();
-            categoryYunNews.Name = "企业云新闻";
+            categoryYunNews.Name = "企业新闻";
             categoryYunNews.Save();
             categoryYunNews.CompanyID = company.ID;
             categoryYunNews.CompanyName = company.Name;
             categoryYunNews.OwnerID = categoryYunNews.CompanyID;
             categoryYunNews.Save();
+
+            var categoryYunNews1 = new WangJun.YunNews.CategoryItem();
+            categoryYunNews1.Name = "动态";
+            categoryYunNews1.Save();
+            categoryYunNews1.CompanyID = company.ID;
+            categoryYunNews1.CompanyName = company.Name;
+            categoryYunNews1.OwnerID = categoryYunNews.CompanyID;
+            categoryYunNews1.ParentID = categoryYunNews.ID;
+            categoryYunNews1.ParentName = categoryYunNews.Name;
+            categoryYunNews1.Save();
+
+
+            var categoryYunNews2 = new WangJun.YunNews.CategoryItem();
+            categoryYunNews2.Name = "通知";
+            categoryYunNews2.Save();
+            categoryYunNews2.CompanyID = company.ID;
+            categoryYunNews2.CompanyName = company.Name;
+            categoryYunNews2.OwnerID = categoryYunNews.CompanyID;
+            categoryYunNews2.ParentID = categoryYunNews.ID;
+            categoryYunNews2.ParentName = categoryYunNews.Name;
+            categoryYunNews2.Save();
+
+            var categoryYunNews3 = new WangJun.YunNews.CategoryItem();
+            categoryYunNews3.Name = "公告";
+            categoryYunNews3.Save();
+            categoryYunNews3.CompanyID = company.ID;
+            categoryYunNews3.CompanyName = company.Name;
+            categoryYunNews3.OwnerID = categoryYunNews.CompanyID;
+            categoryYunNews3.ParentID = categoryYunNews.ID;
+            categoryYunNews3.ParentName = categoryYunNews.Name;
+            categoryYunNews3.Save();
+
+            var categoryYunNews4 = new WangJun.YunNews.CategoryItem();
+            categoryYunNews4.Name = "关于";
+            categoryYunNews4.Save();
+            categoryYunNews4.CompanyID = company.ID;
+            categoryYunNews4.CompanyName = company.Name;
+            categoryYunNews4.OwnerID = categoryYunNews.CompanyID;
+            categoryYunNews4.ParentID = categoryYunNews.ID;
+            categoryYunNews4.ParentName = categoryYunNews.Name;
+            categoryYunNews4.Save();
+            #endregion
+
+            #region 初始化云群
+            var categoryYunQun = new WangJun.YunQun.CategoryItem();
+            categoryYunQun.Name = "企业群";
+            categoryYunQun.Save();
+            categoryYunQun.CompanyID = company.ID;
+            categoryYunQun.CompanyName = company.Name;
+            categoryYunQun.OwnerID = categoryYunQun.CompanyID;
+            categoryYunQun.Save();
             #endregion
 
             #region 用超级管理员账号登录

@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\WebAPI\bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -41,6 +41,38 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WangJun.HumanResource, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\WebAPI\bin\WangJun.HumanResource.dll</HintPath>
+    </Reference>
+    <Reference Include="WangJun.Net, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\WebAPI\bin\WangJun.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="WangJun.YunDoc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\WebAPI\bin\WangJun.YunDoc.dll</HintPath>
+    </Reference>
+    <Reference Include="WangJun.YunNews, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\WebAPI\bin\WangJun.YunNews.dll</HintPath>
+    </Reference>
+    <Reference Include="WangJun.YunNote, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\WebAPI\bin\WangJun.YunNote.dll</HintPath>
+    </Reference>
+    <Reference Include="WangJun.YunPan, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\WebAPI\bin\WangJun.YunPan.dll</HintPath>
+    </Reference>
+    <Reference Include="WangJun.YunProject, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\WebAPI\bin\WangJun.YunProject.dll</HintPath>
+    </Reference>
+    <Reference Include="WangJun.YunQun, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\WebAPI\bin\WangJun.YunQun.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CompanyItem.cs" />
@@ -56,41 +88,13 @@
       <Project>{41FE0A71-2098-483A-8E1B-ED4BEBB4DD72}</Project>
       <Name>WangJun.Entity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\WangJun2017\WangJun.HumanResource\WangJun.HumanResource.csproj">
-      <Project>{06f3a647-d026-4847-94a5-20643223cc96}</Project>
-      <Name>WangJun.HumanResource</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\WangJun2017\WangJun.Net\WangJun.Net.csproj">
-      <Project>{952A70F6-06A9-405A-A3E6-62B24C218DAF}</Project>
-      <Name>WangJun.Net</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\WangJun2017\WangJun.Utility\WangJun.Utility.csproj">
       <Project>{ddc51285-3f85-4d6d-a10b-f835b9c5058a}</Project>
       <Name>WangJun.Utility</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\WangJun2017\WangJun.YunDoc\WangJun.YunDoc.csproj">
-      <Project>{f778d22c-042f-4535-a9e1-10bfb9e23a7f}</Project>
-      <Name>WangJun.YunDoc</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WangJun.Config\WangJun.Config.csproj">
       <Project>{EEBD1F1F-3DCD-4329-87BE-AC4C7DF19348}</Project>
       <Name>WangJun.Config</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WangJun.YunNews\WangJun.YunNews.csproj">
-      <Project>{b3539da2-9c83-47f4-be30-df49f932bf20}</Project>
-      <Name>WangJun.YunNews</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WangJun.YunNote\WangJun.YunNote.csproj">
-      <Project>{766eed44-f19d-4ba4-ae75-ffd666d48066}</Project>
-      <Name>WangJun.YunNote</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WangJun.YunPan\WangJun.YunPan.csproj">
-      <Project>{7264576F-0E49-4B34-8D91-9F43EEADD777}</Project>
-      <Name>WangJun.YunPan</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WangJun.YunProject\WangJun.YunProject.csproj">
-      <Project>{8fd45de8-adfa-4705-9e6f-da5a748c5c30}</Project>
-      <Name>WangJun.YunProject</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
