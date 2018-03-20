@@ -48,7 +48,7 @@ Doc.LeftMenuClick = function (id) {
         var listQuery = JSON.stringify({ _RedirectID: null, OwnerID: SESSION.Current().UserID, 'StatusCode': { $ne: -1 } });//        var query = [, {}, { CreateTime: -1 }];
 
         var callback1 = function (res1) {
-            Doc.LoadTreeTo("#leftPart1", res1, [], {});
+            Doc.LoadTreeTo("#leftPart1", res1, [], { header: "小提示：修改目录双击即可" });
             Doc.ShowContent("redirect.html");
 
             var callback2 = function (res2) {

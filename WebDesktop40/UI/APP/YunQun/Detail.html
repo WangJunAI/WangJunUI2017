@@ -155,12 +155,7 @@
             </div>
         </li>
     </script>
-    <script type="text/javascript">
-        $("#publishDate").datepicker({
-            //inline: true
-            dateFormat: "yy/mm/dd"
-        });
-    </script>
+ 
     <script type="text/javascript">
         $(document).ready(function () {
             $(".global").width(window.parent.$("#content").width() - 30);
@@ -169,7 +164,7 @@
 
 
             Doc.LoadDetail();
-            Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) {
+            Doc.LoadData_Category([JSON.stringify({ OwnerID: SESSION.Current().CompanyID }), "{}", "{}", 0, 1000], function (res1) {
                 Doc.LoadTreeTo("#category", res1, [], {
                     Click: function (event, treeId, treeNode) {
                         $('#category').hide();

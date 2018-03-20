@@ -154,6 +154,14 @@ body {
     background-color: #F9F9FA;
 }
 
+.main > #leftList .panelheader {
+    font-size: 0.8em;
+    color: #F15533;
+    background: #FEEEEB;
+    border: 1px solid #F15532;
+    padding-left: 0.3em;
+}
+
 .main > .content {
     position: absolute;
     top: 5em;
