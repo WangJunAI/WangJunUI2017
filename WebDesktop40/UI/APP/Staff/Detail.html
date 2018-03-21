@@ -108,7 +108,7 @@
                     <div class="item">
                         <div class="key">部门</div>
                         <div class="value " data-FormName="Default" data-propertyName="ParentID" data-propertyValue="">
-                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category1').toggle();"  data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
+                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category1').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">未选择所在部门</a>
                             <div style="position: absolute;">
                                 <div id="category1" class="dropdownlist">
                                 </div>
@@ -116,7 +116,7 @@
                         </div>
                     </div>
                 </li>
-                <li>
+                <li style="display:none;">
                     <div class="item">
                         <div class="key">岗位</div>
                         <div class="value" data-FormName="Default" data-propertyName="PositionID" data-propertyValue="">
@@ -129,11 +129,11 @@
                         </div>
                     </div>
                 </li>
-                <li>
+                <li style="display:none;">
                     <div class="item">
                         <div class="key">角色</div>
                         <div class="value" data-FormName="Default" data-propertyName="ParentID" data-propertyValue="">
-                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category3').toggle();"  data-FormName="Default" data-propertyName="RoleName" data-propertyValue="">默认分类</a>
+                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category3').toggle();" data-FormName="Default" data-propertyName="RoleName" data-propertyValue="">未选择角色</a>
                             <div style="position: absolute;">
                                 <div id="category3" class="dropdownlist">
                                 </div>
@@ -145,19 +145,19 @@
                     <div class="item">
                         <div class="key">入职时间</div>
                         <div class="value">
-                            <input data-FormName="Default" data-propertyName="EntryTime" data-propertyValue="" type="text" placeholder="入职时间" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" /><span>合同期限</span><select id="publishHour"><option>08</option>  </select>
+                            <input data-FormName="Default" data-propertyName="EntryTime" data-propertyValue="" type="text" placeholder="入职时间" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" /><span>合同期限</span><select id="publishHour"><option>01</option> <option>02</option> <option>03</option> <option>04</option>  </select>
                         </div>
                     </div>
                 </li>
-                <li>
+                <li style="display:none;">
                     <div class="item">
                         <div class="key">离职时间</div>
                         <div class="value">
-                            <input data-FormName="Default" data-propertyName="DepartureTime" data-propertyValue="" type="text" placeholder="离职时间" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" />
+                            <!--<input data-FormName="Default" data-propertyName="DepartureTime" data-propertyValue="" type="text" placeholder="离职时间" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" />-->
                         </div>
                     </div>
                 </li>
-                <li>
+                <li style="display:none;">
                     <div class="item">
                         <div class="key">相关证件</div>
                         <div class="value" data-FormName="Default" data-propertyName="Attachment" data-propertyValue="">
@@ -196,7 +196,8 @@
                         $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.ID);
                         $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
                         $("[data-propertyName='ParentName']").text(name);
-                    }
+                    },
+                    header: "请选择所在部门"
                 });
             }); ///加载目录
             Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) {

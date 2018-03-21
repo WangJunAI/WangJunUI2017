@@ -1,18 +1,21 @@
 ﻿
 ///加载数据
 Doc.LoadDetail = function () {
+    $(document).ready(function () {
+        $("[data-single]").on("click", function () {
+            var val = $(this).attr("data-single");
+            var isShow = $(this).attr("data-show");
+            $("[data-single='" + val + "']").removeClass("selected");
+            $(this).addClass("selected");
+            if ("show" === isShow) {
+                $('[data-ClientGroupID="' + val + '"]').show();
+            }
+            else if ("hide" === isShow) {
+                $('[data-ClientGroupID="' + val + '"]').hide();
+            }
+        });
 
-    if (PARAM_CHECKER.IsNotEmptyString(NET.GetQueryParam("ID"))) {
-
-
-        $(document).ready(function () {
-
-            $("[data-single]").on("click", function () {
-                var val = $(this).attr("data-single");
-                $("[data-single='" + val + "']").removeClass("selected");
-                $(this).addClass("selected");
-                $("[data-propertyName='" + val + "'").attr("data-propertyValue", $(this).text());
-            });
+        if (PARAM_CHECKER.IsNotEmptyString(NET.GetQueryParam("ID"))) {
 
             var id = NET.GetQueryParam("id");
             var context = [id];
@@ -22,11 +25,17 @@ Doc.LoadDetail = function () {
                 Doc.ShowDetail(res);
             }
             NET.LoadData(App.Doc.Server.Url5, callback, context, NET.POST);
-        });
-    }
+
+
+
+
+
+
+        }
+    });
 }
 
-Doc.ShowDetail = function (data, option)) {
+Doc.ShowDetail = function (data, option) {
     if (true === PARAM_CHECKER.IsObject(data)) {
         if (true === PARAM_CHECKER.IsNotEmptyString(data.Content) && "<" === data.Content[0]) {
             UE.getEditor('editor').setContent(data.Content);
@@ -69,7 +78,7 @@ Doc.ShowDetail = function (data, option)) {
 
         });
 
-   
+
 
         $("#preView").attr("href", "http://localhost:39641/TouTiao/TouTiaoArticle.html?id=[id]".replace("[id]", data.id));
     }

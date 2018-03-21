@@ -47,5 +47,23 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WangJun.Admin\WangJun.Admin.csproj">
+      <Project>{4f722223-ac4d-4085-a348-6942a2650f54}</Project>
+      <Name>WangJun.Admin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WangJun.Config\WangJun.Config.csproj">
+      <Project>{EEBD1F1F-3DCD-4329-87BE-AC4C7DF19348}</Project>
+      <Name>WangJun.Config</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WangJun.DB\WangJun.DB.csproj">
+      <Project>{A0BEDC3E-2B61-4027-BD4B-FDAB0DF38659}</Project>
+      <Name>WangJun.DB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WangJun.Utility\WangJun.Utility.csproj">
+      <Project>{ECA8641B-DDB9-481A-BF78-76FB5A8E1DE3}</Project>
+      <Name>WangJun.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

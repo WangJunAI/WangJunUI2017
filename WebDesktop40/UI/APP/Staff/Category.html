@@ -55,15 +55,15 @@
     <input type="hidden" id="ID" data-FormName="Default" data-propertyName="ID" />
     <input type="hidden" id="pageName" value="Detail" />
     <div class="global">
-        <div class="title"><input type="text" data-FormName="Default" data-propertyName="Name" data-propertyValue="" placeholder="请输入目录名称" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" /></div>
+        <div class="title"><input type="text" data-FormName="Default" data-propertyName="Name" data-propertyValue="" placeholder="请输入组织或部门名称" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" /></div>
 
         <div class="options">
             <ul>
                 <li>
                     <div class="item">
-                        <div class="key">上级目录</div>
+                        <div class="key">上级组织</div>
                         <div class="value" data-FormName="Default" data-propertyName="ParentID" data-propertyValue="">
-                            <a href="javascript:;" class="checkbox" onclick="$('#category').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">顶级分组</a>
+                            <a href="javascript:;" class="button" onclick="$('#category').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">未选择上级组织</a>
                             <div style="position: absolute;">
                                 <div id="category" class="dropdownlist">
                                 </div>
@@ -71,11 +71,20 @@
                         </div>
                     </div>
                 </li>
-                <li>
+                <li style="display:none;">
+                    <div class="item">
+                        <div class="key" data-FormName="Default">权限</div>
+                        <div class="value">
+                            <a href="javascript:;" class="checkbox selected" data-single="private" data-show="hide">个人笔记</a>
+                            <a href="javascript:;" class="checkbox" data-single="private" data-show="show">企业笔记</a>
+                        </div>
+                    </div>
+                </li>
+                <li style="display:none;" data-ClientGroupID="private">
                     <div class="item">
                         <div class="key">添加组织</div>
                         <div class="value" data-FormName="Default" data-propertyName="OrgAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
-                            <a href="javascript:;" class="checkbox" onclick="$('#category2').toggle();"  data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
+                            <a href="javascript:;" class="checkbox" onclick="$('#category2').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
                             <div style="position: absolute;">
                                 <div id="category2" class="dropdownlist">
                                 </div>
@@ -83,11 +92,11 @@
                         </div>
                     </div>
                 </li>
-                <li>
+                <li style="display:none;" data-ClientGroupID="private">
                     <div class="item">
                         <div class="key">添加人员</div>
                         <div class="value" data-FormName="Default" data-propertyName="UserAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
-                            <a href="javascript:;" class="checkbox" onclick="$('#category3').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
+                            <a href="javascript:;" class="checkbox" onclick="$('#category3').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
                             <div style="position: absolute;">
                                 <div id="category3" class="dropdownlist">
                                 </div>
@@ -95,11 +104,11 @@
                         </div>
                     </div>
                 </li>
-                <li>
+                <li style="display:none;" data-ClientGroupID="private">
                     <div class="item">
                         <div class="key">添加角色</div>
                         <div class="value" data-FormName="Default" data-propertyName="RoleAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
-                            <a href="javascript:;" class="checkbox" onclick="$('#category4').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
+                            <a href="javascript:;" class="checkbox" onclick="$('#category4').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
                             <div style="position: absolute;">
                                 <div id="category4" class="dropdownlist">
                                 </div>
@@ -127,7 +136,8 @@
                         $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
                         $("[data-propertyName='ParentName']").text(name);
 
-                    }
+                    },
+                    header:"请选择上级部门或单位"
                 });
             });
 

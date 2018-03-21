@@ -70,7 +70,6 @@
   <ItemGroup>
     <Content Include="45.html" />
     <Content Include="API.ashx" />
-    <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

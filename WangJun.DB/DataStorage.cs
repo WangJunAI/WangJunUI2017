@@ -269,7 +269,8 @@ namespace WangJun.DB
                  list = queue.Dequeue();
                 foreach (var item in list)
                 {
-                    EventProc.TriggerEvent(this.EventTraverse, this, EventProcEventArgs.Create(item));
+                    var sender = new Dictionary<string, object> (){ { "DbName",dbName}, { "TableName", tableName }, { "PageIndex",index }, { "PageSize", pageSize }, { "CostTime", cost } };
+                    EventProc.TriggerEvent(this.EventTraverse, sender, EventProcEventArgs.Create(item));
                 }
 
                 var task = Task.Factory.StartNew <object>(() => {

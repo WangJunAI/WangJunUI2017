@@ -100,7 +100,7 @@
                     <div class="item">
                         <div class="key">所在目录</div>
                         <div class="value" data-FormName="Default" data-propertyName="ParentID" data-propertyValue="">
-                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">所有分类</a>
+                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">未选择上传目录</a>
                             <div style="position: absolute;z-index:9999;">
                                 <div id="category" class="dropdownlist">
                                 </div>
@@ -114,7 +114,7 @@
                     <div class="item">
                         <div class="key">添加组织</div>
                         <div class="value" data-FormName="Default" data-propertyName="OrgAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
-                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category2').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">未选择目录</a>
+                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category2').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">未选择组织</a>
                             <div style="position: absolute;">
                                 <div id="category2" class="dropdownlist">
                                 </div>
@@ -126,7 +126,7 @@
                     <div class="item">
                         <div class="key">共享人员</div>
                         <div class="value" data-FormName="Default" data-propertyName="UserAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
-                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category3').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">未选择人员</a>
+                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category3').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">未选择共享人员</a>
                             <div style="position: absolute;">
                                 <div id="category3" class="dropdownlist">
                                 </div>
@@ -178,8 +178,8 @@
                          $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.ID);
                          $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
                          $("[data-propertyName='ParentName']").text(name);
-
-                    }
+                    },
+                    header: "请选择上传目录"
                 });
             }); ///加载目录
              
@@ -193,7 +193,8 @@
 
         Doc.LoadData_All([], function (res1) {
             Doc.LoadTreeTo("#category3", res1, [], {
-                ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
+                ShowMode: "checkbox", Check: function (event, treeId, treeNode) { },
+                header:"请选择共享人员"
             });
         }); ///加载目录
 

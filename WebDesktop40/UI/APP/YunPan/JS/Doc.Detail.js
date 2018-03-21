@@ -24,7 +24,7 @@
     NET.LoadData(App.Doc.Server.Url5, callback, context, NET.POST);
 }
 
-Doc.ShowDetail = function (data, option)) {
+Doc.ShowDetail = function (data, option){
     if (true === PARAM_CHECKER.IsObject(data)) {
         if (true === PARAM_CHECKER.IsNotEmptyString(data.Content) && "<" === data.Content[0]) {
             UE.getEditor('editor').setContent(data.Content);
