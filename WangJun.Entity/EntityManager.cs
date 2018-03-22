@@ -93,6 +93,16 @@ namespace WangJun.Entity
             return new T();
         }
 
+        public T Get<T>(string dbName,string collectionName,string query) where T : class, new()
+        {
+
+                var db = DataStorage.GetInstance(DBType.MongoDB);
+                var data = db.Get(dbName, collectionName, query);
+                
+                return Convertor.FromDictionaryToObject<T>(data);
+
+        }
+
         public List<T> Find<T>(string dbName , string collectionName, string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50) where T : class, new()
         {
             var list = new List<T>();

@@ -43,9 +43,9 @@ SESSION.Current = function () {
 
 ///
 SESSION.SendHeartbeat = function () {
-    setInterval(function () {
-        var current = SESSION.Current();
-    },5000);
+    //setInterval(function () {
+    //    var current = SESSION.Current();
+    //},5000);
 }
 
 

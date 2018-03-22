@@ -33,6 +33,8 @@ namespace WangJun.Entity
         public DateTime LoginTime { get; set; }
 
         public DateTime LastUpdateTime { get; set; }
+
+        public string LastestRequestUrl { get; set; }
  
  
         public static SESSION Current
@@ -46,7 +48,7 @@ namespace WangJun.Entity
                 staff._DbName = "WangJun";
                 staff._CollectionName = "Staff";
                 var res = EntityManager.GetInstance().Get<BaseItem>(staff);
-                return new SESSION { UserID = res.ID, UserName = res.Name ,CompanyID=res.CompanyID,CompanyName=res.CompanyName};
+                return new SESSION { UserID = res.ID, UserName = res.Name ,CompanyID=res.CompanyID,CompanyName=res.CompanyName,LastestRequestUrl=HttpContext.Current.Request.RawUrl};
             }
         }
 

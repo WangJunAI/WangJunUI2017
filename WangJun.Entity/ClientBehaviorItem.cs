@@ -11,6 +11,7 @@ namespace WangJun.Entity
 {
     public class ClientBehaviorItem
     {
+        public ObjectId _id { get; set; }
         public ObjectId UserID { get; set; }
          
         public string UserName { get; set; }
@@ -76,13 +77,20 @@ namespace WangJun.Entity
             }
         }
 
+        public bool IsEmpty
+        {
+            get
+            {
+                return this.DbID == ObjectId.Empty;
+            }
+        }
         public static void Save(BaseItem item,int behaviorType,SESSION session)
         {
             var task = new TaskFactory().StartNew(() => {
                 try
                 {
                     var inst = new ClientBehaviorItem();
-                    
+                    inst._id = ObjectId.GenerateNewId();
                     inst.UserID = Convertor.StringToObjectID(session.UserID);
                     inst.UserName = session.UserName;
                     inst.CreateTime = DateTime.Now;
@@ -103,5 +111,11 @@ namespace WangJun.Entity
 
 
         } 
+
+        public void Remove()
+        {
+            var query = MongoDBFilterCreator.SearchByObjectId(this._id.ToString());
+            DataStorage.GetInstance(DBType.MongoDB).Remove("WangJun", "ClientBehavior", query);
+        }
     }
 }

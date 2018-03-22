@@ -246,15 +246,68 @@ namespace WangJun.YunNews
 
 
         #region 用户行为
+        /// <summary>
+        /// 添加点赞行为
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public object AddLikeCount(string id)
+        {
+
+            var existQuery = "{'UserID':ObjectId('[1]'),'DbID':ObjectId('[2]'),'BehaviorCode': [3]}".Replace("[1]",SESSION.Current.UserID).Replace("[2]",id).Replace("[3]", ClientBehaviorItem.BehaviorType.点赞.ToString());
+
+            var res = EntityManager.GetInstance().Get<ClientBehaviorItem>("WangJun", "ClientBehavior", existQuery);
+            var count = 0;
+
+            if (null != res &&!res.IsEmpty) ///若数据有效
+            {
+                ///删除点赞记录
+                ///修改文档统计
+                res.Remove();
+                count = -1;
+            }
+            else
+            {
+                var inst = new YunNewsItem();
+                inst.ID = id;
+                ClientBehaviorItem.Save(inst, ClientBehaviorItem.BehaviorType.点赞, SESSION.Current);
+                count = 1;
+            }
+
+            var query = MongoDBFilterCreator.SearchByObjectId(id);
+            var updateJson = MongoDBFilterCreator.ByInc("LikeCount", count);
+            EntityManager.GetInstance().UpdateField<YunNewsItem>(updateJson, query);
+            return 0;
+        }
+
+        /// <summary>
+        /// 添加收藏行为
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public object AddFavoriteCount(string id)
         {
             var inst = new YunNewsItem();
             inst.ID = id;
             var query = MongoDBFilterCreator.SearchByObjectId(id);
-            var updateJson = MongoDBFilterCreator.ByInc("LikeCount", 1);
+            var updateJson = MongoDBFilterCreator.ByInc("FavoriteCount", 1);
             EntityManager.GetInstance().UpdateField<YunNewsItem>(updateJson, query);
+            ClientBehaviorItem.Save(inst, ClientBehaviorItem.BehaviorType.收藏, SESSION.Current);
+            return 0;
+        }
+
+        public object GetBehaviorCount(string id)
+        {
+            //var inst = new YunNewsItem();
+            //inst.ID = id;
+            //var query = MongoDBFilterCreator.SearchByObjectId(id);
+            //var updateJson = MongoDBFilterCreator.ByInc("FavoriteCount", 1);
+            //EntityManager.GetInstance().UpdateField<YunNewsItem>(updateJson, query);
+            //ClientBehaviorItem.Save(inst, ClientBehaviorItem.BehaviorType.收藏, SESSION.Current);
             return 0;
         }
         #endregion
+
+
     }
 }

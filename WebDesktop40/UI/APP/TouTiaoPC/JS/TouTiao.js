@@ -155,6 +155,21 @@ TouTiao.AddLikeCount = function () {
     NET.PostData(App.TouTiao.Server.Url6, callback, context);
 }
 
+TouTiao.AddFavoriteCount = function () {
+    var $btn = $(event.target);
+    var item = {};
+    var targetId = NET.GetQueryParam("id");
+    var context = [targetId];
+    var callback = function (res) {
+        LOGGER.Log(res);
+        $btn.text("已" + $btn.text().replace("已", ""));
+        $btn.attr("click", "_click");
+        $btn.removeAttr("href");
+    }
+
+    NET.PostData(App.TouTiao.Server.Url7, callback, context);
+}
+
 TouTiao.AddAppend = function () {
     var item = {};
     item.Content = $("#comment").val().trim();
