@@ -54,14 +54,16 @@ Doc.TopButtonClick = function (id) {
         Doc.ShowWindow(url);
     }
     else if ("TopButton.移动至" === id) {
-        Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) {
+        var query = App.Doc.QueryDict["默认云盘目录查询条件"];
+        Doc.LoadData_Category(query, function (res1) {
             Doc.LoadTreeTo("#category2", res1, [], {Source:"TopButton",
                 Click: function (event, treeId, treeNode) {
                     var parentName = treeNode.Name;
                     var parentID = treeNode.ID;
                      ///获取选中行，将文档移动过去
                     Doc.MoveEntities(parentID, parentName);
-                }
+                },
+                header:"将选中的文件移动至.."
             });
         });
     }

@@ -287,24 +287,38 @@ namespace WangJun.YunNews
         /// <returns></returns>
         public object AddFavoriteCount(string id)
         {
-            var inst = new YunNewsItem();
-            inst.ID = id;
+            var existQuery = "{'UserID':ObjectId('[1]'),'DbID':ObjectId('[2]'),'BehaviorCode': [3]}".Replace("[1]", SESSION.Current.UserID).Replace("[2]", id).Replace("[3]", ClientBehaviorItem.BehaviorType.收藏.ToString());
+
+            var res = EntityManager.GetInstance().Get<ClientBehaviorItem>("WangJun", "ClientBehavior", existQuery);
+            var count = 0;
+
+            if (null != res && !res.IsEmpty) ///若数据有效
+            {
+                ///删除收藏记录
+                ///修改文档统计
+                res.Remove();
+                count = -1;
+            }
+            else
+            {
+                var inst = new YunNewsItem();
+                inst.ID = id;
+                ClientBehaviorItem.Save(inst, ClientBehaviorItem.BehaviorType.收藏, SESSION.Current);
+                count = 1;
+            }
+
             var query = MongoDBFilterCreator.SearchByObjectId(id);
-            var updateJson = MongoDBFilterCreator.ByInc("FavoriteCount", 1);
+            var updateJson = MongoDBFilterCreator.ByInc("FavoriteCount", count);
             EntityManager.GetInstance().UpdateField<YunNewsItem>(updateJson, query);
-            ClientBehaviorItem.Save(inst, ClientBehaviorItem.BehaviorType.收藏, SESSION.Current);
             return 0;
         }
 
         public object GetBehaviorCount(string id)
         {
-            //var inst = new YunNewsItem();
-            //inst.ID = id;
-            //var query = MongoDBFilterCreator.SearchByObjectId(id);
-            //var updateJson = MongoDBFilterCreator.ByInc("FavoriteCount", 1);
-            //EntityManager.GetInstance().UpdateField<YunNewsItem>(updateJson, query);
-            //ClientBehaviorItem.Save(inst, ClientBehaviorItem.BehaviorType.收藏, SESSION.Current);
-            return 0;
+            var existQuery = "{'UserID':ObjectId('[1]'),'DbID':ObjectId('[2]'),'BehaviorCode':{{in:[[3],[4]]}}".Replace("[1]", SESSION.Current.UserID).Replace("[2]", id).Replace("[3]", ClientBehaviorItem.BehaviorType.收藏.ToString()).Replace("[4]", ClientBehaviorItem.BehaviorType.点赞.ToString());
+
+            var res = EntityManager.GetInstance().Find<ClientBehaviorItem>("WangJun", "ClientBehavior", existQuery, "{}", "{}", 0, int.MaxValue);
+            return res;
         }
         #endregion
 
