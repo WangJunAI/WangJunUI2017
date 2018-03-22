@@ -45,11 +45,10 @@ App.Doc.CSS.LeftList.View3.Width = { Value: 12, Unit: "em" };
 
 App.Doc.LeftMenu = [];
 
-App.Doc.LeftMenu.push({ Name: "我的群组", ID: "LeftMenu.文档操作", Method: "Doc.LeftMenuGroupToggle",    ParentID: null });
-App.Doc.LeftMenu.push({ Name: "新建群组", ID: "LeftMenu.新建群组", Method: "Doc.LeftMenuClick",    ParentID: "LeftMenu.文档操作" });
-//App.Doc.LeftMenu.push({ Name: "新建目录", ID: "LeftMenu.新建目录", Method: "Doc.LeftMenuClick",  ParentID: "LeftMenu.文档操作" });
-App.Doc.LeftMenu.push({ Name: "创建的群组", ID: "LeftMenu.创建的群组", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID:"左侧菜单.个人笔记.TopButton" });
-App.Doc.LeftMenu.push({ Name: "参与的群组", ID: "LeftMenu.参与的群组", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.与我共享", TopButtonGroupID: "左侧菜单.与我共享.TopButton" });
+App.Doc.LeftMenu.push({ Name: "公司群组", ID: "LeftMenu.文档操作", Method: "Doc.LeftMenuGroupToggle",    ParentID: null });
+//App.Doc.LeftMenu.push({ Name: "新建群组", ID: "LeftMenu.新建群组", Method: "Doc.LeftMenuClick",    ParentID: "LeftMenu.文档操作" });
+App.Doc.LeftMenu.push({ Name: "活跃群组", ID: "LeftMenu.创建的群组", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID:"左侧菜单.个人笔记.TopButton" });
+App.Doc.LeftMenu.push({ Name: "已解散群组", ID: "LeftMenu.参与的群组", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.与我共享.TopButton" });
  
 App.Doc.LeftMenu.push({ Name: "数据分析", ID: "LeftMenu.数据分析", Method: "Doc.LeftMenuGroupToggle" , ParentID: null });
 App.Doc.LeftMenu.push({ Name: "群组分析", ID: "LeftMenu.文档分析", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析", TopButtonGroupID: "左侧菜单.文档分析.TopButton"});

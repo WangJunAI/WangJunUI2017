@@ -44,11 +44,11 @@ App.Doc.CSS.LeftList.View3.Width = { Value: 12, Unit: "em" };
 
 App.Doc.LeftMenu = [];
 
-App.Doc.LeftMenu.push({ Name: "我的项目", ID: "LeftMenu.文档操作", Method: "Doc.LeftMenuGroupToggle",    ParentID: null });
-App.Doc.LeftMenu.push({ Name: "新建项目", ID: "LeftMenu.新建项目", Method: "Doc.LeftMenuClick",    ParentID: "LeftMenu.文档操作" });
-App.Doc.LeftMenu.push({ Name: "新建目录", ID: "LeftMenu.新建目录", Method: "Doc.LeftMenuClick",  ParentID: "LeftMenu.文档操作" });
-App.Doc.LeftMenu.push({ Name: "发起的项目", ID: "LeftMenu.发起的项目", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID:"左侧菜单.发起的项目.TopButton" });
-App.Doc.LeftMenu.push({ Name: "参与的项目", ID: "LeftMenu.参与的项目", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.参与的项目.TopButton" });
+App.Doc.LeftMenu.push({ Name: "公司项目", ID: "LeftMenu.文档操作", Method: "Doc.LeftMenuGroupToggle",    ParentID: null });
+//App.Doc.LeftMenu.push({ Name: "新建项目", ID: "LeftMenu.新建项目", Method: "Doc.LeftMenuClick",    ParentID: "LeftMenu.文档操作" });
+//App.Doc.LeftMenu.push({ Name: "新建目录", ID: "LeftMenu.新建目录", Method: "Doc.LeftMenuClick",  ParentID: "LeftMenu.文档操作" });
+App.Doc.LeftMenu.push({ Name: "运行中项目", ID: "LeftMenu.发起的项目", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID:"左侧菜单.发起的项目.TopButton" });
+App.Doc.LeftMenu.push({ Name: "已结束项目", ID: "LeftMenu.参与的项目", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.参与的项目.TopButton" });
 
 
 
