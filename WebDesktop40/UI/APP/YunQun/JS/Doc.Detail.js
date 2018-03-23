@@ -1,4 +1,6 @@
-﻿Doc.LoadDetail = function () {
+﻿
+
+Doc.LoadDetail = function () {
 
     $(document).ready(function () {
 
@@ -16,19 +18,27 @@
         });
 
         var id = NET.GetQueryParam("id");
-        var context = [id];
 
-        var callback = function (res) {
-            LOGGER.Log(res);
-            if (null === res._RedirectID) {
-                Doc.ShowDetail(res);
-            }
-            else {
+        if (true === PARAM_CHECKER.IsNotEmptyObjectId(id)) {
+            var context = [id];
 
-                NET.LoadData(App.Doc.Server.Url5, function (res) { Doc.ShowDetail(res, { ReadOnly: true }); }, [res._RedirectID], NET.POST);
+            var callback = function (res) {
+                LOGGER.Log(res);
+                if (null === res._RedirectID) {
+                    Doc.ShowDetail(res);
+                }
+                else {
+
+                    NET.LoadData(App.Doc.Server.Url5, function (res) { Doc.ShowDetail(res, { ReadOnly: true }); }, [res._RedirectID], NET.POST);
+                }
             }
+            NET.LoadData(App.Doc.Server.Url5, callback, context, NET.POST);
         }
-        NET.LoadData(App.Doc.Server.Url5, callback, context, NET.POST);
+        else {
+            $(".comment").remove();
+        }
+
+
     });
 }
 
@@ -65,27 +75,9 @@ Doc.ShowDetail = function (data,option) {
 
 
 
-        if (true === !PARAM_CHECKER.IsNotEmptyString(data.ParentName)) {
-            data.ParentName = "选择分类";
-        }
-        $("#parentNode").text(data.ParentName);
         $("#deleteBtn").removeAttr("style");
 
-        $("[data-single]").each(function () {
-            var propertyName = $(this).attr("data-single");
-            var text = $(this).text();
-            var propertyValue = data[propertyName];
-            if (text === propertyValue) {
-                $("[data-single='" + propertyName + "']").removeClass("selected");
 
-                $(this).addClass("selected");
-            }
-
-
-        });
-
-   
-
-        $("#preView").attr("href", "http://localhost:39641/TouTiao/TouTiaoArticle.html?id=[id]".replace("[id]", data.id));
     }
+ 
 }

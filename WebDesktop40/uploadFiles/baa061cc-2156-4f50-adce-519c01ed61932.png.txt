@@ -1,0 +1,1 @@
+﻿{"ServerFileName":"baa061cc-2156-4f50-adce-519c01ed61932.png","ServerFilePath":"E:\\WangJunUI2017\\WangJunUI2017\\WebDesktop40\\uploadFiles\\baa061cc-2156-4f50-adce-519c01ed61932.png","FileNameInClient":"2.png","FileLength":173442,"FileLengthText":"169KB","HttpUrl":"http://localhost:14000/uploadFiles/baa061cc-2156-4f50-adce-519c01ed61932.png"}

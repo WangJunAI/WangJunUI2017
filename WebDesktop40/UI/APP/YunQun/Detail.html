@@ -76,7 +76,7 @@
                     <div class="item">
                         <div class="key">分类</div>
                         <div class="value" data-FormName="Default" data-propertyName="ParentID" data-propertyValue="">
-                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
+                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">未选择分类</a>
                             <div style="position: absolute;z-index:9999;">
                                 <div id="category" class="dropdownlist">
                                 </div>
@@ -110,7 +110,7 @@
                     <div class="item">
                         <div class="key">参与人员</div>
                         <div class="value" data-FormName="Default" data-propertyName="UserAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
-                            <a href="javascript:;" class="checkbox" onclick="$('#category3').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
+                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category3').toggle();" id="parentNode" data-FormName="Default" data-propertyName="UserAllowedArrayText" data-propertyValue="">未选择参与人员</a>
                             <div style="position: absolute;z-index:9999;">
                                 <div id="category3" class="dropdownlist">
                                 </div>
@@ -133,9 +133,8 @@
             </ul>
         </div>
         <div class="buttons">
-            <a href="jajavscript:;" class="btn" onclick="Doc.SaveDetail()">发表</a>
+            <a href="jajavscript:;" class="btn" onclick="Doc.SaveDetail()">保存</a>
             <a href="jajavscript:;" class="btn" onclick="Doc.RemoveDetail()">删除</a>
-            <a href="http://localhost:39641/TouTiao/TouTiaoArticle.html?id=[id]" id="preView" target="_blank" class="btn">预览</a>
             <a href="jajavscript:;" class="btn" onclick="$(window.parent.document).find('#detailWindow').hide(); window.close();">取消</a>
         </div>
         <div class="comment">
@@ -172,7 +171,8 @@
                         $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.ID);
                         $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
                         $("[data-propertyName='ParentName']").text(name);
-                    }
+                    },
+                    header:"请选择群分类"
                 });
             }); ///加载目录
             Doc.LoadData_All([], function (res1) {
@@ -183,7 +183,7 @@
 
             Doc.LoadData_All([], function (res1) {
                 Doc.LoadTreeTo("#category3", res1, [], {
-                    ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
+                    ShowMode: "checkbox", Check: function (event, treeId, treeNode) { },header:"请选择参与人员"
                 });
             }); ///加载目录
 

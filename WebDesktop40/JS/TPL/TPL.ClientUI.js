@@ -60,6 +60,11 @@ Doc.RemoveSelectedDetail = function () {
     }
 }
 
+Doc.IsNotEmptyPage = function () {
+    var id = NET.GetQueryParam("id");
+    return PARAM_CHECKER.IsNotEmptyObjectId(id);
+}
+
 
 
 

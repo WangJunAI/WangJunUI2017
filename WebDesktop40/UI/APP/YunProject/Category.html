@@ -36,16 +36,9 @@
     <script src="JS/AppInfo.Doc.js"></script>
     <script src="JS/Doc.js"></script>
     <script src="JS/Doc.LeftMenu.js"></script>
-    <script src="JS/Doc.TopButton.js"></script>
-    <!--<script src="JS/Doc.Nav.Ztree.js"></script>
-    <script src="JS/Doc.Nav.SummaryList.js"></script>
-    <script src="JS/Doc.Table.js"></script>
-    <script src="JS/Doc.ClientUI.js"></script>
-    <script src="JS/Doc.App.js"></script>-->
-    <script src="JS/Doc.Detail.js"></script>
-    <!--<script src="JS/Doc.View.js"></script>-->
-    <script src="JS/Doc.Biz.js"></script>
-    <!--<script src="JS/Doc.Category.js"></script>-->
+    <script src="JS/Doc.TopButton.js"></script> 
+    <script src="JS/Doc.Detail.js"></script> 
+    <script src="JS/Doc.Biz.js"></script> 
 
     <!--共用业务JS-->
     <script src="../../../JS/TPL/TPL.App.js"></script>
@@ -69,7 +62,7 @@
                     <div class="item">
                         <div class="key">上级目录</div>
                         <div class="value" data-FormName="Default" data-propertyName="ParentID" data-propertyValue="">
-                            <a href="javascript:;" class="checkbox" onclick="$('#category').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
+                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">未选择上级目录</a>
                             <div style="position: absolute;">
                                 <div id="category" class="dropdownlist">
                                 </div>
@@ -90,7 +83,7 @@
                     <div class="item">
                         <div class="key">添加组织</div>
                         <div class="value" data-FormName="Default" data-propertyName="OrgAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
-                            <a href="javascript:;" class="checkbox" onclick="$('#category2').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
+                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category2').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
                             <div style="position: absolute;">
                                 <div id="category2" class="dropdownlist">
                                 </div>
@@ -102,7 +95,7 @@
                     <div class="item">
                         <div class="key">添加人员</div>
                         <div class="value" data-FormName="Default" data-propertyName="UserAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
-                            <a href="javascript:;" class="checkbox" onclick="$('#category3').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
+                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category3').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
                             <div style="position: absolute;">
                                 <div id="category3" class="dropdownlist">
                                 </div>
@@ -114,7 +107,7 @@
                     <div class="item">
                         <div class="key">添加角色</div>
                         <div class="value" data-FormName="Default" data-propertyName="RoleAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
-                            <a href="javascript:;" class="checkbox" onclick="$('#category4').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
+                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category4').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
                             <div style="position: absolute;">
                                 <div id="category4" class="dropdownlist">
                                 </div>
@@ -141,7 +134,8 @@
                         $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.ID);
                         $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
                         $("[data-propertyName='ParentName']").text( name);
-                    }
+                    },
+                    header: "请选择上级目录"
                 });
             });
 

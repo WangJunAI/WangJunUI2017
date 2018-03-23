@@ -67,7 +67,7 @@
         <div class="title"><input type="text" placeholder="请输入标题" data-FormName="Default" data-propertyName="Title" data-propertyValue="" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" /></div>
 
         <div class="minibuttons">
-            <a href="jajavscript:;" class="btn" onclick="Doc.SaveDetail()">发表</a>
+            <a href="jajavscript:;" class="btn" onclick="Doc.SaveDetail()">保存</a>
             <a href="jajavscript:;" class="btn" onclick="Doc.RemoveDetail()">删除</a>
             <a href="http://localhost:39641/TouTiao/TouTiaoArticle.html?id=[id]" id="preView" target="_blank" class="btn">预览</a>
             <a href="jajavscript:;" class="btn" onclick="$(window.parent.document).find('#detailWindow').hide(); window.close();">取消</a>
@@ -76,9 +76,9 @@
             <ul>
                 <li>
                     <div class="item">
-                        <div class="key">分类</div>
+                        <div class="key">目录</div>
                         <div class="value" data-FormName="Default" data-propertyName="ParentID" data-propertyValue="">
-                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
+                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">未选择所在目录</a>
                             <div style="position: absolute;z-index:3990;">
                                 <div id="category" class="dropdownlist" style="top:0em;">
                                 </div>
@@ -138,14 +138,7 @@
         </script>
 
 
-    </div>
-
-    <script type="text/javascript">
-        $("#publishDate").datepicker({
-            //inline: true
-            dateFormat: "yy/mm/dd"
-        });
-    </script>
+    </div> 
     <script type="text/javascript">
         $(document).ready(function () {
             $(".global").width(window.parent.$("#content").width() - 30);
@@ -162,7 +155,8 @@
                         $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.ID);
                         $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
                         $("[data-propertyName='ParentName']").text(name);
-                    }
+                    },
+                    header: "请选择所在目录"
                 });
             }); ///加载目录
             Doc.LoadData_All([], function (res1) {

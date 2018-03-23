@@ -63,10 +63,7 @@ Doc.ShowDetail = function (data,option) {
             }
         });
 
-        if (true === !PARAM_CHECKER.IsNotEmptyString(data.ParentName)) {
-            data.ParentName = "选择分类";
-        }
-        $("#deleteBtn").removeAttr("style");
+
 
         $("[data-single]").each(function () {
             var propertyName = $(this).attr("data-single");
@@ -80,9 +77,12 @@ Doc.ShowDetail = function (data,option) {
 
 
         });
-
+        if (true === Doc.IsNotEmptyPage()) {
+            $("#deleteBtn").removeAttr("style");
+        }
    
 
         $("#preView").attr("href", "http://localhost:39641/TouTiao/TouTiaoArticle.html?id=[id]".replace("[id]", data.id));
     }
+ 
 }

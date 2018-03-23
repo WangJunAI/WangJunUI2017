@@ -37,7 +37,7 @@ Doc.ShowCategoryDetail = function (data) {
             if (PARAM_CHECKER.IsNotEmptyString(propertyName)) {
                 var propertyValue = data[propertyName];
                 $(this).attr("data-propertyValue", propertyValue);
-                
+
                 if (true === $(this).is("input")) {
                     $(this).val(propertyValue);
                 }
@@ -47,7 +47,13 @@ Doc.ShowCategoryDetail = function (data) {
                 }
             }
         });
- 
+
         $("#deleteBtn").removeAttr("style");
+
+        var isRoot =(true ===  PARAM_CHECKER.IsEmptyObjectId(data.ParentID));
+        if (true === isRoot) {
+            $(".options").hide();
+            $("#deleteBtn").hide();
+        }
     }
 }

@@ -7,7 +7,7 @@
     <link href="../../../CSS/TPL.SIZE.PC.1080.css" rel="stylesheet" />
     <link href="../../../CSS/TPL.Font.css" rel="stylesheet" />
     <link href="../../../CSS/TPL.Color.css" rel="stylesheet" />
-
+    <link href="../../../CSS/TPL.Comment.css" rel="stylesheet" />
 
     <!--Detail页面样式-->
     <link href="../../../CSS/TPL.Detail.css" rel="stylesheet" />
@@ -131,16 +131,21 @@
             <ul id="milestone"></ul>
         </div>
         <div class="buttons">
-            <a href="jajavscript:;" class="btn" onclick="Doc.SaveDetail()">启动项目</a>
+            <a href="jajavscript:;" class="btn" onclick="Doc.SaveDetail()">保存</a>
             <a href="jajavscript:;" class="btn" onclick="Doc.RemoveDetail()">删除</a>
-            <a href="http://localhost:39641/TouTiao/TouTiaoArticle.html?id=[id]" id="preView" target="_blank" class="btn">预览</a>
             <a href="jajavscript:;" class="btn" onclick="$(window.parent.document).find('#detailWindow').hide(); window.close();">取消</a>
+        </div>
+        <div class="comment">
+            <div class="input"> <textarea id="comment"></textarea><a href="javascript:;" onclick="Doc.AddComment()">提交</a></div>
+            <div id="message"><div>评论成功....</div></div>
+            <ul id="commentList"></ul>
+            <a href="javascript:;" id="loadMore" onclick="Doc.LoadCommentList()">加载更多....</a>
         </div>
     </div>
 
     <script type="text/html" id="tpl_Milestone_1">
         <li>
-            <div class="checkpoint"><input type="text" placeholder="简述时间节点任务" data-propertyName="Title" /><span class="separator">|</span><span class="progress"> <input type="text" placeholder="请填写预计结束时间" data-propertyName="Summary"/></span><a href="javascript:;" class="addbtn" onclick="Milestone.EditCheckPoint('readonly')">确定</a><a href="javascript:;" class="addbtn">删除</a></div>
+            <div class="checkpoint"><input type="text" placeholder="简述时间节点任务" data-propertyName="Title" /><span class="separator">|</span><span class="progress"> <input type="text" placeholder="请填写预计结束时间" data-propertyName="Summary" /></span><a href="javascript:;" class="addbtn" onclick="Milestone.EditCheckPoint('readonly')">确定</a><a href="javascript:;" class="addbtn">删除</a></div>
             <ul>
                 <li>
                     <a href="javascript:;" class="addbtn" onclick="Milestone.AddTask()">添加新任务</a>
@@ -207,15 +212,18 @@
             </div>
         </li>
     </script>
- 
 
 
-    <script type="text/javascript">
-        $("#publishDate").datepicker({
-            //inline: true
-            dateFormat: "yy/mm/dd"
-        });
+    <script type="text/html" id="tplCommentItem">
+        <li>
+            <div class="commentItem">
+                <div class="header"><a href="javascript:;">[CreatorName]</a><span>[CreateTime]</span></div>
+                <div class="content"><p>[Content]</p></div>
+                <div class="footer"><a href="javascript:;">回复</a><a href="javascript:;">相关说说</a><a href="javascript:;" onclick="TouTiao.AddLikeCount()">点赞[LikeCount]</a></div>
+            </div>
+        </li>
     </script>
+
     <script type="text/javascript">
         $(document).ready(function () {
             $(".global").width(window.parent.$("#content").width() - 30);

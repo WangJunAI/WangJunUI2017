@@ -90,6 +90,14 @@ var PARAM_CHECKER = {
     },
 
 
+    IsEmptyObjectId: function (input) {
+        return "000000000000000000000000" === input;
+    },
+
+    IsNotEmptyObjectId: function (input) {
+        return  PARAM_CHECKER.IsNotEmptyString(input)&& (24===input.length )&& "000000000000000000000000" != input;
+    },
+
     IsTopWindow:function () {
         return window === top.window;
     }

@@ -88,6 +88,12 @@ Milestone.LoadData = function (data) {
     //    , { Status: "新增按钮", TaskArray: [] }];
 
     //data = [{ Status: "新增按钮", TaskArray: [] }];
+    if (true === PARAM_CHECKER.IsArray(data) && 0 < data.length) {
+        
+    }
+    else {
+        data = [{ Status: "新增按钮", TaskArray: [] }];
+    }
     Milestone.ShowData(data);
 }
 
