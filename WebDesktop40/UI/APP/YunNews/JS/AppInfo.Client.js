@@ -45,8 +45,8 @@ App.Doc.CSS.LeftList.View3.Width = { Value: 12, Unit: "em" };
 App.Doc.LeftMenu = [];
 
 App.Doc.LeftMenu.push({ Name: "公司新闻", ID: "LeftMenu.新闻操作", Method: "Doc.LeftMenuGroupToggle",    ParentID: null });
-App.Doc.LeftMenu.push({ Name: "新建新闻", ID: "LeftMenu.新建新闻", Method: "Doc.LeftMenuClick",    ParentID: "LeftMenu.新闻操作" });
-App.Doc.LeftMenu.push({ Name: "新建分类", ID: "LeftMenu.新建分类", Method: "Doc.LeftMenuClick",  ParentID: "LeftMenu.新闻操作" });
+//App.Doc.LeftMenu.push({ Name: "新建新闻", ID: "LeftMenu.新建新闻", Method: "Doc.LeftMenuClick",    ParentID: "LeftMenu.新闻操作" });
+//App.Doc.LeftMenu.push({ Name: "新建分类", ID: "LeftMenu.新建分类", Method: "Doc.LeftMenuClick",  ParentID: "LeftMenu.新闻操作" });
 App.Doc.LeftMenu.push({ Name: "企业新闻", ID: "LeftMenu.企业新闻", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.新闻操作", TopButtonGroupID: "左侧菜单.企业新闻.TopButton" });
 
 
