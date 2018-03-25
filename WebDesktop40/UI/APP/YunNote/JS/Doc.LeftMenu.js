@@ -59,18 +59,26 @@ Doc.LeftMenuClick = function (id) {
 
         var param = ["{}", "{}", "{}", 0, 1000]
         Doc.LoadData_Category(param, callback1);
-        Doc.SetQuery(listQuery); 
+        Doc.SetQuery(listQuery);
     }
     else if ("LeftMenu.与我共享" == id) {
         Doc.ShowView3();
 
         Doc.LoadTopButton(topButtonId);
-        var listQuery = JSON.stringify({ '_RedirectID': { '$ne': null }, OwnerID: SESSION.Current().UserID, 'StatusCode': { $ne: -1 }  });
- 
+        var listQuery = JSON.stringify({ '_RedirectID': { '$ne': null }, OwnerID: SESSION.Current().UserID, 'StatusCode': { $ne: -1 } });
+
         Doc.LoadData_Doc(context = [listQuery, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size], function (res2) { Doc.LoadSummaryListTo("#leftList", res2); });
 
-        Doc.SetQuery(listQuery); 
+        Doc.SetQuery(listQuery);
 
+    }
+    else if ("LeftMenu.所有笔记" === id) {
+        var query = [{ _RedirectID: null, OwnerID: SESSION.Current().UserID, 'StatusCode': { $ne: -1 } }, {}, { CreateTime: -1 }];
+        Doc.ShowView3();
+        Doc.LoadTopButton(topButtonId);
+        Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], { header: "小提示：修改目录双击即可" }); });
+        Doc.LoadTable(0, App.Doc.Data.Pager.Size, query, App.Doc.Data.DocTable.Info);
+        Doc.SetQuery(query); 
     }
     else if ("LeftMenu.笔记分析" === id) {
         Doc.LoadTopButton(topButtonId);

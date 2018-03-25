@@ -91,7 +91,7 @@ SESSION.Register = function () {
 
     var $ctrls = $("[data-FormName='Default']").each(function () {
         var propertyName = $(this).attr("data-propertyName");
-        var propertyValue = $(this).attr("data-propertyValue");
+        var propertyValue = $(this).val();
         if (PARAM_CHECKER.IsNotEmptyString(propertyName)) {
             item[propertyName.trim()] = propertyValue;
         }

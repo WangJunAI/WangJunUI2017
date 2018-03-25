@@ -23,7 +23,7 @@ App.Doc.Server = {
     Url3: "Detail.Admin.html",
     Url4: "http://localhost:9990/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=SaveEntity",///保存一个文档
     Url5: "http://localhost:9990/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=GetEntity",///获取一个文档
-    Url6: "Category.html",
+    Url6: "Category.Admin.html",
     Url7: "http://localhost:9990/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=SaveCategory",///保存一个目录
     Url8: "http://localhost:9990/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=LoadCategoryList",///加载目录列表
     Url9: "http://localhost:9990/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=RemoveEntity",///移除一份文档,暂未使用

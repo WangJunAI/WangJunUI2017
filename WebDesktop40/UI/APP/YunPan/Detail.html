@@ -98,7 +98,7 @@
                 </li>
                 <li>
                     <div class="item">
-                        <div class="key">所在目录</div>
+                        <div class="key">上传至</div>
                         <div class="value" data-FormName="Default" data-propertyName="ParentID" data-propertyValue="">
                             <a href="javascript:;" class="button w20em txtleft" onclick="$('#category').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">未选择上传目录</a>
                             <div style="position: absolute;z-index:9999;">
@@ -126,7 +126,7 @@
                     <div class="item">
                         <div class="key">共享人员</div>
                         <div class="value" data-FormName="Default" data-propertyName="UserAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
-                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category3').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">未选择共享人员</a>
+                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category3').toggle();"  data-FormName="Default" data-propertyName="UserAllowedArrayText" data-propertyValue="">未选择共享人员</a>
                             <div style="position: absolute;">
                                 <div id="category3" class="dropdownlist">
                                 </div>
@@ -193,8 +193,12 @@
 
         Doc.LoadData_All([], function (res1) {
             Doc.LoadTreeTo("#category3", res1, [], {
-                ShowMode: "checkbox", Check: function (event, treeId, treeNode) { },
-                header:"请选择共享人员"
+                ShowMode: "checkbox", Check: function (event, treeId, treeNode) {
+                    var idArray = Doc.GetCheckedTreeNodes(treeId);
+                    var fix = (0 < idArray.length) ? " 等" : " ";
+                    $("[data-propertyName='UserAllowedArrayText']").text("已选中 " + treeNode.Name + fix + idArray.length + "人");
+                },
+                header: "<div class='txtright'><a href='javascript:;' class='margin_r05em'>清空</a><a href='javascript:;'  class='margin_r05em'>确定</a><a href='javascript:;'  class='margin_r05em'>取消</a></div>",
             });
         }); ///加载目录
 
@@ -232,7 +236,7 @@
         // 当有文件被添加进队列的时候
         uploader.on('fileQueued', function (file) {
             var $list = $("#uploadList");
-            var listItemHtml = "<li id=[ID]><div>[PIC]</div><span style='display:none;''>[FileName2]</span><div>[FileName]</div><div>[Percentage]</div><div>[Status]</div></li>";
+            var listItemHtml = "<li id=[ID]><div>[PIC]</div><span style='display:none;''>[FileName2]</span><div>[FileName]</div><div>[Percentage]</div><div>[Status]</div><a href='javascript:;' onclick='$(this).parent().remove();'>删除</a></li>";
             listItemHtml = listItemHtml.replace("[ID]", file.id).replace("[FileName]", file.name).replace("[FileName2]", file.name).replace("[Percentage]", "0%").replace("[Status]", "尚未开始");
             $list.append(listItemHtml);
         });

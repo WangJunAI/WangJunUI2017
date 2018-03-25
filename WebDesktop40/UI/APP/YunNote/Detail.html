@@ -167,7 +167,11 @@
 
             Doc.LoadData_All([], function (res1) {
                 Doc.LoadTreeTo("#category3", res1, [], {
-                    ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
+                    ShowMode: "checkbox", Check: function (event, treeId, treeNode) {
+                        var idArray = Doc.GetCheckedTreeNodes(treeId);
+                        var fix = (0 < idArray.length) ? "等" : "";
+                        $("[data-propertyName='UserAllowedArray']").text("已选中" + treeNode.name + fix + idArray.length + "人");
+                    }
                 });
             }); ///加载目录
 

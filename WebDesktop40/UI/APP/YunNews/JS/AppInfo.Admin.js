@@ -78,11 +78,11 @@ App.Doc.Content.TopButton.push({ Name: "删除", ID: "TopButton.删除", Method:
  ///企业新闻TopButton菜单
 App.Doc.Content.TopButton.push({ Name: "企业新闻", ID: "TopButton.企业新闻", Method: "",   Type: "Title", GroupID: "左侧菜单.企业新闻.TopButton"});
 App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "",   GroupID: "左侧菜单.企业新闻.TopButton"});
-//App.Doc.Content.TopButton.push({ Name: "新建新闻", ID: "TopButton.新建新闻", Method: "Doc.TopButtonClick",    GroupID: "左侧菜单.企业新闻.TopButton"});
-//App.Doc.Content.TopButton.push({ Name: "新建分类", ID: "TopButton.新建分类", Method: "Doc.TopButtonClick",    GroupID: "左侧菜单.企业新闻.TopButton" });
-//App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "",   GroupID: "左侧菜单.企业新闻.TopButton"});
-//App.Doc.Content.TopButton.push({ Name: "移动至", ID: "TopButton.移动至", Method: "",  Type: "dropdownlist", Menu: [{ Text: "回收站" }, { Text: "草稿箱" }], GroupID: "左侧菜单.企业新闻.TopButton"});
-//App.Doc.Content.TopButton.push({ Name: "删除", ID: "TopButton.删除", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.企业新闻.TopButton"});
+App.Doc.Content.TopButton.push({ Name: "新建新闻", ID: "TopButton.新建新闻", Method: "Doc.TopButtonClick",    GroupID: "左侧菜单.企业新闻.TopButton"});
+App.Doc.Content.TopButton.push({ Name: "新建分类", ID: "TopButton.新建分类", Method: "Doc.TopButtonClick",    GroupID: "左侧菜单.企业新闻.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "",   GroupID: "左侧菜单.企业新闻.TopButton"});
+App.Doc.Content.TopButton.push({ Name: "移动至", ID: "TopButton.移动至", Method: "",  Type: "dropdownlist", Menu: [{ Text: "回收站" }, { Text: "草稿箱" }], GroupID: "左侧菜单.企业新闻.TopButton"});
+App.Doc.Content.TopButton.push({ Name: "删除", ID: "TopButton.删除", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.企业新闻.TopButton"});
 
 ///新闻分析菜单
 App.Doc.Content.TopButton.push({ Name: "新闻分析", ID: "TopButton.新闻分析", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.新闻分析.TopButton", Type: "Title" });
@@ -138,7 +138,7 @@ App.Doc.Data.DocTable.Info = {
 }
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "全选", Method: "", Sort: "", PropertyName: "Type", DataType: "checkbox" });
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "标题", Method: "Doc.TableRowClick", Sort: "", PropertyName: "Title", DataType: "string"});
-App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "分类", Method: "", Sort: "", PropertyName: "CategoryName", DataType: "string" });
+App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "分类", Method: "", Sort: "", PropertyName: "ParentName", DataType: "string" });
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "阅读量", Method: "", Sort: "", PropertyName: "ReadCount", DataType: "string"});
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "点赞量", Method: "", Sort: "", PropertyName: "LikeCount", DataType: "string" });
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "评论量", Method: "", Sort: "", PropertyName: "CommentCount", DataType: "string" });

@@ -14,14 +14,14 @@ Doc.ShowTopButton = function (data) {
             var itemData = data[k];
             var html = "";
             if ("dropdownlist" === itemData.Type) {
-                html = topButtonHtml2.replace("[Name]", itemData.Name).replace("[Method]", itemData.Method).replace("[Param]", itemData.Param);
+                html = topButtonHtml2.replace("[Name]", itemData.Name).replace("[Method]", itemData.Method).replace("[Param]", itemData.Param).replace("[ID]", itemData.ID);;
             }
             else if ("|" === itemData.Name) {
                 html = topButtonHtml1.replace("", "").replace("javascript:;", "").replace("href", "_href").replace("onclick", "_onclick").replace("[Name]", itemData.Name);
             }
             else {
                 html = topButtonHtml1.replace("[Name]", itemData.Name).replace("[Method]", itemData.Method).replace("[Param]", itemData.Param)
-                    .replace("[Class]", ("Title" === itemData.Type) ? "btn fw700" : "btn").replace("[ID]", itemData.ID);;
+                    .replace("[Class]", ("Title" === itemData.Type) ? "btn fw700" : "btn").replace("[ID]", itemData.ID);
             }
 
             $(html).appendTo("#topButton");
@@ -54,9 +54,15 @@ Doc.TopButtonClick = function (id) {
         Doc.ShowWindow(url);
     }
     else if ("TopButton.移动至" === id) {
+        $('[data-id="' + id + '"]').find('[data-id=\'category\']').toggle();
+        if (false === PARAM_CHECKER.IsNotEmptyString($('[data-id="' + id+'"]').find("[data-id='category']").first().attr("id"))) {
+            $('[data-id="' + id + '"]').find("[data-id='category']").first().attr("id", "category" + Math.random().toString().replace(".", ""));
+        }
+        var droplistId = "#" + $('[data-id="' + id + '"]').find("[data-id='category']").first().attr("id");
+
         var query = App.Doc.QueryDict["默认云盘目录查询条件"];
         Doc.LoadData_Category(query, function (res1) {
-            Doc.LoadTreeTo("#category2", res1, [], {Source:"TopButton",
+            Doc.LoadTreeTo(droplistId, res1, [], {Source:"TopButton",
                 Click: function (event, treeId, treeNode) {
                     var parentName = treeNode.Name;
                     var parentID = treeNode.ID;
@@ -66,6 +72,30 @@ Doc.TopButtonClick = function (id) {
                 header:"将选中的文件移动至.."
             });
         });
+    }
+    else if ("TopButton.共享给" === id) {
+        $('[data-id="' + id + '"]').find('[data-id=\'category\']').show();
+        if (false === PARAM_CHECKER.IsNotEmptyString($('[data-id="' + id + '"]').find("[data-id='category']").first().attr("id"))) {
+            $('[data-id="' + id + '"]').find("[data-id='category']").first().attr("id", "category" + Math.random().toString().replace(".", ""));
+            var droplistId = "#" + $('[data-id="' + id + '"]').find("[data-id='category']").first().attr("id");
+            var query = App.Doc.QueryDict["默认云盘目录查询条件"];
+ 
+            Doc.LoadData_All([], function (res1) {
+                Doc.LoadTreeTo(droplistId, res1, [], {
+                    Source: "TopButton",
+                    ShowMode: "checkbox",
+                    Check: function (event, treeId, treeNode) {
+                        console.log("Test");
+
+                    },
+                    header: "<div class='txtright'><a href='javascript:;' class='margin_r05em'>清空</a><a href='javascript:;'  class='margin_r05em'>确定</a><a href='javascript:;'  class='margin_r05em'>取消</a></div>",
+                    Click: function () {
+                    }
+                });
+            });
+
+        }
+
     }
     else if ("TopButton.删除" === id) {
         Doc.RemoveSelectedDetail();

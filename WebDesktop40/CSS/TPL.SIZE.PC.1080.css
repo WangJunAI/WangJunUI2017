@@ -7,8 +7,20 @@
     width: 30em;
 }
 
+.w100P {
+    width:100% !important;
+}
+
+
 .txtleft{
     text-align:left !important;
 }
 
+.txtright {
+    text-align: right !important;
+}
  
+
+.margin_r05em{
+    margin-right:0.5em;
+}

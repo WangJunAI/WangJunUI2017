@@ -1,0 +1,1 @@
+﻿{"ServerFileName":"54e560bb-5c4f-4e91-b625-0c0d79dc970bsina.JPG","ServerFilePath":"E:\\WangJunUI2017\\WangJunUI2017\\WebDesktop40\\uploadFiles\\54e560bb-5c4f-4e91-b625-0c0d79dc970bsina.JPG","FileNameInClient":"sina.JPG","FileLength":249697,"FileLengthText":"243KB","HttpUrl":"http://localhost:14000/uploadFiles/54e560bb-5c4f-4e91-b625-0c0d79dc970bsina.JPG"}

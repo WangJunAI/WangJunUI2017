@@ -11,7 +11,7 @@ Doc.Initial = function () {
             $.getScript("./JS/AppInfo.Admin.js", function () {
                 Doc.LoadAppInfo();
                 Doc.LoadMenu();
-                Doc.LeftMenuClick("LeftMenu.创建的群组");
+                Doc.LeftMenuClick("LeftMenu.活跃群组");
             });
         }
         else {

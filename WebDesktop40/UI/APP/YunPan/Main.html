@@ -100,15 +100,15 @@
         <a href="javascript:;" class="[Class]" data-id="[ID]" onclick="[Method]()" data-param="[Param]">[Name]</a>
     </script>
     <script type="text/html" id="topButton2">
-        <a href="javascript:;" class="btn" onclick="$('#category2').toggle();Doc.TopButtonClick('TopButton.移动至')" data-param="[Param]">
+        <a href="javascript:;" class="btn" data-id="[ID]" onclick="Doc.TopButtonClick($(this).attr('data-id'))" data-param="[Param]">
             <span>[Name]</span><span>▼</span>
-            <div id="category2" style=" display:none; position: absolute;z-index: 2000;line-height: 2em;background-color: #f7f8fa;text-align: center;margin-left: -0.5em;box-shadow: 3px 3px 3px rgba(0,0,0,0.35);width: 20em;height: 15em;overflow-y: scroll">
+            <div data-id="category" style=" display:none; position: absolute;z-index: 2000;line-height: 2em;background-color: #f7f8fa;text-align: center;margin-left: -0.5em;box-shadow: 3px 3px 3px rgba(0,0,0,0.35);width: 20em;height: 15em;overflow-y: scroll">
  
             </div>
         </a>
     </script>
     <script type="text/html" id="topButton3">
-        <a href="javascript:;" class="btn" onclick="$(this).find('.dropdownlist').toggle();" data-param="[Param]">
+        <a href="javascript:;" class="btn" data-id="[ID]" onclick="$(this).find('.dropdownlist').toggle();" data-param="[Param]">
             <span>[Name]</span><span>▼</span>
             <div class="dropdownlist">
                 <div>

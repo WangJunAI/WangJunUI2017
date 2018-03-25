@@ -47,7 +47,7 @@ App.Doc.LeftMenu = [];
 
 App.Doc.LeftMenu.push({ Name: "公司群组", ID: "LeftMenu.文档操作", Method: "Doc.LeftMenuGroupToggle",    ParentID: null });
 //App.Doc.LeftMenu.push({ Name: "新建群组", ID: "LeftMenu.新建群组", Method: "Doc.LeftMenuClick",    ParentID: "LeftMenu.文档操作" });
-App.Doc.LeftMenu.push({ Name: "活跃群组", ID: "LeftMenu.创建的群组", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID:"左侧菜单.个人笔记.TopButton" });
+App.Doc.LeftMenu.push({ Name: "活跃群组", ID: "LeftMenu.活跃群组", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID:"左侧菜单.活跃群组.TopButton" });
 App.Doc.LeftMenu.push({ Name: "已解散群组", ID: "LeftMenu.参与的群组", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.与我共享.TopButton" });
  
 App.Doc.LeftMenu.push({ Name: "数据分析", ID: "LeftMenu.数据分析", Method: "Doc.LeftMenuGroupToggle" , ParentID: null });
@@ -63,14 +63,14 @@ App.Doc.LeftMenu.push({ Name: "应用信息", ID: "LeftMenu.应用信息", Metho
 App.Doc.Content = {};
 App.Doc.Content.TopButton = [];
   
-///个人笔记TopButton菜单
-App.Doc.Content.TopButton.push({ Name: "个人笔记", ID: "TopButton.个人笔记", Method: "",   Type: "Title", GroupID: "左侧菜单.个人笔记.TopButton"});
-App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "",   GroupID: "左侧菜单.个人笔记.TopButton"});
-App.Doc.Content.TopButton.push({ Name: "新建笔记", ID: "TopButton.新建笔记", Method: "Doc.TopButtonClick",    GroupID: "左侧菜单.个人笔记.TopButton"});
-App.Doc.Content.TopButton.push({ Name: "新建目录", ID: "TopButton.新建目录", Method: "Doc.TopButtonClick",    GroupID: "左侧菜单.个人笔记.TopButton" });
-App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "",   GroupID: "左侧菜单.个人笔记.TopButton"});
-App.Doc.Content.TopButton.push({ Name: "移动至", ID: "TopButton.移动至", Method: "",  Type: "dropdownlist", Menu: [{ Text: "回收站" }, { Text: "草稿箱" }], GroupID: "左侧菜单.个人笔记.TopButton"});
-App.Doc.Content.TopButton.push({ Name: "删除", ID: "TopButton.删除", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.个人笔记.TopButton"});
+///活跃群组TopButton菜单
+App.Doc.Content.TopButton.push({ Name: "活跃群组", ID: "TopButton.活跃群组", Method: "",   Type: "Title", GroupID: "左侧菜单.活跃群组.TopButton"});
+App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "",   GroupID: "左侧菜单.活跃群组.TopButton"});
+//App.Doc.Content.TopButton.push({ Name: "新建笔记", ID: "TopButton.新建笔记", Method: "Doc.TopButtonClick",    GroupID: "左侧菜单.活跃群组.TopButton"});
+//App.Doc.Content.TopButton.push({ Name: "新建目录", ID: "TopButton.新建目录", Method: "Doc.TopButtonClick",    GroupID: "左侧菜单.活跃群组.TopButton" });
+//App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "",   GroupID: "左侧菜单.活跃群组.TopButton"});
+App.Doc.Content.TopButton.push({ Name: "移动至", ID: "TopButton.移动至", Method: "",  Type: "dropdownlist", Menu: [{ Text: "回收站" }, { Text: "草稿箱" }], GroupID: "左侧菜单.活跃群组.TopButton"});
+App.Doc.Content.TopButton.push({ Name: "删除", ID: "TopButton.删除", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.活跃群组.TopButton"});
 
 ///与我共享TopButton菜单
 App.Doc.Content.TopButton.push({ Name: "与我共享", ID: "TopButton.与我共享", Method: "", Type: "Title", GroupID: "左侧菜单.与我共享.TopButton" });
@@ -108,9 +108,7 @@ App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", Gro
 App.Doc.Content.TopButton.push({ Name: "应用信息", ID: "TopButton.应用信息", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.应用信息.TopButton", Type: "Title" });
 App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.应用信息.TopButton" });
 
-///云笔记测试菜单
-App.Doc.Content.TopButton.push({ Name: "云笔记测试", ID: "TopButton.云笔记测试", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.云笔记测试.TopButton", Type: "Title" });
-App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.云笔记测试.TopButton" });
+ 
 
 
 App.Doc.Data = {};
