@@ -77,7 +77,7 @@ Doc.LeftMenuClick = function (id) {
         Doc.LoadTopButton(topButtonId);
         Doc.ShowContent("Chart1.html");
         Doc.ShowView3();
-        Doc.LoadSummaryList(0, 10, [{ Title: "目录下文档比例" }, { Title: "目录活跃度" }, { Title: "文章热度" }, { Title: "发文计数" }, { Title: "最活跃用户" }]);
+        Doc.LoadSummaryListTo("#leftList", [{ Title: "目录下文档比例" }, { Title: "目录活跃度" }, { Title: "文章热度" }, { Title: "发文计数" }, { Title: "最活跃用户" }], { Url:"chart1.html?id=[id]"}); 
     }
     else if ("LeftMenu.回收站" == id) {
         Doc.ShowView2();

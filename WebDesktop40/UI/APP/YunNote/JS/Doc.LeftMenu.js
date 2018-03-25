@@ -51,9 +51,7 @@ Doc.LeftMenuClick = function (id) {
             Doc.LoadTreeTo("#leftPart1", res1, [], { header: "小提示：修改目录双击即可" });
             Doc.ShowContent("redirect.html");
 
-            var callback2 = function (res2) {
-                Doc.LoadSummaryListTo("#leftPart2", res2);
-            }
+ 
             Doc.LoadData_Doc(context = [listQuery, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size], function (res2) { Doc.LoadSummaryListTo("#leftPart2", res2); });
         }
 

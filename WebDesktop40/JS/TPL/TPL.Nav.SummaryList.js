@@ -32,33 +32,36 @@ Doc.ShowSummaryList = function (source, type) {
 Doc.LoadSummaryListTo = function (target, data, option) {
     var tplHtml = $("#tplSummaryList").html();
     var tplListItem = $("#tplSummaryListItem1").html();
+    if (true === PARAM_CHECKER.IsObject(option) && true === PARAM_CHECKER.IsNotEmptyString(option.TplListItem)) {
+
+    }
 
     var listHtml = "";
     for (var k = 0; k < data.length; k++) {
         var item = data[k];
         listHtml += tplListItem.replace("[Title]", item.Title)
-            .replace("[Param]", item.ID).replace("[Summary]", item.PlainText);//.replace("[Method]", "Doc.SummaryListItemClick()");
+            .replace("[Param]", item.ID).replace("[Summary]", item.PlainText).replace("[CreatorName]", item.CreatorName).replace("[CreateTime]", Convertor.DateFormat(eval(item.CreateTime.replace(/\//g, "")), "yyyy/MM/dd hh:mm"));//.replace("[Method]", "Doc.SummaryListItemClick()");
     }
-
-    //if (false === $(target).is("ul") && 0 === $(target).find("ul").length) {
-    //    $(target).html("<ul></ul>");
-    //    target = $(target).find("ul");
-    //}
-
+ 
     var html = tplHtml.replace("[列表]", listHtml).replace("[ListTitle]", "");
     Doc.LoadHtmlTo(target, html);
 
     $("#summaryList .listItem3").on("click", function () {
-        Doc.SummaryListItemClick();
+        Doc.SummaryListItemClick(option);
     });
 
 }
 
-Doc.SummaryListItemClick = function () {
+Doc.SummaryListItemClick = function (option) {
     ///加载详细
     var id = $(event.target).attr("data-param");
     if (false === PARAM_CHECKER.IsNotEmptyString(id)) {
         id = $(event.target).parents("[data-param]").attr("data-param");
     }
-    Doc.ShowContent("detail.html?id=[id]".replace("[id]", id));
+    var url = "detail.html?id=[id]";
+    if (true === PARAM_CHECKER.IsValid(option) && true === PARAM_CHECKER.IsNotEmptyString(option.Url)) {
+        url = option.Url;
+    }
+
+    Doc.ShowContent(url.replace("[id]", id));
 }
