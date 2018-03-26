@@ -40,7 +40,10 @@ Doc.LoadSummaryListTo = function (target, data, option) {
     for (var k = 0; k < data.length; k++) {
         var item = data[k];
         listHtml += tplListItem.replace("[Title]", item.Title)
-            .replace("[Param]", item.ID).replace("[Summary]", item.PlainText).replace("[CreatorName]", item.CreatorName).replace("[CreateTime]", Convertor.DateFormat(eval(item.CreateTime.replace(/\//g, "")), "yyyy/MM/dd hh:mm"));//.replace("[Method]", "Doc.SummaryListItemClick()");
+            .replace("[Param]", item.ID).replace("[Summary]", item.PlainText).replace("[CreatorName]", item.CreatorName);
+        if (true === PARAM_CHECKER.IsNotEmptyString(item.CreateTime)) {
+            listHtml = listHtml.replace("[CreateTime]", Convertor.DateFormat(eval(item.CreateTime.replace(/\//g, "")), "yyyy/MM/dd hh:mm"));
+        }
     }
  
     var html = tplHtml.replace("[列表]", listHtml).replace("[ListTitle]", "");

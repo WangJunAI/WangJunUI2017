@@ -24,7 +24,15 @@ Doc.GetCheckedTreeNodes = function (target) {
     }
     return [];
 }
- 
+
+Doc.CancelCheckAllNodes = function (target) {
+    if (true === PARAM_CHECKER.IsNotEmptyString(target)) {
+        var ztree = $.fn.zTree.getZTreeObj(target);
+        ztree.checkAllNodes(false);
+    }
+}
+
+
 Doc.LoadTreeTo = function (target, data,excludeIdArray,option) {
     var ztreeID = "ztree"+(Doc.GetTreeCount()+1);
     Doc.LoadHtmlTo(target, "<div class='panelheader'>"+option.header+"</div><ul id='" + ztreeID + "' class='ztree'></ul>");
