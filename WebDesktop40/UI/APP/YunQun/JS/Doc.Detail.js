@@ -74,7 +74,8 @@ Doc.ShowDetail = function (data,option) {
         });
 
 
-
+        $(".buttons").hide();
+        $(".minibuttons").show();
         $("#deleteBtn").removeAttr("style");
 
 

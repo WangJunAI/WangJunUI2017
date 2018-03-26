@@ -64,6 +64,10 @@
     <input type="hidden" id="ID" data-FormName="Default" data-propertyName="ID" />
     <input type="hidden" id="pageName" value="Detail" />
     <div class="global">
+        <div class="minibuttons"  style="display:none;">
+            <a href="jajavscript:;" class="btn" onclick="Doc.SaveDetail()">保存</a>
+            <a href="jajavscript:;" class="btn" onclick="Doc.RemoveDetail()">删除</a>
+        </div>
         <div class="title"><input type="text" placeholder="请输入标题" data-FormName="Default" data-propertyName="Title" data-propertyValue="" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" /></div>
 
 
@@ -138,6 +142,7 @@
             <a href="jajavscript:;" class="btn" onclick="$(window.parent.document).find('#detailWindow').hide(); window.close();">取消</a>
         </div>
         <div class="comment">
+            <h2>群聊区</h2>
             <div class="input"> <textarea id="comment"></textarea><a href="javascript:;" onclick="Doc.AddComment()">提交</a></div>
             <div id="message"><div>评论成功....</div></div>
             <ul id="commentList"></ul>
@@ -154,7 +159,15 @@
             </div>
         </li>
     </script>
- 
+
+    <script type="text/html" id="tplDroplistHeader">
+        <div class='txtright'>
+            <a href='javascript:;' class='margin_r05em' onclick="Doc.CancelCheckAllNodes($(this).parents('.dropdownlist').find('.ztree').attr('id'));$('[data-propertyname=UserAllowedArrayText]').text('未选择参与人员')">清空</a>
+            <a href='javascript:;' class='margin_r05em' onclick="$('#category3').toggle();">确定</a>
+            <a href='javascript:;' class='margin_r05em' onclick="Doc.CancelCheckAllNodes($(this).parents('.dropdownlist').find('.ztree').attr('id')); $('[data-propertyname=UserAllowedArrayText]').text('未选择参与人员');$('#category3').toggle();">取消</a>
+        </div>
+    </script>
+
     <script type="text/javascript">
         $(document).ready(function () {
             $(".global").width(window.parent.$("#content").width() - 30);
@@ -172,7 +185,7 @@
                         $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
                         $("[data-propertyName='ParentName']").text(name);
                     },
-                    header:"请选择群分类"
+                    header: "<div class='margin_l05em fontweight700'>请选择分类</div>"
                 });
             }); ///加载目录
             Doc.LoadData_All([], function (res1) {
@@ -183,7 +196,13 @@
 
             Doc.LoadData_All([], function (res1) {
                 Doc.LoadTreeTo("#category3", res1, [], {
-                    ShowMode: "checkbox", Check: function (event, treeId, treeNode) { },header:"请选择参与人员"
+                    ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
+                    , header: $("#tplDroplistHeader").html()
+                    , Check: function (event, treeId, treeNode) {
+                        var idArray = Doc.GetCheckedTreeNodes(treeId);
+                        var fix = (0 < idArray.length) ? " 等" : " ";
+                        $("[data-propertyName='UserAllowedArrayText']").text("已选中 " + treeNode.Name + fix + idArray.length + "人");
+                    },
                 });
             }); ///加载目录
 

@@ -143,6 +143,14 @@
         </div>
     </div>
 
+    <script type="text/html" id="tplDroplistHeader">
+        <div class='txtright'>
+            <a href='javascript:;' class='margin_r05em' onclick="Doc.CancelCheckAllNodes($(this).parents('.dropdownlist').find('.ztree').attr('id'));$('[data-propertyname=UserAllowedArrayText]').text('未选择参与人员')">清空</a>
+            <a href='javascript:;' class='margin_r05em' onclick="$('#category3').toggle();">确定</a>
+            <a href='javascript:;' class='margin_r05em' onclick="Doc.CancelCheckAllNodes($(this).parents('.dropdownlist').find('.ztree').attr('id')); $('[data-propertyname=UserAllowedArrayText]').text('未选择参与人员');$('#category3').toggle();">取消</a>
+        </div>
+    </script>
+
     <script type="text/html" id="tpl_Milestone_1">
         <li>
             <div class="checkpoint">
@@ -244,7 +252,8 @@
                         $("#parentNode").text(name);
                         $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.id);
                         $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
-                    }
+                    },
+                    header: "<div class='margin_l05em fontweight700'>请选择分类</div>",
                 });
             }); ///加载目录
             Doc.LoadData_All([], function (res1) {
@@ -256,6 +265,12 @@
             Doc.LoadData_All([], function (res1) {
                 Doc.LoadTreeTo("#category3", res1, [], {
                     ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
+                    , header: $("#tplDroplistHeader").html()
+                    , Check: function (event, treeId, treeNode) {
+                        var idArray = Doc.GetCheckedTreeNodes(treeId);
+                        var fix = (0 < idArray.length) ? " 等" : " ";
+                        $("[data-propertyName='UserAllowedArrayText']").text("已选中 " + treeNode.Name + fix + idArray.length + "人");
+                    },
                 });
             }); ///加载目录
 
