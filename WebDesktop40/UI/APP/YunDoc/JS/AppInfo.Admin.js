@@ -50,7 +50,7 @@ App.Doc.LeftMenu.push({ Name: "新建文档", ID: "LeftMenu.新建文档", Metho
 App.Doc.LeftMenu.push({ Name: "新建目录", ID: "LeftMenu.新建目录", Method: "Doc.LeftMenuClick",  ParentID: "LeftMenu.文档操作" });
 //App.Doc.LeftMenu.push({ Name: "个人文档", ID: "LeftMenu.个人文档", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.个人文档.TopButton" });
 //App.Doc.LeftMenu.push({ Name: "与我共享", ID: "LeftMenu.与我共享", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.与我共享.TopButton" });
-App.Doc.LeftMenu.push({ Name: "企业知识库", ID: "LeftMenu.企业文档", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.企业文档.TopButton" });
+App.Doc.LeftMenu.push({ Name: "企业知识库", ID: "LeftMenu.企业知识库", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.企业文档.TopButton" });
 App.Doc.LeftMenu.push({ Name: "员工知识库", ID: "LeftMenu.员工知识库", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.企业文档.TopButton" });
 
 

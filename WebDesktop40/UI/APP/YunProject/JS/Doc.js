@@ -9,7 +9,7 @@ Doc.Initial = function () {
             $.getScript("./JS/AppInfo.Admin.js", function () {
                 Doc.LoadAppInfo();
                 Doc.LoadMenu();
-                Doc.LeftMenuClick("LeftMenu.发起的项目");
+                Doc.LeftMenuClick("LeftMenu.运行中项目");
             });
         }
         else {

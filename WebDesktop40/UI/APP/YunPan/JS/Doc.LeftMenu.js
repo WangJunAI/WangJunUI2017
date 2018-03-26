@@ -73,6 +73,22 @@ Doc.LeftMenuClick = function (id) {
 
         Doc.SetQuery(query);
     }
+    else if ("LeftMenu.员工云盘" == id) {
+        var query = [{ _RedirectID: null, CompanyID: SESSION.Current().CompanyID, 'StatusCode': { $ne: -1 } }, {}, { CreateTime: -1 }];;
+        Doc.ShowView3();
+        Doc.LoadTopButton(topButtonId);
+        Doc.LoadData_All([], function (res1) {
+            Doc.LoadTreeTo("#leftList", res1, [], {
+                Source: "AllStaff", header: "小提示：所有人员", Click: function (event, treeId, treeNode) {
+                    query = [{ _RedirectID: null, OwnerID: treeNode.ID, 'StatusCode': { $ne: -1 } }, {}, { CreateTime: -1 }];
+                    Doc.LoadTable(0, App.Doc.Data.Pager.Size, query, App.Doc.Data.DocTable.Info);
+                }
+            });
+        });
+        Doc.LoadTable(0, App.Doc.Data.Pager.Size, query, App.Doc.Data.DocTable.Info);
+
+        Doc.SetQuery(query);
+    }
     else if ("LeftMenu.云盘分析" === id) {
         Doc.LoadTopButton(topButtonId);
         Doc.ShowContent("Chart1.html");
