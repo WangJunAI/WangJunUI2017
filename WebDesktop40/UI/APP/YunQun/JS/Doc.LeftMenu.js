@@ -62,18 +62,17 @@ Doc.LeftMenuClick = function (id) {
     else if ("LeftMenu.活跃群组" == id) {
         Doc.LoadTopButton(topButtonId);
 
-        var listQuery = JSON.stringify({ _RedirectID: null, OwnerID: SESSION.Current().UserID, 'StatusCode': { $ne: -1 } });
+        var listQuery = JSON.stringify({ _RedirectID: null, CompanyID: SESSION.Current().CompanyID, 'StatusCode': { $ne: -1 } });
         Doc.ShowView3();
         Doc.LoadData_Doc(context = [listQuery, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size], function (res2) { Doc.LoadSummaryListTo("#leftList", res2); });
         Doc.SetQuery(listQuery);
     }
-    else if ("LeftMenu.已解散群组" == id) {
+    else if ("LeftMenu.睡眠群组" == id) {
         Doc.LoadTopButton(topButtonId);
 
-        var listQuery = JSON.stringify({ _RedirectID: { $ne: null }, OwnerID: SESSION.Current().UserID, 'StatusCode': { $ne: -1 } });
-
+        var listQuery = JSON.stringify({ _RedirectID: null, CompanyID: SESSION.Current().CompanyID, 'StatusCode': { $ne: -1 } });
         Doc.ShowView3();
-
+        Doc.LoadData_Doc(context = [listQuery, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size], function (res2) { Doc.LoadSummaryListTo("#leftList", res2); });
         Doc.SetQuery(listQuery);
     }
     else if ("LeftMenu.群组分析" === id) {

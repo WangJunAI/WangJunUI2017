@@ -145,11 +145,7 @@
 
     <script type="text/html" id="tpl_Milestone_1">
         <li>
-            <div class="checkpoint">
-                <input type="text" placeholder="简述时间节点任务" data-propertyName="Title" />
-                <span class="separator">|</span><span class="progress"> <input type="text" placeholder="请填写预计结束时间" data-propertyName="Summary" /></span>
-                <a href="javascript:;" class="addbtn" onclick="$(this).parents('li').remove();">删除</a>
-            </div>
+            <div class="checkpoint"><input type="text" placeholder="简述时间节点任务" data-propertyName="Title" /><span class="separator">|</span><span class="progress"> <input type="text" placeholder="请填写预计结束时间" data-propertyName="Summary" /></span><a href="javascript:;" class="addbtn" onclick="Milestone.EditCheckPoint('readonly')">确定</a><a href="javascript:;" class="addbtn">删除</a></div>
             <ul>
                 <li>
                     <a href="javascript:;" class="addbtn" onclick="Milestone.AddTask()">添加新任务</a>
@@ -161,7 +157,7 @@
         <li>
             <div class="row">
                 <div class="content"><input type="text" value="简述要完成的工作项"></div>
-                <div class="info"><span class="status">未开始</span><span class="time"> <input type="text" value="请填写预计结束时间"> </span><a href="javascript:;" class="btn" onclick="$(this).parents('li').remove();">删除</a></div>
+                <div class="info"><span class="status">未开始</span><span class="time"> <input type="text" value="请填写预计结束时间"> </span><a href="javascript:;" class="btn">删除</a><a href="javascript:;" class="btn" onclick="Milestone.EditTask('readonly')">保存</a></div>
             </div>
         </li>
     </script>
@@ -212,7 +208,7 @@
         <li>
             <div class="row">
                 <div class="content"><input type="text" placeholder="简述要完成的工作项" data-propertyName="Content"></div>
-                <div class="info"><span class="status">未开始</span><span class="time"> <input type="text" data-propertyName="ExpectedEndTime" placeholder="请填写预计结束时间"> </span><a href="javascript:;" class="btn" onclick="$(this).parentsUntil('ul').remove();">删除</a></div>
+                <div class="info"><span class="status">未开始</span><span class="time"> <input type="text" data-propertyName="ExpectedEndTime" placeholder="请填写预计结束时间"> </span><a href="javascript:;" class="btn" onclick="Milestone.EditTask('readonly')">保存</a></div>
             </div>
         </li>
     </script>

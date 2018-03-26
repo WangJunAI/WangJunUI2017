@@ -106,7 +106,7 @@ Milestone.GetData = function () {
         dataArray.push(checkPoint);
         $checkPoint.find("[data-PropertyName]").each(function () {
             var propertyName = $(this).attr("data-PropertyName");
-            checkPoint[propertyName] = "Test";
+            checkPoint[propertyName] = $(this).val();
         })
 
         var taskArray = $checkPoint.next("ul").find("li");
@@ -115,7 +115,7 @@ Milestone.GetData = function () {
             var taskItem = {};
             $taskItem.find("[data-PropertyName]").each(function () {
                 var propertyName = $(this).attr("data-PropertyName");
-                taskItem[propertyName] = "Test";
+                taskItem[propertyName] =$(this).val();
             })
             checkPoint.TaskArray.push(taskItem);
         }

@@ -48,7 +48,7 @@ App.Doc.LeftMenu = [];
 App.Doc.LeftMenu.push({ Name: "公司群组", ID: "LeftMenu.文档操作", Method: "Doc.LeftMenuGroupToggle",    ParentID: null });
 //App.Doc.LeftMenu.push({ Name: "新建群组", ID: "LeftMenu.新建群组", Method: "Doc.LeftMenuClick",    ParentID: "LeftMenu.文档操作" });
 App.Doc.LeftMenu.push({ Name: "活跃群组", ID: "LeftMenu.活跃群组", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID:"左侧菜单.活跃群组.TopButton" });
-App.Doc.LeftMenu.push({ Name: "已解散群组", ID: "LeftMenu.参与的群组", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.与我共享.TopButton" });
+App.Doc.LeftMenu.push({ Name: "睡眠群组", ID: "LeftMenu.睡眠群组", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.与我共享.TopButton" });
  
 App.Doc.LeftMenu.push({ Name: "数据分析", ID: "LeftMenu.数据分析", Method: "Doc.LeftMenuGroupToggle" , ParentID: null });
 App.Doc.LeftMenu.push({ Name: "群组分析", ID: "LeftMenu.文档分析", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析", TopButtonGroupID: "左侧菜单.文档分析.TopButton"});
