@@ -52,6 +52,10 @@
       <Project>{4f722223-ac4d-4085-a348-6942a2650f54}</Project>
       <Name>WangJun.Admin</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WangJun.AI\WangJun.AI.csproj">
+      <Project>{5A7CC1A8-74C0-49F8-968B-514FFD44F9F7}</Project>
+      <Name>WangJun.AI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WangJun.Config\WangJun.Config.csproj">
       <Project>{EEBD1F1F-3DCD-4329-87BE-AC4C7DF19348}</Project>
       <Name>WangJun.Config</Name>
@@ -59,6 +63,10 @@
     <ProjectReference Include="..\WangJun.DB\WangJun.DB.csproj">
       <Project>{A0BEDC3E-2B61-4027-BD4B-FDAB0DF38659}</Project>
       <Name>WangJun.DB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WangJun.Net\WangJun.Net.csproj">
+      <Project>{D7B3F2F3-86A9-4196-A050-BE22F530BBF4}</Project>
+      <Name>WangJun.Net</Name>
     </ProjectReference>
     <ProjectReference Include="..\WangJun.Utility\WangJun.Utility.csproj">
       <Project>{ECA8641B-DDB9-481A-BF78-76FB5A8E1DE3}</Project>

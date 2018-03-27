@@ -4,14 +4,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WangJun.Config;
 using WangJun.DB;
 using WangJun.Utility;
 
 namespace WangJun.Entity
 {
-    public class ClientBehaviorItem
+    public class ClientBehaviorItem :BaseItem
     {
-        public ObjectId _id { get; set; }
+        public ClientBehaviorItem()
+        {
+            this._DbName = CONST.APP.ClientBehaviorItem.DB;
+            this._CollectionName = CONST.APP.ClientBehaviorItem.TableClientBehaviorItem;
+            this.ClassFullName = this.GetType().FullName;
+            this.Version = 1;
+            this.AppCode = CONST.APP.ClientBehaviorItem.Code;
+            this.AppName = CONST.APP.ClientBehaviorItem.Name;
+            this.StatusCode = CONST.APP.Status.正常;
+            this.Status = CONST.APP.OrgStaff.OrgStatus.GetString(this.StatusCode);
+
+        }
+         
         public ObjectId UserID { get; set; }
          
         public string UserName { get; set; }
@@ -24,9 +37,7 @@ namespace WangJun.Entity
 
         public string Behavior { get; set; }
 
-        public int BehaviorCode { get; set; }
-
-        public DateTime CreateTime { get; set; }
+        public int BehaviorCode { get; set; } 
 
         public int Date { get { return int.Parse(string.Format("{0:yyyyMMdd}", DateTime.Now)); } }
 

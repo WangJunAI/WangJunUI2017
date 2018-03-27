@@ -342,6 +342,19 @@ namespace WangJun.Config
                     }
                 }
             }
+
+            public static class ClientBehaviorItem
+            {
+                public static long Code { get { return 1803001010; } }
+
+                public static string Name { get { return "客户行为"; } }
+
+                public static string DB { get { return "WangJun"; } }
+
+                public static string TableClientBehaviorItem { get { return "ClientBehavior"; } }
+
+
+            }
         }
     }
 }
