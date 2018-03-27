@@ -10,7 +10,7 @@ using WangJun.Utility;
 
 namespace WangJun.Entity
 {
-    public class ClientBehaviorItem :BaseItem
+    public class ClientBehaviorItem :SysItem
     {
         public ClientBehaviorItem()
         {
@@ -20,11 +20,10 @@ namespace WangJun.Entity
             this.Version = 1;
             this.AppCode = CONST.APP.ClientBehaviorItem.Code;
             this.AppName = CONST.APP.ClientBehaviorItem.Name;
-            this.StatusCode = CONST.APP.Status.正常;
-            this.Status = CONST.APP.OrgStaff.OrgStatus.GetString(this.StatusCode);
-
+ 
         }
          
+        public ObjectId _id { get; set; }
         public ObjectId UserID { get; set; }
          
         public string UserName { get; set; }
@@ -38,6 +37,10 @@ namespace WangJun.Entity
         public string Behavior { get; set; }
 
         public int BehaviorCode { get; set; } 
+
+        public DateTime CreateTime { get; set; }
+
+        public DateTime ProcTime { get; set; }
 
         public int Date { get { return int.Parse(string.Format("{0:yyyyMMdd}", DateTime.Now)); } }
 

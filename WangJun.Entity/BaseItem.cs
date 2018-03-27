@@ -68,8 +68,7 @@ namespace WangJun.Entity
         public string ParentName { get; set; }
 
         #endregion
-
-
+         
         #region 根级信息
         public ObjectId _RootOID { get; set; }
          //public Guid _RootGID { get; set; }
@@ -92,6 +91,11 @@ namespace WangJun.Entity
         }
 
         public string RootName { get; set; }
+        #endregion
+
+        #region 路径信息
+        public string Path { get; set; }
+         
         #endregion
 
         #region 时间信息

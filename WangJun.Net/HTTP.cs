@@ -60,6 +60,7 @@ namespace WangJun.Net
             this.http.Encoding = Encoding.UTF8;
             
         }
+
         public HTTP(Encoding coder)
         {
             this.http.Encoding = coder;
@@ -71,6 +72,9 @@ namespace WangJun.Net
             this.http.Encoding = Encoding.GetEncoding(coder);
         }
 
+        public static HTTP GetInstance() {
+            return new HTTP();
+        }
 
         /// <summary>
         /// 通过Get方式获取一份文件

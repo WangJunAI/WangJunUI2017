@@ -66,6 +66,8 @@
     <Compile Include="MongoDBFilterCreator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SESSION.cs" />
+    <Compile Include="StatusItem.cs" />
+    <Compile Include="SysItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WangJun.Config\WangJun.Config.csproj">
