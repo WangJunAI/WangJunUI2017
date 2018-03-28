@@ -121,12 +121,8 @@ App.Doc.Content.TopButton.push({ Name: "存储管理", ID: "TopButton.存储管�
 App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.存储管理.TopButton" });
 
 ///应用信息菜单
-App.Doc.Content.TopButton.push({ Name: "应用信息", ID: "TopButton.应用信息", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.应用信息.TopButton", Type: "Title" });
-App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.应用信息.TopButton" });
-
-///云文档测试菜单
-App.Doc.Content.TopButton.push({ Name: "云文档测试", ID: "TopButton.云文档测试", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.云文档测试.TopButton", Type: "Title" });
-App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.云文档测试.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "使用帮助", ID: "TopButton.应用信息", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.应用信息.TopButton", Type: "Title" });
+App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.应用信息.TopButton" }); 
 
 
 App.Doc.Data = {};

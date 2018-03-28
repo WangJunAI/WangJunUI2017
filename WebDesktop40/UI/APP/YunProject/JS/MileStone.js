@@ -63,7 +63,7 @@ Milestone.AddTask = function (target, data) {
         else if ("未开始" === data.Status) {
             itemHtml = $("#tpl_Milestone_5").html().replace("[Content]", data.Content).replace("[ExpectedEndTime]", data.ExpectedEndTime);
         }
-        else if ("处理中" === data.Status) {
+        else if ("进行中" === data.Status) {
             itemHtml = $("#tpl_Milestone_4").html().replace("[Content]", data.Content).replace("[ExpectedEndTime]", data.ExpectedEndTime);
         }
         else if ("新增按钮" === data.Status) {
@@ -117,7 +117,10 @@ Milestone.GetData = function () {
                 var propertyName = $(this).attr("data-PropertyName");
                 taskItem[propertyName] =$(this).val();
             })
-            checkPoint.TaskArray.push(taskItem);
+
+            if (true === PARAM_CHECKER.IsNotEmptyObject(taskItem)) {
+                checkPoint.TaskArray.push(taskItem);
+            }
         }
     }
 

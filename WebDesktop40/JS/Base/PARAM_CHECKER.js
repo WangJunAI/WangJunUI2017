@@ -26,6 +26,15 @@ var PARAM_CHECKER = {
         return PARAM_CHECKER.IsValid(input) && "object" == typeof (input);
     },
 
+    IsEmptyObject: function (input) {
+        return (true === PARAM_CHECKER.IsObject(input)) && (JSON.stringify(input) === JSON.stringify({}));
+    },
+
+    IsNotEmptyObject: function (input) {
+        return (true === PARAM_CHECKER.IsObject(input)) && (JSON.stringify(input) != JSON.stringify({}));
+    },
+
+
     ///若是数值
     IsArray: function (input) {
         return PARAM_CHECKER.IsValid(input) && "object" == typeof (input) && input.constructor == Array;

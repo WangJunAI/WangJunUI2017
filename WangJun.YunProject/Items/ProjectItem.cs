@@ -86,11 +86,11 @@ namespace WangJun.YunProject
                 {
                     if (0 < taskItem.Count)
                     {
-                        item.TaskArray.Add(new { Content = taskItem["Content"], ExpectedEndTime = taskItem["ExpectedEndTime"], Status = "已完成" });
+                        item.TaskArray.Add(new { Content = taskItem["Content"], ExpectedEndTime = taskItem["ExpectedEndTime"], Status = taskItem["Status"] });
                     }
                     else
                     {
-                        item.TaskArray.Add(new {  Status = "新增按钮" });
+                        //item.TaskArray.Add(new {  Status = "新增按钮" });
 
                     }
                 }
