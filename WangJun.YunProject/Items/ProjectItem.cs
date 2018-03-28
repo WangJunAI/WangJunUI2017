@@ -86,7 +86,7 @@ namespace WangJun.YunProject
                 {
                     if (0 < taskItem.Count)
                     {
-                        item.TaskArray.Add(new { Content = taskItem["Content"], ExpectedEndTime = taskItem["ExpectedEndTime"], Status = taskItem["Status"] });
+                        item.TaskArray.Add(new { Content = taskItem["Content"], ExpectedEndTime = taskItem["ExpectedEndTime"], Status = taskItem["Status"] ,ID= taskItem["ID"] });
                     }
                     else
                     {

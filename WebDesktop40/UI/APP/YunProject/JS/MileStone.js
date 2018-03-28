@@ -1,4 +1,6 @@
-﻿var Milestone = {
+﻿ 
+
+var Milestone = {
 }
 
 
@@ -13,7 +15,7 @@ Milestone.AddCheckPoint = function (target, data) {
             $(target).append("<li>  <a href='javascript:;' class='addbtn' onclick='Milestone.AddCheckPoint()'>添加新时间节点</a>  </li>");
         }
         else {
-            var itemHtml = $("#tpl_Milestone_6").html().replace("[CheckPointTitle]", data.Title).replace("[CheckPointSummary]", data.Summary);
+            var itemHtml = $("#tpl_Milestone_6").html().replace(/\[CheckPointTitle\]/g, data.Title).replace(/\[CheckPointSummary\]/g, data.Summary);
             $(target).append(itemHtml);
         }
     }
@@ -28,7 +30,7 @@ Milestone.EditCheckPoint = function (mode) {
             data[propertyName] = $(this).val();
         });
 
-        var itemHtml = $("#tpl_Milestone_6").html().replace("[CheckPointTitle]", data.Title).replace("[CheckPointSummary]", data.Summary);
+        var itemHtml = $("#tpl_Milestone_6").html().replace(/\[CheckPointTitle\]/g, data.Title).replace(/\[CheckPointSummary\]/g, data.Summary);
         $(itemHtml).insertBefore($(event.target).parent().parent());
 
         $(event.target).parent().parent().remove();
@@ -58,19 +60,33 @@ Milestone.AddTask = function (target, data) {
     }
     else {
         if ("已完成" === data.Status) {
-            itemHtml = $("#tpl_Milestone_3").html().replace("[Content]", data.Content).replace("[ExpectedEndTime]", data.ExpectedEndTime);
+            itemHtml = $("#tpl_Milestone_3").html().replace(/\[Content\]/g, data.Content).replace(/\[ExpectedEndTime\]/g, data.ExpectedEndTime).replace("[ID]", data.ID);
         }
         else if ("未开始" === data.Status) {
-            itemHtml = $("#tpl_Milestone_5").html().replace("[Content]", data.Content).replace("[ExpectedEndTime]", data.ExpectedEndTime);
+            itemHtml = $("#tpl_Milestone_5").html().replace(/\[Content\]/g, data.Content).replace(/\[ExpectedEndTime\]/g, data.ExpectedEndTime).replace("[ID]", data.ID);
         }
         else if ("进行中" === data.Status) {
-            itemHtml = $("#tpl_Milestone_4").html().replace("[Content]", data.Content).replace("[ExpectedEndTime]", data.ExpectedEndTime);
+            itemHtml = $("#tpl_Milestone_4").html().replace(/\[Content\]/g, data.Content).replace(/\[ExpectedEndTime\]/g, data.ExpectedEndTime).replace("[ID]", data.ID);
         }
         else if ("新增按钮" === data.Status) {
             itemHtml = "<li><a href='javascript:;' class='addbtn' onclick= 'Milestone.AddTask()'> 添加新任务</a></li>";
         }
         $(target).append(itemHtml);
     }
+
+}
+
+Milestone.CompleteTask = function () {
+   
+    var $sourceCtrl = $(event.target).parentsUntil("ul").last();
+    var item = {};
+    item.Content = $sourceCtrl.find("[data-propertyname='Content']").attr("data-PropertyValue");
+    item.ExpectedEndTime = $sourceCtrl.find("[data-propertyname='ExpectedEndTime']").attr("data-PropertyValue");
+    item.ActualEndTime = Convertor.DateFormat(new Date().toString(), "yyyy/MM/dd");
+    var html = $("#tpl_Milestone_3").html().replace(/\[Content\]/g, item.Content).replace(/\[ExpectedEndTime\]/g, item.ExpectedEndTime).replace(/\[ActualEndTime\]/g, item.ActualEndTime);
+    $(html).insertBefore($sourceCtrl);
+
+    $(event.target).parentsUntil("ul").last().remove();
 
 }
 
@@ -106,7 +122,13 @@ Milestone.GetData = function () {
         dataArray.push(checkPoint);
         $checkPoint.find("[data-PropertyName]").each(function () {
             var propertyName = $(this).attr("data-PropertyName");
-            checkPoint[propertyName] = $(this).val();
+            if (true === $(this).is("input")) {
+                checkPoint[propertyName] = $(this).val();
+            }
+            else {
+                checkPoint[propertyName] = $(this).attr("data-PropertyValue");
+
+            }
         })
 
         var taskArray = $checkPoint.next("ul").find("li");
@@ -115,10 +137,16 @@ Milestone.GetData = function () {
             var taskItem = {};
             $taskItem.find("[data-PropertyName]").each(function () {
                 var propertyName = $(this).attr("data-PropertyName");
-                taskItem[propertyName] =$(this).val();
+                if (true === $(this).is("input")) {
+                    taskItem[propertyName] = $(this).val();
+                }
+                else {
+                    taskItem[propertyName] = $(this).attr("data-PropertyValue");
+                }
             })
 
             if (true === PARAM_CHECKER.IsNotEmptyObject(taskItem)) {
+                taskItem["ID"] = new Date().getTime();
                 checkPoint.TaskArray.push(taskItem);
             }
         }
