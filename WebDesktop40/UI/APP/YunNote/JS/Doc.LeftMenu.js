@@ -71,12 +71,20 @@ Doc.LeftMenuClick = function (id) {
 
     }
     else if ("LeftMenu.所有笔记" === id) {
-        var query = [{ _RedirectID: null, OwnerID: SESSION.Current().UserID, 'StatusCode': { $ne: -1 } }, {}, { CreateTime: -1 }];
+        var query = [{ _RedirectID: null, CompanyID: SESSION.Current().CompanyID, 'StatusCode': { $ne: -1 } }, {}, { CreateTime: -1 }];;
         Doc.ShowView3();
         Doc.LoadTopButton(topButtonId);
-        Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], { header: "小提示：修改目录双击即可" }); });
+        Doc.LoadData_All([], function (res1) {
+            Doc.LoadTreeTo("#leftList", res1, [], {
+                Source: "AllStaff", header: "小提示：所有人员", Click: function (event, treeId, treeNode) {
+                    query = [{ _RedirectID: null, OwnerID: treeNode.ID, 'StatusCode': { $ne: -1 } }, {}, { CreateTime: -1 }];
+                    Doc.LoadTable(0, App.Doc.Data.Pager.Size, query, App.Doc.Data.DocTable.Info);
+                }
+            });
+        });
         Doc.LoadTable(0, App.Doc.Data.Pager.Size, query, App.Doc.Data.DocTable.Info);
-        Doc.SetQuery(query); 
+
+        Doc.SetQuery(query);
     }
     else if ("LeftMenu.笔记分析" === id) {
         Doc.LoadTopButton(topButtonId);

@@ -53,6 +53,12 @@ namespace WangJun.YunQun
                 }
             }
             inst.Save();
+
+            var yunQun = new YunQunItem();
+            yunQun.ID = inst.RootID;
+            yunQun = EntityManager.GetInstance().Get<YunQunItem>(yunQun);
+            yunQun.LastestCommentTime = DateTime.Now;
+            yunQun.Save();
         }
 
     }

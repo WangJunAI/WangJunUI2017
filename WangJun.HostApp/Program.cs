@@ -62,6 +62,10 @@ namespace WangJun.HostApp
             {
                 YunPanFileMigrate(data);
             }
+            else if (behaviorCode == BehaviorType.修改 && sourceTableName == CONST.APP.YunProject.TableYunProject)
+            {
+               ///各种超时计算，生成老板报表
+            }
 
 
             ///遇到删除状态的进行删除

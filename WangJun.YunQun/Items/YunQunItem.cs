@@ -1,4 +1,5 @@
-﻿using WangJun.Config;
+﻿using System;
+using WangJun.Config;
 using WangJun.Entity;
 using WangJun.HumanResource;
 using WangJun.Utility;
@@ -39,6 +40,8 @@ namespace WangJun.YunQun
         public string Summary { get; set; }
   
         public int CommentCount { get; set; }
+
+        public DateTime LastestCommentTime { get; set; } ///最后评论时间
          
 
         /// <summary>

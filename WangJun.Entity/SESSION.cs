@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web;
 
 namespace WangJun.Entity
@@ -8,6 +9,7 @@ namespace WangJun.Entity
     /// </summary>
     public class SESSION 
     {
+        private static Dictionary<string, SESSION> sessionDict = new Dictionary<string, SESSION>();
         
         public string ID { get; set; }
 
@@ -43,12 +45,24 @@ namespace WangJun.Entity
             get
             {
                 string _SID = HttpContext.Current.Request.QueryString["_SID"];
-                var staff = new BaseItem();
-                staff.ID = _SID;
-                staff._DbName = "WangJun";
-                staff._CollectionName = "Staff";
-                var res = EntityManager.GetInstance().Get<BaseItem>(staff);
-                return new SESSION { UserID = res.ID, UserName = res.Name ,CompanyID=res.CompanyID,CompanyName=res.CompanyName,LastestRequestUrl=HttpContext.Current.Request.RawUrl};
+                var session = new SESSION();
+                if (!string.IsNullOrWhiteSpace(_SID)&& SESSION.sessionDict.ContainsKey(_SID)&&null != SESSION.sessionDict[_SID])
+                {
+                    session = SESSION.sessionDict[_SID];
+                }
+                else if(!string.IsNullOrWhiteSpace(_SID) &&( !SESSION.sessionDict.ContainsKey(_SID) || null == SESSION.sessionDict[_SID]))
+                {
+                    var staff = new BaseItem();
+                    staff.ID = _SID;
+                    staff._DbName = "WangJun";
+                    staff._CollectionName = "Staff";
+                    var res = EntityManager.GetInstance().Get<BaseItem>(staff);
+                    session = new SESSION { UserID = res.ID, UserName = res.Name, CompanyID = res.CompanyID, CompanyName = res.CompanyName, LastestRequestUrl = HttpContext.Current.Request.RawUrl };
+                    SESSION.sessionDict[_SID]= session ;
+                }
+
+
+                return session;
             }
         }
 
