@@ -50,6 +50,18 @@ namespace WangJun.HumanResource
         public bool IsSuperAdmin { get { return 16 == this.Level; } }
 
 
+        public bool CanManageYunPan { get; set; }
+
+        public bool CanManageYunQun { get; set; }
+
+        public bool CanManageYunProject { get; set; }
+
+        public bool CanManageYunDoc { get; set; }
+
+        public bool CanManageYunNews { get; set; }
+
+        public bool CanManageYunNote { get; set; }
+        public bool CanManageStaff { get; set; } 
 
 
         public static StaffItem Load(string id)

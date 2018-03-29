@@ -76,6 +76,9 @@ Doc.SaveDetail = function () {
                 var ztreeId = $(this).find(".ztree").first().attr("id");
                 item[propertyName] = Doc.GetCheckedTreeNodes(ztreeId);
             }
+            else if ("CheckBox" === propertyType) {
+                item[propertyName] = ("true" === propertyValue);
+            }
             else {
                 item[propertyName.trim()] = propertyValue;
             }

@@ -5,8 +5,10 @@ Doc.LoadDetail = function () {
         $("[data-single]").on("click", function () {
             var val = $(this).attr("data-single");
             var isShow = $(this).attr("data-show");
-            $("[data-single='" + val + "']").removeClass("selected");
+            $(this).parentsUntil(".item").find("[data-single='" + val + "']").removeClass("selected");
             $(this).addClass("selected");
+            $(this).parentsUntil("li").last().find("[data-propertyvalue]").attr("data-propertyvalue", $(this).text());
+
             if ("show" === isShow) {
                 $('[data-ClientGroupID="' + val + '"]').show();
             }

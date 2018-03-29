@@ -67,8 +67,8 @@
                     <div class="item">
                         <div class="key" data-FormName="Default" data-propertyName="Sex" data-propertyValue="男">性别</div>
                         <div class="value">
-                            <a href="javascript:;" class="checkbox selected" data-single="Status">男</a>
-                            <a href="javascript:;" class="checkbox" data-single="Status">女</a>
+                            <a href="javascript:;" class="checkbox selected" data-single="Sex">男</a>
+                            <a href="javascript:;" class="checkbox" data-single="Sex">女</a>
                         </div>
                         <div class="inputcheck cred">
                             检查信息
@@ -192,6 +192,78 @@
                         </div>
                     </div>
                 </li>
+                <li>
+                    <div class="item">
+                        <div class="key" data-FormName="Default">权限</div>
+                        <div class="value">
+                            <a href="javascript:;" class="checkbox selected" data-single="private" data-show="hide">普通用户</a>
+                            <a href="javascript:;" class="checkbox" data-single="private" data-show="show">管理员</a>
+                        </div>
+                    </div>
+                </li>
+                <li style="display:none;" data-ClientGroupID="private">
+                    <div class="item" data-FormName="Default" data-propertyName="CanManageYunPan" data-propertyValue="true" data-propertyType="CheckBox">
+                        <div class="key">云盘管理</div>
+                        <div class="value">
+                            <a href="javascript:;" class="checkbox selected" data-single="CanManageYunPan" data-propertyValue="true">是</a>
+                            <a href="javascript:;" class="checkbox" data-single="CanManageYunPan"  data-propertyValue="false">否</a>
+                        </div>
+                    </div>
+                </li>
+                <li style="display:none;" data-ClientGroupID="private">
+                    <div class="item">
+                        <div class="key" data-FormName="Default" data-propertyName="CanManageYunQun" data-propertyValue="true" data-propertyType="CheckBox">云群管理</div>
+                        <div class="value">
+                            <a href="javascript:;" class="checkbox selected" data-single="CanManageYunQun" data-propertyValue="true">是</a>
+                            <a href="javascript:;" class="checkbox" data-single="CanManageYunQun" data-propertyValue="false">否</a>
+                        </div>
+                    </div>
+                </li>
+                <li style="display:none;" data-ClientGroupID="private">
+                    <div class="item">
+                        <div class="key" data-FormName="Default" data-propertyName="CanManageYunProject" data-propertyValue="true" data-propertyType="CheckBox">云项目管理</div>
+                        <div class="value">
+                            <a href="javascript:;" class="checkbox selected" data-single="CanManageYunProject" data-propertyValue="true">是</a>
+                            <a href="javascript:;" class="checkbox" data-single="CanManageYunProject" data-propertyValue="false">否</a>
+                        </div>
+                    </div>
+                </li>
+                <li style="display:none;" data-ClientGroupID="private">
+                    <div class="item">
+                        <div class="key" data-FormName="Default" data-propertyName="CanManageYunDoc" data-propertyValue="true" data-propertyType="CheckBox">知识库管理</div>
+                        <div class="value">
+                            <a href="javascript:;" class="checkbox selected" data-single="CanManageYunDoc" data-propertyValue="true">是</a>
+                            <a href="javascript:;" class="checkbox" data-single="CanManageYunDoc" data-propertyValue="false">否</a>
+                        </div>
+                    </div>
+                </li>
+                <li style="display:none;" data-ClientGroupID="private">
+                    <div class="item">
+                        <div class="key" data-FormName="Default" data-propertyName="CanManageYunNews" data-propertyValue="true" data-propertyType="CheckBox">新闻管理</div>
+                        <div class="value">
+                            <a href="javascript:;" class="checkbox selected" data-single="CanManageYunNews" data-propertyValue="true">是</a>
+                            <a href="javascript:;" class="checkbox" data-single="CanManageYunNews" data-propertyValue="false">否</a>
+                        </div>
+                    </div>
+                </li>
+                <li style="display:none;" data-ClientGroupID="private">
+                    <div class="item">
+                        <div class="key" data-FormName="Default" data-propertyName="CanManageYunNote" data-propertyValue="true" data-propertyType="CheckBox">云笔记管理</div>
+                        <div class="value">
+                            <a href="javascript:;" class="checkbox selected" data-single="CanManageYunNote" data-propertyValue="true">是</a>
+                            <a href="javascript:;" class="checkbox" data-single="CanManageYunNote" data-propertyValue="false">否</a>
+                        </div>
+                    </div>
+                </li>
+                <li style="display:none;" data-ClientGroupID="private">
+                    <div class="item">
+                        <div class="key" data-FormName="Default" data-propertyName="CanManageStaff" data-propertyValue="true" data-propertyType="CheckBox">员工组织管理</div>
+                        <div class="value">
+                            <a href="javascript:;" class="checkbox selected" data-single="CanManageStaff" data-propertyValue="true">是</a>
+                            <a href="javascript:;" class="checkbox" data-single="CanManageStaff" data-propertyValue="false">否</a>
+                        </div>
+                    </div>
+                </li> 
             </ul>
         </div>
         <div class="buttons">

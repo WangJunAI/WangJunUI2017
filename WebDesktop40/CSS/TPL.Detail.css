@@ -38,6 +38,10 @@ body {
             margin-left: -40px;
         }
 
+        .global > .options > ul>li {
+            margin-top:0.1em;
+        }
+
         .global > .options a {
             text-decoration: none;
             color: #222;
