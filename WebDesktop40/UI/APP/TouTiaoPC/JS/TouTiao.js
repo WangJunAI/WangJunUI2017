@@ -192,7 +192,7 @@ TouTiao.LoadArticle = function (param,callback) {
     var callback = function (res) {
         LOGGER.Log(res);
         TouTiao.ShowArticle(res);
-        ClientBehavior.GetBehaviorByArticleID();
+        ClientBehavior.LoadBehaviorByArticleID();
         ClientBehavior.Read();
     }
     NET.LoadData(App.TouTiao.Server.Url3, callback, context, NET.POST);
@@ -213,9 +213,14 @@ TouTiao.ShowArticle = function (data) {
             data.Content = $div.text();
         }
         $("[data-PropertyName='ParentName']").text(data.ParentName);
+        $("[data-PropertyName='LikeCount']").text("点赞"+data.LikeCount);
+        $("[data-PropertyName='CommentCount']").text("评论"+data.CommentCount);
+        $("[data-PropertyName='FavoriteCount']").text("收藏"+data.FavoriteCount);
+
         $("#title").text(data.Title);
         $("#CreatorName").text(data.CreatorName);
         $("#CreateTime").text(data.CreateTime);
+
 
 
         //data.Content = data.Content.replace(/js\/ueditor\/net\/upload\/image/g,"http://localhost:14324/js/ueditor/net/upload/image/")

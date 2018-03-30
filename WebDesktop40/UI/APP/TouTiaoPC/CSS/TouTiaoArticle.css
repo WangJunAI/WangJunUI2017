@@ -330,6 +330,17 @@
         font-weight: 700;
     }
 
+    .likeCount div {
+        display: inline-block;
+        float: left;
+        color: #777;
+        height: 3em;
+        width: 5em;
+        text-align: center;
+        line-height: 3em;
+        font-weight: 700;
+    }
+
         .likeCount a:hover {
             background-color: #F2F2F2;
         }
