@@ -53,12 +53,17 @@ namespace WangJun.Entity
             public static int 搜索 { get { return 5; } }
 
             public static int 点赞 { get { return 6; } }
-            
+
+            public static int 阅读 { get { return 7; } }
             public static int 收藏 { get { return 8; } }
 
             public static string GetString(int behaviorType)
             {
-                if(behaviorType == BehaviorType.修改)
+                if (behaviorType == BehaviorType.获取)
+                {
+                    return "获取";
+                }
+                else if (behaviorType == BehaviorType.修改)
                 {
                     return "修改";
                 }
@@ -74,10 +79,6 @@ namespace WangJun.Entity
                 {
                     return "移除";
                 }
-                else if (behaviorType == BehaviorType.搜索)
-                {
-                    return "搜索";
-                }
                 else if (behaviorType == BehaviorType.点赞)
                 {
                     return "点赞";
@@ -85,6 +86,10 @@ namespace WangJun.Entity
                 else if (behaviorType == BehaviorType.收藏)
                 {
                     return "收藏";
+                }
+                else if (behaviorType == BehaviorType.阅读)
+                {
+                    return "阅读";
                 }
 
                 return "未定义";
@@ -126,10 +131,46 @@ namespace WangJun.Entity
 
         } 
 
+        public int Save(string collectionName,string dbID, int behaviorCode)
+        {
+            var session = SESSION.Current;
+            var task = new TaskFactory().StartNew(() => {
+                try
+                {
+                    var inst = new ClientBehaviorItem();
+                    inst._id = ObjectId.GenerateNewId();
+                    inst.UserID = Convertor.StringToObjectID(session.UserID);
+                    inst.UserName = session.UserName;
+                    inst.CreateTime = DateTime.Now;
+                    inst.BehaviorCode = behaviorCode;
+                    inst.Behavior = BehaviorType.GetString(behaviorCode);
+                    inst.DbName = inst._DbName;
+                    inst.CollectionName = collectionName;
+                    inst.DbID =Convertor.StringToObjectID( dbID);
+                    var db = DataStorage.GetInstance(DBType.MongoDB);
+
+                    db.Save3(inst.DbName, "ClientBehavior", inst);
+                }
+                catch (Exception e)
+                {
+
+                }
+            });
+            return 0;
+        }
+
         public void Remove()
         {
             var query = MongoDBFilterCreator.SearchByObjectId(this._id.ToString());
             DataStorage.GetInstance(DBType.MongoDB).Remove("WangJun", "ClientBehavior", query);
+        }
+
+        public  static object LoadByDBID(string dbId)
+        {
+            var query = "{\"DbID\":ObjectId('" + dbId + "')}";
+            var res = DataStorage.GetInstance(DBType.MongoDB).Find3("WangJun", "ClientBehavior", query);
+            return res;
+
         }
     }
 }

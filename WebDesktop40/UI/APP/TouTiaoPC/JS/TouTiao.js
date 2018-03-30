@@ -192,6 +192,8 @@ TouTiao.LoadArticle = function (param,callback) {
     var callback = function (res) {
         LOGGER.Log(res);
         TouTiao.ShowArticle(res);
+        ClientBehavior.GetBehaviorByArticleID();
+        ClientBehavior.Read();
     }
     NET.LoadData(App.TouTiao.Server.Url3, callback, context, NET.POST);
 }
@@ -219,6 +221,10 @@ TouTiao.ShowArticle = function (data) {
         //data.Content = data.Content.replace(/js\/ueditor\/net\/upload\/image/g,"http://localhost:14324/js/ueditor/net/upload/image/")
 
         $("#Content").html(data.Content);
+
+        ///底色清除,优化显示
+        $("#Content").find("p").css("width", "");
+        $("#Content").find("p").css("background-color", "#FFF");
     }
     else {
         LOGGER.log("数据格式不对，应该提供字典。");

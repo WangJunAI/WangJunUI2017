@@ -175,17 +175,20 @@
         color: #777;
         margin-right: 2px;
         font-size: 13px;
+        margin-top: 1em;
     }
 
     .global > .main > .info > span {
         margin-right:2em;
     }
-        
-        .global > .main > .content img {
-            max-width: 100%;
-            display: block;
-            margin: 10px auto;
-        }
+    .global > .main > .content {
+        margin-top:2em;
+    }
+    .global > .main > .content img {
+        max-width: 100%;
+        display: block;
+        margin: 10px auto;
+    }
 
 .global > .right {
     width: 340px;

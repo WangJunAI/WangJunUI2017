@@ -322,6 +322,22 @@ namespace WangJun.YunNews
         }
         #endregion
 
+        #region ClientRead
+        public int ClientRead(string id)
+        {
+            var item = new YunNewsItem();
+            item.ID = id;
+            ClientBehaviorItem.Save(item, ClientBehaviorItem.BehaviorType.阅读, SESSION.Current);
+            return 0;
+        }
+        #endregion
+
+        #region ClientRead
+        public object GetBehaviorByArticleID(string id)
+        {
+            return ClientBehaviorItem.LoadByDBID(id);
+        }
+        #endregion
 
     }
 }

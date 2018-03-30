@@ -60,7 +60,7 @@
 
 
 </head>
-<body>
+<body style="overflow:hidden;">
     <input type="hidden" id="ID" data-FormName="Default" data-propertyName="ID" />
     <input type="hidden" id="pageName" value="Detail" />
     <div class="global">
@@ -77,10 +77,12 @@
                         <div class="value" data-FormName="Default" data-propertyName="ParentID" data-propertyValue="">
                             <a href="javascript:;" class="button w20em txtleft" onclick="$('#category').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">尚未选择分类</a>
                             <div style="position: absolute;z-index:9999;">
-                                <div id="category" class="dropdownlist">
+                                <div id="category" class="dropdownlist" style="top:-16em;">
                                 </div>
                             </div>
-
+                        </div>
+                        <div class="inputcheck cred">
+                            检查信息
                         </div>
                     </div>
                 </li>
@@ -153,7 +155,7 @@
                         $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
                         $("[data-propertyName='ParentName']").text(name);
                     },
-                    header:"请选择新闻所属分类"
+                    header:"<div class='margin_l05em fontweight700'>请选择新闻所属分类</div>"
                 });
             }); ///加载目录
             Doc.LoadData_All([], function (res1) {

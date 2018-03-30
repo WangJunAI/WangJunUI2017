@@ -43,6 +43,9 @@ Doc.LoadPager = function (pageIndex, pageSize, query, tableInfo) {
     if (true === PARAM_CHECKER.IsArray(query)) {
         param = [JSON.stringify(query[0])];
     }
+    else if(true === PARAM_CHECKER.IsObject(query)) {
+        param = [ JSON.stringify(query)];
+    }
     else {
         param = query;
     }
