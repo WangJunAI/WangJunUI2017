@@ -7,6 +7,10 @@ TouTiao.LoadCategory = function () {
 
     var callback = function (res) {
         LOGGER.Log(res);
+        res.push({ Name: "共享" });
+        res.push({ Name: "审批" });
+        res.push({ Name: "日报" });
+        res.push({ Name: "周报" });
         
         TouTiao.ShowCategory(res);
     }
