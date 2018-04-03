@@ -46,8 +46,10 @@ App.Doc.Server = {
 App.Doc.LeftMenu = [];
 
 App.Doc.LeftMenu.push({ Name: "云盘管理", ID: "LeftMenu.文档操作", Method: "Doc.LeftMenuGroupToggle", ParentID: null });
-App.Doc.LeftMenu.push({ Name: "上传文件", ID: "LeftMenu.上传文件", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作" });
-App.Doc.LeftMenu.push({ Name: "新建文件夹", ID: "LeftMenu.新建文件夹", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作" });
+//App.Doc.LeftMenu.push({ Name: "上传文件", ID: "LeftMenu.上传文件", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作" });
+//App.Doc.LeftMenu.push({ Name: "新建文件夹", ID: "LeftMenu.新建文件夹", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作" });
+App.Doc.LeftMenu.push({ Name: "个人云盘", ID: "LeftMenu.个人云盘", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.个人云盘.TopButton" });
+App.Doc.LeftMenu.push({ Name: "与我共享", ID: "LeftMenu.与我共享", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.与我共享.TopButton" })
 App.Doc.LeftMenu.push({ Name: "企业云盘", ID: "LeftMenu.企业云盘", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.企业云盘.TopButton" });
 App.Doc.LeftMenu.push({ Name: "员工云盘", ID: "LeftMenu.员工云盘", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.企业云盘.TopButton" });
 
