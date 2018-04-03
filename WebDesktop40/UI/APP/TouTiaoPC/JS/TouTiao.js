@@ -93,6 +93,38 @@ TouTiao.ShowList = function (data, pageIndex, categoryId, append) {
     }
 }
 
+///加载列表
+TouTiao.LoadHotNewsList = function (categoryId, pageIndex, append) {
+
+    var query = JSON.stringify({ "HotCount": { $gt: 0 }, "CompanyID": SESSION.Current().CompanyID });
+    var pageSize = App.TouTiao.Pager.Size;
+    if (true === PARAM_CHECKER.IsNotEmptyString(categoryId)) {
+        query = "{'ParentID':'[ParentID]'}".replace('[ParentID]', categoryId);
+    }
+
+    if (false === PARAM_CHECKER.IsInt(pageIndex)) {
+        pageIndex = 0;
+    }
+    else {
+        pageIndex = parseInt(pageIndex);
+    }
+
+    var context = [query, JSON.stringify({ "Content": 0, "PlainText": 0 }), "{CreateTime:-1}", pageIndex, pageSize];
+    var callback = function (res) {
+        LOGGER.Log(res);
+        if (true === PARAM_CHECKER.IsArray(res)) {
+            var tplHtml = "<div class='row'><span>[Index]</span><a target='_blank' href='[Href]'>[Title]</a></div>";
+            var html = "";
+            for (var k = 0; k < res.length; k++) {
+                html += tplHtml.replace("[Index]", k + 1).replace("[Href]", "TouTiaoArticle.html?id=" + res[k].ID).replace("[Title]", res[k].Title);
+            }
+            $(html).insertAfter($("#block2 .title"));
+        }
+    }
+
+    NET.PostData(App.TouTiao.Server.Url1, callback, context);
+}
+
 ///加载评论列表
 TouTiao.LoadCommentList = function (param) {
     var targetId = NET.GetQueryParam("id");
@@ -246,11 +278,14 @@ TouTiao.Initial = function (type) {
     $(document).ready(function () {
         if ("list" === type) {
             TouTiao.LoadCategory();///先加载目录再加载文档
+            TouTiao.LoadHotNewsList();
         }
         else if ("article" === type) {
             var id = NET.GetQueryParam("id");
             TouTiao.LoadArticle(id);
             TouTiao.LoadCommentList();
+            TouTiao.LoadHotNewsList();
+
         }
     });
 }

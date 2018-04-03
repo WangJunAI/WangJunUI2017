@@ -42,6 +42,8 @@ namespace WangJun.YunNews
 
         public int LikeCount { get; set; }
 
+        public int HotCount { get; set; }
+
         public int CommentCount { get; set; }
 
         public int FavoriteCount { get; set; }
@@ -51,8 +53,14 @@ namespace WangJun.YunNews
         public DateTime PublishTime { get; set; }
 
         public string PublishMode { get; set; }
-
-        public string Permission { get; set; }
+         
+        public static YunNewsItem Load(string id)
+        {
+            var item = new YunNewsItem();
+            item.ID = id;
+            item = EntityManager.GetInstance().Get<YunNewsItem>(item);
+            return item;
+        }
 
 
         /// <summary>

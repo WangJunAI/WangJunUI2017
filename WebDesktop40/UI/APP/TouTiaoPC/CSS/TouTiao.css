@@ -219,10 +219,11 @@
          }
 
 
-        .global > .right > .block > .row a {
-            text-decoration:none;
-            color:#222;
-        }
+            .global > .right > .block > .row a {
+                text-decoration: none;
+                color: #222;
+                font-size: 0.8em;
+            }
 
             #loadMore {
                 display: block;

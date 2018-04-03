@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using System;
 using System.Collections.Generic;
 using System.Web;
 
@@ -44,23 +45,30 @@ namespace WangJun.Entity
 
             get
             {
-                string _SID = HttpContext.Current.Request.QueryString["_SID"];
                 var session = new SESSION();
-                if (!string.IsNullOrWhiteSpace(_SID)&& SESSION.sessionDict.ContainsKey(_SID)&&null != SESSION.sessionDict[_SID])
+                if (null != HttpContext.Current)
                 {
-                    session = SESSION.sessionDict[_SID];
+                    string _SID = HttpContext.Current.Request.QueryString["_SID"];
+                 
+                    if (!string.IsNullOrWhiteSpace(_SID) && SESSION.sessionDict.ContainsKey(_SID) && null != SESSION.sessionDict[_SID])
+                    {
+                        session = SESSION.sessionDict[_SID];
+                    }
+                    else if (!string.IsNullOrWhiteSpace(_SID) && (!SESSION.sessionDict.ContainsKey(_SID) || null == SESSION.sessionDict[_SID]))
+                    {
+                        var staff = new BaseItem();
+                        staff.ID = _SID;
+                        staff._DbName = "WangJun";
+                        staff._CollectionName = "Staff";
+                        var res = EntityManager.GetInstance().Get<BaseItem>(staff);
+                        session = new SESSION { UserID = res.ID, UserName = res.Name, CompanyID = res.CompanyID, CompanyName = res.CompanyName, LastestRequestUrl = HttpContext.Current.Request.RawUrl };
+                        SESSION.sessionDict[_SID] = session;
+                    }
                 }
-                else if(!string.IsNullOrWhiteSpace(_SID) &&( !SESSION.sessionDict.ContainsKey(_SID) || null == SESSION.sessionDict[_SID]))
+                else
                 {
-                    var staff = new BaseItem();
-                    staff.ID = _SID;
-                    staff._DbName = "WangJun";
-                    staff._CollectionName = "Staff";
-                    var res = EntityManager.GetInstance().Get<BaseItem>(staff);
-                    session = new SESSION { UserID = res.ID, UserName = res.Name, CompanyID = res.CompanyID, CompanyName = res.CompanyName, LastestRequestUrl = HttpContext.Current.Request.RawUrl };
-                    SESSION.sessionDict[_SID]= session ;
+                    session = new SESSION { UserID = ObjectId.Empty.ToString(), UserName = "服务程序", CompanyID = ObjectId.Empty.ToString(), CompanyName = "系统", LastestRequestUrl = string.Empty };
                 }
-
 
                 return session;
             }

@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MongoDB.Bson, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MongoDB.Bson.2.5.0\lib\net45\MongoDB.Bson.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -75,6 +79,10 @@
     <ProjectReference Include="..\WangJun.Utility\WangJun.Utility.csproj">
       <Project>{ECA8641B-DDB9-481A-BF78-76FB5A8E1DE3}</Project>
       <Name>WangJun.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WangJun.YunNews\WangJun.YunNews.csproj">
+      <Project>{b3539da2-9c83-47f4-be30-df49f932bf20}</Project>
+      <Name>WangJun.YunNews</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

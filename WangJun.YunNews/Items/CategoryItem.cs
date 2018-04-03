@@ -61,6 +61,14 @@ namespace WangJun.YunNews
 
         }
 
- 
+        public static CategoryItem Load(string id)
+        {
+            var item = new CategoryItem();
+            item.ID = id;
+            item = EntityManager.GetInstance().Get<CategoryItem>(item);
+            return item;
+        }
+
+
     }
 }

@@ -7,19 +7,27 @@ using System.Threading.Tasks;
 using WangJun.AI;
 using WangJun.Config;
 using WangJun.DB;
+using WangJun.Entity;
 using WangJun.Net;
 using WangJun.Utility;
+using WangJun.YunNews;
 using static WangJun.Entity.ClientBehaviorItem;
 
 namespace WangJun.HostApp
 {
     class Program
     {
+        private List<KeyValuePair<string, int>>   hotRankSource = new List<KeyValuePair<string,int>>();
         static void Main(string[] args)
         {
-            var db = DataStorage.GetInstance(DBType.MongoDB);
-            db.EventTraverse += Db_EventTraverse;
-            db.Traverse(CONST.APP.ClientBehaviorItem.DB, CONST.APP.ClientBehaviorItem.TableClientBehaviorItem, "{}");
+            while (true)
+            {
+                var db = DataStorage.GetInstance(DBType.MongoDB);
+                db.EventTraverse += Db_EventTraverse;
+                db.Traverse(CONST.APP.ClientBehaviorItem.DB, CONST.APP.ClientBehaviorItem.TableClientBehaviorItem, "{}");
+                LOGGER.Log("下次运行在一分钟后。");
+                ThreadManager.Pause(minutes: 1);
+            }
 
         }
 
@@ -31,7 +39,7 @@ namespace WangJun.HostApp
             var dict = sender as Dictionary<string, object>;
 
             var behaviorCode = int.Parse(data["BehaviorCode"].ToString());
-            var sourceTableName = data["BehaviorCode"].ToString();
+            var sourceTableName = data["CollectionName"].ToString();
             if ( behaviorCode == BehaviorType.修改 && sourceTableName == CONST.APP.YunQun.TableCategory)
             {
                 ///重新创建路径
@@ -53,6 +61,7 @@ namespace WangJun.HostApp
             else if (behaviorCode == BehaviorType.修改 && sourceTableName == CONST.APP.YunNews.TableNews)
             {
                 FenCiProc(data);
+                CreateHotCount(data);
             }
             else if (behaviorCode == BehaviorType.修改 && sourceTableName == CONST.APP.YunNote.TableYunNote)
             {
@@ -61,6 +70,7 @@ namespace WangJun.HostApp
             else if (behaviorCode == BehaviorType.修改 && sourceTableName == CONST.APP.YunPan.TableYunPan)
             {
                 YunPanFileMigrate(data);
+                ///分享数
             }
             else if (behaviorCode == BehaviorType.修改 && sourceTableName == CONST.APP.YunProject.TableYunProject)
             {
@@ -96,13 +106,15 @@ namespace WangJun.HostApp
         #region 分词
         public static void FenCiProc(Dictionary<string, object> data)
         {
-            var tableName = data["_CollectionName"].ToString();
-            var plainText = data["PlainText"].ToString();
-            var ID = data["ID"].ToString();
-            var res = FenCi.GetResult(plainText); ///分词结果存储数据库
+            var tableName = data["CollectionName"].ToString();
+            var dbID = data["DbID"].ToString();
+            var source = YunNewsItem.Load(dbID);
+            var plainText = source.PlainText;
+             var res = FenCi.GetResult(plainText); ///分词结果存储数据库
+            DataStorage.GetInstance(DBType.MongoDB).Remove("WangJun", "FenCi", "{'SourceID':ObjectId('" + dbID + "')}");
             foreach (var fenciItem in res)
             {
-                var svItem = new { SourceID = ID, Word = fenciItem.Key, Count = fenciItem.Value, TableName = tableName };
+                var svItem = new { SourceID = Convertor.StringToObjectID(dbID), Word = fenciItem.Key, Count = fenciItem.Value, TableName = tableName };
                 DataStorage.GetInstance(DBType.MongoDB).Save3("WangJun", "FenCi", svItem);
             }
 
@@ -112,27 +124,46 @@ namespace WangJun.HostApp
         #region 创建路径
         public static void CreateCategoryPath(Dictionary<string, object> data)
         {
-            var companyID = data["CompanyID"].ToString();
-            var categoryList = DataStorage.GetInstance(DBType.MongoDB).Find3("WangJun", "Category", "{'CompanyID':'" + companyID + "'}");
+            var tableName = data["CollectionName"].ToString();
+            var dbID = data["DbID"].ToString();
+            var source = CategoryItem.Load(dbID);
+            var categoryList = DataStorage.GetInstance(DBType.MongoDB).Find3("WangJun", "Category", "{'CompanyID':'" + source.CompanyID + "'}");
             var stack = new Stack<string>();
-            stack.Push(data["ID"].ToString());
-            var currentID = data["ParentID"].ToString();
-            StringBuilder pathBuilder = new StringBuilder();
+            stack.Push(source.ID);
+            var currentID = source.ParentID;
+            var  path = "";
             while (currentID != "000000000000000000000000")
             {
                 var parentQuery = from item in categoryList where item["ID"].ToString() == currentID select item;
                 if (0 < parentQuery.Count())
                 {
                     stack.Push(parentQuery.First()["ID"].ToString());
-                    pathBuilder.AppendFormat("{0}/", parentQuery.First()["Name"].ToString());
+                    path = parentQuery.First()["Name"].ToString() +"/"+ path;
                     currentID = parentQuery.First()["ParentID"].ToString();
                 }
             }
+            source.Path = path;
+            source.Save();
+
+            return;
         }
         #endregion
 
-        #region 生成排行榜
+        #region 生成热度值
+        public static void CreateHotCount(Dictionary<string, object> data)
+        {
+            var tableName = data["CollectionName"].ToString();
+            var dbID = data["DbID"].ToString();
+            var source = YunNewsItem.Load(dbID);
+            var likeCount = source.LikeCount;
+            var favoriteCount = source.FavoriteCount;
+            var readCount = source.ReadCount;
+            var commentCouunt = source.CommentCount;
+            source.HotCount = likeCount + favoriteCount + readCount + commentCouunt;
+            source.Save();
+            
 
+        }
         #endregion
 
         #region 完善数据,维护服务
