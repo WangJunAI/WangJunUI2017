@@ -77,7 +77,7 @@ Doc.SaveDetail = function () {
                 item[propertyName] = Doc.GetCheckedTreeNodes(ztreeId);
             }
             else if ("CheckBox" === propertyType) {
-                item[propertyName] = ("true" === propertyValue);
+                item[propertyName] = ("true" === propertyValue) || ("是" === propertyValue);
             }
             else {
                 item[propertyName.trim()] = propertyValue;

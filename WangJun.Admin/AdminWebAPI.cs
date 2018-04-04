@@ -47,6 +47,13 @@ namespace WangJun.Admin
             admin.CompanyID = company.ID;
             admin.CompanyName = company.Name;
             admin.OwnerID = company.ID;
+            admin.CanManageStaff = true;
+            admin.CanManageYunDoc = true;
+            admin.CanManageYunNews = true;
+            admin.CanManageYunNote = true;
+            admin.CanManageYunPan = true;
+            admin.CanManageYunProject = true;
+            admin.CanManageYunQun = true;
             admin.Save();
             #endregion
 
