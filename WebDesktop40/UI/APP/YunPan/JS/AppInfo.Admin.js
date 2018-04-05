@@ -21,9 +21,11 @@ App.Doc.Server = {
     Url1: "http://localhost:9990/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=LoadEntityList", ///加载文档目录
     Url2: "http://localhost:9990/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=Count",///文档数量
     Url3: "Detail.Admin.html",
+    Url31: "Detail.html",
     Url4: "http://localhost:9990/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=SaveEntity",///保存一个文档
     Url5: "http://localhost:9990/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=GetEntity",///获取一个文档
     Url6: "Category.Admin.html",
+    Url61: "Category.html",
     Url7: "http://localhost:9990/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=SaveCategory",///保存一个目录
     Url8: "http://localhost:9990/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=LoadCategoryList",///加载目录列表
     Url9: "http://localhost:9990/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=RemoveEntity",///移除一份文档,暂未使用
@@ -45,13 +47,13 @@ App.Doc.Server = {
 
 App.Doc.LeftMenu = [];
 
-App.Doc.LeftMenu.push({ Name: "云盘管理", ID: "LeftMenu.文档操作", Method: "Doc.LeftMenuGroupToggle", ParentID: null });
-//App.Doc.LeftMenu.push({ Name: "上传文件", ID: "LeftMenu.上传文件", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作" });
-//App.Doc.LeftMenu.push({ Name: "新建文件夹", ID: "LeftMenu.新建文件夹", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作" });
-App.Doc.LeftMenu.push({ Name: "个人云盘", ID: "LeftMenu.个人云盘", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.个人云盘.TopButton" });
-App.Doc.LeftMenu.push({ Name: "与我共享", ID: "LeftMenu.与我共享", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.与我共享.TopButton" })
-App.Doc.LeftMenu.push({ Name: "企业云盘", ID: "LeftMenu.企业云盘", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.企业云盘.TopButton" });
-App.Doc.LeftMenu.push({ Name: "员工云盘", ID: "LeftMenu.员工云盘", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.企业云盘.TopButton" });
+App.Doc.LeftMenu.push({ Name: "云盘管理", ID: "LeftMenu.云盘管理", Method: "Doc.LeftMenuGroupToggle", ParentID: null });
+//App.Doc.LeftMenu.push({ Name: "上传文件", ID: "LeftMenu.上传文件", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.云盘管理" });
+//App.Doc.LeftMenu.push({ Name: "新建文件夹", ID: "LeftMenu.新建文件夹", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.云盘管理" });
+App.Doc.LeftMenu.push({ Name: "个人云盘", ID: "LeftMenu.个人云盘", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.云盘管理", TopButtonGroupID: "左侧菜单.个人云盘.TopButton" });
+App.Doc.LeftMenu.push({ Name: "与我共享", ID: "LeftMenu.与我共享", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.云盘管理", TopButtonGroupID: "左侧菜单.与我共享.TopButton" })
+App.Doc.LeftMenu.push({ Name: "企业云盘", ID: "LeftMenu.企业云盘", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.云盘管理", TopButtonGroupID: "左侧菜单.企业云盘.TopButton" });
+App.Doc.LeftMenu.push({ Name: "员工云盘", ID: "LeftMenu.员工云盘", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.云盘管理", TopButtonGroupID: "左侧菜单.员工云盘.TopButton" });
 
 
 App.Doc.LeftMenu.push({ Name: "数据分析", ID: "LeftMenu.数据分析", Method: "Doc.LeftMenuGroupToggle", ParentID: null });
@@ -61,35 +63,37 @@ App.Doc.LeftMenu.push({ Name: "云盘分析", ID: "LeftMenu.云盘分析", Metho
 App.Doc.LeftMenu.push({ Name: "系统管理", ID: "LeftMenu.系统管理", Method: "Doc.LeftMenuGroupToggle", ParentID: null });
 App.Doc.LeftMenu.push({ Name: "回收站", ID: "LeftMenu.回收站", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.系统管理", TopButtonGroupID: "左侧菜单.回收站.TopButton" });
 App.Doc.LeftMenu.push({ Name: "存储管理", ID: "LeftMenu.存储管理", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.系统管理", TopButtonGroupID: "左侧菜单.存储管理.TopButton" });
-App.Doc.LeftMenu.push({ Name: "应用信息", ID: "LeftMenu.应用信息", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.系统管理", TopButtonGroupID: "左侧菜单.应用信息.TopButton" });
+App.Doc.LeftMenu.push({ Name: "使用帮助", ID: "LeftMenu.应用信息", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.系统管理", TopButtonGroupID: "左侧菜单.应用信息.TopButton" });
 
 App.Doc.Content = {};
 App.Doc.Content.TopButton = [];
 
 ///个人云盘TopButton菜单
-//App.Doc.Content.TopButton.push({ Name: "个人云盘", ID: "TopButton.个人云盘", Method: "", ParentID: null, GroupID: "", Type: "Title", GroupID: "左侧菜单.个人云盘.TopButton" });
-//App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.个人云盘.TopButton" });
-//App.Doc.Content.TopButton.push({ Name: "上传文件", ID: "TopButton.上传文件", Method: "Doc.TopButtonClick",   GroupID: "左侧菜单.个人云盘.TopButton" });
-//App.Doc.Content.TopButton.push({ Name: "新建文件夹", ID: "TopButton.新建文件夹", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.个人云盘.TopButton" });
-//App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.个人云盘.TopButton" });
-//App.Doc.Content.TopButton.push({ Name: "移动至", ID: "TopButton.移动至", Method: "", Type: "dropdownlist", Menu: [{ Text: "回收站" }, { Text: "草稿箱" }], GroupID: "左侧菜单.个人云盘.TopButton" });
-//App.Doc.Content.TopButton.push({ Name: "删除", ID: "TopButton.删除", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.个人云盘.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "个人云盘", ID: "TopButton.个人云盘", Method: "", ParentID: null, GroupID: "", Type: "Title", GroupID: "左侧菜单.个人云盘.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.个人云盘.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "上传文件", ID: "TopButton.上传个人云盘文件", Method: "Doc.TopButtonClick",   GroupID: "左侧菜单.个人云盘.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "新建文件夹", ID: "TopButton.新建个人云盘文件夹", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.个人云盘.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.个人云盘.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "移动至", ID: "TopButton.移动至", Method: "", Type: "dropdownlist", Menu: [{ Text: "回收站" }, { Text: "草稿箱" }], GroupID: "左侧菜单.个人云盘.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "删除", ID: "TopButton.删除", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.个人云盘.TopButton" });
 
 
 ///企业云盘TopButton菜单
 App.Doc.Content.TopButton.push({ Name: "企业云盘", ID: "TopButton.企业云盘", Method: "", Type: "Title", GroupID: "左侧菜单.企业云盘.TopButton" });
 App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.企业云盘.TopButton" });
-App.Doc.Content.TopButton.push({ Name: "上传文件", ID: "TopButton.上传文件", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.企业云盘.TopButton" });
-App.Doc.Content.TopButton.push({ Name: "新建文件夹", ID: "TopButton.新建文件夹", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.企业云盘.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "上传文件", ID: "TopButton.上传企业云盘文件", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.企业云盘.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "新建文件夹", ID: "TopButton.新建企业云盘文件夹", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.企业云盘.TopButton" });
 App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.企业云盘.TopButton" });
 App.Doc.Content.TopButton.push({ Name: "移动至", ID: "TopButton.移动至", Method: "", Type: "dropdownlist", Menu: [{ Text: "回收站" }, { Text: "草稿箱" }], GroupID: "左侧菜单.企业云盘.TopButton"});
 App.Doc.Content.TopButton.push({ Name: "删除", ID: "TopButton.删除", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.企业云盘.TopButton" });
 
 ///与我共享TopButton菜单
-//App.Doc.Content.TopButton.push({ Name: "与我共享", ID: "TopButton.与我共享", Method: "", Type: "Title", GroupID: "左侧菜单.与我共享.TopButton" });
-//App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.与我共享.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "与我共享", ID: "TopButton.与我共享", Method: "", Type: "Title", GroupID: "左侧菜单.与我共享.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.与我共享.TopButton" });
 
-
+///员工云盘TopButton菜单
+App.Doc.Content.TopButton.push({ Name: "员工云盘", ID: "TopButton.员工云盘", Method: "", Type: "Title", GroupID: "左侧菜单.员工云盘.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.员工云盘.TopButton" });
  
 
 ///云盘分析菜单
@@ -121,13 +125,9 @@ App.Doc.Content.TopButton.push({ Name: "存储管理", ID: "TopButton.存储管�
 App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.存储管理.TopButton" });
 
 ///应用信息菜单
-App.Doc.Content.TopButton.push({ Name: "应用信息", ID: "TopButton.应用信息", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.应用信息.TopButton", Type: "Title" });
+App.Doc.Content.TopButton.push({ Name: "使用帮助", ID: "TopButton.应用信息", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.应用信息.TopButton", Type: "Title" });
 App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.应用信息.TopButton" });
-
-///云笔记测试菜单
-//App.Doc.Content.TopButton.push({ Name: "云笔记测试", ID: "TopButton.云笔记测试", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.云笔记测试.TopButton", Type: "Title" });
-//App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.云笔记测试.TopButton" });
-
+ 
 
 App.Doc.Data = {};
 

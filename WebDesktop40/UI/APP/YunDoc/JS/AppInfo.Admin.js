@@ -45,13 +45,13 @@ App.Doc.Server = {
 
 App.Doc.LeftMenu = [];
 
-App.Doc.LeftMenu.push({ Name: "公司知识库", ID: "LeftMenu.文档操作", Method: "Doc.LeftMenuGroupToggle", ParentID: null });
-App.Doc.LeftMenu.push({ Name: "新建企业文档", ID: "LeftMenu.新建文档", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作" });
-App.Doc.LeftMenu.push({ Name: "新建企业目录", ID: "LeftMenu.新建目录", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作" });
-App.Doc.LeftMenu.push({ Name: "个人文档", ID: "LeftMenu.个人文档", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.个人文档.TopButton" });
-App.Doc.LeftMenu.push({ Name: "与我共享", ID: "LeftMenu.与我共享", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.与我共享.TopButton" });
-App.Doc.LeftMenu.push({ Name: "企业知识库", ID: "LeftMenu.企业知识库", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.企业文档.TopButton" });
-App.Doc.LeftMenu.push({ Name: "员工知识库", ID: "LeftMenu.员工知识库", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.企业文档.TopButton" });
+App.Doc.LeftMenu.push({ Name: "公司知识库", ID: "LeftMenu.公司知识库", Method: "Doc.LeftMenuGroupToggle", ParentID: null });
+//App.Doc.LeftMenu.push({ Name: "新建企业文档", ID: "LeftMenu.新建文档", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.公司知识库" });
+//App.Doc.LeftMenu.push({ Name: "新建企业目录", ID: "LeftMenu.新建目录", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.公司知识库" });
+App.Doc.LeftMenu.push({ Name: "个人文档", ID: "LeftMenu.个人文档", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.公司知识库", TopButtonGroupID: "左侧菜单.个人文档.TopButton" });
+App.Doc.LeftMenu.push({ Name: "与我共享", ID: "LeftMenu.与我共享", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.公司知识库", TopButtonGroupID: "左侧菜单.与我共享.TopButton" });
+App.Doc.LeftMenu.push({ Name: "企业知识库", ID: "LeftMenu.企业知识库", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.公司知识库", TopButtonGroupID: "左侧菜单.企业文档.TopButton" });
+App.Doc.LeftMenu.push({ Name: "员工知识库", ID: "LeftMenu.员工知识库", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.公司知识库", TopButtonGroupID: "左侧菜单.员工知识库.TopButton" });
 
 
 
@@ -87,11 +87,16 @@ App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", Gro
 ///企业文档TopButton菜单
 App.Doc.Content.TopButton.push({ Name: "企业文档", ID: "TopButton.企业文档", Method: "", Type: "Title", GroupID: "左侧菜单.企业文档.TopButton" });
 App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.企业文档.TopButton" });
-//App.Doc.Content.TopButton.push({ Name: "新建文档", ID: "TopButton.新建文档", Method: "Doc.TopButtonClick",    GroupID: "左侧菜单.企业文档.TopButton"});
-//App.Doc.Content.TopButton.push({ Name: "新建目录", ID: "TopButton.新建目录", Method: "Doc.TopButtonClick",    GroupID: "左侧菜单.企业文档.TopButton" });
-//App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "",   GroupID: "左侧菜单.企业文档.TopButton"});
-//App.Doc.Content.TopButton.push({ Name: "移动至", ID: "TopButton.移动至", Method: "",  Type: "dropdownlist", Menu: [{ Text: "回收站" }, { Text: "草稿箱" }], GroupID: "左侧菜单.企业文档.TopButton"});
-//App.Doc.Content.TopButton.push({ Name: "删除", ID: "TopButton.删除", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.企业文档.TopButton"});
+App.Doc.Content.TopButton.push({ Name: "新建文档", ID: "TopButton.新建文档", Method: "Doc.TopButtonClick",    GroupID: "左侧菜单.企业文档.TopButton"});
+App.Doc.Content.TopButton.push({ Name: "新建目录", ID: "TopButton.新建目录", Method: "Doc.TopButtonClick",    GroupID: "左侧菜单.企业文档.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "",   GroupID: "左侧菜单.企业文档.TopButton"});
+App.Doc.Content.TopButton.push({ Name: "移动至", ID: "TopButton.移动至", Method: "",  Type: "dropdownlist", Menu: [{ Text: "回收站" }, { Text: "草稿箱" }], GroupID: "左侧菜单.企业文档.TopButton"});
+App.Doc.Content.TopButton.push({ Name: "删除", ID: "TopButton.删除", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.企业文档.TopButton"});
+
+///企业文档TopButton菜单
+App.Doc.Content.TopButton.push({ Name: "员工知识库", ID: "TopButton.员工知识库", Method: "", Type: "Title", GroupID: "左侧菜单.员工知识库.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.员工知识库.TopButton" });
+
 
 ///文档分析菜单
 App.Doc.Content.TopButton.push({ Name: "文档分析", ID: "TopButton.文档分析", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.文档分析.TopButton", Type: "Title" });

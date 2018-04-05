@@ -84,6 +84,10 @@
       <Project>{b3539da2-9c83-47f4-be30-df49f932bf20}</Project>
       <Name>WangJun.YunNews</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WangJun.YunPan\WangJun.YunPan.csproj">
+      <Project>{7264576F-0E49-4B34-8D91-9F43EEADD777}</Project>
+      <Name>WangJun.YunPan</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

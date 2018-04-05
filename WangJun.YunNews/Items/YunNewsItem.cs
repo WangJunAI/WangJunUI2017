@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using WangJun.Config;
 using WangJun.Entity;
+using WangJun.Tools;
 using WangJun.Utility;
 
 namespace WangJun.YunNews
@@ -88,6 +90,15 @@ namespace WangJun.YunNews
                     property.SetValue(inst, kv.Value);
                 }
             }
+
+            ///智能配图
+            if(!StringChecker.IsHttpUrl(inst.ImageUrl))
+            {
+                var imgData= DataSourceBaidu.GetInstance().GetPic(inst.Title)[0] as Dictionary<string,object>;
+                inst.ImageUrl = imgData["thumbURL"].ToString();
+
+            }
+
             inst.Save();
         }
 

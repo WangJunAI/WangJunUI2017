@@ -6,7 +6,7 @@ Doc.Initial = function () {
  
 
 
-        if (true === SESSION.Current().IsSuperAdmin) {
+        if (true === SESSION.Current().CanManageStaff) {
             $.getScript("./JS/AppInfo.Admin.js", function () {
                 Doc.LoadAppInfo();
                 Doc.LoadMenu();

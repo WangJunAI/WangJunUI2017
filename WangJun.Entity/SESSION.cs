@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Web;
+using WangJun.DB;
+using WangJun.Utility;
 
 namespace WangJun.Entity
 {
@@ -28,10 +30,17 @@ namespace WangJun.Entity
 
         public bool IsSuperAdmin { get; set; }
 
-        public bool CanWrite(int appCode)
-        {
-            return true;
-        }
+        public bool CanManageYunPan { get; set; }
+
+        public bool CanManageYunQun { get; set; }
+
+        public bool CanManageYunProject { get; set; }
+
+        public bool CanManageYunDoc { get; set; }
+        public bool CanManageYunNews { get; set; }
+
+        public bool CanManageYunNote { get; set; }
+        public bool CanManageStaff { get; set; } 
 
         public DateTime LoginTime { get; set; }
 
@@ -40,6 +49,8 @@ namespace WangJun.Entity
         public string LastestRequestUrl { get; set; }
  
  
+        public object ExData { get; set; }
+
         public static SESSION Current
         {
 
@@ -49,21 +60,9 @@ namespace WangJun.Entity
                 if (null != HttpContext.Current)
                 {
                     string _SID = HttpContext.Current.Request.QueryString["_SID"];
-                 
-                    if (!string.IsNullOrWhiteSpace(_SID) && SESSION.sessionDict.ContainsKey(_SID) && null != SESSION.sessionDict[_SID])
-                    {
-                        session = SESSION.sessionDict[_SID];
-                    }
-                    else if (!string.IsNullOrWhiteSpace(_SID) && (!SESSION.sessionDict.ContainsKey(_SID) || null == SESSION.sessionDict[_SID]))
-                    {
-                        var staff = new BaseItem();
-                        staff.ID = _SID;
-                        staff._DbName = "WangJun";
-                        staff._CollectionName = "Staff";
-                        var res = EntityManager.GetInstance().Get<BaseItem>(staff);
-                        session = new SESSION { UserID = res.ID, UserName = res.Name, CompanyID = res.CompanyID, CompanyName = res.CompanyName, LastestRequestUrl = HttpContext.Current.Request.RawUrl };
-                        SESSION.sessionDict[_SID] = session;
-                    }
+
+                    session = SESSION.Get(_SID); 
+ 
                 }
                 else
                 {
@@ -74,20 +73,45 @@ namespace WangJun.Entity
             }
         }
 
+        public static  SESSION Get(string _SID)
+        {
+            var session = new SESSION();
+             if (!string.IsNullOrWhiteSpace(_SID) && (!SESSION.sessionDict.ContainsKey(_SID) || null == SESSION.sessionDict[_SID]))
+            {
+                var staff = new BaseItem();
+                staff.ID = _SID;
+                staff._DbName = "WangJun";
+                staff._CollectionName = "Staff";
+                var res = DataStorage.GetInstance(DBType.MongoDB).Get(staff._DbName, staff._CollectionName, MongoDBFilterCreator.SearchByObjectId(_SID));
+                staff = Convertor.FromDictionaryToObject<BaseItem>(res);
+                session = new SESSION { UserID = staff.ID, UserName = staff.Name, CompanyID = staff.CompanyID, CompanyName = staff.CompanyName, LastestRequestUrl = HttpContext.Current.Request.RawUrl
+                    ,CanManageYunPan = bool.Parse(res["CanManageYunPan"].ToString()),
+                    CanManageYunQun = bool.Parse(res["CanManageYunQun"].ToString()),
+                    CanManageYunProject = bool.Parse(res["CanManageYunProject"].ToString()),
+                    CanManageYunDoc = bool.Parse(res["CanManageYunDoc"].ToString()),
+                    CanManageYunNews = bool.Parse(res["CanManageYunNews"].ToString()),
+                    CanManageYunNote = bool.Parse(res["CanManageYunNote"].ToString()),
+                    CanManageStaff = bool.Parse(res["CanManageStaff"].ToString()),
+                };
+                
+            }
+             else if(  SESSION.sessionDict.ContainsKey(_SID) && null == SESSION.sessionDict[_SID])
+            {
+                session =SESSION.sessionDict[_SID] ;
+            }
+            return session;
+        }
+
         public static SESSION Login(string loginID, string password)
         {
-            var inst = new SESSION();
+            var session = new SESSION();
             var query = "{'Email':'"+loginID+"'}";
             var res = EntityManager.GetInstance().Find<BaseItem>("WangJun","Staff",query,"{}","{}");
             if(1 == res.Count)
             {
-                inst.UserID = res[0].ID;
-                inst.UserName = res[0].Name;
-                inst.CompanyID = res[0].CompanyID;
-                inst.CompanyName = res[0].CompanyName;
-                inst.IsSuperAdmin = (16 == res[0].Level) ? true : false;
+                session = SESSION.Get(res[0].ID);
             }
-            return inst;
+            return session;
 
         }
 

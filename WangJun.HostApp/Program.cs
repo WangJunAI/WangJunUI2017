@@ -11,6 +11,7 @@ using WangJun.Entity;
 using WangJun.Net;
 using WangJun.Utility;
 using WangJun.YunNews;
+using WangJun.YunPan;
 using static WangJun.Entity.ClientBehaviorItem;
 
 namespace WangJun.HostApp
@@ -86,8 +87,13 @@ namespace WangJun.HostApp
         #region 转移云盘文件
         public static void YunPanFileMigrate(Dictionary<string, object> data)
         {
-            var fileHttpUrl = data["FileHttpUrl"].ToString();
-            var serverFileName = data["ServerFileName"].ToString();
+            var tableName = data["CollectionName"].ToString();
+            var dbID = data["DbID"].ToString();
+            var source = YunPanItem.Load(dbID);
+
+
+            var fileHttpUrl = source.FileHttpUrl;
+            var serverFileName = source.ServerFileName;
             var directory = @"E:\test\";
             var localFilePath = directory + serverFileName;
             if (!Directory.Exists(directory))

@@ -45,12 +45,12 @@ App.Doc.CSS.LeftList.View3.Width = { Value: 12, Unit: "em" };
 
 App.Doc.LeftMenu = [];
 
-App.Doc.LeftMenu.push({ Name: "公司群组", ID: "LeftMenu.文档操作", Method: "Doc.LeftMenuGroupToggle",    ParentID: null });
-App.Doc.LeftMenu.push({ Name: "新建群组", ID: "LeftMenu.新建群组", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作" });
-App.Doc.LeftMenu.push({ Name: "创建的群组", ID: "LeftMenu.创建的群组", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.个人笔记.TopButton" });
-App.Doc.LeftMenu.push({ Name: "参与的群组", ID: "LeftMenu.参与的群组", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.与我共享", TopButtonGroupID: "左侧菜单.与我共享.TopButton" });
-App.Doc.LeftMenu.push({ Name: "活跃群组", ID: "LeftMenu.活跃群组", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID:"左侧菜单.活跃群组.TopButton" });
-App.Doc.LeftMenu.push({ Name: "睡眠群组", ID: "LeftMenu.睡眠群组", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.与我共享.TopButton" });
+App.Doc.LeftMenu.push({ Name: "公司群组", ID: "LeftMenu.公司群组", Method: "Doc.LeftMenuGroupToggle",    ParentID: null });
+App.Doc.LeftMenu.push({ Name: "新建群组", ID: "LeftMenu.新建群组", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.公司群组" });
+App.Doc.LeftMenu.push({ Name: "创建的群组", ID: "LeftMenu.创建的群组", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.公司群组", TopButtonGroupID: "左侧菜单.创建的群组.TopButton" });
+App.Doc.LeftMenu.push({ Name: "参与的群组", ID: "LeftMenu.参与的群组", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.公司群组", TopButtonGroupID: "左侧菜单.参与的群组.TopButton" });
+App.Doc.LeftMenu.push({ Name: "活跃群组", ID: "LeftMenu.活跃群组", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.公司群组", TopButtonGroupID:"左侧菜单.活跃群组.TopButton" });
+App.Doc.LeftMenu.push({ Name: "睡眠群组", ID: "LeftMenu.睡眠群组", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.公司群组", TopButtonGroupID: "左侧菜单.睡眠群组.TopButton" });
  
 App.Doc.LeftMenu.push({ Name: "数据分析", ID: "LeftMenu.数据分析", Method: "Doc.LeftMenuGroupToggle" , ParentID: null });
 App.Doc.LeftMenu.push({ Name: "群组分析", ID: "LeftMenu.文档分析", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析", TopButtonGroupID: "左侧菜单.文档分析.TopButton"});
@@ -64,7 +64,17 @@ App.Doc.LeftMenu.push({ Name: "应用信息", ID: "LeftMenu.应用信息", Metho
 
 App.Doc.Content = {};
 App.Doc.Content.TopButton = [];
-  
+
+///创建的群组TopButton菜单
+App.Doc.Content.TopButton.push({ Name: "创建的群组", ID: "TopButton.创建的群组", Method: "", Type: "Title", GroupID: "左侧菜单.创建的群组.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.创建的群组.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "新建群组", ID: "TopButton.新建群组", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.创建的群组.TopButton" });
+ 
+///参与的群组TopButton菜单
+App.Doc.Content.TopButton.push({ Name: "参与的群组", ID: "TopButton.参与的群组", Method: "", Type: "Title", GroupID: "左侧菜单.参与的群组.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.参与的群组.TopButton" });
+
+
 ///活跃群组TopButton菜单
 App.Doc.Content.TopButton.push({ Name: "活跃群组", ID: "TopButton.活跃群组", Method: "",   Type: "Title", GroupID: "左侧菜单.活跃群组.TopButton"});
 App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "",   GroupID: "左侧菜单.活跃群组.TopButton"});
@@ -73,6 +83,11 @@ App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "",   G
 //App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "",   GroupID: "左侧菜单.活跃群组.TopButton"});
 App.Doc.Content.TopButton.push({ Name: "移动至", ID: "TopButton.移动至", Method: "",  Type: "dropdownlist", Menu: [{ Text: "回收站" }, { Text: "草稿箱" }], GroupID: "左侧菜单.活跃群组.TopButton"});
 App.Doc.Content.TopButton.push({ Name: "删除", ID: "TopButton.删除", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.活跃群组.TopButton"});
+
+///睡眠群组TopButton菜单
+App.Doc.Content.TopButton.push({ Name: "睡眠群组", ID: "TopButton.睡眠群组", Method: "", Type: "Title", GroupID: "左侧菜单.睡眠群组.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.睡眠群组.TopButton" });
+
 
 ///与我共享TopButton菜单
 App.Doc.Content.TopButton.push({ Name: "与我共享", ID: "TopButton.与我共享", Method: "", Type: "Title", GroupID: "左侧菜单.与我共享.TopButton" });

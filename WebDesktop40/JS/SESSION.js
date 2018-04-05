@@ -37,6 +37,8 @@ SESSION.Current = function () {
     else {
         var res = JSON.parse(session);
         $("#userName").text(res.UserName);
+
+
         return res;
     }
 }

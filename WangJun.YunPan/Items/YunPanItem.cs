@@ -70,6 +70,13 @@ namespace WangJun.YunPan
         /// </summary>
         public string FileType { get; set; }
 
+        public static YunPanItem Load(string id)
+        {
+            var item = new YunPanItem();
+            item.ID = id;
+            item = EntityManager.GetInstance().Get<YunPanItem>(item);
+            return item;
+        }
 
         /// <summary>
         /// 保存

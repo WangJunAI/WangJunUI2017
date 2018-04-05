@@ -44,14 +44,14 @@ App.Doc.CSS.LeftList.View3.Width = { Value: 12, Unit: "em" };
 
 App.Doc.LeftMenu = [];
 
-App.Doc.LeftMenu.push({ Name: "公司项目", ID: "LeftMenu.文档操作", Method: "Doc.LeftMenuGroupToggle",    ParentID: null });
-//App.Doc.LeftMenu.push({ Name: "新建项目", ID: "LeftMenu.新建项目", Method: "Doc.LeftMenuClick",    ParentID: "LeftMenu.文档操作" });
-//App.Doc.LeftMenu.push({ Name: "新建目录", ID: "LeftMenu.新建目录", Method: "Doc.LeftMenuClick",  ParentID: "LeftMenu.文档操作" });
-App.Doc.LeftMenu.push({ Name: "发起的项目", ID: "LeftMenu.发起的项目", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.发起的项目.TopButton" });
-App.Doc.LeftMenu.push({ Name: "参与的项目", ID: "LeftMenu.参与的项目", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.参与的项目.TopButton" });
-App.Doc.LeftMenu.push({ Name: "运行中项目", ID: "LeftMenu.运行中项目", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID:"左侧菜单.发起的项目.TopButton" });
-App.Doc.LeftMenu.push({ Name: "已超时项目", ID: "LeftMenu.已超时项目", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.参与的项目.TopButton" });
-App.Doc.LeftMenu.push({ Name: "已结束项目", ID: "LeftMenu.已结束项目", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID: "左侧菜单.参与的项目.TopButton" });
+App.Doc.LeftMenu.push({ Name: "公司项目", ID: "LeftMenu.公司项目", Method: "Doc.LeftMenuGroupToggle",    ParentID: null });
+//App.Doc.LeftMenu.push({ Name: "新建项目", ID: "LeftMenu.新建项目", Method: "Doc.LeftMenuClick",    ParentID: "LeftMenu.公司项目" });
+//App.Doc.LeftMenu.push({ Name: "新建目录", ID: "LeftMenu.新建目录", Method: "Doc.LeftMenuClick",  ParentID: "LeftMenu.公司项目" });
+App.Doc.LeftMenu.push({ Name: "发起的项目", ID: "LeftMenu.发起的项目", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.公司项目", TopButtonGroupID: "左侧菜单.发起的项目.TopButton" });
+App.Doc.LeftMenu.push({ Name: "参与的项目", ID: "LeftMenu.参与的项目", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.公司项目", TopButtonGroupID: "左侧菜单.参与的项目.TopButton" });
+App.Doc.LeftMenu.push({ Name: "运行中项目", ID: "LeftMenu.运行中项目", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.公司项目", TopButtonGroupID:"左侧菜单.运行中项目.TopButton" });
+App.Doc.LeftMenu.push({ Name: "已超时项目", ID: "LeftMenu.已超时项目", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.公司项目", TopButtonGroupID: "左侧菜单.已超时项目.TopButton" });
+App.Doc.LeftMenu.push({ Name: "已结束项目", ID: "LeftMenu.已结束项目", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.公司项目", TopButtonGroupID: "左侧菜单.已结束项目.TopButton" });
 
 
 
@@ -63,7 +63,7 @@ App.Doc.LeftMenu.push({ Name: "用户参与", ID: "LeftMenu.用户参与", Metho
 App.Doc.LeftMenu.push({ Name: "系统管理", ID: "LeftMenu.系统管理", Method: "Doc.LeftMenuGroupToggle",   ParentID: null });
 App.Doc.LeftMenu.push({ Name: "回收站", ID: "LeftMenu.回收站", Method: "Doc.LeftMenuClick",  ParentID: "LeftMenu.系统管理", TopButtonGroupID:"左侧菜单.回收站.TopButton" });
 App.Doc.LeftMenu.push({ Name: "存储管理", ID: "LeftMenu.存储管理", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.系统管理", TopButtonGroupID: "左侧菜单.存储管理.TopButton" });
-App.Doc.LeftMenu.push({ Name: "应用信息", ID: "LeftMenu.应用信息", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.系统管理", TopButtonGroupID: "左侧菜单.应用信息.TopButton" });
+App.Doc.LeftMenu.push({ Name: "使用帮助", ID: "LeftMenu.应用信息", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.系统管理", TopButtonGroupID: "左侧菜单.应用信息.TopButton" });
 
 App.Doc.Content = {};
 App.Doc.Content.TopButton = [];
@@ -85,6 +85,19 @@ App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", Gro
 //App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.参与的项目.TopButton" });
 //App.Doc.Content.TopButton.push({ Name: "移动至", ID: "TopButton.移动至", Method: "", Type: "dropdownlist", Menu: [{ Text: "回收站" }, { Text: "草稿箱" }], GroupID: "左侧菜单.参与的项目.TopButton" });
 //App.Doc.Content.TopButton.push({ Name: "删除", ID: "TopButton.删除", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.参与的项目.TopButton" });
+
+///运行中项目TopButton菜单
+App.Doc.Content.TopButton.push({ Name: "运行中项目", ID: "TopButton.运行中项目", Method: "", Type: "Title", GroupID: "左侧菜单.运行中项目.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.运行中项目.TopButton" });
+
+///已超时项目TopButton菜单
+App.Doc.Content.TopButton.push({ Name: "已超时项目", ID: "TopButton.已超时项目", Method: "", Type: "Title", GroupID: "左侧菜单.已超时项目.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.已超时项目.TopButton" });
+ 
+
+///已结束项目TopButton菜单
+App.Doc.Content.TopButton.push({ Name: "已结束项目", ID: "TopButton.已结束项目", Method: "", Type: "Title", GroupID: "左侧菜单.已结束项目.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.已结束项目.TopButton" });
 
 
 ///文档分析菜单

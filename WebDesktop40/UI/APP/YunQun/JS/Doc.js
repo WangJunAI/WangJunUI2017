@@ -7,7 +7,7 @@ Doc.Initial = function () {
     $(document).ready(function () {
  
 
-        if (true === SESSION.Current().IsSuperAdmin) {
+        if (true === SESSION.Current().CanManageYunQun) {
             $.getScript("./JS/AppInfo.Admin.js", function () {
                 Doc.LoadAppInfo();
                 Doc.LoadMenu();

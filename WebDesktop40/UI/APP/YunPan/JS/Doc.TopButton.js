@@ -45,12 +45,20 @@ Doc.FindTopButtons = function (groupID) {
 
 Doc.TopButtonClick = function (id) {
     id = (true === PARAM_CHECKER.IsNotEmptyString(id)) ? id : $(event.target).attr("data-id");
-    if ("TopButton.上传文件" === id) {
+    if ("TopButton.上传企业云盘文件" === id) {
         var url = App.Doc.Server.Url3 + "?t=" + (new Date().getTime());
         Doc.ShowWindow(url);
     }
-    else if ("TopButton.新建文件夹" === id) {
+    else if ("TopButton.新建企业云盘文件夹" === id) {
         var url = App.Doc.Server.Url6 + "?t=" + (new Date().getTime());
+        Doc.ShowWindow(url);
+    }
+    else if ("TopButton.上传个人云盘文件" === id) {
+        var url = App.Doc.Server.Url31 + "?t=" + (new Date().getTime());
+        Doc.ShowWindow(url);
+    }
+    else if ("TopButton.新建个人云盘文件夹" === id) {
+        var url = App.Doc.Server.Url61 + "?t=" + (new Date().getTime());
         Doc.ShowWindow(url);
     }
     else if ("TopButton.移动至" === id) {
