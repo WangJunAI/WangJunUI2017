@@ -109,7 +109,7 @@ Doc.LeftMenuClick = function (id) {
         Doc.LoadTopButton(topButtonId);
         Doc.ShowContent("Chart1.html");
     }
-    else if ("LeftMenu.应用信息" == id) {
+    else if ("LeftMenu.使用帮助" == id) {
         Doc.ShowView2();
         Doc.LoadTopButton(topButtonId);
         Doc.ShowContent("AppInfo.html");
