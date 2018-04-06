@@ -1441,7 +1441,9 @@
     <Content Include="CSS\TPL.Font.css" />
     <Content Include="JS\QuickBar\QuickBar.css" />
     <Content Include="JS\TPL\TPL.Nav.Ztree.js" />
+    <Content Include="UI\APP\YunDoc\Category.Admin.html" />
     <Content Include="UI\APP\YunDoc\Chart1.html" />
+    <Content Include="UI\APP\YunDoc\Detail.Admin.html" />
     <Content Include="UI\APP\YunDoc\JS\AppInfo.Admin.js" />
     <Content Include="UI\APP\YunDoc\JS\AppInfo.Client.js" />
     <Content Include="UI\APP\YunNews\AppInfo.html" />

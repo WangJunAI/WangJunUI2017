@@ -61,8 +61,8 @@
                 <div class="downlist" >
                     <ul>
                         <li><a href="javascript:;" onclick="Doc.ActiveDesktop()">返回桌面</a></li>
-                        <li><a href="javascript:;">关闭该应用</a></li>
-                        <li><a href="javascript:;">关闭系统</a></li>
+                        <li><a href="javascript:;" onclick="Doc.CloseWindow({ 'WindowName': window.name });">关闭该应用</a></li>
+                        <li><a href="javascript:;" onclick="SESSION.Logout();">关闭系统</a></li>
                     </ul>
                 </div>
             </div>

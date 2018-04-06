@@ -3,7 +3,7 @@
 var TouTiao = {};
 
 TouTiao.LoadCategory = function () {
-    var context = [JSON.stringify({ "ParentID": { $ne: "000000000000000000000000" } }),"{}", "{}", 0, 1000];
+    var context = [JSON.stringify({ "OwnerID": SESSION.Current().CompanyID, "ParentID": { $ne:"000000000000000000000000"} }), "{}", "{}", 0, 1000];
 
     var callback = function (res) {
         LOGGER.Log(res);

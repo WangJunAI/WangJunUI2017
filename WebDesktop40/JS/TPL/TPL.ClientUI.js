@@ -82,7 +82,10 @@ Doc.CloseWindow = function (option) {
             clearTimeout(tId);
             $(window.parent.document).find('#detailWindow').hide();
             window.close();
-        },1000);
+        }, 1000);
+    }
+    else if (true === PARAM_CHECKER.IsObject(option) && window.name === option.WindowName) {
+        window.close();
     }
     else {
         $("#detailWindow iframe").attr("src", url);

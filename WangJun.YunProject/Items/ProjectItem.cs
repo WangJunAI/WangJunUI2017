@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using WangJun.Config;
 using WangJun.Entity;
+using WangJun.HumanResource;
 using WangJun.Utility;
 
 namespace WangJun.YunProject
@@ -99,6 +100,24 @@ namespace WangJun.YunProject
 
 
              inst.Save();
+
+
+            #region 创建共享文档
+            if (null != inst.UserAllowedArray)
+            {
+                var redirectID = inst.ID;
+                foreach (string id in inst.UserAllowedArray)
+                {
+                    var staff = StaffItem.Load(id);
+                    inst.ID = null;
+                    inst.Name = "[共享给" + staff.Name + "]" + inst.Name;
+                    inst.Title = "[共享给" + staff.Name + "]" + inst.Title;
+                    inst._RedirectID = redirectID;
+                    inst.OwnerID = id;
+                    inst.Save();
+                }
+            }
+            #endregion
         }
         public void Remove()
         {

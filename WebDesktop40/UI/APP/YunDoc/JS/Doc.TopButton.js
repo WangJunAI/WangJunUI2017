@@ -45,12 +45,20 @@ Doc.FindTopButtons = function (groupID) {
 
 Doc.TopButtonClick = function () {
     var id = $(event.target).attr("data-id");
-    if ("TopButton.新建文档" === id) {
+    if ("TopButton.新建个人文档" === id) {
         var url = App.Doc.Server.Url3 + "?t=" + (new Date().getTime());
         Doc.ShowWindow(url);
     }
-    else if ("TopButton.新建目录" === id) {
+    else if ("TopButton.新建个人目录" === id) {
         var url = App.Doc.Server.Url6 + "?t=" + (new Date().getTime());
+        Doc.ShowWindow(url);
+    }
+    else if ("TopButton.新建企业文档" === id) {
+        var url = App.Doc.Server.Url31 + "?t=" + (new Date().getTime());
+        Doc.ShowWindow(url);
+    }
+    else if ("TopButton.新建企业目录" === id) {
+        var url = App.Doc.Server.Url61 + "?t=" + (new Date().getTime());
         Doc.ShowWindow(url);
     }
     else if ("TopButton.删除" === id) {

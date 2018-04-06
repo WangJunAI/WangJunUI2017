@@ -18,6 +18,8 @@ Doc.SaveCategory = function () {
         }
     });
 
+    item.OwnerID = SESSION.Current().CompanyID; ///企业新闻OwnerID为公司ID
+
     var param = [Convertor.ToBase64String(JSON.stringify(item), true), { 0: "base64" }];
 
     var callback = function (res) {

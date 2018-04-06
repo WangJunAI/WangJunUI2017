@@ -62,6 +62,7 @@ Doc.ShowDetail = function (data,option) {
             $("#editor img").parent().css("text-align", "center");
             $(".options").remove();
             $(".buttons").remove();
+            $(".minibuttons").remove();
         }
 
         var $ctrls = $("[data-FormName='Default']").each(function () {

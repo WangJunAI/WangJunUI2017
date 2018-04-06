@@ -57,7 +57,7 @@ Doc.LeftMenuClick = function (id) {
         Doc.SetQuery(listQuery); 
     }
     else if ("LeftMenu.参与的项目" == id) {
-        Doc.ShowView1();
+        Doc.ShowView3();
 
         Doc.LoadTopButton(topButtonId);
         var listQuery = JSON.stringify({});
@@ -65,7 +65,7 @@ Doc.LeftMenuClick = function (id) {
             Doc.LoadTreeTo("#leftPart1", res1, [], { header: "小提示：修改目录双击即可" });
             Doc.ShowContent("redirect.html");
              
-            Doc.LoadData_Doc(context = [listQuery, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size],   function (res2) { Doc.LoadSummaryListTo("#leftPart2", res2);  });
+            Doc.LoadData_Doc(context = [listQuery, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size], function (res2) { Doc.LoadSummaryListTo("#leftList", res2);  });
         }
 
         var param = [JSON.stringify({ OwnerID: SESSION.Current().CompanyID }), "{}", "{}", 0, 1000]

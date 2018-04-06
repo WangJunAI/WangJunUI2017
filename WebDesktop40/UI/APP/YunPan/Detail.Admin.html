@@ -179,7 +179,7 @@
                          $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
                          $("[data-propertyName='ParentName']").text(name);
                     },
-                    header: "请选择上传目录"
+                    header: "<div class='margin_l05em fontweight700'>请选择上传目录</div>"
                 });
             }); ///加载目录
              
@@ -194,7 +194,7 @@
         Doc.LoadData_All([], function (res1) {
             Doc.LoadTreeTo("#category3", res1, [], {
                 ShowMode: "checkbox", Check: function (event, treeId, treeNode) { },
-                header:"请选择共享人员"
+                header:"<div class='margin_l05em fontweight700'>请选择共享人员</div>"
             });
         }); ///加载目录
 
@@ -241,8 +241,8 @@
         // 文件上传过程中创建进度条实时显示。
         uploader.on('uploadProgress', function (file, percentage) {
             var $li = $('#' + file.id)
-            var listItemHtml = "<li id=[ID]><div>[PIC]</div><span style='display:none;''>[FileName2]</span><div>[FileName]</div><div>[Percentage]</div><div>[Status]</div></li>";
-            listItemHtml = listItemHtml.replace("[ID]", file.id).replace("[FileName]", file.name).replace("[FileName2]", file.name).replace("[Percentage]", percentage + "%").replace("[Status]", "上传中");
+            var listItemHtml = "<div>[PIC]</div><span style='display:none;''>[FileName2]</span><div>[FileName]</div><div>[Percentage]</div><div>[Status]</div>";
+            listItemHtml = listItemHtml.replace("[FileName]", file.name).replace("[FileName2]", file.name).replace("[Percentage]", percentage + "%").replace("[Status]", "上传中");
             $li.html(listItemHtml);
         });
     </script>
@@ -253,6 +253,7 @@
             listItemHtml = listItemHtml.replace("[ID]", file.id).replace("[FileName]", file.name).replace("[FileName2]", file.name).replace("[Percentage]", 100 + "%").replace("[Status]", "已上传");
             $li.html(listItemHtml);
             var resInfo = arguments[1];
+            resInfo.OwnerID = SESSION.Current().CompanyID;
             ///发起上传信息
             Doc.SaveDetail(resInfo);
         });

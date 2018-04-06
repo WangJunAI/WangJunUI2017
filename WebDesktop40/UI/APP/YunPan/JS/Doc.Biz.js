@@ -93,6 +93,10 @@ Doc.SaveDetail = function (resInfo) {
     item.ServerFileName = resInfo.ServerFileName;
     item.Name = resInfo.FileNameInClient;
     item.FileLength = resInfo.FileLength;
+    if (true === PARAM_CHECKER.IsNotEmptyString(resInfo.OwnerID)) {
+        item.OwnerID = resInfo.OwnerID;
+    }
+
 
 
 

@@ -21,9 +21,11 @@ App.Doc.Server = {
     Url1: "http://localhost:9990/API.ashx?c=WangJun.YunDoc.YunDocWebAPI&m=LoadEntityList", ///加载文档目录
     Url2: "http://localhost:9990/API.ashx?c=WangJun.YunDoc.YunDocWebAPI&m=Count",///文档数量
     Url3: "Detail.html",
+    Url31: "Detail.Admin.html",
     Url4: "http://localhost:9990/API.ashx?c=WangJun.YunDoc.YunDocWebAPI&m=SaveEntity",///保存一个文档
     Url5: "http://localhost:9990/API.ashx?c=WangJun.YunDoc.YunDocWebAPI&m=GetEntity",///获取一个文档
     Url6: "Category.html",
+    Url61: "Category.Admin.html",
     Url7: "http://localhost:9990/API.ashx?c=WangJun.YunDoc.YunDocWebAPI&m=SaveCategory",///保存一个目录
     Url8: "http://localhost:9990/API.ashx?c=WangJun.YunDoc.YunDocWebAPI&m=LoadCategoryList",///加载目录列表
     Url9: "http://localhost:9990/API.ashx?c=WangJun.YunDoc.YunDocWebAPI&m=RemoveEntity",///移除一份文档,暂未使用
@@ -73,8 +75,8 @@ App.Doc.Content.TopButton = [];
 ///个人文档TopButton菜单
 App.Doc.Content.TopButton.push({ Name: "个人文档", ID: "TopButton.个人文档", Method: "", Type: "Title", GroupID: "左侧菜单.个人文档.TopButton" });
 App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.个人文档.TopButton" });
-App.Doc.Content.TopButton.push({ Name: "新建文档", ID: "TopButton.新建文档", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.个人文档.TopButton" });
-App.Doc.Content.TopButton.push({ Name: "新建目录", ID: "TopButton.新建目录", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.个人文档.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "新建文档", ID: "TopButton.新建个人文档", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.个人文档.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "新建目录", ID: "TopButton.新建个人目录", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.个人文档.TopButton" });
 App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.个人文档.TopButton" });
 //App.Doc.Content.TopButton.push({ Name: "移动至", ID: "TopButton.移动至", Method: "",  Type: "dropdownlist", Menu: [{ Text: "回收站" }, { Text: "草稿箱" }], GroupID: "左侧菜单.个人文档.TopButton"});
 App.Doc.Content.TopButton.push({ Name: "删除", ID: "TopButton.删除", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.个人文档.TopButton" });
@@ -87,8 +89,8 @@ App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", Gro
 ///企业文档TopButton菜单
 App.Doc.Content.TopButton.push({ Name: "企业文档", ID: "TopButton.企业文档", Method: "", Type: "Title", GroupID: "左侧菜单.企业文档.TopButton" });
 App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.企业文档.TopButton" });
-App.Doc.Content.TopButton.push({ Name: "新建文档", ID: "TopButton.新建文档", Method: "Doc.TopButtonClick",    GroupID: "左侧菜单.企业文档.TopButton"});
-App.Doc.Content.TopButton.push({ Name: "新建目录", ID: "TopButton.新建目录", Method: "Doc.TopButtonClick",    GroupID: "左侧菜单.企业文档.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "新建文档", ID: "TopButton.新建企业文档", Method: "Doc.TopButtonClick",    GroupID: "左侧菜单.企业文档.TopButton"});
+App.Doc.Content.TopButton.push({ Name: "新建目录", ID: "TopButton.新建企业目录", Method: "Doc.TopButtonClick",    GroupID: "左侧菜单.企业文档.TopButton" });
 App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "",   GroupID: "左侧菜单.企业文档.TopButton"});
 App.Doc.Content.TopButton.push({ Name: "移动至", ID: "TopButton.移动至", Method: "",  Type: "dropdownlist", Menu: [{ Text: "回收站" }, { Text: "草稿箱" }], GroupID: "左侧菜单.企业文档.TopButton"});
 App.Doc.Content.TopButton.push({ Name: "删除", ID: "TopButton.删除", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.企业文档.TopButton"});
