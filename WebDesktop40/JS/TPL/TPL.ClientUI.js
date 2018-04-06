@@ -129,3 +129,7 @@ Doc.SubmitEnd = function (id) {
     $filter.text($filter.text().replace("正在", ""));
     Doc.ShowDialog("提交成功...");
 }
+
+Doc.ActiveDesktop = function () {
+    window.open('', 'Desktop');
+}

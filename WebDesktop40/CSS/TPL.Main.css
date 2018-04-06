@@ -25,9 +25,22 @@ body {
                 width: 10em;
                 background-color: #222;
             }
-            .global > .head >   .personInfo > .downlist ul {
-                list-style:none;
-            }
+                .global > .head > .personInfo > .downlist> ul {
+                    list-style: none;
+                    margin-left: -40px;
+                }
+                    .global > .head > .personInfo > .downlist > ul  a {
+                        height: 2em;
+                        line-height: 2em;
+                        display:block;
+                        width:100%;
+
+                    }
+
+                    .global > .head > .personInfo > .downlist > ul a:hover {
+                        background-color:#999;
+                    }
+
                 /*头部定义 结束*/
                 .head {
     position: absolute;

@@ -52,7 +52,10 @@ App.Doc.LeftMenu.push({ Name: "新建人员", ID: "LeftMenu.新建人员", Metho
 App.Doc.LeftMenu.push({ Name: "新建组织", ID: "LeftMenu.新建组织", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.人员和组织" });
 App.Doc.LeftMenu.push({ Name: "在职人员", ID: "LeftMenu.在职人员", Method: "Doc.LeftMenuClick",   ParentID: "LeftMenu.人员和组织", TopButtonGroupID: "左侧菜单.在职人员.TopButton"  });
 App.Doc.LeftMenu.push({ Name: "离职人员", ID: "LeftMenu.离职人员", Method: "Doc.LeftMenuClick",   ParentID: "LeftMenu.人员和组织", TopButtonGroupID:"左侧菜单.离职人员.TopButton" });
- 
+App.Doc.LeftMenu.push({ Name: "我的同事", ID: "LeftMenu.我的同事", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.人员和组织", TopButtonGroupID: "左侧菜单.在职人员.TopButton" });
+
+
+
 App.Doc.LeftMenu.push({ Name: "权限设置", ID: "LeftMenu.权限设置", Method: "Doc.LeftMenuGroupToggle", ParentID: null });
 App.Doc.LeftMenu.push({ Name: "新建角色", ID: "LeftMenu.新建角色", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.权限设置" });
 App.Doc.LeftMenu.push({ Name: "角色列表", ID: "LeftMenu.角色列表", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.权限设置", TopButtonGroupID: "左侧菜单.角色列表.TopButton" });

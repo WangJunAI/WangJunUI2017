@@ -42,5 +42,6 @@ DESKTOP.ToggleNoticeCenter = function () {
 ///桌面初始化
 DESKTOP.Initial = function () {
     DESKTOP.EventBind();
+    window.name = "Desktop";
 }
 
