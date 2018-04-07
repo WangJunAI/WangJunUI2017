@@ -106,3 +106,22 @@ Doc.RemoveDetail = function (id, callback) {
     NET.PostData(App.Doc.Server.Url9, callback, context);
 }
 
+Doc.MoveEntities = function (targetId, targetName) {
+    var selectedIdArray = Doc.GetSelectedTableRow();
+    for (var k = 0; k < selectedIdArray.length; k++) {
+        var id = selectedIdArray[k];
+        NET.LoadData(App.Doc.Server.Url5, function (entity) {
+            ///获取文档
+            var updateItem = {};
+            updateItem.ID = entity.ID;
+            updateItem.ParentID = targetId;
+            updateItem.ParentName = targetName;
+            var param = [Convertor.ToBase64String(JSON.stringify(updateItem), true), { 0: "base64" }];
+            NET.PostData(App.Doc.Server.Url4, function (res3) {
+                Doc.LeftMenuClick("LeftMenu.企业新闻");
+
+                Doc.ShowDialog("移动完毕");
+            }, param);
+        }, [id], NET.POST);
+    }
+}

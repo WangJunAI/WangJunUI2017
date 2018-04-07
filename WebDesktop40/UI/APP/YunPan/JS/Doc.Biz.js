@@ -137,3 +137,28 @@ Doc.MoveEntities = function (targetId,targetName) {
         }, [id], NET.POST);
     }
 }
+
+Doc.ShareTo = function (treeId) {
+    treeId = (true === PARAM_CHECKER.IsNotEmptyString(treeId)) ? treeId : $(event.target).parents("[data-id='category']").find('.ztree').attr('id');
+    Doc.CancelCheckAllNodes(treeId);
+    $(event.target).parents("[data-id='category']").toggle();
+
+    var selectedIdArray = Doc.GetSelectedTableRow();
+    var checkedTreeNodeArray = Doc.GetCheckedTreeNodes(treeId);
+    for (var k = 0; k < selectedIdArray.length; k++) {
+        var id = selectedIdArray[k];
+        NET.LoadData(App.Doc.Server.Url5, function (entity) {
+            ///获取文档
+            var updateItem = {};
+            updateItem.ID = entity.ID;
+            updateItem.UserAllowedArray = checkedTreeNodeArray;
+            //updateItem.ParentName = targetName;
+            var param = [Convertor.ToBase64String(JSON.stringify(updateItem), true), { 0: "base64" }];
+            NET.PostData(App.Doc.Server.Url4, function (res3) {
+                //Doc.LeftMenuClick("LeftMenu.个人云盘");
+
+                Doc.ShowDialog("分享完毕");
+            }, param);
+        }, [id], NET.POST);
+    }
+}

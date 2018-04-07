@@ -75,6 +75,7 @@ App.Doc.Content.TopButton.push({ Name: "上传文件", ID: "TopButton.上传个�
 App.Doc.Content.TopButton.push({ Name: "新建文件夹", ID: "TopButton.新建个人云盘文件夹", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.个人云盘.TopButton" });
 App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.个人云盘.TopButton" });
 App.Doc.Content.TopButton.push({ Name: "移动至", ID: "TopButton.移动至", Method: "", Type: "dropdownlist", Menu: [{ Text: "回收站" }, { Text: "草稿箱" }], GroupID: "左侧菜单.个人云盘.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "共享给", ID: "TopButton.共享给", Method: "", Type: "dropdownlist", Menu: [{ Text: "回收站" }, { Text: "草稿箱" }], GroupID: "左侧菜单.个人云盘.TopButton" });
 App.Doc.Content.TopButton.push({ Name: "删除", ID: "TopButton.删除", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.个人云盘.TopButton" });
 
 

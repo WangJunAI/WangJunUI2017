@@ -14,7 +14,7 @@ Doc.ShowTopButton = function (data) {
             var itemData = data[k];
             var html = "";
             if ("dropdownlist" === itemData.Type) {
-                html = topButtonHtml2.replace("[Name]", itemData.Name).replace("[Method]", itemData.Method).replace("[Param]", itemData.Param).replace("[ID]", itemData.ID);;
+                html = topButtonHtml2.replace("[Name]", itemData.Name).replace("[Method]", itemData.Method).replace("[Param]", itemData.Param).replace("[ID]", itemData.ID);
             }
             else if ("|" === itemData.Name) {
                 html = topButtonHtml1.replace("", "").replace("javascript:;", "").replace("href", "_href").replace("onclick", "_onclick").replace("[Name]", itemData.Name);
@@ -93,11 +93,11 @@ Doc.TopButtonClick = function (id) {
                     Source: "TopButton",
                     ShowMode: "checkbox",
                     Check: function (event, treeId, treeNode) {
-                        console.log("Test");
-
+ 
                     },
-                    header: "<div class='txtright'><a href='javascript:;' class='margin_r05em'>清空</a><a href='javascript:;'  class='margin_r05em'>确定</a><a href='javascript:;'  class='margin_r05em'>取消</a></div>",
+                    header: "<div class='txtright'><a href='javascript:;' class='margin_r05em'>清空</a><a href='javascript:;'  class='margin_r05em' onclick='Doc.ShareTo()'>确定</a><a href='javascript:;'  class='margin_r05em'>取消</a></div>",
                     Click: function () {
+
                     }
                 });
             });

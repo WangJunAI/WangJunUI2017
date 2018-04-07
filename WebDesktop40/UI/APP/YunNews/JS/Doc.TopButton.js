@@ -14,7 +14,7 @@ Doc.ShowTopButton = function (data) {
             var itemData = data[k];
             var html = "";
             if ("dropdownlist" === itemData.Type) {
-                html = topButtonHtml2.replace("[Name]", itemData.Name).replace("[Method]", itemData.Method).replace("[Param]", itemData.Param);
+                html = topButtonHtml2.replace("[Name]", itemData.Name).replace("[Method]", itemData.Method).replace("[Param]", itemData.Param).replace("[ID]", itemData.ID);
             }
             else if ("|" === itemData.Name) {
                 html = topButtonHtml1.replace("", "").replace("javascript:;", "").replace("href", "_href").replace("onclick", "_onclick").replace("[Name]", itemData.Name);
@@ -43,8 +43,8 @@ Doc.FindTopButtons = function (groupID) {
 }
 
 
-Doc.TopButtonClick = function () {
-    var id = $(event.target).attr("data-id");
+Doc.TopButtonClick = function (id) {
+    id = (true === PARAM_CHECKER.IsNotEmptyString(id)) ? id : $(event.target).attr("data-id");
     if ("TopButton.新建新闻" === id) {
         var url = App.Doc.Server.Url3 + "?t=" + (new Date().getTime());
         Doc.ShowWindow(url);
@@ -52,6 +52,27 @@ Doc.TopButtonClick = function () {
     else if ("TopButton.新建分类" === id) {
         var url = App.Doc.Server.Url6 + "?t=" + (new Date().getTime());
         Doc.ShowWindow(url);
+    }
+    else if ("TopButton.移动至" === id) {
+        $('[data-id="' + id + '"]').find('[data-id=\'category\']').toggle();
+        if (false === PARAM_CHECKER.IsNotEmptyString($('[data-id="' + id + '"]').find("[data-id='category']").first().attr("id"))) {
+            $('[data-id="' + id + '"]').find("[data-id='category']").first().attr("id", "category" + Math.random().toString().replace(".", ""));
+        }
+        var droplistId = "#" + $('[data-id="' + id + '"]').find("[data-id='category']").first().attr("id");
+
+        var query = App.Doc.QueryDict["默认新闻目录查询条件"];
+        Doc.LoadData_Category(query, function (res1) {
+            Doc.LoadTreeTo(droplistId, res1, [], {
+                Source: "TopButton",
+                Click: function (event, treeId, treeNode) {
+                    var parentName = treeNode.Name;
+                    var parentID = treeNode.ID;
+                    ///获取选中行，将文档移动过去
+                    Doc.MoveEntities(parentID, parentName);
+                },
+                header: "将选中的新闻移动至.."
+            });
+        });
     }
     else if ("TopButton.删除" === id) {
         Doc.RemoveSelectedDetail();

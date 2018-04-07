@@ -172,3 +172,8 @@ App.Doc.Data.RecycleBin.Info.Pager.PagerIndexClick = function () {
     var index = $(event.target).attr("data-Index");
     Doc.LoadTable(parseInt(index), App.Doc.Data.Pager.Size, "{}", App.Doc.Data.RecycleBin.Info);
 }
+
+/////查询条件/////
+App.Doc.QueryDict = {
+    "默认新闻目录查询条件": [JSON.stringify({ OwnerID: SESSION.Current().CompanyID }), "{}", "{}", 0, 1000]
+}
