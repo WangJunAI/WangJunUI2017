@@ -57,9 +57,9 @@
         <div class="head">
             <a href="javascript:;" id="appName">文档管理</a>
             <a href="javascript:;" id="userName" class="right" onmouseout="$(this).next().hide();" onmouseover="$(this).next().show();">用户信息</a>
-            <div class="personInfo" >
-                <div class="downlist" >
-                    <ul >
+            <div class="personInfo">
+                <div class="downlist">
+                    <ul>
                         <li><a href="javascript:;">注销</a></li>
                     </ul>
                 </div>
@@ -99,18 +99,12 @@
         <a href="javascript:;" class="[Class]" data-id="[ID]" onclick="[Method]()" data-param="[Param]">[Name]</a>
     </script>
     <script type="text/html" id="topButton2">
-        <a href="javascript:;" class="btn" onclick="$(this).find('.dropdownlist').toggle();" data-param="[Param]">
+        <a href="javascript:;" class="btn" data-id="[ID]" onclick="Doc.TopButtonClick($(this).attr('data-id'))" data-param="[Param]">
             <span>[Name]</span><span>▼</span>
-            <div class="dropdownlist">
-                <div>
-                    <span class="item">回收站</span>
-                    <span class="item">回收站</span>
-                    <span class="item">回收站</span>
-                </div>
+            <div data-id="category" style=" display:none; position: absolute;z-index: 2000;line-height: 2em;background-color: #f7f8fa;text-align: center;margin-left: -0.5em;box-shadow: 3px 3px 3px rgba(0,0,0,0.35);width: 20em;height: 15em;overflow-y: scroll">
+
             </div>
         </a>
-
-
     </script>
 
     <script type="text/html" id="QuickBarBlock1">

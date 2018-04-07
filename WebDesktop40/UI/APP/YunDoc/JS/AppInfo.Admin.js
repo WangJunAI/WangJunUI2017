@@ -79,6 +79,9 @@ App.Doc.Content.TopButton.push({ Name: "新建文档", ID: "TopButton.新建个�
 App.Doc.Content.TopButton.push({ Name: "新建目录", ID: "TopButton.新建个人目录", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.个人文档.TopButton" });
 App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.个人文档.TopButton" });
 //App.Doc.Content.TopButton.push({ Name: "移动至", ID: "TopButton.移动至", Method: "",  Type: "dropdownlist", Menu: [{ Text: "回收站" }, { Text: "草稿箱" }], GroupID: "左侧菜单.个人文档.TopButton"});
+App.Doc.Content.TopButton.push({ Name: "移动至", ID: "TopButton.个人文档移动至", Method: "", Type: "dropdownlist", Menu: [{ Text: "回收站" }, { Text: "草稿箱" }], GroupID: "左侧菜单.个人文档.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "共享给", ID: "TopButton.共享给", Method: "", Type: "dropdownlist", Menu: [{ Text: "回收站" }, { Text: "草稿箱" }], GroupID: "左侧菜单.个人文档.TopButton" });
+
 App.Doc.Content.TopButton.push({ Name: "删除", ID: "TopButton.删除", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.个人文档.TopButton" });
 
 ///与我共享TopButton菜单
@@ -92,7 +95,7 @@ App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", Gro
 App.Doc.Content.TopButton.push({ Name: "新建文档", ID: "TopButton.新建企业文档", Method: "Doc.TopButtonClick",    GroupID: "左侧菜单.企业文档.TopButton"});
 App.Doc.Content.TopButton.push({ Name: "新建目录", ID: "TopButton.新建企业目录", Method: "Doc.TopButtonClick",    GroupID: "左侧菜单.企业文档.TopButton" });
 App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "",   GroupID: "左侧菜单.企业文档.TopButton"});
-App.Doc.Content.TopButton.push({ Name: "移动至", ID: "TopButton.移动至", Method: "",  Type: "dropdownlist", Menu: [{ Text: "回收站" }, { Text: "草稿箱" }], GroupID: "左侧菜单.企业文档.TopButton"});
+App.Doc.Content.TopButton.push({ Name: "移动至", ID: "TopButton.企业知识库移动至", Method: "",  Type: "dropdownlist", Menu: [{ Text: "回收站" }, { Text: "草稿箱" }], GroupID: "左侧菜单.企业文档.TopButton"});
 App.Doc.Content.TopButton.push({ Name: "删除", ID: "TopButton.删除", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.企业文档.TopButton"});
 
 ///企业文档TopButton菜单
@@ -185,4 +188,11 @@ App.Doc.Data.RecycleBin.Info.Pager.PagerIndexClick = function () {
     LOGGER.Log("App.Doc.Data.RecycleBin.Info.Pager.PagerIndexClick");
     var index = $(event.target).attr("data-Index");
     Doc.LoadTable(parseInt(index), App.Doc.Data.Pager.Size, "{}", App.Doc.Data.RecycleBin.Info);
+}
+
+/////查询条件/////
+App.Doc.QueryDict = {
+    "默认公司通讯录": [JSON.stringify({ OwnerID: SESSION.Current().CompanyID }), "{}", "{}", 0, 1000],
+    "默认个人知识库目录查询条件": [JSON.stringify({ OwnerID: SESSION.Current().UserID }), "{}", "{}", 0, 1000],
+    "默认企业知识库目录查询条件": [JSON.stringify({ OwnerID: SESSION.Current().CompanyID }), "{}", "{}", 0, 1000],
 }

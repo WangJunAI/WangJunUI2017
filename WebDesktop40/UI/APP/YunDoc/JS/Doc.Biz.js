@@ -108,3 +108,49 @@ Doc.RemoveDetail = function (id, callback) {
     NET.PostData(App.Doc.Server.Url9, callback, context);
 }
 
+Doc.MoveEntities = function (targetId, targetName) {
+    var selectedIdArray = Doc.GetSelectedTableRow();
+    for (var k = 0; k < selectedIdArray.length; k++) {
+        var id = selectedIdArray[k];
+        NET.LoadData(App.Doc.Server.Url5, function (entity) {
+            ///获取文档
+            var updateItem = {};
+            updateItem.ID = entity.ID;
+            updateItem.ParentID = targetId;
+            updateItem.ParentName = targetName;
+            var param = [Convertor.ToBase64String(JSON.stringify(updateItem), true), { 0: "base64" }];
+            NET.PostData(App.Doc.Server.Url4, function (res3) {
+                Doc.LeftMenuClick("LeftMenu.个人文档");
+
+                Doc.ShowDialog("移动完毕");
+            }, param);
+        }, [id], NET.POST);
+    }
+}
+
+Doc.ShareTo = function (treeId) {
+    treeId = (true === PARAM_CHECKER.IsNotEmptyString(treeId)) ? treeId : $(event.target).parents("[data-id='category']").find('.ztree').attr('id');
+
+    var selectedIdArray = Doc.GetSelectedTableRow();
+    var checkedTreeNodeArray = Doc.GetCheckedTreeNodes(treeId);
+
+    Doc.CancelCheckAllNodes(treeId);
+    $(event.target).parents("[data-id='category']").toggle();
+
+    for (var k = 0; k < selectedIdArray.length; k++) {
+        var id = selectedIdArray[k];
+        NET.LoadData(App.Doc.Server.Url5, function (entity) {
+            ///获取文档
+            var updateItem = {};
+            updateItem.ID = entity.ID;
+            updateItem.UserAllowedArray = checkedTreeNodeArray;
+            //updateItem.ParentName = targetName;
+            var param = [Convertor.ToBase64String(JSON.stringify(updateItem), true), { 0: "base64" }];
+            NET.PostData(App.Doc.Server.Url4, function (res3) {
+                //Doc.LeftMenuClick("LeftMenu.个人云盘");
+
+                Doc.ShowDialog("分享完毕");
+            }, param);
+        }, [id], NET.POST);
+    }
+}

@@ -140,11 +140,12 @@ Doc.MoveEntities = function (targetId,targetName) {
 
 Doc.ShareTo = function (treeId) {
     treeId = (true === PARAM_CHECKER.IsNotEmptyString(treeId)) ? treeId : $(event.target).parents("[data-id='category']").find('.ztree').attr('id');
+    var selectedIdArray = Doc.GetSelectedTableRow();
+    var checkedTreeNodeArray = Doc.GetCheckedTreeNodes(treeId);
+
     Doc.CancelCheckAllNodes(treeId);
     $(event.target).parents("[data-id='category']").toggle();
 
-    var selectedIdArray = Doc.GetSelectedTableRow();
-    var checkedTreeNodeArray = Doc.GetCheckedTreeNodes(treeId);
     for (var k = 0; k < selectedIdArray.length; k++) {
         var id = selectedIdArray[k];
         NET.LoadData(App.Doc.Server.Url5, function (entity) {
