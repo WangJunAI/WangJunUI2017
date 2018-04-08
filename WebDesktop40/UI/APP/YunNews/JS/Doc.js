@@ -5,6 +5,8 @@ var Doc = {};
  
 Doc.Initial = function () {
     $(document).ready(function () {
+
+        
         window.name = "YunNews";
         if (true === SESSION.Current().CanManageYunNews) {
             $.getScript("./JS/AppInfo.Admin.js", function () {

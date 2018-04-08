@@ -63,9 +63,8 @@ Doc.ShowDetail = function (data, option) {
             }
         });
 
-        if (true === !PARAM_CHECKER.IsNotEmptyString(data.ParentName)) {
-            data.ParentName = "选择分类";
-        }
+        $("[data-PropertyName='ParentName']").text(data.ParentName);
+
         $("#deleteBtn").removeAttr("style");
 
         $("[data-single]").each(function () {

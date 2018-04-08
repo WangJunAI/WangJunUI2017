@@ -61,14 +61,14 @@ Doc.TopButtonClick = function (id) {
         var url = App.Doc.Server.Url61 + "?t=" + (new Date().getTime());
         Doc.ShowWindow(url);
     }
-    else if ("TopButton.移动至" === id) {
+    else if ("TopButton.个人云盘移动至" === id) {
         $('[data-id="' + id + '"]').find('[data-id=\'category\']').toggle();
         if (false === PARAM_CHECKER.IsNotEmptyString($('[data-id="' + id+'"]').find("[data-id='category']").first().attr("id"))) {
             $('[data-id="' + id + '"]').find("[data-id='category']").first().attr("id", "category" + Math.random().toString().replace(".", ""));
         }
         var droplistId = "#" + $('[data-id="' + id + '"]').find("[data-id='category']").first().attr("id");
 
-        var query = App.Doc.QueryDict["默认云盘目录查询条件"];
+        var query = App.Doc.QueryDict["默认个人云盘目录查询条件"];
         Doc.LoadData_Category(query, function (res1) {
             Doc.LoadTreeTo(droplistId, res1, [], {Source:"TopButton",
                 Click: function (event, treeId, treeNode) {
@@ -78,6 +78,27 @@ Doc.TopButtonClick = function (id) {
                     Doc.MoveEntities(parentID, parentName);
                 },
                 header:"将选中的文件移动至.."
+            });
+        });
+    }
+    else if ("TopButton.企业云盘移动至" === id) {
+        $('[data-id="' + id + '"]').find('[data-id=\'category\']').toggle();
+        if (false === PARAM_CHECKER.IsNotEmptyString($('[data-id="' + id + '"]').find("[data-id='category']").first().attr("id"))) {
+            $('[data-id="' + id + '"]').find("[data-id='category']").first().attr("id", "category" + Math.random().toString().replace(".", ""));
+        }
+        var droplistId = "#" + $('[data-id="' + id + '"]').find("[data-id='category']").first().attr("id");
+
+        var query = App.Doc.QueryDict["默认企业云盘目录查询条件"];
+        Doc.LoadData_Category(query, function (res1) {
+            Doc.LoadTreeTo(droplistId, res1, [], {
+                Source: "TopButton",
+                Click: function (event, treeId, treeNode) {
+                    var parentName = treeNode.Name;
+                    var parentID = treeNode.ID;
+                    ///获取选中行，将文档移动过去
+                    Doc.MoveEntities(parentID, parentName);
+                },
+                header: "将选中的文件移动至.."
             });
         });
     }

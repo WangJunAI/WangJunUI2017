@@ -110,8 +110,8 @@
                     <div class="item">
                         <div class="key">添加人员</div>
                         <div class="value" data-FormName="Default" data-propertyName="UserAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
-                            <a href="javascript:;" class="checkbox" onclick="$('#category3').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
-                            <div style="position: absolute;">
+                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category3').toggle();" data-FormName="Default" data-propertyName="UserAllowedArrayText" data-propertyValue="">未选择分享人员</a>
+                            <div style="position: absolute;z-index:9999;">
                                 <div id="category3" class="dropdownlist">
                                 </div>
                             </div>
@@ -135,7 +135,13 @@
         <script id="editor" type="text/plain">
         </script>
 
-
+        <script type="text/html" id="tplDroplistHeader">
+            <div class='txtright'>
+                <a href='javascript:;' class='margin_r05em' onclick="Doc.CancelCheckAllNodes($(this).parents('.dropdownlist').find('.ztree').attr('id'));$('[data-propertyname=UserAllowedArrayText]').text('未选择参与人员')">清空</a>
+                <a href='javascript:;' class='margin_r05em' onclick="$('#category3').toggle();">确定</a>
+                <a href='javascript:;' class='margin_r05em' onclick="Doc.CancelCheckAllNodes($(this).parents('.dropdownlist').find('.ztree').attr('id')); $('[data-propertyname=UserAllowedArrayText]').text('未选择参与人员');$('#category3').toggle();">取消</a>
+            </div>
+        </script>
     </div> 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -165,11 +171,13 @@
 
             Doc.LoadData_All([], function (res1) {
                 Doc.LoadTreeTo("#category3", res1, [], {
-                    ShowMode: "checkbox", Check: function (event, treeId, treeNode) {
+                    ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
+                    , header: $("#tplDroplistHeader").html()
+                    , Check: function (event, treeId, treeNode) {
                         var idArray = Doc.GetCheckedTreeNodes(treeId);
-                        var fix = (0 < idArray.length) ? "等" : "";
-                        $("[data-propertyName='UserAllowedArray']").text("已选中" + treeNode.name + fix + idArray.length + "人");
-                    }
+                        var fix = (0 < idArray.length) ? " 等" : " ";
+                        $("[data-propertyName='UserAllowedArrayText']").text("已选中 " + treeNode.Name + fix + idArray.length + "人");
+                    },
                 });
             }); ///加载目录
 

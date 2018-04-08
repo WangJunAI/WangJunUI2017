@@ -78,8 +78,13 @@ Doc.LeftMenuClick = function (id) {
 
         Doc.LoadTopButton(topButtonId);
         var listQuery = JSON.stringify({ _RedirectID: null, CompanyID: SESSION.Current().CompanyID, 'StatusCode': { $ne: -1 } });
-        Doc.ShowContent("redirect.html");
-        Doc.LoadData_Doc(context = [listQuery, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size], function (res2) { Doc.LoadSummaryListTo("#leftList", res2); });
+        var callback1 = function (res1) {
+            Doc.LoadTreeTo("#leftPart1", res1, [], { header: "小提示：修改目录双击即可" });
+            Doc.ShowContent("redirect.html");
+            Doc.LoadData_Doc(context = [listQuery, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size], function (res2) { Doc.LoadSummaryListTo("#leftList", res2); });
+        }
+        var param = [JSON.stringify({ OwnerID: SESSION.Current().CompanyID }), "{}", "{}", 0, 1000]
+        Doc.LoadData_Category(param, callback1);
         Doc.SetQuery(listQuery);
     }
     else if ("LeftMenu.已超时项目" == id) {
@@ -87,22 +92,32 @@ Doc.LeftMenuClick = function (id) {
 
         Doc.LoadTopButton(topButtonId);
         var listQuery = JSON.stringify({ _RedirectID: null, CompanyID: SESSION.Current().CompanyID, 'StatusCode': { $ne: -1 } });
-        Doc.ShowContent("redirect.html");
+        var callback1 = function (res1) {
+            Doc.LoadTreeTo("#leftPart1", res1, [], { header: "小提示：修改目录双击即可" });
+            Doc.ShowContent("redirect.html");
 
-        Doc.LoadData_Doc(context = [listQuery, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size], function (res2) { Doc.LoadSummaryListTo("#leftList", res2); });
+            Doc.LoadData_Doc(context = [listQuery, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size], function (res2) { Doc.LoadSummaryListTo("#leftList", res2); });
+        }
+
+        var param = [JSON.stringify({ OwnerID: SESSION.Current().CompanyID }), "{}", "{}", 0, 1000]
+        Doc.LoadData_Category(param, callback1);
         Doc.SetQuery(listQuery);
 
     }
     else if ("LeftMenu.已结束项目" == id) {
-        Doc.ShowView3();
+        Doc.ShowView1();
 
         Doc.LoadTopButton(topButtonId);
         var listQuery = JSON.stringify({ _RedirectID: null, CompanyID: SESSION.Current().CompanyID, 'StatusCode': { $ne: -1 } });
+        var callback1 = function (res1) {
+            Doc.LoadTreeTo("#leftPart1", res1, [], { header: "小提示：修改目录双击即可" });
+            Doc.ShowContent("redirect.html");
 
-        Doc.ShowContent("redirect.html");
+            Doc.LoadData_Doc(context = [listQuery, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size], function (res2) { Doc.LoadSummaryListTo("#leftPart2", res2); });
+        }
 
-        Doc.LoadData_Doc(context = [listQuery, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size], function (res2) { Doc.LoadSummaryListTo("#leftList", res2); });
-
+        var param = [JSON.stringify({ OwnerID: SESSION.Current().CompanyID }), "{}", "{}", 0, 1000]
+        Doc.LoadData_Category(param, callback1);
         Doc.SetQuery(listQuery);
 
     }

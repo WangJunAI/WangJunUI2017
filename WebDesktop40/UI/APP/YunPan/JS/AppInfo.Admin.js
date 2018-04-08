@@ -74,7 +74,7 @@ App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", Gro
 App.Doc.Content.TopButton.push({ Name: "上传文件", ID: "TopButton.上传个人云盘文件", Method: "Doc.TopButtonClick",   GroupID: "左侧菜单.个人云盘.TopButton" });
 App.Doc.Content.TopButton.push({ Name: "新建文件夹", ID: "TopButton.新建个人云盘文件夹", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.个人云盘.TopButton" });
 App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.个人云盘.TopButton" });
-App.Doc.Content.TopButton.push({ Name: "移动至", ID: "TopButton.移动至", Method: "", Type: "dropdownlist", Menu: [{ Text: "回收站" }, { Text: "草稿箱" }], GroupID: "左侧菜单.个人云盘.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "移动至", ID: "TopButton.个人云盘移动至", Method: "", Type: "dropdownlist", Menu: [{ Text: "回收站" }, { Text: "草稿箱" }], GroupID: "左侧菜单.个人云盘.TopButton" });
 App.Doc.Content.TopButton.push({ Name: "共享给", ID: "TopButton.共享给", Method: "", Type: "dropdownlist", Menu: [{ Text: "回收站" }, { Text: "草稿箱" }], GroupID: "左侧菜单.个人云盘.TopButton" });
 App.Doc.Content.TopButton.push({ Name: "删除", ID: "TopButton.删除", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.个人云盘.TopButton" });
 
@@ -85,7 +85,7 @@ App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", Gro
 App.Doc.Content.TopButton.push({ Name: "上传文件", ID: "TopButton.上传企业云盘文件", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.企业云盘.TopButton" });
 App.Doc.Content.TopButton.push({ Name: "新建文件夹", ID: "TopButton.新建企业云盘文件夹", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.企业云盘.TopButton" });
 App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.企业云盘.TopButton" });
-App.Doc.Content.TopButton.push({ Name: "移动至", ID: "TopButton.移动至", Method: "", Type: "dropdownlist", Menu: [{ Text: "回收站" }, { Text: "草稿箱" }], GroupID: "左侧菜单.企业云盘.TopButton"});
+App.Doc.Content.TopButton.push({ Name: "移动至", ID: "TopButton.企业云盘移动至", Method: "", Type: "dropdownlist", Menu: [{ Text: "回收站" }, { Text: "草稿箱" }], GroupID: "左侧菜单.企业云盘.TopButton"});
 App.Doc.Content.TopButton.push({ Name: "删除", ID: "TopButton.删除", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.企业云盘.TopButton" });
 
 ///与我共享TopButton菜单
@@ -181,5 +181,6 @@ App.Doc.Data.RecycleBin.Info.Pager.PagerIndexClick = function () {
 
 /////查询条件/////
 App.Doc.QueryDict = {
-    "默认云盘目录查询条件": [JSON.stringify({ OwnerID: SESSION.Current().CompanyID }),"{}","{}",0,1000]
+    "默认企业云盘目录查询条件": [JSON.stringify({ OwnerID: SESSION.Current().CompanyID }), "{}", "{}", 0, 1000],
+    "默认个人云盘目录查询条件": [JSON.stringify({ OwnerID: SESSION.Current().UserID }), "{}", "{}", 0, 1000],
 }

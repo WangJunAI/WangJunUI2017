@@ -136,3 +136,13 @@ Doc.SubmitEnd = function (id) {
 Doc.ActiveDesktop = function () {
     window.open('', 'Desktop');
 }
+
+Doc.AutoCloseCtrl = function (selector) {
+
+    var isIn = $(event.target).parents(selector).length;
+    var isIn2 = $(event.target).next().find(selector).length;
+    if (0 === isIn && 0 == isIn2) {
+        $(selector).hide();
+    }
+
+}
