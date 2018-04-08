@@ -458,6 +458,12 @@ body {
         .listItem3 > .row1 > .category {
             margin-left: 0.5em;
             font-weight: 900;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-break: break-all;
+            display: inline-block;
+            width: 14em;
         }
 
     .listItem3 > .row2 {

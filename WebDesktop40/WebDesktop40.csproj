@@ -1540,6 +1540,8 @@
     <Content Include="UI\Desktop\CSS\Desktop.css" />
     <Content Include="UI\Desktop\Desktop.html" />
     <Content Include="UI\Desktop\JS\Desktop.js" />
+    <Content Include="UI\Login\Register.mp4" />
+    <Content Include="UI\Login\FindPassword.mp4" />
     <Content Include="UI\Login\FindPassword.html" />
     <Content Include="UI\Login\Register.html" />
     <Content Include="UI\Login\Login.html" />
