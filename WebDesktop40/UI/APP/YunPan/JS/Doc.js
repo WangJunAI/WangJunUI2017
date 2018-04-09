@@ -1,20 +1,20 @@
 ﻿ 
 var Doc = {};
 
-Doc.Initial = function () {
+Doc.Initial = function (adminCallback,clientCallback) {
     $(document).ready(function () {
         if (true === SESSION.Current().CanManageYunPan) {
             $.getScript("./JS/AppInfo.Admin.js", function () {
-                Doc.LoadAppInfo();
-                Doc.LoadMenu();
-                Doc.LeftMenuClick("LeftMenu.企业云盘");
+                if (true === PARAM_CHECKER.IsFunction(adminCallback)) {
+                    adminCallback();
+                }
             });
         }
         else {
             $.getScript("./JS/AppInfo.Client.js", function () {
-                Doc.LoadAppInfo();
-                Doc.LoadMenu();
-                Doc.LeftMenuClick("LeftMenu.个人云盘");
+                if (true === PARAM_CHECKER.IsFunction(clientCallback)) {
+                    clientCallback();
+                }
             });
         }
      });

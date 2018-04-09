@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>头条文章</title>
+    <link href="./CSS/TouTiaoArticle.css" rel="stylesheet" />
+
+    <!--基础JS-->
+    <script src="../../../JS/Base/jquery-3.1.1.min.js"></script>
+    <script src="../../../JS/Base/PARAM_CHECKER.js"></script>
+    <script src="../../../JS/Base/DEBUG.js"></script>
+    <script src="../../../JS/Base/Convertor.js"></script>
+    <script src="../../../JS/Base/NET.js"></script>
+    <!--base64加密-->
+    <script src="../../../JS/Base/CryptoJS/core-min.js"></script>
+    <script src="../../../JS/Base/CryptoJS/enc-base64-min.js"></script>
+
+    <!--SESSION相关-->
+    <script src="../../../JS/jquery.cookie.js"></script>
+    <script src="../../../JS/SESSION.js"></script>
+
+    <!--动画相关-->
+    <link href="../../../JS/Base/jquery-ui-1.12.1/jquery-ui.structure.css" rel="stylesheet" />
+    <link href="../../../JS/Base/jquery-ui-1.12.1/jquery-ui.theme.css" rel="stylesheet" />
+    <script src="../../../JS/Base/jquery-ui-1.12.1/jquery-ui.js"></script>
+    
+    <script src="JS/AppInfo.TouTiao.js"></script>
+    <script src="JS/TouTiao.js"></script>
+
+    <script src="../../../JS/TPL/TPL.ClientBehavior.js"></script>
+
+
+
+</head>
+<body>
+    <input type="hidden" id="pageName" value="TouTiaoArticle" />
+
+    <div class="head">
+        <div class="left"><a href="javascript:;">下载APP</a></div>
+        <div class="right"><a href="javascript:;">进入后台</a></div>
+    </div>
+    <div class="global">
+        <div class="head">
+            <div class="path">
+                <div class="logo"></div>
+                <a href="TouTiao.html" target="_blank">企业头条</a> <a>/</a><a href="javascript:;" data-PropertyName="ParentName">[ParentName]</a>
+                <div class="search">
+                    <div class="input"><input type="text" placeholder="请搜索" /></div>
+                    <a href="javascript:;" class="button">搜索</a>
+                </div>
+            </div>
+        </div>
+        <div class="left">
+
+            <ul>
+                <li><a href="#comment" class="selected">说说</a></li>
+                <li><a href="javascript:;" data-type="点赞" onclick="TouTiao.AddLikeCount()">点赞</a></li>
+                <li><a href="javascript:;" data-type="收藏" onclick="TouTiao.AddFavoriteCount()">收藏</a></li>
+            </ul>
+        </div>
+        <div class="main">
+
+            <div class="title" id="title">[标题]</div>
+            <div class="info"><span id="CreatorName">[创建人]</span><span id="CreateTime">[创建时间]</span></div>
+            <div class="content" id="Content">
+                [加载中....]
+            </div>
+            <div class="likeCount">
+                <div data-PropertyName="CommentCount">评论 0</div>
+                <div data-PropertyName="FavoriteCount">收藏 0</div>
+                <div data-PropertyName="LikeCount">点赞 0</div>
+            <a href="javascript:;"  data-type="点赞"  onclick="TouTiao.AddLikeCount()">点赞</a>
+            <a href="javascript:;"  data-type="收藏"  onclick="TouTiao.AddFavoriteCount()">收藏</a>
+            </div>
+            <div class="comment" name="comment"> 
+                <div class="input"> <textarea id="comment"></textarea><a href="javascript:;" onclick="TouTiao.AddComment()">提交</a></div>
+                <div id="message"><div>评论成功....</div></div>
+                <ul id="commentList"></ul>
+                <a href="javascript:;" id="loadMore" onclick="TouTiao.LoadCommentList()">加载更多....</a>
+            </div>
+        </div>
+        <div class="right">
+            <div class="block">
+                <div class="title">个人信息</div>
+                <div class="row">[Name]</div>
+                <div class="row">[Position]</div>
+                <div class="row"><a href="javascript:;">进入我的工作台</a></div>
+                <div class="row"><a href="javascript:;">注销</a></div>
+            </div>
+            <div class="block">
+                <div class="title">今日热闻</div>
+                <div class="row"><span>1</span><a href="javascript:;">热闻名称</a></div>
+                <div class="row"><span>2</span><a href="javascript:;">热闻名称</a></div>
+            </div>
+            <div class="block">
+                <div class="title">相关链接</div>
+                <div class="row"><a href="javascript:;">链接名称1</a></div>
+                <div class="row"><a href="javascript:;">链接名称2</a></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        TouTiao.Initial("article");
+    </script>
+
+    <script type="text/html" id="tplCommentItem">
+        <li>
+            <div class="commentItem">
+                <div class="header"><a href="javascript:;">[CreatorName]</a><span>[CreateTime]</span></div>
+                <div class="content"><p>[Content]</p></div>
+                <div class="footer"><a href="javascript:;">回复</a><a href="javascript:;">相关说说</a><a href="javascript:;" onclick="TouTiao.AddLikeCount()">点赞[LikeCount]</a></div>
+            </div>
+        </li>
+    </script>
+</body>
+</html>

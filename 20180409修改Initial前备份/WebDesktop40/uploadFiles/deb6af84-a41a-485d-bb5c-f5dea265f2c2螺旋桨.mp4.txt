@@ -1,0 +1,1 @@
+﻿{"ServerFileName":"deb6af84-a41a-485d-bb5c-f5dea265f2c2螺旋桨.mp4","ServerFilePath":"E:\\WangJunUI2017\\WangJunUI2017\\WebDesktop40\\uploadFiles\\deb6af84-a41a-485d-bb5c-f5dea265f2c2螺旋桨.mp4","FileNameInClient":"螺旋桨.mp4","FileLength":6120371,"FileLengthText":"6119424MB","HttpUrl":"http://localhost:14000/uploadFiles/deb6af84-a41a-485d-bb5c-f5dea265f2c2螺旋桨.mp4"}

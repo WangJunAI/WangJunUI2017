@@ -1,0 +1,333 @@
+﻿body {
+}
+
+.fill {
+    width: 100%;
+    height: 100%;
+    background-color: #eaedf1;
+    margin: 0;
+    overflow: hidden;
+}
+
+
+.dockTop {
+    /*桌面顶部 #373d41*/
+    background-color: #373d41;
+    height: 2em;
+}
+
+    .dockTop .topbtn1 {
+        color: white;
+        text-decoration: none;
+        margin-left: 0.25em;
+    }
+
+    .dockTop .text1 {
+        color: white;
+        margin-left: 0.25em;
+        line-height: 1.1em;
+        vertical-align: middle;
+        display: inline-block;
+        height: 2em;
+    }
+
+.dockDown {
+    /*桌面底部 #373d41*/
+    background-color: #373d41;
+    height: 2em;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+    .dockDown .topbtn1 {
+        color: white;
+        text-decoration: none;
+        line-height: 2em;
+        margin-left: 0.5em;
+    }
+
+    .dockDown .topbtn2 {
+        color: white;
+        text-decoration: none;
+        line-height: 2em;
+        margin-right: 0.5em;
+        float:right;
+    }
+
+
+
+.desktopIcon {
+    list-style: none;
+    columns: 10em;
+    height: 30em;
+    width: 7em;
+}
+
+    .desktopIcon li {
+        background-color: #00c1de;
+    }
+        .desktopIcon li:hover {
+            background-color: #28d0e9;
+        }
+
+    .desktopIcon .item {
+        /*桌面图标 #00c1de*/
+        width: 7em;
+        height: 7em;
+        /*background-color: #00c1de;*/
+        display: block;
+        text-align: right;
+        vertical-align: bottom;
+        text-decoration: none;
+        margin: 0 0 0.5em 0;
+    }
+
+        .desktopIcon .item .icon {
+            width: 100%;
+            line-height: 2em;
+            text-align: center;
+            color:white;
+        }
+    .desktopIcon .item_name {
+        position: relative;
+        top: -0.5em;
+        right: 0.5em;
+        color: white;
+    }
+
+
+
+.desktop_dialog {
+    width: 80%;
+    height: 90%;
+    position: absolute;
+    z-index: 2000;
+    border: 1px #808080 solid;
+    background-color: #ff9900;
+}
+
+    .desktop_dialog .title {
+        width: 100%;
+        height: 2em;
+        background-color: #373d41;
+    }
+
+        .desktop_dialog .title .name {
+            color: #FFF;
+            text-decoration: none;
+            float: left;
+            height: 100%;
+            vertical-align: middle;
+            line-height: 200%;
+            margin-left: 0.5em;
+        }
+
+        .desktop_dialog .title .button {
+            color: #FFF;
+            text-decoration: none;
+            float: right;
+            height: 100%;
+            vertical-align: middle;
+            text-align: center;
+            line-height: 200%;
+            width: 4em;
+        }
+
+    .desktop_dialog iframe {
+        position: absolute;
+        left: 0;
+        top: 2em;
+        right: 0;
+        bottom: 0;
+    }
+
+
+.startmenu {
+    position: absolute;
+    background-color: #2a2f32;
+    width: 70em;
+    height: 80%;
+    z-index: 999;
+    left: 0.5em;
+    bottom: 2em;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    display: none;
+}
+
+    .startmenu ul {
+        list-style: none;
+        margin-left: -40px;
+    }
+
+    .startmenu a {
+        text-decoration: none;
+        color: white;
+        display: block;
+        width: 100%;
+        height: 3em;
+        line-height: 3em;
+        padding-left: 0.5em;
+    }
+
+        .startmenu >ul a:hover {
+            background-color: #4a5064;
+        }
+
+        .startmenu li span:first-child {
+            margin-right: 0.5em;
+        }
+
+    .startmenu > .personInfo {
+        width: 100%;
+        height: 4em;
+        padding-top: 0.3em;
+    }
+    .startmenu ul > li:first-child > div {
+        color: #999;
+        display: inline-block;
+        padding-left: 0.5em;
+        height:100%;
+        line-height:3em;
+    }
+
+    .startmenu > .personInfo > .headPic {
+        background-image: url('https://p3.pstatp.com/origin/pgc-image/1523208941123b1bd7cc7cb');
+        width: 4em;
+        height: 100%;
+        background-position: center;
+        background-size: contain;
+        float: left;
+        border-radius: 2em;
+    }
+
+            .startmenu > .personInfo >  .userName {
+                color: #FFF;
+                vertical-align: bottom;
+                height: 2em;
+                width: 5em;
+                float: left;
+                line-height: 2em;
+                padding-left: 0.5em;
+                font-size: 2em;
+            }
+
+    .startmenu .moreapp {
+        position: absolute;
+        background-color: #373d41;
+        top: 0;
+        left: 18em;
+        bottom: 0;
+        right: 0;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+.moreapp .appstorehead {
+    font-size: 2em;
+    color: #FFF;
+    padding-left: 0.3em;
+}
+.moreapp .appcategory {
+    width: 100%;
+    height: 2em;
+    vertical-align: middle;
+    color: #FFF;
+    line-height: 2em;
+    padding-left: 0.5em;
+    font-weight: 700;
+    clear: both;
+}
+
+.moreapp .desktopIcon {
+    columns: unset;
+    height: unset;
+    width: unset;
+}
+
+    .moreapp .desktopIcon li {
+        float: left;
+        margin: 0.25em;
+    }
+
+    .moreapp .desktopIcon li:hover {
+ 
+    }
+
+
+    .moreapp .desktopIcon .item_name {
+        top: -1.5em;
+    }
+    .notice_center {
+        position: absolute;
+        background-color: #2a2f32;
+        width: 23em;
+        z-index: 999;
+        right: 0;
+        top:0;
+        bottom: 2em;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        display: none;
+    }
+
+.notice_center h3{
+    color:#FFF;
+    padding-left:0.5em;
+}
+
+    .notice_center ul {
+        list-style: none;
+margin-left:-40px;
+
+    }
+
+        .notice_center a {
+            text-decoration: none;
+            color: white;
+            display: block;
+            width: 100%;
+            height: 4em;
+            margin-top: 0.5em;
+        }
+
+        .notice_center a:hover {
+            background-color: #4a5064;
+        }
+            .notice_center a:hover .deleteBtn:after {
+                content: '删除';
+                cursor:pointer;
+            }
+
+            .notice_center .deleteBtn {
+                text-decoration: none;
+                color: #FFF;
+                display: unset;
+                width: unset;
+                height: unset;
+                float: right;
+                margin-right: 0.5em;
+            }
+
+        .notice_center .dateTime {
+            float: right;
+            margin-right: 0.5em;
+            color: #999;
+        }
+
+        .notice_center .summary {
+            font-size: 0.8em;
+            color: #999;
+            padding-left: 0.5em;
+        }
+
+    .notice_center li span:first-child {
+        margin-right: .5em;
+    }
+
+.noticeItemTitle {
+    padding-left: 0.5em;
+}
+
+
+
