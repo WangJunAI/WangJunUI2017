@@ -4,7 +4,7 @@ App.Doc = {};
 App.Doc.Info = {};
 
 App.Doc.Info.ID = "YBJ";
-App.Doc.Info.Name = "汪俊云笔记客户端";
+App.Doc.Info.Name = "汪俊云笔记管理端";
 
 App.Doc.CSS = {};
 App.Doc.CSS.LeftMenu = {};
@@ -15,10 +15,10 @@ App.Doc.CSS.LeftList.View1 = {};
 App.Doc.CSS.LeftList.View1.Width = { Value: 30, Unit: "em" };
 
 App.Doc.CSS.LeftList.View3 = {};
-App.Doc.CSS.LeftList.View3.Width = { Value: 12, Unit: "em" };
+App.Doc.CSS.LeftList.View3.Width = { Value: 18, Unit: "em" };
 
  App.Doc.Server = {
-     Url1: "http://localhost:9990/API.ashx?c=WangJun.YunNote.YunNoteWebAPI&m=LoadEntityList", ///加载文档目录
+     Url1: "http://localhost:9990//API.ashx?c=WangJun.YunNote.YunNoteWebAPI&m=LoadEntityList", ///加载文档目录
      Url2: "http://aifuwu.wang/API.ashx?c=WangJun.YunNote.YunNoteWebAPI&m=Count",///文档数量
     Url3: "Detail.html",
     Url4: "http://localhost:9990/API.ashx?c=WangJun.YunNote.YunNoteWebAPI&m=SaveEntity",///保存一个文档
@@ -44,11 +44,13 @@ App.Doc.CSS.LeftList.View3.Width = { Value: 12, Unit: "em" };
 
 App.Doc.LeftMenu = [];
 
-App.Doc.LeftMenu.push({ Name: "我的笔记", ID: "LeftMenu.文档操作", Method: "Doc.LeftMenuGroupToggle",    ParentID: null });
-App.Doc.LeftMenu.push({ Name: "新建笔记", ID: "LeftMenu.新建笔记", Method: "Doc.LeftMenuClick",    ParentID: "LeftMenu.文档操作" });
-App.Doc.LeftMenu.push({ Name: "新建目录", ID: "LeftMenu.新建目录", Method: "Doc.LeftMenuClick",  ParentID: "LeftMenu.文档操作" });
-App.Doc.LeftMenu.push({ Name: "个人笔记", ID: "LeftMenu.个人笔记", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.文档操作", TopButtonGroupID:"左侧菜单.个人笔记.TopButton" });
+App.Doc.LeftMenu.push({ Name: "笔记管理", ID: "LeftMenu.笔记管理", Method: "Doc.LeftMenuGroupToggle",    ParentID: null });
+//App.Doc.LeftMenu.push({ Name: "新建笔记", ID: "LeftMenu.新建笔记", Method: "Doc.LeftMenuClick",    ParentID: "LeftMenu.笔记管理" });
+//App.Doc.LeftMenu.push({ Name: "新建目录", ID: "LeftMenu.新建目录", Method: "Doc.LeftMenuClick",  ParentID: "LeftMenu.笔记管理" });
+App.Doc.LeftMenu.push({ Name: "个人笔记", ID: "LeftMenu.个人笔记", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.笔记管理", TopButtonGroupID: "左侧菜单.个人笔记.TopButton" });
 App.Doc.LeftMenu.push({ Name: "与我共享", ID: "LeftMenu.与我共享", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.与我共享", TopButtonGroupID: "左侧菜单.与我共享.TopButton" });
+App.Doc.LeftMenu.push({ Name: "所有笔记", ID: "LeftMenu.所有笔记", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.笔记管理", TopButtonGroupID:"左侧菜单.个人笔记.TopButton" });
+//App.Doc.LeftMenu.push({ Name: "与我共享", ID: "LeftMenu.与我共享", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.与我共享", TopButtonGroupID: "左侧菜单.与我共享.TopButton" });
  
 App.Doc.LeftMenu.push({ Name: "数据分析", ID: "LeftMenu.数据分析", Method: "Doc.LeftMenuGroupToggle" , ParentID: null });
 App.Doc.LeftMenu.push({ Name: "笔记分析", ID: "LeftMenu.文档分析", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析", TopButtonGroupID: "左侧菜单.文档分析.TopButton"});
@@ -60,11 +62,21 @@ App.Doc.LeftMenu.push({ Name: "共享分析", ID: "LeftMenu.评论分析", Metho
 App.Doc.LeftMenu.push({ Name: "系统管理", ID: "LeftMenu.系统管理", Method: "Doc.LeftMenuGroupToggle",   ParentID: null });
 App.Doc.LeftMenu.push({ Name: "回收站", ID: "LeftMenu.回收站", Method: "Doc.LeftMenuClick",  ParentID: "LeftMenu.系统管理", TopButtonGroupID:"左侧菜单.回收站.TopButton" });
 App.Doc.LeftMenu.push({ Name: "存储管理", ID: "LeftMenu.存储管理", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.系统管理", TopButtonGroupID: "左侧菜单.存储管理.TopButton" });
-App.Doc.LeftMenu.push({ Name: "应用信息", ID: "LeftMenu.应用信息", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.系统管理", TopButtonGroupID: "左侧菜单.应用信息.TopButton" });
+App.Doc.LeftMenu.push({ Name: "使用帮助", ID: "LeftMenu.使用帮助", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.系统管理", TopButtonGroupID: "左侧菜单.使用帮助.TopButton" });
 
 App.Doc.Content = {};
 App.Doc.Content.TopButton = [];
-  
+
+///个人笔记TopButton菜单
+//App.Doc.Content.TopButton.push({ Name: "个人笔记", ID: "TopButton.个人笔记", Method: "", Type: "Title", GroupID: "左侧菜单.个人笔记.TopButton" });
+//App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.个人笔记.TopButton" });
+//App.Doc.Content.TopButton.push({ Name: "新建笔记", ID: "TopButton.新建笔记", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.个人笔记.TopButton" });
+//App.Doc.Content.TopButton.push({ Name: "新建目录", ID: "TopButton.新建目录", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.个人笔记.TopButton" });
+//App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.个人笔记.TopButton" });
+////App.Doc.Content.TopButton.push({ Name: "移动至", ID: "TopButton.移动至", Method: "",  Type: "dropdownlist", Menu: [{ Text: "回收站" }, { Text: "草稿箱" }], GroupID: "左侧菜单.个人笔记.TopButton"});
+//App.Doc.Content.TopButton.push({ Name: "删除", ID: "TopButton.删除", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.个人笔记.TopButton" });
+
+
 ///个人笔记TopButton菜单
 App.Doc.Content.TopButton.push({ Name: "个人笔记", ID: "TopButton.个人笔记", Method: "",   Type: "Title", GroupID: "左侧菜单.个人笔记.TopButton"});
 App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "",   GroupID: "左侧菜单.个人笔记.TopButton"});
@@ -106,11 +118,13 @@ App.Doc.Content.TopButton.push({ Name: "清空回收站", ID: "TopButton.清空�
 App.Doc.Content.TopButton.push({ Name: "存储管理", ID: "TopButton.存储管理", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.存储管理.TopButton", Type: "Title" });
 App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.存储管理.TopButton" });
 
-///应用信息菜单
-App.Doc.Content.TopButton.push({ Name: "应用信息", ID: "TopButton.应用信息", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.应用信息.TopButton", Type: "Title" });
-App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.应用信息.TopButton" });
+///使用帮助菜单
+App.Doc.Content.TopButton.push({ Name: "使用帮助", ID: "TopButton.使用帮助", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.使用帮助.TopButton", Type: "Title" });
+App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.使用帮助.TopButton" });
 
-
+///云笔记测试菜单
+App.Doc.Content.TopButton.push({ Name: "云笔记测试", ID: "TopButton.云笔记测试", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.云笔记测试.TopButton", Type: "Title" });
+App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.云笔记测试.TopButton" });
 
 
 App.Doc.Data = {};
