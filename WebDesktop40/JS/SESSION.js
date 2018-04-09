@@ -1,6 +1,8 @@
 ﻿ 
 var SESSION = {};
 SESSION.Login = function () {
+    $(this).attr("disabled", "disabled");
+    $(this).text("登录中,请稍后...");
     var url = "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=Login";
     ///保存一个目录
          var item = {};

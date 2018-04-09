@@ -67,6 +67,9 @@
     .desktopIcon li {
         background-color: #00c1de;
     }
+        .desktopIcon li:hover {
+            background-color: #28d0e9;
+        }
 
     .desktopIcon .item {
         /*桌面图标 #00c1de*/
@@ -79,9 +82,7 @@
         text-decoration: none;
         margin: 0 0 0.5em 0;
     }
-        .desktopIcon li:hover {
-            background-color: #28d0e9;
-        }
+
         .desktopIcon .item .icon {
             width: 100%;
             line-height: 2em;
