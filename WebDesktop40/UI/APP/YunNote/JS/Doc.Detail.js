@@ -16,18 +16,20 @@
         });
 
         var id = NET.GetQueryParam("id");
-        var context = [id];
+        if (true === PARAM_CHECKER.IsNotEmptyObjectId(id)) {
+            var context = [id];
 
-        var callback = function (res) {
-            LOGGER.Log(res);
-            if (null === res._RedirectID) {
-                Doc.ShowDetail(res);
+            var callback = function (res) {
+                LOGGER.Log(res);
+                if (null === res._RedirectID) {
+                    Doc.ShowDetail(res);
+                }
+                else {
+                    NET.LoadData(App.Doc.Server.Url5, function (res) { Doc.ShowDetail(res, { ReadOnly: true }); }, [res._RedirectID], NET.POST);
+                }
             }
-            else {
-                NET.LoadData(App.Doc.Server.Url5, function (res) { Doc.ShowDetail(res, { ReadOnly: true }); }, [res._RedirectID], NET.POST);
-            }
+            NET.LoadData(App.Doc.Server.Url5, callback, context, NET.POST);
         }
-        NET.LoadData(App.Doc.Server.Url5, callback, context, NET.POST);
     });
 }
 

@@ -273,6 +273,8 @@
                             $('#category').hide();
                             $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.id);
                             $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
+                            $("[data-propertyName='ParentName']").text(name);
+
                         },
                         header: "<div class='margin_l05em fontweight700'>请选择分类</div>",
                     });

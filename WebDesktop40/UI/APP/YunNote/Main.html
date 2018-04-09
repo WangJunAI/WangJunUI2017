@@ -30,16 +30,8 @@
     <link href="../../../JS/Base/zTree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
     <script src="../../../JS/Base/zTree/js/jquery.ztree.all.js"></script>
 
-
-
-    <script src="JS/Doc.js"></script>
-    <script src="JS/AppInfo.Doc.js"></script>
-    <script src="JS/Doc.LeftMenu.js"></script>
-    <script src="JS/Doc.TopButton.js"></script>
-    <script src="JS/Doc.Detail.js"></script>
-    <script src="JS/Doc.Biz.js"></script>
-
     <!--共用业务JS-->
+    <script src="../../../JS/TPL/TPL.Initial.js"></script>
     <script src="../../../JS/TPL/TPL.App.js"></script>
     <script src="../../../JS/TPL/TPL.Category.js"></script>
     <script src="../../../JS/TPL/TPL.ClientUI.js"></script>
@@ -49,6 +41,13 @@
     <script src="../../../JS/TPL/TPL.View.js"></script>
     <script src="../../../JS/TPL/TPL.RecycleBin.js"></script>
 
+    <!--自定业务-->
+    <script src="JS/Doc.LeftMenu.js"></script>
+    <script src="JS/Doc.TopButton.js"></script>
+    <script src="JS/Doc.Detail.js"></script>
+    <script src="JS/Doc.Biz.js"></script>
+
+
 
 </head>
 <body>
@@ -57,7 +56,7 @@
     <div class="global">
         <div class="head">
             <a href="javascript:;" id="appName">文档管理</a>
-            <a href="javascript:;" id="userName" class="right"   onmouseover="$(this).next().show();">用户信息</a>
+            <a href="javascript:;" id="userName" class="right" onmouseover="$(this).next().show();">用户信息</a>
             <div class="personInfo">
                 <div class="downlist">
                     <ul>
@@ -161,9 +160,6 @@
         </div>
     </script>
 
-    <script type="text/javascript">
-        Doc.Initial();
-    </script>
     <div id="detailWindow">
         <div class="header"><a class="title" id="iframeTitle">标题</a><a href="javascript:;" class="btn close" onclick="Doc.CloseWindow()">关闭</a></div>
         <iframe src="redirect.html"></iframe>
@@ -206,7 +202,7 @@
                 <div class="row3">
                     <span>
                         来自
-                    </span><span>张德凯</span><span>12-11 8:05</span>
+                    </span><span>[CreatorName]</span><span>12-11 8:05</span>
                 </div>
             </a>
         </li>
@@ -240,6 +236,25 @@
                 <a class="btn" href="javascript:;" data-id="TopButton.搜索" onclick="Doc.TopButtonClick()">搜索</a>
             </div>
         </div>
+    </script>
+
+    <script type="text/javascript">
+        ///初始化
+        $(document).ready(function () {
+            var adminCallback = function () {
+                Doc.LoadAppInfo();
+                Doc.LoadMenu();
+                Doc.LeftMenuClick("LeftMenu.所有笔记");
+
+            }
+            var clientCallback = function () {
+                Doc.LoadAppInfo();
+                Doc.LoadMenu();
+                Doc.LeftMenuClick("LeftMenu.个人笔记");
+            }
+            Doc.Initial(SESSION.Current().CanManageYunNote, adminCallback, clientCallback);//初始化
+        });
+
     </script>
 </body>
 </html>

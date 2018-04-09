@@ -49,7 +49,7 @@ App.Doc.LeftMenu.push({ Name: "笔记管理", ID: "LeftMenu.笔记管理", Metho
 //App.Doc.LeftMenu.push({ Name: "新建目录", ID: "LeftMenu.新建目录", Method: "Doc.LeftMenuClick",  ParentID: "LeftMenu.笔记管理" });
 App.Doc.LeftMenu.push({ Name: "个人笔记", ID: "LeftMenu.个人笔记", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.笔记管理", TopButtonGroupID: "左侧菜单.个人笔记.TopButton" });
 App.Doc.LeftMenu.push({ Name: "与我共享", ID: "LeftMenu.与我共享", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.与我共享", TopButtonGroupID: "左侧菜单.与我共享.TopButton" });
-App.Doc.LeftMenu.push({ Name: "所有笔记", ID: "LeftMenu.所有笔记", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.笔记管理", TopButtonGroupID:"左侧菜单.个人笔记.TopButton" });
+//App.Doc.LeftMenu.push({ Name: "所有笔记", ID: "LeftMenu.所有笔记", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.笔记管理", TopButtonGroupID:"左侧菜单.个人笔记.TopButton" });
 //App.Doc.LeftMenu.push({ Name: "与我共享", ID: "LeftMenu.与我共享", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.与我共享", TopButtonGroupID: "左侧菜单.与我共享.TopButton" });
  
 App.Doc.LeftMenu.push({ Name: "数据分析", ID: "LeftMenu.数据分析", Method: "Doc.LeftMenuGroupToggle" , ParentID: null });

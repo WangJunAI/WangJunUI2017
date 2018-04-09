@@ -40,16 +40,8 @@
     <link href="../../../JS/Base/jquery-ui-1.12.1/jquery-ui.theme.css" rel="stylesheet" />
     <script src="../../../JS/Base/jquery-ui-1.12.1/jquery-ui.js"></script>
 
-
-
-    <script src="JS/AppInfo.Doc.js"></script>
-    <script src="JS/Doc.js"></script>
-    <script src="JS/Doc.LeftMenu.js"></script>
-    <script src="JS/Doc.TopButton.js"></script>
-    <script src="JS/Doc.Detail.js"></script>
-    <script src="JS/Doc.Biz.js"></script>
-
     <!--共用业务JS-->
+    <script src="../../../JS/TPL/TPL.Initial.js"></script>
     <script src="../../../JS/TPL/TPL.App.js"></script>
     <script src="../../../JS/TPL/TPL.Category.js"></script>
     <script src="../../../JS/TPL/TPL.ClientUI.js"></script>
@@ -57,6 +49,12 @@
     <script src="../../../JS/TPL/TPL.Nav.Ztree.js"></script>
     <script src="../../../JS/TPL/TPL.Table.js"></script>
     <script src="../../../JS/TPL/TPL.View.js"></script>
+
+    <!--自定业务-->
+    <script src="JS/Doc.LeftMenu.js"></script>
+    <script src="JS/Doc.TopButton.js"></script>
+    <script src="JS/Doc.Detail.js"></script>
+    <script src="JS/Doc.Biz.js"></script>
 
 
 </head>
@@ -132,6 +130,14 @@
                 </li>
             </ul>
         </div>
+
+        <div id="modal"></div>
+        <div id="dialog">
+            <div class="title">标题</div>
+            <div class="message">操作成功！</div>
+            <div class="bottom"><a href="javascript:;" onclick="$('#modal').hide();$('#dialog').hide()">取消</a><a href="javascript:;" onclick="$('#modal').hide();$('#dialog').hide()">关闭</a><a href="javascript:;" onclick="$('#modal').hide();$('#dialog').hide()">确定</a></div>
+        </div>
+
         <script id="editor" type="text/plain">
         </script>
 
@@ -142,64 +148,55 @@
                 <a href='javascript:;' class='margin_r05em' onclick="Doc.CancelCheckAllNodes($(this).parents('.dropdownlist').find('.ztree').attr('id')); $('[data-propertyname=UserAllowedArrayText]').text('未选择参与人员');$('#category3').toggle();">取消</a>
             </div>
         </script>
-    </div> 
+    </div>
+     
     <script type="text/javascript">
+        ///初始化
         $(document).ready(function () {
-            $(".global").width(window.parent.$("#content").width() - 30);
-            UE.getEditor('editor', { autoHeightEnabled: true, initialFrameWidth: $(".global").width() }); ///创建编辑器
+            $(document).tooltip();
 
+            var adminCallback = function () {
 
+            }
+            var clientCallback = function () {
+                $(".global").width(window.parent.$("#content").width() - 30);
+                UE.getEditor('editor', { autoHeightEnabled: true, initialFrameWidth: $(".global").width() }); ///创建编辑器
 
-            Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) {
-                Doc.LoadTreeTo("#category", res1, [], {
-                    Click: function (event, treeId, treeNode) {
-                        $('#category').hide();
-                        var name = treeNode.Name;
-                        $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.ID);
-                        $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
-                        $("[data-propertyName='ParentName']").text(name);
-                    },
-                    header: "<div class='margin_l05em fontweight700'>请选择所在目录</div>"
-                });
-            }); ///加载目录
-            Doc.LoadData_All([], function (res1) {
-                Doc.LoadTreeTo("#category2", res1, [], {
-                    ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
-                });
-            }); ///加载目录
+                Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) {
+                    Doc.LoadTreeTo("#category", res1, [], {
+                        Click: function (event, treeId, treeNode) {
+                            var name = treeNode.Name;
+                            $('#category').hide();
+                            $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.id);
+                            $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
+                            $("[data-propertyName='ParentName']").text(name);
 
-            Doc.LoadData_All([], function (res1) {
-                Doc.LoadTreeTo("#category3", res1, [], {
-                    ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
-                    , header: $("#tplDroplistHeader").html()
-                    , Check: function (event, treeId, treeNode) {
-                        var idArray = Doc.GetCheckedTreeNodes(treeId);
-                        var fix = (0 < idArray.length) ? " 等" : " ";
-                        $("[data-propertyName='UserAllowedArrayText']").text("已选中 " + treeNode.Name + fix + idArray.length + "人");
-                        $("[data-propertyName='UserAllowedArrayText']").attr("data-propertyvalue", "已选中 " + treeNode.Name + fix + idArray.length + "人");
+                        },
+                        header: "<div class='margin_l05em fontweight700'>请选择所在目录</div>",
+                    });
+                }); ///加载目录
 
-                    },
-                });
-                Doc.LoadDetail();
+                Doc.LoadData_All([], function (res1) {
+                    Doc.LoadTreeTo("#category3", res1, [], {
+                        ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
+                        , header: $("#tplDroplistHeader").html()
+                        , Check: function (event, treeId, treeNode) {
+                            var idArray = Doc.GetCheckedTreeNodes(treeId);
+                            var fix = (0 < idArray.length) ? " 等" : " ";
+                            $("[data-propertyName='UserAllowedArrayText']").text("已选中 " + treeNode.Name + fix + idArray.length + "人");
+                            $("[data-propertyName='UserAllowedArrayText']").attr("data-propertyvalue", "已选中 " + treeNode.Name + fix + idArray.length + "人");
+                        },
+                    });
+                    Doc.LoadDetail();
 
-            }); ///加载目录
+                }); ///加载目录
 
-            Doc.LoadData_All([], function (res1) {
-                Doc.LoadTreeTo("#category4", res1, [], {
-                    ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
-                });
-            }); ///加载目录
+            }
+            Doc.Initial(SESSION.Current().CanManageYunNote, clientCallback, clientCallback);//初始化
         });
-        window.parent.document.getElementById("iframeTitle").innerText = document.title;
 
     </script>
 
-    <div id="modal"></div>
-    <div id="dialog">
-        <div class="title">标题</div>
-        <div class="message">操作成功！</div>
-        <div class="bottom"><a href="javascript:;" onclick="$('#modal').hide();$('#dialog').hide()">关闭</a></div>
-    </div>
 
 </body>
 </html>
