@@ -31,12 +31,12 @@ DESKTOP.EventBind = function () {
 
 ///显示或收缩开始菜单
 DESKTOP.ToggleStartMenu = function () {
-    $(".startmenu").toggle();
+    $(".startmenu").toggle("drop", { "direction": "down" });
 }
 
 ///显示或收缩通知中心
 DESKTOP.ToggleNoticeCenter = function () {
-    $(".notice_center").toggle();
+    $(".notice_center").toggle("drop", { "direction":"right"});
 }
 
 ///桌面初始化
