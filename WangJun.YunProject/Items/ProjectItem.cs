@@ -110,8 +110,8 @@ namespace WangJun.YunProject
                 {
                     var staff = StaffItem.Load(id);
                     inst.ID = null;
-                    inst.Name = "[共享给" + staff.Name + "]" + inst.Name;
-                    inst.Title = "[共享给" + staff.Name + "]" + inst.Title;
+                    inst.Name =   inst.Name;
+                    inst.Title =  inst.Title;
                     inst._RedirectID = redirectID;
                     inst.OwnerID = id;
                     inst.Save();

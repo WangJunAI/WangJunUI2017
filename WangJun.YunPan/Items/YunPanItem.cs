@@ -103,7 +103,7 @@ namespace WangJun.YunPan
                     property.SetValue(inst, kv.Value);
                 }
             }
-            inst.Name = "[" + SESSION.Current.UserName + "]" + inst.Name;///调试用
+            inst.Name =  inst.Name;///调试用
             inst.Save();
 
             #region 创建共享文档
@@ -114,7 +114,7 @@ namespace WangJun.YunPan
                 {
                     var staff = StaffItem.Load(id);
                     inst.ID = null;
-                    inst.Name = "[共享给" + staff.Name + "]" + inst.Name;
+                    inst.Name = inst.Name;
                     inst._RedirectID = redirectID;
                     inst.OwnerID = id;
                     inst.Save();

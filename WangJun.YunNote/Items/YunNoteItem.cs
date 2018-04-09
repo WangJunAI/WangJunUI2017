@@ -79,8 +79,8 @@ namespace WangJun.YunNote
                     property.SetValue(inst, kv.Value);
                 }
             }
-            inst.Name = "[" + SESSION.Current.UserName + "]" + inst.Name;///调试用
-            inst.Title = "[" + SESSION.Current.UserName + "]" + inst.Title;///调试用
+            inst.Name =   inst.Name;///调试用
+            inst.Title = inst.Title;///调试用
             inst.Save();
 
             #region 创建共享文档
@@ -91,8 +91,8 @@ namespace WangJun.YunNote
                 {
                     var staff = StaffItem.Load(id);
                     inst.ID = null;
-                    inst.Name = "[共享给" + staff.Name + "]" + inst.Name;
-                    inst.Title = "[共享给" + staff.Name + "]" + inst.Title;
+                    inst.Name =  inst.Name;
+                    inst.Title = inst.Title;
                     inst._RedirectID = redirectID;
                     inst.OwnerID = id;
                     inst.Save();

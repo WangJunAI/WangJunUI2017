@@ -132,7 +132,7 @@ namespace WangJun.HostApp
         {
             var tableName = data["CollectionName"].ToString();
             var dbID = data["DbID"].ToString();
-            var source = CategoryItem.Load(dbID);
+            var source = YunNews.CategoryItem.Load(dbID);
             var categoryList = DataStorage.GetInstance(DBType.MongoDB).Find3("WangJun", "Category", "{'CompanyID':'" + source.CompanyID + "'}");
             var stack = new Stack<string>();
             stack.Push(source.ID);
