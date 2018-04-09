@@ -114,7 +114,7 @@
                     <div class="item">
                         <div class="key">参与人员</div>
                         <div class="value" data-FormName="Default" data-propertyName="UserAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
-                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category3').toggle();" id="parentNode" data-FormName="Default" data-propertyName="UserAllowedArrayText" data-propertyValue="">未选择参与人员</a>
+                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category3').toggle();" data-FormName="Default" data-propertyName="UserAllowedArrayText" data-propertyValue="">未选择参与人员</a>
                             <div style="position: absolute;z-index:9999;">
                                 <div id="category3" class="dropdownlist">
                                 </div>
@@ -126,7 +126,7 @@
                     <div class="item">
                         <div class="key">添加角色</div>
                         <div class="value" data-FormName="Default" data-propertyName="RoleAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
-                            <a href="javascript:;" class="checkbox" onclick="$('#category4').toggle();" id="parentNode" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
+                            <a href="javascript:;" class="checkbox" onclick="$('#category4').toggle();"  data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
                             <div style="position: absolute;">
                                 <div id="category4" class="dropdownlist">
                                 </div>
@@ -202,6 +202,7 @@
                         var idArray = Doc.GetCheckedTreeNodes(treeId);
                         var fix = (0 < idArray.length) ? " 等" : " ";
                         $("[data-propertyName='UserAllowedArrayText']").text("已选中 " + treeNode.Name + fix + idArray.length + "人");
+                        $("[data-propertyName='UserAllowedArrayText']").attr("data-propertyvalue","已选中 " + treeNode.Name + fix + idArray.length + "人");
                     },
                 });
             }); ///加载目录

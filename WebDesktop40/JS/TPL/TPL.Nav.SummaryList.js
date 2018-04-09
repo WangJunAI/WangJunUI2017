@@ -53,6 +53,12 @@ Doc.LoadSummaryListTo = function (target, data, option) {
         Doc.SummaryListItemClick(option);
     });
 
+    ///设置滚动条
+    if (true === PARAM_CHECKER.IsFunction($(target).mCustomScrollbar)) {
+        //$(target).mCustomScrollbar({ theme: "dark" });
+        //$(".mCSB_container").css("margin-right","11px");
+    }
+
 }
 
 Doc.SummaryListItemClick = function (option) {

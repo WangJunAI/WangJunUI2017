@@ -15,7 +15,7 @@ App.Doc.CSS.LeftList.View1 = {};
 App.Doc.CSS.LeftList.View1.Width = { Value: 30, Unit: "em" };
 
 App.Doc.CSS.LeftList.View3 = {};
-App.Doc.CSS.LeftList.View3.Width = { Value: 12, Unit: "em" };
+App.Doc.CSS.LeftList.View3.Width = { Value: 18, Unit: "em" };
 
  App.Doc.Server = {
      Url1: "http://localhost:9990//API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=LoadEntityList", ///加载文档目录

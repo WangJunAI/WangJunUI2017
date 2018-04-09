@@ -63,6 +63,7 @@ Doc.ShowDetail = function (data,option) {
             $(".options").remove();
             $(".buttons").remove();
             $(".minibuttons").remove();
+            $("[data-propertyname='Title']").attr("readonly", "readonly");
         }
 
         var $ctrls = $("[data-FormName='Default']").each(function () {
@@ -73,6 +74,9 @@ Doc.ShowDetail = function (data,option) {
                 $(this).val(propertyValue);
             }
         });
+
+        $("[data-propertyname='ParentName']").text(data.ParentName);
+        $("[data-propertyname='UserAllowedArrayText']").text(data.UserAllowedArrayText);
 
 
         $(".buttons").hide();

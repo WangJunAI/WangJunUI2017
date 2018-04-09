@@ -432,6 +432,8 @@
     <Content Include="JS\Base\jquery-ui-1.12.1\LICENSE.txt" />
     <Content Include="JS\Base\JsonDB.js" />
     <Content Include="JS\Base\jsplumb.js" />
+    <Content Include="JS\Base\mCustomScrollbar\jquery.mCustomScrollbar.concat.min.js" />
+    <Content Include="JS\Base\mCustomScrollbar\jquery.mCustomScrollbar.css" />
     <Content Include="JS\Base\NET.js" />
     <Content Include="JS\Base\PARAM_CHECKER.js" />
     <Content Include="JS\Base\zTree\api\apiCss\api.js" />

@@ -177,6 +177,8 @@
                         var idArray = Doc.GetCheckedTreeNodes(treeId);
                         var fix = (0 < idArray.length) ? " 等" : " ";
                         $("[data-propertyName='UserAllowedArrayText']").text("已选中 " + treeNode.Name + fix + idArray.length + "人");
+                        $("[data-propertyName='UserAllowedArrayText']").attr("data-propertyvalue", "已选中 " + treeNode.Name + fix + idArray.length + "人");
+
                     },
                 });
             }); ///加载目录

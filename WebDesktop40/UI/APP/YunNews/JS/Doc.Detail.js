@@ -1,4 +1,6 @@
-﻿Doc.LoadDetail = function () {
+﻿
+
+Doc.LoadDetail = function () {
 
     $(document).ready(function () {
 
@@ -16,19 +18,21 @@
         });
 
         var id = NET.GetQueryParam("id");
-        var context = [id];
+        if (true === PARAM_CHECKER.IsNotEmptyObjectId(id)) {
+            var context = [id];
 
-        var callback = function (res) {
-            LOGGER.Log(res);
-            if (null === res._RedirectID) {
-                Doc.ShowDetail(res);
-            }
-            else {
+            var callback = function (res) {
+                LOGGER.Log(res);
+                if (null === res._RedirectID) {
+                    Doc.ShowDetail(res);
+                }
+                else {
 
-                NET.LoadData(App.Doc.Server.Url5, function (res) { Doc.ShowDetail(res, { ReadOnly: true }); }, [res._RedirectID], NET.POST);
+                    NET.LoadData(App.Doc.Server.Url5, function (res) { Doc.ShowDetail(res, { ReadOnly: true }); }, [res._RedirectID], NET.POST);
+                }
             }
+            NET.LoadData(App.Doc.Server.Url5, callback, context, NET.POST);
         }
-        NET.LoadData(App.Doc.Server.Url5, callback, context, NET.POST);
     });
 }
 
@@ -65,7 +69,10 @@ Doc.ShowDetail = function (data, option) {
 
         $("[data-PropertyName='ParentName']").text(data.ParentName);
 
-        $("#deleteBtn").removeAttr("style");
+        if (true === PARAM_CHECKER.IsNotEmptyObjectId(data.ID)) {
+            $("#deleteBtn").removeAttr("style");
+        }
+
 
         $("[data-single]").each(function () {
             var propertyName = $(this).attr("data-single");
