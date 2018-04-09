@@ -45,16 +45,8 @@
     <link href="../../../JS/Base/jquery-ui-1.12.1/jquery-ui.theme.css" rel="stylesheet" />
     <script src="../../../JS/Base/jquery-ui-1.12.1/jquery-ui.js"></script>
 
-
-
-    <script src="JS/AppInfo.Doc.js"></script>
-    <script src="JS/Doc.js"></script>
-    <script src="JS/Doc.LeftMenu.js"></script>
-    <script src="JS/Doc.TopButton.js"></script>
-    <script src="JS/Doc.Detail.js"></script>
-    <script src="JS/Doc.Biz.js"></script>
-
     <!--共用业务JS-->
+    <script src="../../../JS/TPL/TPL.Initial.js"></script>
     <script src="../../../JS/TPL/TPL.App.js"></script>
     <script src="../../../JS/TPL/TPL.Category.js"></script>
     <script src="../../../JS/TPL/TPL.ClientUI.js"></script>
@@ -62,6 +54,14 @@
     <script src="../../../JS/TPL/TPL.Nav.Ztree.js"></script>
     <script src="../../../JS/TPL/TPL.Table.js"></script>
     <script src="../../../JS/TPL/TPL.View.js"></script>
+
+    <!--自定业务-->
+    <script src="JS/Doc.LeftMenu.js"></script>
+    <script src="JS/Doc.TopButton.js"></script>
+    <script src="JS/Doc.Detail.js"></script>
+    <script src="JS/Doc.Biz.js"></script>
+
+
 
 </head>
 <body>
@@ -105,7 +105,7 @@
                     <div class="item">
                         <div class="key">添加人员</div>
                         <div class="value" data-FormName="Default" data-propertyName="UserAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
-                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category3').toggle();"   data-FormName="Default" data-propertyName="UserAllowedArrayText" data-propertyValue="">未选择项目组成员</a>
+                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category3').toggle();" data-FormName="Default" data-propertyName="UserAllowedArrayText" data-propertyValue="">未选择项目组成员</a>
                             <div style="position: absolute;z-index:9999;">
                                 <div id="category3" class="dropdownlist">
                                 </div>
@@ -144,6 +144,15 @@
             <ul id="commentList"></ul>
             <a href="javascript:;" id="loadMore" onclick="Doc.LoadCommentList()">加载更多....</a>
         </div>
+    </div>
+
+
+
+    <div id="modal"></div>
+    <div id="dialog">
+        <div class="title">标题</div>
+        <div class="message">操作成功！</div>
+        <div class="bottom"><a href="javascript:;" onclick="$('#modal').hide();$('#dialog').hide()">取消</a><a href="javascript:;" onclick="$('#modal').hide();$('#dialog').hide()">关闭</a><a href="javascript:;" onclick="$('#modal').hide();$('#dialog').hide()">确定</a></div>
     </div>
 
     <script type="text/html" id="tplDroplistHeader">
@@ -194,7 +203,7 @@
                 <div class="content" data-propertyName="Content" data-propertyValue="[Content]">[Content]</div>
                 <div class="info">
                     <span class="status">进行中<input type="hidden" data-propertyName="Status" value="进行中" /></span>
-                    <span class="time" data-propertyName="ExpectedEndTime"  data-propertyValue="[ExpectedEndTime]">预计[ExpectedEndTime]结束</span>
+                    <span class="time" data-propertyName="ExpectedEndTime" data-propertyValue="[ExpectedEndTime]">预计[ExpectedEndTime]结束</span>
                     <a href="javascript:;" class="btn" data-propertyName="ID" data-propertyValue="[ID]" onclick="Milestone.CompleteTask()">确认完成</a>
                 </div>
             </div>
@@ -210,9 +219,11 @@
     </script>
     <script type="text/html" id="tpl_Milestone_6">
         <li>
-            <h2 class="checkpoint"><span class="title" data-propertyName="Title" data-propertyValue="[CheckPointTitle]">[CheckPointTitle]</span>
-            <span class="separator">|</span>
-            <span class="progress" data-propertyName="Summary" data-propertyValue="[CheckPointSummary]">[CheckPointSummary]</span></h2>
+            <h2 class="checkpoint">
+                <span class="title" data-propertyName="Title" data-propertyValue="[CheckPointTitle]">[CheckPointTitle]</span>
+                <span class="separator">|</span>
+                <span class="progress" data-propertyName="Summary" data-propertyValue="[CheckPointSummary]">[CheckPointSummary]</span>
+            </h2>
             <ul>
                 <li>
                     <a href="javascript:;" class="addbtn" onclick="Milestone.AddTask()">添加新任务</a>
@@ -241,63 +252,52 @@
         </li>
     </script>
 
+ 
+
     <script type="text/javascript">
+        ///初始化
         $(document).ready(function () {
-            $(".global").width(window.parent.$("#content").width() - 30);
-            UE.getEditor('editor', { initialFrameWidth: $(".global").width() }); ///创建编辑器
+            $(document).tooltip();
 
+            var adminCallback = function () {
+ 
+            }
+            var clientCallback = function () {
+                $(".global").width(window.parent.$("#content").width() - 30);
+                UE.getEditor('editor', { initialFrameWidth: $(".global").width() }); ///创建编辑器
+                 
+                Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) {
+                    Doc.LoadTreeTo("#category", res1, [], {
+                        Click: function (event, treeId, treeNode) {
+                            var name = treeNode.Name;
+                            $('#category').hide();
+                            $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.id);
+                            $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
+                        },
+                        header: "<div class='margin_l05em fontweight700'>请选择分类</div>",
+                    });
+                }); ///加载目录
 
+                Doc.LoadData_All([], function (res1) {
+                    Doc.LoadTreeTo("#category3", res1, [], {
+                        ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
+                        , header: $("#tplDroplistHeader").html()
+                        , Check: function (event, treeId, treeNode) {
+                            var idArray = Doc.GetCheckedTreeNodes(treeId);
+                            var fix = (0 < idArray.length) ? " 等" : " ";
+                            $("[data-propertyName='UserAllowedArrayText']").text("已选中 " + treeNode.Name + fix + idArray.length + "人");
+                            $("[data-propertyName='UserAllowedArrayText']").attr("data-propertyvalue", "已选中 " + treeNode.Name + fix + idArray.length + "人");
+                        },
+                    });
+                    Doc.LoadDetail();
 
-            Doc.LoadDetail();
-            Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) {
-                Doc.LoadTreeTo("#category", res1, [], {
-                    Click: function (event, treeId, treeNode) {
-                        var name = treeNode.Name;
-                        $('#category').hide();
-                        $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.id);
-                        $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
-                    },
-                    header: "<div class='margin_l05em fontweight700'>请选择分类</div>",
-                });
-            }); ///加载目录
-            Doc.LoadData_All([], function (res1) {
-                Doc.LoadTreeTo("#category2", res1, [], {
-                    ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
-                });
-            }); ///加载目录
+                }); ///加载目录
 
-            Doc.LoadData_All([], function (res1) {
-                Doc.LoadTreeTo("#category3", res1, [], {
-                    ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
-                    , header: $("#tplDroplistHeader").html()
-                    , Check: function (event, treeId, treeNode) {
-                        var idArray = Doc.GetCheckedTreeNodes(treeId);
-                        var fix = (0 < idArray.length) ? " 等" : " ";
-                        $("[data-propertyName='UserAllowedArrayText']").text("已选中 " + treeNode.Name + fix + idArray.length + "人");
-                        $("[data-propertyName='UserAllowedArrayText']").attr("data-propertyvalue", "已选中 " + treeNode.Name + fix + idArray.length + "人");
-                    },
-                });
-                Doc.LoadDetail();
-
-            }); ///加载目录
-
-            Doc.LoadData_All([], function (res1) {
-                Doc.LoadTreeTo("#category4", res1, [], {
-                    ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
-                });
-            }); ///加载目录
-
+            }
+            Doc.Initial(SESSION.Current().CanManageYunProject, clientCallback, clientCallback);//初始化
         });
 
-
     </script>
-
-    <div id="modal"></div>
-    <div id="dialog">
-        <div class="title">标题</div>
-        <div class="message">操作成功！</div>
-        <div class="bottom"><a href="javascript:;" onclick="$('#modal').hide();$('#dialog').hide()">关闭</a></div>
-    </div>
 
 </body>
 </html>
