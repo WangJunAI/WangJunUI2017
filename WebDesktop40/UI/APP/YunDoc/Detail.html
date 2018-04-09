@@ -144,7 +144,6 @@
 
 
 
-            Doc.LoadDetail();
             Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) {
                 Doc.LoadTreeTo("#category", res1, [], {
                     Click: function (event, treeId, treeNode) {
@@ -164,9 +163,13 @@
             }); ///加载目录
 
             Doc.LoadData_All([], function (res1) {
+
                 Doc.LoadTreeTo("#category3", res1, [], {
                     ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
                 });
+
+                Doc.LoadDetail();
+
             }); ///加载目录
 
             Doc.LoadData_All([], function (res1) {

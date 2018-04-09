@@ -61,8 +61,7 @@ Doc.ShowDetail = function (data,option) {
 
         if (true === !PARAM_CHECKER.IsNotEmptyString(data.ParentName)) {
             data.ParentName = "选择分类";
-        }
-        $("#parentNode").text(data.ParentName);
+        } 
         $("#deleteBtn").removeAttr("style");
 
         $("[data-single]").each(function () {
@@ -74,9 +73,12 @@ Doc.ShowDetail = function (data,option) {
 
                 $(this).addClass("selected");
             }
-
-
         });
+
+        $("[data-propertyname='ParentName']").text(data.ParentName);
+        $("[data-propertyname='UserAllowedArrayText']").text(data.UserAllowedArrayText);
+        Doc.SetCheckedTreeNodes($("#category3").find(".ztree").attr("id"), data.UserAllowedArray);
+
 
    
 

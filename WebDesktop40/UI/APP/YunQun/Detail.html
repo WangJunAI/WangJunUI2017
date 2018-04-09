@@ -175,7 +175,7 @@
 
 
 
-            Doc.LoadDetail();
+            
             Doc.LoadData_Category([JSON.stringify({ OwnerID: SESSION.Current().CompanyID }), "{}", "{}", 0, 1000], function (res1) {
                 Doc.LoadTreeTo("#category", res1, [], {
                     Click: function (event, treeId, treeNode) {
@@ -205,6 +205,8 @@
                         $("[data-propertyName='UserAllowedArrayText']").attr("data-propertyvalue","已选中 " + treeNode.Name + fix + idArray.length + "人");
                     },
                 });
+
+                Doc.LoadDetail();
             }); ///加载目录
 
             Doc.LoadData_All([], function (res1) {

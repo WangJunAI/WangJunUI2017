@@ -25,6 +25,26 @@ Doc.GetCheckedTreeNodes = function (target) {
     return [];
 }
 
+
+Doc.SetCheckedTreeNodes = function (target,idArray) {
+    if (true === PARAM_CHECKER.IsNotEmptyString(target)) {
+        var ztree = $.fn.zTree.getZTreeObj(target);
+        var allNodes = ztree.transformToArray(ztree.getNodes());
+        var dict = {};
+        for (var m = 0; m < idArray.length; m++) {
+            dict[idArray[m]] = idArray[m];
+        }
+
+        for (var k = 0; k < allNodes.length; k++) {
+            var treeNode = allNodes[k];
+            if (true === PARAM_CHECKER.IsNotEmptyString(dict[treeNode.ID])) {
+                ztree.checkNode(treeNode, true, true);
+
+            }
+        } 
+    } 
+}
+
 Doc.CancelCheckAllNodes = function (target) {
     if (true === PARAM_CHECKER.IsNotEmptyString(target)) {
         var ztree = $.fn.zTree.getZTreeObj(target);

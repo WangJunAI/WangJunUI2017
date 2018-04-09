@@ -27,3 +27,14 @@ Convertor.ToBase64String = function (input,safeMode) {
     }
     return base64;
 }
+
+Convertor.ArrayToDict = function (sourceArray,keyName) {
+    var dict = {};
+    if (true === PARAM_CHECKER.IsArray(sourceArray)) {
+        for (var k = 0; k < sourceArray.length; k++) {
+            var sourceItem = sourceArray[k];
+            dict[sourceItem[keyName]] = sourceItem;
+        }
+    }
+    return dict;
+}

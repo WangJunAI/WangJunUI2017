@@ -63,6 +63,10 @@ Doc.ShowDetail = function (data,option) {
             }
         });
 
+        $("[data-propertyname='ParentName']").text(data.ParentName);
+        $("[data-propertyname='UserAllowedArrayText']").text(data.UserAllowedArrayText);
+        Doc.SetCheckedTreeNodes($("#category3").find(".ztree").attr("id"), data.UserAllowedArray);
+
 
 
         $("[data-single]").each(function () {
