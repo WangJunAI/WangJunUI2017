@@ -27,7 +27,7 @@ Doc.SaveCategory = function () {
         Doc.SubmitEnd(submitId);
 
         if (false === PARAM_CHECKER.IsTopWindow()) {
-            if (true === SESSION.IsSuperAdmin) {
+            if (true === SESSION.Current().CanManageYunPan) {
                 top.window.Doc.LeftMenuClick("LeftMenu.企业云盘");
             }
             else {

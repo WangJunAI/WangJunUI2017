@@ -163,7 +163,10 @@
             </ul>
 
         </div>
-     </div>
+        <!--<div class="buttons" style="margin-top:15em;">
+            <a href="javascript:;" class="btn" onclick="top.window.Doc.LeftMenuClick('LeftMenu.个人云盘');Doc.CloseWindow();">关闭</a>
+        </div>-->
+    </div>
 
     <div id="modal"></div>
     <div id="dialog">
@@ -172,7 +175,46 @@
         <div class="bottom"><a href="javascript:;" onclick="$('#modal').hide();$('#dialog').hide()">取消</a><a href="javascript:;" onclick="$('#modal').hide();$('#dialog').hide()">关闭</a><a href="javascript:;" onclick="$('#modal').hide();$('#dialog').hide()">确定</a></div>
     </div>
 
-     
+    <script type="text/javascript">
+        $(document).ready(function () {
+            Doc.LoadDetail();
+            Doc.LoadData_Category([JSON.stringify({ OwnerID: SESSION.Current().CompanyID }), "{}", "{}", 0, 1000], function (res1) {
+                Doc.LoadTreeTo("#category", res1, [], {
+                    Click: function (event, treeId, treeNode) {
+                        var name = treeNode.Name;
+                        $('#category').hide();
+                        $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.ID);
+                        $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
+                        $("[data-propertyName='ParentName']").text(name);
+                    },
+                    header: "<div class='margin_l05em fontweight700'>请选择上传目录</div>"
+                });
+            }); ///加载目录
+
+        });
+
+        Doc.LoadData_All([], function (res1) {
+            Doc.LoadTreeTo("#category2", res1, [], {
+                ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
+            });
+        }); ///加载目录
+
+        Doc.LoadData_All([], function (res1) {
+            Doc.LoadTreeTo("#category3", res1, [], {
+                ShowMode: "checkbox", Check: function (event, treeId, treeNode) { },
+                header: "<div class='margin_l05em fontweight700'>请选择共享人员</div>"
+            });
+        }); ///加载目录
+
+        Doc.LoadData_All([], function (res1) {
+            Doc.LoadTreeTo("#category4", res1, [], {
+                ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
+            });
+        }); ///加载目录
+
+        window.parent.document.getElementById("iframeTitle").innerText = document.title;
+
+    </script>
 
 
     <script type="text/javascript">
@@ -181,7 +223,6 @@
             var adminCallback = function () {
                 $("[data-propertyName='OwnerID']").attr("data-propertyValue", SESSION.Current().CompanyID);
                 Doc.LoadData_Category([JSON.stringify({ OwnerID: SESSION.Current().CompanyID }), "{}", "{}", 0, 1000], function (res1) {
-                    Doc.LoadDetail();
                     Doc.LoadTreeTo("#category", res1, [], {
                         Click: function (event, treeId, treeNode) {
                             var name = treeNode.Name;
@@ -189,11 +230,13 @@
                             $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.ID);
                             $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
                             $("[data-propertyName='ParentName']").text(name);
-                        },
-                        header: "<div class='margin_l05em fontweight700'>请选择上传目录</div>"
-                    });
-                }); ///加载目录
 
+                        },
+                        header: "<div class='margin_l05em fontweight700'>请选择上级文件夹</div>"
+                    });
+                    Doc.LoadCategoryDetail();
+
+                });
             }
             var clientCallback = function () {
 
