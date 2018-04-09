@@ -1,0 +1,34 @@
+﻿
+.w20em {
+    width:20em;
+}
+
+.w30em {
+    width: 30em;
+}
+
+.w100P {
+    width:100% !important;
+}
+
+
+.txtleft{
+    text-align:left !important;
+}
+
+.txtright {
+    text-align: right !important;
+}
+ 
+
+.margin_r05em{
+    margin-right:0.5em;
+}
+
+.margin_l05em {
+    margin-left: 0.5em;
+}
+
+.fontweight700{
+    font-weight:700;
+}

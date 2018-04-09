@@ -4,7 +4,7 @@ App.Doc = {};
 App.Doc.Info = {};
 
 App.Doc.Info.ID = "YBJ";
-App.Doc.Info.Name = "汪俊云群组管理端";
+App.Doc.Info.Name = "汪俊云群组客户端";
 
 App.Doc.CSS = {};
 App.Doc.CSS.LeftMenu = {};

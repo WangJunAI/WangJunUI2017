@@ -1431,7 +1431,6 @@
     <Content Include="UI\APP\Staff\Detail.html" />
     <Content Include="UI\APP\Staff\JS\AppInfo.Client.js" />
     <Content Include="UI\APP\Staff\JS\AppInfo.Admin.js" />
-    <Content Include="UI\APP\Staff\JS\AppInfo.Doc.js" />
     <Content Include="UI\APP\Staff\JS\Doc.Biz.js" />
     <Content Include="UI\APP\Staff\JS\Doc.Detail.js" />
     <Content Include="UI\APP\Staff\JS\Doc.js" />
@@ -1454,7 +1453,6 @@
     <Content Include="UI\APP\YunNews\Detail.html" />
     <Content Include="UI\APP\YunNews\JS\AppInfo.Client.js" />
     <Content Include="UI\APP\YunNews\JS\AppInfo.Admin.js" />
-    <Content Include="UI\APP\YunNews\JS\AppInfo.Doc.js" />
     <Content Include="UI\APP\YunNews\JS\Doc.Biz.js" />
     <Content Include="UI\APP\YunNews\JS\Doc.Detail.js" />
     <Content Include="UI\APP\YunNews\JS\Doc.js" />
@@ -1464,7 +1462,6 @@
     <Content Include="UI\APP\YunDoc\AppInfo.html" />
     <Content Include="UI\APP\YunDoc\Category.html" />
     <Content Include="UI\APP\YunDoc\Detail.html" />
-    <Content Include="UI\APP\YunDoc\JS\AppInfo.Doc.js" />
     <Content Include="UI\APP\YunDoc\JS\Doc.Biz.js" />
     <Content Include="UI\APP\YunDoc\JS\Doc.Detail.js" />
     <Content Include="UI\APP\YunDoc\JS\Doc.js" />
@@ -1488,7 +1485,6 @@
     <Content Include="UI\APP\YunQun\Detail.html" />
     <Content Include="UI\APP\YunQun\JS\AppInfo.Client.js" />
     <Content Include="UI\APP\YunQun\JS\AppInfo.Admin.js" />
-    <Content Include="UI\APP\YunQun\JS\AppInfo.Doc.js" />
     <Content Include="UI\APP\YunQun\JS\Doc.Biz.js" />
     <Content Include="UI\APP\YunQun\JS\Doc.Detail.js" />
     <Content Include="UI\APP\YunQun\JS\Doc.js" />
@@ -1501,7 +1497,6 @@
     <Content Include="UI\APP\YunProject\Category.html" />
     <Content Include="UI\APP\YunProject\CSS\milestone.css" />
     <Content Include="UI\APP\YunProject\Detail.html" />
-    <Content Include="UI\APP\YunProject\JS\AppInfo.Doc.js" />
     <Content Include="JS\ClientDetector.js" />
     <Content Include="JS\TPL\TPL.App.js" />
     <Content Include="UI\APP\YunProject\JS\Doc.Biz.js" />
@@ -1518,7 +1513,6 @@
     <Content Include="UI\APP\YunNote\AppInfo.html" />
     <Content Include="UI\APP\YunNote\Detail.html" />
     <Content Include="UI\APP\YunNote\Main.html" />
-    <Content Include="UI\APP\YunNote\JS\AppInfo.Doc.js" />
     <Content Include="UI\APP\YunNote\JS\Doc.Biz.js" />
     <Content Include="UI\APP\YunNote\JS\Doc.Detail.js" />
     <Content Include="UI\APP\YunNote\JS\Doc.js" />
@@ -1533,7 +1527,6 @@
     <Content Include="UI\APP\YunPan\CSS\QuickBar.css" />
     <Content Include="UI\APP\YunPan\Detail.html" />
     <Content Include="UI\APP\YunPan\Main.html" />
-    <Content Include="UI\APP\YunPan\JS\AppInfo.Doc.js" />
     <Content Include="UI\APP\YunPan\JS\Doc.Biz.js" />
     <Content Include="UI\APP\YunPan\JS\Doc.Detail.js" />
     <Content Include="UI\APP\YunPan\JS\Doc.js" />

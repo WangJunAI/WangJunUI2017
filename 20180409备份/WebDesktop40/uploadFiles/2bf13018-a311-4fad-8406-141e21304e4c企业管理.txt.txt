@@ -1,0 +1,1 @@
+﻿{"ServerFileName":"2bf13018-a311-4fad-8406-141e21304e4c企业管理.txt","ServerFilePath":"E:\\WangJunUI2017\\WangJunUI2017\\WebDesktop40\\uploadFiles\\2bf13018-a311-4fad-8406-141e21304e4c企业管理.txt","FileNameInClient":"企业管理.txt","FileLength":10,"FileLengthText":"10B","HttpUrl":"http://localhost:14000/uploadFiles/2bf13018-a311-4fad-8406-141e21304e4c企业管理.txt"}
