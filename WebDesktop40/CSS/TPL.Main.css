@@ -474,6 +474,7 @@ body {
         overflow: hidden;
         font-size: 0.80em;
         margin-top: 0.3em;
+        color: #999;
     }
 
         .listItem3 > .row2 > div {
@@ -483,6 +484,7 @@ body {
 
     .listItem3 > .row3 {
         margin-top: 0.2em;
+        color: #333;
     }
 
         .listItem3 > .row3 span {

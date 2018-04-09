@@ -40,16 +40,8 @@
     <link href="../../../JS/Base/jquery-ui-1.12.1/jquery-ui.theme.css" rel="stylesheet" />
     <script src="../../../JS/Base/jquery-ui-1.12.1/jquery-ui.js"></script>
 
-
-
-    <script src="JS/AppInfo.Doc.js"></script>
-    <script src="JS/Doc.js"></script>
-    <script src="JS/Doc.LeftMenu.js"></script>
-    <script src="JS/Doc.TopButton.js"></script>
-    <script src="JS/Doc.Detail.js"></script>
-    <script src="JS/Doc.Biz.js"></script>
-
     <!--共用业务JS-->
+    <script src="../../../JS/TPL/TPL.Initial.js"></script>
     <script src="../../../JS/TPL/TPL.App.js"></script>
     <script src="../../../JS/TPL/TPL.Category.js"></script>
     <script src="../../../JS/TPL/TPL.ClientUI.js"></script>
@@ -57,6 +49,14 @@
     <script src="../../../JS/TPL/TPL.Nav.Ztree.js"></script>
     <script src="../../../JS/TPL/TPL.Table.js"></script>
     <script src="../../../JS/TPL/TPL.View.js"></script>
+
+    <!--自定业务-->
+    <script src="JS/Doc.LeftMenu.js"></script>
+    <script src="JS/Doc.TopButton.js"></script>
+    <script src="JS/Doc.Detail.js"></script>
+    <script src="JS/Doc.Biz.js"></script>
+
+
 
 
 </head>
@@ -74,7 +74,7 @@
                     <div class="item">
                         <div class="key">所在目录</div>
                         <div class="value" data-FormName="Default" data-propertyName="ParentID" data-propertyValue="">
-                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category').toggle();"   data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">未选择所在目录</a>
+                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">未选择所在目录</a>
                             <div style="position: absolute;z-index: 9999;">
                                 <div id="category" class="dropdownlist">
                                 </div>
@@ -108,8 +108,8 @@
                     <div class="item">
                         <div class="key">共享人员</div>
                         <div class="value" data-FormName="Default" data-propertyName="UserAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
-                            <a href="javascript:;" class="checkbox" onclick="$('#category3').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
-                            <div style="position: absolute;z-index: 9999;">
+                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category3').toggle();" data-FormName="Default" data-propertyName="UserAllowedArrayText" data-propertyValue="">未选择共享人员</a>
+                            <div style="position: absolute;z-index:9999;    bottom: 21em;">
                                 <div id="category3" class="dropdownlist">
                                 </div>
                             </div>
@@ -120,7 +120,7 @@
                     <div class="item">
                         <div class="key">添加角色</div>
                         <div class="value" data-FormName="Default" data-propertyName="RoleAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
-                            <a href="javascript:;" class="checkbox" onclick="$('#category4').toggle();"   data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
+                            <a href="javascript:;" class="checkbox" onclick="$('#category4').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
                             <div style="position: absolute;">
                                 <div id="category4" class="dropdownlist">
                                 </div>
@@ -133,61 +133,66 @@
         <div class="buttons">
             <a href="jajavscript:;" class="btn" onclick="Doc.SaveDetail()">保存</a>
             <a href="jajavscript:;" class="btn" id="deleteBtn" style="display:none;" onclick="Doc.RemoveDetail()">删除</a>
-             <a href="jajavscript:;" class="btn" onclick="$(window.parent.document).find('#detailWindow').hide(); window.close();">取消</a>
+            <a href="jajavscript:;" class="btn" onclick="$(window.parent.document).find('#detailWindow').hide(); window.close();">取消</a>
         </div>
     </div>
-     
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $(".global").width(window.parent.$("#content").width() - 30);
-            UE.getEditor('editor', { autoHeightEnabled: false, initialFrameWidth: $(".global").width() }); ///创建编辑器
-
-
-
-            Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) {
-                Doc.LoadTreeTo("#category", res1, [], {
-                    Click: function (event, treeId, treeNode) {
-                        $('#category').hide();
-                        var name = treeNode.Name;
-                        $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.ID);
-                        $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
-                        $("[data-propertyName='ParentName']").text(name);
-                    },
-                    header: "<div class='margin_l05em fontweight700'>请选择文档所在目录</div>"
-                });
-            }); ///加载目录
-            Doc.LoadData_All([], function (res1) {
-                Doc.LoadTreeTo("#category2", res1, [], {
-                    ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
-                });
-            }); ///加载目录
-
-            Doc.LoadData_All([], function (res1) {
-
-                Doc.LoadTreeTo("#category3", res1, [], {
-                    ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
-                });
-
-                Doc.LoadDetail();
-
-            }); ///加载目录
-
-            Doc.LoadData_All([], function (res1) {
-                Doc.LoadTreeTo("#category4", res1, [], {
-                    ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
-                });
-            }); ///加载目录
-        });
-        window.parent.document.getElementById("iframeTitle").innerText = document.title;
-
-    </script>
 
     <div id="modal"></div>
     <div id="dialog">
         <div class="title">标题</div>
         <div class="message">操作成功！</div>
-        <div class="bottom"><a href="javascript:;" onclick="$('#modal').hide();$('#dialog').hide()">关闭</a></div>
+        <div class="bottom"><a href="javascript:;" onclick="$('#modal').hide();$('#dialog').hide()">取消</a><a href="javascript:;" onclick="$('#modal').hide();$('#dialog').hide()">关闭</a><a href="javascript:;" onclick="$('#modal').hide();$('#dialog').hide()">确定</a></div>
     </div>
+
+    <script type="text/html" id="tplDroplistHeader">
+        <div class='txtright'>
+            <a href='javascript:;' class='margin_r05em' onclick="Doc.CancelCheckAllNodes($(this).parents('.dropdownlist').find('.ztree').attr('id'));$('[data-propertyname=UserAllowedArrayText]').text('未选择共享人员')">清空</a>
+            <a href='javascript:;' class='margin_r05em' onclick="$('#category3').toggle();">确定</a>
+            <a href='javascript:;' class='margin_r05em' onclick="Doc.CancelCheckAllNodes($(this).parents('.dropdownlist').find('.ztree').attr('id')); $('[data-propertyname=UserAllowedArrayText]').text('未选择共享人员');$('#category3').toggle();">取消</a>
+        </div>
+    </script>
+
+    <script type="text/javascript">
+        ///初始化
+        $(document).ready(function () {
+            var adminCallback = function () {
+
+            }
+            var clientCallback = function () {
+                $(".global").width(window.parent.$("#content").width() - 30);
+                UE.getEditor('editor', { autoHeightEnabled: false, initialFrameWidth: $(".global").width() }); ///创建编辑器
+
+                Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) {
+                    Doc.LoadTreeTo("#category", res1, [], {
+                        Click: function (event, treeId, treeNode) {
+                            $('#category').hide();
+                            var name = treeNode.Name;
+                            $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.ID);
+                            $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
+                            $("[data-propertyName='ParentName']").text(name);
+                        },
+                        header: "<div class='margin_l05em fontweight700'>请选择文档所在目录</div>"
+                    });
+                }); ///加载目录
+
+                Doc.LoadData_All([], function (res1) {
+                    Doc.LoadTreeTo("#category3", res1, [], {
+                        ShowMode: "checkbox", Check: function (event, treeId, treeNode) {
+                            var idArray = Doc.GetCheckedTreeNodes(treeId);
+                            var fix = (0 < idArray.length) ? " 等" : " ";
+                            $("[data-propertyName='UserAllowedArrayText']").text("已选中 " + treeNode.Name + fix + idArray.length + "人");
+                            $("[data-propertyName='UserAllowedArrayText']").attr("data-propertyvalue", "已选中 " + treeNode.Name + fix + idArray.length + "人");
+
+                        },
+                        header: $("#tplDroplistHeader").html(),
+                    });
+                    Doc.LoadDetail();
+                }); ///加载目录
+            }
+            Doc.Initial(SESSION.Current().CanManageYunDoc, clientCallback, clientCallback);//初始化
+        });
+
+    </script>
 
 </body>
 </html>
