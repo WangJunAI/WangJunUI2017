@@ -160,7 +160,7 @@
             var clientCallback = function () {
 
             }
-            Doc.Initial(adminCallback, clientCallback);//初始化
+            Doc.Initial(SESSION.Current().CanManageYunPan,adminCallback, clientCallback);//初始化
         });
 
     </script>

@@ -1,9 +1,9 @@
 ﻿
 var Doc = {};
 
-Doc.Initial = function (adminCallback, clientCallback) {
+Doc.Initial = function (permission,adminCallback, clientCallback) {
     $(document).ready(function () {
-        if (true === SESSION.Current().CanManageYunPan) {
+        if (true ===permission) {
             $.getScript("./JS/AppInfo.Admin.js", function () {
                 if (true === PARAM_CHECKER.IsFunction(adminCallback)) {
                     adminCallback();

@@ -213,7 +213,7 @@
                     Doc.LoadDetail();
                 }); ///加载目录
             }
-            Doc.Initial(clientCallback, clientCallback);//初始化
+            Doc.Initial(SESSION.Current().CanManageYunPan,clientCallback, clientCallback);//初始化
         });
 
     </script>
@@ -274,10 +274,7 @@
         uploader.on('uploadComplete', function (file) {
             ///上传完一个记录URL一个,开始上传就是写Url到Content里
         });
-    </script>
-    <script type="text/javascript">
-
-    </script>
+    </script> 
 
 
 </body>
