@@ -16,8 +16,9 @@ public static class Config
     private static JObject BuildItems()
     {
         var json = File.ReadAllText(HttpContext.Current.Server.MapPath("config.aifuwu.json"));
-        
-        if (HttpContext.Current.Request.Url.IsLoopback)
+         //File.WriteAllText(HttpContext.Current.Server.MapPath("~")+@"\TEST.TXT",HttpContext.Current.Request.Url.ToString());
+
+        if (HttpContext.Current.Request.Url.Host.Contains("localhost"))
         {
             json = File.ReadAllText(HttpContext.Current.Server.MapPath("config.json"));
         }
