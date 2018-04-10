@@ -136,7 +136,7 @@
         ///初始化
         $(document).ready(function () {
             var adminCallback = function () {
-                Doc.LoadCategoryDetail();
+                Doc.LoadCategoryDetail(SESSION.Current().CanManageYunNews);
                 Doc.LoadData_Category([JSON.stringify({ OwnerID: SESSION.Current().CompanyID }), "{}", "{}", 0, 1000], function (res1) {
                     Doc.LoadTreeTo("#category", res1, [], {
                         Click: function (event, treeId, treeNode) {

@@ -1,5 +1,5 @@
 ﻿ 
-Doc.LoadCategoryDetail = function () {
+Doc.LoadCategoryDetail = function (permission) {
 
 
     $("[data-single]").on("click", function () {
@@ -22,7 +22,7 @@ Doc.LoadCategoryDetail = function () {
 
         var callback = function (res) {
             LOGGER.Log(res);
-            Doc.ShowCategoryDetail(res);
+            Doc.ShowCategoryDetail(res, permission);
         }
         NET.LoadData(App.Doc.Server.Url11, callback, context, NET.POST);
     }
@@ -31,7 +31,7 @@ Doc.LoadCategoryDetail = function () {
     }
 }
 
-Doc.ShowCategoryDetail = function (data) {
+Doc.ShowCategoryDetail = function (data, permission) {
     if (PARAM_CHECKER.IsObject(data)) {
         var $ctrls = $("[data-FormName='Default']").each(function () {
             var propertyName = $(this).attr("data-propertyName");
@@ -57,7 +57,7 @@ Doc.ShowCategoryDetail = function (data) {
             $("#deleteBtn").hide();
         }
 
-        if (false === SESSION.Current().CanManageYunPan && data.OwnerID == SESSION.Current().CompanyID) {
+        if (false === permission && data.OwnerID == SESSION.Current().CompanyID) {
             $(".buttons").remove();
         }
     }

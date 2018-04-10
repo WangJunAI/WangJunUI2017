@@ -41,14 +41,6 @@ Doc.LeftMenuClick = function (id) {
         var url = App.Doc.Server.Url6 + "?t=" + (new Date().getTime());
         Doc.ShowWindow(url);
     }
-    else if ("LeftMenu.个人新闻" == id) {
-        //var query = {};
-        //Doc.ShowView3();
-        //Doc.LoadTopButton(topButtonId);
-        //Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], {}); });
-        //Doc.LoadTable(0, App.Doc.Data.Pager.Size, query, App.Doc.Data.DocTable.Info);
-        //Doc.SetQuery(query); 
-    }
     else if ("LeftMenu.企业新闻" == id) {
   
         var query = [{ _RedirectID: null, CompanyID: SESSION.Current().CompanyID, 'StatusCode': { $ne: -1 } }, {}, { CreateTime: -1 }];;

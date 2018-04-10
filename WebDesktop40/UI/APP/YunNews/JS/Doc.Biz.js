@@ -26,12 +26,8 @@ Doc.SaveCategory = function () {
         LOGGER.Log(res);
         Doc.SubmitEnd(submitId);
 
-        if (false === PARAM_CHECKER.IsTopWindow()) { 
-            top.window.Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#treeDemo", res1, [], {}); });
-
-        }
         Doc.CloseWindow();
-
+        top.window.Doc.LeftMenuClick("LeftMenu.企业新闻");
     }
     NET.PostData(App.Doc.Server.Url7, callback, param);
 }
@@ -43,9 +39,10 @@ Doc.RemoveCategory = function () {
 
     var callback = function (res) {
         LOGGER.Log(res);
-        if (false === PARAM_CHECKER.IsTopWindow()) {
-             Doc.ShowDialog(); 
-        }
+        Doc.ShowDialog();
+
+        Doc.CloseWindow();
+        top.window.Doc.LeftMenuClick("LeftMenu.企业新闻");
     }
     NET.PostData(App.Doc.Server.Url10, callback, context);
 }
@@ -65,23 +62,23 @@ Doc.LoadData_All = function (param, callback) {
 ///保存一个文档
 Doc.SaveDetail = function () {
     var submitId = Doc.SubmitStart();
-    
-     var item = {};
-     var editor = UE.getEditor('editor');
-     var $ctrls = $("[data-FormName='Default']").each(function () {
-         var propertyName = $(this).attr("data-propertyName");
-         var propertyValue = $(this).attr("data-propertyValue");
-         var propertyType = $(this).attr("data-propertyType");
-         if (PARAM_CHECKER.IsNotEmptyString(propertyName)) {
-             if ("CheckBoxArray" === propertyType) {
-                 var ztreeId = $(this).find(".ztree").first().attr("id");
-                 item[propertyName] = Doc.GetCheckedTreeNodes(ztreeId);
-             }
-             else {
-                 item[propertyName.trim()] = propertyValue;
-             }
-         }
-     });
+
+    var item = {};
+    var editor = UE.getEditor('editor');
+    var $ctrls = $("[data-FormName='Default']").each(function () {
+        var propertyName = $(this).attr("data-propertyName");
+        var propertyValue = $(this).attr("data-propertyValue");
+        var propertyType = $(this).attr("data-propertyType");
+        if (PARAM_CHECKER.IsNotEmptyString(propertyName)) {
+            if ("CheckBoxArray" === propertyType) {
+                var ztreeId = $(this).find(".ztree").first().attr("id");
+                item[propertyName] = Doc.GetCheckedTreeNodes(ztreeId);
+            }
+            else {
+                item[propertyName.trim()] = propertyValue;
+            }
+        }
+    });
 
     item.Content = editor.getContent();
     item.ImageUrl = $(item.Content).find("img").attr("src");
@@ -89,7 +86,7 @@ Doc.SaveDetail = function () {
 
     var param = [Convertor.ToBase64String(JSON.stringify(item), true), { 0: "base64" }];
 
-  
+
     var callback = function (res) {
         LOGGER.Log(res);
         Doc.SubmitEnd(submitId);
@@ -98,7 +95,7 @@ Doc.SaveDetail = function () {
     NET.PostData(App.Doc.Server.Url4, callback, param);
 }
 
- 
+
 ///移除一个文档
 Doc.RemoveDetail = function (id, callback) {
     var id = (true === PARAM_CHECKER.IsNotEmptyString(id)) ? id : $("#ID").val();

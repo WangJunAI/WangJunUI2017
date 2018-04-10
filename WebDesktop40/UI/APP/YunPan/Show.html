@@ -36,20 +36,8 @@
     <link href="../../../JS/Base/jquery-ui-1.12.1/jquery-ui.theme.css" rel="stylesheet" />
     <script src="../../../JS/Base/jquery-ui-1.12.1/jquery-ui.js"></script>
 
-    <!--共用业务类-->
-
-
-
-
-    <script src="JS/AppInfo.Doc.js"></script>
-    <script src="JS/Doc.js"></script>
-    <script src="JS/Doc.LeftMenu.js"></script>
-    <script src="JS/Doc.TopButton.js"></script>
-    <script src="JS/Doc.Detail.js"></script>
-    <script src="JS/Doc.Biz.js"></script>
-
-
     <!--共用业务JS-->
+    <script src="../../../JS/TPL/TPL.Initial.js"></script>
     <script src="../../../JS/TPL/TPL.App.js"></script>
     <script src="../../../JS/TPL/TPL.Category.js"></script>
     <script src="../../../JS/TPL/TPL.ClientUI.js"></script>
@@ -57,6 +45,15 @@
     <script src="../../../JS/TPL/TPL.Nav.Ztree.js"></script>
     <script src="../../../JS/TPL/TPL.Table.js"></script>
     <script src="../../../JS/TPL/TPL.View.js"></script>
+
+    <!--自定义业务类-->
+    <script src="JS/Doc.LeftMenu.js"></script>
+    <script src="JS/Doc.TopButton.js"></script>
+    <script src="JS/Doc.Detail.js"></script>
+    <script src="JS/Doc.Biz.js"></script>
+
+
+
 
 
 </head>
@@ -67,26 +64,32 @@
         <div style="color: #FFF;position: absolute;z-index: 999;" id="name">云盘展示页面</div>
         <iframe id="detail" src="" style="    border: none;width: 100%;height: 100%;display: block;position: absolute;left: 0;right: 0;top: 0;"></iframe>
     </div>
- 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            Doc.LoadDetail();
-              
-        });
 
- 
-        window.parent.document.getElementById("iframeTitle").innerText = document.title;
 
-    </script>
 
- 
- 
+
+
     <div id="modal"></div>
     <div id="dialog">
         <div class="title">标题</div>
         <div class="message">操作成功！</div>
-        <div class="bottom"><a href="javascript:;" onclick="$('#modal').hide();$('#dialog').hide()">关闭</a></div>
+        <div class="bottom"><a href="javascript:;" onclick="$('#modal').hide();$('#dialog').hide()">取消</a><a href="javascript:;" onclick="$('#modal').hide();$('#dialog').hide()">关闭</a><a href="javascript:;" onclick="$('#modal').hide();$('#dialog').hide()">确定</a></div>
     </div>
+ 
+    <script type="text/javascript">
+        ///初始化
+        $(document).ready(function () {
+            var adminCallback = function () {
+                Doc.LoadDetail();
 
+            }
+            var clientCallback = function () {
+                Doc.LoadDetail();
+
+            }
+            Doc.Initial(SESSION.Current().CanManageYunPan, adminCallback, clientCallback);//初始化
+        });
+
+    </script>
 </body>
 </html>

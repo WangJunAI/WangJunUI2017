@@ -15,13 +15,15 @@
 
      
     var id = NET.GetQueryParam("id");
-    var context = [id];
+    if (true === PARAM_CHECKER.IsNotEmptyObjectId(id)) {
+        var context = [id];
 
-    var callback = function (res) {
-        LOGGER.Log(res);
-        Doc.ShowDetail(res);
+        var callback = function (res) {
+            LOGGER.Log(res);
+            Doc.ShowDetail(res);
+        }
+        NET.LoadData(App.Doc.Server.Url5, callback, context, NET.POST);
     }
-    NET.LoadData(App.Doc.Server.Url5, callback, context, NET.POST);
 }
 
 Doc.ShowDetail = function (data, option){

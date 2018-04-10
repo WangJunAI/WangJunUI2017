@@ -75,6 +75,7 @@
             .global > .left ul a:hover {
                 background-color: #ed4040;
                 color: #FFF;
+                transition: background-color 0.2s ease;
             }
 
         .global > .left ul a.selected {
@@ -128,7 +129,13 @@
             .main .listItem1 .text .row1 .title {
                 text-decoration: none;
                 color: #222;
-                font-weight:700;
+                font-weight: 700;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                word-break: break-all;
+                width: 500px;
+                display: inline-block;
             }
             .main .listItem1 .text .row2 a {
                 text-decoration: none;
@@ -136,6 +143,12 @@
                 font-size: 12px;
                 margin-right: 0.5em;
             }
+
+            .main .listItem1 .text .row3 {
+                position: relative;
+                top: -5px;
+            }
+
             .main .listItem1 .text .row3 a {
                 text-decoration: none;
                 color: #777;

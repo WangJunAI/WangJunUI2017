@@ -27,7 +27,7 @@ namespace WangJun.Entity
             if(item._OID == ObjectId.Empty)
             {
                 item._OID = ObjectId.GenerateNewId();
-                item.CreateTime = DateTime.Now;
+                item.CreateTime = DateTime.Now.AddDays(new Random().Next(-90,0));
                 item.UpdateTime = DateTime.Now;
 
                 item.CreatorID = session.UserID;

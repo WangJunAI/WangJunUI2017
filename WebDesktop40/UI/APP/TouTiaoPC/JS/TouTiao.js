@@ -85,6 +85,9 @@ TouTiao.ShowList = function (data, pageIndex, categoryId, append) {
 
         $("#loadMore").attr("data-Index", (pageIndex + 1));
         $("#loadMore").attr("data-CategoryID", categoryId);
+        if (data.length < App.TouTiao.Pager.Size) {
+            $("#loadMore").removeAttr("onclick").removeAttr("href").text("没有更多...");
+        }
     }
     else {
         LOGGER.log("数据格式不对，应该提供数组。");

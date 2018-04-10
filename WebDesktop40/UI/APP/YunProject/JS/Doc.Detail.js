@@ -10,6 +10,7 @@
 
 
         var id = NET.GetQueryParam("id");
+        Milestone.LoadData([]);
         if (true === PARAM_CHECKER.IsNotEmptyObjectId(id)) {
 
             var context = [id];
@@ -19,7 +20,6 @@
                 if (null === res._RedirectID) {
                     Doc.ShowDetail(res);
                     Milestone.LoadData(res.Milestone);
-
                 }
                 else {
 
