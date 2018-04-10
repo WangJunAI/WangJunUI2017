@@ -30,6 +30,9 @@ Doc.ShowDetail = function (data, option){
     if (true === PARAM_CHECKER.IsObject(data)) {
         $("#id").val(data.id);
         $("#name").text(data.Name);
-        $("#detail").attr("src", data.FileHttpUrl);
+        if (true === PARAM_CHECKER.IsVideoFile(data.FileHttpUrl)) {
+            $("#video").attr("src", data.FileHttpUrl).show();
+        }
+
     }
 }

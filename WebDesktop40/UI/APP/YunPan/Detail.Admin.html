@@ -174,9 +174,12 @@
 
 
     <script type="text/javascript">
+        var uploader = null;
         ///初始化
         $(document).ready(function () {
             var adminCallback = function () {
+
+                CreateUploader(); 
                 $("[data-propertyName='OwnerID']").attr("data-propertyValue", SESSION.Current().CompanyID);
                 Doc.LoadData_Category([JSON.stringify({ OwnerID: SESSION.Current().CompanyID }), "{}", "{}", 0, 1000], function (res1) {
                     Doc.LoadDetail();
@@ -196,69 +199,73 @@
             var clientCallback = function () {
 
             }
-            Doc.Initial(SESSION.Current().CanManageYunPan,  adminCallback, clientCallback);//初始化
+            Doc.Initial(SESSION.Current().CanManageYunPan, adminCallback, clientCallback);//初始化
+
+            ///创建上传器
+
         });
 
     </script>
 
     <script type="text/javascript">
-        var uploader = WebUploader.create({
+        var CreateUploader = function () {
+            uploader = WebUploader.create({
 
-            // swf文件路径
-            swf: '../../../JS/webuploader/dist/js/Uploader.swf',
+                // swf文件路径
+                swf: '../../../JS/webuploader/dist/js/Uploader.swf',
 
-            // 文件接收服务端。
-            server: 'http://localhost:14000/JS/ueditor/net/controller.ashx?action=fromWebUploader&encode=utf-8',
+                // 文件接收服务端。
+                server: App.Doc.UploadServerHost + '/JS/ueditor/net/controller.ashx?action=fromWebUploader&encode=utf-8',
 
-            // 选择文件的按钮。可选。
-            // 内部根据当前运行是创建，可能是input元素，也可能是flash.
-            pick: '#picker',
+                // 选择文件的按钮。可选。
+                // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+                pick: '#picker',
 
-            // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
-            resize: false
-        });
+                // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+                resize: false
+            });
+
+            // 当有文件被添加进队列的时候
+            uploader.on('fileQueued', function (file) {
+                var $list = $("#uploadList");
+                var listItemHtml = "<li id=[ID]><div>[PIC]</div><span style='display:none;''>[FileName2]</span><div>[FileName]</div><div>[Percentage]</div><div>[Status]</div></li>";
+                listItemHtml = listItemHtml.replace("[ID]", file.id).replace("[FileName]", file.name).replace("[FileName2]", file.name).replace("[Percentage]", "0%").replace("[Status]", "尚未开始");
+                $list.append(listItemHtml);
+            });
+
+            // 文件上传过程中创建进度条实时显示。
+            uploader.on('uploadProgress', function (file, percentage) {
+                var $li = $('#' + file.id)
+                var listItemHtml = "<div>[PIC]</div><span style='display:none;''>[FileName2]</span><div>[FileName]</div><div>[Percentage]</div><div>[Status]</div>";
+                listItemHtml = listItemHtml.replace("[FileName]", file.name).replace("[FileName2]", file.name).replace("[Percentage]", percentage + "%").replace("[Status]", "上传中");
+                $li.html(listItemHtml);
+            });
+
+            uploader.on('uploadSuccess', function (file) {
+                var $li = $('#' + file.id)
+                var listItemHtml = "<li id=[ID]><div>[PIC]</div><span style='display:none;''>[FileName2]</span><div>[FileName]</div><div>[Percentage]</div><div>[Status]</div><a href='javascript:;'>查看</a></li>";
+                listItemHtml = listItemHtml.replace("[ID]", file.id).replace("[FileName]", file.name).replace("[FileName2]", file.name).replace("[Percentage]", 100 + "%").replace("[Status]", "已上传");
+                $li.html(listItemHtml);
+                var resInfo = arguments[1];
+                resInfo.OwnerID = SESSION.Current().CompanyID;
+                ///发起上传信息
+                Doc.SaveDetail(resInfo);
+            });
+
+            uploader.on('uploadError', function (file) {
+                var $li = $('#' + file.id)
+                var listItemHtml = "<li id=[ID]><div>[PIC]</div><span style='display:none;''>[FileName2]</span><div>[FileName]</div><div>[Percentage]</div><div>[Status]</div></li>";
+                listItemHtml = listItemHtml.replace("[ID]", file.id).replace("[FileName]", file.name).replace("[FileName2]", file.name).replace("[Status]", "上传出错");
+                $li.html(listItemHtml);
+            });
+
+            uploader.on('uploadComplete', function (file) {
+                ///上传完一个记录URL一个,开始上传就是写Url到Content里
+            });
+        }
+
     </script>
-    <script type="text/javascript">
-        // 当有文件被添加进队列的时候
-        uploader.on('fileQueued', function (file) {
-            var $list = $("#uploadList");
-            var listItemHtml = "<li id=[ID]><div>[PIC]</div><span style='display:none;''>[FileName2]</span><div>[FileName]</div><div>[Percentage]</div><div>[Status]</div></li>";
-            listItemHtml = listItemHtml.replace("[ID]", file.id).replace("[FileName]", file.name).replace("[FileName2]", file.name).replace("[Percentage]", "0%").replace("[Status]", "尚未开始");
-            $list.append(listItemHtml);
-        });
-    </script>
-    <script type="text/javascript">
-        // 文件上传过程中创建进度条实时显示。
-        uploader.on('uploadProgress', function (file, percentage) {
-            var $li = $('#' + file.id)
-            var listItemHtml = "<div>[PIC]</div><span style='display:none;''>[FileName2]</span><div>[FileName]</div><div>[Percentage]</div><div>[Status]</div>";
-            listItemHtml = listItemHtml.replace("[FileName]", file.name).replace("[FileName2]", file.name).replace("[Percentage]", percentage + "%").replace("[Status]", "上传中");
-            $li.html(listItemHtml);
-        });
-    </script>
-    <script type="text/javascript">
-        uploader.on('uploadSuccess', function (file) {
-            var $li = $('#' + file.id)
-            var listItemHtml = "<li id=[ID]><div>[PIC]</div><span style='display:none;''>[FileName2]</span><div>[FileName]</div><div>[Percentage]</div><div>[Status]</div><a href='javascript:;'>查看</a></li>";
-            listItemHtml = listItemHtml.replace("[ID]", file.id).replace("[FileName]", file.name).replace("[FileName2]", file.name).replace("[Percentage]", 100 + "%").replace("[Status]", "已上传");
-            $li.html(listItemHtml);
-            var resInfo = arguments[1];
-            resInfo.OwnerID = SESSION.Current().CompanyID;
-            ///发起上传信息
-            Doc.SaveDetail(resInfo);
-        });
-
-        uploader.on('uploadError', function (file) {
-            var $li = $('#' + file.id)
-            var listItemHtml = "<li id=[ID]><div>[PIC]</div><span style='display:none;''>[FileName2]</span><div>[FileName]</div><div>[Percentage]</div><div>[Status]</div></li>";
-            listItemHtml = listItemHtml.replace("[ID]", file.id).replace("[FileName]", file.name).replace("[FileName2]", file.name).replace("[Status]", "上传出错");
-            $li.html(listItemHtml);
-        });
-
-        uploader.on('uploadComplete', function (file) {
-            ///上传完一个记录URL一个,开始上传就是写Url到Content里
-        });
-    </script> 
+ 
 
 </body>
 </html>

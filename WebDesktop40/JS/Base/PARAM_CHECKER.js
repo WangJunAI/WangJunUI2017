@@ -104,11 +104,15 @@ var PARAM_CHECKER = {
     },
 
     IsNotEmptyObjectId: function (input) {
-        return  PARAM_CHECKER.IsNotEmptyString(input)&& (24===input.length )&& "000000000000000000000000" != input;
+        return PARAM_CHECKER.IsNotEmptyString(input) && (24 === input.length) && "000000000000000000000000" != input;
     },
 
-    IsTopWindow:function () {
+    IsTopWindow: function () {
         return window === top.window;
+    },
+
+    IsVideoFile: function (input) {
+        return PARAM_CHECKER.IsNotEmptyString(input) && 4<input.length && ".mp4" === input.slice(-4).toLowerCase();
     }
 
 }
