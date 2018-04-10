@@ -1,9 +1,17 @@
 ﻿ 
-var SESSION = {};
+var SESSION = {
+    ServerHost: ("localhost" === window.location.hostname) ? window.location.protocol + "//" + window.location.hostname + ":9990" : "http://aifuwu.wang",
+};
+SESSION.LoginUrl = SESSION.ServerHost + "/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=Login";
+SESSION.RegisterUrl = SESSION.ServerHost + "/API.ashx?c=WangJun.Admin.AdminWebAPI&m=CreateCompany";
+
+
+
+
 SESSION.Login = function () {
-    $(this).attr("disabled", "disabled");
-    $(this).text("登录中,请稍后...");
-    var url = "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=Login";
+    $(event.target).attr("disabled", "disabled");
+    $(event.target).text("登录中,请稍后...");
+    var url = SESSION.LoginUrl;
     ///保存一个目录
          var item = {};
 
@@ -89,7 +97,7 @@ SESSION.Initial = function () {
 
 SESSION.Register = function () {
     $.cookie("SESSION", JSON.stringify({"UserID":"Register"}), { path: '/' });
-    var url = "http://localhost:9990//API.ashx?c=WangJun.Admin.AdminWebAPI&m=CreateCompany";
+    var url = SESSION.RegisterUrl ;
 
     var item = {};
 

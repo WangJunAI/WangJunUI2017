@@ -1,1 +1,0 @@
-﻿{"ServerFileName":"3b5de11d-3eb1-4cf1-ae0c-30f9878a9ea0奇瑞.JPG","ServerFilePath":"E:\\WangJunUI2017\\WangJunUI2017\\WebDesktop40\\uploadFiles\\3b5de11d-3eb1-4cf1-ae0c-30f9878a9ea0奇瑞.JPG","FileNameInClient":"奇瑞.JPG","FileLength":229036,"FileLengthText":"223KB","HttpUrl":"http://localhost:14000/uploadFiles/3b5de11d-3eb1-4cf1-ae0c-30f9878a9ea0奇瑞.JPG"}

@@ -27,7 +27,7 @@ namespace WangJun.HostApp
                 db.EventTraverse += Db_EventTraverse;
                 db.Traverse(CONST.APP.ClientBehaviorItem.DB, CONST.APP.ClientBehaviorItem.TableClientBehaviorItem, "{}");
                 LOGGER.Log("下次运行在一分钟后。");
-                ThreadManager.Pause(minutes: 1);
+                ThreadManager.Pause(minutes: 2);
             }
 
         }
@@ -45,7 +45,7 @@ namespace WangJun.HostApp
             {
                 ///重新创建路径
                 ///更新文档目录名称
-                CreateCategoryPath(data);
+                //CreateCategoryPath(data);
             }
             else if(behaviorCode == BehaviorType.移除 && sourceTableName == CONST.APP.YunQun.TableCategory)
             {
@@ -57,16 +57,16 @@ namespace WangJun.HostApp
             }
             else if (behaviorCode == BehaviorType.修改 && sourceTableName == CONST.APP.YunDoc.TableYunDoc)
             {
-                FenCiProc(data);
+                //FenCiProc(data);
             }
             else if (behaviorCode == BehaviorType.修改 && sourceTableName == CONST.APP.YunNews.TableNews)
             {
-                FenCiProc(data);
-                CreateHotCount(data);
+               // FenCiProc(data);
+                //CreateHotCount(data);
             }
             else if (behaviorCode == BehaviorType.修改 && sourceTableName == CONST.APP.YunNote.TableYunNote)
             {
-                FenCiProc(data);
+                //FenCiProc(data);
             }
             else if (behaviorCode == BehaviorType.修改 && sourceTableName == CONST.APP.YunPan.TableYunPan)
             {
@@ -94,7 +94,7 @@ namespace WangJun.HostApp
 
             var fileHttpUrl = source.FileHttpUrl;
             var serverFileName = source.ServerFileName;
-            var directory = @"E:\test\";
+            var directory = @"C:\YunPan\";
             var localFilePath = directory + serverFileName;
             if (!Directory.Exists(directory))
             {
