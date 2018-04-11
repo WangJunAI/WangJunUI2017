@@ -109,7 +109,7 @@ Doc.RemoveDetail = function (id, callback) {
 
 ///加载评论列表
 Doc.LoadCommentList = function (param) {
-    var targetId = NET.GetQueryParam("id");
+    var targetId = $("#ID").val();
     var data = [JSON.stringify({ "RootID": targetId }), "{}", "{'CreateTime':-1}", 0, 10];
     NET.LoadData(App.Doc.Server.Url71, function (res) {
         LOGGER.Log(res);
@@ -141,7 +141,7 @@ Doc.ShowCommentList = function (data) {
 
 Doc.AddComment = function () {
     var item = {};
-    var targetId = NET.GetQueryParam("id");
+    var targetId = $("#ID").val();//NET.GetQueryParam("id");
     item.Content = $("#comment").val().trim();
     item.RootID = targetId;
     var context = [Convertor.ToBase64String(JSON.stringify(item), true), { 0: "base64" }];

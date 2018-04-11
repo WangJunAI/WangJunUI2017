@@ -17,48 +17,51 @@ App.Doc.CSS.LeftList.View1.Width = { Value: 30, Unit: "em" };
 App.Doc.CSS.LeftList.View3 = {};
 App.Doc.CSS.LeftList.View3.Width = { Value: 18, Unit: "em" };
 
- App.Doc.Server = {
-     Url1: "http://localhost:9990//API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=LoadEntityList", ///加载文档目录
-     Url2: "http://aifuwu.wang/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=Count",///文档数量
+App.Doc.ServerHost = ("localhost" === window.location.hostname) ? window.location.protocol + "//" + window.location.hostname + ":9990" : "http://aifuwu.wang";
+
+
+App.Doc.Server = {
+    Url1: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=LoadEntityList", ///加载文档目录
+    Url2: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=Count",///文档数量
     Url3: "Detail.html",
-    Url4: "http://localhost:9990/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=SaveEntity",///保存一个文档
-    Url5: "http://localhost:9990/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=GetEntity",///获取一个文档
+    Url4: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=SaveEntity",///保存一个文档
+    Url5: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=GetEntity",///获取一个文档
     Url6: "Category.html",
-    Url7: "http://localhost:9990/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=SaveCategory",///保存一个目录
-    Url8: "http://localhost:9990/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=LoadCategoryList",///加载目录列表
-    Url9: "http://localhost:9990/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=RemoveEntity",///移除一份文档,暂未使用
-    Url10: "http://localhost:9990/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=RemoveCategory",///移除一个目录
-    Url11: "http://localhost:9990/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=GetCategory", ///获取一个目录
-    Url12: "http://aifuwu.wang/API.ashx?c=WangJun.YunQun.DocManager&m=UpdateStatus&p=0",///暂未使用
-    Url13: "http://aifuwu.wang/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=MoveToRecycleBin", ///移除到回收站
-    Url14: "http://localhost:9990/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=LoadRecycleBinEntityList",///加载回收站
-    Url15: "http://aifuwu.wang/API.ashx?c=WangJun.YunQun.DataAnalysor&m=GetHotWords",///暂未使用
-    Url16: "http://aifuwu.wang/API.ashx?c=WangJun.YunQun.DocWebAPI&m=Aggregate",///聚合查询
-    Url17: "http://aifuwu.wang/API.ashx?c=WangJun.YunQun.ClientBehaviorManager&m=Aggregate",
-    Url18: "http://aifuwu.wang/API.ashx?c=WangJun.YunQun.DocWebAPI&m=RecycleBinCount",///回收站数量
-    Url19: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=LoadAll",///回收站数量
-    Url90: "http://localhost:9990/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=EmptyRecycleBin",///加载回收站
-     Url70: "http://localhost:9990/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=SaveComment",
-     Url71: "http://localhost:9990/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=LoadCommentList"
+    Url7: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=SaveCategory",///保存一个目录
+    Url8: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=LoadCategoryList",///加载目录列表
+    Url9: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=RemoveEntity",///移除一份文档,暂未使用
+    Url10: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=RemoveCategory",///移除一个目录
+    Url11: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=GetCategory", ///获取一个目录
+    Url12: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunQun.DocManager&m=UpdateStatus&p=0",///暂未使用
+    Url13: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=MoveToRecycleBin", ///移除到回收站
+    Url14: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=LoadRecycleBinEntityList",///加载回收站
+    Url15: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunQun.DataAnalysor&m=GetHotWords",///暂未使用
+    Url16: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunQun.DocWebAPI&m=Aggregate",///聚合查询
+    Url17: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunQun.ClientBehaviorManager&m=Aggregate",
+    Url18: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunQun.DocWebAPI&m=RecycleBinCount",///回收站数量
+    Url19: App.Doc.ServerHost + "/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=LoadAll",///回收站数量
+    Url90: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=EmptyRecycleBin",///加载回收站
+    Url70: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=SaveComment",
+    Url71: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=LoadCommentList"
 };
 
 
 App.Doc.LeftMenu = [];
 
-App.Doc.LeftMenu.push({ Name: "公司群组", ID: "LeftMenu.公司群组", Method: "Doc.LeftMenuGroupToggle",    ParentID: null });
+App.Doc.LeftMenu.push({ Name: "公司群组", ID: "LeftMenu.公司群组", Method: "Doc.LeftMenuGroupToggle", ParentID: null });
 App.Doc.LeftMenu.push({ Name: "新建群组", ID: "LeftMenu.新建群组", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.公司群组" });
 App.Doc.LeftMenu.push({ Name: "创建的群组", ID: "LeftMenu.创建的群组", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.公司群组", TopButtonGroupID: "左侧菜单.创建的群组.TopButton" });
 App.Doc.LeftMenu.push({ Name: "参与的群组", ID: "LeftMenu.参与的群组", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.公司群组", TopButtonGroupID: "左侧菜单.参与的群组.TopButton" });
-App.Doc.LeftMenu.push({ Name: "活跃群组", ID: "LeftMenu.活跃群组", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.公司群组", TopButtonGroupID:"左侧菜单.活跃群组.TopButton" });
+App.Doc.LeftMenu.push({ Name: "活跃群组", ID: "LeftMenu.活跃群组", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.公司群组", TopButtonGroupID: "左侧菜单.活跃群组.TopButton" });
 App.Doc.LeftMenu.push({ Name: "睡眠群组", ID: "LeftMenu.睡眠群组", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.公司群组", TopButtonGroupID: "左侧菜单.睡眠群组.TopButton" });
- 
-App.Doc.LeftMenu.push({ Name: "数据分析", ID: "LeftMenu.数据分析", Method: "Doc.LeftMenuGroupToggle" , ParentID: null });
-App.Doc.LeftMenu.push({ Name: "群组分析", ID: "LeftMenu.文档分析", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析", TopButtonGroupID: "左侧菜单.文档分析.TopButton"});
+
+App.Doc.LeftMenu.push({ Name: "数据分析", ID: "LeftMenu.数据分析", Method: "Doc.LeftMenuGroupToggle", ParentID: null });
+App.Doc.LeftMenu.push({ Name: "群组分析", ID: "LeftMenu.文档分析", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析", TopButtonGroupID: "左侧菜单.文档分析.TopButton" });
 App.Doc.LeftMenu.push({ Name: "用户参与", ID: "LeftMenu.用户参与", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析", TopButtonGroupID: "左侧菜单.用户参与.TopButton" });
 
 ///系统管理
-App.Doc.LeftMenu.push({ Name: "系统管理", ID: "LeftMenu.系统管理", Method: "Doc.LeftMenuGroupToggle",   ParentID: null });
-App.Doc.LeftMenu.push({ Name: "回收站", ID: "LeftMenu.回收站", Method: "Doc.LeftMenuClick",  ParentID: "LeftMenu.系统管理", TopButtonGroupID:"左侧菜单.回收站.TopButton" });
+App.Doc.LeftMenu.push({ Name: "系统管理", ID: "LeftMenu.系统管理", Method: "Doc.LeftMenuGroupToggle", ParentID: null });
+App.Doc.LeftMenu.push({ Name: "回收站", ID: "LeftMenu.回收站", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.系统管理", TopButtonGroupID: "左侧菜单.回收站.TopButton" });
 App.Doc.LeftMenu.push({ Name: "存储管理", ID: "LeftMenu.存储管理", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.系统管理", TopButtonGroupID: "左侧菜单.存储管理.TopButton" });
 App.Doc.LeftMenu.push({ Name: "使用帮助", ID: "LeftMenu.使用帮助", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.系统管理", TopButtonGroupID: "左侧菜单.使用帮助.TopButton" });
 
@@ -69,20 +72,20 @@ App.Doc.Content.TopButton = [];
 App.Doc.Content.TopButton.push({ Name: "创建的群组", ID: "TopButton.创建的群组", Method: "", Type: "Title", GroupID: "左侧菜单.创建的群组.TopButton" });
 App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.创建的群组.TopButton" });
 App.Doc.Content.TopButton.push({ Name: "新建群组", ID: "TopButton.新建群组", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.创建的群组.TopButton" });
- 
+
 ///参与的群组TopButton菜单
 App.Doc.Content.TopButton.push({ Name: "参与的群组", ID: "TopButton.参与的群组", Method: "", Type: "Title", GroupID: "左侧菜单.参与的群组.TopButton" });
 App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.参与的群组.TopButton" });
 
 
 ///活跃群组TopButton菜单
-App.Doc.Content.TopButton.push({ Name: "活跃群组", ID: "TopButton.活跃群组", Method: "",   Type: "Title", GroupID: "左侧菜单.活跃群组.TopButton"});
-App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "",   GroupID: "左侧菜单.活跃群组.TopButton"});
+App.Doc.Content.TopButton.push({ Name: "活跃群组", ID: "TopButton.活跃群组", Method: "", Type: "Title", GroupID: "左侧菜单.活跃群组.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.活跃群组.TopButton" });
 //App.Doc.Content.TopButton.push({ Name: "新建笔记", ID: "TopButton.新建笔记", Method: "Doc.TopButtonClick",    GroupID: "左侧菜单.活跃群组.TopButton"});
 //App.Doc.Content.TopButton.push({ Name: "新建目录", ID: "TopButton.新建目录", Method: "Doc.TopButtonClick",    GroupID: "左侧菜单.活跃群组.TopButton" });
 //App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "",   GroupID: "左侧菜单.活跃群组.TopButton"});
-App.Doc.Content.TopButton.push({ Name: "移动至", ID: "TopButton.移动至", Method: "",  Type: "dropdownlist", Menu: [{ Text: "回收站" }, { Text: "草稿箱" }], GroupID: "左侧菜单.活跃群组.TopButton"});
-App.Doc.Content.TopButton.push({ Name: "删除", ID: "TopButton.删除", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.活跃群组.TopButton"});
+App.Doc.Content.TopButton.push({ Name: "移动至", ID: "TopButton.移动至", Method: "", Type: "dropdownlist", Menu: [{ Text: "回收站" }, { Text: "草稿箱" }], GroupID: "左侧菜单.活跃群组.TopButton" });
+App.Doc.Content.TopButton.push({ Name: "删除", ID: "TopButton.删除", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.活跃群组.TopButton" });
 
 ///睡眠群组TopButton菜单
 App.Doc.Content.TopButton.push({ Name: "睡眠群组", ID: "TopButton.睡眠群组", Method: "", Type: "Title", GroupID: "左侧菜单.睡眠群组.TopButton" });
@@ -92,7 +95,7 @@ App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", Gro
 ///与我共享TopButton菜单
 App.Doc.Content.TopButton.push({ Name: "与我共享", ID: "TopButton.与我共享", Method: "", Type: "Title", GroupID: "左侧菜单.与我共享.TopButton" });
 App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.与我共享.TopButton" });
-  
+
 ///文档分析菜单
 App.Doc.Content.TopButton.push({ Name: "文档分析", ID: "TopButton.文档分析", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.文档分析.TopButton", Type: "Title" });
 App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.文档分析.TopButton" });
@@ -115,7 +118,7 @@ App.Doc.Content.TopButton.push({ Name: "回收站", ID: "TopButton.回收站", M
 App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.回收站.TopButton" });
 App.Doc.Content.TopButton.push({ Name: "彻底删除", ID: "TopButton.彻底删除", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.回收站.TopButton", Type: "Button" });
 App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.回收站.TopButton" });
-App.Doc.Content.TopButton.push({ Name: "清空回收站", ID: "TopButton.清空回收站", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.回收站.TopButton", Type: "Button" });  
+App.Doc.Content.TopButton.push({ Name: "清空回收站", ID: "TopButton.清空回收站", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.回收站.TopButton", Type: "Button" });
 
 ///存储管理菜单
 App.Doc.Content.TopButton.push({ Name: "存储管理", ID: "TopButton.存储管理", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.存储管理.TopButton", Type: "Title" });
@@ -125,7 +128,7 @@ App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", Gro
 App.Doc.Content.TopButton.push({ Name: "使用帮助", ID: "TopButton.使用帮助", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.使用帮助.TopButton", Type: "Title" });
 App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.使用帮助.TopButton" });
 
- 
+
 
 
 App.Doc.Data = {};
@@ -133,7 +136,7 @@ App.Doc.Data = {};
 App.Doc.Data.Pager = {};
 
 App.Doc.Data.Pager.Size = 100;
- 
+
 App.Doc.Data.DocTable = {};
 App.Doc.Data.DocTable.Info = {
     Column: [],
@@ -143,20 +146,20 @@ App.Doc.Data.DocTable.Info = {
     Data: { Url: App.Doc.Server.Url1 }
 }
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "全选", Method: "", Sort: "", PropertyName: "Type", DataType: "checkbox" });
-App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "标题", Method: "Doc.TableRowClick", Sort: "", PropertyName: "Title", DataType: "string"});
+App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "标题", Method: "Doc.TableRowClick", Sort: "", PropertyName: "Title", DataType: "string" });
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "分类", Method: "", Sort: "", PropertyName: "CategoryName", DataType: "string" });
-App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "阅读量", Method: "", Sort: "", PropertyName: "ReadCount", DataType: "string"});
+App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "阅读量", Method: "", Sort: "", PropertyName: "ReadCount", DataType: "string" });
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "点赞量", Method: "", Sort: "", PropertyName: "LikeCount", DataType: "string" });
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "评论量", Method: "", Sort: "", PropertyName: "CommentCount", DataType: "string" });
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "发布时间", Method: "", Sort: "", PropertyName: "PublishTime", DataType: "date" });
-App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "创建时间", Method: "", Sort: "", PropertyName: "CreateTime", DataType: "date"  });
+App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "创建时间", Method: "", Sort: "", PropertyName: "CreateTime", DataType: "date" });
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "状态", Method: "", Sort: "", PropertyName: "Status", DataType: "string" });
-App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "详细", Method: "", Sort: "", PropertyName: "Type", DataType: "link", Value: "详细"  });
+App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "详细", Method: "", Sort: "", PropertyName: "Type", DataType: "link", Value: "详细" });
 
 App.Doc.Data.DocTable.Info.Pager.PagerIndexClick = function () {
     LOGGER.Log("App.Doc.Data.DocTable.Info.Pager.PagerIndexClick");
     var index = $(event.target).attr("data-Index");
-    
+
     Doc.LoadTable(parseInt(index), App.Doc.Data.Pager.Size, "{}", App.Doc.Data.DocTable.Info);
 }
 
@@ -166,7 +169,7 @@ App.Doc.Data.RecycleBin.Info = {
     Pager: {
         Url: App.Doc.Server.Url18, PagerIndexClick: function () { }
     },
-    Data: { Url: App.Doc.Server.Url14}
+    Data: { Url: App.Doc.Server.Url14 }
 }
 App.Doc.Data.RecycleBin.Info.Column.push({ ID: "", Text: "全选", Method: "", Sort: "", PropertyName: "Type", DataType: "checkbox" });
 App.Doc.Data.RecycleBin.Info.Column.push({ ID: "", Text: "标题", Method: "Doc.TableRowClick", Sort: "", PropertyName: "Title", DataType: "string" });
