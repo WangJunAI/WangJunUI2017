@@ -326,5 +326,6 @@ namespace WangJun.Stock
         }
 
         #endregion
+
     }
 }
