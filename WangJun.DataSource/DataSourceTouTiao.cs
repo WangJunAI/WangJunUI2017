@@ -4,7 +4,7 @@ using System.Web;
 using WangJun.Net;
 using WangJun.Utility;
 
-namespace WangJun.Stock
+namespace WangJun.DataSource
 {
     /// <summary>
     /// 头条

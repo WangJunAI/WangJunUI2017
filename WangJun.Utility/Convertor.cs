@@ -421,6 +421,14 @@ namespace WangJun.Utility
             return data;
         }
 
+        public static object FromJsonToArray(string jsonString)
+        {
+            js.MaxJsonLength = 16 * 1024 * 1024;
+
+            var data = (js.DeserializeObject(jsonString.Trim('\0')) as Object[])[0];
+            return data;
+        }
+
         public static Dictionary<string, object> FromJsonToDict2(string jsonString)
         {
             JObject res = JsonConvert.DeserializeObject(jsonString) as JObject;

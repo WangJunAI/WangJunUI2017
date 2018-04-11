@@ -6,7 +6,7 @@ using System.Text;
 using WangJun.Net;
 using WangJun.Utility;
 
-namespace WangJun.Stock
+namespace WangJun.DataSource
 {
     /// <summary>
     /// 新浪数据源
@@ -327,5 +327,39 @@ namespace WangJun.Stock
 
         #endregion
 
+        #region 获取今日所有的股票代码
+        public Dictionary<string, string> GetAllStockCode()
+        {
+            var dict = new Dictionary<string, string>();
+            for (int k = 1; k < 100; k++)
+            {
+                var url = string.Format("http://money.finance.sina.com.cn/d/api/openapi_proxy.php/?__s=[[%22hq%22,%22hs_a%22,%22%22,0,{0},80]]", k);
+                var httpDownloader = new HTTP();
+                var headers = new Dictionary<HttpRequestHeader, string>();
+                headers.Add(HttpRequestHeader.Accept, "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8");
+                headers.Add(HttpRequestHeader.AcceptEncoding, "gzip, deflate");
+                headers.Add(HttpRequestHeader.AcceptLanguage, "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7");
+                headers.Add(HttpRequestHeader.Host, "money.finance.sina.com.cn");
+                headers.Add(HttpRequestHeader.UserAgent, CONST.UserAgent);
+
+                var strData = httpDownloader.GetGzip2(url, Encoding.GetEncoding("GBK"), headers);
+                var res = Convertor.FromJsonToArray(strData);
+                var items = (res as Dictionary<string, object>)["items"] as object[];
+                if(0<items.Length)
+                {
+                    foreach (object[] item in items)
+                    {
+                        dict.Add(item[1].ToString(), item[2].ToString());
+                    }
+                }
+                else
+                {
+                    break;
+                }
+            }
+            return dict;
+
+        }
+        #endregion
     }
 }

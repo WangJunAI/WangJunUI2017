@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using WangJun.Net;
 
-namespace WangJun.Stock
+namespace WangJun.DataSource
 {
     /// <summary>
     /// 同花顺数据源
@@ -29,11 +29,10 @@ namespace WangJun.Stock
             var httpdownloader = new HTTP();
 
             var headers = new Dictionary<string, string>();
-            headers.Add("Accept", "text/html,*/*; q=0.01");
+            headers.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8");
             headers.Add("Accept-Encoding", "gzip, deflate");
-            headers.Add("Accept-Language", "zh-CN,zh;q=0.8,en-US;q=0.6,en;q=0.4");
+            headers.Add("Accept-Language", "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7");
             headers.Add("Host", "q.10jqka.com.cn");
-            headers.Add("Referer", "http://q.10jqka.com.cn/");
             headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36");
             headers.Add("X-Requested-With", "XMLHttpRequest");
 

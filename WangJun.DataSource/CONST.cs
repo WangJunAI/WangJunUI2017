@@ -1,4 +1,4 @@
-﻿namespace WangJun.Stock
+﻿namespace WangJun.DataSource
 {
     /// <summary>
     /// 常量信息
