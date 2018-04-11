@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using WangJun.Config;
 using WangJun.Entity;
@@ -46,6 +47,8 @@ namespace WangJun.YunProject
 
  
         public ArrayList Milestone  { get;set;}
+
+        public DateTime LastestCommentTime { get; set; } ///最后评论时间
 
 
         /// <summary>

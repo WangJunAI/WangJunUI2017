@@ -22,8 +22,7 @@
                     Milestone.LoadData(res.Milestone);
                 }
                 else {
-
-                    NET.LoadData(App.Doc.Server.Url5, function (res) { Doc.ShowDetail(res, { ReadOnly: true }); }, [res._RedirectID], NET.POST);
+                    NET.LoadData(App.Doc.Server.Url5, function (res) { Doc.ShowDetail(res, { ReadOnly: true }); Milestone.LoadData(res.Milestone);}, [res._RedirectID], NET.POST);
                 }
             }
             NET.LoadData(App.Doc.Server.Url5, callback, context, NET.POST);
