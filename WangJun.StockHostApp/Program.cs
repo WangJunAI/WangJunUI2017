@@ -11,7 +11,7 @@ namespace WangJun.StockHostApp
     {
         static void Main(string[] args)
         {
-            StockSynchronizer.GetInstance().SyncExcel();
+            StockSynchronizer.GetInstance().SyncRZRQ();
         }
     }
 }

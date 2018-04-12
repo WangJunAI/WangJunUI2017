@@ -47,7 +47,11 @@ namespace WangJun.Stock
             Console.WriteLine("已成功更新今日股票代码");
         }
         #endregion
- 
+
+        #region 
+
+        #endregion
+
 
     }
 }

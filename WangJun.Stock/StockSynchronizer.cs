@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using WangJun.DataSource;
 using WangJun.DB;
+using WangJun.HTML;
 using WangJun.Utility;
 
 namespace WangJun.Stock
@@ -72,35 +73,18 @@ namespace WangJun.Stock
             var codeList = from item in resList orderby (int)item["SortCode"] select item["StockCode"].ToString();
             var queue = CollectionTools.ToQueue<string>(codeList);
 
-            if (!string.IsNullOrWhiteSpace(methodName))
-            {
-                var status = TaskStatusManager.Get(methodName);
-                var from = string.Empty; ///上一次的起始位置
-                if (status.ContainsKey("StockCode"))
-                {
-                    from = status["StockCode"].ToString();
-                }
-                while (!string.IsNullOrWhiteSpace(from) && 0 < queue.Count)
-                {
-                    var stockCode = queue.Dequeue();
-                    if (stockCode == from) ///若有状态,则从上次的位置开始下载
-                    {
-                        break;
-                    }
-                }
-            }
-            return queue;
+             return queue;
 
         }
         #endregion
          
 
-        #region 同步成交明细2018-1月
+        #region 同步成交明细Excel
         public void SyncExcel()
         {
             var q = this.PrepareData();
             //var date = DateTime.Now;
-            for (var date = DateTime.Now.Date; new DateTime(2017, 1, 1) < date; date = date.AddDays(-1))
+            for (var date = DateTime.Now.Date.AddDays(-1); new DateTime(2017, 1, 1) < date; date = date.AddDays(-1))
             {
                 foreach (var stockCode in q)
                 {
@@ -149,5 +133,74 @@ namespace WangJun.Stock
 
             }
         }
+
+        #region
+        #region SINA融资融券
+        /// <summary>
+        /// SINA融资融券
+        /// </summary>
+        public void SyncRZRQ()
+        {
+            var startTime = DateTime.Now;///开始运行时间
+            Console.Title = "SINA融资融券 更新进程 启动时间：" + startTime;
+
+            var exe = StockTaskExecutor.CreateInstance();
+            var mongo = DataStorage.GetInstance(DBType.MongoDB);
+            var dbName = CONST.DB.DBName_StockService;
+            var collectionNameRZRQ = CONST.DB.CollectionName_RZRQ;
+            var methodName = "SyncRZRQ";
+
+            while (true)
+            {
+                var q = this.PrepareData(methodName);
+
+                while (0 < q.Count)
+                {
+                    var stockCode = q.Dequeue();
+                    var stockName = this.stockCodeDict[stockCode];
+
+                    var html = DataSourceSINA.GetInstance().GetRZRQ(stockCode);
+
+                    var item = new HTMLItem();
+                    item.Html = html;
+                    item.CreateTime = DateTime.Now;
+                    item.Save();
+
+                    ThreadManager.Pause(seconds: 5);
+                }
+
+                LOGGER.Log(string.Format("本次SINA融资融券更新完毕，下一次一天以后更新 {0}", DateTime.Now)); 
+                ThreadManager.Pause(days: 1);
+            }
+        }
+        #endregion
+        #endregion
+
+        #region 创建任务
+        public void CreateTask()
+        {
+            var stockCodeQueue = this.PrepareData();
+            while(0<stockCodeQueue.Count) ///这里还要检查安全性
+            {
+                var stockCode = stockCodeQueue.Dequeue();
+
+                //融资融券
+                //大宗交易
+                //内部交易
+                //限售解禁
+
+
+
+            }
+        }
+        #endregion
+
+        #region 获取任务
+
+        #endregion
+
+        #region 完成任务
+
+        #endregion
     }
 }

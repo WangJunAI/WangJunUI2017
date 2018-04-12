@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>页面分析</title>
+ 
+
+    <!--基础JS-->
+    <script src="../../../JS/Base/jquery-3.1.1.min.js"></script>
+    <script src="../../../JS/Base/PARAM_CHECKER.js"></script>
+    <script src="../../../JS/Base/DEBUG.js"></script>
+    <script src="../../../JS/Base/Convertor.js"></script>
+    <script src="../../../JS/Base/NET.js"></script>
+    <!--base64加密-->
+    <script src="../../../JS/Base/CryptoJS/core-min.js"></script>
+    <script src="../../../JS/Base/CryptoJS/enc-base64-min.js"></script>
+     
+
+ 
+</head>
+<body>
+ <script type="text/javascript">
+     var SESSION ={};
+     SESSION.Current = function () {
+         return { UserID:"_" };
+     }
+     var url = "http://localhost:9990/API.ashx?c=WangJun.HTML.HTMLItem&m=GetNew";
+     NET.LoadData(url, function (res) {
+         console.log(res);
+      }, [], NET.GET);
+ </script>
+</body>
+</html>
