@@ -54,7 +54,7 @@ namespace WangJun.Stock
         }
         #endregion
 
- 
+
 
         #region 准备数据
         /// <summary>
@@ -73,11 +73,11 @@ namespace WangJun.Stock
             var codeList = from item in resList orderby (int)item["SortCode"] select item["StockCode"].ToString();
             var queue = CollectionTools.ToQueue<string>(codeList);
 
-             return queue;
+            return queue;
 
         }
         #endregion
-         
+
 
         #region 同步成交明细Excel
         public void SyncExcel()
@@ -88,12 +88,19 @@ namespace WangJun.Stock
             {
                 foreach (var stockCode in q)
                 {
-                     var stockName = this.stockCodeDict[stockCode];
-                    if (!(date.DayOfWeek == DayOfWeek.Sunday || date.DayOfWeek == DayOfWeek.Saturday))
+                    try
                     {
-                        DataSourceSINA.GetInstance().DownloadExcel(date, stockCode, stockName);
-                        
-                        LOGGER.Log(string.Format("{0}{1}{2}", stockCode, stockName, date));
+                        var stockName = this.stockCodeDict[stockCode];
+                        if (!(date.DayOfWeek == DayOfWeek.Sunday || date.DayOfWeek == DayOfWeek.Saturday))
+                        {
+                            DataSourceSINA.GetInstance().DownloadExcel(date, stockCode, stockName);
+
+                            LOGGER.Log(string.Format("{0}{1}{2}", stockCode, stockName, date));
+                        }
+                    }
+                    catch(Exception e)
+                    {
+                        LOGGER.Log(e.Message);
                     }
                 }
 
@@ -108,25 +115,25 @@ namespace WangJun.Stock
             foreach (var filePath in files)
             {
                 var fileName = filePath.Replace(folderPath, string.Empty).Replace(".xls", string.Empty);
-                var lines = File.ReadAllLines(filePath,Encoding.Default);
-                for (var k=1;k<lines.Length;k++)
+                var lines = File.ReadAllLines(filePath, Encoding.Default);
+                for (var k = 1; k < lines.Length; k++)
                 {
                     var line = lines[k];
                     var fileNameLength = fileName.Length;
                     var stockCode = fileName.Substring(0, 6);
                     var dateString = fileName.Substring(fileName.Length - 8, 8).Insert(4, "-").Insert(7, "-");
-                    var arr = line.Split(new char[] { '\t' },StringSplitOptions.RemoveEmptyEntries);
-                    if(6 == arr.Length && lines[0].Contains("成交时间"))
+                    var arr = line.Split(new char[] { '\t' }, StringSplitOptions.RemoveEmptyEntries);
+                    if (6 == arr.Length && lines[0].Contains("成交时间"))
                     {
                         var tradingTime = DateTime.Parse(dateString + " " + arr[0]);
                         var price = float.Parse(arr[1]);
                         var priceChange = arr[2];
-                        var volume = int.Parse(arr[3])*100;
+                        var volume = int.Parse(arr[3]) * 100;
                         var turnover = float.Parse(arr[4]);
                         var kind = arr[5];
                         LOGGER.Log(string.Format("{0}{1}{2}{3}{4}{5}", tradingTime, price, priceChange, volume, turnover, kind));
                     }
-                     
+
 
                     LOGGER.Log(line);
                 }
@@ -134,63 +141,68 @@ namespace WangJun.Stock
             }
         }
 
-        #region
-        #region SINA融资融券
-        /// <summary>
-        /// SINA融资融券
-        /// </summary>
-        public void SyncRZRQ()
-        {
-            var startTime = DateTime.Now;///开始运行时间
-            Console.Title = "SINA融资融券 更新进程 启动时间：" + startTime;
 
-            var exe = StockTaskExecutor.CreateInstance();
-            var mongo = DataStorage.GetInstance(DBType.MongoDB);
-            var dbName = CONST.DB.DBName_StockService;
-            var collectionNameRZRQ = CONST.DB.CollectionName_RZRQ;
-            var methodName = "SyncRZRQ";
 
-            while (true)
-            {
-                var q = this.PrepareData(methodName);
-
-                while (0 < q.Count)
-                {
-                    var stockCode = q.Dequeue();
-                    var stockName = this.stockCodeDict[stockCode];
-
-                    var html = DataSourceSINA.GetInstance().GetRZRQ(stockCode);
-
-                    var item = new HTMLItem();
-                    item.Html = html;
-                    item.CreateTime = DateTime.Now;
-                    item.Save();
-
-                    ThreadManager.Pause(seconds: 5);
-                }
-
-                LOGGER.Log(string.Format("本次SINA融资融券更新完毕，下一次一天以后更新 {0}", DateTime.Now)); 
-                ThreadManager.Pause(days: 1);
-            }
-        }
-        #endregion
-        #endregion
-
-        #region 创建任务
-        public void CreateTask()
+        #region 更新页面
+        public void UpdateHtml()
         {
             var stockCodeQueue = this.PrepareData();
-            while(0<stockCodeQueue.Count) ///这里还要检查安全性
+            var sina = DataSourceSINA.GetInstance();
+            while (CONST.IsSafeUpdateTime(3) && 0 < stockCodeQueue.Count) ///这里还要检查安全性
             {
                 var stockCode = stockCodeQueue.Dequeue();
+                try
+                {
+                    if (!HTMLItem.IsExsit(stockCode, "公司简介"))
+                    {
+                        HTMLItem.CreateNew(sina.GetGSJJ(stockCode), stockCode, "公司简介").Save();
+                    }
 
-                //融资融券
-                //大宗交易
-                //内部交易
-                //限售解禁
+                    if (!HTMLItem.IsExsit(stockCode, "板块概念"))
+                    {
+                        HTMLItem.CreateNew(sina.GetBKGN(stockCode), stockCode, "板块概念").Save();
+                    }
 
+                    if (!HTMLItem.IsExsit(stockCode, "财务摘要"))
+                    {
+                        HTMLItem.CreateNew(sina.GetCWZY(stockCode), stockCode, "财务摘要").Save();
+                    }
 
+                    if (!HTMLItem.IsExsit(stockCode, "融资融券"))
+                    {
+                        HTMLItem.CreateNew(sina.GetRZRQ(stockCode), stockCode, "融资融券").Save();
+                    }
 
+                    if (!HTMLItem.IsExsit(stockCode, "财务指标"))
+                    {
+                        HTMLItem.CreateNew(sina.GetCWZB(stockCode), stockCode, "财务指标").Save();
+                    }
+
+                    if (!HTMLItem.IsExsit(stockCode, "大宗交易"))
+                    {
+                        HTMLItem.CreateNew(sina.GetDZJY(stockCode), stockCode, "大宗交易").Save();
+                    }
+
+                    if (!HTMLItem.IsExsit(stockCode, "内部交易"))
+                    {
+                        HTMLItem.CreateNew(sina.GetNBJY(stockCode), stockCode, "内部交易").Save();
+                    }
+
+                    sina.DownloadBalanceSheet(stockCode, this.stockCodeDict[stockCode]); ThreadManager.Pause(seconds: 1);
+
+                    sina.DownloadCashFlow(stockCode, this.stockCodeDict[stockCode]); ThreadManager.Pause(seconds: 1);
+
+                    sina.DownloadProfitStatement(stockCode, this.stockCodeDict[stockCode]); ThreadManager.Pause(seconds: 1);
+
+                    Console.WriteLine("已处理 {0} 剩余 {1}", stockCode, stockCodeQueue.Count);
+                }
+                catch (Exception e)
+                {
+
+                    LOGGER.Log(e.Message);
+                    ThreadManager.Pause(minutes: 1);
+                    stockCodeQueue.Enqueue(stockCode);
+                }
             }
         }
         #endregion

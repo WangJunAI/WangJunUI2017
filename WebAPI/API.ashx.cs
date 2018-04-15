@@ -114,7 +114,7 @@ namespace WebAPI
         protected object GetTargetObject(string classFullName, string methodName)
         {
             var dict = new Dictionary<string, string>();
-            dict.Add("WangJun.DB.YunConfig." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.DB.dll"));
+            dict.Add("WangJun.Config.YunConfig." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Config.dll"));
             dict.Add("WangJun.YunDoc.YunDocWebAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.YunDoc.dll"));
             dict.Add("WangJun.HumanResource.StaffWebAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.HumanResource.dll"));
             dict.Add("WangJun.YunNote.YunNoteWebAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.YunNote.dll"));

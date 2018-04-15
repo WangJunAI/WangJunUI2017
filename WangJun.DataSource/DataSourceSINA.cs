@@ -308,7 +308,85 @@ namespace WangJun.DataSource
         }
         #endregion
 
-        #region DownloadExcel
+        #region 财务指标
+        /// <summary>
+        /// 财务指标
+        /// </summary>
+        /// <param name="stockCode"></param>
+        /// <returns></returns>
+        public string GetCWZB(string stockCode)
+        {
+            var symbol = Convertor.AddStockCodePrefix(stockCode);
+            var startDate = string.Format("{0}-01-01", DateTime.Now.Year);
+            var endDate = string.Format("{0:yyyy-MM-dd}", DateTime.Now);
+            var url = string.Format("http://vip.stock.finance.sina.com.cn/corp/go.php/vFD_FinancialGuideLine/stockid/{0}/displaytype/4.phtml", stockCode);
+            var httpDownloader = new HTTP();
+            var headers = new Dictionary<HttpRequestHeader, string>();
+            headers.Add(HttpRequestHeader.Accept, "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8");
+            headers.Add(HttpRequestHeader.AcceptEncoding, "gzip, deflate");
+            headers.Add(HttpRequestHeader.AcceptLanguage, "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7");
+            headers.Add(HttpRequestHeader.Host, "vip.stock.finance.sina.com.cn");
+            headers.Add(HttpRequestHeader.Referer, string.Format("http://finance.sina.com.cn/realstock/company/{0}/nc.shtml", symbol));
+            headers.Add(HttpRequestHeader.UserAgent, CONST.UserAgent);
+
+            var strData = httpDownloader.GetGzip2(url, Encoding.GetEncoding("GBK"), headers);
+            return strData;
+        }
+        #endregion
+
+        #region 大宗交易
+        /// <summary>
+        /// 大宗交易
+        /// </summary>
+        /// <param name="stockCode"></param>
+        /// <returns></returns>
+        public string GetDZJY(string stockCode)
+        {
+            var symbol = Convertor.AddStockCodePrefix(stockCode);
+            var startDate = string.Format("{0}-01-01", DateTime.Now.Year);
+            var endDate = string.Format("{0:yyyy-MM-dd}", DateTime.Now);
+            var url = string.Format("http://vip.stock.finance.sina.com.cn/q/go.php/vInvestConsult/kind/dzjy/index.phtml?symbol={0}&bdate={1}&edate={2}", stockCode,startDate,endDate);
+            var httpDownloader = new HTTP();
+            var headers = new Dictionary<HttpRequestHeader, string>();
+            headers.Add(HttpRequestHeader.Accept, "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8");
+            headers.Add(HttpRequestHeader.AcceptEncoding, "gzip, deflate");
+            headers.Add(HttpRequestHeader.AcceptLanguage, "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7");
+            headers.Add(HttpRequestHeader.Host, "vip.stock.finance.sina.com.cn");
+            headers.Add(HttpRequestHeader.Referer, string.Format("http://money.finance.sina.com.cn/corp/go.php/vCB_AllBulletin/stockid/{0}.phtml", stockCode));
+            headers.Add(HttpRequestHeader.UserAgent, CONST.UserAgent);
+
+            var strData = httpDownloader.GetGzip2(url, Encoding.GetEncoding("GBK"), headers);
+            return strData;
+        }
+        #endregion
+
+        #region 内部交易
+        /// <summary>
+        /// 内部交易
+        /// </summary>
+        /// <param name="stockCode"></param>
+        /// <returns></returns>
+        public string GetNBJY(string stockCode)
+        {
+            var symbol = Convertor.AddStockCodePrefix(stockCode);
+            var startDate = string.Format("{0}-01-01", DateTime.Now.Year);
+            var endDate = string.Format("{0:yyyy-MM-dd}", DateTime.Now);
+            var url = string.Format("http://vip.stock.finance.sina.com.cn/q/go.php/vInvestConsult/kind/nbjy/index.phtml?symbol={0}&bdate={1}&edate={2}", stockCode, startDate, endDate);
+            var httpDownloader = new HTTP();
+            var headers = new Dictionary<HttpRequestHeader, string>();
+            headers.Add(HttpRequestHeader.Accept, "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8");
+            headers.Add(HttpRequestHeader.AcceptEncoding, "gzip, deflate");
+            headers.Add(HttpRequestHeader.AcceptLanguage, "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7");
+            headers.Add(HttpRequestHeader.Host, "vip.stock.finance.sina.com.cn");
+            headers.Add(HttpRequestHeader.Referer, string.Format("http://vip.stock.finance.sina.com.cn/q/go.php/vInvestConsult/kind/nbjy/index.phtml?num=60"));
+            headers.Add(HttpRequestHeader.UserAgent, CONST.UserAgent);
+
+            var strData = httpDownloader.GetGzip2(url, Encoding.GetEncoding("GBK"), headers);
+            return strData;
+        }
+        #endregion
+
+        #region Download交易详细
         public void DownloadExcel(DateTime date, string stockCode, string stockName)
         {
             var httpDownloader = new HTTP();
@@ -326,6 +404,56 @@ namespace WangJun.DataSource
         }
 
         #endregion
+
+        #region 下载资产负债表
+        public void DownloadBalanceSheet(string stockCode, string stockName)
+        {
+            var httpDownloader = new HTTP();
+            var url = string.Format("http://money.finance.sina.com.cn/corp/go.php/vDOWN_BalanceSheet/displaytype/4/stockid/{0}/ctrl/all.phtml", stockCode);
+            var filePath = string.Format(@"F:\BalanceSheet\{0}{1}.xls", stockCode, stockName);
+            filePath = filePath.Replace("*", "[星]");
+            if (!File.Exists(filePath))
+            {
+                var data = httpDownloader.GetFile(url);
+                File.WriteAllBytes(filePath, data);
+                ThreadManager.Pause(seconds: 3);
+            }
+        }
+        #endregion
+
+        #region 下载利润表
+        public void DownloadProfitStatement(string stockCode, string stockName)
+        {
+            var httpDownloader = new HTTP();
+            var url = string.Format("http://money.finance.sina.com.cn/corp/go.php/vDOWN_ProfitStatement/displaytype/4/stockid/{0}/ctrl/all.phtml", stockCode);
+            var filePath = string.Format(@"F:\ProfitStatement\{0}{1}.xls", stockCode, stockName);
+            filePath = filePath.Replace("*", "[星]");
+            if (!File.Exists(filePath))
+            {
+                var data = httpDownloader.GetFile(url);
+                File.WriteAllBytes(filePath, data);
+                ThreadManager.Pause(seconds: 3);
+            }
+        }
+        #endregion
+
+
+        #region 下载资产负债表
+        public void DownloadCashFlow(string stockCode, string stockName)
+        {
+            var httpDownloader = new HTTP();
+            var url = string.Format("http://money.finance.sina.com.cn/corp/go.php/vDOWN_CashFlow/displaytype/4/stockid/{0}/ctrl/all.phtml", stockCode);
+            var filePath = string.Format(@"F:\CashFlow\{0}{1}.xls", stockCode, stockName);
+            filePath = filePath.Replace("*", "[星]");
+            if (!File.Exists(filePath))
+            {
+                var data = httpDownloader.GetFile(url);
+                File.WriteAllBytes(filePath, data);
+                ThreadManager.Pause(seconds: 3);
+            }
+        }
+        #endregion
+
 
         #region 获取今日所有的股票代码
         public Dictionary<string, string> GetAllStockCode()

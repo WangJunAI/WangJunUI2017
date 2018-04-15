@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WangJun.Config;
 using WangJun.Net;
 using WangJun.Utility;
 
@@ -23,7 +22,27 @@ namespace WangJun.DB
 
         private static DateTime initialTime = DateTime.MinValue;
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="keyName"></param>
+        /// <param name="dbType">mongo,sqlserver,mysql,redis</param>
+        /// <returns></returns>
+        public static DataStorage GetInstance(string keyName="140",string dbType="mongo")
+        {
+            DataStorage.Register();
+            DataStorage inst = new DataStorage();
+            if ("mongo" == dbType)
+            {
+                inst.mongo = MongoDB.GetInst(keyName);
+            }
+            else if("sqlserver" == dbType)
+            {
+                inst.sqlserver = SQLServer.GetInstance(keyName);
+                inst.sqlserver.UpdateSysObject(true);
+            }
+            return inst;
+        }
         
         /// <summary>
         /// 获取一个可操作性的实例
@@ -54,7 +73,7 @@ namespace WangJun.DB
         {
             if (DateTime.MinValue == DataStorage.initialTime)
             {
-                var configJson = new HTTP().GetGzip2(string.Format("http://aifuwu.wang/API.ashx?c=WangJun.Config.YunConfig&m=Load&p0={0}",YunConfig.CurrentGroupID), Encoding.UTF8);
+                var configJson = new HTTP().GetGzip2(string.Format("http://aifuwu.wang/API.ashx?c=WangJun.DB.YunConfig&m=Load&p0={0}",YunConfig.CurrentGroupID), Encoding.UTF8);
                 if (!string.IsNullOrWhiteSpace(configJson))
                 {
                     var configDict = Convertor.FromJsonToDict2(configJson); ///加载当前的配置信息

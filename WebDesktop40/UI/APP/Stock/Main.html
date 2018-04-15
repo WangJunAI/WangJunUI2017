@@ -15,19 +15,122 @@
     <script src="../../../JS/Base/CryptoJS/core-min.js"></script>
     <script src="../../../JS/Base/CryptoJS/enc-base64-min.js"></script>
      
-
+    <script src="JS/AppInfo.Admin.js"></script>
  
 </head>
 <body>
+    <ul id="list">
+
+    </ul>
  <script type="text/javascript">
      var SESSION ={};
      SESSION.Current = function () {
          return { UserID:"_" };
      }
-     var url = "http://localhost:9990/API.ashx?c=WangJun.HTML.HTMLItem&m=GetNew";
-     NET.LoadData(url, function (res) {
-         console.log(res);
-      }, [], NET.GET);
+     var GetData = function () {
+         NET.LoadData(App.Doc.Server.Url1, function (res) {
+             console.log(res);
+             var $html = $(res.Html);
+             if ("公司简介" === res.Tag2) {
+                 res.Data = ProcGSJJ($html);
+             }
+             else if ("板块概念" === res.Tag2) {
+
+             }
+             else if ("财务摘要" === res.Tag2) {
+
+             }
+             else if ("融资融券" === res.Tag2) {
+
+             }
+             else if ("财务指标" === res.Tag2) {
+
+             }
+             else if ("大宗交易" === res.Tag2) {
+
+             }
+             else if ("内部交易" === res.Tag2) {
+
+             }
+
+             SaveToServer(res);
+         }, [], NET.GET);
+     }
+
+     var ProcGSJJ = function (src) {
+         var src = src.find("#comInfo1").text().split(/\n/g);
+         var data = {};
+         var lastKeyName = "";
+         for (var k = 0; k < src.length; k++) {
+             var srcItem = src[k].trim();
+             if ("：" === srcItem[srcItem.length - 1]) {
+                 lastKeyName = srcItem;
+                 data[srcItem] = "";
+             }
+             else if (true === PARAM_CHECKER.IsNotEmptyString(srcItem) && "：" != srcItem[srcItem.length - 1]){
+                 data[lastKeyName] += srcItem;
+             }
+         }
+         return data;
+     }
+
+
+     var ProcBKGN = function (src) {
+         var src = src.find("table.comInfo1").text().split(/\n/g);
+         var array = [];
+         for (var k = 0; k < src.length; k++) {
+             var srcItem = src[k].trim();
+             if (true === PARAM_CHECKER.IsNotEmptyString(srcItem)) {
+                 array.push(srcItem);
+             }
+         }
+         return array;
+     }
+
+     var ProcCWZY = function (src) {
+         var src = src.find("#FundHoldSharesTable").text().replace(/[,元]/g, '').split(/截止日期/g);
+         var array = [];
+         for (var k = 0; k < src.length; k++) {
+             var itemData = {};
+             var srcItemArray = src[k].trim().split(/\n/g);
+             srcItemArray[0] += "截止日期" + srcItemArray[0];
+             for (var m = 0; m < srcItemArray.length; m++) {
+                 var itemArray = srcItemArray[m].split(/\t/g);
+                 itemData[itemArray[0]] = itemArray[1];
+             }
+             array.push(itemData);
+         }
+         return array;
+     }
+
+     var ProcRZRQ = function (src) {
+         var src = src.find("#dataTable").text().split(/\n/g);
+         var val = 1;
+         for (var k = 0; k < src.length; k++) {
+             if (val.toString() === src[k].trim()) {
+                 val += 1;
+                 var item = {};
+                 item["日期"] = src[k + 1];
+                 item["融资余额"] = src[k + 2];
+                 item["融资买入额"] = src[k + 3];
+                 item["融资偿还额"] = src[k + 3];
+             }
+         }
+     }
+
+     var SaveToServer = function (context) {
+         context.HasProc = true;
+         context.Html = "";
+         context.Status = 1;
+         context.CreateTime = Convertor.DateFormat(eval(context.CreateTime.slice(1, -1)), "yyyy-MM-dd")
+         NET.PostData(App.Doc.Server.Url2, function (res) {
+             $("#list").append("<li>已处理" + context.Tag1 + context.Tag2+new Date()+"--"+res+"</li>")
+         }, [JSON.stringify(context)]);
+     }
+
+     var tId = setInterval(function () {
+         GetData();
+     }, 4000);
  </script>
 </body>
 </html>

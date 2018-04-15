@@ -10,7 +10,7 @@ SESSION.RegisterUrl = SESSION.ServerHost + "/API.ashx?c=WangJun.Admin.AdminWebAP
 
 SESSION.Login = function () {
     $(event.target).attr("disabled", "disabled");
-    $(event.target).text("登录中,请稍后...");
+    $(event.target).val("登录中,请稍后...");
     var url = SESSION.LoginUrl;
     ///保存一个目录
          var item = {};
