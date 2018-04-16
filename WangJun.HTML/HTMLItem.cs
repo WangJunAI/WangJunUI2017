@@ -33,7 +33,7 @@ namespace WangJun.HTML
         public  static bool IsExsit(string tag1 = null, string tag2 = null)
         {
             var query = Convertor.FromObjectToJson(new { Tag1 = tag1,Tag2=tag2 });
-            var res = DataStorage.GetInstance(DBType.MongoDB).Get("StockService", "Html", query);
+            var res = DataStorage.GetInstance(DBType.MongoDB).Get("StockService", "Html", query,"{}", "{'Html':0}");
             return null != res;
         }
         public static HTMLItem CreateNew(string html,string tag1=null, string tag2 = null, string tag3 = null, string tag4 = null, string tag5 = null, string tag6 = null)

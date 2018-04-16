@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace WangJun.Config
 {
@@ -11,7 +13,6 @@ namespace WangJun.Config
     /// </summary>
     public class YunConfig
     {
-        public const string CurrentGroupID = "Windows开发环境";//"ubuntu开发环境";//联网端使用
         public Dictionary<string, string> Load(string keyName)
         {
 
@@ -41,7 +42,24 @@ namespace WangJun.Config
             
         }
 
-        
+        public static string CurrentGroupID
+        {
+            get
+            {
+                if((null == HttpContext.Current || null == HttpContext.Current.Server) && File.Exists("YunConfig.txt"))
+                {
+                    return File.ReadAllText("YunConfig.txt");
+                }
+                else if(null!= HttpContext.Current&&null != HttpContext.Current.Server && File.Exists(HttpContext.Current.Server.MapPath("~") + "YunConfig.txt"))
+                {
+                    return File.ReadAllText(HttpContext.Current.Server.MapPath("~") + "YunConfig.txt");
+                }
+                return "阿里云按量计费";
+            }
+        }
+
+
+
 
     }
 }

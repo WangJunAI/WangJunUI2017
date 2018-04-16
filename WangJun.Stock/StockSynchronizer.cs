@@ -148,7 +148,7 @@ namespace WangJun.Stock
         {
             var stockCodeQueue = this.PrepareData();
             var sina = DataSourceSINA.GetInstance();
-            while (CONST.IsSafeUpdateTime(3) && 0 < stockCodeQueue.Count) ///这里还要检查安全性
+            while (0 < stockCodeQueue.Count) ///这里还要检查安全性
             {
                 var stockCode = stockCodeQueue.Dequeue();
                 try
