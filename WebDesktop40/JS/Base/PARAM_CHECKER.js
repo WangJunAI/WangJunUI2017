@@ -12,7 +12,7 @@ var PARAM_CHECKER = {
 
     ///是否不是空字符串
     IsNotEmptyString: function (input) {
-        return PARAM_CHECKER.IsString(input) && 0 < input.length;
+        return PARAM_CHECKER.IsString(input) && 0 < input.trim().length;
     },
 
 

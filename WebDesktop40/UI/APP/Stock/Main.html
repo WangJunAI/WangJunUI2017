@@ -35,25 +35,27 @@
                  res.Data = ProcGSJJ($html);
              }
              else if ("板块概念" === res.Tag2) {
-
+                 res.Data = ProcBKGN($html);
              }
              else if ("财务摘要" === res.Tag2) {
-
+                 res.Data = ProcCWZY($html);
              }
              else if ("融资融券" === res.Tag2) {
-
+                 res.Data = ProcRZRQ($html);
              }
              else if ("财务指标" === res.Tag2) {
-
+                 res.Data = ProcCWZB($html);
              }
              else if ("大宗交易" === res.Tag2) {
-
+                 res.Data = ProcDZJY($html);
              }
              else if ("内部交易" === res.Tag2) {
-
+                 res.Data = ProcNBJY($html, res.Tag1);
              }
 
-             SaveToServer(res);
+             console.log(res);
+             //SaveToServer(res);
+
          }, [], NET.GET);
      }
 
@@ -93,10 +95,12 @@
          for (var k = 0; k < src.length; k++) {
              var itemData = {};
              var srcItemArray = src[k].trim().split(/\n/g);
-             srcItemArray[0] += "截止日期" + srcItemArray[0];
-             for (var m = 0; m < srcItemArray.length; m++) {
-                 var itemArray = srcItemArray[m].split(/\t/g);
-                 itemData[itemArray[0]] = itemArray[1];
+             srcItemArray[0] = "截止日期" +'\t\n'+ srcItemArray[0];
+             for (var m = 0; m < srcItemArray.length && 2 <= srcItemArray.length; m++) {
+                 if (true === PARAM_CHECKER.IsNotEmptyString(srcItemArray[m])) {
+                     itemData[srcItemArray[m].trim()] = srcItemArray[m + 1].trim();
+                     m++;
+                 }
              }
              array.push(itemData);
          }
@@ -106,6 +110,7 @@
      var ProcRZRQ = function (src) {
          var src = src.find("#dataTable").text().split(/\n/g);
          var val = 1;
+         var array = [];
          for (var k = 0; k < src.length; k++) {
              if (val.toString() === src[k].trim()) {
                  val += 1;
@@ -119,8 +124,72 @@
                  item["融券卖出量"] = src[k + 7];
                  item["融券偿还量"] = src[k + 8];
                  item["融券融券余额"] = src[k + 9];
+                 array.push(item);
              }
          }
+         return array;
+     }
+
+     var ProcCWZB = function (src) {
+         src = src.find("#BalanceSheetNewTable0").html().replace(/<td>/g, '<td>\t').replace(/<\/td>/g, '\t</td>').replace(/<\/tr>/g, '\n</tr>');
+         src = $(src).text().split(/\n/g);
+         var item = {};
+         for (var k = 0; k < src.length; k++) {
+             var column = src[k].trim().split(/\t/g);
+             if (8<= column.length) {
+                 item[column[0].trim()] = [column[2], column[4], column[6], column[8]];
+             }
+         }
+
+         return item;
+
+     }
+
+     var ProcDZJY = function (src) {
+         var src = src.find("#dataTable").text().split(/\n/g);
+         var array = [];
+         for (var k = 0; k < src.length; k++) {
+             var val = src[k].trim();
+             var item = {};
+             if ("-" === val[4] && val[4] === val[7]) {
+                 item["交易日期"] = src[k].trim();
+                 item["证券代码"] = src[k+1].trim();
+                 item["证券简称"] = src[k+2].trim();
+                 item["成交价格(元)"] = src[k+3].trim();
+                 item["成交量(万股)"] = src[k+4].trim();
+                 item["成交金额(万元)"] = src[k+5].trim();
+                 item["买方营业部"] = src[k+6].trim();
+                 item["卖方营业部"] = src[k+7].trim();
+                 item["证券类型"] = src[k + 8].trim();
+                 array.push(item);
+             }
+         }
+         return array;
+     }
+
+     var ProcNBJY = function (src,stockCode) {
+         var src = src.find("#dataTable").text().split(/\n/g);
+         var array = [];
+         for (var k = 0; k < src.length; k++) {
+             var val = src[k].trim();
+             var item = {};
+             if (stockCode === val) {
+                 item["股票代码"] = src[k].trim();
+                 item["股票名称"] = src[k + 1].trim();
+                 item["变动人"] = src[k + 2].trim();
+                 item["变动股数"] = src[k + 3].trim();
+                 item["成交均价"] = src[k + 4].trim();
+                 item["变动金额(万元)"] = src[k + 5].trim();
+                 item["变动后持股数"] = src[k + 6].trim();
+                 item["变动原因"] = src[k + 7].trim();
+                 item["变动日期"] = src[k + 8].trim();
+                 item["持股种类"] = src[k + 9].trim();
+                 item["与董监高关系"] = src[k + 10].trim();
+                 item["董监高职务"] = src[k +11].trim();
+                 array.push(item);
+             }
+         }
+         return array;
      }
 
      var SaveToServer = function (context) {

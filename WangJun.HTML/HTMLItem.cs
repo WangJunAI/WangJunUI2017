@@ -52,7 +52,7 @@ namespace WangJun.HTML
 
         public HTMLItem GetNew()
         {
-            var query = Convertor.FromObjectToJson(new { HasProc = false,Tag2="公司简介" });
+            var query = Convertor.FromObjectToJson(new { HasProc = false,Tag2= "内部交易" });
             var source = DataStorage.GetInstance(DBType.MongoDB).Get("StockService", "Html", query);
             var res = Convertor.FromDictionaryToObject<HTMLItem>(source);
             return res;
