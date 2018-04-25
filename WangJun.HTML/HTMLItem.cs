@@ -52,7 +52,7 @@ namespace WangJun.HTML
 
         public HTMLItem GetNew()
         {
-            var query = Convertor.FromObjectToJson(new { HasProc = false,Tag2= "内部交易" });
+            var query = Convertor.FromObjectToJson(new { HasProc = false});
             var source = DataStorage.GetInstance(DBType.MongoDB).Get("StockService", "Html", query);
             var res = Convertor.FromDictionaryToObject<HTMLItem>(source);
             return res;
@@ -68,7 +68,7 @@ namespace WangJun.HTML
                 var query = Convertor.FromObjectToJson(new { Tag1 = this.Tag1, Tag2 = this.Tag2 });
                 DataStorage.GetInstance(DBType.MongoDB).Save3("StockService", "Html", this, query, true);
                 LOGGER.Log("成功保存一个文档 "+ query);
-                ThreadManager.Pause(seconds: 1);
+                //ThreadManager.Pause(seconds: 1);
             }
             catch(Exception e)
             {
