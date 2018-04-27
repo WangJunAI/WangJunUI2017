@@ -18,14 +18,18 @@ namespace WangJun.Forex
 
         public string Name { get; set; }
 
+        public string Tag { get; set; }
+
+        public float MeanValueClose { get; set; }
+
         public string HLPercent
         {
             get
             {
                 var val = 0.0f;
-                val = Math.Abs(this.Open - this.Close) / (this.High - this.Low);
-                val = (0 <= (this.Open - this.Close)) ? val : -1 * val;
-                var str = string.Format("{0:00}%", val*100);
+                val = Math.Abs(this.Close - this.Open) / (this.High - this.Low);
+                val = (0 <= (this.Close - this.Open)) ? val : -1 * val;
+                var str = string.Format("{0:0}0%", val*10);
                 return str;
             }
         }
