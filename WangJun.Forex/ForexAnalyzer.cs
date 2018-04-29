@@ -12,7 +12,7 @@ namespace WangJun.Forex
     {
         public static Dictionary<string, object> AnalyzeXAUUSD(string path)
         {
-            var srcArray = ForexAnalyzer.PrepareData(path);
+            var srcArray = ForexAnalyzer.PrepareData("XAUUSD", path,"tester");
 
             var res = new Dictionary<string, object>();
 
@@ -71,7 +71,7 @@ namespace WangJun.Forex
         }
     
 
-        public static ForexItem[] PrepareData(string path)
+        public static ForexItem[] PrepareData(string name,string path,string source)
         {
             LOGGER.Log(string.Format("开始读取历史数据 {0}", path));
 
@@ -83,11 +83,21 @@ namespace WangJun.Forex
             {
                 var line = lines[k];
                 LOGGER.Log(string.Format("正在转换 {0}", line));
-                string[] itemArray = line.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                var item = ForexItem.Parse(name: "XAUUSD", open: itemArray[2], high: itemArray[3], low: itemArray[4], close: itemArray[5], date: itemArray[0], time: itemArray[1]);
-                array[k] = item;
+                string[] itemArray = line.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries); ;
+                if ("mt4" == source)
+                {
+                    array[k] = ForexItem.Parse(name: name, open: itemArray[2], high: itemArray[3], low: itemArray[4], close: itemArray[5], date: itemArray[0], time: itemArray[1]);
+                }
+                else if ("tester" == source&& k!=0)
+                {
+                    if(null == array[0]) { array[0] = new ForexItem();  }
+                    array[k] = ForexItem.Parse(name: name, open: itemArray[3], high: itemArray[4], low: itemArray[5], close: itemArray[6]
+                        , date:string.Format("{0}-{1}-{2}",itemArray[1].Substring(0,4), itemArray[1].Substring(4, 2), itemArray[1].Substring(6, 2)), time:string.Format("{0}:{1}", itemArray[2].Substring(0, 2), itemArray[2].Substring(2, 2)));
+                }
+
             }
             return array.OrderBy(p => p.Time).ToArray();
         }
+         
     }
 }
