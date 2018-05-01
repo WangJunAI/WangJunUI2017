@@ -10,6 +10,11 @@ namespace WangJun.Forex
 {
     public static class ForexAnalyzer
     {
+        private static ForexItem[] SrcArray { get; set; }
+
+        private static Dictionary<string, ForexItem> IndexSrcDict = new Dictionary<string, ForexItem>();
+
+
         public static Dictionary<string, object> AnalyzeXAUUSD(string path)
         {
             var srcArray = ForexAnalyzer.PrepareData("XAUUSD", path,"tester");
@@ -24,6 +29,11 @@ namespace WangJun.Forex
             return res;
         }
 
+        /// <summary>
+        /// 计算振幅分布
+        /// </summary>
+        /// <param name="srcArray"></param>
+        /// <returns></returns>
         public static Dictionary<string, object> CalAmplitudeItemdistribution(ForexItem[] srcArray)
         {
             var res = new Dictionary<string, object>();
@@ -49,6 +59,12 @@ namespace WangJun.Forex
             return res;
         }
 
+        /// <summary>
+        /// 计算均值
+        /// </summary>
+        /// <param name="srcArray"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
         public static Dictionary<string, object> CalMeanValue(ForexItem[] srcArray, int count)
         {
             var res = new Dictionary<string, object>(); 
@@ -71,7 +87,7 @@ namespace WangJun.Forex
         }
     
 
-        public static ForexItem[] PrepareData(string name,string path,string source)
+        public static ForexItem[] PrepareData(string name,string path,string source, int startIndex=500*10000)
         {
             LOGGER.Log(string.Format("开始读取历史数据 {0}", path));
 
@@ -79,7 +95,7 @@ namespace WangJun.Forex
             var array = new ForexItem[lines.Length];
             LOGGER.Log(string.Format("历史数据 {0}", lines.Length));
 
-            for (var k = 0; k < lines.Length; k++)
+            for (var k =startIndex; k < lines.Length; k++)
             {
                 var line = lines[k];
                 LOGGER.Log(string.Format("正在转换 {0}", line));

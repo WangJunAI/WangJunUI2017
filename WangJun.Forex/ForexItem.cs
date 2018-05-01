@@ -18,17 +18,51 @@ namespace WangJun.Forex
 
         public string Name { get; set; }
 
-        public string Tag { get; set; }
+        public string Tag1 { get; set; }
 
-        public float MeanValueClose { get; set; }
+        /// <summary>
+        /// 均值
+        /// </summary>
+        public Dictionary<string,float> MeanValue { get; set; }
 
-        public string HLPercent
+        /// <summary>
+        /// 所在位置
+        /// </summary>
+        public Dictionary<string, float> Position { get; set; }
+
+        public float HLLength
+        {
+            get
+            {
+                return Math.Abs( this.High - this.Low);
+            }
+        }
+
+        public float OCLength
+        {
+            get
+            {
+                return Math.Abs(this.Close - this.Open);
+            }
+        }
+
+        public int IsRed
+        {
+            get
+            {
+                return (this.Open <= this.Close) ? 1 : -1;
+            }
+        }
+
+
+
+
+        public string OCPercent
         {
             get
             {
                 var val = 0.0f;
-                val = Math.Abs(this.Close - this.Open) / (this.High - this.Low);
-                val = (0 <= (this.Close - this.Open)) ? val : -1 * val;
+                val = this.IsRed*(this.OCLength / this.HLLength);
                 var str = string.Format("{0:0}0%", val*10);
                 return str;
             }
