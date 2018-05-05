@@ -697,5 +697,10 @@ namespace WangJun.Utility
             return -1;
         }
 
+        public static long DateTimeToLong(DateTime dateTime)
+        {
+            return long.Parse(string.Format("{0:0000}{1:00}{2:00}{3:00}{4:00}{5:00}", dateTime.Year, dateTime.Month, dateTime.Day, dateTime.Hour, dateTime.Minute, dateTime.Second));
+        }
+
     }
 }
