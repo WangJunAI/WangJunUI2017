@@ -14,10 +14,10 @@ namespace WangJun.Forex
 
 
 
-        public static Dictionary<string, object> AnalyzeXAUUSD(string path)
+        public static Dictionary<string, object> Analyze(string path,string name)
         {
             var res = new Dictionary<string, object>();
-            ForexAnalyzer.PrepareData("XAUUSD", path, "tester");
+            ForexAnalyzer.PrepareData(name, path);
             var startDate = Convertor.DateTimeToLong(new DateTime(2018, 3, 15));
             var stopDate = Convertor.DateTimeToLong(new DateTime(2018, 3, 30));
             for (long k = startDate; k <= stopDate; k++)
@@ -33,8 +33,25 @@ namespace WangJun.Forex
             return res;
         }
 
- 
-         
+        public static void ImportToDB(string path, string name)
+        {
+            ForexAnalyzer.PrepareData(name, path);
+            var startDate = Convertor.DateTimeToLong(new DateTime(2001, 1, 2));
+            var stopDate = Convertor.DateTimeToLong(new DateTime(2018, 4, 30));
+            for (long k = startDate; k <= stopDate; k++)
+            {
+                if (SrcDict.ContainsKey(k))
+                {
+                    SrcDict[k].Save();
+                    LOGGER.Log(string.Format("正在导入{0}", k));
+                }
+            }
+           
+        }
+
+
+
+
         /// <summary>
         /// 准备数据
         /// </summary>
@@ -42,7 +59,7 @@ namespace WangJun.Forex
         /// <param name="path"></param>
         /// <param name="source"></param>
 
-        public static void PrepareData(string name,string path,string source)
+        public static void PrepareData(string name,string path)
         {
             LOGGER.Log(string.Format("开始读取历史数据 {0}", path));
 

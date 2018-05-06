@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WangJun.DB;
 using WangJun.Entity;
 using WangJun.Utility;
 
@@ -23,6 +24,14 @@ namespace WangJun.Forex
         public string Name { get; set; }
 
         public string Tag1 { get; set; }
+
+        public long Tag2
+        {
+            get
+            {
+                return Convertor.DateTimeToLong(this.TradingTime);
+            }
+        }
 
         public int IndexOfArray { get; set; }
 
@@ -251,8 +260,10 @@ namespace WangJun.Forex
             this.MeanValue.Add(string.Format("最高价均值{0}小时", hour), highMeanValue);
         }
 
-        public void Save() {
-
+        public void Save()
+        {
+            var db = DataStorage.GetInstance(DBType.MongoDB);
+            db.Save3("ForexService", this.Name, this);
         }
 
 

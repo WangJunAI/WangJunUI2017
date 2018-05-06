@@ -45,6 +45,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WangJun.DB\WangJun.DB.csproj">
+      <Project>{A0BEDC3E-2B61-4027-BD4B-FDAB0DF38659}</Project>
+      <Name>WangJun.DB</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WangJun.Entity\WangJun.Entity.csproj">
       <Project>{9B69D6EB-AFDB-47E3-816C-67EEA53B7784}</Project>
       <Name>WangJun.Entity</Name>

@@ -13,8 +13,16 @@ namespace WangJun.ForexHostApp
     {
         static void Main(string[] args)
         {
-            var dict = ForexAnalyzer.AnalyzeXAUUSD(@"F:\外汇数据源\AUDUSD\AUDUSD.txt");
-            File.WriteAllText("res.txt",Convertor.FromObjectToJson(dict), Encoding.UTF8);
+            //var dict = ForexAnalyzer.Analyze(@"F:\外汇数据源\AUDUSD\AUDUSD.txt", "AUDUSD");
+            //File.WriteAllText("res.txt", Convertor.FromObjectToJson(dict), Encoding.UTF8);
+            ForexAnalyzer.ImportToDB(@"AUDUSD.txt", "AUDUSD");
+            ForexAnalyzer.ImportToDB(@"EURUSD.txt", "EURUSD");
+            ForexAnalyzer.ImportToDB(@"GBPUSD.txt", "GBPUSD");
+            ForexAnalyzer.ImportToDB(@"NZDUSD.txt", "NZDUSD");
+            ForexAnalyzer.ImportToDB(@"USDCAD.txt", "USDCAD");
+            ForexAnalyzer.ImportToDB(@"USDCHF.txt", "USDCHF");
+            ForexAnalyzer.ImportToDB(@"USDJPY.txt", "USDJPY");
+            ForexAnalyzer.ImportToDB(@"XAUUSD.txt", "XAUUSD");
             LOGGER.Log("全部结束");
             Console.ReadKey();
         }

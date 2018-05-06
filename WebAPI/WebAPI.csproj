@@ -70,6 +70,7 @@
   <ItemGroup>
     <Content Include="45.html" />
     <Content Include="API.ashx" />
+    <Content Include="YunConfig.txt" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
