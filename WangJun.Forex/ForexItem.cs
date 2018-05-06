@@ -225,9 +225,12 @@ namespace WangJun.Forex
             while (hourStopTime<currentTime) {
                 currentTime= currentTime.AddMinutes(-1);
                 var timeTick = Convertor.DateTimeToLong(currentTime);
-                var item = ForexAnalyzer.SrcDict[];
-                listHour.Add(item);
-                LOGGER.Log("计算均值");
+                if (ForexAnalyzer.SrcDict.ContainsKey(timeTick))
+                {
+                    var item = ForexAnalyzer.SrcDict[timeTick];
+                    listHour.Add(item);
+                    LOGGER.Log("计算均值");
+                }
             }
 
             var openMeanValue = listHour.Sum(p => p.Open) / listHour.Count();///开盘价均值

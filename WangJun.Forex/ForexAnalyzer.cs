@@ -24,7 +24,7 @@ namespace WangJun.Forex
             {
                 if (SrcDict.ContainsKey(k))
                 {
-                    SrcDict[k].CalMeanValue();
+                    SrcDict[k].CalMeanValue(1);
                     res.Add(k.ToString(), SrcDict[k]);
                 }
             }
