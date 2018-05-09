@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WangJun.DB;
 using WangJun.Utility;
 
 namespace WangJun.Forex
@@ -14,39 +15,62 @@ namespace WangJun.Forex
 
 
 
-        public static Dictionary<string, object> Analyze(string path,string name)
+        public static Dictionary<string, ForexItem> Analyze(string path,string name)
         {
-            var res = new Dictionary<string, object>();
+            var res = new Dictionary<string, ForexItem>();
             ForexAnalyzer.PrepareData(name, path);
-            var startDate = Convertor.DateTimeToLong(new DateTime(2018, 3, 15));
+            var startDate = Convertor.DateTimeToLong(new DateTime(2018, 1, 1));
             var stopDate = Convertor.DateTimeToLong(new DateTime(2018, 3, 30));
             for (long k = startDate; k <= stopDate; k++)
             {
                 if (SrcDict.ContainsKey(k))
                 {
-                    SrcDict[k].CalMeanValue(1);
+                    SrcDict[k].CalMeanValue(minutes:5);
+                    SrcDict[k].CalMeanValue(minutes: 15);
+                    SrcDict[k].CalMeanValue(minutes: 30);
+                    SrcDict[k].CalMeanValue(hours:1);
+                    SrcDict[k].CalMeanValue(hours: 2);
+                    SrcDict[k].CalMeanValue(hours: 4);
+                    SrcDict[k].CalMeanValue(hours: 8);
+                    SrcDict[k].CalMeanValue(hours: 12);
+                    SrcDict[k].CalMeanValue(hours: 24);
+                    SrcDict[k].CalMeanValue(hours: 5*24);
+                    SrcDict[k].CalMeanValue(hours: 10 * 24);
+                    SrcDict[k].CalMeanValue(hours: 15 * 24);
+
                     res.Add(k.ToString(), SrcDict[k]);
                 }
             }
 
+            var db = DataStorage.GetInstance(DBType.MongoDB);
+            foreach (var item in res)
+            {
+                item.Value.Save("ForexAnalysis");
+            }
 
             return res;
         }
 
+        /// <summary>
+        /// 数据入库
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="name"></param>
         public static void ImportToDB(string path, string name)
         {
             ForexAnalyzer.PrepareData(name, path);
             var startDate = Convertor.DateTimeToLong(new DateTime(2001, 1, 2));
             var stopDate = Convertor.DateTimeToLong(new DateTime(2018, 4, 30));
-            for (long k = startDate; k <= stopDate; k++)
+            for (long k = startDate; k <= stopDate; k=k+100)
             {
                 if (SrcDict.ContainsKey(k))
                 {
                     SrcDict[k].Save();
+                    SrcDict.Remove(k);
                     LOGGER.Log(string.Format("正在导入{0}", k));
                 }
             }
-           
+            SrcDict.Clear();
         }
 
 
@@ -66,7 +90,7 @@ namespace WangJun.Forex
             var lines = File.ReadAllLines(path); 
             LOGGER.Log(string.Format("历史数据 {0}", lines.Length));
             
-            for (var k =100*10000; k < lines.Length; k++)
+            for (var k =1; k < lines.Length; k++)
             {
                 var line = lines[k];
                 LOGGER.Log(string.Format("正在转换 {0}", line));

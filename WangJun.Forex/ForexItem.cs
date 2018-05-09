@@ -40,12 +40,12 @@ namespace WangJun.Forex
         /// </summary>
         public Dictionary<string, float> MeanValue { get; set; }
 
-
+        
 
         /// <summary>
-        /// 所在位置
+        /// Summary 根据均值计算不同周期上涨的表现和统计,所在位置
         /// </summary>
-        public Dictionary<string, float> Position { get; set; }
+        public Dictionary<string, object> Summary { get; set; }
 
         /// <summary>
         /// 最高价和最低价的长度
@@ -225,45 +225,92 @@ namespace WangJun.Forex
             return inst;
         }
 
-
-        public void CalMeanValue(int hour=1)
+        public static ForexItem CreateNew(string name, float open, float close, float high, float low, DateTime tradingDate,string tag1 )
         {
-            var hourStopTime = this.TradingTime.AddHours(-1*hour); 
-            var listHour = new List<ForexItem> { this};
-            var currentTime = this.TradingTime;
-            while (hourStopTime<currentTime) {
-                currentTime= currentTime.AddMinutes(-1);
-                var timeTick = Convertor.DateTimeToLong(currentTime);
-                if (ForexAnalyzer.SrcDict.ContainsKey(timeTick))
-                {
-                    var item = ForexAnalyzer.SrcDict[timeTick];
-                    listHour.Add(item);
-                    LOGGER.Log("计算均值");
-                }
-            }
-
-            var openMeanValue = listHour.Sum(p => p.Open) / listHour.Count();///开盘价均值
-            var closeMeanValue = listHour.Sum(p => p.Close) / listHour.Count();///收盘价均值
-            var highMeanValue = listHour.Sum(p => p.High) / listHour.Count();///最高价均值
-            var lowMeanValue = listHour.Sum(p => p.Low) / listHour.Count();///收盘价均值
-
-            this.MeanValue.Remove(string.Format("开盘价均值{0}小时", hour));
-            this.MeanValue.Add(string.Format("开盘价均值{0}小时", hour),closeMeanValue);
-
-            this.MeanValue.Remove(string.Format("收盘价均值{0}小时", hour));
-            this.MeanValue.Add(string.Format("收盘价均值{0}小时", hour), openMeanValue);
-
-            this.MeanValue.Remove(string.Format("最高价均值{0}小时", hour));
-            this.MeanValue.Add(string.Format("最高价均值{0}小时", hour), highMeanValue);
-
-            this.MeanValue.Remove(string.Format("最高价均值{0}小时", hour));
-            this.MeanValue.Add(string.Format("最高价均值{0}小时", hour), highMeanValue);
+            var inst = new ForexItem();
+            inst.Name = name;
+            inst.Open = open;
+            inst.Close = close;
+            inst.Low =low;
+            inst.High = high;
+            inst.TradingTime = tradingDate;
+            inst.MeanValue = new Dictionary<string, float>();
+            inst.Tag1 = tag1;
+            return inst;
         }
 
-        public void Save()
+        /// <summary>
+        /// 计算均值
+        /// </summary>
+        /// <param name="hour"></param>
+        public void CalMeanValue(int hours=0,int minutes=0,int day=0)
+        {
+            if (0 < hours && minutes == 0)
+            {
+                minutes = 60 * hours;
+            }
+            if (0 < minutes)
+            {
+                var stopTime = this.TradingTime.AddMinutes(-1 * minutes);
+                var listHour = new List<ForexItem> { this };
+                var currentTime = this.TradingTime;
+                while (stopTime < currentTime)
+                {
+                    currentTime = currentTime.AddMinutes(-1);
+                    var timeTick = Convertor.DateTimeToLong(currentTime);
+                    if (ForexAnalyzer.SrcDict.ContainsKey(timeTick))
+                    {
+                        var item = ForexAnalyzer.SrcDict[timeTick];
+                        listHour.Add(item);
+                        LOGGER.Log("计算均值");
+                    }
+                }
+
+                var openMeanValue = listHour.Sum(p => p.Open) / listHour.Count();///开盘价均值
+                var closeMeanValue = listHour.Sum(p => p.Close) / listHour.Count();///收盘价均值
+                var highMeanValue = listHour.Sum(p => p.High) / listHour.Count();///最高价均值
+                var lowMeanValue = listHour.Sum(p => p.Low) / listHour.Count();///收盘价均值
+
+                this.MeanValue.Remove(string.Format("开盘价均值{0}分钟", minutes));
+                this.MeanValue.Add(string.Format("开盘价均值{0}分钟", minutes), openMeanValue);
+                this.MeanValue.Remove(string.Format("开盘价和{0}分钟均值相差", minutes));
+                this.MeanValue.Add(string.Format("开盘价和{0}分钟均值相差", minutes), this.Open-openMeanValue);
+
+                this.MeanValue.Remove(string.Format("收盘价均值{0}分钟", minutes));
+                this.MeanValue.Add(string.Format("收盘价均值{0}分钟", minutes), closeMeanValue);
+                this.MeanValue.Remove(string.Format("收盘价和{0}分钟均值相差", minutes));
+                this.MeanValue.Add(string.Format("收盘价和{0}分钟均值相差", minutes), this.Close - closeMeanValue);
+
+
+                this.MeanValue.Remove(string.Format("最高价均值{0}分钟", minutes));
+                this.MeanValue.Add(string.Format("最高价均值{0}分钟", minutes), highMeanValue);
+                this.MeanValue.Remove(string.Format("最高价和{0}分钟均值相差", minutes));
+                this.MeanValue.Add(string.Format("最高价和{0}分钟均值相差", minutes), this.High - highMeanValue);
+
+                this.MeanValue.Remove(string.Format("最低价均值{0}分钟", minutes));
+                this.MeanValue.Add(string.Format("最低价均值{0}分钟", minutes), lowMeanValue);
+                this.MeanValue.Remove(string.Format("最低价和{0}分钟均值相差", minutes));
+                this.MeanValue.Add(string.Format("最低价和{0}分钟均值相差", minutes), this.Low - lowMeanValue);
+
+                ForexItem.CreateNew(this.Name, openMeanValue, closeMeanValue, highMeanValue, lowMeanValue, this.TradingTime.AddMinutes(-1 * minutes / 2), string.Format("均值{0}分钟", minutes)).Save("ForexAnalysis");
+            }
+        }
+ 
+
+        /// <summary>
+        /// 计算前若干个分钟的走势
+        /// </summary>
+        /// <param name="prevTickCount"></param>
+        public void CalPrevTrend(int prevTickCount=30)
+        {
+
+        }
+         
+
+        public void Save(string dbName= "ForexService")
         {
             var db = DataStorage.GetInstance(DBType.MongoDB);
-            db.Save3("ForexService", this.Name, this);
+            db.Save3(dbName, this.Name, this);
         }
 
 
