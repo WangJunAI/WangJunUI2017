@@ -102,7 +102,13 @@ Doc.SaveDetail = function () {
     var callback = function (res) {
         LOGGER.Log(res);
         Doc.SubmitEnd(submitId);
+
+        if (false === PARAM_CHECKER.IsTopWindow()) {
+            top.window.Doc.LeftMenuClick("LeftMenu.在职人员");
+        }
+
         Doc.CloseWindow();
+
 
     }
     NET.PostData(App.Doc.Server.Url4, callback, param);

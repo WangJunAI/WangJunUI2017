@@ -3,8 +3,6 @@ var Doc = {};
  
 Doc.Initial = function () {
     $(document).ready(function () {
- 
-
 
         if (true === SESSION.Current().CanManageStaff) {
             $.getScript("./JS/AppInfo.Admin.js", function () {

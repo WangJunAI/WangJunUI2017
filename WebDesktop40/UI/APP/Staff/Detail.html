@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <title>新建人员</title>
-
+    <script src="../../../JS/YunConfig.js"></script>
     <!--共用样式表-->
     <link href="../../../CSS/TPL.SIZE.PC.1080.css" rel="stylesheet" />
     <link href="../../../CSS/TPL.Font.css" rel="stylesheet" />
@@ -38,14 +38,9 @@
     <script src="../../../JS/Base/jquery-ui-1.12.1/jquery-ui.js"></script>
 
 
-    <script src="JS/AppInfo.Doc.js"></script>
-    <script src="JS/Doc.js"></script>
-    <script src="JS/Doc.LeftMenu.js"></script>
-    <script src="JS/Doc.TopButton.js"></script>
-    <script src="JS/Doc.Detail.js"></script>
-    <script src="JS/Doc.Biz.js"></script>
 
     <!--共用业务JS-->
+    <script src="../../../JS/TPL/TPL.Initial.js"></script>
     <script src="../../../JS/TPL/TPL.App.js"></script>
     <script src="../../../JS/TPL/TPL.Category.js"></script>
     <script src="../../../JS/TPL/TPL.ClientUI.js"></script>
@@ -54,6 +49,11 @@
     <script src="../../../JS/TPL/TPL.Table.js"></script>
     <script src="../../../JS/TPL/TPL.View.js"></script>
 
+    <!--自定业务-->
+    <script src="JS/Doc.LeftMenu.js"></script>
+    <script src="JS/Doc.TopButton.js"></script>
+    <script src="JS/Doc.Detail.js"></script>
+    <script src="JS/Doc.Biz.js"></script>
 
 </head>
 <body>
@@ -286,35 +286,41 @@
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
-            Doc.LoadDetail();
-            Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) {
-                Doc.LoadTreeTo("#category1", res1, [], {
-                    Click: function (event, treeId, treeNode) {
-                        var name = treeNode.Name;
-                        $('#category1').hide();
-                        $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.ID);
-                        $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
-                        $("[data-propertyName='ParentName']").text(name);
-                    },
-                    header: "<div class='margin_l05em fontweight700'>请选择所在部门</div>"
-                });
-            }); ///加载目录
-            Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) {
-                Doc.LoadTreeTo("#category2", res1, [], {
-                    Click: function (event, treeId, treeNode) {
-                        var name = treeNode.Name;
-                        $('#category2').hide();
-                        $("[data-propertyName='PositionID']").attr("data-propertyValue", treeNode.ID);
-                        $("[data-propertyName='PositionName']").attr("data-propertyValue", name);
-                        $("[data-propertyName='PositionName']").text(name);
-                    }
-                });
-            }); ///加载目录
-            Doc.LoadData_All([], function (res1) {
-                Doc.LoadTreeTo("#category3", res1, [], {
-                    ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
-                });
-            }); ///加载目录
+            var adminCallback = function () {
+                Doc.LoadDetail();
+                Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) {
+                    Doc.LoadTreeTo("#category1", res1, [], {
+                        Click: function (event, treeId, treeNode) {
+                            var name = treeNode.Name;
+                            $('#category1').hide();
+                            $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.ID);
+                            $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
+                            $("[data-propertyName='ParentName']").text(name);
+                        },
+                        header: "<div class='margin_l05em fontweight700'>请选择所在部门</div>"
+                    });
+                }); ///加载目录
+                Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) {
+                    Doc.LoadTreeTo("#category2", res1, [], {
+                        Click: function (event, treeId, treeNode) {
+                            var name = treeNode.Name;
+                            $('#category2').hide();
+                            $("[data-propertyName='PositionID']").attr("data-propertyValue", treeNode.ID);
+                            $("[data-propertyName='PositionName']").attr("data-propertyValue", name);
+                            $("[data-propertyName='PositionName']").text(name);
+                        }
+                    });
+                }); ///加载目录
+                Doc.LoadData_All([], function (res1) {
+                    Doc.LoadTreeTo("#category3", res1, [], {
+                        ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
+                    });
+                }); ///加载目录
+            }
+            var clientCallback = function () {
+
+            }
+            Doc.Initial(SESSION.Current().CanManageStaff, adminCallback, clientCallback);//初始化
 
         });
 
@@ -324,7 +330,6 @@
         $("[data-propertyName='CompanyName']").attr("data-PropertyValue", SESSION.Current().CompanyName);
 
 
-        window.parent.document.getElementById("iframeTitle").innerText = document.title;
 
     </script>
 
