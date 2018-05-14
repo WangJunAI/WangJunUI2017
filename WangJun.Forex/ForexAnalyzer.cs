@@ -12,7 +12,7 @@ namespace WangJun.Forex
     public static class ForexAnalyzer
     {
         public static Dictionary<long, ForexItem> SrcDict = new Dictionary<long, ForexItem>();
-
+        public static Dictionary<long, ForexItem> MeanValueDict = new Dictionary<long, ForexItem>();
 
 
         public static Dictionary<string, ForexItem> Analyze(string path,string name)
@@ -23,24 +23,25 @@ namespace WangJun.Forex
             var stopDate = Convertor.DateTimeToLong(new DateTime(2018, 3, 30));
             for (long k = startDate; k <= stopDate; k++)
             {
-                if (SrcDict.ContainsKey(k))
+                if (SrcDict.ContainsKey(k)&& (0 == k%3000))///整数计算
                 {
-                    SrcDict[k].CalMeanValue(minutes:5);
-                    SrcDict[k].CalMeanValue(minutes: 15);
+                    //SrcDict[k].CalMeanValue(minutes:5);
+                    //SrcDict[k].CalMeanValue(minutes: 15);
                     SrcDict[k].CalMeanValue(minutes: 30);
                     SrcDict[k].CalMeanValue(hours:1);
-                    SrcDict[k].CalMeanValue(hours: 2);
+                    //SrcDict[k].CalMeanValue(hours: 2);
                     SrcDict[k].CalMeanValue(hours: 4);
-                    SrcDict[k].CalMeanValue(hours: 8);
-                    SrcDict[k].CalMeanValue(hours: 12);
+                    //SrcDict[k].CalMeanValue(hours: 8);
+                    //SrcDict[k].CalMeanValue(hours: 12);
                     SrcDict[k].CalMeanValue(hours: 24);
-                    SrcDict[k].CalMeanValue(hours: 5*24);
-                    SrcDict[k].CalMeanValue(hours: 10 * 24);
-                    SrcDict[k].CalMeanValue(hours: 15 * 24);
-
-                    res.Add(k.ToString(), SrcDict[k]);
+                    //SrcDict[k].CalMeanValue(hours: 5*24);
+                    //SrcDict[k].CalMeanValue(hours: 10 * 24);
+                    //SrcDict[k].CalMeanValue(hours: 15 * 24);
                 }
             }
+
+
+
 
             var db = DataStorage.GetInstance(DBType.MongoDB);
             foreach (var item in res)

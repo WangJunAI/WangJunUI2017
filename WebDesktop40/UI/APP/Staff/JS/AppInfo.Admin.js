@@ -17,30 +17,30 @@ App.Doc.CSS.LeftList.View1.Width = { Value: 30, Unit: "em" };
 App.Doc.CSS.LeftList.View3 = {};
 App.Doc.CSS.LeftList.View3.Width = { Value: 18, Unit: "em" };
 
+App.Doc.ServerHost = YunConfig.ServerHost(this);
  
-
  App.Doc.Server = {
-     Url1: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=LoadEntityList", ///加载人员列表
-     Url2: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=Count",///文档数量
+     Url1: App.Doc.ServerHost+"/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=LoadEntityList", ///加载人员列表
+     Url2: App.Doc.ServerHost+"/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=Count",///文档数量
     Url3: "Detail.html",
-    Url4: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=SaveEntity",///保存一个文档
-    Url5: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=GetEntity",///获取一个文档
+    Url4: App.Doc.ServerHost+"/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=SaveEntity",///保存一个文档
+    Url5: App.Doc.ServerHost+"/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=GetEntity",///获取一个文档
     Url6: "Category.html",
-    Url7: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=SaveOrg",///保存一个目录
-    Url8: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=LoadOrgList",///加载组织列表
-    Url9: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=RemoveEntity",///移除一份文档,暂未使用
-    Url10: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=RemoveOrg",///移除一个目录
-    Url11: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=GetOrg", ///获取一个目录
-    Url12: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocManager&m=UpdateStatus&p=0",///暂未使用
-    Url13: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocWebAPI&m=MoveToRecycleBin", ///移除到回收站
-    Url14: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=LoadRecycleBinEntityList",///加载回收站
-    Url15: "http://localhost:9990/API.ashx?c=WangJun.Doc.DataAnalysor&m=GetHotWords",///暂未使用
-    Url16: "http://localhost:9990/API.ashx?c=WangJun.Doc.DocWebAPI&m=Aggregate",///聚合查询
-    Url17: "http://localhost:9990/API.ashx?c=WangJun.Doc.ClientBehaviorManager&m=Aggregate",
-    Url18: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=RecycleBinCount",///回收站数量
-    Url19: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=LoadAll",///回收站数量
-    Url90: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=EmptyRecycleBin",///加载回收站
-    Url91: "http://localhost:9990/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=DeleteEntity",///加载回收站
+    Url7: App.Doc.ServerHost+"/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=SaveOrg",///保存一个目录
+    Url8: App.Doc.ServerHost+"/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=LoadOrgList",///加载组织列表
+    Url9: App.Doc.ServerHost+"/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=RemoveEntity",///移除一份文档,暂未使用
+    Url10: App.Doc.ServerHost+"/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=RemoveOrg",///移除一个目录
+    Url11: App.Doc.ServerHost+"/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=GetOrg", ///获取一个目录
+    Url12: App.Doc.ServerHost+"/API.ashx?c=WangJun.Doc.DocManager&m=UpdateStatus&p=0",///暂未使用
+    Url13: App.Doc.ServerHost+"/API.ashx?c=WangJun.Doc.DocWebAPI&m=MoveToRecycleBin", ///移除到回收站
+    Url14: App.Doc.ServerHost+"/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=LoadRecycleBinEntityList",///加载回收站
+    Url15: App.Doc.ServerHost+"/API.ashx?c=WangJun.Doc.DataAnalysor&m=GetHotWords",///暂未使用
+    Url16: App.Doc.ServerHost+"/API.ashx?c=WangJun.Doc.DocWebAPI&m=Aggregate",///聚合查询
+    Url17: App.Doc.ServerHost+"/API.ashx?c=WangJun.Doc.ClientBehaviorManager&m=Aggregate",
+    Url18: App.Doc.ServerHost+"/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=RecycleBinCount",///回收站数量
+    Url19: App.Doc.ServerHost+"/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=LoadAll",///回收站数量
+    Url90: App.Doc.ServerHost+"/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=EmptyRecycleBin",///加载回收站
+    Url91: App.Doc.ServerHost+"/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=DeleteEntity",///加载回收站
 };
  
 

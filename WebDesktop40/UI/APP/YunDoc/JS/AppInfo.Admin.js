@@ -17,7 +17,8 @@ App.Doc.CSS.LeftList.View1.Width = { Value: 30, Unit: "em" };
 App.Doc.CSS.LeftList.View3 = {};
 App.Doc.CSS.LeftList.View3.Width = { Value: 12, Unit: "em" };
 
-App.Doc.ServerHost = ("localhost" === window.location.hostname) ? window.location.protocol + "//" + window.location.hostname + ":9990" : "http://aifuwu.wang";
+App.Doc.ServerHost = YunConfig.ServerHost(this);
+
 App.Doc.Server = {
     Url1: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunDoc.YunDocWebAPI&m=LoadEntityList", ///加载文档目录
     Url2: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunDoc.YunDocWebAPI&m=Count",///文档数量

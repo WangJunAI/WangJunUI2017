@@ -57,10 +57,9 @@ namespace WangJun.Entity
             get
             {
                 var session = new SESSION();
-                if (null != HttpContext.Current)
+                string _SID = HttpContext.Current.Request.QueryString["_SID"];
+                if (null != HttpContext.Current&& StringChecker.IsObjectId(_SID))
                 {
-                    string _SID = HttpContext.Current.Request.QueryString["_SID"];
-
                     session = SESSION.Get(_SID); 
  
                 }
@@ -75,31 +74,42 @@ namespace WangJun.Entity
 
         public static  SESSION Get(string _SID)
         {
-            var session = new SESSION();
-             if (!string.IsNullOrWhiteSpace(_SID) && (!SESSION.sessionDict.ContainsKey(_SID) || null == SESSION.sessionDict[_SID]))
+            if (StringChecker.IsObjectId(_SID))
             {
-                var staff = new BaseItem();
-                staff.ID = _SID;
-                staff._DbName = "WangJun";
-                staff._CollectionName = "Staff";
-                var res = DataStorage.GetInstance(DBType.MongoDB).Get(staff._DbName, staff._CollectionName, MongoDBFilterCreator.SearchByObjectId(_SID));
-                staff = Convertor.FromDictionaryToObject<BaseItem>(res);
-                session = new SESSION { UserID = staff.ID, UserName = staff.Name, CompanyID = staff.CompanyID, CompanyName = staff.CompanyName, LastestRequestUrl = HttpContext.Current.Request.RawUrl
-                    ,CanManageYunPan = bool.Parse(res["CanManageYunPan"].ToString()),
-                    CanManageYunQun = bool.Parse(res["CanManageYunQun"].ToString()),
-                    CanManageYunProject = bool.Parse(res["CanManageYunProject"].ToString()),
-                    CanManageYunDoc = bool.Parse(res["CanManageYunDoc"].ToString()),
-                    CanManageYunNews = bool.Parse(res["CanManageYunNews"].ToString()),
-                    CanManageYunNote = bool.Parse(res["CanManageYunNote"].ToString()),
-                    CanManageStaff = bool.Parse(res["CanManageStaff"].ToString()),
-                };
-                
+                var session = new SESSION();
+                if (!string.IsNullOrWhiteSpace(_SID) && (!SESSION.sessionDict.ContainsKey(_SID) || null == SESSION.sessionDict[_SID]))
+                {
+                    var staff = new BaseItem();
+                    staff.ID = _SID;
+                    staff._DbName = "WangJun";
+                    staff._CollectionName = "Staff";
+                    var res = DataStorage.GetInstance(DBType.MongoDB).Get(staff._DbName, staff._CollectionName, MongoDBFilterCreator.SearchByObjectId(_SID));
+                    staff = Convertor.FromDictionaryToObject<BaseItem>(res);
+                    session = new SESSION
+                    {
+                        UserID = staff.ID,
+                        UserName = staff.Name,
+                        CompanyID = staff.CompanyID,
+                        CompanyName = staff.CompanyName,
+                        LastestRequestUrl = HttpContext.Current.Request.RawUrl
+                        ,
+                        CanManageYunPan = bool.Parse(res["CanManageYunPan"].ToString()),
+                        CanManageYunQun = bool.Parse(res["CanManageYunQun"].ToString()),
+                        CanManageYunProject = bool.Parse(res["CanManageYunProject"].ToString()),
+                        CanManageYunDoc = bool.Parse(res["CanManageYunDoc"].ToString()),
+                        CanManageYunNews = bool.Parse(res["CanManageYunNews"].ToString()),
+                        CanManageYunNote = bool.Parse(res["CanManageYunNote"].ToString()),
+                        CanManageStaff = bool.Parse(res["CanManageStaff"].ToString()),
+                    };
+
+                }
+                else if (SESSION.sessionDict.ContainsKey(_SID) && null == SESSION.sessionDict[_SID])
+                {
+                    session = SESSION.sessionDict[_SID];
+                }
+                return session;
             }
-             else if(  SESSION.sessionDict.ContainsKey(_SID) && null == SESSION.sessionDict[_SID])
-            {
-                session =SESSION.sessionDict[_SID] ;
-            }
-            return session;
+            return null;
         }
 
         public static SESSION Login(string loginID, string password)

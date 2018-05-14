@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <title>企业注册界面</title>
+    <script src="../../JS/YunConfig.js"></script>
     <style type="text/css">
         .global {
             position: absolute;
@@ -30,6 +31,7 @@
             position: absolute;
             right: 20%;
             top: 20%;
+            box-shadow: 3px 3px 3px rgba(0,0,0,0.35);
         }
 
         .head {
@@ -59,7 +61,7 @@
 
         .button {
             height: 2.5em;
-            line-height: 3em;
+            line-height: 2.5em;
             width: 90%;
             margin-left: auto;
             display: block;
@@ -117,5 +119,13 @@
             <div class="foot"></div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("[data-propertyName='Name']").val("汪俊科技" + Math.random());
+            $("[data-propertyName='SuperAdminEmail']").val("turingai@outlook.com");
+            $("[data-propertyName='Password']").val("1");
+        });
+    </script>
 </body>
 </html>

@@ -1,6 +1,8 @@
 ﻿ 
+
+ 
 var SESSION = {
-    ServerHost: ("localhost" === window.location.hostname) ? window.location.protocol + "//" + window.location.hostname + ":9990" : "http://aifuwu.wang",
+    ServerHost: YunConfig.ServerHost(this) //("localhost" === window.location.hostname) ? window.location.protocol + "//" + window.location.hostname + ":9990" : "http://aifuwu.wang",
 };
 SESSION.LoginUrl = SESSION.ServerHost + "/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=Login";
 SESSION.RegisterUrl = SESSION.ServerHost + "/API.ashx?c=WangJun.Admin.AdminWebAPI&m=CreateCompany";
@@ -96,7 +98,11 @@ SESSION.Initial = function () {
 }
 
 SESSION.Register = function () {
-    $.cookie("SESSION", JSON.stringify({"UserID":"Register"}), { path: '/' });
+    $(event.target).attr("disabled", "disabled");
+    $(event.target).val("正在注册,请稍后...");
+
+
+    $.cookie("SESSION", JSON.stringify({ "UserID":"CreateCompany"}), { path: '/' });
     var url = SESSION.RegisterUrl ;
 
     var item = {};
@@ -118,7 +124,16 @@ SESSION.Register = function () {
         window.location.href = "../Desktop/Desktop.html";
     }
     NET.PostData(url, callback, param);
-    $.cookie("SESSION", JSON.stringify({  }), { path: '/' });
+    $.cookie("SESSION", JSON.stringify({}), { path: '/' });
+
+    ///动画显示
+    setTimeout(function () {
+        $(event.target).val("正在初始化企业,请稍后...");
+    }, 2000);
+
+    setTimeout(function () {
+        $(event.target).val("正在整合信息,即将完成...");
+    }, 5000);
 
 }
 

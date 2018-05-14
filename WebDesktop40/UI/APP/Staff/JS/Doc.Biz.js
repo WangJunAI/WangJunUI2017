@@ -27,8 +27,17 @@ Doc.SaveCategory = function () {
         Doc.SubmitEnd(submitId);
 
         if (false === PARAM_CHECKER.IsTopWindow()) { 
-            top.window.Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#treeDemo", res1, [], {}); });
-
+            top.window.Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) {
+                top.window.Doc.LoadTreeTo("#leftList", res1, [], {
+                    Click: function (event, treeId, treeNode) {
+                        var name = treeNode.Name;
+                        $('#category').hide();
+                        $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.ID);
+                        $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
+                    },
+                    header: "小提示：修改目录双击即可"
+                });
+            });
         }
         Doc.CloseWindow();
 

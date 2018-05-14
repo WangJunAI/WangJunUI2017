@@ -33,14 +33,26 @@ namespace WangJun.Forex
             }
         }
 
+        public long Tag3 { get; set; }
+
         public int IndexOfArray { get; set; }
 
-        /// <summary>
-        /// 均值
-        /// </summary>
-        public Dictionary<string, float> MeanValue { get; set; }
+        public float MeanValue5 { get; set; }
 
-        
+        public float MeanValue15 { get; set; }
+
+        public float MeanValue30 { get; set; }
+
+        public float MeanValue60 { get; set; }
+
+        public float MeanValue240 { get; set; }
+
+        public float MeanValue1440 { get; set; }
+
+        public float MeanValue7200 { get; set; }
+         
+
+
 
         /// <summary>
         /// Summary 根据均值计算不同周期上涨的表现和统计,所在位置
@@ -219,13 +231,12 @@ namespace WangJun.Forex
             inst.High = float.Parse(high);
             inst.TradingTime = DateTime.Parse(string.Format("{0} {1}", date, time));
             inst.IndexOfArray = IndexOfArray;
-            inst.MeanValue = new Dictionary<string, float>();
-            ///计算均值
+             ///计算均值
             ///计算当前所在位置
             return inst;
         }
 
-        public static ForexItem CreateNew(string name, float open, float close, float high, float low, DateTime tradingDate,string tag1 )
+        public static ForexItem CreateNew(string name, float open, float close, float high, float low, DateTime tradingDate,string tag1,long tag3 )
         {
             var inst = new ForexItem();
             inst.Name = name;
@@ -234,8 +245,8 @@ namespace WangJun.Forex
             inst.Low =low;
             inst.High = high;
             inst.TradingTime = tradingDate;
-            inst.MeanValue = new Dictionary<string, float>();
             inst.Tag1 = tag1;
+            inst.Tag3 = tag3;
             return inst;
         }
 
@@ -271,28 +282,11 @@ namespace WangJun.Forex
                 var highMeanValue = listHour.Sum(p => p.High) / listHour.Count();///最高价均值
                 var lowMeanValue = listHour.Sum(p => p.Low) / listHour.Count();///收盘价均值
 
-                this.MeanValue.Remove(string.Format("开盘价均值{0}分钟", minutes));
-                this.MeanValue.Add(string.Format("开盘价均值{0}分钟", minutes), openMeanValue);
-                this.MeanValue.Remove(string.Format("开盘价和{0}分钟均值相差", minutes));
-                this.MeanValue.Add(string.Format("开盘价和{0}分钟均值相差", minutes), this.Open-openMeanValue);
-
-                this.MeanValue.Remove(string.Format("收盘价均值{0}分钟", minutes));
-                this.MeanValue.Add(string.Format("收盘价均值{0}分钟", minutes), closeMeanValue);
-                this.MeanValue.Remove(string.Format("收盘价和{0}分钟均值相差", minutes));
-                this.MeanValue.Add(string.Format("收盘价和{0}分钟均值相差", minutes), this.Close - closeMeanValue);
-
-
-                this.MeanValue.Remove(string.Format("最高价均值{0}分钟", minutes));
-                this.MeanValue.Add(string.Format("最高价均值{0}分钟", minutes), highMeanValue);
-                this.MeanValue.Remove(string.Format("最高价和{0}分钟均值相差", minutes));
-                this.MeanValue.Add(string.Format("最高价和{0}分钟均值相差", minutes), this.High - highMeanValue);
-
-                this.MeanValue.Remove(string.Format("最低价均值{0}分钟", minutes));
-                this.MeanValue.Add(string.Format("最低价均值{0}分钟", minutes), lowMeanValue);
-                this.MeanValue.Remove(string.Format("最低价和{0}分钟均值相差", minutes));
-                this.MeanValue.Add(string.Format("最低价和{0}分钟均值相差", minutes), this.Low - lowMeanValue);
-
-                ForexItem.CreateNew(this.Name, openMeanValue, closeMeanValue, highMeanValue, lowMeanValue, this.TradingTime.AddMinutes(-1 * minutes / 2), string.Format("均值{0}分钟", minutes)).Save("ForexAnalysis");
+                var property = this.GetType().GetProperty(string.Format("MeanValue{0}", minutes));
+                if (null != property)
+                {
+                    property.SetValue(this, closeMeanValue);
+                }
             }
         }
  
@@ -307,10 +301,11 @@ namespace WangJun.Forex
         }
          
 
-        public void Save(string dbName= "ForexService")
+        public void Save(string dbName= "ForexService",string collectionName="")
         {
+            collectionName = (string.IsNullOrWhiteSpace(collectionName)) ? this.Name : collectionName;
             var db = DataStorage.GetInstance(DBType.MongoDB);
-            db.Save3(dbName, this.Name, this);
+            db.Save3(dbName, collectionName, this);
         }
 
 

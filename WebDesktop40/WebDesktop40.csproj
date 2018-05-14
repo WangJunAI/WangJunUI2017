@@ -1426,6 +1426,7 @@
     <Content Include="JS\webuploader\_draft\music\success.png" />
     <Content Include="JS\webuploader\_draft\music\upload.js" />
     <Content Include="JS\webuploader\_draft\music\webuploader.js" />
+    <Content Include="JS\YunConfig.js" />
     <Content Include="MP4\342241033.mp4" />
     <Content Include="MP4\560155892.mp4" />
     <Content Include="MP4\563397345.mp4" />
