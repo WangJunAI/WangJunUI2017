@@ -6,6 +6,7 @@
     <script src="../../../JS/YunConfig.js"></script>
 
     <!--共用样式表-->
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"><!--字体图标-->
     <link href="../../../CSS/TPL.SIZE.PC.1080.css" rel="stylesheet" />
     <link href="../../../CSS/TPL.Font.css" rel="stylesheet" />
     <link href="../../../CSS/TPL.Color.css" rel="stylesheet" />
@@ -64,11 +65,11 @@
 
     <style type="text/css">
         #uploadList {
-            /*list-style:none;*/
-            /*margin-left:-40px;*/
+            /*list-style:none;
+            margin-left:-40px;*/
         }
 
-            #uploadList div {
+            #uploadList span {
                 float: left;
                 margin-right: 1em;
             }
@@ -83,7 +84,7 @@
     <input type="hidden" id="ID" data-FormName="Default" data-propertyName="ID" />
     <input type="hidden" id="pageName" value="Detail" />
     <div class="global">
-        <div class="title" style="font-size:3em;text-align:center;">请开始上传个人云盘文件</div>
+        <div class="title" style="font-size:3em;text-align:center;">上传文件到个人云盘</div>
         <div class="options">
             <ul>
                 <li>
@@ -244,7 +245,7 @@
             // 当有文件被添加进队列的时候
             uploader.on('fileQueued', function (file) {
                 var $list = $("#uploadList");
-                var listItemHtml = "<li id=[ID]><div>[PIC]</div><span style='display:none;''>[FileName2]</span><div>[FileName]</div><div>[Percentage]</div><div>[Status]</div></li>";
+                var listItemHtml = "<li id=[ID]><span  class='fa fa-file'></span><span style='display:none;''>[FileName2]</span><span>[FileName]</span><span>[Percentage]</span><span>[Status]</span></li>";
                 listItemHtml = listItemHtml.replace("[ID]", file.id).replace("[FileName]", file.name).replace("[FileName2]", file.name).replace("[Percentage]", "0%").replace("[Status]", "尚未开始");
                 $list.append(listItemHtml);
             });
@@ -252,16 +253,18 @@
             // 文件上传过程中创建进度条实时显示。
             uploader.on('uploadProgress', function (file, percentage) {
                 var $li = $('#' + file.id)
-                var listItemHtml = "<div>[PIC]</div><span style='display:none;''>[FileName2]</span><div>[FileName]</div><div>[Percentage]</div><div>[Status]</div>";
+                var listItemHtml = "<span  class='fa fa-file'></span><span style='display:none;''>[FileName2]</span><span>[FileName]</span><span>[Percentage]</span><span>[Status]</span>";
                 listItemHtml = listItemHtml.replace("[FileName]", file.name).replace("[FileName2]", file.name).replace("[Percentage]", percentage + "%").replace("[Status]", "上传中");
                 $li.html(listItemHtml);
             });
 
             uploader.on('uploadSuccess', function (file) {
                 var $li = $('#' + file.id)
-                var listItemHtml = "<li id=[ID]><div>[PIC]</div><span style='display:none;''>[FileName2]</span><div>[FileName]</div><div>[Percentage]</div><div>[Status]</div><a href='javascript:;'>查看</a></li>";
+                var listItemHtml = "<li id=[ID]><span class='fa fa-file'></span><span style='display:none;''>[FileName2]</span><span>[FileName]</span><span>[Percentage]</span><span>[Status]</span><a href='javascript:;'>查看</a></li>";
                 listItemHtml = listItemHtml.replace("[ID]", file.id).replace("[FileName]", file.name).replace("[FileName2]", file.name).replace("[Percentage]", 100 + "%").replace("[Status]", "已上传");
-                $li.html(listItemHtml);
+                $(listItemHtml).insertBefore($li);
+                $li.remove();
+                //$li.html(listItemHtml);
                 var resInfo = arguments[1];
                  ///发起上传信息
                 Doc.SaveDetail(resInfo);
@@ -269,7 +272,7 @@
 
             uploader.on('uploadError', function (file) {
                 var $li = $('#' + file.id)
-                var listItemHtml = "<li id=[ID]><div>[PIC]</div><span style='display:none;''>[FileName2]</span><div>[FileName]</div><div>[Percentage]</div><div>[Status]</div></li>";
+                var listItemHtml = "<li id=[ID]><span  class='fa fa-file'></span><span style='display:none;''>[FileName2]</span><span>[FileName]</span><span>[Percentage]</span><span>[Status]</span></li>";
                 listItemHtml = listItemHtml.replace("[ID]", file.id).replace("[FileName]", file.name).replace("[FileName2]", file.name).replace("[Status]", "上传出错");
                 $li.html(listItemHtml);
             });

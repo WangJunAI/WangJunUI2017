@@ -1537,7 +1537,7 @@
     <Content Include="UI\APP\YunNote\JS\Doc.LeftMenu.js" />
     <Content Include="UI\APP\YunNote\JS\Doc.TopButton.js" />
     <Content Include="UI\APP\YunPan\AppInfo.html" />
-    <Content Include="UI\APP\YunPan\Chart1.html" />
+    <Content Include="UI\APP\YunPan\Chart.html" />
     <Content Include="UI\APP\YunPan\CSS\Category.css" />
     <Content Include="UI\APP\YunPan\CSS\Detail.css" />
     <Content Include="UI\APP\YunPan\CSS\Doc.css" />

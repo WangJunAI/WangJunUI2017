@@ -91,9 +91,9 @@ Doc.LeftMenuClick = function (id) {
     }
     else if ("LeftMenu.云盘分析" === id) {
         Doc.LoadTopButton(topButtonId);
-        Doc.ShowContent("Chart1.html");
+        Doc.ShowContent("Chart.html");
         Doc.ShowView3();
-        Doc.LoadSummaryListTo("#leftList", [{ Title: "目录下文档比例" }, { Title: "目录活跃度" }, { Title: "文章热度" }, { Title: "发文计数" }, { Title: "最活跃用户" }], { Url:"chart1.html?id=[id]"}); 
+        Doc.LoadSummaryListTo("#leftList", [{ Title: "空间使用" }, { Title: "文件分类" }, { Title: "分享数量" }], { Url:"chart1.html?id=[id]"}); 
     }
     else if ("LeftMenu.回收站" == id) {
         Doc.ShowView2();

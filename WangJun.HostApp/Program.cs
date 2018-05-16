@@ -72,6 +72,7 @@ namespace WangJun.HostApp
             {
                 YunPanFileMigrate(data);
                 ///分享数
+                ///计算文件大小
             }
             else if (behaviorCode == BehaviorType.修改 && sourceTableName == CONST.APP.YunProject.TableYunProject)
             {
@@ -106,6 +107,17 @@ namespace WangJun.HostApp
                 HTTP.GetInstance().SaveFile(fileHttpUrl, localFilePath);
             }
 
+        }
+        #endregion
+
+        #region 计算云盘文件大小
+        public void ComputeYunPan(Dictionary<string, object> data) {
+            var tableName = data["CollectionName"].ToString();
+            var dbID = data["DbID"].ToString();
+            var source = YunPanItem.Load(dbID);
+
+            var fileLength = source.FileLength;
+            var statistic = new { };
         }
         #endregion
 
