@@ -1,0 +1,1 @@
+﻿{"ServerFileName":"1004bdde-4be8-4d34-b3da-9bdc9f1f85d6螺旋桨.mp4","ServerFilePath":"E:\\WangJunUI2017\\WangJunUI2017\\WebDesktop40\\uploadFiles\\1004bdde-4be8-4d34-b3da-9bdc9f1f85d6螺旋桨.mp4","FileNameInClient":"螺旋桨.mp4","FileLength":6120371,"FileLengthText":"6119424MB","HttpUrl":"http://localhost:14000/uploadFiles/1004bdde-4be8-4d34-b3da-9bdc9f1f85d6螺旋桨.mp4"}
