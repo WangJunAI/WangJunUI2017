@@ -7,13 +7,15 @@ using System.Threading.Tasks;
 
 namespace WangJun.Entity
 {
-    public class BaseEntity:IRelationshipSQLServer
+    public class BaseEntity: IRelationshipGuid
     {
+        #region IRelationshipGuid
         [Key]
         public Guid _GID { get; set; }
 
         public Guid _ParentGID { get; set; }
 
         public Guid _RootGID { get; set; }
+        #endregion
     }
 }

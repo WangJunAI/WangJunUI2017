@@ -72,7 +72,9 @@
     <Compile Include="ClientBehaviorItem.cs" />
     <Compile Include="EntityDbContext.cs" />
     <Compile Include="EntityManager.cs" />
-    <Compile Include="IRelationshipSQLServer.cs" />
+    <Compile Include="IRelationshipInt64.cs" />
+    <Compile Include="IRelationshipGuid.cs" />
+    <Compile Include="ITime.cs" />
     <Compile Include="MongoDBFilterCreator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SESSION.cs" />

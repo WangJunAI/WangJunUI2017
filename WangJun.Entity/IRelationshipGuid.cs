@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WangJun.Entity
 {
-    interface IRelationshipSQLServer
+    interface IRelationshipGuid
     {
         [Key]
         Guid _GID { get; set; }

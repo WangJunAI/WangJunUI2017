@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -14,8 +15,8 @@ namespace WangJun.EntityHostApp
     {
         static void Main(string[] args)
         {
-             
-            EntityManager.GetInstance<BaseEntity>().Save(new BaseEntity { _GID=Guid.NewGuid()});
+            var i = new BaseItem { _OID = ObjectId.GenerateNewId() } as IRelationshipInt64;
+            EntityManager.GetInstance<IRelationshipInt64>().Save(i);
         }
     }
 }

@@ -13,21 +13,11 @@ namespace WangJun.Entity
     /// <summary>
     /// 基本类型
     /// </summary>
-    public class BaseItem:IRelationshipInt64
+    public class BaseItem
     {
-        #region IRelationshipInt64
-        [Key]
-        public long _ID64 { get; set; }
-
-        public long _ParentID64 { get; set; }
-
-        public long _RootID64 { get; set; }
-        #endregion
-
         #region 当前实体信息
         public ObjectId _id { get; set; }
-        public ObjectId _OID { get { return this._id; } set { this._id = value;                 this._ID64 = Convertor.ObjectIdToInt64(this._OID);
-} }
+        public ObjectId _OID { get { return this._id; } set { this._id = value; } }
  
         public string ID
         {
@@ -55,7 +45,8 @@ namespace WangJun.Entity
         #region 父级引用信息
         public ObjectId _ParentOID { get; set; }
 
-  
+ 
+        public long _ParentIntID { get; set; }
 
         public string ParentID
         {

@@ -702,5 +702,22 @@ namespace WangJun.Utility
             return long.Parse(string.Format("{0:0000}{1:00}{2:00}{3:00}{4:00}{5:00}", dateTime.Year, dateTime.Month, dateTime.Day, dateTime.Hour, dateTime.Minute, dateTime.Second));
         }
 
+        /// <summary>
+        /// 根据GUID获取唯一数字序列
+        /// </summary>
+        public static long GuidToInt64(Guid guid)
+        {
+            byte[] bytes =guid.ToByteArray();
+            return BitConverter.ToInt64(bytes, 0);
+        }
+
+        /// <summary>
+        /// 根据GUID获取唯一数字序列
+        /// </summary>
+        public static long ObjectIdToInt64(ObjectId id)
+        {
+            byte[] bytes = id.ToByteArray();
+            return BitConverter.ToInt64(bytes, 0);
+        }
     }
 }
