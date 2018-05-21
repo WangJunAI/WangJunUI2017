@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,8 +16,10 @@ namespace WangJun.EntityHostApp
     {
         static void Main(string[] args)
         {
-            var i = new BaseItem { _OID = ObjectId.GenerateNewId() } as IRelationshipInt64;
-            EntityManager.GetInstance<IRelationshipInt64>().Save(i);
+            var i = new BaseItem { _OID = ObjectId.GenerateNewId() ,Name="OK"} ;
+            dynamic dy = new ExpandoObject();
+            dy.ID = 999;
+            EntityManager.GetInstance<BaseItem>().Save(i);
         }
     }
 }

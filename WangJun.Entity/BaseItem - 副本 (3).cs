@@ -3,7 +3,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +13,7 @@ namespace WangJun.Entity
     /// <summary>
     /// 基本类型
     /// </summary>
-    public class BaseItem : IRelationshipInt64, IName, ITime, IRelationshipObjectId
+    public class BaseItem:IRelationshipInt64
     {
         #region IRelationshipInt64
         public long _ID64 { get; set; }
@@ -24,22 +23,10 @@ namespace WangJun.Entity
         public long _RootID64 { get; set; }
         #endregion
 
-        #region IName
-        public string Name { get; set; }
-
-        public string ParentName { get; set; }
-
-        public string RootName { get; set; }
-
-        public string Path { get; set; }
-        #endregion
-
-        #region IRelationshipObjectId
-        [NotMapped]
+        #region 当前实体信息
         public ObjectId _id { get; set; }
-        [NotMapped]
-        public ObjectId _OID { get { return this._id; } set { this._id = value; this._ID64 = Convertor.ObjectIdToInt64(this._OID); } }
-
+        public ObjectId _OID { get { return this._id; } set { this._id = value;                 this._ID64 = Convertor.ObjectIdToInt64(this._OID); } }
+ 
         public string ID
         {
             get
@@ -59,10 +46,14 @@ namespace WangJun.Entity
             }
         }
 
-        [NotMapped]
+        public string Name { get; set; }
+
+        #endregion
+
+        #region 父级引用信息
         public ObjectId _ParentOID { get; set; }
 
-
+  
 
         public string ParentID
         {
@@ -78,9 +69,16 @@ namespace WangJun.Entity
                 }
             }
         }
-        [NotMapped]
-        public ObjectId _RootOID { get; set; }
 
+        public string ParentName { get; set; }
+
+        #endregion
+         
+        #region 根级信息
+        public ObjectId _RootOID { get; set; }
+         //public Guid _RootGID { get; set; }
+
+        public long RootIntID { get; set; }
 
         public string RootID
         {
@@ -96,44 +94,47 @@ namespace WangJun.Entity
                 }
             }
         }
+
+        public string RootName { get; set; }
         #endregion
 
-        #region ITime
-        [Column(TypeName = "datetime2")]
+        #region 路径信息
+        public string Path { get; set; }
+         
+        #endregion
+
+        #region 时间信息
         public DateTime CreateTime { get; set; }
-        [Column(TypeName = "datetime2")]
         public DateTime UpdateTime { get; set; }
-        [Column(TypeName = "datetime2")]
         public DateTime DeleteTime { get; set; }
         #endregion
 
 
         #region 权限控制
-        [NotMapped]
         public ArrayList OrgAllowedArray { get; set; }
-        [NotMapped]
+
         public string OrgAllowedArrayText { get; set; }
-        [NotMapped]
+
         public ArrayList UserAllowedArray { get; set; }
-        [NotMapped]
+
         public string UserAllowedArrayText { get; set; }
-        [NotMapped]
+         
         public ArrayList RoleAllowedArray { get; set; }
-        [NotMapped]
+
         public string RoleAllowedArrayText { get; set; }
-        [NotMapped]
+         
         public ArrayList OrgDeniedArray { get; set; }
-        [NotMapped]
+
         public string OrgDeniedArrayText { get; set; }
-        [NotMapped]
+         
         public ArrayList UserDeniedArray { get; set; }
-        [NotMapped]
+
         public string UserDeniedArrayText { get; set; }
-        [NotMapped]
+         
         public ArrayList RoleDeniedArray { get; set; }
-        [NotMapped]
+
         public string RoleDeniedArrayText { get; set; }
-        [NotMapped]
+
         public string _RedirectID { get; set; }
 
         #endregion
@@ -180,7 +181,6 @@ namespace WangJun.Entity
         public int Level { get; set; } ///紧急度，权限度，重要性
 
         #region 所有者信息/公司的就是超级管理员的
-        [NotMapped]
         public ObjectId _OOwnerID { get; set; }
 
         public Guid _GOwnerID { get; set; }

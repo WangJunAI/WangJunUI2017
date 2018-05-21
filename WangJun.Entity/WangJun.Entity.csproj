@@ -72,6 +72,8 @@
     <Compile Include="ClientBehaviorItem.cs" />
     <Compile Include="EntityDbContext.cs" />
     <Compile Include="EntityManager.cs" />
+    <Compile Include="IName.cs" />
+    <Compile Include="IRelationshipObjectId.cs" />
     <Compile Include="IRelationshipInt64.cs" />
     <Compile Include="IRelationshipGuid.cs" />
     <Compile Include="ITime.cs" />

@@ -8,12 +8,8 @@ namespace WangJun.Entity
 {
     interface ITime
     {
-        DateTime CreateTime { get; set; }
-
-        DateTime LastModifyTime { get; set; }
-
-        DateTime LastFindTime { get; set; }
-
-        DateTime DeleteTime { get; set; }
+          DateTime CreateTime { get; set; }
+          DateTime UpdateTime { get; set; }
+          DateTime DeleteTime { get; set; }
     }
 }
