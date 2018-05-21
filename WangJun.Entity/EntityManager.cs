@@ -19,6 +19,12 @@ namespace WangJun.Entity
             return inst;
         }
 
+        public static EntityDbContext<T> GetInstance<T>() where T:class
+        {
+            var context = EntityDbContext<T>.CreateInstance(@"Data Source=192.168.0.150\SQL2016;Initial Catalog=WangJun;Persist Security Info=True;User ID=sa;Password=111qqq!!!");
+            return context;
+        }
+
         public int Save<T>(BaseItem item)where T :class,new()
         {
             var inst = item as T;

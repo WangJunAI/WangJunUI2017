@@ -40,7 +40,8 @@ namespace WangJun.Entity
                 }
             }
         }
-
+        [Key]
+        public Guid _GID { get; set; }
         public string Name { get; set; }
 
         #endregion

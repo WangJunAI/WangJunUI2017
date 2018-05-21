@@ -160,7 +160,7 @@ namespace WangJun.Admin
             #endregion
 
             #region 初始化云新闻库
-            var categoryYunNews = new WangJun.YunNews.CategoryItem();
+            var categoryYunNews = new WangJun.YunNews.DategoryItem();
             categoryYunNews.Name = "企业新闻";
             categoryYunNews.Save();
             categoryYunNews.CompanyID = company.ID;
@@ -168,7 +168,7 @@ namespace WangJun.Admin
             categoryYunNews.OwnerID = categoryYunNews.CompanyID;
             categoryYunNews.Save();
 
-            var categoryYunNews1 = new WangJun.YunNews.CategoryItem();
+            var categoryYunNews1 = new WangJun.YunNews.DategoryItem();
             categoryYunNews1.Name = "动态";
             categoryYunNews1.Save();
             categoryYunNews1.CompanyID = company.ID;
@@ -179,7 +179,7 @@ namespace WangJun.Admin
             categoryYunNews1.Save();
 
 
-            var categoryYunNews2 = new WangJun.YunNews.CategoryItem();
+            var categoryYunNews2 = new WangJun.YunNews.DategoryItem();
             categoryYunNews2.Name = "通知";
             categoryYunNews2.Save();
             categoryYunNews2.CompanyID = company.ID;
@@ -189,7 +189,7 @@ namespace WangJun.Admin
             categoryYunNews2.ParentName = categoryYunNews.Name;
             categoryYunNews2.Save();
 
-            var categoryYunNews3 = new WangJun.YunNews.CategoryItem();
+            var categoryYunNews3 = new WangJun.YunNews.DategoryItem();
             categoryYunNews3.Name = "公告";
             categoryYunNews3.Save();
             categoryYunNews3.CompanyID = company.ID;
@@ -199,7 +199,7 @@ namespace WangJun.Admin
             categoryYunNews3.ParentName = categoryYunNews.Name;
             categoryYunNews3.Save();
 
-            var categoryYunNews4 = new WangJun.YunNews.CategoryItem();
+            var categoryYunNews4 = new WangJun.YunNews.DategoryItem();
             categoryYunNews4.Name = "关于";
             categoryYunNews4.Save();
             categoryYunNews4.CompanyID = company.ID;
