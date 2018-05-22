@@ -54,6 +54,10 @@ namespace WangJun.YunNews
                 }
             }
             inst.Save();
+
+            ///
+            var bc = BaseCategory.CreateAsNew(inst.Name);
+            EntityManager.GetInstance<BaseCategory>().Save(bc);
         }
         public void Remove()
         {

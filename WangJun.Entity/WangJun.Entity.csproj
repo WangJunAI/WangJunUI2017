@@ -67,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseCategory.cs" />
     <Compile Include="BaseComment.cs" />
     <Compile Include="BaseArticle.cs" />
     <Compile Include="BaseEntity.cs" />
@@ -75,8 +76,9 @@
     <Compile Include="EntityDbContext.cs" />
     <Compile Include="EntityManager.cs" />
     <Compile Include="EnumContentType.cs" />
-    <Compile Include="IComment.cs" />
-    <Compile Include="IPermission.cs" />
+    <Compile Include="ICategory.cs" />
+    <Compile Include="接口\IComment.cs" />
+    <Compile Include="接口\IPermission.cs" />
     <Compile Include="接口\IArticle.cs" />
     <Compile Include="接口\ICount.cs" />
     <Compile Include="IEntity.cs" />
