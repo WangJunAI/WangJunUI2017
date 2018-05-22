@@ -90,6 +90,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WangJun.YunAI", "WangJun.Yu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WangJun.YunUser", "WangJun.YunUser\WangJun.YunUser.csproj", "{934BC61E-4A2C-4046-AF08-4D5D0AFFF7A3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WangJun.YunCategory", "WangJun.YunCategory\WangJun.YunCategory.csproj", "{F41364E7-C71B-438C-B257-F9FB741D4570}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -220,6 +222,10 @@ Global
 		{934BC61E-4A2C-4046-AF08-4D5D0AFFF7A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{934BC61E-4A2C-4046-AF08-4D5D0AFFF7A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{934BC61E-4A2C-4046-AF08-4D5D0AFFF7A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F41364E7-C71B-438C-B257-F9FB741D4570}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F41364E7-C71B-438C-B257-F9FB741D4570}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F41364E7-C71B-438C-B257-F9FB741D4570}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F41364E7-C71B-438C-B257-F9FB741D4570}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -256,6 +262,7 @@ Global
 		{528C7FAC-DF7E-466B-9430-BC429ED24937} = {243E6D41-CC02-410B-9442-3BD60541242E}
 		{86B21657-90C5-4073-9B11-83DE31B93320} = {243E6D41-CC02-410B-9442-3BD60541242E}
 		{934BC61E-4A2C-4046-AF08-4D5D0AFFF7A3} = {243E6D41-CC02-410B-9442-3BD60541242E}
+		{F41364E7-C71B-438C-B257-F9FB741D4570} = {243E6D41-CC02-410B-9442-3BD60541242E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {89E2C04D-C976-481B-8A8F-BBCE924EEC49}

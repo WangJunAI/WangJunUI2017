@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WangJun.Entity
 {
-    public class BaseCategory:  IRelationshipInt64, ITime,IName
+    public class BaseCategory:  IRelationshipInt64, ITime, IName, IEntity
     {
         #region IName
 
@@ -38,7 +38,6 @@ namespace WangJun.Entity
         [Column(TypeName = "datetime2")]
         public DateTime DeleteTime { get; set; }
         #endregion
-         
 
         #region IOperator
 
@@ -52,6 +51,18 @@ namespace WangJun.Entity
         public string OwnerID { get; set; }
 
         public string OwnerName { get; set; }
+        #endregion
+
+        #region IEntity
+        public virtual int Save()
+        {
+
+            return 0;
+
+        }
+        public virtual int Remove() { return 0; }
+
+        public virtual int Load() { return 0; }
         #endregion
 
         #region 基本方法

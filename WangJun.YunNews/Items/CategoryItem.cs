@@ -1,6 +1,7 @@
 ﻿using WangJun.Config;
 using WangJun.Entity;
 using WangJun.Utility;
+using WangJun.Yun;
 
 namespace WangJun.YunNews
 {
@@ -56,8 +57,8 @@ namespace WangJun.YunNews
             inst.Save();
 
             ///
-            var bc = BaseCategory.CreateAsNew(inst.Name);
-            EntityManager.GetInstance<BaseCategory>().Save(bc);
+            var bc = YunCategory.CreateAsNew(inst.Name);
+            bc.Save();
         }
         public void Remove()
         {

@@ -62,6 +62,7 @@ namespace WangJun.Entity
 
         public string OwnerName { get; set; }
         #endregion
+
         #region IEntity
         public virtual int Save()
         {
