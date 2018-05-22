@@ -125,6 +125,12 @@ namespace WangJun.YunNews
             ar.Summary = inst.Summary;
             ar.Content = inst.Content;
             ar.Summary = inst.Summary;
+            ar.CreatorID = inst.CreatorID;
+            ar.CreatorName = inst.CreatorName;
+            ar.ModifierID = inst.ModifierID;
+            ar.ModifierName = inst.ModifierName;
+            ar.OwnerID = inst.OwnerID;
+            ar.OwnerName = inst.OwnerName;
 
             EntityManager.GetInstance<BaseArticle>().Save(ar);
         }

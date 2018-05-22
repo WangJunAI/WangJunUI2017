@@ -719,5 +719,12 @@ namespace WangJun.Utility
             byte[] bytes = id.ToByteArray();
             return BitConverter.ToInt64(bytes, 0);
         }
+
+        public static ObjectId Int64ToObjectId(long id)
+        {
+
+            byte[] bytes = BitConverter.GetBytes(id);
+            return new ObjectId(bytes);
+        }
     }
 }

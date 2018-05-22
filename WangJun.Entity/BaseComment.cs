@@ -8,14 +8,11 @@ using System.Threading.Tasks;
 
 namespace WangJun.Entity
 {
-    public class BaseArticle: IArticle, IRelationshipInt64,ITime,ICount 
+    public class BaseComment : IComment, IRelationshipInt64,ITime,ICount 
     {
 
-        #region IArticle
-        public long ID { get { return this._ID64; } set { this._ID64 = value; } }
-        public string Title { get; set; }
-
-        public string Summary { get; set; }
+        #region IComment
+        public long ID { get { return this._ID64; } set { this._ID64 = value; } } 
 
         public string Content { get; set; }
 
@@ -68,18 +65,42 @@ namespace WangJun.Entity
          
 
         #region 基本方法
-        public static BaseArticle CreateAsHtml()
+        public static BaseComment CreateAsText()
         {
-            var inst = new BaseArticle();
+            var inst = new BaseComment();
 
-            var iArticle = inst as IArticle;
-            iArticle.ContentType = "html";
+            var iArticle = inst as IComment;
+            iArticle.ContentType = "text";
+
+            var iTime = inst as ITime;
+            iTime.CreateTime = DateTime.Now;
+            iTime.UpdateTime = iTime.CreateTime; 
+            return inst;
+        }
+
+        public static BaseComment CreateAsLike()
+        {
+            var inst = new BaseComment();
+
+            var iArticle = inst as IComment;
+            iArticle.ContentType = "like";
 
             var iTime = inst as ITime;
             iTime.CreateTime = DateTime.Now;
             iTime.UpdateTime = iTime.CreateTime;
+            return inst;
+        }
 
+        public static BaseComment CreateAsFavorite()
+        {
+            var inst = new BaseComment();
 
+            var iArticle = inst as IComment;
+            iArticle.ContentType = "favorite";
+
+            var iTime = inst as ITime;
+            iTime.CreateTime = DateTime.Now;
+            iTime.UpdateTime = iTime.CreateTime;
             return inst;
         }
         #endregion

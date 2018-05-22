@@ -14,7 +14,7 @@ namespace WangJun.Entity
     /// <summary>
     /// 基本类型
     /// </summary>
-    public class BaseItem : IRelationshipInt64, IName, ITime, IRelationshipObjectId,IStatus
+    public class BaseItem : IRelationshipInt64, IName, ITime, IRelationshipObjectId, IStatus,IOperator
     {
         #region IRelationshipInt64
         public long _ID64 { get; set; }
@@ -114,6 +114,33 @@ namespace WangJun.Entity
         #endregion
 
 
+        #region IOperator
+
+        public string CreatorID { get; set; }
+
+        public string CreatorName { get; set; }
+
+        public string ModifierID { get; set; }
+
+        public string ModifierName { get; set; }
+        public string OwnerID
+        {
+            get
+            {
+                return this._OOwnerID.ToString();
+            }
+            set
+            {
+                if (StringChecker.IsObjectId(value))
+                {
+                    this._OOwnerID = ObjectId.Parse(value);
+                }
+            }
+        }
+
+        public string OwnerName { get; set; }
+        #endregion
+
         #region 权限控制
         [NotMapped]
         public ArrayList OrgAllowedArray { get; set; }
@@ -144,17 +171,7 @@ namespace WangJun.Entity
 
         #endregion
 
-        
-
-        #region 创建和修改信息
-        public string CreatorID { get; set; }
-
-        public string CreatorName { get; set; }
-
-        public string ModifierID { get; set; }
-
-        public string ModifierName { get; set; }
-        #endregion
+         
 
         #region 系统级别的信息
         public string ClassFullName { get; set; }
@@ -183,21 +200,8 @@ namespace WangJun.Entity
 
         #region 所有者信息/公司的就是超级管理员的
         [NotMapped]
-        public ObjectId _OOwnerID { get; set; } 
-        public string OwnerID
-        {
-            get
-            {
-                return this._OOwnerID.ToString();
-            }
-            set
-            {
-                if (StringChecker.IsObjectId(value))
-                {
-                    this._OOwnerID = ObjectId.Parse(value);
-                }
-            }
-        }
+        public ObjectId _OOwnerID { get; set; }
+ 
         #endregion
 
         #region 通用方法

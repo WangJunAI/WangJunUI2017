@@ -53,6 +53,11 @@ namespace WangJun.YunNews
                 }
             }
             inst.Save();
+
+            ///保存一个
+            var bc = BaseComment.CreateAsText();
+            bc.Content = inst.Content;
+            EntityManager.GetInstance<BaseComment>().Save(bc);
         }
 
     }

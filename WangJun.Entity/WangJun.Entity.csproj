@@ -67,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseComment.cs" />
     <Compile Include="BaseArticle.cs" />
     <Compile Include="BaseEntity.cs" />
     <Compile Include="BaseItem.cs" />
@@ -74,12 +75,15 @@
     <Compile Include="EntityDbContext.cs" />
     <Compile Include="EntityManager.cs" />
     <Compile Include="EnumContentType.cs" />
-    <Compile Include="IArticle.cs" />
-    <Compile Include="ICount.cs" />
+    <Compile Include="IComment.cs" />
+    <Compile Include="IPermission.cs" />
+    <Compile Include="接口\IArticle.cs" />
+    <Compile Include="接口\ICount.cs" />
     <Compile Include="IEntity.cs" />
-    <Compile Include="IStatus.cs" />
+    <Compile Include="接口\IOperator.cs" />
+    <Compile Include="接口\IStatus.cs" />
     <Compile Include="接口\IName.cs" />
-    <Compile Include="IRelationshipObjectId.cs" />
+    <Compile Include="接口\IRelationshipObjectId.cs" />
     <Compile Include="接口\IRelationshipInt64.cs" />
     <Compile Include="接口\IRelationshipGuid.cs" />
     <Compile Include="接口\ITime.cs" />
