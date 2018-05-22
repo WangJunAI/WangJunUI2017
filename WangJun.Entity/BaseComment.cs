@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WangJun.Entity
 {
-    public class BaseComment : IComment, IRelationshipInt64,ITime,ICount 
+    public class BaseComment : IComment, IRelationshipInt64,ITime,ICount , IEntity
     {
 
         #region IComment
@@ -62,7 +62,17 @@ namespace WangJun.Entity
 
         public string OwnerName { get; set; }
         #endregion
-         
+        #region IEntity
+        public virtual int Save()
+        {
+
+            return 0;
+
+        }
+        public virtual int Remove() { return 0; }
+
+        public virtual int Load() { return 0; }
+        #endregion
 
         #region 基本方法
         public static BaseComment CreateAsText()

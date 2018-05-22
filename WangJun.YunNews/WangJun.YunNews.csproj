@@ -80,6 +80,10 @@
       <Project>{BFB774BA-B7FA-4F7A-B76B-6392DC59A95D}</Project>
       <Name>WangJun.YunArticle</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WangJun.YunComment\WangJun.YunComment.csproj">
+      <Project>{63287879-30D9-4521-8F98-C1B6E02ED1BC}</Project>
+      <Name>WangJun.YunComment</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using WangJun.Config;
 using WangJun.Entity;
 using WangJun.Utility;
+using WangJun.Yun;
 
 namespace WangJun.YunNews
 {
@@ -55,9 +56,9 @@ namespace WangJun.YunNews
             inst.Save();
 
             ///保存一个
-            var bc = BaseComment.CreateAsText();
+            var bc = YunComment.CreateAsText();
             bc.Content = inst.Content;
-            EntityManager.GetInstance<BaseComment>().Save(bc);
+            bc.Save();
         }
 
     }
