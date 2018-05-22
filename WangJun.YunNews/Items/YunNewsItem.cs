@@ -4,6 +4,7 @@ using WangJun.Config;
 using WangJun.Entity;
 using WangJun.Tools;
 using WangJun.Utility;
+using WangJun.Yun; 
 
 namespace WangJun.YunNews
 {
@@ -119,7 +120,7 @@ namespace WangJun.YunNews
             inst.Save();
 
             ///
-            var  ar =  BaseArticle.CreateAsHtml();
+            var ar = WangJun.Yun.YunArticle.CreateAsHtml();
             ar._ID64 = inst._ID64;
             ar.Title = inst.Title;
             ar.Summary = inst.Summary;
@@ -132,7 +133,7 @@ namespace WangJun.YunNews
             ar.OwnerID = inst.OwnerID;
             ar.OwnerName = inst.OwnerName;
 
-            EntityManager.GetInstance<BaseArticle>().Save(ar);
+            ar.Save();
         }
 
     }

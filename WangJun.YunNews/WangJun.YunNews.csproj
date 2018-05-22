@@ -76,6 +76,10 @@
       <Project>{ECA8641B-DDB9-481A-BF78-76FB5A8E1DE3}</Project>
       <Name>WangJun.Utility</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WangJun.YunArticle\WangJun.YunArticle.csproj">
+      <Project>{BFB774BA-B7FA-4F7A-B76B-6392DC59A95D}</Project>
+      <Name>WangJun.YunArticle</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

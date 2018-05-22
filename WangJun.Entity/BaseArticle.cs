@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WangJun.Entity
 {
-    public class BaseArticle: IArticle, IRelationshipInt64,ITime,ICount 
+    public class BaseArticle: IArticle, IRelationshipInt64,ITime,ICount ,IApp, IEntity
     {
 
         #region IArticle
@@ -65,7 +65,25 @@ namespace WangJun.Entity
 
         public string OwnerName { get; set; }
         #endregion
-         
+
+        #region  IApp
+        public long Version { get; set; }
+
+        public string AppName { get; set; }
+
+        public long AppCode { get; set; }
+        #endregion
+
+        #region IEntity
+        public virtual int Save() {
+             
+            return 0;
+
+        }
+        public virtual int Remove() { return 0; }
+
+        public virtual int Load() { return 0; }
+        #endregion
 
         #region 基本方法
         public static BaseArticle CreateAsHtml()

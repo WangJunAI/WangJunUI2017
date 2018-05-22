@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace WangJun.Entity
 {
-    public interface IEntity
+    public interface IApp
     {
-        int Save();
-        int Remove();
+          long Version { get; set; }
 
-        int Load();
-        
-     }
+          string AppName { get; set; }
+
+          long AppCode { get; set; }
+    }
 }

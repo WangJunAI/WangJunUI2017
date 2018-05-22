@@ -4,14 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WangJun.Entity
+namespace WangJun.YunArticle
 {
-    public interface IEntity
+    public class YunArticleList
     {
-        int Save();
-        int Remove();
-
-        int Load();
         
-     }
+    }
 }

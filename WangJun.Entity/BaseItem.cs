@@ -14,7 +14,7 @@ namespace WangJun.Entity
     /// <summary>
     /// 基本类型
     /// </summary>
-    public class BaseItem : IRelationshipInt64, IName, ITime, IRelationshipObjectId, IStatus,IOperator
+    public class BaseItem : IRelationshipInt64, IName, ITime, IRelationshipObjectId, IStatus,IOperator,IApp
     {
         #region IRelationshipInt64
         public long _ID64 { get; set; }
@@ -111,8 +111,7 @@ namespace WangJun.Entity
         public string Status { get; set; }
 
         public int StatusCode { get; set; }
-        #endregion
-
+        #endregion 
 
         #region IOperator
 
@@ -140,6 +139,14 @@ namespace WangJun.Entity
 
         public string OwnerName { get; set; }
         #endregion
+
+        #region  IApp
+        public long Version { get; set; }
+
+        public string AppName { get; set; }
+
+        public long AppCode { get; set; }
+        #endregion 
 
         #region 权限控制
         [NotMapped]
@@ -181,12 +188,7 @@ namespace WangJun.Entity
         public string _CollectionName { get; set; }
 
         public string _SourceID { get; set; }
-
-        public int Version { get; set; }
-
-        public string AppName { get; set; }
-
-        public long AppCode { get; set; }
+         
         #endregion
 
         #region 公司/群组信息

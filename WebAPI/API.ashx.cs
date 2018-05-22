@@ -127,6 +127,8 @@ namespace WebAPI
             dict.Add("WangJun.HTML.HTMLItem." + methodName, HttpContext.Current.Server.MapPath("./bin/Html/WangJun.HTML.dll"));
 
 
+
+
             var dllPath = dict[classFullName + "." + methodName];
             Assembly ass = Assembly.LoadFrom(dllPath);
             var obj = ass.CreateInstance(classFullName);

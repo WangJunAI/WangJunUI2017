@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WangJun.Entity
 {
-    interface ITime
+    public interface ITime
     {
           DateTime CreateTime { get; set; }
           DateTime UpdateTime { get; set; }
