@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WangJun.YunArticle
+namespace WangJun.YunAI
 {
-    public class Article
+    public class Class1
     {
     }
 }
