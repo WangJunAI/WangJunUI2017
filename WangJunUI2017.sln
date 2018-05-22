@@ -74,6 +74,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WangJun.ForexHostApp", "Wan
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WangJun.EntityHostApp", "WangJun.EntityHostApp\WangJun.EntityHostApp.csproj", "{DBAD12E9-5094-4207-88B2-867E45F0399F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WangJun.YunArticle", "WangJun.YunArticle\WangJun.YunArticle.csproj", "{BFB774BA-B7FA-4F7A-B76B-6392DC59A95D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -176,6 +178,10 @@ Global
 		{DBAD12E9-5094-4207-88B2-867E45F0399F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBAD12E9-5094-4207-88B2-867E45F0399F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBAD12E9-5094-4207-88B2-867E45F0399F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFB774BA-B7FA-4F7A-B76B-6392DC59A95D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFB774BA-B7FA-4F7A-B76B-6392DC59A95D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFB774BA-B7FA-4F7A-B76B-6392DC59A95D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFB774BA-B7FA-4F7A-B76B-6392DC59A95D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -205,6 +211,7 @@ Global
 		{73163FC7-2F4A-4BB2-94F5-32CE7BAA7889} = {E835D155-6F55-4068-8BBC-BA838BBABFD8}
 		{3FD2EB16-B99E-47DE-A3B1-AB3BEEEA47A7} = {E835D155-6F55-4068-8BBC-BA838BBABFD8}
 		{DBAD12E9-5094-4207-88B2-867E45F0399F} = {C830E6A6-0C2E-452F-942D-169D96411699}
+		{BFB774BA-B7FA-4F7A-B76B-6392DC59A95D} = {5555E47C-6247-48B7-B99A-6811E40E337A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {89E2C04D-C976-481B-8A8F-BBCE924EEC49}

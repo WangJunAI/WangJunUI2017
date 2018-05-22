@@ -36,9 +36,25 @@ namespace WangJun.YunNews
 
         public string PlainText { get; set; }
 
-        public int PlainTextLength { get; set; }
+        public int PlainTextLength
+        {
+            get
+            {
+                return (!string.IsNullOrWhiteSpace(this.PlainText)) ? this.PlainText.Length : 0;
+            }
+        }
 
-        public string Summary { get; set; }
+        public string Summary
+        {
+            get
+            {
+                if (!string.IsNullOrWhiteSpace(this.PlainText))
+                {
+                    return (150 <= this.PlainText.Length) ? this.PlainText.Substring(0, 150) : this.PlainText;
+                }
+                return null;
+            }
+        }
  
         public int ReadCount { get; set; }
 
@@ -72,6 +88,7 @@ namespace WangJun.YunNews
         {
             EntityManager.GetInstance().Save<YunNewsItem>(this);
             ClientBehaviorItem.Save(this, ClientBehaviorItem.BehaviorType.修改, SESSION.Current);
+            
         }
         public static void Save(string jsonInput)
         {
@@ -100,6 +117,16 @@ namespace WangJun.YunNews
             }
 
             inst.Save();
+
+            ///
+            var  ar =  BaseArticle.CreateAsHtml();
+            ar._ID64 = inst._ID64;
+            ar.Title = inst.Title;
+            ar.Summary = inst.Summary;
+            ar.Content = inst.Content;
+            ar.Summary = inst.Summary;
+
+            EntityManager.GetInstance<BaseArticle>().Save(ar);
         }
 
     }

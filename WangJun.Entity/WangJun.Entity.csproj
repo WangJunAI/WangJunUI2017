@@ -67,16 +67,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseArticle.cs" />
     <Compile Include="BaseEntity.cs" />
     <Compile Include="BaseItem.cs" />
     <Compile Include="ClientBehaviorItem.cs" />
     <Compile Include="EntityDbContext.cs" />
     <Compile Include="EntityManager.cs" />
-    <Compile Include="IName.cs" />
+    <Compile Include="EnumContentType.cs" />
+    <Compile Include="IArticle.cs" />
+    <Compile Include="ICount.cs" />
+    <Compile Include="IEntity.cs" />
+    <Compile Include="IStatus.cs" />
+    <Compile Include="接口\IName.cs" />
     <Compile Include="IRelationshipObjectId.cs" />
-    <Compile Include="IRelationshipInt64.cs" />
-    <Compile Include="IRelationshipGuid.cs" />
-    <Compile Include="ITime.cs" />
+    <Compile Include="接口\IRelationshipInt64.cs" />
+    <Compile Include="接口\IRelationshipGuid.cs" />
+    <Compile Include="接口\ITime.cs" />
     <Compile Include="MongoDBFilterCreator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SESSION.cs" />

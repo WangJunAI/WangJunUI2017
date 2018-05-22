@@ -14,7 +14,7 @@ namespace WangJun.Entity
     /// <summary>
     /// 基本类型
     /// </summary>
-    public class BaseItem : IRelationshipInt64, IName, ITime, IRelationshipObjectId
+    public class BaseItem : IRelationshipInt64, IName, ITime, IRelationshipObjectId,IStatus
     {
         #region IRelationshipInt64
         public long _ID64 { get; set; }
@@ -107,6 +107,12 @@ namespace WangJun.Entity
         public DateTime DeleteTime { get; set; }
         #endregion
 
+        #region IStatus
+        public string Status { get; set; }
+
+        public int StatusCode { get; set; }
+        #endregion
+
 
         #region 权限控制
         [NotMapped]
@@ -138,11 +144,7 @@ namespace WangJun.Entity
 
         #endregion
 
-        #region 状态信息
-        public string Status { get; set; }
-
-        public int StatusCode { get; set; }
-        #endregion
+        
 
         #region 创建和修改信息
         public string CreatorID { get; set; }
@@ -181,9 +183,7 @@ namespace WangJun.Entity
 
         #region 所有者信息/公司的就是超级管理员的
         [NotMapped]
-        public ObjectId _OOwnerID { get; set; }
-
-        public Guid _GOwnerID { get; set; }
+        public ObjectId _OOwnerID { get; set; } 
         public string OwnerID
         {
             get

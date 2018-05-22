@@ -9,7 +9,6 @@ namespace WangJun.Entity
 {
     public interface IRelationshipInt64
     {
-        [Key]
         long _ID64 { get; set; }
 
         long _ParentID64 { get; set; }
