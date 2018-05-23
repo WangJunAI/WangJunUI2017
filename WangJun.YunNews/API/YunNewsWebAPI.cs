@@ -1,16 +1,35 @@
 ﻿using System.Collections.Generic;
 using WangJun.Config;
 using WangJun.Entity;
-using WangJun.Utility; 
+using WangJun.Utility;
+using WangJun.Yun;
 
 namespace WangJun.YunNews
 {
     /// <summary>
     /// 
     /// </summary>
-    public class YunNewsWebAPI
-    {
-        public long AppCode = CONST.APP.YunNews.Code;
+    public class YunNewsWebAPI:IApp,ISysItem
+    { 
+
+        #region  IApp
+        public long Version { get { return 1; } set { } }
+
+        public string AppName { get { return CONST.APP.YunNews.Name; } set { } }
+
+        public long AppCode { get { return CONST.APP.YunNews.Code; } set { } }
+        #endregion
+
+        #region ISysItem
+        public string ClassFullName { get; set; }
+
+        public string _DbName { get; set; }
+
+        public string _CollectionName { get; set; }
+
+        public string _SourceID { get; set; }
+
+        #endregion
 
 
         #region 目录操作
@@ -81,6 +100,13 @@ namespace WangJun.YunNews
         public int SaveEntity(string jsonInput)
         {
             YunNewsItem.Save(jsonInput);
+
+            ///
+            var ar = Convertor.FromJsonToObject2<YunArticle>(jsonInput);
+            var iApp = (ar as IApp);
+            iApp= this as IApp;
+            ar.Save();
+
             return 0;
         }
 
@@ -133,7 +159,13 @@ namespace WangJun.YunNews
         /// <returns></returns>
         public int SaveComment(string jsonInput)
         {
+            var dict = Convertor.FromJsonToDict2(jsonInput);
+            ///MongoDB
             CommentItem.Save(jsonInput);
+
+            ///SQLServer
+            YunComment.CreateAsText(this, "[API]"+dict["Content"].ToString(), this).Save();
+
             return 0;
         }
 

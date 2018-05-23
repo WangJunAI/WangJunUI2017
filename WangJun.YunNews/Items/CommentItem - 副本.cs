@@ -55,7 +55,10 @@ namespace WangJun.YunNews
             }
             inst.Save();
 
-
+            ///保存一个
+            var bc = YunComment.CreateAsText();
+            bc.Content = inst.Content;
+            bc.Save();
         }
 
     }

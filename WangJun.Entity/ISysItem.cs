@@ -15,13 +15,7 @@ namespace WangJun.Entity
 
          string _CollectionName { get; set; }
 
-         string _SourceID { get; set; }
-
-         int Version { get; set; }
-
-         string AppName { get; set; }
-
-         long AppCode { get; set; }
+         string _SourceID { get; set; } 
         #endregion
     }
 }

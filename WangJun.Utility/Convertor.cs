@@ -31,6 +31,28 @@ namespace WangJun.Utility
             return null;
         }
 
+        public static T FromJsonToObject2<T>(string jsonString) where T : class,new()
+        {
+            try
+            {
+                var dict = Convertor.FromJsonToDict2(jsonString);
+                var inst = new T();
+                foreach (var kv in dict)
+                {
+                    var property = inst.GetType().GetProperty(kv.Key);
+                    if (null != property && property.CanWrite)
+                    {
+                        property.SetValue(inst, kv.Value);
+                    }
+                }
+                return inst;
+            }
+            catch (Exception e)
+            {
+            }
+            return null;
+        }
+
         public static T FromDictionaryToObject<T>(Dictionary<string,object> data) where T:class,new ()
         {
             if (null != data)

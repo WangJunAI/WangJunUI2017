@@ -31,7 +31,7 @@ namespace WangJun.Yun
             var inst = new YunArticle();
 
             var iArticle = inst as IArticle;
-            iArticle.ContentType = "html";
+            iArticle.ContentType = "html"; 
 
             var iTime = inst as ITime;
             iTime.CreateTime = DateTime.Now;

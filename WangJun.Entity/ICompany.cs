@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WangJun.Yun
+namespace WangJun.Entity
 {
-    public class YunArticleList
+    interface ICompany
     {
-        
     }
 }

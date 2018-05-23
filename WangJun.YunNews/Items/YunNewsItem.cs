@@ -119,21 +119,7 @@ namespace WangJun.YunNews
 
             inst.Save();
 
-            ///
-            var ar = WangJun.Yun.YunArticle.CreateAsHtml();
-            ar._ID64 = inst._ID64;
-            ar.Title = inst.Title;
-            ar.Summary = inst.Summary;
-            ar.Content = inst.Content;
-            ar.Summary = inst.Summary;
-            ar.CreatorID = inst.CreatorID;
-            ar.CreatorName = inst.CreatorName;
-            ar.ModifierID = inst.ModifierID;
-            ar.ModifierName = inst.ModifierName;
-            ar.OwnerID = inst.OwnerID;
-            ar.OwnerName = inst.OwnerName;
 
-            ar.Save();
         }
 
     }

@@ -26,16 +26,28 @@ namespace WangJun.Yun
         }
 
         #region 基本方法
-        public static YunComment CreateAsText()
+        public static YunComment CreateAsText(IApp app,string content, ISysItem iSys=null)
         {
             var inst = new YunComment();
 
             var iComment = inst as IComment;
             iComment.ContentType = "text";
+            iComment.Content = content;
+
+            var iApp = inst as IApp;
+            iApp.AppCode = app.AppCode;
+            iApp.AppName = app.AppName;
+            iApp.Version = app.Version;
 
             var iTime = inst as ITime;
             iTime.CreateTime = DateTime.Now;
             iTime.UpdateTime = iTime.CreateTime;
+
+            var iSysItem = inst as ISysItem;
+            inst.ClassFullName = iSys.ClassFullName;
+            inst._CollectionName = iSys._CollectionName;
+            inst._DbName = iSys._DbName;
+            inst._SourceID = iSys._SourceID;
 
 
             return inst;

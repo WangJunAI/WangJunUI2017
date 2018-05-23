@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WangJun.Entity
 {
-    public class BaseComment : IComment, IRelationshipInt64,ITime,ICount , IEntity
+    public class BaseComment : IComment, IRelationshipInt64,ITime,ICount , IEntity,IApp
     {
 
         #region IComment
@@ -63,6 +63,14 @@ namespace WangJun.Entity
         public string OwnerName { get; set; }
         #endregion
 
+        #region  IApp
+        public long Version { get; set; }
+
+        public string AppName { get; set; }
+
+        public long AppCode { get; set; }
+        #endregion
+
         #region IEntity
         public virtual int Save()
         {
@@ -73,6 +81,18 @@ namespace WangJun.Entity
         public virtual int Remove() { return 0; }
 
         public virtual int Load() { return 0; }
+        #endregion
+
+
+        #region ISysItem
+        public string ClassFullName { get; set; }
+
+        public string _DbName { get; set; }
+
+        public string _CollectionName { get; set; }
+
+        public string _SourceID { get; set; }
+
         #endregion
 
         #region 基本方法
