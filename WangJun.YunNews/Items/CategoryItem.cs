@@ -56,9 +56,7 @@ namespace WangJun.YunNews
             }
             inst.Save();
 
-            ///
-            var bc = YunCategory.CreateAsNew(inst.Name);
-            bc.Save();
+
         }
         public void Remove()
         {

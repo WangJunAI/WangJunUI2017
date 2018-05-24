@@ -14,7 +14,7 @@ namespace WangJun.Entity
     /// <summary>
     /// 基本类型
     /// </summary>
-    public class BaseItem : IRelationshipInt64, IName, ITime, IRelationshipObjectId, IStatus,IOperator,IApp, ISysItem
+    public class BaseItem : IRelationshipInt64, IName, ITime, IRelationshipObjectId, IStatus,IOperator,IApp, ISysItem, ICompany
     {
         #region IRelationshipInt64
         public long _ID64 { get; set; }
@@ -156,7 +156,12 @@ namespace WangJun.Entity
         public string _CollectionName { get; set; }
 
         public string _SourceID { get; set; }
-         
+
+        #endregion
+
+        #region ICompany
+        public string CompanyID { get; set; }
+        public string CompanyName { get; set; }
         #endregion
 
         #region 权限控制
@@ -190,12 +195,9 @@ namespace WangJun.Entity
         #endregion
 
 
-        
 
-        #region 公司/群组信息
-        public string CompanyID { get; set; }
-        public string CompanyName { get; set; }
-        #endregion
+
+
 
         public int AllowedComment { get; set; }
 

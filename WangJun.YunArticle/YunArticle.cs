@@ -11,13 +11,21 @@ namespace WangJun.Yun
     {
         public override int Save()
         {
+            this.CompanyID = SESSION.Current.CompanyID;
+            this.CompanyName = SESSION.Current.CompanyName;
+            this.CreatorID = SESSION.Current.UserID;
+            this.CreatorName = SESSION.Current.UserName;
+            this.ModifierID = SESSION.Current.UserID;
+            this.ModifierName = SESSION.Current.UserName;
+            this.OwnerID = SESSION.Current.UserID;
+            this.OwnerName = SESSION.Current.UserName;
             EntityManager.GetInstance<YunArticle>().Save(this);
             return base.Save();
         }
-
-        public override int Load()
+        public static YunArticle Load(long id)
         {
-            return base.Load();
+            var res = EntityManager.GetInstance<YunArticle>().List.Find(new object[] { id });
+            return res;
         }
 
         public override int Remove()

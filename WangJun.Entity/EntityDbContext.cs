@@ -56,7 +56,7 @@ namespace WangJun.Entity
         {
             if (null != t)
             {
-                this.List.Remove(t);
+                this.Entry(t).State = EntityState.Deleted;
                 this.SaveChanges();
             }
         }

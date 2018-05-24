@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace WangJun.Entity
 {
-    class StatusItem
+    public interface ICompany
     {
-        #region 状态信息
-        public string Status { get; set; }
-
-        public int StatusCode { get; set; }
-        #endregion
+ 
+          string CompanyID { get; set; }
+          string CompanyName { get; set; }
+ 
     }
 }

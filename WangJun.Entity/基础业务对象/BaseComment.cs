@@ -8,14 +8,11 @@ using System.Threading.Tasks;
 
 namespace WangJun.Entity
 {
-    public class BaseArticle: IArticle, IRelationshipInt64,ITime,ICount ,IApp, IEntity
+    public class BaseComment : IComment, IRelationshipInt64,ITime,ICount , IEntity,IApp,ICompany
     {
 
-        #region IArticle
-        public long ID { get { return this._ID64; } set { this._ID64 = value; } }
-        public string Title { get; set; }
-
-        public string Summary { get; set; }
+        #region IComment
+        public long ID { get { return this._ID64; } set { this._ID64 = value; } } 
 
         public string Content { get; set; }
 
@@ -75,8 +72,9 @@ namespace WangJun.Entity
         #endregion
 
         #region IEntity
-        public virtual int Save() {
-             
+        public virtual int Save()
+        {
+
             return 0;
 
         }
@@ -84,20 +82,66 @@ namespace WangJun.Entity
 
         public virtual int Load() { return 0; }
         #endregion
+         
+        #region ISysItem
+        public string ClassFullName { get; set; }
+
+        public string _DbName { get; set; }
+
+        public string _CollectionName { get; set; }
+
+        public string _SourceID { get; set; }
+
+        #endregion
+
+        #region ICompany
+        public string CompanyID { get; set; }
+        public string CompanyName { get; set; }
+        #endregion
+
+        #region IStatus
+        public string Status { get; set; }
+
+        public int StatusCode { get; set; }
+        #endregion 
 
         #region 基本方法
-        public static BaseArticle CreateAsHtml()
+        public static BaseComment CreateAsText()
         {
-            var inst = new BaseArticle();
+            var inst = new BaseComment();
 
-            var iArticle = inst as IArticle;
-            iArticle.ContentType = "html";
+            var iArticle = inst as IComment;
+            iArticle.ContentType = "text";
+
+            var iTime = inst as ITime;
+            iTime.CreateTime = DateTime.Now;
+            iTime.UpdateTime = iTime.CreateTime; 
+            return inst;
+        }
+
+        public static BaseComment CreateAsLike()
+        {
+            var inst = new BaseComment();
+
+            var iArticle = inst as IComment;
+            iArticle.ContentType = "like";
 
             var iTime = inst as ITime;
             iTime.CreateTime = DateTime.Now;
             iTime.UpdateTime = iTime.CreateTime;
+            return inst;
+        }
 
+        public static BaseComment CreateAsFavorite()
+        {
+            var inst = new BaseComment();
 
+            var iArticle = inst as IComment;
+            iArticle.ContentType = "favorite";
+
+            var iTime = inst as ITime;
+            iTime.CreateTime = DateTime.Now;
+            iTime.UpdateTime = iTime.CreateTime;
             return inst;
         }
         #endregion
