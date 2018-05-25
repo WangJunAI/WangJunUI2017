@@ -63,5 +63,20 @@ namespace WangJun.Entity
 
             }
         }
+
+        public void Remove(string id)
+        {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                var res = EntityManager.GetInstance<T>().List.Find(new object[] { id });
+                if (null != res)
+                {
+                    this.Entry(res).State = EntityState.Deleted;
+                    this.SaveChanges();
+                }
+                this.Dispose();
+
+            }
+        }
     }
 }

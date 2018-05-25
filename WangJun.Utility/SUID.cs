@@ -28,5 +28,22 @@ namespace WangJun.Utility
             var target = GuidConverter.FromBytes(targetArray, GuidRepresentation.CSharpLegacy);
             return target;
         }
+
+        public static ObjectId FromGuidToObjectId(Guid src)
+        {
+            var srcArray = src.ToByteArray();
+            var targetArray = new byte[12];
+            for (int k = 4; k < srcArray.Length; k++)
+            {
+                targetArray[k - 4] = srcArray[k];
+            }
+
+            var target = new ObjectId(targetArray);
+            return target;
+        }
+
+        public static Guid FromMD5ToGuid(byte[] md5Array) {
+            return new Guid(md5Array);
+        }
     }
 }

@@ -25,13 +25,13 @@ namespace WangJun.Entity
             return context;
         }
 
-        public int Save<T>(T item) where T : class,/* IRelationshipGuid, IName, ITime, IRelationshipObjectId, IStatus, IOperator, IApp, ISysItem, */ICompany, new()
+        public int Save<T>(T item) where T : class,/* IRelationshipGuid, IName, ITime, IRelationshipObjectId, IStatus, IOperator, IApp, ISysItem,*/ICompany , new()
         {
             var db = DataStorage.GetInstance(DBType.MongoDB);
-            var session = SESSION.Current;
+            //var session = SESSION.Current;
             var iRelationshipObjectId = item as IRelationshipObjectId;
- 
-            var iSysItem = item as ISysItem; 
+
+            var iSysItem = item as ISysItem;
             #region ISysItem
             if (null != iSysItem && !string.IsNullOrWhiteSpace(iSysItem._DbName) && !string.IsNullOrWhiteSpace(iSysItem._CollectionName))
             {
@@ -41,19 +41,49 @@ namespace WangJun.Entity
             #endregion
 
             EntityManager.GetInstance<T>().Save(item);
-             
+
             return 0;
         }
 
+        /// <summary>
+        /// 旧代码应该作废
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         public int Remove(BaseItem item)
         {
             if (StringChecker.IsNotEmptyObjectId(item.ID))
             {
                 var db = DataStorage.GetInstance(DBType.MongoDB);
+
                 var query = MongoDBFilterCreator.SearchByObjectId(item.ID);
                 db.Save3(item._DbName, item._CollectionName, "{StatusCode:" + CONST.APP.Status.删除 + ",Status:'" + CONST.APP.Status.GetString(CONST.APP.Status.删除) + "'}", query, false);
                 ClientBehaviorItem.Save(item, ClientBehaviorItem.BehaviorType.移除, SESSION.Current);
 
+            }
+            return 0;
+        }
+
+        public int Remove<T>(string id) where T : class,/* IRelationshipGuid, IName, ITime, IRelationshipObjectId, IStatus, IOperator, IApp, ISysItem, */ICompany, new()
+        {
+            var item = new T() {};
+            var iRelationshipObjectId = item as IRelationshipObjectId;
+            var iSysItem = item as ISysItem;
+            iRelationshipObjectId.ID = id;
+            if (null != iRelationshipObjectId && null != iSysItem && StringChecker.IsNotEmptyObjectId(iRelationshipObjectId.ID))
+            { 
+                var db = DataStorage.GetInstance(DBType.MongoDB);
+
+                var query = MongoDBFilterCreator.SearchByObjectId(iRelationshipObjectId.ID);
+                db.Save3(iSysItem._DbName, iSysItem._CollectionName, "{StatusCode:" + CONST.APP.Status.删除 + ",Status:'" + CONST.APP.Status.GetString(CONST.APP.Status.删除) + "'}", query, false);
+
+
+                var res = EntityManager.GetInstance<T>().List.Find(new object[] { id });
+                if (null != res) {
+                    (res as IStatus).StatusCode =(int) EnumEntity.删除;
+                    (res as IStatus).Status = EnumEntity.删除.ToString();
+                    EntityManager.GetInstance<T>().Save(res);
+                }
             }
             return 0;
         }
@@ -71,7 +101,27 @@ namespace WangJun.Entity
             return 0;
         }
 
+        /// <summary>
+        /// 旧代码应该作废
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="item"></param>
+        /// <returns></returns>
         public T Get<T>(BaseItem item) where T : class, new()
+        {
+            if (StringChecker.IsNotEmptyObjectId(item.ID))
+            {
+                var db = DataStorage.GetInstance(DBType.MongoDB);
+                var query = MongoDBFilterCreator.SearchByObjectId(item.ID);
+                var data = db.Get(item._DbName, item._CollectionName, query);
+
+
+                return Convertor.FromDictionaryToObject<T>(data);
+            }
+            return new T();
+        }
+
+        public T Get<T>(string id) where T : class, new()
         {
             if (StringChecker.IsNotEmptyObjectId(item.ID))
             {

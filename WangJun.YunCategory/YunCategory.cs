@@ -14,6 +14,19 @@ namespace WangJun.Yun
     /// </summary>
     public class YunCategory:BaseCategory
     {
+        public YunCategory()
+        {
+            var iSysItem = this as ISysItem;
+            iSysItem.ClassFullName = this.GetType().FullName;
+            iSysItem._DbName = "WangJun";
+            iSysItem._CollectionName = "Category";
+        }
+
+        #region 保存
+        /// <summary>
+        /// 保存
+        /// </summary>
+        /// <returns></returns>
         public override int Save()
         {
             var session = SESSION.Current;
@@ -70,22 +83,28 @@ namespace WangJun.Yun
                 iStatus.Status = EnumEntity.正常.ToString();
             }
             #endregion
-              
-            EntityManager.GetInstance().Save<YunCategory>(this);
 
-            return (int)EnumResult.成功;
+            #region iSysItem
+            if (null != iSysItem)
+            {  
+                EntityManager.GetInstance().Save<YunCategory>(this);
+                return (int)EnumResult.成功;
+            }
+            #endregion
+
+            return (int)EnumResult.失败;
         }
+        #endregion
 
-        public static YunCategory Load(long id)
+        public static YunCategory Load(string id)
         {
             var res = EntityManager.GetInstance<YunCategory>().List.Find(new object[] { id });
             return (null == res) ? new YunCategory() : res;
         }
 
-        public override int Remove()
+        public static int Remove(string id)
         {
-            EntityManager.GetInstance<YunCategory>().Remove(this);
-            return base.Remove();
+            return EntityManager.GetInstance().Remove<YunCategory>(id);
         }
 
         #region 基本方法
