@@ -73,6 +73,7 @@
     <Compile Include="LOGGER.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringChecker.cs" />
+    <Compile Include="SUID.cs" />
     <Compile Include="ThreadManager.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 namespace WangJun.Entity
 {
     public interface IComment
-    {
-        long ID { get; set; }
+    { 
         string Content { get; set; }
         string ContentType { get; set; }
     }

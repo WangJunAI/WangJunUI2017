@@ -68,15 +68,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="枚举\EnumResult.cs" />
     <Compile Include="基础业务对象\BaseCategory.cs" />
     <Compile Include="基础业务对象\BaseComment.cs" />
     <Compile Include="基础业务对象\BaseArticle.cs" />
-    <Compile Include="BaseEntity.cs" />
     <Compile Include="BaseItem.cs" />
     <Compile Include="ClientBehaviorItem.cs" />
     <Compile Include="EntityDbContext.cs" />
     <Compile Include="EntityManager.cs" />
-    <Compile Include="EnumContentType.cs" />
+    <Compile Include="枚举\EnumEntity.cs" />
     <Compile Include="接口\ICompany.cs" />
     <Compile Include="接口\IApp.cs" />
     <Compile Include="接口\ICategory.cs" />
@@ -95,7 +95,7 @@
     <Compile Include="MongoDBFilterCreator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SESSION.cs" />
-    <Compile Include="ISysItem.cs" />
+    <Compile Include="接口\ISysItem.cs" />
     <Compile Include="SysItem.cs" />
   </ItemGroup>
   <ItemGroup>

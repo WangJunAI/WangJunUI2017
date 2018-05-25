@@ -16,10 +16,7 @@ namespace WangJun.EntityHostApp
     {
         static void Main(string[] args)
         {
-            var i = new BaseItem { _OID = ObjectId.GenerateNewId() ,Name="OK"} ;
-            dynamic dy = new ExpandoObject();
-            dy.ID = 999;
-            EntityManager.GetInstance<BaseItem>().Save(i);
+            var res = SUID.FromObjectIdToGuid(ObjectId.GenerateNewId());
         }
     }
 }

@@ -8,9 +8,20 @@ namespace WangJun.Entity
 {
     public interface IPermission
     {
-        long SourceEntityID { get; set; }
+        Guid GroupID { get; set; }
 
-        long TargetEntityID { get; set; }
+        Guid GroupName { get; set; }
+        Guid ObjectID { get; set; }
+
+        int ObjectType { get; set; }
+
+        string ObjectTypeName { get; set; }
+
+        Guid OperatorID { get; set; }
+
+        string OperatorName { get; set; }
+
+        int OperatorType { get; set; }
 
         bool AllowDownload { get; set; }
 
@@ -25,6 +36,10 @@ namespace WangJun.Entity
         bool AllowFavorite { get; set; }
 
         bool AllowLike { get; set; }
-         
+
+        bool AllowSubmit { get; set; }
+
+        bool AllowLogin { get; set; }
+
     }
 }

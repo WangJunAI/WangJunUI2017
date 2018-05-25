@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace WangJun.Entity
 {
-    public interface IRelationshipGuid
+    public interface IRelationshipInt64
     {
-        Guid _GID { get; set; }
+        long _ID64 { get; set; }
 
-        Guid _ParentGID { get; set; }
+        long _ParentID64 { get; set; }
 
-        Guid _RootGID { get; set; }
+        long _RootID64 { get; set; }
     }
 }

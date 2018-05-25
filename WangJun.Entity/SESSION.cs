@@ -65,7 +65,7 @@ namespace WangJun.Entity
                 }
                 else
                 {
-                    session = new SESSION { UserID = ObjectId.Empty.ToString(), UserName = "服务程序", CompanyID = ObjectId.Empty.ToString(), CompanyName = "系统", LastestRequestUrl = string.Empty };
+                    session = new SESSION { UserID = ObjectId.Empty.ToString(), UserName = "系统服务程序", CompanyID = ObjectId.Empty.ToString(), CompanyName = "系统", LastestRequestUrl = string.Empty };
                 }
 
                 return session;

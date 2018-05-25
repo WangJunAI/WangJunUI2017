@@ -14,14 +14,14 @@ namespace WangJun.Entity
     /// <summary>
     /// 基本类型
     /// </summary>
-    public class BaseItem : IRelationshipInt64, IName, ITime, IRelationshipObjectId, IStatus,IOperator,IApp, ISysItem, ICompany
+    public class BaseItem : IRelationshipGuid, IName, ITime, IRelationshipObjectId, IStatus,IOperator,IApp, ISysItem, ICompany
     {
-        #region IRelationshipInt64
-        public long _ID64 { get; set; }
+        #region IRelationshipGuid
+        public Guid _GID { get; set; }
 
-        public long _ParentID64 { get; set; }
+        public Guid _ParentGID { get; set; }
 
-        public long _RootID64 { get; set; }
+        public Guid _RootGID { get; set; }
         #endregion
 
         #region IName
@@ -38,7 +38,7 @@ namespace WangJun.Entity
         [NotMapped]
         public ObjectId _id { get; set; }
         [NotMapped]
-        public ObjectId _OID { get { return this._id; } set { this._id = value; this._ID64 = Convertor.ObjectIdToInt64(this._OID); } }
+        public ObjectId _OID { get { return this._id; } set { this._id = value; this._GID = SUID.FromObjectIdToGuid(this._id); } }
 
         public string ID
         {
@@ -75,6 +75,7 @@ namespace WangJun.Entity
                 if (StringChecker.IsObjectId(value))
                 {
                     this._ParentOID = ObjectId.Parse(value);
+                    this._ParentGID = SUID.FromObjectIdToGuid(this._ParentOID);
                 }
             }
         }
@@ -93,6 +94,7 @@ namespace WangJun.Entity
                 if (StringChecker.IsObjectId(value))
                 {
                     this._RootOID = ObjectId.Parse(value);
+                    this._RootGID = SUID.FromObjectIdToGuid(this._RootOID);
                 }
             }
         }
@@ -162,6 +164,12 @@ namespace WangJun.Entity
         #region ICompany
         public string CompanyID { get; set; }
         public string CompanyName { get; set; }
+        #endregion
+
+        #region IPermission 
+        public Guid PermissionGroupID { get; set; }
+
+        public string PermissionGroupName { get; set; }
         #endregion
 
         #region 权限控制

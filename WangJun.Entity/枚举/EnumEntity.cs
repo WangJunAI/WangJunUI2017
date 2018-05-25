@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace WangJun.Entity
 {
-    public enum EnumContentType
+    /// <summary>
+    /// 实体状态
+    /// </summary>
+    public enum EnumEntity
     {
-
+        正常=1,
+        删除=-1
     }
 }

@@ -192,6 +192,11 @@ namespace WangJun.Utility
         }
         #endregion
 
+        public static bool IsZeroString(string input)
+        {
+            return string.IsNullOrWhiteSpace(input) || input == ObjectId.Empty.ToString() || input == Guid.Empty.ToString() || input == Guid.Empty.ToString().Replace("-", string.Empty);
+        }
+
 
 
     }

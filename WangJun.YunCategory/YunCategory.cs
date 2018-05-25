@@ -1,27 +1,79 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WangJun.Entity;
+using WangJun.Utility;
 
 namespace WangJun.Yun
 {
+    /// <summary>
+    /// 基础业务对象 - 云目录
+    /// </summary>
     public class YunCategory:BaseCategory
     {
         public override int Save()
         {
-            this.CompanyID = SESSION.Current.CompanyID;
-            this.CompanyName = SESSION.Current.CompanyName;
-            this.CreatorID = SESSION.Current.UserID;
-            this.CreatorName = SESSION.Current.UserName;
-            this.ModifierID = SESSION.Current.UserID;
-            this.ModifierName = SESSION.Current.UserName;
-            this.OwnerID = SESSION.Current.UserID;
-            this.OwnerName = SESSION.Current.UserName;
+            var session = SESSION.Current;
+            var iRelationshipObjectId = this as IRelationshipObjectId;
+            var iTime = this as ITime;
+            var iOperator = this as IOperator;
+            var iCompany = this as ICompany;
+            var iStatus = this as IStatus;
+            var iSysItem = this as ISysItem;
 
-            EntityManager.GetInstance<YunCategory>().Save(this);
-            return base.Save();
+
+            #region iRelationshipObjectId
+            if (null != iRelationshipObjectId && iRelationshipObjectId._OID == ObjectId.Empty) ///新对象
+            {
+                iRelationshipObjectId._OID = ObjectId.GenerateNewId();
+            }
+            #endregion
+
+            #region ITime
+            if (null != iTime && iTime.CreateTime == DateTime.MinValue) ///新对象
+            {
+                iTime.CreateTime = DateTime.Now.AddDays(new Random().Next(-90, 0));
+                iTime.UpdateTime = DateTime.Now;
+            }
+            #endregion
+
+            #region IOperator
+            if (null != iOperator && string.IsNullOrWhiteSpace(iOperator.CreatorID)) ///新对象
+            {
+                iOperator.CreatorID = session.UserID;
+                iOperator.CreatorName = session.UserName;
+                iOperator.ModifierID = session.UserID;
+                iOperator.ModifierName = session.UserName;
+                if (StringChecker.IsZeroString(iOperator.OwnerID)) ///企业的应该界面赋值
+                {
+                    iOperator.OwnerID = session.UserID; ///数据所有者
+                    iOperator.OwnerName = session.UserName;
+                }
+            }
+            #endregion
+
+            #region ICompany
+            if (null != iCompany && string.IsNullOrWhiteSpace(iCompany.CompanyID))
+            {
+                iCompany.CompanyID = session.CompanyID;
+                iCompany.CompanyName = session.CompanyName;
+            }
+            #endregion
+
+            #region IStatus
+            if (null != iStatus && string.IsNullOrWhiteSpace(iStatus.Status))
+            {
+                iStatus.StatusCode = (int)EnumEntity.正常;
+                iStatus.Status = EnumEntity.正常.ToString();
+            }
+            #endregion
+              
+            EntityManager.GetInstance().Save<YunCategory>(this);
+
+            return (int)EnumResult.成功;
         }
 
         public static YunCategory Load(long id)

@@ -50,7 +50,7 @@ namespace WangJun.YunNews
         public int SaveCategory(string jsonInput)
         {
             ///MongoDB
-            CategoryItem.Save(jsonInput);
+            //CategoryItem.Save(jsonInput);
 
             /// SQLServer
             var ar = Convertor.FromJsonToObject2<YunCategory>(jsonInput);
@@ -158,7 +158,7 @@ namespace WangJun.YunNews
             var res = EntityManager.GetInstance().Find<YunNewsItem>(query, protection, sort, pageIndex, pageSize);
 
             /// SQLServer
-            var res2 = EntityManager.GetInstance<YunArticle>().List.Where(p => p.CompanyID == SESSION.Current.CompanyID && p.AppCode == this.AppCode).Skip(pageIndex * pageSize).Take(pageSize).ToList();
+            var res2 = EntityManager.GetInstance<YunArticle>().List.Where(p => p.CompanyID == SESSION.Current.CompanyID && p.AppCode == this.AppCode).OrderByDescending(p=>p.CreateTime).Skip(pageIndex * pageSize).Take(pageSize).ToList();
 
             return res;
         }
@@ -230,7 +230,7 @@ namespace WangJun.YunNews
             var res = EntityManager.GetInstance().Find<CommentItem>(query, protection, sort, pageIndex, pageSize);
 
             /// SQLServer
-            var res2 = EntityManager.GetInstance<YunComment>().List.Where(p => p.CompanyID == SESSION.Current.CompanyID && p.AppCode == this.AppCode).Skip(pageIndex * pageSize).Take(pageSize).ToList();
+            var res2 = EntityManager.GetInstance<YunComment>().List.Where(p => p.CompanyID == SESSION.Current.CompanyID && p.AppCode == this.AppCode).OrderByDescending(p => p.CreateTime).Skip(pageIndex * pageSize).Take(pageSize).ToList();
 
 
             return res;
@@ -298,7 +298,7 @@ namespace WangJun.YunNews
             var res = EntityManager.GetInstance().Find<YunNewsItem>(query, protection, sort, pageIndex, pageSize);
 
             /// SQLServer
-            var res2 = EntityManager.GetInstance<YunArticle>().List.Where(p => p.CompanyID == SESSION.Current.CompanyID && p.AppCode == this.AppCode).Skip(pageIndex * pageSize).Take(pageSize).ToList();
+            var res2 = EntityManager.GetInstance<YunArticle>().List.Where(p => p.CompanyID == SESSION.Current.CompanyID && p.AppCode == this.AppCode).OrderByDescending(p => p.CreateTime).Skip(pageIndex * pageSize).Take(pageSize).ToList();
 
             return res;
              

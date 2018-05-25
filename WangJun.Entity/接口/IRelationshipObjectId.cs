@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WangJun.Entity
 {
-     interface IRelationshipObjectId
+    public interface IRelationshipObjectId
     {
           ObjectId _id { get; set; }
          ObjectId _OID { get; set; }

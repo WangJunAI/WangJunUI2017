@@ -1,18 +1,19 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WangJun.Utility;
 
 namespace WangJun.Entity
 {
-    public class BaseComment : IComment, IRelationshipInt64,ITime,ICount , IEntity,IApp,ICompany
+    public class BaseComment : IComment, IRelationshipGuid, IRelationshipObjectId, ITime,ICount , IEntity,IApp,ICompany
     {
 
-        #region IComment
-        public long ID { get { return this._ID64; } set { this._ID64 = value; } } 
+        #region IComment 
 
         public string Content { get; set; }
 
@@ -21,11 +22,11 @@ namespace WangJun.Entity
 
         #region IRelationshipInt64
         [Key]
-        public long _ID64 { get; set; }
+        public Guid _GID { get; set; }
 
-        public long _ParentID64 { get; set; }
+        public Guid _ParentGID { get; set; }
 
-        public long _RootID64 { get; set; }
+        public Guid _RootGID { get; set; }
         #endregion
 
         #region ITime
@@ -104,6 +105,78 @@ namespace WangJun.Entity
 
         public int StatusCode { get; set; }
         #endregion 
+
+        #region IRelationshipObjectId
+        [NotMapped]
+        public ObjectId _id { get; set; }
+        [NotMapped]
+        public ObjectId _OID { get { return this._id; } set { this._id = value; this._GID = SUID.FromObjectIdToGuid(this._id); } }
+
+        public string ID
+        {
+            get
+            {
+                return this._OID.ToString();
+            }
+            set
+            {
+                if (StringChecker.IsObjectId(value))
+                {
+                    this._OID = ObjectId.Parse(value);
+                }
+                else
+                {
+                    this._OID = ObjectId.Empty;
+                }
+            }
+        }
+
+        [NotMapped]
+        public ObjectId _ParentOID { get; set; }
+
+
+
+        public string ParentID
+        {
+            get
+            {
+                return this._ParentOID.ToString();
+            }
+            set
+            {
+                if (StringChecker.IsObjectId(value))
+                {
+                    this._ParentOID = ObjectId.Parse(value);
+                    this._ParentGID = SUID.FromObjectIdToGuid(this._ParentOID);
+                }
+            }
+        }
+        [NotMapped]
+        public ObjectId _RootOID { get; set; }
+
+
+        public string RootID
+        {
+            get
+            {
+                return this._RootOID.ToString();
+            }
+            set
+            {
+                if (StringChecker.IsObjectId(value))
+                {
+                    this._RootOID = ObjectId.Parse(value);
+                    this._RootGID = SUID.FromObjectIdToGuid(this._RootOID);
+                }
+            }
+        }
+        #endregion
+
+        #region IPermission 
+        public Guid PermissionGroupID { get; set; }
+
+        public string PermissionGroupName { get; set; }
+        #endregion
 
         #region 基本方法
         public static BaseComment CreateAsText()

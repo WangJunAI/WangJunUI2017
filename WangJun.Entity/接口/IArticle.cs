@@ -8,7 +8,7 @@ namespace WangJun.Entity
 {
     public interface IArticle
     {
-        long ID { get; set; }
+        string ID { get; set; }
         string Title { get; set; }
 
         string Summary { get; set; }

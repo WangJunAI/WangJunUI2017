@@ -45,6 +45,7 @@ namespace WangJun.Entity
             {
                 this.List.Add(t);
                 this.SaveChanges();
+                this.Dispose();
             }
         }
 
@@ -58,6 +59,8 @@ namespace WangJun.Entity
             {
                 this.Entry(t).State = EntityState.Deleted;
                 this.SaveChanges();
+                this.Dispose();
+
             }
         }
     }

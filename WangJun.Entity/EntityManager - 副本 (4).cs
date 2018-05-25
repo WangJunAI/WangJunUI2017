@@ -25,23 +25,78 @@ namespace WangJun.Entity
             return context;
         }
 
-        public int Save<T>(T item) where T : class,/* IRelationshipGuid, IName, ITime, IRelationshipObjectId, IStatus, IOperator, IApp, ISysItem, */ICompany, new()
+        public int Save<T>(T item) where T : class,/* IRelationshipGuid, IName, ITime, IRelationshipObjectId, IStatus, IOperator, IApp, ISysItem, ICompany, */new()
         {
+            var inst = item as T;
             var db = DataStorage.GetInstance(DBType.MongoDB);
             var session = SESSION.Current;
             var iRelationshipObjectId = item as IRelationshipObjectId;
- 
-            var iSysItem = item as ISysItem; 
-            #region ISysItem
-            if (null != iSysItem && !string.IsNullOrWhiteSpace(iSysItem._DbName) && !string.IsNullOrWhiteSpace(iSysItem._CollectionName))
+            var iTime = item as ITime;
+            var iOperator = item as IOperator;
+            var iCompany = item as ICompany;
+            var iStatus = item as IStatus;
+            var iSysItem = item as ISysItem;
+
+
+            #region iRelationshipObjectId
+            if (null != iRelationshipObjectId && iRelationshipObjectId._OID == ObjectId.Empty) ///新对象
             {
-                var query = MongoDBFilterCreator.SearchByObjectId(iRelationshipObjectId.ID);
-                db.Save3(iSysItem._DbName, iSysItem._CollectionName, item, query);
+                iRelationshipObjectId._OID = ObjectId.GenerateNewId();
+
             }
             #endregion
 
-            EntityManager.GetInstance<T>().Save(item);
-             
+            #region ITime
+            if (null != iTime && item.CreateTime == DateTime.MinValue) ///新对象
+            {
+                item.CreateTime = DateTime.Now.AddDays(new Random().Next(-90, 0));
+                item.UpdateTime = DateTime.Now;
+
+            }
+            #endregion
+
+            #region IOperator
+            if (null != iOperator && string.IsNullOrWhiteSpace(item.CreatorID)) ///新对象
+            { 
+                item.CreatorID = session.UserID;
+                item.CreatorName = session.UserName;
+                item.ModifierID = session.UserID;
+                item.ModifierName = session.UserName;
+                if (StringChecker.IsZeroString(item.OwnerID)) ///企业的应该界面赋值
+                {
+                    item.OwnerID = session.UserID; ///数据所有者
+                }
+            }
+            #endregion
+
+            #region ICompany
+            if (null != iCompany && string.IsNullOrWhiteSpace(item.CompanyID))
+            {
+                item.CompanyID = session.CompanyID;
+                item.CompanyName = session.CompanyName;
+            }
+            #endregion
+
+            #region IStatus
+            if (null != iStatus && string.IsNullOrWhiteSpace(item.Status))
+            {
+                item.StatusCode = (int)EnumEntity.正常;
+                item.Status = EnumEntity.正常.ToString();
+            }
+            #endregion
+
+            #region ISysItem
+            if (null != iSysItem && !string.IsNullOrWhiteSpace(item._DbName) && !string.IsNullOrWhiteSpace(item._CollectionName))
+            {
+                var query = MongoDBFilterCreator.SearchByObjectId(item.ID);
+                db.Save3(item._DbName, item._CollectionName, inst, query);
+
+            }
+            #endregion
+
+
+
+
             return 0;
         }
 
