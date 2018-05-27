@@ -68,6 +68,10 @@
       <Project>{ECA8641B-DDB9-481A-BF78-76FB5A8E1DE3}</Project>
       <Name>WangJun.Utility</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WangJun.YunCompany\WangJun.YunCompany.csproj">
+      <Project>{9455D8E8-7DD4-4E03-A6BA-8C2F54601516}</Project>
+      <Name>WangJun.YunCompany</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WangJun.YunDoc\WangJun.YunDoc.csproj">
       <Project>{07bbccba-1328-4704-abc0-03b5cc40a828}</Project>
       <Name>WangJun.YunDoc</Name>

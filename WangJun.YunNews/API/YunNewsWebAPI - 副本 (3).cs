@@ -65,7 +65,7 @@ namespace WangJun.YunNews
             var res = EntityManager.GetInstance().Find<CategoryItem>(query, protection, sort, pageIndex, pageSize);
 
             /// SQLServer
-            var res2 = EntityManager.GetInstance().Find<YunCategory>(p=>p.CompanyID == SESSION.Current.CompanyID&& p.AppCode == this.AppCode,p=>p.CreateTime,0,1000,false).ToList();
+            var res2 = EntityManager.GetInstance<YunCategory>().List.Where(p=>p.CompanyID == SESSION.Current.CompanyID&& p.AppCode == this.AppCode).ToList();
             return res;
         }
 
@@ -87,7 +87,7 @@ namespace WangJun.YunNews
             return 0;
         }
 
-        public YunCategory GetCategory(string id)
+        public CategoryItem GetCategory(string id)
         {
             ///MongoDB
             //var inst = new CategoryItem();
@@ -117,9 +117,9 @@ namespace WangJun.YunNews
 
             /// SQLServer
             var ar = Convertor.FromJsonToObject2<YunArticle>(jsonInput);
-            ar.AppCode = this.CurrentApp.AppCode;
-            ar.AppName = this.CurrentApp.AppName;
-            ar.Version = this.CurrentApp.Version;
+            ar.AppCode = this.GetInterface<IApp>().AppCode;
+            ar.AppName = this.GetInterface<IApp>().AppName;
+            ar.Version = this.GetInterface<IApp>().Version;
             ar.Save();
 
             return 0;
@@ -160,7 +160,7 @@ namespace WangJun.YunNews
             inst.Remove();
 
             /// SQLServer
-            YunCategory.Load(id).Remove();
+            YunCategory.Load(1).Remove();
 
             return 0;
         }
@@ -173,7 +173,7 @@ namespace WangJun.YunNews
             inst = EntityManager.GetInstance().Get<YunNewsItem>(inst);
 
             /// SQLServer
-            var yc = YunArticle.Load(id);
+            var yc = YunArticle.Load(2);
             return inst;
         }
         #endregion
@@ -193,7 +193,7 @@ namespace WangJun.YunNews
             CommentItem.Save(jsonInput);
 
             ///SQLServer
-            YunComment.CreateAsText(this, dict["Content"].ToString()).Save();
+            YunComment.CreateAsText(this, dict["Content"].ToString(), this).Save();
 
             return 0;
         }
@@ -228,26 +228,26 @@ namespace WangJun.YunNews
         public int RemoveComment(string id)
         {
             ///MongoDB
-            //var inst = new CommentItem();
-            //inst.ID = id;
-            //inst.Remove();
+            var inst = new CommentItem();
+            inst.ID = id;
+            inst.Remove();
 
             /// SQLServer
-            YunComment.Remove(id);
+            YunComment.Load(1).Remove();
 
             return 0;
         }
 
-        public YunComment GetComment(string id)
+        public CommentItem GetComment(string id)
         {
             ///MongoDB
-            //var inst = new CommentItem();
-            //inst.ID = id;
-            //inst = EntityManager.GetInstance().Get<CommentItem>(inst);
+            var inst = new CommentItem();
+            inst.ID = id;
+            inst = EntityManager.GetInstance().Get<CommentItem>(inst);
 
 
             /// SQLServer
-            var inst = YunComment.Load(id);
+            var yc = YunComment.Load(2);
 
             return inst;
         }
@@ -300,7 +300,7 @@ namespace WangJun.YunNews
             inst.Delete();
 
             /// SQLServer
-            YunArticle.Load(id).Remove();
+            YunArticle.Load(1).Remove();
 
             return 0;
         }
@@ -314,7 +314,7 @@ namespace WangJun.YunNews
             }
 
             /// SQLServer
-            //YunArticle.Load(1).Remove();
+            YunArticle.Load(1).Remove();
 
             return 0;
         }

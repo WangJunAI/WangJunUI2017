@@ -13,7 +13,7 @@ namespace WangJun.Entity
     /// EF数据库操作器
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class EntityDbContext<T>: DbContext where T:class
+    public class EntityDbContext<T>: DbContext where T:class,new()
     {
         private EntityDbContext(DbConnection conStr):base(conStr,false)
         {
@@ -47,6 +47,12 @@ namespace WangJun.Entity
                 this.SaveChanges();
                 this.Dispose();
             }
+        }
+
+        public T Get(string id)
+        {
+            var res = this.List.Find(new object[] {id }) as T;
+            return (null != res) ? res : new T();
         }
 
         /// <summary>

@@ -9,9 +9,22 @@ using WangJun.Utility;
 
 namespace WangJun.Yun
 {
-    public class YunComment:BaseComment
+    public class YunCompany:BaseCompany
     {
-        public override int Save()
+        public YunCompany()
+        {
+            var iSysItem = this as ISysItem;
+            iSysItem.ClassFullName = this.GetType().FullName;
+            iSysItem._DbName = "WangJun";
+            iSysItem._CollectionName = "Company";
+        }
+         
+        #region 保存
+        /// <summary>
+        /// 保存
+        /// </summary>
+        /// <returns></returns>
+        public   int Save()
         {
             var session = SESSION.Current;
             var iRelationshipObjectId = this as IRelationshipObjectId;
@@ -71,43 +84,30 @@ namespace WangJun.Yun
             #region iSysItem
             if (null != iSysItem)
             {
-                EntityManager.GetInstance().Save<YunComment>(this);
+                EntityManager.GetInstance().Save<YunCompany>(this);
                 return (int)EnumResult.成功;
             }
             #endregion
 
             return (int)EnumResult.失败;
         }
+        #endregion
 
-        public static YunComment Load(string id)
+        public static YunCompany Load(string id)
         {
-            var res = EntityManager.GetInstance<YunComment>().Get(id);
-            return (null == res) ? new YunComment() : res;
+            var res = EntityManager.GetInstance<YunCompany>().List.Find(new object[] { id });
+            return res;
         }
 
         public static int Remove(string id)
         {
-            return EntityManager.GetInstance().Remove<YunComment>(id);
+            return EntityManager.GetInstance().Remove<YunCompany>(id);
         }
 
         #region 基本方法
-        public static YunComment CreateAsText(IApp app,string content)
+        public static YunCompany Parse(string json)
         {
-            var inst = new YunComment();
-
-            var iComment = inst as IComment;
-            iComment.ContentType = "text";
-            iComment.Content = content;
-
-            var iApp = inst as IApp;
-            iApp.AppCode = app.AppCode;
-            iApp.AppName = app.AppName;
-            iApp.Version = app.Version;
-
-            var iTime = inst as ITime;
-            iTime.CreateTime = DateTime.Now;
-            iTime.UpdateTime = iTime.CreateTime;
-             
+            var inst = Convertor.FromJsonToObject2<YunCompany>(json);
 
 
             return inst;

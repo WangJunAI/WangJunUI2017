@@ -99,7 +99,7 @@ namespace WangJun.Yun
         public static YunCategory Load(string id)
         {
             var res = EntityManager.GetInstance<YunCategory>().List.Find(new object[] { id });
-            return (null == res) ? new YunCategory() : res;
+            return res;
         }
 
         public static int Remove(string id)

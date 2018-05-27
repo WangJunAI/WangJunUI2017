@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using WangJun.Config;
@@ -19,7 +20,7 @@ namespace WangJun.Entity
             return inst;
         }
 
-        public static EntityDbContext<T> GetInstance<T>() where T : class
+        public static EntityDbContext<T> GetInstance<T>() where T : class,new()
         {
             var context = EntityDbContext<T>.CreateInstance(@"Data Source=192.168.0.150\SQL2016;Initial Catalog=WangJun;Persist Security Info=True;User ID=sa;Password=111qqq!!!");
             return context;
@@ -28,7 +29,6 @@ namespace WangJun.Entity
         public int Save<T>(T item) where T : class,/* IRelationshipGuid, IName, ITime, IRelationshipObjectId, IStatus, IOperator, IApp, ISysItem,*/ICompany , new()
         {
             var db = DataStorage.GetInstance(DBType.MongoDB);
-            //var session = SESSION.Current;
             var iRelationshipObjectId = item as IRelationshipObjectId;
 
             var iSysItem = item as ISysItem;
@@ -109,6 +109,10 @@ namespace WangJun.Entity
         /// <returns></returns>
         public T Get<T>(BaseItem item) where T : class, new()
         {
+
+
+
+            return this.Get<T>(item.ID);
             if (StringChecker.IsNotEmptyObjectId(item.ID))
             {
                 var db = DataStorage.GetInstance(DBType.MongoDB);
@@ -123,12 +127,15 @@ namespace WangJun.Entity
 
         public T Get<T>(string id) where T : class, new()
         {
-            if (StringChecker.IsNotEmptyObjectId(item.ID))
+            var inst = new T();
+            var iSystem = inst as ISysItem;
+            if (!StringChecker.IsZeroString(id))
             {
                 var db = DataStorage.GetInstance(DBType.MongoDB);
-                var query = MongoDBFilterCreator.SearchByObjectId(item.ID);
-                var data = db.Get(item._DbName, item._CollectionName, query);
+                var query = MongoDBFilterCreator.SearchByObjectId(id);
+                var data = db.Get(iSystem._DbName, iSystem._CollectionName, query);
 
+                var res = EntityManager.GetInstance<T>().Get(id);
 
                 return Convertor.FromDictionaryToObject<T>(data);
             }
@@ -171,6 +178,16 @@ namespace WangJun.Entity
 
                 list = Convertor.FromDictionaryToObject<T>(resList);
             }
+
+            return list;
+        }
+
+        public List<T> Find<T>(Expression<Func<T,bool>> where,Expression<Func<T, DateTime>> orderBy,int pageIndex,int pageSize,bool isDes) where T : class, new()
+        {
+            var tplItem = new T() as BaseItem;
+            var list = new List<T>();
+
+            EntityManager.GetInstance<T>().List.Where(where).OrderBy(orderBy).Skip(pageIndex * pageSize).Take(pageSize);
 
             return list;
         }

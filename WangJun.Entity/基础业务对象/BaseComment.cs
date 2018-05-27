@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -176,6 +177,36 @@ namespace WangJun.Entity
         public Guid PermissionGroupID { get; set; }
 
         public string PermissionGroupName { get; set; }
+        #endregion
+
+        #region 权限控制
+        [NotMapped]
+        public ArrayList OrgAllowedArray { get; set; }
+        [NotMapped]
+        public string OrgAllowedArrayText { get; set; }
+        [NotMapped]
+        public ArrayList UserAllowedArray { get; set; }
+        [NotMapped]
+        public string UserAllowedArrayText { get; set; }
+        [NotMapped]
+        public ArrayList RoleAllowedArray { get; set; }
+        [NotMapped]
+        public string RoleAllowedArrayText { get; set; }
+        [NotMapped]
+        public ArrayList OrgDeniedArray { get; set; }
+        [NotMapped]
+        public string OrgDeniedArrayText { get; set; }
+        [NotMapped]
+        public ArrayList UserDeniedArray { get; set; }
+        [NotMapped]
+        public string UserDeniedArrayText { get; set; }
+        [NotMapped]
+        public ArrayList RoleDeniedArray { get; set; }
+        [NotMapped]
+        public string RoleDeniedArrayText { get; set; }
+        [NotMapped]
+        public string _RedirectID { get; set; }
+
         #endregion
 
         #region 基本方法
