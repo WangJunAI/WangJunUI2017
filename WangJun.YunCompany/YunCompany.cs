@@ -16,7 +16,7 @@ namespace WangJun.Yun
             var iSysItem = this as ISysItem;
             iSysItem.ClassFullName = this.GetType().FullName;
             iSysItem._DbName = "WangJun";
-            iSysItem._CollectionName = "Company";
+            iSysItem._CollectionName = "YunCompany";
         }
          
         #region 保存
@@ -95,7 +95,7 @@ namespace WangJun.Yun
 
         public static YunCompany Load(string id)
         {
-            var res = EntityManager.GetInstance<YunCompany>().List.Find(new object[] { id });
+            var res = EntityManager.GetInstance().Get<YunCompany>(id);
             return res;
         }
 

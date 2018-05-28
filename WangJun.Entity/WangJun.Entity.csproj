@@ -70,6 +70,7 @@
     <Compile Include="App.cs" />
     <Compile Include="IParse.cs" />
     <Compile Include="基础业务对象\BaseCompany.cs" />
+    <Compile Include="基础业务对象\BasePermission.cs" />
     <Compile Include="基础业务对象\BaseUser.cs" />
     <Compile Include="枚举\EnumResult.cs" />
     <Compile Include="基础业务对象\BaseCategory.cs" />

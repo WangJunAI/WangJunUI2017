@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WangJun.Utility;
 
 namespace WangJun.Entity
 {
@@ -51,7 +52,8 @@ namespace WangJun.Entity
 
         public T Get(string id)
         {
-            var res = this.List.Find(new object[] {id }) as T;
+            
+            var res = this.List.Find(new object[] {SUID.FromStringToGuid(id) }) as T;
             return (null != res) ? res : new T();
         }
 

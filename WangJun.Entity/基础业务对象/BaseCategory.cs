@@ -13,6 +13,8 @@ namespace WangJun.Entity
 {
     public class BaseCategory:  IRelationshipGuid, IRelationshipObjectId, IOperator, ITime, IName,IApp,ICompany,IStatus,ISysItem
     {
+        public int Level { get; set; }
+
         #region IName
 
         public string Name { get; set; }

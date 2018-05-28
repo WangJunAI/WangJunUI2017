@@ -10,8 +10,9 @@ using WangJun.Utility;
 
 namespace WangJun.Entity
 {
-    public class BaseUser : IStatus, ISysItem,ICompany, IRelationshipGuid, IRelationshipObjectId
+    public class BaseUser : IStatus, ISysItem,ICompany, IRelationshipGuid, IRelationshipObjectId,IApp,IOperator
     {
+        public int Level { get; set; }
         public string RealName { get; set; }
 
         public string NickName { get; set; }
@@ -112,6 +113,28 @@ namespace WangJun.Entity
                 }
             }
         }
+        #endregion
+
+        #region IOperator
+
+        public string CreatorID { get; set; }
+
+        public string CreatorName { get; set; }
+
+        public string ModifierID { get; set; }
+
+        public string ModifierName { get; set; }
+        public string OwnerID { get; set; }
+
+        public string OwnerName { get; set; }
+        #endregion
+
+        #region  IApp
+        public long Version { get; set; }
+
+        public string AppName { get; set; }
+
+        public long AppCode { get; set; }
         #endregion
 
         #region IStatus

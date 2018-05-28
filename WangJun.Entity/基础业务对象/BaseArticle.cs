@@ -22,6 +22,8 @@ namespace WangJun.Entity
         public string Content { get; set; }
 
         public string ContentType { get; set; }
+
+        public int Level { get; set; }
         #endregion
 
         #region IRelationshipGuid

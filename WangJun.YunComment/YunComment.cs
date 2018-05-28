@@ -88,8 +88,8 @@ namespace WangJun.Yun
 
         public static YunComment Load(string id)
         {
-            var res = EntityManager.GetInstance<YunComment>().Get(id);
-            return (null == res) ? new YunComment() : res;
+            var res = EntityManager.GetInstance().Get<YunComment>(id);
+            return res;
         }
 
         public static int Remove(string id)

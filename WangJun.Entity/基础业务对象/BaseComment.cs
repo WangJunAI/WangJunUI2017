@@ -13,6 +13,7 @@ namespace WangJun.Entity
 {
     public class BaseComment : IComment, IRelationshipGuid, IRelationshipObjectId, ITime,ICount , IEntity,IApp,ICompany
     {
+        public int Level { get; set; }
 
         #region IComment 
 

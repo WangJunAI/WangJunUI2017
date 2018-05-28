@@ -12,6 +12,7 @@ namespace WangJun.Entity
 {
     public class BaseCompany: IRelationshipGuid, IRelationshipObjectId, IName, IStatus,ISysItem,ICompany,ITime
     {
+        public int Level { get; set; }
         public string SuperAdminEmail { get; set; }
 
         #region IName
@@ -127,8 +128,8 @@ namespace WangJun.Entity
         #endregion
 
         #region ICompany
-        public string CompanyID { get; set; }
-        public string CompanyName { get; set; }
+        public string CompanyID { get { return this.ID; } set { } }
+        public string CompanyName { get { return this.Name; } set { } }
         #endregion
 
     }

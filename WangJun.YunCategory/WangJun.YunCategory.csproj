@@ -68,7 +68,6 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="YunCategory.cs" />
-    <Compile Include="YunCategoryList.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

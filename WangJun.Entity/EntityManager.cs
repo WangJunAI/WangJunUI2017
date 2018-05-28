@@ -125,6 +125,12 @@ namespace WangJun.Entity
             return new T();
         }
 
+        /// <summary>
+        /// 统一Get
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public T Get<T>(string id) where T : class, new()
         {
             var inst = new T();
