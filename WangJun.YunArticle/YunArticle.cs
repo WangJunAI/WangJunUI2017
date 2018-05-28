@@ -11,7 +11,15 @@ namespace WangJun.Yun
 {
     public class YunArticle:BaseArticle
     {
-        public override int Save()
+        public YunArticle() {
+            var iSysItem = this as ISysItem;
+            iSysItem.ClassFullName = this.GetType().FullName;
+            iSysItem._DbName = "WangJun";
+            iSysItem._CollectionName = "YunArticle";
+
+        }
+
+        public   int Save()
         {
             var session = SESSION.Current;
             var iRelationshipObjectId = this as IRelationshipObjectId;

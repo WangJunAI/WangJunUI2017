@@ -14,13 +14,25 @@ namespace WangJun.Admin
             var company = YunCompany.Parse(jsonString);
 
             #region 创建公司
-            //var company = new CompanyItem();
-            //company.Name = "汪俊科技01";
-            //company.SuperAdminEmail = "";
             company.Save();
-
             #endregion
- 
+
+            #region 初始化组织信息
+            var rootOrg = YunCategory.CreateAsNew(company.Name);
+            rootOrg.Name = company.Name;
+            rootOrg.RootID = company.ID;
+            rootOrg.RootName = company.Name;
+            rootOrg.CompanyID = company.ID;
+            rootOrg.CompanyName = company.Name;
+            rootOrg.OwnerID = company.ID;
+            rootOrg.Save();
+            #endregion
+
+
+            #region 创建超级管理员
+            var superUser = YunUser.CreateAsAdmin(company.SuperAdminEmail,company);
+            superUser.Save();
+            #endregion
 
             return SESSION.Current;
         }

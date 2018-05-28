@@ -1,6 +1,7 @@
 ﻿using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,17 +10,14 @@ using WangJun.Utility;
 
 namespace WangJun.Yun
 {
-    /// <summary>
-    /// 基础业务对象 - 云目录
-    /// </summary>
-    public class YunCategory:BaseCategory
+    public class YunUser:BaseUser
     {
-        public YunCategory()
+        public YunUser()
         {
             var iSysItem = this as ISysItem;
             iSysItem.ClassFullName = this.GetType().FullName;
             iSysItem._DbName = "WangJun";
-            iSysItem._CollectionName = "YunCategory";
+            iSysItem._CollectionName = "YunUser";
         }
 
         #region 保存
@@ -27,7 +25,7 @@ namespace WangJun.Yun
         /// 保存
         /// </summary>
         /// <returns></returns>
-        public override int Save()
+        public int Save()
         {
             var session = SESSION.Current;
             var iRelationshipObjectId = this as IRelationshipObjectId;
@@ -75,6 +73,7 @@ namespace WangJun.Yun
                 iCompany.CompanyName = session.CompanyName;
             }
             #endregion
+             
 
             #region IStatus
             if (null != iStatus && string.IsNullOrWhiteSpace(iStatus.Status))
@@ -86,8 +85,8 @@ namespace WangJun.Yun
 
             #region iSysItem
             if (null != iSysItem)
-            {  
-                EntityManager.GetInstance().Save<YunCategory>(this);
+            {
+                EntityManager.GetInstance().Save<YunUser>(this);
                 return (int)EnumResult.成功;
             }
             #endregion
@@ -96,24 +95,32 @@ namespace WangJun.Yun
         }
         #endregion
 
-        public static YunCategory Load(string id)
+        public static YunUser Load(string id)
         {
-            var res = EntityManager.GetInstance<YunCategory>().List.Find(new object[] { id });
+            var res = EntityManager.GetInstance<YunUser>().List.Find(new object[] { id });
             return res;
         }
 
         public static int Remove(string id)
         {
-            return EntityManager.GetInstance().Remove<YunCategory>(id);
+            return EntityManager.GetInstance().Remove<YunUser>(id);
         }
 
         #region 基本方法
-        public static YunCategory CreateAsNew(string name)
+        public static YunUser CreateAsAdmin(string loginEmail,ICompany iCompany)
         {
-            var inst = new YunCategory();
+            var inst = new YunUser();
 
-            var iName = inst as IName;
-            iName.Name = name; 
+            inst.NickName = "超级管理员";
+            inst.LoginEmail = loginEmail;
+
+            inst.CompanyID = iCompany.CompanyID;
+            inst.CompanyName = iCompany.CompanyName;
+
+            inst.RootID = iCompany.CompanyID;
+            inst.RootName = iCompany.CompanyName;
+
+            inst.UserType = (int)EnumUser.SuperAdmin;
 
 
             return inst;

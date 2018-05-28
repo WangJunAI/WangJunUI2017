@@ -68,6 +68,10 @@
       <Project>{ECA8641B-DDB9-481A-BF78-76FB5A8E1DE3}</Project>
       <Name>WangJun.Utility</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WangJun.YunCategory\WangJun.YunCategory.csproj">
+      <Project>{f41364e7-c71b-438c-b257-f9fb741d4570}</Project>
+      <Name>WangJun.YunCategory</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WangJun.YunCompany\WangJun.YunCompany.csproj">
       <Project>{9455D8E8-7DD4-4E03-A6BA-8C2F54601516}</Project>
       <Name>WangJun.YunCompany</Name>
@@ -95,6 +99,10 @@
     <ProjectReference Include="..\WangJun.YunQun\WangJun.YunQun.csproj">
       <Project>{c6bbf70b-468e-4ef2-a4fa-4028212343a1}</Project>
       <Name>WangJun.YunQun</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WangJun.YunUser\WangJun.YunUser.csproj">
+      <Project>{934bc61e-4a2c-4046-af08-4d5d0afff7a3}</Project>
+      <Name>WangJun.YunUser</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

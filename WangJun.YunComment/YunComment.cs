@@ -9,9 +9,16 @@ using WangJun.Utility;
 
 namespace WangJun.Yun
 {
-    public class YunComment:BaseComment
+    public class YunComment : BaseComment
     {
-        public override int Save()
+        public YunComment() {
+            var iSysItem = this as ISysItem;
+            iSysItem.ClassFullName = this.GetType().FullName;
+            iSysItem._DbName = "WangJun";
+            iSysItem._CollectionName = "YunComment";
+
+        } 
+        public   int Save()
         {
             var session = SESSION.Current;
             var iRelationshipObjectId = this as IRelationshipObjectId;

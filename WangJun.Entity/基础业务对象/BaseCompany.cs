@@ -12,6 +12,8 @@ namespace WangJun.Entity
 {
     public class BaseCompany: IRelationshipGuid, IRelationshipObjectId, IName, IStatus,ISysItem,ICompany,ITime
     {
+        public string SuperAdminEmail { get; set; }
+
         #region IName
 
         public string Name { get; set; }
@@ -22,6 +24,7 @@ namespace WangJun.Entity
 
         public string Path { get; set; }
         #endregion 
+
         #region IStatus
         public string Status { get; set; }
 
