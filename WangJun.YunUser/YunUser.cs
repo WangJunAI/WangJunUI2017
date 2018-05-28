@@ -106,6 +106,20 @@ namespace WangJun.Yun
             return EntityManager.GetInstance().Remove<YunUser>(id);
         }
 
+        public SESSION Login(string jsonInput)
+        {
+            var dict = Convertor.FromJsonToDict2(jsonInput);
+            var loginID = dict["LoginID"].ToString();
+            var session = new SESSION();
+             var query = "{'LoginEmail':'" + loginID + "'}";
+            var res = EntityManager.GetInstance().Get<YunUser>("WangJun", "YunUser", query);
+            var list = EntityManager.GetInstance<YunUser>().List.ToList();
+            var res2 = EntityManager.GetInstance().Get<YunUser>(p => p.LoginEmail == loginID);
+
+
+            return session;
+        }
+
         #region 基本方法
         public static YunUser CreateAsAdmin(string loginEmail,ICompany iCompany)
         {

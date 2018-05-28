@@ -157,7 +157,12 @@ namespace WangJun.Entity
             return Convertor.FromDictionaryToObject<T>(data);
 
         }
+        public T Get<T>(Expression<Func<T, bool>> where) where T : class, new()
+        {
+            var res = EntityManager.GetInstance<T>().List.Where(where).Take(1);
 
+            return res.FirstOrDefault();
+        }
         public List<T> Find<T>(string dbName, string collectionName, string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50) where T : class, new()
         {
             var list = new List<T>();

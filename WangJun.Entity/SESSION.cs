@@ -112,14 +112,20 @@ namespace WangJun.Entity
             return null;
         }
 
+        public static void Set(SESSION session)
+        {
+
+        }
+
         public static SESSION Login(string loginID, string password)
         {
             var session = new SESSION();
             var query = "{'Email':'"+loginID+"'}";
-            var res = EntityManager.GetInstance().Find<BaseItem>("WangJun","Staff",query,"{}","{}");
-            if(1 == res.Count)
+            var res = EntityManager.GetInstance().Get<BaseUser>("WangJun", "YunUser", query);
+            //var res2  =EntityManager.GetInstance().Get<BaseUser>("WangJun",)
+            if(null != res)
             {
-                session = SESSION.Get(res[0].ID);
+                session = SESSION.Get(res.ID);
             }
             return session;
 

@@ -4,7 +4,7 @@
 var SESSION = {
     ServerHost: YunConfig.ServerHost(this) //("localhost" === window.location.hostname) ? window.location.protocol + "//" + window.location.hostname + ":9990" : "http://aifuwu.wang",
 };
-SESSION.LoginUrl = SESSION.ServerHost + "/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=Login";
+SESSION.LoginUrl = SESSION.ServerHost + "/API.ashx?c=WangJun.Yun.YunUser&m=Login";
 SESSION.RegisterUrl = SESSION.ServerHost + "/API.ashx?c=WangJun.Admin.AdminWebAPI&m=CreateCompany";
 
 
