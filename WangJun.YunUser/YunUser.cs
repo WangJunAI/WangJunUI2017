@@ -106,6 +106,11 @@ namespace WangJun.Yun
             return EntityManager.GetInstance().Remove<YunUser>(id);
         }
 
+        /// <summary>
+        /// 用户登录
+        /// </summary>
+        /// <param name="jsonInput"></param>
+        /// <returns></returns>
         public SESSION Login(string jsonInput)
         {
             var dict = Convertor.FromJsonToDict2(jsonInput);
@@ -116,7 +121,15 @@ namespace WangJun.Yun
             var list = EntityManager.GetInstance<YunUser>().List.ToList();
             var res2 = EntityManager.GetInstance().Get<YunUser>(p => p.LoginEmail == loginID);
 
-
+            #region session设置
+            session.UserID = res.ID;
+            session.UserName = res.NickName;
+            session.CompanyID = res.CompanyID;
+            session.CompanyName = res.CompanyName;
+            session.IsSuperAdmin = true;
+            session.CanManageYunNews = true;
+            SESSION.Set(session);
+            #endregion
             return session;
         }
 

@@ -150,14 +150,14 @@ namespace WangJun.YunNews
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public List<CategoryItem> LoadCategoryList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
+        public List<YunCategory> LoadCategoryList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
         {
             var dict = Convertor.FromJsonToDict2(query);
  
-                query = "{$and:[" + query + ",{'CompanyID':'" + SESSION.Current.CompanyID + "','AppCode':" + this.AppCode + "},{'StatusCode':{$ne:" + CONST.APP.Status.删除 + "}}]}";
+                query = "{$and:[" + query + ",{'CompanyID':'" + SESSION.Current.CompanyID + "','AppCode':" + this.CurrentApp.AppCode + "},{'StatusCode':{$eq:" + (int)EnumEntity.正常 + "}}]}";
 
             ///MongoDB
-            var res = EntityManager.GetInstance().Find<CategoryItem>(query, protection, sort, pageIndex, pageSize);
+            var res = EntityManager.GetInstance().Find<YunCategory>(query, protection, sort, pageIndex, pageSize);
 
             /// SQLServer
             var res2 = EntityManager.GetInstance().Find<YunCategory>(p=>p.CompanyID == SESSION.Current.CompanyID&& p.AppCode == this.AppCode,p=>p.CreateTime,0,1000,false).ToList();
@@ -208,7 +208,7 @@ namespace WangJun.YunNews
         public int SaveEntity(string jsonInput)
         {
             ///MongoDB
-            YunNewsItem.Save(jsonInput);
+            //YunNewsItem.Save(jsonInput);
 
             /// SQLServer
             var ar = Convertor.FromJsonToObject2<YunArticle>(jsonInput);
@@ -229,14 +229,14 @@ namespace WangJun.YunNews
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public List<YunNewsItem> LoadEntityList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
+        public List<YunArticle> LoadEntityList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
         {
             ///MongoDB
-            query = "{$and:[" + query + ",{'StatusCode':{$ne:" + CONST.APP.Status.删除 + "}}]}";
-            var res = EntityManager.GetInstance().Find<YunNewsItem>(query, protection, sort, pageIndex, pageSize);
+            query = "{$and:[" + query + ",{'StatusCode':{$eq:" + (int)EnumEntity.正常 + "}}]}";
+            var res = EntityManager.GetInstance().Find<YunArticle>(query, protection, sort, pageIndex, pageSize);
 
             /// SQLServer
-            var res2 = EntityManager.GetInstance<YunArticle>().List.Where(p => p.CompanyID == SESSION.Current.CompanyID && p.AppCode == this.AppCode).OrderByDescending(p=>p.CreateTime).Skip(pageIndex * pageSize).Take(pageSize).ToList();
+            var res2 = EntityManager.GetInstance().Find<YunArticle>(p => p.CompanyID == SESSION.Current.CompanyID && p.AppCode == this.AppCode&&p.StatusCode==(int)EnumEntity.正常,p=>p.CreateTime,pageIndex ,pageSize,true);
 
             return res;
         }
@@ -260,15 +260,15 @@ namespace WangJun.YunNews
             return 0;
         }
 
-        public YunNewsItem GetEntity(string id)
+        public YunArticle GetEntity(string id)
         {
             ///MongoDB
-            var inst = new YunNewsItem();
-            inst.ID = id;
-            inst = EntityManager.GetInstance().Get<YunNewsItem>(inst);
+            //var inst = new YunNewsItem();
+            //inst.ID = id;
+            //inst = EntityManager.GetInstance().Get<YunNewsItem>(inst);
 
             /// SQLServer
-            var yc = YunArticle.Load(id);
+            var inst = YunArticle.Load(id);
             return inst;
         }
         #endregion

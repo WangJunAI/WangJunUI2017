@@ -88,7 +88,7 @@ namespace WangJun.Yun
         }
         public static YunArticle Load(string id)
         {
-            var res = EntityManager.GetInstance<YunArticle>().Get(id);
+            var res = EntityManager.GetInstance().Get<YunArticle>(id);
             return res;
         }
 

@@ -26,6 +26,13 @@ namespace WangJun.Entity
             return context;
         }
 
+
+        /// <summary>
+        /// 新版 多合一存储
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="item"></param>
+        /// <returns></returns>
         public int Save<T>(T item) where T : class,/* IRelationshipGuid, IName, ITime, IRelationshipObjectId, IStatus, IOperator, IApp, ISysItem,*/ICompany , new()
         {
             var db = DataStorage.GetInstance(DBType.MongoDB);
@@ -180,12 +187,12 @@ namespace WangJun.Entity
 
         public List<T> Find<T>(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50) where T : class, new()
         {
-            var tplItem = new T() as BaseItem;
+            var iSysItem = new T() as ISysItem;
             var list = new List<T>();
             if (!string.IsNullOrWhiteSpace(query))
             {
                 var mongo = DataStorage.GetInstance(DBType.MongoDB);
-                var resList = mongo.Find3(tplItem._DbName, tplItem._CollectionName, query, sort, protection, pageIndex, pageSize);
+                var resList = mongo.Find3(iSysItem._DbName, iSysItem._CollectionName, query, sort, protection, pageIndex, pageSize);
 
                 list = Convertor.FromDictionaryToObject<T>(resList);
             }
@@ -195,10 +202,7 @@ namespace WangJun.Entity
 
         public List<T> Find<T>(Expression<Func<T,bool>> where,Expression<Func<T, DateTime>> orderBy,int pageIndex,int pageSize,bool isDes) where T : class, new()
         {
-            var tplItem = new T() as BaseItem;
-            var list = new List<T>();
-
-            EntityManager.GetInstance<T>().List.Where(where).OrderBy(orderBy).Skip(pageIndex * pageSize).Take(pageSize);
+            var list =  EntityManager.GetInstance<T>().List.Where(where).OrderBy(orderBy).Skip(pageIndex * pageSize).Take(pageSize).ToList();
 
             return list;
         }

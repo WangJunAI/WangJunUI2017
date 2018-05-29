@@ -11,7 +11,7 @@ using WangJun.Utility;
 
 namespace WangJun.Entity
 {
-    public class BaseArticle: IArticle, IRelationshipGuid,ITime,ICount ,IApp, IEntity,ICompany, IRelationshipObjectId
+    public class BaseArticle: IArticle, IRelationshipGuid,ITime,ICount ,IApp, IEntity,ICompany, IRelationshipObjectId, ISysItem,IStatus
     {
 
         #region IArticle
