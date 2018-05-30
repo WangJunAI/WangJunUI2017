@@ -283,17 +283,12 @@ namespace WangJun.YunNews
         /// <returns></returns>
         public int SaveComment(string jsonInput)
         {
-            //var dict = Convertor.FromJsonToDict2(jsonInput);
+            var dict = Convertor.FromJsonToDict2(jsonInput);
             ///MongoDB
-            //CommentItem.Save(jsonInput);
+            CommentItem.Save(jsonInput);
 
-            var ar = Convertor.FromJsonToObject2<YunComment>(jsonInput);
-            ar.AppCode = this.CurrentApp.AppCode;
-            ar.AppName = this.CurrentApp.AppName;
-            ar.Version = this.CurrentApp.Version;
-
-            ar.Save();
-
+            ///SQLServer
+            YunComment.CreateAsText(this, dict["Content"].ToString()).Save();
 
             return 0;
         }
@@ -447,7 +442,33 @@ namespace WangJun.YunNews
         /// <param name="id"></param>
         /// <returns></returns>
         public object AddLikeCount(string id)
-        { 
+        {
+
+            var existQuery = "{'UserID':ObjectId('[1]'),'DbID':ObjectId('[2]'),'BehaviorCode': [3]}".Replace("[1]",SESSION.Current.UserID).Replace("[2]",id).Replace("[3]", ClientBehaviorItem.BehaviorType.点赞.ToString());
+
+            var res = EntityManager.GetInstance().Get<ClientBehaviorItem>("WangJun", "ClientBehavior", existQuery);
+            var count = 0;
+
+            if (null != res &&!res.IsEmpty) ///若数据有效
+            {
+                ///删除点赞记录
+                ///修改文档统计
+                res.Remove();
+                count = -1;
+            }
+            else
+            {
+                var inst = new YunNewsItem();
+                inst.ID = id;
+                ClientBehaviorItem.Save(inst, ClientBehaviorItem.BehaviorType.点赞, SESSION.Current);
+                count = 1;
+            }
+
+            var query = MongoDBFilterCreator.SearchByObjectId(id);
+            var updateJson = MongoDBFilterCreator.ByInc("LikeCount", count);
+            EntityManager.GetInstance().UpdateField<YunNewsItem>(updateJson, query);
+
+
             YunBehavior.Save(operateTypeCode: (int)EnumBehavior.点赞, operateType: EnumBehavior.点赞.ToString()
                                          , targetTypeCode: (int)EnumBizType.文章, targetType: EnumBizType.文章.ToString()
                                          , operatorID: SUID.FromStringToGuid(SESSION.Current.UserID), operatorName: SESSION.Current.UserName
@@ -466,12 +487,29 @@ namespace WangJun.YunNews
         /// <returns></returns>
         public object AddFavoriteCount(string id)
         {
-            YunBehavior.Save(operateTypeCode: (int)EnumBehavior.收藏, operateType: EnumBehavior.收藏.ToString()
-                                         , targetTypeCode: (int)EnumBizType.文章, targetType: EnumBizType.文章.ToString()
-                                         , operatorID: SUID.FromStringToGuid(SESSION.Current.UserID), operatorName: SESSION.Current.UserName
-                                         , targetID: SUID.FromStringToGuid(id), targetName: "暂空"
-                                         , appCode: this.CurrentApp.AppCode, appName: this.CurrentApp.AppName
-                                         , companyID: SESSION.Current.CompanyID, companyName: SESSION.Current.CompanyName);
+            var existQuery = "{'UserID':ObjectId('[1]'),'DbID':ObjectId('[2]'),'BehaviorCode': [3]}".Replace("[1]", SESSION.Current.UserID).Replace("[2]", id).Replace("[3]", ClientBehaviorItem.BehaviorType.收藏.ToString());
+
+            var res = EntityManager.GetInstance().Get<ClientBehaviorItem>("WangJun", "ClientBehavior", existQuery);
+            var count = 0;
+
+            if (null != res && !res.IsEmpty) ///若数据有效
+            {
+                ///删除收藏记录
+                ///修改文档统计
+                res.Remove();
+                count = -1;
+            }
+            else
+            {
+                var inst = new YunNewsItem();
+                inst.ID = id;
+                ClientBehaviorItem.Save(inst, ClientBehaviorItem.BehaviorType.收藏, SESSION.Current);
+                count = 1;
+            }
+
+            var query = MongoDBFilterCreator.SearchByObjectId(id);
+            var updateJson = MongoDBFilterCreator.ByInc("FavoriteCount", count);
+            EntityManager.GetInstance().UpdateField<YunNewsItem>(updateJson, query);
             return 0;
         }
 

@@ -11,7 +11,7 @@ using WangJun.Utility;
 
 namespace WangJun.Entity
 {
-    public class BaseComment : IComment, IRelationshipGuid, IRelationshipObjectId, ITime,ICount , IEntity,IApp,ICompany
+    public class BaseComment : IComment, IRelationshipGuid, IRelationshipObjectId, ITime,ICount , IEntity,IApp,ICompany,ISysItem
     {
         public int Level { get; set; }
 
@@ -93,8 +93,7 @@ namespace WangJun.Entity
 
         public string _CollectionName { get; set; }
 
-        public string _SourceID { get; set; }
-
+ 
         #endregion
 
         #region ICompany

@@ -15,7 +15,7 @@ namespace WangJun.Entity
 
          string _CollectionName { get; set; }
 
-         string _SourceID { get; set; } 
+         string ID { get; set; } 
         #endregion
     }
 }

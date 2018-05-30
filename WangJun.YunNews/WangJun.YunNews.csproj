@@ -80,6 +80,10 @@
       <Project>{BFB774BA-B7FA-4F7A-B76B-6392DC59A95D}</Project>
       <Name>WangJun.YunArticle</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WangJun.YunBehavior\WangJun.YunBehavior.csproj">
+      <Project>{406418ce-1274-4268-afc3-f9510499bd18}</Project>
+      <Name>WangJun.YunBehavior</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WangJun.YunCategory\WangJun.YunCategory.csproj">
       <Project>{F41364E7-C71B-438C-B257-F9FB741D4570}</Project>
       <Name>WangJun.YunCategory</Name>

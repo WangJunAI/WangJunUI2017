@@ -13,7 +13,7 @@ namespace WangJun.Entity
           ObjectId _id { get; set; }
          ObjectId _OID { get; set; }
 
-         string ID { get; set; }
+         //string ID { get; set; }
 
 
          ObjectId _ParentOID { get; set; }

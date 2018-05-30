@@ -42,7 +42,7 @@ namespace WangJun.Entity
             #region ISysItem
             if (null != iSysItem && !string.IsNullOrWhiteSpace(iSysItem._DbName) && !string.IsNullOrWhiteSpace(iSysItem._CollectionName))
             {
-                var query = MongoDBFilterCreator.SearchByObjectId(iRelationshipObjectId.ID);
+                var query = MongoDBFilterCreator.SearchByObjectId(iSysItem.ID);
                 db.Save3(iSysItem._DbName, iSysItem._CollectionName, item, query);
             }
             #endregion
@@ -76,12 +76,12 @@ namespace WangJun.Entity
             var item = new T() {};
             var iRelationshipObjectId = item as IRelationshipObjectId;
             var iSysItem = item as ISysItem;
-            iRelationshipObjectId.ID = id;
-            if (null != iRelationshipObjectId && null != iSysItem && StringChecker.IsNotEmptyObjectId(iRelationshipObjectId.ID))
+            iSysItem.ID = id;
+            if (null != iRelationshipObjectId && null != iSysItem && StringChecker.IsNotEmptyObjectId(iSysItem.ID))
             { 
                 var db = DataStorage.GetInstance(DBType.MongoDB);
 
-                var query = MongoDBFilterCreator.SearchByObjectId(iRelationshipObjectId.ID);
+                var query = MongoDBFilterCreator.SearchByObjectId(iSysItem.ID);
                 db.Save3(iSysItem._DbName, iSysItem._CollectionName, "{StatusCode:" + CONST.APP.Status.删除 + ",Status:'" + CONST.APP.Status.GetString(CONST.APP.Status.删除) + "'}", query, false);
 
 

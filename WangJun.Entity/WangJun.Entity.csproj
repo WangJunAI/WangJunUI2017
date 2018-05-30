@@ -68,10 +68,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="BaseBehavior.cs" />
+    <Compile Include="EnumBehavior.cs" />
     <Compile Include="IParse.cs" />
     <Compile Include="基础业务对象\BaseCompany.cs" />
     <Compile Include="基础业务对象\BasePermission.cs" />
     <Compile Include="基础业务对象\BaseUser.cs" />
+    <Compile Include="枚举\EnumBizType.cs" />
     <Compile Include="枚举\EnumResult.cs" />
     <Compile Include="基础业务对象\BaseCategory.cs" />
     <Compile Include="基础业务对象\BaseComment.cs" />
@@ -93,7 +96,6 @@
     <Compile Include="接口\IStatus.cs" />
     <Compile Include="接口\IName.cs" />
     <Compile Include="接口\IRelationshipObjectId.cs" />
-    <Compile Include="接口\IRelationshipInt64.cs" />
     <Compile Include="接口\IRelationshipGuid.cs" />
     <Compile Include="接口\ITime.cs" />
     <Compile Include="MongoDBFilterCreator.cs" />
