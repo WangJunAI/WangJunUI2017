@@ -74,10 +74,9 @@ namespace WangJun.Entity
         public int Remove<T>(string id) where T : class,/* IRelationshipGuid, IName, ITime, IRelationshipObjectId, IStatus, IOperator, IApp, ISysItem, */ICompany, new()
         {
             var item = new T() {};
-            var iRelationshipObjectId = item as IRelationshipObjectId;
-            var iSysItem = item as ISysItem;
+             var iSysItem = item as ISysItem;
             iSysItem.ID = id;
-            if (null != iRelationshipObjectId && null != iSysItem && StringChecker.IsNotEmptyObjectId(iSysItem.ID))
+            if (null != iSysItem && StringChecker.IsNotEmptyObjectId(iSysItem.ID))
             { 
                 var db = DataStorage.GetInstance(DBType.MongoDB);
 
@@ -85,12 +84,30 @@ namespace WangJun.Entity
                 db.Save3(iSysItem._DbName, iSysItem._CollectionName, "{StatusCode:" + CONST.APP.Status.删除 + ",Status:'" + CONST.APP.Status.GetString(CONST.APP.Status.删除) + "'}", query, false);
 
 
-                var res = EntityManager.GetInstance<T>().List.Find(new object[] { id });
+                var res = EntityManager.GetInstance<T>().List.Find(new object[] { SUID.FromStringToGuid(id) });
                 if (null != res) {
                     (res as IStatus).StatusCode =(int) EnumEntity.删除;
                     (res as IStatus).Status = EnumEntity.删除.ToString();
                     EntityManager.GetInstance<T>().Save(res);
                 }
+            }
+            return 0;
+        }
+        public int Delete<T>(string id) where T : class,/* IRelationshipGuid, IName, ITime, IRelationshipObjectId, IStatus, IOperator, IApp, ISysItem, */ICompany, new()
+        {
+            var item = new T() { };
+             var iSysItem = item as ISysItem;
+            iSysItem.ID = id;
+            if (null != iSysItem && StringChecker.IsNotEmptyObjectId(iSysItem.ID))
+            {
+                var db = DataStorage.GetInstance(DBType.MongoDB);
+
+                var query = MongoDBFilterCreator.SearchByObjectId(iSysItem.ID);
+                db.Remove(iSysItem._DbName, iSysItem._CollectionName , query );
+                 
+ 
+                EntityManager.GetInstance<T>().Remove(item);
+ 
             }
             return 0;
         }

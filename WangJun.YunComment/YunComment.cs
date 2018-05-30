@@ -97,6 +97,11 @@ namespace WangJun.Yun
             return EntityManager.GetInstance().Remove<YunComment>(id);
         }
 
+        public static int Delete(string id)
+        {
+            return EntityManager.GetInstance().Delete<YunComment>(id);
+        }
+
         #region 基本方法
         public static YunComment CreateAsText(IApp app,string content)
         {

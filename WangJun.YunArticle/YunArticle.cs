@@ -97,6 +97,11 @@ namespace WangJun.Yun
             return EntityManager.GetInstance().Remove<YunArticle>(id);
         }
 
+        public static int Delete(string id)
+        {
+            return EntityManager.GetInstance().Delete<YunArticle>(id);
+        }
+
         #region 基本方法
         public static YunArticle CreateAsHtml()
         {

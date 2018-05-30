@@ -108,6 +108,11 @@ namespace WangJun.Yun
             return EntityManager.GetInstance().Remove<YunCategory>(id);
         }
 
+        public static int Delete(string id)
+        {
+            return EntityManager.GetInstance().Delete<YunCategory>(id);
+        }
+
         #region 基本方法
         public static YunCategory CreateAsNew(string name)
         {

@@ -250,12 +250,12 @@ namespace WangJun.YunNews
         public int RemoveEntity(string id)
         {
             ///MongoDB
-            var inst = new YunNewsItem();
-            inst.ID = id;
-            inst.Remove();
+            //var inst = new YunNewsItem();
+            //inst.ID = id;
+            //inst.Remove();
 
             /// SQLServer
-            YunCategory.Load(id).Remove();
+            YunArticle.Remove(id);
 
             return 0;
         }
@@ -307,10 +307,10 @@ namespace WangJun.YunNews
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public List<CommentItem> LoadCommentList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
+        public List<YunComment> LoadCommentList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
         {
-            query = "{$and:[" + query + ",{'StatusCode':{$ne:" + CONST.APP.Status.删除 + "}}]}";
-            var res = EntityManager.GetInstance().Find<CommentItem>(query, protection, sort, pageIndex, pageSize);
+            query = "{$and:[" + query + ",{'StatusCode':{$eq:" +(int)EnumEntity.正常 + "}}]}";
+            var res = EntityManager.GetInstance().Find<YunComment>(query, protection, sort, pageIndex, pageSize);
 
             /// SQLServer
             var res2 = EntityManager.GetInstance<YunComment>().List.Where(p => p.CompanyID == SESSION.Current.CompanyID && p.AppCode == this.AppCode).OrderByDescending(p => p.CreateTime).Skip(pageIndex * pageSize).Take(pageSize).ToList();
@@ -362,9 +362,9 @@ namespace WangJun.YunNews
         public object Count(string json)
         {
             ///MongoDB
-            var item = new YunNewsItem();
+            var item = new YunArticle();
             var match = "{$match:" + json + "}";
-            var group = "{$group:{_id:'YunNewsItem总数',Count:{$sum:1}}}";
+            var group = "{$group:{_id:'YunArticle',Count:{$sum:1}}}";
             var res = EntityManager.GetInstance().Aggregate(item._DbName, item._CollectionName, match, group);
 
             /// SQLServer
@@ -374,11 +374,11 @@ namespace WangJun.YunNews
         #endregion
 
         #region 回收站
-        public List<YunNewsItem> LoadRecycleBinEntityList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
+        public List<YunArticle> LoadRecycleBinEntityList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
         {
             ///MongoDB
             query = "{$and:[" + "{}" + ",{'OwnerID':'" + SESSION.Current.UserID + "','AppCode':" + this.AppCode + "},{'StatusCode':{$eq:" + CONST.APP.Status.删除 + "}}]}";
-            var res = EntityManager.GetInstance().Find<YunNewsItem>(query, protection, sort, pageIndex, pageSize);
+            var res = EntityManager.GetInstance().Find<YunArticle>(query, protection, sort, pageIndex, pageSize);
 
             /// SQLServer
             var res2 = EntityManager.GetInstance<YunArticle>().List.Where(p => p.CompanyID == SESSION.Current.CompanyID && p.AppCode == this.AppCode).OrderByDescending(p => p.CreateTime).Skip(pageIndex * pageSize).Take(pageSize).ToList();
@@ -395,12 +395,12 @@ namespace WangJun.YunNews
         public int DeleteEntity(string id)
         {
             ///MongoDB
-            var inst = new YunNewsItem();
-            inst.ID = id;
-            inst.Delete();
+            //var inst = new YunNewsItem();
+            //inst.ID = id;
+            //inst.Delete();
 
             /// SQLServer
-            YunArticle.Load(id).Remove();
+            YunArticle.Remove(id);
 
             return 0;
         }
@@ -408,9 +408,9 @@ namespace WangJun.YunNews
         public int EmptyRecycleBin()
         {
             var list = this.LoadRecycleBinEntityList("{}", "{}", "{}", 0, int.MaxValue);
-            foreach (YunNewsItem item in list)
+            foreach (YunArticle item in list)
             {
-                item.Delete();
+                //item.Delete();
             }
 
             /// SQLServer
@@ -424,18 +424,18 @@ namespace WangJun.YunNews
         #region 聚合计算
         public object Aggregate(string itemType, string match, string group)
         {
-            var item = new BaseItem();
-            if ("Entity" == itemType)
-            {
-                item = new YunNewsItem();
-            }
-            else if ("Category" == itemType)
-            {
-                item = new CategoryItem();
-            }
-            var res = EntityManager.GetInstance().Aggregate(item._DbName, item._CollectionName, match, group);
-            return res;
-
+            //var item = new BaseItem();
+            //if ("Entity" == itemType)
+            //{
+            //    item = new YunNewsItem();
+            //}
+            //else if ("Category" == itemType)
+            //{
+            //    item = new CategoryItem();
+            //}
+            //var res = EntityManager.GetInstance().Aggregate(item._DbName, item._CollectionName, match, group);
+            //return res;
+            return null;
         }
         #endregion
 
@@ -487,9 +487,9 @@ namespace WangJun.YunNews
         #region ClientRead
         public int ClientRead(string id)
         {
-            var item = new YunNewsItem();
-            item.ID = id;
-            ClientBehaviorItem.Save(item, ClientBehaviorItem.BehaviorType.阅读, SESSION.Current);
+            //var item = new YunNewsItem();
+            //item.ID = id;
+            //ClientBehaviorItem.Save(item, ClientBehaviorItem.BehaviorType.阅读, SESSION.Current);
             return 0;
         }
         #endregion

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Common;
 using System.Data.Entity;
 using System.Data.SqlClient;
@@ -44,7 +45,21 @@ namespace WangJun.Entity
         {
             if (null != t)
             {
-                this.List.Add(t);
+                var id = t.GetType().GetProperty("ID").GetValue(t).ToString();
+                var res = this.List.Find(new object[] { SUID.FromStringToGuid(id) }) as T;
+                if (null == res)
+                {
+                    this.List.Add(t);
+                }
+                else
+                {
+                    foreach (var property in res.GetType().GetProperties().Where(p=>p.CanWrite&&p.CanRead))
+                    {
+                        property.SetValue(res, t.GetType().GetProperty(property.Name).GetValue(t));
+                    }
+
+                    this.Entry(res).State = EntityState.Modified;
+                }
                 this.SaveChanges();
                 this.Dispose();
             }
