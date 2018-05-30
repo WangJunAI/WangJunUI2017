@@ -16,9 +16,9 @@ namespace WangJun.YunNews
         #region  IApp
         public long Version { get { return 1; } set { } }
 
-        public string AppName { get { return "新闻发布应用"; } set { } }
+        public string AppName { get { return CONST.APP.YunNews.Name; } set { } }
 
-        public long AppCode { get { return 1803001006; } set { } }
+        public long AppCode { get { return CONST.APP.YunNews.Code; } set { } }
         public IApp CurrentApp {get { return (this as IApp); }}
         #endregion
 
@@ -127,6 +127,10 @@ namespace WangJun.YunNews
         /// <returns></returns>
         public int SaveCategory(string jsonInput)
         {
+            ///MongoDB
+            //CategoryItem.Save(jsonInput);
+
+            /// SQLServer
             var ar = Convertor.FromJsonToObject2<YunCategory>(jsonInput);
             ar.AppCode = this.CurrentApp.AppCode;
             ar.AppName = this.CurrentApp.AppName;
@@ -168,12 +172,24 @@ namespace WangJun.YunNews
         /// <returns></returns>
         public int RemoveCategory(string id)
         {
+            ///MongoDB
+            //var inst = new CategoryItem();
+            //inst.ID = id;
+            //inst.Remove();
+
+            /// SQLServer
             YunCategory.Remove(id);
             return 0;
         }
 
         public YunCategory GetCategory(string id)
         {
+            ///MongoDB
+            //var inst = new CategoryItem();
+            //inst.ID = id;
+            //inst = EntityManager.GetInstance().Get<CategoryItem>(inst);
+
+            /// SQLServer
             var inst = YunCategory.Load(id);
 
             return inst;
@@ -191,6 +207,10 @@ namespace WangJun.YunNews
         /// <returns></returns>
         public int SaveEntity(string jsonInput)
         {
+            ///MongoDB
+            //YunNewsItem.Save(jsonInput);
+
+            /// SQLServer
             var ar = Convertor.FromJsonToObject2<YunArticle>(jsonInput);
             ar.AppCode = this.CurrentApp.AppCode;
             ar.AppName = this.CurrentApp.AppName;
@@ -229,6 +249,12 @@ namespace WangJun.YunNews
         /// <returns></returns>
         public int RemoveEntity(string id)
         {
+            ///MongoDB
+            //var inst = new YunNewsItem();
+            //inst.ID = id;
+            //inst.Remove();
+
+            /// SQLServer
             YunArticle.Remove(id);
 
             return 0;
@@ -236,6 +262,12 @@ namespace WangJun.YunNews
 
         public YunArticle GetEntity(string id)
         {
+            ///MongoDB
+            //var inst = new YunNewsItem();
+            //inst.ID = id;
+            //inst = EntityManager.GetInstance().Get<YunNewsItem>(inst);
+
+            /// SQLServer
             var inst = YunArticle.Load(id);
             return inst;
         }
@@ -251,6 +283,9 @@ namespace WangJun.YunNews
         /// <returns></returns>
         public int SaveComment(string jsonInput)
         {
+            //var dict = Convertor.FromJsonToDict2(jsonInput);
+            ///MongoDB
+            //CommentItem.Save(jsonInput);
 
             var ar = Convertor.FromJsonToObject2<YunComment>(jsonInput);
             ar.AppCode = this.CurrentApp.AppCode;
@@ -294,6 +329,12 @@ namespace WangJun.YunNews
         /// <returns></returns>
         public int RemoveComment(string id)
         {
+            ///MongoDB
+            //var inst = new CommentItem();
+            //inst.ID = id;
+            //inst.Remove();
+
+            /// SQLServer
             YunComment.Remove(id);
 
             return 0;
@@ -301,6 +342,13 @@ namespace WangJun.YunNews
 
         public YunComment GetComment(string id)
         {
+            ///MongoDB
+            //var inst = new CommentItem();
+            //inst.ID = id;
+            //inst = EntityManager.GetInstance().Get<CommentItem>(inst);
+
+
+            /// SQLServer
             var inst = YunComment.Load(id);
 
             return inst;
@@ -348,6 +396,12 @@ namespace WangJun.YunNews
         /// <returns></returns>
         public int DeleteEntity(string id)
         {
+            ///MongoDB
+            //var inst = new YunNewsItem();
+            //inst.ID = id;
+            //inst.Delete();
+
+            /// SQLServer
             YunArticle.Delete(id);
 
             return 0;
@@ -358,9 +412,12 @@ namespace WangJun.YunNews
             var list = this.LoadRecycleBinEntityList("{}", "{}", "{}", 0, int.MaxValue);
             foreach (YunArticle item in list)
             {
-                YunArticle.Delete(item.ID);
+                //item.Delete();
             }
-             
+
+            /// SQLServer
+            //YunArticle.Load(1).Remove();
+
             return 0;
         }
         #endregion
@@ -432,7 +489,11 @@ namespace WangJun.YunNews
         #region ClientRead
         public int ClientRead(string id)
         {
-             YunBehavior.Save(operateTypeCode: (int)EnumBehavior.阅读, operateType: EnumBehavior.阅读.ToString()
+            //var item = new YunNewsItem();
+            //item.ID = id;
+            //ClientBehaviorItem.Save(item, ClientBehaviorItem.BehaviorType.阅读, SESSION.Current);
+
+            YunBehavior.Save(operateTypeCode: (int)EnumBehavior.阅读, operateType: EnumBehavior.阅读.ToString()
                              , targetTypeCode: (int)EnumBizType.文章, targetType: EnumBizType.文章.ToString()
                              , operatorID: SUID.FromStringToGuid(SESSION.Current.UserID), operatorName: SESSION.Current.UserName
                              , targetID: SUID.FromStringToGuid(id), targetName: "暂空"

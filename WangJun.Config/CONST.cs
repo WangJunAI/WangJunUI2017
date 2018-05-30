@@ -227,44 +227,7 @@ namespace WangJun.Config
 
             }
 
-            public static class YunNews
-            {
-                public static long Code { get { return 1803001006; } }
-
-                public static string Name { get { return "新闻发布"; } }
-
-                public static string DB { get { return "WangJun"; } }
-
-                public static string TableCategory { get { return "Category"; } }
-
-                public static string TableNews { get { return "YunNews"; } }
-
-                public static string TableComment { get { return "Comment"; } }
-
-                public static class Status
-                {
-                    public static int 待发布 { get { return 1; } }
-
-                    public static int 已发布 { get { return 2; } }
-                    public static int 删除 { get { return -1; } } ///等待系统回收
-                    public static string GetString(int statusCode)
-                    {
-                        if (statusCode == Status.待发布)
-                        {
-                            return "待发布";
-                        }
-                        else if (statusCode == Status.已发布)
-                        {
-                            return "已发布";
-                        }
-                        else if (statusCode == Status.删除)
-                        {
-                            return "删除";
-                        }
-                        return "未定义";
-                    }
-                }
-            }
+          
 
             public static class YunDoc
             {

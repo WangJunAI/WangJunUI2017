@@ -14,12 +14,12 @@ namespace WangJun.YunProject
     {
         public CommentItem()
         {
-            this._DbName = CONST.APP.YunNews.DB;
-            this._CollectionName = CONST.APP.YunNews.TableComment;
+            this._DbName = CONST.APP.YunProject.DB;
+            this._CollectionName = CONST.APP.YunProject.TableComment;
             this.ClassFullName = this.GetType().FullName;
             this.Version = 1;
-            this.AppCode = CONST.APP.YunNews.Code;
-            this.AppName = CONST.APP.YunNews.Name;
+            this.AppCode = CONST.APP.YunProject.Code;
+            this.AppName = CONST.APP.YunProject.Name;
             this.StatusCode = CONST.APP.Status.正常;
             this.Status = CONST.APP.Status.GetString(this.StatusCode);
         }

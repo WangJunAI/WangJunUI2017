@@ -238,6 +238,13 @@ namespace WangJun.Entity
             return db.Aggregate(dbName, collectionName, match, group);
         }
 
+        public int Count<T>(Expression<Func<T, bool>> where) where T : class, new()
+        {
+            var count = EntityManager.GetInstance<T>().List.Where(where).Count();
+
+            return count;
+        }
+
         /// <summary>
         /// 更改状态
         /// </summary>

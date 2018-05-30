@@ -59,11 +59,11 @@ namespace WangJun.HostApp
             {
                 //FenCiProc(data);
             }
-            else if (behaviorCode == BehaviorType.修改 && sourceTableName == CONST.APP.YunNews.TableNews)
-            {
-               // FenCiProc(data);
-                //CreateHotCount(data);
-            }
+            //else if (behaviorCode == BehaviorType.修改 && sourceTableName == CONST.APP.YunNews.TableNews)
+            //{
+            //   // FenCiProc(data);
+            //    //CreateHotCount(data);
+            //}
             else if (behaviorCode == BehaviorType.修改 && sourceTableName == CONST.APP.YunNote.TableYunNote)
             {
                 //FenCiProc(data);
