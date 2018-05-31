@@ -118,7 +118,6 @@ namespace WangJun.Yun
             var session = new SESSION();
              var query = "{'LoginEmail':'" + loginID + "'}";
             var res = EntityManager.GetInstance().Get<YunUser>("WangJun", "YunUser", query);
-            var list = EntityManager.GetInstance<YunUser>().List.ToList();
             var res2 = EntityManager.GetInstance().Get<YunUser>(p => p.LoginEmail == loginID);
 
             #region session设置
@@ -128,6 +127,7 @@ namespace WangJun.Yun
             session.CompanyName = res.CompanyName;
             session.IsSuperAdmin = true;
             session.CanManageYunNews = true;
+            session.CanManageYunDoc = true;
             SESSION.Set(session);
             #endregion
             return session;

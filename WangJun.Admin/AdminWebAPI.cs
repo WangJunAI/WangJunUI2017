@@ -37,7 +37,11 @@ namespace WangJun.Admin
             #region 初始化App
             HTTP.GetInstance().GetString("http://localhost:9990/API.ashx?c=WangJun.YunNews.YunNewsWebAPI&m=RegisterApp&p0=" + company.ID + "&p1=01");
             #endregion
-              
+
+            #region 初始化App
+            HTTP.GetInstance().GetString("http://localhost:9990/API.ashx?c=WangJun.YunDoc.YunDocWebAPI&m=RegisterApp&p0=" + company.ID + "&p1=01");
+            #endregion
+
             return SESSION.Current;
         }
         #endregion

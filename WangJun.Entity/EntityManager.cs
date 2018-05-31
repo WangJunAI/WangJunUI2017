@@ -22,7 +22,9 @@ namespace WangJun.Entity
 
         public static EntityDbContext<T> GetInstance<T>() where T : class,new()
         {
-            var context = EntityDbContext<T>.CreateInstance(@"Data Source=192.168.0.150\SQL2016;Initial Catalog=WangJun;Persist Security Info=True;User ID=sa;Password=111qqq!!!");
+            var connStr = @"Data Source=hds260381389.my3w.com;Initial Catalog=hds260381389_db;Persist Security Info=True;User ID=hds260381389;Password=75737573";
+            //var connStr = @"Data Source=192.168.0.150\SQL2016;Initial Catalog=WangJun;Persist Security Info=True;User ID=sa;Password=111qqq!!!";
+            var context = EntityDbContext<T>.CreateInstance(connStr);
             return context;
         }
 
@@ -222,6 +224,11 @@ namespace WangJun.Entity
             var list =  EntityManager.GetInstance<T>().List.Where(where).OrderBy(orderBy).Skip(pageIndex * pageSize).Take(pageSize).ToList();
 
             return list;
+        }
+
+        public bool IsExist<T>()
+        {
+            return false;
         }
         /// <summary>
         /// {$match:{}},{$group:{_id:"计数",Count:{$sum:1}}}

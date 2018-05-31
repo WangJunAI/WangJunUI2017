@@ -43,7 +43,7 @@ Doc.LeftMenuClick = function (id) {
         var query = [{ _RedirectID: null, OwnerID: SESSION.Current().UserID, 'StatusCode': { $ne: -1 } }, {}, { CreateTime: -1 }];
         Doc.ShowView3();
         Doc.LoadTopButton(topButtonId);
-        Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], { header: "小提示：修改目录双击即可" }); });
+        Doc.LoadData_Category([JSON.stringify({ OwnerID: SESSION.Current().UserID}), "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], { header: "小提示：修改目录双击即可" }); });
         Doc.LoadTable(0, App.Doc.Data.Pager.Size, query, App.Doc.Data.DocTable.Info);
         Doc.SetQuery(query); 
     }
