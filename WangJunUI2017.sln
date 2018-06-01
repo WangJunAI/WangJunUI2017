@@ -96,6 +96,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WangJun.YunCompany", "WangJ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WangJun.YunBehavior", "WangJun.YunBehavior\WangJun.YunBehavior.csproj", "{406418CE-1274-4268-AFC3-F9510499BD18}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WangJun.YunUserAPI", "WangJun.YunUserAPI\WangJun.YunUserAPI.csproj", "{88850BB5-28F8-4F6F-9AEE-61D9637F396D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -238,6 +240,10 @@ Global
 		{406418CE-1274-4268-AFC3-F9510499BD18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{406418CE-1274-4268-AFC3-F9510499BD18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{406418CE-1274-4268-AFC3-F9510499BD18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88850BB5-28F8-4F6F-9AEE-61D9637F396D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88850BB5-28F8-4F6F-9AEE-61D9637F396D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88850BB5-28F8-4F6F-9AEE-61D9637F396D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88850BB5-28F8-4F6F-9AEE-61D9637F396D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -277,6 +283,7 @@ Global
 		{F41364E7-C71B-438C-B257-F9FB741D4570} = {243E6D41-CC02-410B-9442-3BD60541242E}
 		{9455D8E8-7DD4-4E03-A6BA-8C2F54601516} = {243E6D41-CC02-410B-9442-3BD60541242E}
 		{406418CE-1274-4268-AFC3-F9510499BD18} = {243E6D41-CC02-410B-9442-3BD60541242E}
+		{88850BB5-28F8-4F6F-9AEE-61D9637F396D} = {5555E47C-6247-48B7-B99A-6811E40E337A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {89E2C04D-C976-481B-8A8F-BBCE924EEC49}

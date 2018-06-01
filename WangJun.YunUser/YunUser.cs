@@ -106,6 +106,11 @@ namespace WangJun.Yun
             return EntityManager.GetInstance().Remove<YunUser>(id);
         }
 
+        public static int Delete(string id)
+        {
+            return EntityManager.GetInstance().Delete<YunUser>(id);
+        }
+
         /// <summary>
         /// 用户登录
         /// </summary>
@@ -130,6 +135,7 @@ namespace WangJun.Yun
             session.CanManageYunDoc = true;
             session.CanManageYunNote = true;
             session.CanManageYunQun=true;
+            session.CanManageStaff = true;
             SESSION.Set(session);
             #endregion
             return session;

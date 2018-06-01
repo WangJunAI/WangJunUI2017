@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>数据分析</title>
+
+
+    <!--基础JS-->
+    <script src="../../../JS/Base/jquery-3.1.1.min.js"></script>
+    <script src="../../../JS/Base/PARAM_CHECKER.js"></script>
+    <script src="../../../JS/Base/DEBUG.js"></script>
+    <script src="../../../JS/Base/Convertor.js"></script>
+    <script src="../../../JS/Base/NET.js"></script>
+    <!--base64加密-->
+    <script src="../../../JS/Base/CryptoJS/core-min.js"></script>
+    <script src="../../../JS/Base/CryptoJS/enc-base64-min.js"></script>
+
+    <!--SESSION相关-->
+    <script src="../../../JS/jquery.cookie.js"></script>
+    <script src="../../../JS/SESSION.js"></script>
+
+    <!--图表公用方法-->
+    <script src="../../../JS/TPL/TPL.Chart.js"></script>
+
+    <!--图表方法-->
+    <script src="JS/Doc.js"></script>
+    <script src="JS/AppInfo.Doc.js"></script>
+
+
+
+</head>
+<body>
+    <!-- 图表容器 DOM -->
+    <h1>目录下文档占比</h1>
+    <div id="container1" style="width: 600px;height:400px;"></div>
+    <h1>目录活跃度</h1>
+    <div id="container2" style="width: 600px;height:400px;"></div>
+    <h1>文章热度</h1>
+    <div id="container3" style="width: 600px;height:400px;"></div>
+    <h1>发文计数</h1>
+    <div id="container4" style="width: 600px;height:400px;"></div>
+    <h1>最活跃用户</h1>
+    <div id="container5" style="width: 600px;height:400px;"></div>
+
+    <!-- 引入 highcharts.js -->
+    <script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+    <script>
+
+    </script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            Doc.LoadChart("container1", App.Doc.Server.Url16, ["Entity","{$match:{}}", "{$group:{_id:'$ParentName',Count:{$sum:1}}}"], function (res) {
+                //return[item["_id"], item["total"]];
+                var arr = [];
+                for (var k = 0; k < res.length; k++) {
+                    arr.push([res[k]["_id"], res[k]["Count"]]);
+                }
+                var option = Doc.GetChartOption("基础饼图");
+                option.series[0].data = arr;
+                option.series[0].name = "文件数量占比";
+                option.title.text = "目录下文件占比";
+                return option;
+            });
+            //Doc.LoadChart("container2", App.Doc.Server.Url16, [,"{$match:{}}", "{$group:{_id:'$CategoryName',ReadCount:{$sum:'$ReadCount'},LikeCount:{$sum:'$LikeCount'},CommentCount:{$sum:'$CommentCount'}}}"], function (res) {
+            //     var categories = [];
+            //    var likeCountData = { name: "点赞", data: [] };
+            //    var readCountData = { name: "阅读", data: [] };
+            //    var commentCountData = { name: "评论", data: [] };
+            //    for (var k = 0; k < res.length; k++) {
+            //        var item = res[k];
+            //         categories.push(item["_id"]);
+            //        likeCountData.data.push(item["LikeCount"]);
+            //        readCountData.data.push(item["ReadCount"]);
+            //        commentCountData.data.push(item["CommentCount"]);
+            //    }
+
+            //    var option = Doc.GetChartOption("基础条形图");
+            //    option.title.text = "目录活跃度";
+            //    option.subtitle.text = "汪俊";
+            //    option.xAxis.categories = categories;
+            //    option.series[0] = likeCountData;
+            //    option.series[1] = readCountData;
+            //    option.series[2] = commentCountData;
+
+            //    return option;
+            //});
+            //Doc.LoadChart("container3", App.Doc.Server.Url16, ["Doc","{$match:{}}", "{$group:{ _id : {  year: { $year: '$CreateTime' },month:{$month: '$CreateTime'} ,day:{$dayOfMonth: '$CreateTime'} }, PublishCount:{$sum:1},ReadCount:{$sum:'$ReadCount'},LikeCount:{$sum:'$LikeCount'},CommentCount:{$sum:'$CommentCount'}}}"], function (res) {
+            //    var categories = [];
+            //    var likeCountData = { name: "点赞", data: [] };
+            //    var readCountData = { name: "阅读", data: [] };
+            //    var commentCountData = { name: "评论", data: [] };
+            //    for (var k = 0; k < res.length; k++) {
+            //        var item = res[k];
+            //        categories.push(item["_id"].year + "-" + item["_id"].month + "-" + item["_id"].day);
+            //        likeCountData.data.push(item["LikeCount"]);
+            //        readCountData.data.push(item["ReadCount"]);
+            //        commentCountData.data.push(item["CommentCount"]);
+            //    }
+
+            //    var option = Doc.GetChartOption("基础折线图");
+            //    option.title.text = "文章活跃度";
+            //    option.subtitle.text = "汪俊";
+            //    option.xAxis = {};
+            //    option.xAxis.categories = categories;
+            //    option.series = [];
+            //    option.series.push(likeCountData);
+            //    option.series.push(readCountData);
+            //    option.series.push(commentCountData);
+
+            //    return option;
+
+            //});
+            //Doc.LoadChart("container4", App.Doc.Server.Url16, ["Doc","{$match:{}}", "{$group:{ _id : {  year: { $year: '$CreateTime' },month:{$month: '$CreateTime'} ,day:{$dayOfMonth: '$CreateTime'} }, Count:{$sum:1}}}"], function (res) {
+            //    var categories = [];
+            //    var publishCountData = { name: "发文计数", data: [] };
+
+            //     for (var k = 0; k < res.length; k++) {
+            //        var item = res[k];
+            //        categories.push(item["_id"].year + "-" + item["_id"].month + "-" +  item["_id"].day);
+            //        publishCountData.data.push(item["Count"]);
+
+            //    }
+
+            //    var option = Doc.GetChartOption("基础柱状图");
+            //    option.title.text = "发文统计";
+            //    //option.subtitle.text = "汪俊";
+            //    option.xAxis.categories = categories;
+            //    option.series = [];
+            //    option.series.push(publishCountData);
+            //    //option.series[1] = readCountData;
+            //    //option.series[2] = commentCountData;
+
+            //    return option;
+
+            //});
+            //Doc.LoadChart("container5", App.Doc.Server.Url16, ["Doc","{$match:{}}", "{$group:{ _id : {  year: { $year: '$CreateTime' },month:{$month: '$CreateTime'} ,day:{$dayOfMonth: '$CreateTime'} }, Count:{$sum:1}}}"], function (res) {
+            //    var categories = [];
+            //    var publishCountData = { name: "发文计数", data: [] };
+
+            //    for (var k = 0; k < res.length; k++) {
+            //        var item = res[k];
+            //        categories.push(item["_id"].year + "-" + item["_id"].month + "-" + item["_id"].day);
+            //        publishCountData.data.push(item["Count"]);
+
+            //    }
+
+            //    var option = Doc.GetChartOption("基础折线图");
+            //    option.title.text = "最活跃用户";
+            //    option.subtitle.text = "汪俊";
+            //    //option.xAxis.categories = categories;
+            //    option.series = [];
+            //    option.series.push(publishCountData);
+
+            //    return option;
+
+            //});
+ 
+        });
+
+    </script>
+</body>
+</html>

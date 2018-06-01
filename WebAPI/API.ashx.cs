@@ -126,6 +126,7 @@ namespace WebAPI
             dict.Add("WangJun.Tools.DataSourceBaidu." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.DataSource.dll"));
             dict.Add("WangJun.HTML.HTMLItem." + methodName, HttpContext.Current.Server.MapPath("./bin/Html/WangJun.HTML.dll"));
             dict.Add("WangJun.Yun.YunUser." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.YunUser.dll"));
+            dict.Add("WangJun.App.YunUserAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/YunUser/WangJun.YunUserAPI.dll"));
 
 
 

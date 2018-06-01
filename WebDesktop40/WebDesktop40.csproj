@@ -1441,6 +1441,18 @@
     <Content Include="MP4\722787363.mp4" />
     <Content Include="MP4\748310191.mp4" />
     <Content Include="MP4\MVI_0358.mp4" />
+    <Content Include="UI\APP\YunUser\AppInfo.html" />
+    <Content Include="UI\APP\YunUser\Category.html" />
+    <Content Include="UI\APP\YunUser\Chart1.html" />
+    <Content Include="UI\APP\YunUser\Detail.html" />
+    <Content Include="UI\APP\YunUser\JS\AppInfo.Admin.js" />
+    <Content Include="UI\APP\YunUser\JS\AppInfo.Client.js" />
+    <Content Include="UI\APP\YunUser\JS\Doc.Biz.js" />
+    <Content Include="UI\APP\YunUser\JS\Doc.Detail.js" />
+    <Content Include="UI\APP\YunUser\JS\Doc.js" />
+    <Content Include="UI\APP\YunUser\JS\Doc.LeftMenu.js" />
+    <Content Include="UI\APP\YunUser\JS\Doc.TopButton.js" />
+    <Content Include="UI\APP\YunUser\Main.html" />
     <Content Include="UI\APP\Staff\AppInfo.html" />
     <Content Include="UI\APP\Staff\Category.html" />
     <Content Include="UI\APP\Staff\Chart1.html" />
@@ -2061,6 +2073,7 @@
     <Folder Include="UI\APP\YunNews\CSS\" />
     <Folder Include="UI\APP\YunNote\CSS\" />
     <Folder Include="UI\APP\YunQun\CSS\" />
+    <Folder Include="UI\APP\YunUser\CSS\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
