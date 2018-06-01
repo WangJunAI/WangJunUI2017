@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\WebAPI\bin\</OutputPath>
+    <OutputPath>..\WebAPI\bin\YunQun\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -43,11 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Items\CategoryItem.cs" />
-    <Compile Include="Items\CommentItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Items\YunQunItem.cs" />
-    <Compile Include="API\YunQunWebAPI.cs" />
+    <Compile Include="YunQunWebAPI.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WangJun.Config\WangJun.Config.csproj">
@@ -65,6 +62,26 @@
     <ProjectReference Include="..\WangJun.Utility\WangJun.Utility.csproj">
       <Project>{ECA8641B-DDB9-481A-BF78-76FB5A8E1DE3}</Project>
       <Name>WangJun.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WangJun.YunArticle\WangJun.YunArticle.csproj">
+      <Project>{bfb774ba-b7fa-4f7a-b76b-6392dc59a95d}</Project>
+      <Name>WangJun.YunArticle</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WangJun.YunBehavior\WangJun.YunBehavior.csproj">
+      <Project>{406418ce-1274-4268-afc3-f9510499bd18}</Project>
+      <Name>WangJun.YunBehavior</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WangJun.YunCategory\WangJun.YunCategory.csproj">
+      <Project>{f41364e7-c71b-438c-b257-f9fb741d4570}</Project>
+      <Name>WangJun.YunCategory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WangJun.YunComment\WangJun.YunComment.csproj">
+      <Project>{63287879-30d9-4521-8f98-c1b6e02ed1bc}</Project>
+      <Name>WangJun.YunComment</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WangJun.YunCompany\WangJun.YunCompany.csproj">
+      <Project>{9455d8e8-7dd4-4e03-a6ba-8c2f54601516}</Project>
+      <Name>WangJun.YunCompany</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

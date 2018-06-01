@@ -40,9 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\YunDocWebAPI1.cs" />
-    <Compile Include="Items\CategoryItem.cs" />
-    <Compile Include="Items\YunDocItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="YunDocWebAPI.cs" />
   </ItemGroup>

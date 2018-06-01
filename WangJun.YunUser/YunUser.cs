@@ -128,6 +128,8 @@ namespace WangJun.Yun
             session.IsSuperAdmin = true;
             session.CanManageYunNews = true;
             session.CanManageYunDoc = true;
+            session.CanManageYunNote = true;
+            session.CanManageYunQun=true;
             SESSION.Set(session);
             #endregion
             return session;
