@@ -13,7 +13,7 @@ using WangJun.Utility;
 
 namespace WangJun.Entity
 {
-    public class BaseFile
+    public class BaseFile:ICompany, ISysItem
     {
          
         public string FileHttpUrl { get; set; }

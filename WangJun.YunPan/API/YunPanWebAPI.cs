@@ -2,6 +2,7 @@
 using WangJun.Config;
 using WangJun.Entity;
 using WangJun.Utility;
+using WangJun.Yun;
 
 namespace WangJun.YunPan
 {
@@ -88,7 +89,9 @@ namespace WangJun.YunPan
         /// <returns></returns>
         public int SaveEntity(string jsonInput)
         {
-            YunPanItem.Save(jsonInput);
+            //YunPanItem.Save(jsonInput);
+            var inst = Convertor.FromJsonToObject2<YunFile>(jsonInput);
+            inst.Save();
             return 0;
         }
 

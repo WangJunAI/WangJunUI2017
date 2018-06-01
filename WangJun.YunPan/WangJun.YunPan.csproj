@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\WebAPI\bin\</OutputPath>
+    <OutputPath>..\WebAPI\bin\YunPan\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -64,6 +64,10 @@
     <ProjectReference Include="..\WangJun.Utility\WangJun.Utility.csproj">
       <Project>{ECA8641B-DDB9-481A-BF78-76FB5A8E1DE3}</Project>
       <Name>WangJun.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WangJun.YunFile\WangJun.YunFile.csproj">
+      <Project>{528C7FAC-DF7E-466B-9430-BC429ED24937}</Project>
+      <Name>WangJun.YunFile</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
