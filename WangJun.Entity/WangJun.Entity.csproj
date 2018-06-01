@@ -74,6 +74,7 @@
     <Compile Include="基础业务对象\BaseCompany.cs" />
     <Compile Include="基础业务对象\BasePermission.cs" />
     <Compile Include="基础业务对象\BaseUser.cs" />
+    <Compile Include="基础业务对象\BaseFile.cs" />
     <Compile Include="枚举\EnumBizType.cs" />
     <Compile Include="枚举\EnumResult.cs" />
     <Compile Include="基础业务对象\BaseCategory.cs" />

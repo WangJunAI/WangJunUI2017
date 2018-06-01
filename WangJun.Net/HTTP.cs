@@ -98,6 +98,11 @@ namespace WangJun.Net
             File.WriteAllBytes(filePath, buffer);
         }
 
+        public void UploadFile(string url,string fileName)
+        {
+            this.http.UploadFile(url, fileName);
+        }
+
         /// <summary>
         /// 保存一个文件
         /// </summary>

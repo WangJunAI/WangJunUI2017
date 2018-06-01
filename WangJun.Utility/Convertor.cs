@@ -611,6 +611,12 @@ namespace WangJun.Utility
             return BitConverter.ToString(hashedBytes).Replace("-", string.Empty);
         }
 
+        public static string Encode_MD5(byte[] input)
+        {
+             byte[] hashedBytes = System.Security.Cryptography.MD5.Create().ComputeHash(input);
+            return BitConverter.ToString(hashedBytes).Replace("-", string.Empty);
+        }
+
         /// <summary>
         /// Json对象转C#代码
         /// </summary>
