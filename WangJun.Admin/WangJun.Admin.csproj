@@ -51,7 +51,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CompanyItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AdminWebAPI.cs" />
   </ItemGroup>

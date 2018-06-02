@@ -9,9 +9,11 @@ namespace WangJun.Entity
     /// <summary>
     /// 实体状态
     /// </summary>
-    public enum EnumEntity
+    public enum EnumStatus
     {
         正常=1,
-        删除=-1
+        删除=-1,
+        处理中=2,
+
     }
 }

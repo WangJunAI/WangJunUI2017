@@ -10,7 +10,7 @@ namespace WangJun.Entity
     {
         Guid GroupID { get; set; }
 
-        Guid GroupName { get; set; }
+        string GroupName { get; set; }
         Guid ObjectID { get; set; }
 
         int ObjectType { get; set; }

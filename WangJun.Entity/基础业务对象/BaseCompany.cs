@@ -15,6 +15,8 @@ namespace WangJun.Entity
         public int Level { get; set; }
         public string SuperAdminEmail { get; set; }
 
+        public Guid SuperAdminID { get; set; }
+
         #region IName
 
         public string Name { get; set; }

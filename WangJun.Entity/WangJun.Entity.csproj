@@ -72,7 +72,7 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="BaseBehavior.cs" />
-    <Compile Include="EnumBehavior.cs" />
+    <Compile Include="枚举\EnumBehavior.cs" />
     <Compile Include="IParse.cs" />
     <Compile Include="基础业务对象\BaseCompany.cs" />
     <Compile Include="基础业务对象\BasePermission.cs" />

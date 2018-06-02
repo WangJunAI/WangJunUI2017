@@ -88,8 +88,8 @@ namespace WangJun.Entity
 
                 var res = EntityManager.GetInstance<T>().List.Find(new object[] { SUID.FromStringToGuid(id) });
                 if (null != res) {
-                    (res as IStatus).StatusCode =(int) EnumEntity.删除;
-                    (res as IStatus).Status = EnumEntity.删除.ToString();
+                    (res as IStatus).StatusCode =(int) EnumStatus.删除;
+                    (res as IStatus).Status = EnumStatus.删除.ToString();
                     EntityManager.GetInstance<T>().Save(res);
                 }
             }

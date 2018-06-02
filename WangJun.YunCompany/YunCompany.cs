@@ -76,8 +76,8 @@ namespace WangJun.Yun
             #region IStatus
             if (null != iStatus && string.IsNullOrWhiteSpace(iStatus.Status))
             {
-                iStatus.StatusCode = (int)EnumEntity.正常;
-                iStatus.Status = EnumEntity.正常.ToString();
+                iStatus.StatusCode = (int)EnumStatus.正常;
+                iStatus.Status = EnumStatus.正常.ToString();
             }
             #endregion
 
@@ -113,5 +113,12 @@ namespace WangJun.Yun
             return inst;
         }
         #endregion
+
+        public static YunCompany CreateAsNew(string json)
+        {
+            var inst = YunCompany.Parse(json);
+            inst._GID = SUID.New();
+            return inst;
+        }
     }
 }

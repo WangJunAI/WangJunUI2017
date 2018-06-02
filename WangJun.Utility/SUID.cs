@@ -71,5 +71,9 @@ namespace WangJun.Utility
             }
             return Guid.Parse(input);
         }
+
+        public static bool IsMax(string input) {
+            return Guid.Empty.ToString().Replace("-", string.Empty).Replace("0", "F") == input || ObjectId.Empty.ToString().Replace("0", "F") == input;
+        }
     }
 }

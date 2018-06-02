@@ -26,11 +26,11 @@ App.Doc.ServerHost = YunConfig.ServerHost(this);
     Url4: App.Doc.ServerHost+"/API.ashx?c=WangJun.App.YunUserAPI&m=SaveEntity",///保存一个文档
     Url5: App.Doc.ServerHost+"/API.ashx?c=WangJun.App.YunUserAPI&m=GetEntity",///获取一个文档
     Url6: "Category.html",
-    Url7: App.Doc.ServerHost+"/API.ashx?c=WangJun.App.YunUserAPI&m=SaveOrg",///保存一个目录
-    Url8: App.Doc.ServerHost+"/API.ashx?c=WangJun.App.YunUserAPI&m=LoadOrgList",///加载组织列表
+    Url7: App.Doc.ServerHost+"/API.ashx?c=WangJun.App.YunUserAPI&m=SaveCategory",///保存一个目录
+    Url8: App.Doc.ServerHost+"/API.ashx?c=WangJun.App.YunUserAPI&m=LoadCategoryList",///加载组织列表
     Url9: App.Doc.ServerHost+"/API.ashx?c=WangJun.App.YunUserAPI&m=RemoveEntity",///移除一份文档,暂未使用
-    Url10: App.Doc.ServerHost+"/API.ashx?c=WangJun.App.YunUserAPI&m=RemoveOrg",///移除一个目录
-    Url11: App.Doc.ServerHost+"/API.ashx?c=WangJun.App.YunUserAPI&m=GetOrg", ///获取一个目录
+    Url10: App.Doc.ServerHost+"/API.ashx?c=WangJun.App.YunUserAPI&m=RemoveCategory",///移除一个目录
+    Url11: App.Doc.ServerHost+"/API.ashx?c=WangJun.App.YunUserAPI&m=GetCategory", ///获取一个目录
     Url12: App.Doc.ServerHost+"/API.ashx?c=WangJun.Doc.DocManager&m=UpdateStatus&p=0",///暂未使用
     Url13: App.Doc.ServerHost+"/API.ashx?c=WangJun.Doc.DocWebAPI&m=MoveToRecycleBin", ///移除到回收站
     Url14: App.Doc.ServerHost+"/API.ashx?c=WangJun.App.YunUserAPI&m=LoadRecycleBinEntityList",///加载回收站

@@ -15,7 +15,7 @@ namespace WangJun.App
         #region  IApp
         public long Version { get { return 1; } set { } }
 
-        public string AppName { get { return "用户管理应用"; } set { } }
+        public string AppName { get { return "用户及组织应用"; } set { } }
 
         public long AppCode { get { return 1803001001; } set { } }
         public IApp CurrentApp {get { return (this as IApp); }}
@@ -27,7 +27,7 @@ namespace WangJun.App
             var company = YunCompany.Load(companyID);
 
             #region 初始化目录
-            var yunCategory0 = YunCategory.CreateAsNew("企业知识库"); ///根目录
+            var yunCategory0 = YunCategory.CreateAsNew(company.Name); ///根目录
             yunCategory0.CompanyID = companyID;
             yunCategory0.CompanyName = company.Name;
             yunCategory0.AppCode = this.CurrentApp.AppCode;
@@ -37,7 +37,7 @@ namespace WangJun.App
             yunCategory0.OwnerName = company.Name;
             yunCategory0.Save();
 
-            var yunCategory1 = YunCategory.CreateAsNew("技术标准"); ///根目录
+            var yunCategory1 = YunCategory.CreateAsNew("人事部"); ///根目录
             yunCategory1.CompanyID = companyID;
             yunCategory1.CompanyName = company.Name;
             yunCategory1.AppCode = this.CurrentApp.AppCode;
@@ -50,48 +50,7 @@ namespace WangJun.App
             yunCategory1.OwnerID = company.ID;
             yunCategory1.OwnerName = company.Name;
             yunCategory1.Save();
-
-            var yunCategory2 = YunCategory.CreateAsNew("管理手册");
-            yunCategory2.CompanyID = companyID;
-            yunCategory2.CompanyName = company.Name;
-            yunCategory2.AppCode = this.CurrentApp.AppCode;
-            yunCategory2.AppName = this.CurrentApp.AppName;
-            yunCategory2.Version = this.CurrentApp.Version;
-            yunCategory2.RootID = yunCategory0.ID;
-            yunCategory2.RootName = yunCategory0.Name;
-            yunCategory2.ParentID = yunCategory0.ID;
-            yunCategory2.ParentName = yunCategory0.Name;
-            yunCategory2.OwnerID = company.ID;
-            yunCategory2.OwnerName = company.Name;
-            yunCategory2.Save();
-
-            var yunCategory3 = YunCategory.CreateAsNew("营销宝典"); ///根目录
-            yunCategory3.CompanyID = companyID;
-            yunCategory3.CompanyName = company.Name;
-            yunCategory3.AppCode = this.CurrentApp.AppCode;
-            yunCategory3.AppName = this.CurrentApp.AppName;
-            yunCategory3.Version = this.CurrentApp.Version;
-            yunCategory3.RootID = yunCategory0.ID;
-            yunCategory3.RootName = yunCategory0.Name;
-            yunCategory3.ParentID = yunCategory0.ID;
-            yunCategory3.ParentName = yunCategory0.Name;
-            yunCategory3.OwnerID = company.ID;
-            yunCategory3.OwnerName = company.Name;
-            yunCategory3.Save();
-
-            var yunCategory4 = YunCategory.CreateAsNew("宣传资料"); ///自动化聚集
-            yunCategory4.CompanyID = companyID;
-            yunCategory4.CompanyName = company.Name;
-            yunCategory4.AppCode = this.CurrentApp.AppCode;
-            yunCategory4.AppName = this.CurrentApp.AppName;
-            yunCategory4.Version = this.CurrentApp.Version;
-            yunCategory4.RootID = yunCategory0.ID;
-            yunCategory4.RootName = yunCategory0.Name;
-            yunCategory4.ParentID = yunCategory0.ID;
-            yunCategory4.ParentName = yunCategory0.Name;
-            yunCategory4.OwnerID = company.ID;
-            yunCategory4.OwnerName = company.Name;
-            yunCategory4.Save();
+ 
 
             #endregion
             #region 初始化第一篇文章
@@ -220,7 +179,7 @@ namespace WangJun.App
         {
             var dict = Convertor.FromJsonToDict2(query);
  
-                query = "{$and:[" + query + ",{'CompanyID':'" + SESSION.Current.CompanyID + "','AppCode':" + this.CurrentApp.AppCode + "},{'StatusCode':{$eq:" + (int)EnumEntity.正常 + "}}]}";
+                query = "{$and:[" + query + ",{'CompanyID':'" + SESSION.Current.CompanyID + "','AppCode':" + this.CurrentApp.AppCode + "},{'StatusCode':{$eq:" + (int)EnumStatus.正常 + "}}]}";
 
             ///MongoDB
             var res = EntityManager.GetInstance().Find<YunCategory>(query, protection, sort, pageIndex, pageSize);
@@ -267,6 +226,8 @@ namespace WangJun.App
             ar.Version = this.CurrentApp.Version;
             ar.Save();
 
+            ///设置权限
+
             return 0;
         }
 
@@ -282,11 +243,11 @@ namespace WangJun.App
         public List<YunUser> LoadEntityList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
         {
             ///MongoDB
-            query = "{$and:[" + query + ",{'StatusCode':{$eq:" + (int)EnumEntity.正常 + "}}]}";
+            query = "{$and:[" + query + ",{'StatusCode':{$eq:" + (int)EnumStatus.正常 + "}}]}";
             var res = EntityManager.GetInstance().Find<YunUser>(query, protection, sort, pageIndex, pageSize);
 
             /// SQLServer
-            var res2 = EntityManager.GetInstance().Find<YunUser>(p => p.CompanyID == SESSION.Current.CompanyID && p.AppCode == this.AppCode&&p.StatusCode==(int)EnumEntity.正常,p=>p.CreateTime,pageIndex ,pageSize,true);
+            var res2 = EntityManager.GetInstance().Find<YunUser>(p => p.CompanyID == SESSION.Current.CompanyID && p.AppCode == this.AppCode&&p.StatusCode==(int)EnumStatus.正常,p=>p.CreateTime,pageIndex ,pageSize,true);
 
             return res;
         }
@@ -337,11 +298,11 @@ namespace WangJun.App
         public List<YunUser> LoadRecycleBinEntityList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
         {
             ///MongoDB
-            query = "{$and:[" + "{}" + ",{'OwnerID':'" + SESSION.Current.CompanyID + "','AppCode':" + this.AppCode + "},{'StatusCode':{$eq:" +(int)EnumEntity.删除 + "}}]}";
+            query = "{$and:[" + "{}" + ",{'OwnerID':'" + SESSION.Current.CompanyID + "','AppCode':" + this.AppCode + "},{'StatusCode':{$eq:" +(int)EnumStatus.删除 + "}}]}";
             var res = EntityManager.GetInstance().Find<YunUser>(query, protection, sort, pageIndex, pageSize);
 
             /// SQLServer
-            var res2 = EntityManager.GetInstance().Find<YunUser>(p => p.CompanyID == SESSION.Current.CompanyID && p.AppCode == this.AppCode && p.StatusCode == (int)EnumEntity.删除,p => p.CreateTime,pageIndex ,pageSize,true).ToList();
+            var res2 = EntityManager.GetInstance().Find<YunUser>(p => p.CompanyID == SESSION.Current.CompanyID && p.AppCode == this.AppCode && p.StatusCode == (int)EnumStatus.删除,p => p.CreateTime,pageIndex ,pageSize,true).ToList();
 
             return res;
              

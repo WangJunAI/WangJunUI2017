@@ -117,6 +117,25 @@ namespace WangJun.YunNews
         }
         #endregion
 
+        #region 管理账号操作
+        public int SetManagerID(string userID,bool canManage,  string securityCode)
+        {
+            var user = YunUser.Load(userID);
+            var per1 = new YunPermisssion { };
+            per1.Allow = true;
+            per1.OperatorID = user._GID;
+            per1.OperatorName = user.Name;
+            per1.AppCode = this.CurrentApp.AppCode;
+            per1.AppName = this.CurrentApp.AppName;
+            per1.ObjectID = SUID.FromStringToGuid("FFFFFFFFFFFFFFFFFFFFFFFF");
+            per1.ObjectTypeName = "管理";
+            per1.Allow = true;
+            per1.Save();
+
+            return (int)EnumResult.成功;
+        }
+        #endregion
+
         #region 目录操作
         /// <summary>
         /// 保存一个目录
@@ -150,7 +169,7 @@ namespace WangJun.YunNews
         {
             var dict = Convertor.FromJsonToDict2(query);
  
-                query = "{$and:[" + query + ",{'CompanyID':'" + SESSION.Current.CompanyID + "','AppCode':" + this.CurrentApp.AppCode + "},{'StatusCode':{$eq:" + (int)EnumEntity.正常 + "}}]}";
+                query = "{$and:[" + query + ",{'CompanyID':'" + SESSION.Current.CompanyID + "','AppCode':" + this.CurrentApp.AppCode + "},{'StatusCode':{$eq:" + (int)EnumStatus.正常 + "}}]}";
 
             ///MongoDB
             var res = EntityManager.GetInstance().Find<YunCategory>(query, protection, sort, pageIndex, pageSize);
@@ -212,11 +231,11 @@ namespace WangJun.YunNews
         public List<YunArticle> LoadEntityList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
         {
             ///MongoDB
-            query = "{$and:[" + query + ",{'StatusCode':{$eq:" + (int)EnumEntity.正常 + "}}]}";
+            query = "{$and:[" + query + ",{'StatusCode':{$eq:" + (int)EnumStatus.正常 + "}}]}";
             var res = EntityManager.GetInstance().Find<YunArticle>(query, protection, sort, pageIndex, pageSize);
 
             /// SQLServer
-            var res2 = EntityManager.GetInstance().Find<YunArticle>(p => p.CompanyID == SESSION.Current.CompanyID && p.AppCode == this.AppCode&&p.StatusCode==(int)EnumEntity.正常,p=>p.CreateTime,pageIndex ,pageSize,true);
+            var res2 = EntityManager.GetInstance().Find<YunArticle>(p => p.CompanyID == SESSION.Current.CompanyID && p.AppCode == this.AppCode&&p.StatusCode==(int)EnumStatus.正常,p=>p.CreateTime,pageIndex ,pageSize,true);
 
             return res;
         }
@@ -276,11 +295,11 @@ namespace WangJun.YunNews
         {
             var dict = Convertor.FromJsonToDict2(query);
             var rootID=dict["RootID"].ToString();
-            query = "{$and:[" + query + ",{'StatusCode':{$eq:" +(int)EnumEntity.正常 + "}}]}";
+            query = "{$and:[" + query + ",{'StatusCode':{$eq:" +(int)EnumStatus.正常 + "}}]}";
             var res = EntityManager.GetInstance().Find<YunComment>(query, protection, sort, pageIndex, pageSize);
 
             /// SQLServer
-            var res2 = EntityManager.GetInstance().Find<YunComment>(p => p.RootID == rootID && p.CompanyID == SESSION.Current.CompanyID && p.AppCode == this.AppCode && p.StatusCode == (int)EnumEntity.正常, p => p.CreateTime, pageIndex, pageSize, true);
+            var res2 = EntityManager.GetInstance().Find<YunComment>(p => p.RootID == rootID && p.CompanyID == SESSION.Current.CompanyID && p.AppCode == this.AppCode && p.StatusCode == (int)EnumStatus.正常, p => p.CreateTime, pageIndex, pageSize, true);
 
 
             return res;
@@ -331,11 +350,11 @@ namespace WangJun.YunNews
         public List<YunArticle> LoadRecycleBinEntityList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
         {
             ///MongoDB
-            query = "{$and:[" + "{}" + ",{'OwnerID':'" + SESSION.Current.CompanyID + "','AppCode':" + this.AppCode + "},{'StatusCode':{$eq:" +(int)EnumEntity.删除 + "}}]}";
+            query = "{$and:[" + "{}" + ",{'OwnerID':'" + SESSION.Current.CompanyID + "','AppCode':" + this.AppCode + "},{'StatusCode':{$eq:" +(int)EnumStatus.删除 + "}}]}";
             var res = EntityManager.GetInstance().Find<YunArticle>(query, protection, sort, pageIndex, pageSize);
 
             /// SQLServer
-            var res2 = EntityManager.GetInstance().Find<YunArticle>(p => p.CompanyID == SESSION.Current.CompanyID && p.AppCode == this.AppCode && p.StatusCode == (int)EnumEntity.删除,p => p.CreateTime,pageIndex ,pageSize,true).ToList();
+            var res2 = EntityManager.GetInstance().Find<YunArticle>(p => p.CompanyID == SESSION.Current.CompanyID && p.AppCode == this.AppCode && p.StatusCode == (int)EnumStatus.删除,p => p.CreateTime,pageIndex ,pageSize,true).ToList();
 
             return res;
              

@@ -10,7 +10,7 @@ using WangJun.Utility;
 
 namespace WangJun.Entity
 {
-    public class BaseUser : IStatus, ISysItem,ICompany, IRelationshipGuid, IRelationshipObjectId,IApp,IOperator
+    public class BaseUser : IStatus, ISysItem,ICompany, IRelationshipGuid, IRelationshipObjectId,IApp,IOperator,ITime
     {
         public int Level { get; set; }
         public string RealName { get; set; }

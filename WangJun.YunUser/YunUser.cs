@@ -78,8 +78,8 @@ namespace WangJun.Yun
             #region IStatus
             if (null != iStatus && string.IsNullOrWhiteSpace(iStatus.Status))
             {
-                iStatus.StatusCode = (int)EnumEntity.正常;
-                iStatus.Status = EnumEntity.正常.ToString();
+                iStatus.StatusCode = (int)EnumStatus.正常;
+                iStatus.Status = EnumStatus.正常.ToString();
             }
             #endregion
 
@@ -142,10 +142,10 @@ namespace WangJun.Yun
         }
 
         #region 基本方法
-        public static YunUser CreateAsAdmin(string loginEmail,ICompany iCompany)
+        public static YunUser CreateAsSuperAdmin(string loginEmail,ICompany iCompany)
         {
             var inst = new YunUser();
-
+            inst._GID = SUID.New();
             inst.NickName = "超级管理员";
             inst.LoginEmail = loginEmail;
 
