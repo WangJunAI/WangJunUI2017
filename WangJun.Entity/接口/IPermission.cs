@@ -23,23 +23,7 @@ namespace WangJun.Entity
 
         int OperatorType { get; set; }
 
-        bool AllowDownload { get; set; }
-
-        bool AllowRead { get; set; }
-
-        bool AllowModify { get; set; }
-
-        bool AllowDelete { get; set; }
-
-        bool AllowComment { get; set; }
-
-        bool AllowFavorite { get; set; }
-
-        bool AllowLike { get; set; }
-
-        bool AllowSubmit { get; set; }
-
-        bool AllowLogin { get; set; }
+        bool Allow { get; set; } 
 
     }
 }

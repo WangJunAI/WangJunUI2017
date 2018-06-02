@@ -270,6 +270,11 @@ namespace WangJun.Entity
             return null;
         }
 
+        public object SaveFile()
+        {
+            //MongoDB.Driver.GridFS.
+            return 0;
+        }
 
     }
 }
