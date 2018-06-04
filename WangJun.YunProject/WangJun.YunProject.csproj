@@ -45,10 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API\YunProjectWebAPI1.cs" />
-    <Compile Include="Items\CategoryItem.cs" />
-    <Compile Include="Items\CommentItem.cs" />
-    <Compile Include="Items\ProjectItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="YunProjectWebAPI.cs" />
   </ItemGroup>
@@ -64,10 +60,6 @@
     <ProjectReference Include="..\WangJun.Entity\WangJun.Entity.csproj">
       <Project>{9B69D6EB-AFDB-47E3-816C-67EEA53B7784}</Project>
       <Name>WangJun.Entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WangJun.HumanResource\WangJun.HumanResource.csproj">
-      <Project>{E8A85352-0736-403A-803F-ABF4B42E6B47}</Project>
-      <Name>WangJun.HumanResource</Name>
     </ProjectReference>
     <ProjectReference Include="..\WangJun.Utility\WangJun.Utility.csproj">
       <Project>{ECA8641B-DDB9-481A-BF78-76FB5A8E1DE3}</Project>
