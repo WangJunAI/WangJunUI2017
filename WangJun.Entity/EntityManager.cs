@@ -219,9 +219,18 @@ namespace WangJun.Entity
             return list;
         }
 
-        public List<T> Find<T>(Expression<Func<T,bool>> where,Expression<Func<T, DateTime>> orderBy,int pageIndex,int pageSize,bool isDes) where T : class, new()
+        public List<T> Find<T>(Expression<Func<T,bool>> where,Expression<Func<T, DateTime>> orderBy=null,int pageIndex=0,int pageSize=int.MaxValue,bool isDes=false) where T : class, new()
         {
-            var list =  EntityManager.GetInstance<T>().List.Where(where).OrderBy(orderBy).Skip(pageIndex * pageSize).Take(pageSize).ToList();
+
+            var list = new List<T>();
+            if (null == orderBy)
+            {
+                list = EntityManager.GetInstance<T>().List.Where(where).ToList();
+            }
+            else {
+                list = EntityManager.GetInstance<T>().List.Where(where).OrderBy(orderBy).Skip(pageIndex * pageSize).Take(pageSize).ToList();
+            }
+           
 
             return list;
         }

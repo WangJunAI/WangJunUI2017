@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq; 
 using WangJun.Entity;
+using WangJun.Net;
 using WangJun.Utility;
 using WangJun.Yun;
 
@@ -146,6 +147,26 @@ namespace WangJun.App
         }
         #endregion
 
+        #region 管理账号操作
+        public int SetManagerID(string userID, string canManage, string securityCode)
+        {
+            var user = YunUser.Load(userID);
+            var per1 = new YunPermisssion { };
+            per1.Allow = true;
+            per1.OperatorID = user._GID;
+            per1.OperatorName = user.Name;
+            per1.OperatorType = (int)EnumOperatorType.用户;
+            per1.AppCode = this.CurrentApp.AppCode;
+            per1.AppName = this.CurrentApp.AppName;
+            per1.ObjectID = SUID.FromStringToGuid("FFFFFFFFFFFFFFFFFFFFFFFF");
+            per1.ObjectType = (int)EnumObjectType.应用管理;
+            per1.ObjectTypeName = EnumObjectType.应用管理.ToString();
+            per1.Save();
+
+            return (int)EnumResult.成功;
+        }
+        #endregion
+
         #region 目录操作
         /// <summary>
         /// 保存一个目录
@@ -227,6 +248,10 @@ namespace WangJun.App
             ar.Save();
 
             ///设置权限
+            
+            HTTP.GetInstance().GetString("http://localhost:9990/API.ashx?c=WangJun.YunNews.YunNewsWebAPI&m=SetManagerID&p0=" + ar.ID + "&p1=true&p2=00");
+            HTTP.GetInstance().GetString("http://localhost:9990/API.ashx?c=WangJun.YunDoc.YunDocWebAPI&m=SetManagerID&p0=" + ar.ID + "&p1=true&p2=00");
+            //HTTP.GetInstance().GetString("http://localhost:9990/API.ashx?c=WangJun.YunDoc.YunDocWebAPI&m=SetManagerID&p0=" + ar.ID + "&p1=true&p2=00");
 
             return 0;
         }

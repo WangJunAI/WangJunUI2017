@@ -72,6 +72,8 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="BaseBehavior.cs" />
+    <Compile Include="枚举\EnumOperatorType.cs" />
+    <Compile Include="枚举\EnumObjectType.cs" />
     <Compile Include="枚举\EnumBehavior.cs" />
     <Compile Include="IParse.cs" />
     <Compile Include="基础业务对象\BaseCompany.cs" />
@@ -87,7 +89,7 @@
     <Compile Include="ClientBehaviorItem.cs" />
     <Compile Include="EntityDbContext.cs" />
     <Compile Include="EntityManager.cs" />
-    <Compile Include="枚举\EnumEntity.cs" />
+    <Compile Include="枚举\EnumStatus.cs" />
     <Compile Include="接口\ICompany.cs" />
     <Compile Include="接口\IApp.cs" />
     <Compile Include="接口\ICategory.cs" />

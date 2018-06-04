@@ -92,6 +92,10 @@
       <Project>{9455d8e8-7dd4-4e03-a6ba-8c2f54601516}</Project>
       <Name>WangJun.YunCompany</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WangJun.YunUser\WangJun.YunUser.csproj">
+      <Project>{934bc61e-4a2c-4046-af08-4d5d0afff7a3}</Project>
+      <Name>WangJun.YunUser</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

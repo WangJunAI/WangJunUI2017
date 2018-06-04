@@ -17,6 +17,15 @@ namespace WangJun.Yun
             iSysItem._CollectionName = "YunPermisssion";
         }
 
+        public static List<YunPermisssion> Load(string userID)
+        {
+            var operatorID = SUID.FromStringToGuid(userID);
+            var query = string.Format("{{\"OperatorID\":UUID('{0}')}}", operatorID);
+            var permissionList = EntityManager.GetInstance().Find<YunPermisssion>(query);
+
+            var res = EntityManager.GetInstance().Find<YunPermisssion>(p => p.OperatorID == operatorID);
+            return permissionList;
+        }
         public int Save()
         {
             var iSysItem = this as ISysItem;

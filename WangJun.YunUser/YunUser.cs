@@ -97,7 +97,7 @@ namespace WangJun.Yun
 
         public static YunUser Load(string id)
         {
-            var res = EntityManager.GetInstance<YunUser>().List.Find(new object[] { id });
+            var res = EntityManager.GetInstance().Get<YunUser>(id);
             return res;
         }
 
@@ -124,6 +124,10 @@ namespace WangJun.Yun
              var query = "{'LoginEmail':'" + loginID + "'}";
             var res = EntityManager.GetInstance().Get<YunUser>("WangJun", "YunUser", query);
             var res2 = EntityManager.GetInstance().Get<YunUser>(p => p.LoginEmail == loginID);
+
+
+            ///查找权限
+            var permissionList = YunPermisssion.Load(res.ID);
 
             #region session设置
             session.UserID = res.ID;
