@@ -26,91 +26,18 @@ namespace WangJun.YunNote
         public int RegisterApp(string companyID,string securityCode)
         {
             var company = YunCompany.Load(companyID);
-
-            #region 初始化目录
-            var yunCategory0 = YunCategory.CreateAsNew("企业知识库"); ///根目录
-            yunCategory0.CompanyID = companyID;
-            yunCategory0.CompanyName = company.Name;
-            yunCategory0.AppCode = this.CurrentApp.AppCode;
-            yunCategory0.AppName = this.CurrentApp.AppName;
-            yunCategory0.Version = this.CurrentApp.Version;
-            yunCategory0.OwnerID = company.ID;
-            yunCategory0.OwnerName = company.Name;
-            yunCategory0.Save();
-
-            var yunCategory1 = YunCategory.CreateAsNew("技术标准"); ///根目录
-            yunCategory1.CompanyID = companyID;
-            yunCategory1.CompanyName = company.Name;
-            yunCategory1.AppCode = this.CurrentApp.AppCode;
-            yunCategory1.AppName = this.CurrentApp.AppName;
-            yunCategory1.Version = this.CurrentApp.Version;
-            yunCategory1.RootID = yunCategory0.ID;
-            yunCategory1.RootName = yunCategory0.Name;
-            yunCategory1.ParentID = yunCategory0.ID;
-            yunCategory1.ParentName = yunCategory0.Name;
-            yunCategory1.OwnerID = company.ID;
-            yunCategory1.OwnerName = company.Name;
-            yunCategory1.Save();
-
-            var yunCategory2 = YunCategory.CreateAsNew("管理手册");
-            yunCategory2.CompanyID = companyID;
-            yunCategory2.CompanyName = company.Name;
-            yunCategory2.AppCode = this.CurrentApp.AppCode;
-            yunCategory2.AppName = this.CurrentApp.AppName;
-            yunCategory2.Version = this.CurrentApp.Version;
-            yunCategory2.RootID = yunCategory0.ID;
-            yunCategory2.RootName = yunCategory0.Name;
-            yunCategory2.ParentID = yunCategory0.ID;
-            yunCategory2.ParentName = yunCategory0.Name;
-            yunCategory2.OwnerID = company.ID;
-            yunCategory2.OwnerName = company.Name;
-            yunCategory2.Save();
-
-            var yunCategory3 = YunCategory.CreateAsNew("营销宝典"); ///根目录
-            yunCategory3.CompanyID = companyID;
-            yunCategory3.CompanyName = company.Name;
-            yunCategory3.AppCode = this.CurrentApp.AppCode;
-            yunCategory3.AppName = this.CurrentApp.AppName;
-            yunCategory3.Version = this.CurrentApp.Version;
-            yunCategory3.RootID = yunCategory0.ID;
-            yunCategory3.RootName = yunCategory0.Name;
-            yunCategory3.ParentID = yunCategory0.ID;
-            yunCategory3.ParentName = yunCategory0.Name;
-            yunCategory3.OwnerID = company.ID;
-            yunCategory3.OwnerName = company.Name;
-            yunCategory3.Save();
-
-            var yunCategory4 = YunCategory.CreateAsNew("宣传资料"); ///自动化聚集
-            yunCategory4.CompanyID = companyID;
-            yunCategory4.CompanyName = company.Name;
-            yunCategory4.AppCode = this.CurrentApp.AppCode;
-            yunCategory4.AppName = this.CurrentApp.AppName;
-            yunCategory4.Version = this.CurrentApp.Version;
-            yunCategory4.RootID = yunCategory0.ID;
-            yunCategory4.RootName = yunCategory0.Name;
-            yunCategory4.ParentID = yunCategory0.ID;
-            yunCategory4.ParentName = yunCategory0.Name;
-            yunCategory4.OwnerID = company.ID;
-            yunCategory4.OwnerName = company.Name;
-            yunCategory4.Save();
-
-            #endregion
-            #region 初始化第一篇文章
-
-            #endregion
-
+ 
             return (int)EnumResult.成功;
         }
         #endregion
 
         #region 初始化个人应用
-        public int PersonalAppInitial()
+        public int PersonalAppInitial(string userID, string securityCode)
         {
-            var company = YunCompany.Load(SESSION.Current.CompanyID);
-            var companyID = company.CompanyID;
-            var companyName = company.CompanyID;
-            var userID = SESSION.Current.UserID;
-            var userName = SESSION.Current.UserName;
+            var user = YunUser.Load(userID); 
+             var userName = SESSION.Current.UserName;
+            var companyID = user.CompanyID;
+            var companyName = user.CompanyName;
 
             var count = EntityManager.GetInstance().Count<YunCategory>(p => p.OwnerID == userID&&p.AppCode == this.CurrentApp.AppCode);
             if (0 == count)
@@ -202,6 +129,8 @@ namespace WangJun.YunNote
             per1.ObjectID = SUID.FromStringToGuid("FFFFFFFFFFFFFFFFFFFFFFFF");
             per1.ObjectType = (int)EnumObjectType.应用管理;
             per1.ObjectTypeName = EnumObjectType.应用管理.ToString();
+            per1.CompanyID = user.CompanyID;
+            per1.CompanyName = user.CompanyName;
             per1.Save();
 
             return (int)EnumResult.成功;
@@ -286,6 +215,9 @@ namespace WangJun.YunNote
             ar.AppCode = this.CurrentApp.AppCode;
             ar.AppName = this.CurrentApp.AppName;
             ar.Version = this.CurrentApp.Version;
+            ar.OwnerID = SESSION.Current.UserID;
+            ar.OwnerName = SESSION.Current.UserName;
+
             ar.Save();
 
             return 0;

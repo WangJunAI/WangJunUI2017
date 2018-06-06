@@ -17,6 +17,7 @@ namespace WangJun.Yun
             iSysItem.ClassFullName = this.GetType().FullName;
             iSysItem._DbName = "WangJun";
             iSysItem._CollectionName = "YunBehavior";
+            this._GID = SUID.New();
         }
 
         public static void Save(

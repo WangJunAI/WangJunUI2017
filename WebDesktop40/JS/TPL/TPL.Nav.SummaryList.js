@@ -40,7 +40,7 @@ Doc.LoadSummaryListTo = function (target, data, option) {
     for (var k = 0; k < data.length; k++) {
         var item = data[k];
         listHtml += tplListItem.replace("[Title]", item.Title)
-            .replace("[Param]", item.ID).replace("[Summary]", item.PlainText).replace("[CreatorName]", item.CreatorName);
+            .replace("[Param]", item.ID).replace("[Summary]", item.Summary).replace("[CreatorName]", item.CreatorName).replace("[ParentName]", item.ParentName);
         if (true === PARAM_CHECKER.IsNotEmptyString(item.CreateTime)) {
             listHtml = listHtml.replace("[CreateTime]", Convertor.DateFormat(eval(item.CreateTime.replace(/\//g, "")), "yyyy/MM/dd hh:mm"));
         }

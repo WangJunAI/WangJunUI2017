@@ -1,6 +1,7 @@
 ﻿using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Web;
 using WangJun.DB;
 using WangJun.Utility;
@@ -10,14 +11,11 @@ namespace WangJun.Entity
     /// <summary>
     /// 全局会话服务
     /// </summary>
-    public class SESSION 
-    {
-        private static Dictionary<string, SESSION> sessionDict = new Dictionary<string, SESSION>();
-        
-        public string ID { get; set; }
+    public class SESSION  
+    { 
 
         public string LoginID { get; set; }
-
+ 
         public string UserID { get; set; }
 
         public string UserName { get; set; }
@@ -74,21 +72,13 @@ namespace WangJun.Entity
 
         public static  SESSION Get(string _SID)
         {
-            var session = SESSION.sessionDict[_SID];
-            return session;
-            
+            var dict = DataStorage.GetInstance(DBType.MongoDB).Get("WangJun", "SESSION", MongoDBFilterCreator.SearchByObjectId(_SID));
+            return Convertor.FromDictionaryToObject<SESSION>(dict);
         }
 
         public static void Set(SESSION session)
         {
-            if (!sessionDict.ContainsKey(session.UserID))
-            {
-                sessionDict.Add(session.UserID, session);
-            }
-            else
-            {
-                sessionDict[session.UserID]= session;
-            }
+            DataStorage.GetInstance(DBType.MongoDB).Save3("WangJun", "SESSION", session, MongoDBFilterCreator.SearchByObjectId(session.UserID));
         }
 
         public static SESSION Login(string loginID, string password)

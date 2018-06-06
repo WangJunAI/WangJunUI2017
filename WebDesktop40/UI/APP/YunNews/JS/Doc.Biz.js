@@ -83,6 +83,7 @@ Doc.SaveDetail = function () {
     item.Content = editor.getContent();
     item.ImageUrl = $(item.Content).find("img").attr("src");
     item.PlainText = editor.getContentTxt();
+    item.Summary = item.PlainText;
 
     var param = [Convertor.ToBase64String(JSON.stringify(item), true), { 0: "base64" }];
 

@@ -1545,7 +1545,6 @@
     <Content Include="UI\APP\YunNote\Main.html" />
     <Content Include="UI\APP\YunNote\JS\Doc.Biz.js" />
     <Content Include="UI\APP\YunNote\JS\Doc.Detail.js" />
-    <Content Include="UI\APP\YunNote\JS\Doc.js" />
     <Content Include="UI\APP\YunNote\JS\Doc.LeftMenu.js" />
     <Content Include="UI\APP\YunNote\JS\Doc.TopButton.js" />
     <Content Include="UI\APP\YunPan\AppInfo.html" />

@@ -104,19 +104,18 @@ namespace WangJun.YunDoc
         #endregion
 
         #region 初始化个人应用
-        public int PersonalAppInitial()
+        public int PersonalAppInitial(string userID, string securityCode)
         {
-            var company = YunCompany.Load(SESSION.Current.CompanyID);
-            var companyID = company.CompanyID;
-            var companyName = company.CompanyID;
-            var userID = SESSION.Current.UserID;
+            var user = YunUser.Load(userID);
             var userName = SESSION.Current.UserName;
+            var companyID = user.CompanyID;
+            var companyName = user.CompanyName;
 
-            var count = EntityManager.GetInstance().Count<YunCategory>(p => p.OwnerID == userID);
+            var count = EntityManager.GetInstance().Count<YunCategory>(p => p.OwnerID == userID && p.AppCode == this.CurrentApp.AppCode);
             if (0 == count)
             {
                 #region 初始化目录
-                var yunCategory0 = YunCategory.CreateAsNew("个人知识库"); ///根目录
+                var yunCategory0 = YunCategory.CreateAsNew("我的知识库"); ///根目录
                 yunCategory0.CompanyID = companyID;
                 yunCategory0.CompanyName = companyName;
                 yunCategory0.AppCode = this.CurrentApp.AppCode;
@@ -126,7 +125,7 @@ namespace WangJun.YunDoc
                 yunCategory0.OwnerName = userName;
                 yunCategory0.Save();
 
-                var yunCategory1 = YunCategory.CreateAsNew("知识积累"); ///根目录
+                var yunCategory1 = YunCategory.CreateAsNew("技术文摘"); ///根目录
                 yunCategory1.CompanyID = companyID;
                 yunCategory1.CompanyName = companyName;
                 yunCategory1.AppCode = this.CurrentApp.AppCode;
@@ -140,7 +139,7 @@ namespace WangJun.YunDoc
                 yunCategory1.OwnerName = userName;
                 yunCategory1.Save();
 
-                var yunCategory2 = YunCategory.CreateAsNew("经验");
+                var yunCategory2 = YunCategory.CreateAsNew("收藏文章");
                 yunCategory2.CompanyID = companyID;
                 yunCategory2.CompanyName = companyName;
                 yunCategory2.AppCode = this.CurrentApp.AppCode;
@@ -154,7 +153,7 @@ namespace WangJun.YunDoc
                 yunCategory2.OwnerName = userName;
                 yunCategory2.Save();
 
-                var yunCategory3 = YunCategory.CreateAsNew("美食"); ///根目录
+                var yunCategory3 = YunCategory.CreateAsNew("小说"); ///根目录
                 yunCategory3.CompanyID = companyID;
                 yunCategory3.CompanyName = companyName;
                 yunCategory3.AppCode = this.CurrentApp.AppCode;
@@ -166,21 +165,7 @@ namespace WangJun.YunDoc
                 yunCategory3.ParentName = yunCategory0.Name;
                 yunCategory3.OwnerID = userID;
                 yunCategory3.OwnerName = userName;
-                yunCategory3.Save();
-
-                var yunCategory4 = YunCategory.CreateAsNew("技术"); ///自动化聚集
-                yunCategory4.CompanyID = companyID;
-                yunCategory4.CompanyName = companyName;
-                yunCategory4.AppCode = this.CurrentApp.AppCode;
-                yunCategory4.AppName = this.CurrentApp.AppName;
-                yunCategory4.Version = this.CurrentApp.Version;
-                yunCategory4.RootID = yunCategory0.ID;
-                yunCategory4.RootName = yunCategory0.Name;
-                yunCategory4.ParentID = yunCategory0.ID;
-                yunCategory4.ParentName = yunCategory0.Name;
-                yunCategory4.OwnerID = userID;
-                yunCategory4.OwnerName = userName;
-                yunCategory4.Save();
+                yunCategory3.Save(); 
 
                 #endregion
             }
@@ -202,6 +187,8 @@ namespace WangJun.YunDoc
             per1.ObjectID = SUID.FromStringToGuid("FFFFFFFFFFFFFFFFFFFFFFFF");
             per1.ObjectType = (int)EnumObjectType.应用管理;
             per1.ObjectTypeName = EnumObjectType.应用管理.ToString();
+            per1.CompanyID = user.CompanyID;
+            per1.CompanyName = user.CompanyName;
             per1.Save();
 
             return (int)EnumResult.成功;
@@ -303,11 +290,12 @@ namespace WangJun.YunDoc
         public List<YunArticle> LoadEntityList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
         {
             ///MongoDB
-            query = "{$and:[" + query + ",{'StatusCode':{$eq:" + (int)EnumStatus.正常 + "}}]}";
+            query = "{$and:[" + query + ",{'StatusCode':{$eq:" + (int)EnumStatus.正常 + "}},{'AppCode':" + this.CurrentApp.AppCode + "}]}";
             var res = EntityManager.GetInstance().Find<YunArticle>(query, protection, sort, pageIndex, pageSize);
 
             /// SQLServer
-            var res2 = EntityManager.GetInstance().Find<YunArticle>(p => p.CompanyID == SESSION.Current.CompanyID && p.AppCode == this.AppCode&&p.StatusCode==(int)EnumStatus.正常,p=>p.CreateTime,pageIndex ,pageSize,true);
+            var res2 = EntityManager.GetInstance().Find<YunArticle>(p => p.CompanyID == SESSION.Current.CompanyID && p.AppCode == this.AppCode && p.StatusCode == (int)EnumStatus.正常, p => p.CreateTime, pageIndex, pageSize, true);
+
 
             return res;
         }

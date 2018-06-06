@@ -11,9 +11,10 @@ namespace WangJun.Entity
     /// </summary>
     public enum EnumObjectType
     {
-        应用管理=1,
-        文档=2,
-        评论=3,
-        文件=4
+        文档 =11,
+        评论=21,
+        文件=31,
+        应用管理 = 41,
+        应用使用 = 42,
     }
 }

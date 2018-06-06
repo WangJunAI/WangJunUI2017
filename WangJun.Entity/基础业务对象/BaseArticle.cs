@@ -17,13 +17,17 @@ namespace WangJun.Entity
         #region IArticle
         public string Title { get; set; }
 
-        public string Summary { get; set; }
+        public string Summary { get { return this.PlainText; } set { } }
 
         public string Content { get; set; }
+
+        public string PlainText { get; set; }
 
         public string ContentType { get; set; }
 
         public int Level { get; set; }
+
+        public string ImageUrl { get; set; }
         #endregion
 
         #region IRelationshipGuid
@@ -181,6 +185,17 @@ namespace WangJun.Entity
 
         public string _SourceID { get; set; }
 
+        #endregion
+
+        #region IName
+
+        public string Name { get; set; }
+
+        public string ParentName { get; set; }
+
+        public string RootName { get; set; }
+
+        public string Path { get; set; }
         #endregion
 
         #region 权限控制

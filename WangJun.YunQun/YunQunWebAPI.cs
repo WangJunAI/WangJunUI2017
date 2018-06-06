@@ -162,6 +162,8 @@ namespace WangJun.YunQun
             per1.ObjectID = SUID.FromStringToGuid("FFFFFFFFFFFFFFFFFFFFFFFF");
             per1.ObjectType = (int)EnumObjectType.应用管理;
             per1.ObjectTypeName = EnumObjectType.应用管理.ToString();
+            per1.CompanyID = user.CompanyID;
+            per1.CompanyName = user.CompanyName;
             per1.Save();
 
             return (int)EnumResult.成功;

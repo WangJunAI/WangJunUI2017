@@ -17,6 +17,7 @@ namespace WangJun.Entity
         string ContentType { get; set; }
 
 
+         string ImageUrl { get; set; }
 
     }
 }

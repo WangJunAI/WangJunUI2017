@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,8 +8,10 @@ using WangJun.Utility;
 
 namespace WangJun.Entity
 {
-    public class BaseBehavior:ICompany, ISysItem
+    public class BaseBehavior : ICompany, ISysItem
     {
+        [Key]
+        public Guid _GID{ get; set; }
         public int OperateTypeCode { get; set; }///点赞，收藏
 
         public string OperateType { get; set; }///点赞，收藏
@@ -31,7 +34,7 @@ namespace WangJun.Entity
 
         public string _CollectionName { get; set; }
 
-        public string ID { get; set; }
+        public string ID { get { return SUID.FromGuidToObjectId(this._GID).ToString(); } set { this._GID = SUID.FromStringToGuid(value); } }
 
         #endregion
 

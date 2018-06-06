@@ -188,10 +188,10 @@
                             $("[data-propertyName='UserAllowedArrayText']").attr("data-propertyvalue", "已选中 " + treeNode.Name + fix + idArray.length + "人");
                         },
                     });
-                    Doc.LoadDetail();
+                    
 
                 }); ///加载目录
-
+                Doc.LoadDetail();
             }
             Doc.Initial(SESSION.Current().CanManageYunNote, clientCallback, clientCallback);//初始化
         });

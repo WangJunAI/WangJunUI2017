@@ -31,7 +31,7 @@ namespace WangJun.Entity
 
         #region IName
 
-        public string Name { get; set; }
+        public string Name { get { return this.NickName; } set { this.NickName = value; } }
 
         public string ParentName { get; set; }
 

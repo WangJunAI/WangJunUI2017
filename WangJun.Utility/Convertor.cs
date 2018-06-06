@@ -142,7 +142,7 @@ namespace WangJun.Utility
                 {
                     var name = property.Name;
                     var value = property.GetValue(data, null);
-                    if (property.CanRead)
+                    if (property.CanRead&& !property.GetMethod.IsStatic) ///实体非静态
                     {
 
                         #region 若是单个实体

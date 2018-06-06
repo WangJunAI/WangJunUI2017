@@ -161,6 +161,8 @@ namespace WangJun.App
             per1.ObjectID = SUID.FromStringToGuid("FFFFFFFFFFFFFFFFFFFFFFFF");
             per1.ObjectType = (int)EnumObjectType.应用管理;
             per1.ObjectTypeName = EnumObjectType.应用管理.ToString();
+            per1.CompanyID = user.CompanyID;
+            per1.CompanyName = user.CompanyName;
             per1.Save();
 
             return (int)EnumResult.成功;
@@ -277,6 +279,16 @@ namespace WangJun.App
             return res;
         }
 
+
+        public List<object> LoadAll()
+        {
+            var list1 = this.LoadCategoryList("{}");
+            var list2 = this.LoadEntityList("{}");
+            var list = new List<object>();
+              list.AddRange(list1);
+            list.AddRange(list2);
+            return list;
+        }
 
         /// <summary>
         /// 删除一个目录
