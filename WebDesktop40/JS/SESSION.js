@@ -88,7 +88,7 @@ SESSION.Initial = function () {
             $("[data-PropertyName='Name']").text(SESSION.Current().UserName);
             $("[data-PropertyName='Position']").text(SESSION.Current().Position);
         }
-        if (("Detail" === pageName || "Category" === pageName) && true === SESSION.Current().IsSuperAdmin) {
+        if (("Detail.Company" === pageName || "Category.Company" === pageName) && true === SESSION.Current().IsSuperAdmin) {
             $('<input type="hidden" data-FormName="Default" data-propertyName="OwnerID" />').appendTo(document.body);
             $("[data-propertyName='OwnerID']").attr("data-PropertyValue", SESSION.Current().CompanyID);
         }

@@ -56,7 +56,7 @@ Doc.LeftMenuClick = function (id) {
     }
     else if ("LeftMenu.企业知识库" == id) {
   
-        var query = {};
+        var query =  { OwnerID: SESSION.Current().CompanyID };
         Doc.ShowView3();
         Doc.LoadTopButton(topButtonId);
         Doc.LoadData_Category([JSON.stringify({ OwnerID: SESSION.Current().CompanyID }), "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], { header: "小提示：修改目录双击即可" }); });

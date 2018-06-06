@@ -164,7 +164,7 @@
                 $(".global").width(window.parent.$("#content").width() - 30);
                 UE.getEditor('editor', { autoHeightEnabled: false, initialFrameWidth: $(".global").width() }); ///创建编辑器
 
-                Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) {
+                Doc.LoadData_Category([JSON.stringify({ _RedirectID: null, OwnerID: SESSION.Current().UserID, 'StatusCode': { $ne: -1 } }), "{}", "{}", 0, 1000], function (res1) {
                     Doc.LoadTreeTo("#category", res1, [], {
                         Click: function (event, treeId, treeNode) {
                             $('#category').hide();
