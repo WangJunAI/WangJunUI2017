@@ -188,8 +188,9 @@
                         },
                         header: $("#tplDroplistHeader").html(),
                     });
-                    Doc.LoadDetail();
+                    
                 }); ///加载目录
+                Doc.LoadDetail();
             }
             Doc.Initial(SESSION.Current().CanManageYunDoc, clientCallback, clientCallback);//初始化
         });

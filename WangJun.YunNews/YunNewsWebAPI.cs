@@ -132,7 +132,7 @@ namespace WangJun.YunNews
 
             //var res = EntityManager.GetInstance().Find<YunPermisssion>(p=>p.OperatorID == user._GID &&)
 
-            var per1 = new YunPermisssion { };
+            var per1 = new YunPermission { };
             per1.Allow = true.ToString().ToLower() == canManage.ToString().ToLower();
             per1.OperatorID = user._GID;
             per1.OperatorName = user.Name;

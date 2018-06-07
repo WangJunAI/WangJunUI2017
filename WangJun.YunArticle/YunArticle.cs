@@ -76,6 +76,26 @@ namespace WangJun.Yun
             }
             #endregion
 
+            #region 权限保存
+            if (null != this.UserAllowedArray)
+            {
+                foreach (string userItem in this.UserAllowedArray)
+                {
+                    var permission = new YunPermission
+                    {
+                        ObjectID = this._GID,
+                        ObjectType = (int)EnumObjectType.文档,
+                        ObjectTypeName = EnumObjectType.文档.ToString()  ,
+                        OperatorID = SUID.FromStringToGuid(userItem),
+                        OperatorName = "暂空",
+                        OperatorType = (int)EnumObjectType.用户,
+                        Allow = true
+                    };
+                    permission.Save();
+                }
+            }
+            #endregion
+
             #region iSysItem
             if (null != iSysItem)
             {
@@ -83,6 +103,9 @@ namespace WangJun.Yun
                 return (int)EnumResult.成功;
             }
             #endregion
+
+
+            
 
 
 

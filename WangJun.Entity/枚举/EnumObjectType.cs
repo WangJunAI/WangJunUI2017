@@ -16,5 +16,6 @@ namespace WangJun.Entity
         文件=31,
         应用管理 = 41,
         应用使用 = 42,
+        用户=51
     }
 }

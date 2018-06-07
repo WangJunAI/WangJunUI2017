@@ -151,7 +151,7 @@ namespace WangJun.App
         public int SetManagerID(string userID, string canManage, string securityCode)
         {
             var user = YunUser.Load(userID);
-            var per1 = new YunPermisssion { };
+            var per1 = new YunPermission { };
             per1.Allow = true;
             per1.OperatorID = user._GID;
             per1.OperatorName = user.Name;
