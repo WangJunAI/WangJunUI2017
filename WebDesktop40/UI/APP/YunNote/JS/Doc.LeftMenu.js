@@ -64,8 +64,8 @@ Doc.LeftMenuClick = function (id) {
 
         Doc.LoadTopButton(topButtonId);
         var listQuery = JSON.stringify({ '_RedirectID': { '$ne': null }, OwnerID: SESSION.Current().UserID, 'StatusCode': { $ne: -1 } });
-
-        Doc.LoadData_Doc(context = [listQuery, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size], function (res2) { Doc.LoadSummaryListTo("#leftList", res2); });
+         
+        NET.PostData(App.Doc.Server.Url81, function (res2) { Doc.LoadSummaryListTo("#leftList", res2); },   [listQuery, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size]);
 
         Doc.SetQuery(listQuery);
 

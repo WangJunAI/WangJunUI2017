@@ -40,6 +40,8 @@ App.Doc.Server = {
     Url18: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunNote.DocWebAPI&m=RecycleBinCount",///回收站数量
     Url19: App.Doc.ServerHost + "/API.ashx?c=WangJun.App.YunUserAPI&m=LoadAll",///回收站数量
     Url90: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunNote.YunNoteWebAPI&m=EmptyRecycleBin",///加载回收站
+    Url81: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunNote.YunNoteWebAPI&m=LoadShareArticleList",///加载回收站
+
 };
 
 

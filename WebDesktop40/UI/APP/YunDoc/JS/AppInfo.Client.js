@@ -43,6 +43,7 @@ App.Doc.Server = {
     Url19: App.Doc.ServerHost + "/API.ashx?c=WangJun.App.YunUserAPI&m=LoadAll",///回收站数量
     Url90: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunDoc.YunDocWebAPI&m=EmptyRecycleBin",///加载回收站
     Url91: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunDoc.YunDocWebAPI&m=DeleteEntity",///加载回收站
+    Url81: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunDoc.YunDocWebAPI&m=LoadShareArticleList",///加载回收站
 
 };
 
@@ -171,6 +172,28 @@ App.Doc.Data.DocTable.Info.Pager.PagerIndexClick = function () {
     var index = $(event.target).attr("data-Index");
     var query = Doc.GetQuery();
     Doc.LoadTable(parseInt(index), App.Doc.Data.Pager.Size, query, App.Doc.Data.DocTable.Info);
+}
+
+App.Doc.Data.ShareTable = {};
+App.Doc.Data.ShareTable.Info = {
+    Column: [],
+    Pager: {
+        Url: App.Doc.Server.Url2, PagerIndexClick: function () { }
+    },
+    Data: { Url: App.Doc.Server.Url81 },
+    RowClickDetailUrl: "Detail.html?"
+}
+App.Doc.Data.ShareTable.Info.Column.push({ ID: "", Text: "全选", Method: "", Sort: "", PropertyName: "Type", DataType: "checkbox" });
+App.Doc.Data.ShareTable.Info.Column.push({ ID: "", Text: "标题", Method: "Doc.TableRowClick", Sort: "", PropertyName: "Title", DataType: "string" });
+App.Doc.Data.ShareTable.Info.Column.push({ ID: "", Text: "目录", Method: "", Sort: "", PropertyName: "ParentName", DataType: "string" });
+App.Doc.Data.ShareTable.Info.Column.push({ ID: "", Text: "创建时间", Method: "", Sort: "", PropertyName: "CreateTime", DataType: "date" });
+App.Doc.Data.ShareTable.Info.Column.push({ ID: "", Text: "详细", Method: "", Sort: "", PropertyName: "Type", DataType: "link", Value: "详细" });
+
+App.Doc.Data.ShareTable.Info.Pager.PagerIndexClick = function () {
+    LOGGER.Log("App.Doc.Data.ShareTable.Info.Pager.PagerIndexClick");
+    var index = $(event.target).attr("data-Index");
+    var query = Doc.GetQuery();
+    Doc.LoadTable(parseInt(index), App.Doc.Data.Pager.Size, query, App.Doc.Data.ShareTable.Info);
 }
 
 App.Doc.Data.RecycleBin = {};
