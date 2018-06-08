@@ -39,10 +39,12 @@ App.Doc.Server = {
     Url16: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunQun.DocWebAPI&m=Aggregate",///聚合查询
     Url17: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunQun.ClientBehaviorManager&m=Aggregate",
     Url18: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunQun.DocWebAPI&m=RecycleBinCount",///回收站数量
-    Url19: App.Doc.ServerHost + "/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=LoadAll",///回收站数量
+    Url19: App.Doc.ServerHost + "/API.ashx?c=WangJun.App.YunUserAPI&m=LoadAll",///回收站数量
     Url90: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=EmptyRecycleBin",///加载回收站
     Url70: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=SaveComment",
-    Url71: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=LoadCommentList"
+    Url71: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=LoadCommentList",
+    Url81: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=LoadShareArticleList",///加载回收站
+
 };
 
 

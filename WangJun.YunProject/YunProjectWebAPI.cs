@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using WangJun.Config;
 using WangJun.Entity;
 using WangJun.Utility;
@@ -203,6 +204,32 @@ namespace WangJun.YunProject
             ar.AppName = this.CurrentApp.AppName;
             ar.Version = this.CurrentApp.Version;
             ar.Save();
+
+
+            #region 权限保存
+            if (null != ar.UserAllowedArray)
+            {
+                foreach (string userItem in ar.UserAllowedArray)
+                {
+                    var permission = new YunPermission
+                    {
+                        ObjectID = ar._GID,
+                        ObjectType = (int)EnumObjectType.文档,
+                        ObjectTypeName = EnumObjectType.文档.ToString(),
+                        OperatorID = SUID.FromStringToGuid(userItem),
+                        OperatorName = YunUser.Load(userItem).Name,
+                        OperatorType = (int)EnumObjectType.用户,
+                        Allow = true,
+                        BehaviorType = (int)EnumBehaviorType.参与评论,
+                        AppCode = this.AppCode,
+                        AppName = this.AppName,
+                        Version = this.Version
+
+                    };
+                    permission.Save();
+                }
+            }
+            #endregion
 
             return 0;
         }
@@ -457,5 +484,22 @@ namespace WangJun.YunProject
         }
         #endregion
 
+        #region 获取分享列表
+        public List<YunArticle> LoadShareArticleList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
+        {
+            var list = new List<YunArticle>();
+            var objectIDList = YunPermission.LoadSharePermission(SESSION.Current.UserID, this.AppCode, (int)EnumBehaviorType.参与评论).Select(p => p.ObjectID);
+            query = "{{ _GID: {{ $in: [ {0} ] }} }}";
+            var stringBuilder = new StringBuilder();
+            foreach (var objectID in objectIDList)
+            {
+                stringBuilder.AppendFormat(",UUID('{0}')", objectID);
+            }
+            query = string.Format(query, stringBuilder.ToString().Trim(','));
+            list = EntityManager.GetInstance().Find<YunArticle>(query);
+            var res2 = EntityManager.GetInstance().Find<YunArticle>((p => objectIDList.Contains(p._GID)));
+            return list;
+        }
+        #endregion
     }
 }
