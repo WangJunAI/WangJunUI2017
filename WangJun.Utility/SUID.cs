@@ -59,6 +59,26 @@ namespace WangJun.Utility
             return target;
         }
 
+        public static Guid CreateNewID(Guid[] array)
+        {
+            if (null != array)
+            {
+                var guidByteLength = Guid.Empty.ToByteArray().Length;
+                var byteArray = new byte[array.Length*guidByteLength];
+                for (int m = 0; m < array.Length; m++)
+                {
+                    var itemByteArray = array[m].ToByteArray();
+                    for (int k = 0; k < guidByteLength; k++)
+                    {
+                        byteArray[m * guidByteLength + k] = itemByteArray[k];
+                    }
+                }
+
+                return  SUID.FromStringToGuid(Convertor.Encode_MD5(byteArray));
+            }
+            return Guid.Empty;
+        }
+
         public static Guid FromMD5ToGuid(byte[] md5Array) {
             return new Guid(md5Array);
         }

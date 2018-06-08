@@ -127,7 +127,7 @@ namespace WangJun.Yun
 
 
             ///查找权限
-            var permissionList = YunPermission.Load(res.ID);
+            var permissionList = YunPermission.LoadAppPermission(res.ID);
 
             #region session设置
             session.UserID = res.ID;

@@ -15,17 +15,54 @@ namespace WangJun.Yun
             iSysItem.ClassFullName = this.GetType().FullName;
             iSysItem._DbName = "WangJun";
             iSysItem._CollectionName = "YunPermisssion";
+            var iTime = this as ITime;
+            iTime.CreateTime = DateTime.Now;
+            iTime.UpdateTime = DateTime.Now;
         }
 
-        public static List<YunPermission> Load(string userID)
+        public static List<YunPermission> Load(string userID,string objectID,int appCode,int behaviorType)
         {
             var operatorID = SUID.FromStringToGuid(userID);
-            var query = string.Format("{{\"OperatorID\":UUID('{0}')}}", operatorID);
+            var query = string.Format("{{'OperatorID':UUID('{0}'),'ObjectID':UUID('{0}')}}", operatorID, objectID);
             var permissionList = EntityManager.GetInstance().Find<YunPermission>(query);
 
             var res = EntityManager.GetInstance().Find<YunPermission>(p => p.OperatorID == operatorID);
             return permissionList;
         }
+
+        public static List<YunPermission> LoadAppPermission(string userID)
+        {
+            var operatorID = SUID.FromStringToGuid(userID);
+            var query = string.Format("{{'OperatorID':UUID('{0}')}}", operatorID);
+            var permissionList = EntityManager.GetInstance().Find<YunPermission>(query);
+
+            var res = EntityManager.GetInstance().Find<YunPermission>(p => p.OperatorID == operatorID);
+            return permissionList;
+        }
+
+        public static List<YunPermission> LoadSharePermission(string userID, long appCode,int behaviorType)
+        {
+            var operatorID = SUID.FromStringToGuid(userID);
+            var query = string.Format("{{'OperatorID':UUID('{0}'),'AppCode':{1},'BehaviorType':{2}}}", operatorID, appCode, behaviorType);
+            var permissionList = EntityManager.GetInstance().Find<YunPermission>(query);
+
+            var res = EntityManager.GetInstance().Find<YunPermission>(p => p.OperatorID == operatorID && p.AppCode == appCode);
+            return permissionList;
+        }
+
+        public static List<YunPermission> LoadArticlePermission(string userID, string objectID)
+        {
+            var operatorID = SUID.FromStringToGuid(userID);
+            var articleID = SUID.FromStringToGuid(objectID);
+            var query = string.Format("{{'ObjectID':UUID('{0}'),'OperatorID':UUID('{0}')}}", articleID, operatorID);
+            var permissionList = EntityManager.GetInstance().Find<YunPermission>(query);
+
+            var res = EntityManager.GetInstance().Find<YunPermission>(p => p.OperatorID == operatorID && p.ObjectID == articleID);
+            return permissionList;
+
+        }
+
+
         public int Save()
         {
             var iSysItem = this as ISysItem;
@@ -39,5 +76,11 @@ namespace WangJun.Yun
             }
             return (int)EnumResult.失败;
         }
+
+        public static int Remove(string id)
+        {
+            return 0;
+        }
+         
     }
 }

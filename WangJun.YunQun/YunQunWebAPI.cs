@@ -159,7 +159,7 @@ namespace WangJun.YunQun
             per1.OperatorType = (int)EnumOperatorType.用户;
             per1.AppCode = this.CurrentApp.AppCode;
             per1.AppName = this.CurrentApp.AppName;
-            per1.ObjectID = SUID.FromStringToGuid("FFFFFFFFFFFFFFFFFFFFFFFF");
+            per1.ObjectID = SUID.FromStringToGuid("FFFFFFFFFFFFFF" + this.AppCode);
             per1.ObjectType = (int)EnumObjectType.应用管理;
             per1.ObjectTypeName = EnumObjectType.应用管理.ToString();
             per1.CompanyID = user.CompanyID;
@@ -446,7 +446,7 @@ namespace WangJun.YunQun
         /// <returns></returns>
         public object AddLikeCount(string id)
         { 
-            YunBehavior.Save(operateTypeCode: (int)EnumBehavior.点赞, operateType: EnumBehavior.点赞.ToString()
+            YunBehavior.Save(operateTypeCode: (int)EnumBehaviorType.点赞, operateType: EnumBehaviorType.点赞.ToString()
                                          , targetTypeCode: (int)EnumBizType.文章, targetType: EnumBizType.文章.ToString()
                                          , operatorID: SUID.FromStringToGuid(SESSION.Current.UserID), operatorName: SESSION.Current.UserName
                                          , targetID: SUID.FromStringToGuid(id), targetName: "暂空"
@@ -464,7 +464,7 @@ namespace WangJun.YunQun
         /// <returns></returns>
         public object AddFavoriteCount(string id)
         {
-            YunBehavior.Save(operateTypeCode: (int)EnumBehavior.收藏, operateType: EnumBehavior.收藏.ToString()
+            YunBehavior.Save(operateTypeCode: (int)EnumBehaviorType.收藏, operateType: EnumBehaviorType.收藏.ToString()
                                          , targetTypeCode: (int)EnumBizType.文章, targetType: EnumBizType.文章.ToString()
                                          , operatorID: SUID.FromStringToGuid(SESSION.Current.UserID), operatorName: SESSION.Current.UserName
                                          , targetID: SUID.FromStringToGuid(id), targetName: "暂空"
@@ -485,7 +485,7 @@ namespace WangJun.YunQun
         #region ClientRead
         public int ClientRead(string id)
         {
-             YunBehavior.Save(operateTypeCode: (int)EnumBehavior.阅读, operateType: EnumBehavior.阅读.ToString()
+             YunBehavior.Save(operateTypeCode: (int)EnumBehaviorType.阅读, operateType: EnumBehaviorType.阅读.ToString()
                              , targetTypeCode: (int)EnumBizType.文章, targetType: EnumBizType.文章.ToString()
                              , operatorID: SUID.FromStringToGuid(SESSION.Current.UserID), operatorName: SESSION.Current.UserName
                              , targetID: SUID.FromStringToGuid(id), targetName: "暂空"

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using WangJun.Config;
 using WangJun.Entity;
 using WangJun.Utility;
@@ -184,7 +185,7 @@ namespace WangJun.YunDoc
             per1.OperatorType = (int)EnumOperatorType.用户;
             per1.AppCode = this.CurrentApp.AppCode;
             per1.AppName = this.CurrentApp.AppName;
-            per1.ObjectID = SUID.FromStringToGuid("FFFFFFFFFFFFFFFFFFFFFFFF");
+            per1.ObjectID = SUID.FromStringToGuid("FFFFFFFFFFFFFF" + this.AppCode);
             per1.ObjectType = (int)EnumObjectType.应用管理;
             per1.ObjectTypeName = EnumObjectType.应用管理.ToString();
             per1.CompanyID = user.CompanyID;
@@ -274,6 +275,31 @@ namespace WangJun.YunDoc
             ar.AppName = this.CurrentApp.AppName;
             ar.Version = this.CurrentApp.Version;
             ar.Save();
+
+            #region 权限保存
+            if (null != ar.UserAllowedArray)
+            {
+                foreach (string userItem in ar.UserAllowedArray)
+                {
+                    var permission = new YunPermission
+                    {
+                        ObjectID = ar._GID,
+                        ObjectType = (int)EnumObjectType.文档,
+                        ObjectTypeName = EnumObjectType.文档.ToString(),
+                        OperatorID = SUID.FromStringToGuid(userItem),
+                        OperatorName = YunUser.Load(userItem).Name,
+                        OperatorType = (int)EnumObjectType.用户,
+                        Allow = true,
+                        BehaviorType = (int)EnumBehaviorType.分享阅读,
+                        AppCode = this.AppCode,
+                        AppName = this.AppName,
+                        Version = this.Version
+                        
+                    };
+                    permission.Save();
+                }
+            }
+            #endregion
 
             return 0;
         }
@@ -472,7 +498,7 @@ namespace WangJun.YunDoc
         /// <returns></returns>
         public object AddLikeCount(string id)
         { 
-            YunBehavior.Save(operateTypeCode: (int)EnumBehavior.点赞, operateType: EnumBehavior.点赞.ToString()
+            YunBehavior.Save(operateTypeCode: (int)EnumBehaviorType.点赞, operateType: EnumBehaviorType.点赞.ToString()
                                          , targetTypeCode: (int)EnumBizType.文章, targetType: EnumBizType.文章.ToString()
                                          , operatorID: SUID.FromStringToGuid(SESSION.Current.UserID), operatorName: SESSION.Current.UserName
                                          , targetID: SUID.FromStringToGuid(id), targetName: "暂空"
@@ -490,7 +516,7 @@ namespace WangJun.YunDoc
         /// <returns></returns>
         public object AddFavoriteCount(string id)
         {
-            YunBehavior.Save(operateTypeCode: (int)EnumBehavior.收藏, operateType: EnumBehavior.收藏.ToString()
+            YunBehavior.Save(operateTypeCode: (int)EnumBehaviorType.收藏, operateType: EnumBehaviorType.收藏.ToString()
                                          , targetTypeCode: (int)EnumBizType.文章, targetType: EnumBizType.文章.ToString()
                                          , operatorID: SUID.FromStringToGuid(SESSION.Current.UserID), operatorName: SESSION.Current.UserName
                                          , targetID: SUID.FromStringToGuid(id), targetName: "暂空"
@@ -511,7 +537,7 @@ namespace WangJun.YunDoc
         #region ClientRead
         public int ClientRead(string id)
         {
-             YunBehavior.Save(operateTypeCode: (int)EnumBehavior.阅读, operateType: EnumBehavior.阅读.ToString()
+             YunBehavior.Save(operateTypeCode: (int)EnumBehaviorType.阅读, operateType: EnumBehaviorType.阅读.ToString()
                              , targetTypeCode: (int)EnumBizType.文章, targetType: EnumBizType.文章.ToString()
                              , operatorID: SUID.FromStringToGuid(SESSION.Current.UserID), operatorName: SESSION.Current.UserName
                              , targetID: SUID.FromStringToGuid(id), targetName: "暂空"
@@ -526,6 +552,24 @@ namespace WangJun.YunDoc
         {
             //return ClientBehaviorItem.LoadByDBID(id);
             return null;
+        }
+        #endregion
+
+        #region 获取分享列表
+        public List<YunArticle> LoadShareArticleList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
+        {
+            var list = new List<YunArticle>();
+            var objectIDList = YunPermission.LoadSharePermission(SESSION.Current.UserID, this.AppCode, (int)EnumBehaviorType.分享阅读).Select(p=>p.ObjectID);
+             query = "{{ _GID: {{ $in: [ {0} ] }} }}";
+            var stringBuilder = new StringBuilder();
+            foreach (var objectID in objectIDList)
+            {
+                stringBuilder.AppendFormat(",UUID('{0}')", objectID);
+            }
+            query = string.Format(query,stringBuilder.ToString().Trim(','));
+            list=EntityManager.GetInstance().Find<YunArticle>(query);
+            var res2 = EntityManager.GetInstance().Find<YunArticle>(( p=>objectIDList.Contains(p._GID)));
+             return list;
         }
         #endregion
 

@@ -48,10 +48,10 @@ Doc.LeftMenuClick = function (id) {
         Doc.SetQuery(query); 
     }
     else if ("LeftMenu.与我共享" == id) {
-        var query = [{ '_RedirectID': { '$ne': null }, OwnerID: SESSION.Current().UserID, 'StatusCode': { $ne: -1 } }, {}, { CreateTime: -1 }];
+        var query = [5];
         Doc.ShowView2();
         Doc.LoadTopButton(topButtonId);
-        Doc.LoadTable(0, App.Doc.Data.Pager.Size, query, App.Doc.Data.DocTable.Info);
+        Doc.LoadTable(0, App.Doc.Data.Pager.Size, query, App.Doc.Data.ShareTable.Info);
         Doc.SetQuery(query);
     }
     else if ("LeftMenu.企业知识库" == id) {
