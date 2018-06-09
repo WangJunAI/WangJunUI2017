@@ -40,8 +40,8 @@ App.Doc.Server = {
     Url19: App.Doc.ServerHost + "/API.ashx?c=WangJun.App.YunUserAPI&m=LoadAll",///回收站数量
     Url90: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunProject.YunProjectWebAPI&m=EmptyRecycleBin",///加载回收站
     Url70: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunProject.YunProjectWebAPI&m=SaveComment",
-    Url71: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunProject.YunProjectWebAPI&m=LoadCommentList"
-
+    Url71: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunProject.YunProjectWebAPI&m=LoadCommentList",
+    Url81: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunProject.YunProjectWebAPI&m=LoadShareArticleList",///加载回收站
 };
 
 

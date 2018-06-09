@@ -76,6 +76,13 @@ namespace WangJun.Admin
             HTTP.GetInstance().GetString("http://localhost:9990/API.ashx?c=WangJun.YunProject.YunProjectWebAPI&m=PersonalAppInitial&p0=" + userID + "&p1=01");
             HTTP.GetInstance().GetString("http://localhost:9990/API.ashx?c=WangJun.YunProject.YunProjectWebAPI&m=SetManagerID&p0=" + userID + "&p1=true&p2=00");
             #endregion
+
+            #region 初始化云盘服务App和管理权限 
+            HTTP.GetInstance().GetString("http://localhost:9990/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=RegisterApp&p0=" + companyID + "&p1=01");
+            HTTP.GetInstance().GetString("http://localhost:9990/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=PersonalAppInitial&p0=" + userID + "&p1=01");
+            HTTP.GetInstance().GetString("http://localhost:9990/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=SetManagerID&p0=" + userID + "&p1=true&p2=00");
+            #endregion
+
             return 0;
         }
         #endregion

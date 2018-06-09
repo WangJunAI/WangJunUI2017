@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using WangJun.Utility;
+using MongoDB.Driver.GridFS;
+using System.IO;
 
 namespace WangJun.DB
 {
@@ -567,5 +569,30 @@ namespace WangJun.DB
         }
         #endregion
 
+
+        #region 存储文件
+
+        public string SaveFile(string sourceFileUrl,string fileName) {
+            var db = this.client.GetDatabase("WangJunFile");
+            GridFSBucketOptions gfbOptions = new GridFSBucketOptions()
+            {
+                BucketName = "file1",
+                ChunkSizeBytes = 1 * 1024 * 1024,
+                ReadConcern = null,
+                ReadPreference = null,
+                WriteConcern = null
+            };
+            var bucket = new GridFSBucket(db, new GridFSBucketOptions
+            {
+                BucketName = "file1",
+                ChunkSizeBytes = 1048576, // 1MB  
+                WriteConcern = WriteConcern.WMajority,
+                ReadPreference = ReadPreference.Secondary
+            });
+            var fileStream = new FileStream(@"F:\test.txt",FileMode.Open);
+            var id = bucket.UploadFromStream("test.txt", fileStream);
+            return "";
+        }
+        #endregion
     }
 }

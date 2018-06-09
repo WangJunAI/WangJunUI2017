@@ -6,6 +6,7 @@ using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WangJun.DB;
 using WangJun.Entity;
 using WangJun.Utility;
 using WangJun.YunNews;
@@ -16,7 +17,8 @@ namespace WangJun.EntityHostApp
     {
         static void Main(string[] args)
         {
-            var res = SUID.FromObjectIdToGuid(ObjectId.GenerateNewId());
+            var db = DataStorage.GetInstance(DBType.MongoDB);
+            db.SaveFile("","");
         }
     }
 }

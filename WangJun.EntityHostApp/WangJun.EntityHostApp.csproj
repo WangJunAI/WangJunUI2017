@@ -74,6 +74,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WangJun.DB\WangJun.DB.csproj">
+      <Project>{A0BEDC3E-2B61-4027-BD4B-FDAB0DF38659}</Project>
+      <Name>WangJun.DB</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WangJun.Entity\WangJun.Entity.csproj">
       <Project>{9B69D6EB-AFDB-47E3-816C-67EEA53B7784}</Project>
       <Name>WangJun.Entity</Name>
@@ -86,6 +90,9 @@
       <Project>{b3539da2-9c83-47f4-be30-df49f932bf20}</Project>
       <Name>WangJun.YunNews</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="YunConfig.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
