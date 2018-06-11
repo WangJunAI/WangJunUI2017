@@ -92,6 +92,7 @@ Doc.SaveDetail = function () {
         LOGGER.Log(res);
         Doc.SubmitEnd(submitId);
         Doc.CloseWindow();
+        top.window.Doc.LeftMenuClick("LeftMenu.企业新闻");
     }
     NET.PostData(App.Doc.Server.Url4, callback, param);
 }

@@ -45,7 +45,7 @@ namespace WangJun.Yun
             #region ITime
             if (null != iTime && iTime.CreateTime == DateTime.MinValue) ///新对象
             {
-                iTime.CreateTime = DateTime.Now.AddDays(new Random().Next(-90, 0));
+                iTime.CreateTime = DateTime.Now;
                 iTime.UpdateTime = DateTime.Now;
             }
             #endregion
