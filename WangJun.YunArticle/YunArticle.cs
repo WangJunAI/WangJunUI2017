@@ -106,7 +106,7 @@ namespace WangJun.Yun
 
         public static int Delete(string id)
         {
-            return EntityManager.GetInstance().Delete<YunArticle>(id);
+            return EntityManager.GetInstance().DeleteOne<YunArticle>(id);
         }
 
         #region 基本方法

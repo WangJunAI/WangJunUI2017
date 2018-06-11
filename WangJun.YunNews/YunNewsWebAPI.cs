@@ -480,14 +480,7 @@ namespace WangJun.YunNews
             }
             return (int)EnumResult.失败;
         }
-
-        public object GetBehaviorCount(string id)
-        {
-            var existQuery = "{'UserID':ObjectId('[1]'),'DbID':ObjectId('[2]'),'BehaviorCode':{{in:[[3],[4]]}}".Replace("[1]", SESSION.Current.UserID).Replace("[2]", id).Replace("[3]", ClientBehaviorItem.BehaviorType.收藏.ToString()).Replace("[4]", ClientBehaviorItem.BehaviorType.点赞.ToString());
-
-            var res = EntityManager.GetInstance().Find<ClientBehaviorItem>("WangJun", "ClientBehavior", existQuery, "{}", "{}", 0, int.MaxValue);
-            return res;
-        }
+ 
         #endregion
 
         #region 
@@ -499,7 +492,7 @@ namespace WangJun.YunNews
                 YunBehavior.Save(operateTypeCode: (int)EnumBehaviorType.阅读, operateType: EnumBehaviorType.阅读.ToString()
                              , targetTypeCode: (int)EnumBizType.文章, targetType: EnumBizType.文章.ToString()
                              , operatorID: SUID.FromStringToGuid(SESSION.Current.UserID), operatorName: SESSION.Current.UserName
-                             , targetID: SUID.FromStringToGuid(id), targetName: "暂空"
+                             , targetID: SUID.FromStringToGuid(id), targetName: article.Title
                              , appCode: this.CurrentApp.AppCode, appName: this.CurrentApp.AppName
                              , companyID: SESSION.Current.CompanyID, companyName: SESSION.Current.CompanyName);
                 return (int)EnumResult.成功;
@@ -512,7 +505,7 @@ namespace WangJun.YunNews
         }
         #endregion
 
-        #region ClientRead
+        #region 获取行为列表
         public object GetBehaviorByArticleID(string id)
         {
             var userID = SUID.FromStringToGuid(SESSION.Current.UserID);

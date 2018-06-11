@@ -26,6 +26,8 @@ namespace WangJun.Yun
             , long appCode, string appName,string companyID,string companyName
             )
         {
+
+
             var inst = new YunBehavior();
             inst.CreateTime = DateTime.Now;
 
@@ -47,10 +49,27 @@ namespace WangJun.Yun
             inst.CompanyID = companyID;
             inst.CompanyName = companyName;
 
-            EntityManager.GetInstance().Save<YunBehavior>(inst);
+            var list = YunBehavior.LoadBehaviorList(inst.TargetID.ToString(), inst.OperatorID.ToString()).Where(p=> p.OperateTypeCode == operateTypeCode);
+
+            if (0 < list.Count())
+            {
+                foreach (var listItem in list)
+                {
+                    YunBehavior.Remove(listItem.ID);
+                }
+
+            }
+            else
+            { 
+                EntityManager.GetInstance().Save<YunBehavior>(inst);
+            }
 
 
+        }
 
+        public static int Remove(string id) { 
+              EntityManager.GetInstance().DeleteOne<YunBehavior>(id);
+            return (int)EnumResult.成功;
         }
 
         public static List<YunBehavior> LoadBehaviorList(string objectId,string operatorId=null)

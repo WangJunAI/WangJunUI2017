@@ -52,7 +52,26 @@ namespace WangJun.Entity
 
             return 0;
         }
-         
+
+        /// <summary>
+        /// 旧代码应该作废
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public int Remove(BaseItem item)
+        {
+            if (StringChecker.IsNotEmptyObjectId(item.ID))
+            {
+                var db = DataStorage.GetInstance(DBType.MongoDB);
+
+                var query = MongoDBFilterCreator.SearchByObjectId(item.ID);
+                db.Save3(item._DbName, item._CollectionName, "{StatusCode:" + CONST.APP.Status.删除 + ",Status:'" + CONST.APP.Status.GetString(CONST.APP.Status.删除) + "'}", query, false);
+                ClientBehaviorItem.Save(item, ClientBehaviorItem.BehaviorType.移除, SESSION.Current);
+
+            }
+            return 0;
+        }
+
         public int Remove<T>(string id) where T : class,/* IRelationshipGuid, IName, ITime, IRelationshipObjectId, IStatus, IOperator, IApp, ISysItem, */ICompany, new()
         {
             var item = new T() {};
@@ -75,7 +94,7 @@ namespace WangJun.Entity
             }
             return 0;
         }
-        public int DeleteOne<T>(string id) where T : class,/* IRelationshipGuid, IName, ITime, IRelationshipObjectId, IStatus, IOperator, IApp, ISysItem, */ICompany, new()
+        public int Delete<T>(string id) where T : class,/* IRelationshipGuid, IName, ITime, IRelationshipObjectId, IStatus, IOperator, IApp, ISysItem, */ICompany, new()
         {
             var item = new T() { };
              var iSysItem = item as ISysItem;
@@ -93,8 +112,43 @@ namespace WangJun.Entity
             }
             return 0;
         }
-         
-         
+
+        public int Delete(BaseItem item)
+        {
+            if (StringChecker.IsNotEmptyObjectId(item.ID))
+            {
+                var db = DataStorage.GetInstance(DBType.MongoDB);
+                var query = MongoDBFilterCreator.SearchByObjectId(item.ID);
+                db.Remove(item._DbName, item._CollectionName, query);
+                ClientBehaviorItem.Save(item, ClientBehaviorItem.BehaviorType.删除, SESSION.Current);
+
+            }
+            return 0;
+        }
+
+        /// <summary>
+        /// 旧代码应该作废
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public T Get<T>(BaseItem item) where T : class, new()
+        {
+
+
+
+            return this.Get<T>(item.ID);
+            if (StringChecker.IsNotEmptyObjectId(item.ID))
+            {
+                var db = DataStorage.GetInstance(DBType.MongoDB);
+                var query = MongoDBFilterCreator.SearchByObjectId(item.ID);
+                var data = db.Get(item._DbName, item._CollectionName, query);
+
+
+                return Convertor.FromDictionaryToObject<T>(data);
+            }
+            return new T();
+        }
 
         /// <summary>
         /// 统一Get
@@ -213,7 +267,7 @@ namespace WangJun.Entity
         /// <returns></returns>
         public object UpdateField<T>(string jsonString, string query) where T : class, new()
         {
-            var item = new T() as ISysItem;
+            var item = new T() as BaseItem;
             if (null != item)
             {
                 var db = DataStorage.GetInstance(DBType.MongoDB);

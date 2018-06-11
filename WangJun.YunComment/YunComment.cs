@@ -99,7 +99,7 @@ namespace WangJun.Yun
 
         public static int Delete(string id)
         {
-            return EntityManager.GetInstance().Delete<YunComment>(id);
+            return EntityManager.GetInstance().DeleteOne<YunComment>(id);
         }
 
         #region 基本方法

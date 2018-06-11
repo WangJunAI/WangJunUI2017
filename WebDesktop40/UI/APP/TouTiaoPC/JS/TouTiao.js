@@ -179,14 +179,22 @@ TouTiao.AddComment = function () {
 
 TouTiao.AddLikeCount = function () {
     var $btn = $(event.target);
+    var text = $btn.text();
+    if ("点赞" === text) {
+        $btn.text("已点赞");
+    }
+    else {
+        $btn.text("点赞");
+    }
+    $btn.attr("click", "_click");
+    $btn.removeAttr("href");
+
     var item = {};
     var targetId = NET.GetQueryParam("id");
     var context = [targetId];
     var callback = function (res) {
-        LOGGER.Log(res); 
-        $btn.text("已" + $btn.text().replace("已", ""));
-        $btn.attr("click", "_click");
-        $btn.removeAttr("href");
+        $btn.attr("_click", "click");
+        $btn.Attr("href","javascript:;");
     }
 
     NET.PostData(App.TouTiao.Server.Url6, callback, context);
@@ -194,14 +202,22 @@ TouTiao.AddLikeCount = function () {
 
 TouTiao.AddFavoriteCount = function () {
     var $btn = $(event.target);
+    var text = $btn.text();
+    if ("收藏" === text) {
+        $btn.text("已收藏");
+    }
+    else {
+        $btn.text("收藏");
+    }
+    $btn.attr("click", "_click");
+    $btn.removeAttr("href");
+
     var item = {};
     var targetId = NET.GetQueryParam("id");
     var context = [targetId];
     var callback = function (res) {
-        LOGGER.Log(res);
-        $btn.text("已" + $btn.text().replace("已", ""));
-        $btn.attr("click", "_click");
-        $btn.removeAttr("href");
+        $btn.attr("_click", "click");
+        $btn.Attr("href", "javascript:;");
     }
 
     NET.PostData(App.TouTiao.Server.Url7, callback, context);
@@ -230,7 +246,7 @@ TouTiao.LoadArticle = function (param,callback) {
         LOGGER.Log(res);
         TouTiao.ShowArticle(res);
         ClientBehavior.LoadBehaviorByArticleID();
-        ClientBehavior.Read();
+        //ClientBehavior.Read();
     }
     NET.LoadData(App.TouTiao.Server.Url3, callback, context, NET.POST);
 }

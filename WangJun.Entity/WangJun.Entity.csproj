@@ -71,7 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
-    <Compile Include="BaseBehavior.cs" />
+    <Compile Include="基础业务对象\BaseBehavior.cs" />
     <Compile Include="枚举\EnumOperatorType.cs" />
     <Compile Include="枚举\EnumObjectType.cs" />
     <Compile Include="枚举\EnumBehavior.cs" />
@@ -85,8 +85,6 @@
     <Compile Include="基础业务对象\BaseCategory.cs" />
     <Compile Include="基础业务对象\BaseComment.cs" />
     <Compile Include="基础业务对象\BaseArticle.cs" />
-    <Compile Include="BaseItem.cs" />
-    <Compile Include="ClientBehaviorItem.cs" />
     <Compile Include="EntityDbContext.cs" />
     <Compile Include="EntityManager.cs" />
     <Compile Include="枚举\EnumStatus.cs" />

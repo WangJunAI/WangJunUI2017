@@ -108,7 +108,7 @@ namespace WangJun.Yun
 
         public static int Delete(string id)
         {
-            return EntityManager.GetInstance().Delete<YunUser>(id);
+            return EntityManager.GetInstance().DeleteOne<YunUser>(id);
         }
 
         /// <summary>
