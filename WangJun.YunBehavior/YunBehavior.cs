@@ -52,5 +52,26 @@ namespace WangJun.Yun
 
 
         }
+
+        public static List<YunBehavior> LoadBehaviorList(string objectId,string operatorId=null)
+        {
+            var list = new List<YunBehavior>();
+            var objID = SUID.FromStringToGuid(objectId);
+            var opeID = SUID.FromStringToGuid(operatorId);
+            if (!string.IsNullOrWhiteSpace(operatorId))
+            {
+                var query = "{'OperatorID':UUID('" + opeID + "'),'TargetID':UUID('" + objID + "')}";
+                list = EntityManager.GetInstance().Find<YunBehavior>(query);
+                var res = EntityManager.GetInstance().Find<YunBehavior>(p => p.OperatorID == opeID && p.TargetID == objID);
+            }
+            else
+            {
+                var query = "{'TargetID':UUID('" + SUID.FromStringToGuid(objectId) + "')}";
+                list = EntityManager.GetInstance().Find<YunBehavior>(query);
+                var res = EntityManager.GetInstance().Find<YunBehavior>(p => p.TargetID == objID);
+
+            }
+            return list;
+        }
     }
 }

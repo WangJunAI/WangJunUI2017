@@ -67,11 +67,12 @@
                 [加载中....]
             </div>
             <div class="likeCount">
+                <div data-PropertyName="ReadCount">阅读 0</div>
                 <div data-PropertyName="CommentCount">评论 0</div>
                 <div data-PropertyName="FavoriteCount">收藏 0</div>
                 <div data-PropertyName="LikeCount">点赞 0</div>
-            <a href="javascript:;"  data-type="点赞"  onclick="TouTiao.AddLikeCount()">点赞</a>
-            <a href="javascript:;"  data-type="收藏"  onclick="TouTiao.AddFavoriteCount()">收藏</a>
+                <a href="javascript:;" data-type="点赞" onclick="TouTiao.AddLikeCount()">点赞</a>
+                <a href="javascript:;" data-type="收藏" onclick="TouTiao.AddFavoriteCount()">收藏</a>
             </div>
             <div class="comment" name="comment"> 
                 <div class="input"> <textarea id="comment"></textarea><a href="javascript:;" onclick="TouTiao.AddComment()">提交</a></div>

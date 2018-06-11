@@ -87,7 +87,40 @@
                         </div>
                     </div>
                 </li>
- 
+                <li style="display:none;">
+                    <div class="item">
+                        <div class="key" data-FormName="Default">权限</div>
+                        <div class="value">
+                            <a href="javascript:;" class="checkbox selected" data-single="private" data-show="hide">个人文档</a>
+                            <a href="javascript:;" class="checkbox" data-single="private" data-show="show">企业文档</a>
+                        </div>
+                    </div>
+                </li>
+                 
+                <li style="display:none;" data-ClientGroupID="private">
+                    <div class="item">
+                        <div class="key">添加人员</div>
+                        <div class="value" data-FormName="Default" data-propertyName="UserAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
+                            <a href="javascript:;" class="checkbox" onclick="$('#category3').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
+                            <div style="position: absolute;">
+                                <div id="category3" class="dropdownlist">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li style="display:none;" data-ClientGroupID="private1">
+                    <div class="item">
+                        <div class="key">添加角色</div>
+                        <div class="value" data-FormName="Default" data-propertyName="RoleAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
+                            <a href="javascript:;" class="checkbox" onclick="$('#category4').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
+                            <div style="position: absolute;">
+                                <div id="category4" class="dropdownlist">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
             </ul>
         </div>
         <div class="buttons">

@@ -85,7 +85,11 @@ namespace WangJun.Utility
 
         public static Guid FromStringToGuid(string input)
         {
-            if (24 == input.Length)
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                return Guid.Empty;
+            }
+            else if (24 == input.Length)
             {
                 return SUID.FromObjectIdToGuid(ObjectId.Parse(input));
             }

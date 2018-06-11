@@ -13,7 +13,7 @@ namespace WebAPI
     /// </summary>
     public class API : IHttpHandler, IRequiresSessionState
     {
-
+        private static Dictionary<string, Assembly> assDict = new Dictionary<string, Assembly>();
 
         /// <summary>
         /// 服务发现
@@ -129,11 +129,10 @@ namespace WebAPI
             dict.Add("WangJun.Yun.YunAI." + methodName, HttpContext.Current.Server.MapPath("./bin/YunAI/WangJun.YunAI.dll"));
 
 
-
-
             var dllPath = dict[classFullName + "." + methodName];
             Assembly ass = Assembly.LoadFrom(dllPath);
             var obj = ass.CreateInstance(classFullName);
+ 
             return obj;
 
         }

@@ -79,6 +79,15 @@ Doc.LoadTreeTo = function (target, data,excludeIdArray,option) {
         else if ("Detail" == pageName) {
             option.Click(event, treeId, treeNode);///根据业务自定义事件
         }
+        else if ("Detail.Company" == pageName) {
+            option.Click(event, treeId, treeNode);///根据业务自定义事件
+        }
+        else if ("Category" == pageName) {
+            option.Click(event, treeId, treeNode);///根据业务自定义事件
+        }
+        else if ("Category.Company" == pageName) {
+            option.Click(event, treeId, treeNode);///根据业务自定义事件
+        }
 
     }
 

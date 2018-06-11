@@ -22,11 +22,11 @@ ClientBehavior.LoadBehaviorByArticleID = function () {
 
 
 ClientBehavior.ShowBehaviorByArticleID = function (data) {
-    if (true === PARAM_CHECKER.IsArray(data)) {
-        for (var k = 0; k < data.length; k++) {
-            var item = data[k];
-            $("[data-type='" + item.Behavior + "']").text("已"+item.Behavior).removeAttr("onclick");
-        }
-    }
+ 
+    $('[data-PropertyName="ReadCount"]').text("阅读 " + data[0].Value.length);
+    $('[data-PropertyName="LikeCount"]').text("点赞 " + data[1].Value.length);
+    $('[data-PropertyName="FavoriteCount"]').text("收藏 " + data[2].Value.length);
+    $('[ data-type="点赞"]').text(((true === data[4].Value) ? "已" : "" )+ "点赞");
+    $('[ data-type="收藏"]').text(((true === data[5].Value) ? "已" : "") + "收藏");
 
 }
