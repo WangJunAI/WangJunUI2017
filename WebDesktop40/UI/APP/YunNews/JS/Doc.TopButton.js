@@ -86,6 +86,7 @@ Doc.TopButtonClick = function (id) {
     else if ("TopButton.搜索" === id)
     {
         var keywords = $("#searchInput").val();
-        Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{'Status':'已发布','Title':{ '$regex': '" + keywords+"', '$options': 'g' }}");
+        var query = [{ Title:{ '$regex':  keywords , '$options': 'g' },_RedirectID: null, CompanyID: SESSION.Current().CompanyID, 'StatusCode': { $ne: -1 } }, {}, { CreateTime: -1 }];
+        Doc.LoadTable(0, App.Doc.Data.Pager.Size, query, App.Doc.Data.DocTable.Info);
     }
 }

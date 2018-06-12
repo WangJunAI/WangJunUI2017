@@ -8,7 +8,7 @@ TouTiao.LoadCategory = function () {
     var callback = function (res) {
         LOGGER.Log(res);
         res.push({ Name: "搜索" });
-
+        res.push({ Name: "收藏" });
         
         TouTiao.ShowCategory(res);
     }
@@ -127,24 +127,25 @@ TouTiao.LoadHotNewsList = function (categoryId, pageIndex, append) {
 }
 
 ///加载评论列表
-TouTiao.LoadCommentList = function (param) {
+TouTiao.LoadCommentList = function (pageIndex) {
     var targetId = NET.GetQueryParam("id");
-    var data = [JSON.stringify({"RootID":targetId}),"{}","{'CreateTime':-1}", 0, 10];
+    var data = [JSON.stringify({ "RootID": targetId }), "{}", "{'CreateTime':-1}", pageIndex, 5];
     NET.LoadData(App.TouTiao.Server.Url5, function (res) {
         LOGGER.Log(res);
+        $("#loadMore").attr("onclick", "TouTiao.LoadCommentList(" + (pageIndex + 1) + ")")
         TouTiao.ShowCommentList(res);
     }, data, "POST");    
 }
 
 
 TouTiao.ShowCommentList = function (data) {
-    if (PARAM_CHECKER.IsArray(data)) {
-        $("#commentList").empty();
+    if (PARAM_CHECKER.IsArray(data)&&0<data.length) {
+        //$("#commentList").empty();
         var html = $("#tplCommentItem").html();
         var array = [];
         for (var k = 0; k < data.length; k++) {
             var itemData = data[k];
-            itemData.CreateTime = Convertor.DateFormat(eval(itemData.CreateTime.replace(/\//g, "")), "yyyy-MM-dd hh:mm");
+            itemData.CreateTime = Convertor.DateFormat(eval("new "+itemData.CreateTime.replace(/\//g, "")), "yyyy-MM-dd hh:mm");
             var itemHtml = html.replace("[CreatorName]", itemData.CreatorName).replace("[CreatorID]", itemData.CreatorID)
                 .replace("[LikeCount]", itemData.LikeCount).replace("[CreateTime]", itemData.CreateTime).replace("[id]", itemData.ID)
                 .replace("[Content]", itemData.Content);
@@ -154,7 +155,8 @@ TouTiao.ShowCommentList = function (data) {
         }
     }
     else {
-        LOGGER.log("数据格式不对，应该提供数组。");
+        LOGGER.Log("数据格式不对，应该提供数组。");
+        $("#loadMore").removeAttr("onclick").text("没有更多评论了...");
     }
 }
 
@@ -300,7 +302,7 @@ TouTiao.Initial = function (type) {
         else if ("article" === type) {
             var id = NET.GetQueryParam("id");
             TouTiao.LoadArticle(id);
-            TouTiao.LoadCommentList();
+            TouTiao.LoadCommentList(0);
             TouTiao.LoadHotNewsList();
 
         }

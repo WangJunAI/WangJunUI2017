@@ -104,7 +104,7 @@ Doc.ShowPager = function (pagerInfo, tableInfo) {
     if (PARAM_CHECKER.IsObject(pagerInfo)) {
         var pagerCount = (0 === pagerInfo.Count % pagerInfo.Size) ? parseInt(pagerInfo.Count / pagerInfo.Size) : parseInt(pagerInfo.Count / pagerInfo.Size) + 1;
         var aSummaryHtml = "<a href=\"javascript:;\">共" + pagerInfo.Count + "个&nbsp;&nbsp;每页" + pagerInfo.Size + "个</a>";
-        var selectionHtml = "<select onchange='var index=$(this).val();var method=\"Doc.LoadTable(\"+index+\")\";$(this).next().attr(\"onclick\",method)'>";
+        var selectionHtml = "<select>";
         var ellipsisHtml = "";
         var aItemTplHtml = "<a href=\"javascript:;\" class=\"[Class]\" data-Index=\"[Index]\">[Text]</a>";
         var ellipsisTplHtml = "<a href=\"javascript:;\">....</a>";
@@ -141,7 +141,7 @@ Doc.ShowPager = function (pagerInfo, tableInfo) {
             selectionHtml += optionHtml.replace("[Text]", k + 1).replace("[Value]", k);
         }
 
-        selectionHtml += "</select><a href=\"javascript:;\" onclick=[Method]([Param])>跳转</a>".replace("[Method]", "Doc.LoadTable").replace("[Param]", 0 + "," + pagerInfo.Size + ",'" + '{"Status":"已发布"}' + "'");
+        selectionHtml += "</select><a href=\"javascript:;\" onclick=[Method]()>跳转</a>".replace("[Method]", "App.Doc.Data.DocTable.Info.Pager.PagerIndexClick");
         var html = aSummaryHtml + aIndexHtml + selectionHtml;
         $("#pager").html(html);
 
