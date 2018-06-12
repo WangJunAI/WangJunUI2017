@@ -226,7 +226,7 @@ Doc.LoadTable = function (pageIndex, pageSize, query, tableInfo) {
                     rowData.push({ ID: id, Text: value, Method: method, Type: "Button" });
                 }
                 else if ("date" === dataType) {
-                    var date = Convertor.DateFormat(eval(value.replace(/\//g, "")), "yyyy/MM/dd hh:mm");
+                    var date = Convertor.DateFormat(eval("new " +value.replace(/\//g, "")), "yyyy/MM/dd hh:mm");
                     rowData.push({ ID: id, Text: date, Method: method, Type: "Button"  });
                 }
                 else if ("link" === dataType) {
