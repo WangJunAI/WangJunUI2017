@@ -497,7 +497,7 @@ namespace WangJun.YunNote
         public List<YunArticle> LoadShareArticleList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
         {
             var list = new List<YunArticle>();
-            var objectIDList = YunPermission.LoadSharePermission(SESSION.Current.UserID, this.AppCode, (int)EnumBehaviorType.分享阅读).Select(p => p.ObjectID);
+            var objectIDList = YunPermission.LoadSharePermission(SESSION.Current.UserID, this.AppCode, (int)EnumBehaviorType.分享阅读).OrderByDescending(p=>p.CreateTime).Skip(pageIndex*pageSize).Take(pageSize).Select(p => p.ObjectID);
             query = "{{ _GID: {{ $in: [ {0} ] }} }}";
             var stringBuilder = new StringBuilder();
             foreach (var objectID in objectIDList)
