@@ -46,22 +46,7 @@ Doc.LeftMenuClick = function (id) {
 
         var listQuery = JSON.stringify({ _RedirectID: null, OwnerID: SESSION.Current().UserID, 'StatusCode': { $ne: -1 } });
         Doc.ShowView3();
- 
-        var index = 0
-        var callback2 = function (index) {
-            NET.PostData(App.Doc.Server.Url1, function (res2) {
-                Doc.LoadSummaryListTo("#leftList", res2, {
-                    SummaryListPagerCallback: function () {
-                        var pagerIndex = parseInt($(event.target).attr("data-Index"));
-                        $(event.target).attr("data-Index", pagerIndex + 1);
-                        callback2(pagerIndex);
-                    }
-                    , PageIndex: index
-                });
-            }, [listQuery, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", index, App.Doc.Data.Pager.Size]);
-        }
-        callback2(0);
-
+        Doc.LoadData_Doc(context = [listQuery, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size], function (res2) { Doc.LoadSummaryListTo("#leftList", res2); });
         Doc.SetQuery(listQuery); 
     }
     else if ("LeftMenu.参与的群组" == id) {
@@ -69,23 +54,9 @@ Doc.LeftMenuClick = function (id) {
 
         var listQuery = JSON.stringify({ _RedirectID: { $ne: null }, OwnerID: SESSION.Current().UserID, 'StatusCode': { $ne: -1 } });
 
-        Doc.ShowView3(); 
-
-        var index = 0
-        var callback2 = function (index) {
-            NET.PostData(App.Doc.Server.Url81, function (res2) {
-                Doc.LoadSummaryListTo("#leftList", res2, {
-                    SummaryListPagerCallback: function () {
-                        var pagerIndex = parseInt($(event.target).attr("data-Index"));
-                        $(event.target).attr("data-Index", pagerIndex + 1);
-                        callback2(pagerIndex);
-                    }
-                    , PageIndex: index
-                });
-            }, [listQuery, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", index, App.Doc.Data.Pager.Size]);
-        }
-        callback2(0);
-
+        Doc.ShowView3();
+       // Doc.LoadData_Doc(context = [listQuery, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size], function (res2) { Doc.LoadSummaryListTo("#leftList", res2); });
+        NET.PostData(App.Doc.Server.Url81, function (res2) { Doc.LoadSummaryListTo("#leftList", res2); }, [listQuery, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size]);
 
         Doc.SetQuery(listQuery); 
     }
