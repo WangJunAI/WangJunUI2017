@@ -108,9 +108,13 @@ Doc.RemoveDetail = function (id, callback) {
 
 
 ///加载评论列表
-Doc.LoadCommentList = function (param) {
-    var targetId = $("#ID").val();
-    var data = [JSON.stringify({ "RootID": targetId }), "{}", "{'CreateTime':-1}", 0, 10];
+Doc.LoadCommentList = function (pageIndex) {
+    if (false == PARAM_CHECKER.IsInt(pageIndex)) {
+        pageIndex = parseInt($(event.target).attr("data-Index"));
+        $(event.target).attr("data-Index", pageIndex + 1);
+    }
+    var targetId = NET.GetQueryParam("id");
+    var data = [JSON.stringify({ "RootID": targetId }), "{}", "{'CreateTime':-1}", pageIndex, 10];
     NET.LoadData(App.Doc.Server.Url71, function (res) {
         LOGGER.Log(res);
         Doc.ShowCommentList(res);
@@ -120,12 +124,12 @@ Doc.LoadCommentList = function (param) {
 
 Doc.ShowCommentList = function (data) {
     if (PARAM_CHECKER.IsArray(data)) {
-        $("#commentList").empty();
+        //$("#commentList").empty();
         var html = $("#tplCommentItem").html();
         var array = [];
         for (var k = 0; k < data.length; k++) {
             var itemData = data[k];
-            itemData.CreateTime = Convertor.DateFormat(eval(itemData.CreateTime.replace(/\//g, "")), "yyyy-MM-dd hh:mm");
+            itemData.CreateTime = Convertor.DateFormat(eval("new "+itemData.CreateTime.replace(/\//g, "")), "yyyy-MM-dd hh:mm");
             var itemHtml = html.replace("[CreatorName]", itemData.CreatorName).replace("[CreatorID]", itemData.CreatorID)
                 .replace("[LikeCount]", itemData.LikeCount).replace("[CreateTime]", itemData.CreateTime).replace("[id]", itemData.ID)
                 .replace("[Content]", itemData.Content);
@@ -147,9 +151,15 @@ Doc.AddComment = function () {
     var context = [Convertor.ToBase64String(JSON.stringify(item), true), { 0: "base64" }];
     var callback = function (res) {
         LOGGER.Log(res);
-        Doc.LoadCommentList();
+         
+        
+        Doc.ShowCommentMessage();
+        var html = $("#tplCommentItem").html().replace("[CreatorName]", SESSION.Current().UserName).replace("[CreatorID]", SESSION.Current().UserID)
+            .replace("[LikeCount]", 0).replace("[CreateTime]", Convertor.DateFormat(new Date().toString(), "yyyy-MM-dd hh:mm")).replace("[id]", "")
+            .replace("[Content]", $("#comment").val());
+        $(html).insertBefore($("#commentList").children().first());
+
         $("#comment").val("");
-        Doc.ShowMessage();
     }
 
     NET.PostData(App.Doc.Server.Url70, callback, context);

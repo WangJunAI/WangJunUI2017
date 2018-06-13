@@ -101,18 +101,7 @@
                         </div>
                     </div>
                 </li>
-                <li style="display:none;" data-ClientGroupID="private1">
-                    <div class="item">
-                        <div class="key">添加组织</div>
-                        <div class="value" data-FormName="Default" data-propertyName="OrgAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
-                            <a href="javascript:;" class="checkbox" onclick="$('#category2').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
-                            <div style="position: absolute;z-index:3990;">
-                                <div id="category2" class="dropdownlist">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
+                 
                 <li data-ClientGroupID="private">
                     <div class="item">
                         <div class="key">参与人员</div>
@@ -125,18 +114,7 @@
                         </div>
                     </div>
                 </li>
-                <li style="display:none;" data-ClientGroupID="private1">
-                    <div class="item">
-                        <div class="key">添加角色</div>
-                        <div class="value" data-FormName="Default" data-propertyName="RoleAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
-                            <a href="javascript:;" class="checkbox" onclick="$('#category4').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">默认分类</a>
-                            <div style="position: absolute;">
-                                <div id="category4" class="dropdownlist">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
+                 
             </ul>
         </div>
         <div class="buttons">
@@ -149,7 +127,7 @@
             <div class="input"> <textarea id="comment"></textarea><a href="javascript:;" onclick="Doc.AddComment()">提交</a></div>
             <div id="message"><div>评论成功....</div></div>
             <ul id="commentList"></ul>
-            <a href="javascript:;" id="loadMore" onclick="Doc.LoadCommentList()">加载更多....</a>
+            <a href="javascript:;" id="loadMore" onclick="Doc.LoadCommentList()" data-Index="1">加载更多....</a>
         </div>
     </div>
 
@@ -215,6 +193,7 @@
                     });
 
                     Doc.LoadDetail();
+                    Doc.LoadCommentList(0);
                 }); ///加载目录
             }
             var clientCallback = function () {
