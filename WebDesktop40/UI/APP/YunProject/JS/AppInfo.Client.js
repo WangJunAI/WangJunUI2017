@@ -143,7 +143,7 @@ App.Doc.Data = {};
 
 App.Doc.Data.Pager = {};
 
-App.Doc.Data.Pager.Size = 100;
+App.Doc.Data.Pager.Size = 10;
  
 App.Doc.Data.DocTable = {};
 App.Doc.Data.DocTable.Info = {
