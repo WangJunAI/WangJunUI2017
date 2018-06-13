@@ -75,30 +75,6 @@
       <Project>{9455D8E8-7DD4-4E03-A6BA-8C2F54601516}</Project>
       <Name>WangJun.YunCompany</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WangJun.YunDoc\WangJun.YunDoc.csproj">
-      <Project>{07bbccba-1328-4704-abc0-03b5cc40a828}</Project>
-      <Name>WangJun.YunDoc</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WangJun.YunNews\WangJun.YunNews.csproj">
-      <Project>{b3539da2-9c83-47f4-be30-df49f932bf20}</Project>
-      <Name>WangJun.YunNews</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WangJun.YunNote\WangJun.YunNote.csproj">
-      <Project>{766eed44-f19d-4ba4-ae75-ffd666d48066}</Project>
-      <Name>WangJun.YunNote</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WangJun.YunPan\WangJun.YunPan.csproj">
-      <Project>{7264576f-0e49-4b34-8d91-9f43eeadd777}</Project>
-      <Name>WangJun.YunPan</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WangJun.YunProject\WangJun.YunProject.csproj">
-      <Project>{8fd45de8-adfa-4705-9e6f-da5a748c5c30}</Project>
-      <Name>WangJun.YunProject</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WangJun.YunQun\WangJun.YunQun.csproj">
-      <Project>{c6bbf70b-468e-4ef2-a4fa-4028212343a1}</Project>
-      <Name>WangJun.YunQun</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WangJun.YunUser\WangJun.YunUser.csproj">
       <Project>{934bc61e-4a2c-4046-af08-4d5d0afff7a3}</Project>
       <Name>WangJun.YunUser</Name>

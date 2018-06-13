@@ -96,6 +96,14 @@ Doc.SaveDetail = function () {
         LOGGER.Log(res);
         Doc.SubmitEnd(submitId);
         Doc.CloseWindow();
+        var pageName = $("#pageName").val();
+        if ("Detail" === pageName) {
+            top.window.Doc.LeftMenuClick("LeftMenu.个人文档");
+        }
+        else if ("Detail.Company" === pageName) {
+            top.window.Doc.LeftMenuClick("LeftMenu.企业知识库");
+        }
+
     }
     NET.PostData(App.Doc.Server.Url4, callback, param);
 }
@@ -153,4 +161,18 @@ Doc.ShareTo = function (treeId) {
             }, param);
         }, [id], NET.POST);
     }
+}
+
+Doc.LoadPermissionToDetail = function () {
+    var context = [NET.GetQueryParam("id")];
+
+    var callback = function (res) {
+        LOGGER.Log(res);
+        if (res[0].Value === true && res[1].Value === false) {
+            ///只读模式
+            $(".buttons").remove();
+            $(".options").remove();
+        }
+    }
+    NET.PostData(App.Doc.Server.Url82, callback, context);
 }

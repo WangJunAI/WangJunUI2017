@@ -191,6 +191,8 @@
                     
                 }); ///加载目录
                 Doc.LoadDetail();
+
+                Doc.LoadPermissionToDetail();
             }
             Doc.Initial(SESSION.Current().CanManageYunDoc, clientCallback, clientCallback);//初始化
         });

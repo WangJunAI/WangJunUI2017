@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using WangJun.Config;
@@ -524,14 +525,7 @@ namespace WangJun.YunDoc
                                          , companyID: SESSION.Current.CompanyID, companyName: SESSION.Current.CompanyName);
             return 0;
         }
-
-        public object GetBehaviorCount(string id)
-        {
-            var existQuery = "{'UserID':ObjectId('[1]'),'DbID':ObjectId('[2]'),'BehaviorCode':{{in:[[3],[4]]}}".Replace("[1]", SESSION.Current.UserID).Replace("[2]", id).Replace("[3]", ClientBehaviorItem.BehaviorType.收藏.ToString()).Replace("[4]", ClientBehaviorItem.BehaviorType.点赞.ToString());
-
-            var res = EntityManager.GetInstance().Find<ClientBehaviorItem>("WangJun", "ClientBehavior", existQuery, "{}", "{}", 0, int.MaxValue);
-            return res;
-        }
+         
         #endregion
 
         #region ClientRead
@@ -548,11 +542,17 @@ namespace WangJun.YunDoc
         #endregion
 
         #region ClientRead
-        public object GetBehaviorByArticleID(string id)
+        public object GetPermissionByArticleID(string id)
         {
-            //return ClientBehaviorItem.LoadByDBID(id);
-            return null;
-        }
+            var article = YunArticle.Load(id);
+            var userID = SUID.FromStringToGuid(SESSION.Current.UserID);
+
+            var dataSource = YunPermission.LoadArticlePermission(SESSION.Current.UserID,id);
+            dynamic stat = new ExpandoObject(); 
+            stat.CanRead = 0<dataSource.Where(p => p.BehaviorType == (int)EnumBehaviorType.分享阅读 && p.OperatorID == userID).Count();
+            stat.CanEdit = 0 < dataSource.Where(p => p.BehaviorType == (int)EnumBehaviorType.分享编辑 && p.OperatorID == userID).Count() || article.OwnerID == SESSION.Current.UserID; 
+            return  stat  ;
+         }
         #endregion
 
         #region 获取分享列表

@@ -54,7 +54,7 @@ namespace WangJun.Yun
         {
             var operatorID = SUID.FromStringToGuid(userID);
             var articleID = SUID.FromStringToGuid(objectID);
-            var query = string.Format("{{'ObjectID':UUID('{0}'),'OperatorID':UUID('{0}')}}", articleID, operatorID);
+            var query = string.Format("{{'ObjectID':UUID('{0}'),'OperatorID':UUID('{1}')}}", articleID, operatorID);
             var permissionList = EntityManager.GetInstance().Find<YunPermission>(query);
 
             var res = EntityManager.GetInstance().Find<YunPermission>(p => p.OperatorID == operatorID && p.ObjectID == articleID);

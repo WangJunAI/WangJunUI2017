@@ -45,7 +45,7 @@ Doc.LeftMenuClick = function (id) {
         Doc.LoadTopButton(topButtonId);
         Doc.LoadData_Category([JSON.stringify({ OwnerID: SESSION.Current().UserID}), "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], { header: "小提示：修改目录双击即可" }); });
         Doc.LoadTable(0, App.Doc.Data.Pager.Size, query, App.Doc.Data.DocTable.Info);
-        Doc.SetQuery(query); 
+        Doc.SetQuery(query, true);
     }
     else if ("LeftMenu.与我共享" == id) {
         var query = [5];
@@ -62,7 +62,7 @@ Doc.LeftMenuClick = function (id) {
         Doc.LoadData_Category([JSON.stringify({ OwnerID: SESSION.Current().CompanyID }), "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], { header: "小提示：修改目录双击即可" }); });
         Doc.LoadTable(0, App.Doc.Data.Pager.Size, query, App.Doc.Data.DocTable.Info);
 
-        Doc.SetQuery(query);
+        Doc.SetQuery(query,true);
 
     }
     else if ("LeftMenu.员工知识库" == id) {

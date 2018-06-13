@@ -44,6 +44,7 @@ App.Doc.Server = {
     Url90: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunDoc.YunDocWebAPI&m=EmptyRecycleBin",///加载回收站
     Url91: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunDoc.YunDocWebAPI&m=DeleteEntity",///加载回收站
     Url81: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunDoc.YunDocWebAPI&m=LoadShareArticleList",///加载回收站
+    Url82: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunDoc.YunDocWebAPI&m=GetPermissionByArticleID",///加载回收站
 
 };
 

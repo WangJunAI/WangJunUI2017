@@ -30,3 +30,4 @@ ClientBehavior.ShowBehaviorByArticleID = function (data) {
     $('[ data-type="收藏"]').text(((true === data[5].Value) ? "已" : "") + "收藏");
 
 }
+

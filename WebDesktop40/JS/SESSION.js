@@ -127,13 +127,12 @@ SESSION.Register = function () {
     $.cookie("SESSION", JSON.stringify({}), { path: '/' });
 
     ///动画显示
-    setTimeout(function () {
-        $(event.target).val("正在初始化企业,请稍后...");
-    }, 2000);
-
-    setTimeout(function () {
-        $(event.target).val("正在整合信息,即将完成...");
-    }, 5000);
+    var info = ["正在初始化新闻服务,请稍后...", "正在初始化知识库服务,请稍后...","正在整合信息,即将完成..."];
+    setInterval(function () {
+        if (0 < info.length) {
+            $("#regBtn").val(info.pop());
+        } 
+    }, 2000); 
 
 }
 
