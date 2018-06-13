@@ -45,18 +45,26 @@ Doc.LeftMenuClick = function (id) {
         Doc.ShowView1();
 
         Doc.LoadTopButton(topButtonId);
+        Doc.ShowContent("redirect.html");
         var listQuery = JSON.stringify({ _RedirectID: null, OwnerID: SESSION.Current().UserID, 'StatusCode': { $ne: -1 } });//        var query = [, {}, { CreateTime: -1 }];
-
-        var callback1 = function (res1) {
-            Doc.LoadTreeTo("#leftPart1", res1, [], { header: "小提示：修改目录双击即可" });
-            Doc.ShowContent("redirect.html");
-
- 
-            Doc.LoadData_Doc(context = [listQuery, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", 0, App.Doc.Data.Pager.Size], function (res2) { Doc.LoadSummaryListTo("#leftPart2", res2); });
+         var index=0
+        var callback2 = function (index) {
+            Doc.LoadData_Doc(context = [listQuery, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", index, App.Doc.Data.Pager.Size], function (res2) {
+                Doc.LoadSummaryListTo("#leftPart2", res2, {
+                    SummaryListPagerCallback: function () {
+                        var pagerIndex = parseInt($(event.target).attr("data-Index"));
+                        $(event.target).attr("data-Index", pagerIndex + 1);
+                        callback2(pagerIndex);
+                    }
+                    ,PageIndex:index
+                });
+            });
         }
+        callback2(0);
+        
 
         var param = [JSON.stringify({ OwnerID: SESSION.Current().UserID}), "{}", "{}", 0, 1000]
-        Doc.LoadData_Category(param, callback1);
+        Doc.LoadData_Category(param, function (res1) { Doc.LoadTreeTo("#leftPart1", res1, [], { header: "小提示：修改目录双击即可" }); });
         Doc.SetQuery(listQuery);
     }
     else if ("LeftMenu.与我共享" == id) {

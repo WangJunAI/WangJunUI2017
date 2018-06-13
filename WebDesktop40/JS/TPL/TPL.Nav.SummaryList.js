@@ -32,8 +32,17 @@ Doc.ShowSummaryList = function (source, type) {
 Doc.LoadSummaryListTo = function (target, data, option) {
     var tplHtml = $("#tplSummaryList").html();
     var tplListItem = $("#tplSummaryListItem1").html();
+    var pageIndex = 0;    
     if (true === PARAM_CHECKER.IsObject(option) && true === PARAM_CHECKER.IsNotEmptyString(option.TplListItem)) {
 
+    }
+
+    if (true === PARAM_CHECKER.IsObject(option) && true === PARAM_CHECKER.IsFunction(option.SummaryListPagerCallback)) {
+        Doc.SummaryListPagerClick = option.SummaryListPagerCallback;
+    }
+
+    if (true === PARAM_CHECKER.IsObject(option) && true === PARAM_CHECKER.IsInt(option.PageIndex)) {
+        pageIndex = option.PageIndex;
     }
 
     var listHtml = "";
@@ -42,12 +51,21 @@ Doc.LoadSummaryListTo = function (target, data, option) {
         listHtml += tplListItem.replace("[Title]", item.Title)
             .replace("[Param]", item.ID).replace("[Summary]", item.Summary).replace("[CreatorName]", item.CreatorName).replace("[ParentName]", item.ParentName);
         if (true === PARAM_CHECKER.IsNotEmptyString(item.CreateTime)) {
-            listHtml = listHtml.replace("[CreateTime]", Convertor.DateFormat(eval(item.CreateTime.replace(/\//g, "")), "yyyy/MM/dd hh:mm"));
+            listHtml = listHtml.replace("[CreateTime]", Convertor.DateFormat(eval("new "+item.CreateTime.replace(/\//g, "")), "yyyy/MM/dd hh:mm"));
         }
     }
- 
-    var html = tplHtml.replace("[列表]", listHtml).replace("[ListTitle]", "");
-    Doc.LoadHtmlTo(target, html);
+
+    if (0 < data.length && 0 === pageIndex) {
+        var html = tplHtml.replace("[列表]", listHtml).replace("[ListTitle]", "") + "<a href='javascript:;' class='summaryListPager' data-Index=1 onclick='Doc.SummaryListPagerClick()'>加载更多...</a>";
+        Doc.LoadHtmlTo(target, html);
+    }
+    else if (0 < data.length && 0 < pageIndex) {
+        $("#summaryList").append(listHtml);
+    }
+    else if (0 === data.length) {
+        $(".summaryListPager").text("没有更多了...").removeAttr("onclick");
+    }
+
 
     $("#summaryList .listItem3").on("click", function () {
         Doc.SummaryListItemClick(option);
@@ -73,4 +91,8 @@ Doc.SummaryListItemClick = function (option) {
     }
 
     Doc.ShowContent(url.replace("[id]", id));
+}
+
+Doc.SummaryListPagerClick = function () {
+    
 }

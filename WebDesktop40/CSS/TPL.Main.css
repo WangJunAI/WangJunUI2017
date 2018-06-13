@@ -509,6 +509,13 @@ body {
             }
 
 
+.summaryListPager {
+    text-align: center;
+    display: block;
+    text-decoration: none;
+    color: #222;
+}
+
 .listItem4 {
     text-decoration: none;
     color: #222;

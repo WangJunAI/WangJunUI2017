@@ -93,6 +93,7 @@ Doc.SaveDetail = function () {
         LOGGER.Log(res);
         Doc.SubmitEnd(submitId);
         Doc.CloseWindow();
+        top.window.Doc.LeftMenuClick("LeftMenu.个人笔记");
     }
     NET.PostData(App.Doc.Server.Url4, callback, param);
 }
