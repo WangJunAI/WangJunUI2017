@@ -297,6 +297,7 @@
 
                 }); ///加载目录
                 Doc.LoadDetail();
+                Doc.LoadCommentList(0);
             }
             Doc.Initial(SESSION.Current().CanManageYunProject, clientCallback, clientCallback);//初始化
         });
