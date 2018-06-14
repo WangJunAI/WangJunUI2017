@@ -41,7 +41,7 @@ App.Doc.Server = {
     Url16: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=Aggregate",///聚合查询
     Url17: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunPan.ClientBehaviorManager&m=Aggregate",
     Url18: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunPan.DocWebAPI&m=RecycleBinCount",///回收站数量
-    Url19: App.Doc.ServerHost + "/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=LoadAll",///回收站数量
+    Url19: App.Doc.ServerHost + "/API.ashx?c=WangJun.App.YunUserAPI&m=LoadAll",///回收站数量
     Url90: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=EmptyRecycleBin",///加载回收站
     Url91: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=DeleteEntity",///加载回收站
 };
