@@ -9,7 +9,7 @@ namespace WebAPI
     /// <summary>
     /// YunFile 的摘要说明
     /// </summary>
-    public class YunFile : IHttpHandler
+    public class YunFile : IHttpHandler 
     {
 
  

@@ -259,3 +259,6 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/WebDesktop40/uploadFiles
+/WangJun.Entity/ClientBehaviorItem.cs
+/WangJun.Entity/BaseItem.cs

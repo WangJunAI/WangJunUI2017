@@ -18,7 +18,7 @@ App.Doc.CSS.LeftList.View3 = {};
 App.Doc.CSS.LeftList.View3.Width = { Value: 18, Unit: "em" };
 
 App.Doc.ServerHost = YunConfig.ServerHost(App.Doc,"ServerHost");
-App.Doc.UploadServerHost = YunConfig.ServerHost(App.Doc,"UploadServerHost");
+App.Doc.UploadServerHost = YunConfig.ServerHost(App.Doc,"UploadServerHost"); 
 
 App.Doc.Server = {
     Url1: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=LoadEntityList", ///加载文档目录
