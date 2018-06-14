@@ -6,6 +6,7 @@ using System.Linq;
 using WangJun.Utility;
 using MongoDB.Driver.GridFS;
 using System.IO;
+using System.Dynamic;
 
 namespace WangJun.DB
 {
@@ -571,7 +572,12 @@ namespace WangJun.DB
 
 
         #region 存储文件
-
+        /// <summary>
+        /// 存储文件
+        /// </summary>
+        /// <param name="sourceFileUrl"></param>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
         public string SaveFile(string sourceFileUrl,string fileName) {
             var db = this.client.GetDatabase("WangJunFile");
             GridFSBucketOptions gfbOptions = new GridFSBucketOptions()
@@ -592,6 +598,79 @@ namespace WangJun.DB
             var fileStream = new FileStream(@"F:\test.txt",FileMode.Open);
             var id = bucket.UploadFromStream("test.txt", fileStream);
             return "";
+        }
+        #endregion
+
+        #region 获取文件
+        public Stream GetFile(string id)
+        {
+            var db = this.client.GetDatabase("WangJunFile");
+
+            var bucket = new GridFSBucket(db, new GridFSBucketOptions
+            {
+                BucketName = "file1",
+                ChunkSizeBytes = 1048576, // 1MB  
+                WriteConcern = WriteConcern.WMajority,
+                ReadPreference = ReadPreference.Secondary
+            });
+            var destination = new MemoryStream();
+            bucket.DownloadToStream(ObjectId.Parse(id), destination);
+            return destination;
+        }
+        #endregion
+
+
+        #region 查找文件
+        public List<dynamic> FindFile(string dbName, string collectionName, string query, string sort = "{}", string protection = "{}", int pageIndex = 0, int pageSize = int.MaxValue) {
+            var list = new List<dynamic>();
+            var db = this.client.GetDatabase("WangJunFile");
+
+            var bucket = new GridFSBucket(db, new GridFSBucketOptions
+            {
+                BucketName = "file1",
+                ChunkSizeBytes = 1048576, // 1MB  
+                WriteConcern = WriteConcern.WMajority,
+                ReadPreference = ReadPreference.Secondary
+            });
+            var options = new GridFSFindOptions
+            {
+                Limit = pageSize,
+                Skip=pageIndex*pageSize,
+                Sort = sort
+            };
+            FilterDefinition<GridFSFileInfo> filter = query;
+            var cursor = bucket.Find(filter, options).ToList();//.Current;
+            foreach (var item in cursor)
+            {
+                dynamic file = new ExpandoObject();
+                file.ID = item.Id.ToString();
+                file.Name = item.Filename;
+                file.Length = item.Length;
+                list.Add(file);
+            }
+            return list;
+        }
+        #endregion
+
+        #region 删除文件
+        public int DeleteFile(string dbName, string collectionName, string query, string sort = "{}", string protection = "{}", int pageIndex = 0, int pageSize = int.MaxValue)
+        {
+            var db = this.client.GetDatabase("WangJunFile");
+
+            var list = this.FindFile(dbName, collectionName, query, sort, protection, pageIndex, pageSize);
+            foreach (var item in list)
+            {
+                var id = item.ID;
+                var bucket = new GridFSBucket(db, new GridFSBucketOptions
+                {
+                    BucketName = "file1",
+                    ChunkSizeBytes = 1048576, // 1MB  
+                    WriteConcern = WriteConcern.WMajority,
+                    ReadPreference = ReadPreference.Secondary
+                });
+                bucket.Delete(ObjectId.Parse(id));
+            }
+            return 0;
         }
         #endregion
     }

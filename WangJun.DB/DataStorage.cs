@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -408,5 +409,29 @@ namespace WangJun.DB
             return res;
         }
         #endregion
+
+        #region 获取文件
+        public Stream GetFile(string id)
+        {
+            var stream = this.mongo.GetFile(id);
+            return stream;
+        }
+        #endregion
+
+        #region 查找文件
+        public List<dynamic> FindFile(string dbName, string collectionName, string query, string sort = "{}", string protection = "{}", int pageIndex = 0, int pageSize = int.MaxValue)
+        {
+            var res = this.mongo.FindFile(dbName, collectionName, query, sort, protection, pageIndex, pageSize);
+            return res;
+        }
+        #endregion
+
+        #region 删除文件
+        public int DeleteFile(string dbName, string collectionName, string query, string sort = "{}", string protection = "{}", int pageIndex = 0, int pageSize = int.MaxValue)
+        {
+            var res = this.mongo.DeleteFile(dbName, collectionName, query, sort, protection, pageIndex, pageSize);
+            return res;
+        }
+        #endregion
     }
-}
+    }

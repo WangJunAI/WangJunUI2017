@@ -18,7 +18,7 @@ namespace WangJun.EntityHostApp
         static void Main(string[] args)
         {
             var db = DataStorage.GetInstance(DBType.MongoDB);
-            db.SaveFile("","");
+            db.DeleteFile("", "", "{'filename':'test.txt'}", "{'uploadDate':-1}", "", 0,10);
         }
     }
 }
