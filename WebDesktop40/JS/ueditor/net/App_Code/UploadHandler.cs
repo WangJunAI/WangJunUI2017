@@ -74,6 +74,9 @@ public class UploadHandler : Handler
             File.WriteAllBytes(localPath, uploadFileBytes);
             Result.Url =savePath;
             Result.State = UploadState.Success;
+
+            var yunRes = System.Text.Encoding.UTF8.GetString(new System.Net.WebClient().UploadFile("http://localhost:9990/YunFile.ashx?m=save", localPath));
+            Result.YunFileInfo = yunRes;
         }
         catch (Exception e)
         {
@@ -168,6 +171,8 @@ public class UploadResult
     public string OriginFileName { get; set; }
 
     public string ErrorMessage { get; set; }
+
+    public string YunFileInfo { get; set; }
 }
 
 public enum UploadState

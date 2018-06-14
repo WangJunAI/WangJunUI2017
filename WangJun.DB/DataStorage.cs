@@ -408,6 +408,12 @@ namespace WangJun.DB
             var res = this.mongo.SaveFile(sourceFileUrl, fileName);
             return res;
         }
+
+        public string SaveFile(Stream sourceStream, string fileName)
+        {
+            var res = this.mongo.SaveFile(sourceStream, fileName);
+            return res;
+        }
         #endregion
 
         #region 获取文件
