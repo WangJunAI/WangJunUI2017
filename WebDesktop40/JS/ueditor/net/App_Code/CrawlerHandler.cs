@@ -45,6 +45,8 @@ public class Crawler
     public string ServerUrl { get; set; }
     public string State { get; set; }
 
+    public string YunFileInfo { get; set; }
+
     private HttpServerUtility Server { get; set; }
 
 
@@ -97,6 +99,9 @@ public class Crawler
                 }
                 File.WriteAllBytes(savePath, bytes);
                 State = "SUCCESS";
+
+                var yunRes = System.Text.Encoding.UTF8.GetString(new System.Net.WebClient().UploadFile("http://localhost:9990/YunFile.ashx?m=save", savePath));
+                YunFileInfo = yunRes;
             }
             catch (Exception e)
             {
