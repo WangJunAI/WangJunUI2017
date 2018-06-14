@@ -68,7 +68,16 @@ public class UEditorHandler : IHttpHandler
                     Directory.CreateDirectory(folderPath);
                     var filePath = string.Format(@"{0}\{1}", folderPath, serverFileName);
                     file.SaveAs(filePath);
-                    var yunRes =System.Text.Encoding.UTF8.GetString( new System.Net.WebClient().UploadFile("http://localhost:9990/YunFile.ashx?m=save", filePath));
+                    var yunRes = "";
+                    try
+                    {
+                        yunRes = System.Text.Encoding.UTF8.GetString(new System.Net.WebClient().UploadFile("http://localhost:9990/YunFile.ashx?m=save", filePath));
+                    }
+                    catch (Exception e)
+                    {
+                       yunRes= e.Message;
+                    }
+
                     var fileInfo = new
                     {
                         ServerFileName = serverFileName,

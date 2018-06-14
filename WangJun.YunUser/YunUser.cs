@@ -140,6 +140,8 @@ namespace WangJun.Yun
             session.CanManageYunNote = true;
             session.CanManageYunQun=true;
             session.CanManageStaff = true;
+            session.CanManageYunPan = true;
+            session.CanManageYunProject = true;
             SESSION.Set(session);
             #endregion
             return session;

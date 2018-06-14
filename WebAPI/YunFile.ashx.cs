@@ -24,19 +24,24 @@ namespace WebAPI
 
         public void Execute(HttpContext context)
         {
-            var httpMethod = context.Request.HttpMethod;
-            var method = context.Request.QueryString["m"];
-            var json = new object();
-            if ("POST" == httpMethod && "save" == method.ToLower())
+               var json = new object();
+            try
             {
-                var file = context.Request.Files[0];
+                var httpMethod = context.Request.HttpMethod;
+                var method = context.Request.QueryString["m"];
+                if ("POST" == httpMethod && "save" == method.ToLower())
+                {
+                    var file = context.Request.Files[0];
 
-                var db = DataStorage.GetInstance(DBType.MongoDB);
-                var id = db.SaveFile(file.InputStream, file.FileName);
-                json = new { ID = id };
+                    var db = DataStorage.GetInstance(DBType.MongoDB);
+                    var id = db.SaveFile(file.InputStream, file.FileName);
+                    json = new { ID = id };
+                }
+
             }
-
-
+            catch (Exception e) {
+                json = new { Message = e.Message };
+            }
             context.Response.ContentType = "application/json";
             context.Response.Write(json);
 

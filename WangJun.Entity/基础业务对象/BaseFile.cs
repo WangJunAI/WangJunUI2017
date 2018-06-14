@@ -13,7 +13,7 @@ using WangJun.Utility;
 
 namespace WangJun.Entity
 {
-    public class BaseFile:ICompany, ISysItem
+    public class BaseFile:ICompany, ISysItem, ITime, IStatus, IOperator, IRelationshipObjectId,IName
     {
          
         public string FileHttpUrl { get; set; }
@@ -52,6 +52,16 @@ namespace WangJun.Entity
         /// </summary>
         public string FileType { get; set; }
 
+        #region IName
+
+        public string Name { get; set; }
+
+        public string ParentName { get; set; }
+
+        public string RootName { get; set; }
+
+        public string Path { get; set; }
+        #endregion
 
         #region IRelationshipGuid
         [Key]
