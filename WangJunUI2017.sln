@@ -60,7 +60,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WangJun.AI", "WangJun.AI\Wa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WangJun.Stock", "WangJun.Stock\WangJun.Stock.csproj", "{74DAF2BC-771A-4AB1-B0A8-684A8B7C8B87}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "股票", "股票", "{E835D155-6F55-4068-8BBC-BA838BBABFD8}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "股票外汇", "股票外汇", "{E835D155-6F55-4068-8BBC-BA838BBABFD8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WangJun.StockHostApp", "WangJun.StockHostApp\WangJun.StockHostApp.csproj", "{6C73578A-19D9-46C6-8C0F-F104108DE47A}"
 EndProject

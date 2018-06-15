@@ -119,18 +119,19 @@ SESSION.Register = function () {
 
     var callback = function (res) {
         LOGGER.Log(res);
+        res = JSON.parse(res);
         $.cookie("SESSION", JSON.stringify(res), { path: '/' });
-        alert("注册成功" + res.UserName);
+        alert("注册成功" + res.CompanyName + " ，将以超级管理员 " + res.UserName + "身份登录");
         window.location.href = "../Desktop/Desktop.html";
     }
     NET.PostData(url, callback, param);
     $.cookie("SESSION", JSON.stringify({}), { path: '/' });
 
     ///动画显示
-    var info = ["正在初始化新闻服务,请稍后...", "正在初始化知识库服务,请稍后...","正在整合信息,即将完成..."];
+    var info = ["正在激活公司服务...", "正在初始化人员和组织管理服务...", "正在初始化新闻服务...", "正在初始化知识库服务...", "正在初始化云笔记服务...", "正在初始化群组服务...", "正在初始化云项目服务...", "正在初始化云盘服务...","正在整合信息,即将完成..."];
     setInterval(function () {
         if (0 < info.length) {
-            $("#regBtn").val(info.pop());
+            $("#regBtn").val(info.shift());
         } 
     }, 2000); 
 

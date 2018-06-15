@@ -17,6 +17,8 @@ namespace WangJun.Admin
 
             #region 创建公司
             company.SuperAdminID = superUser._GID;
+            company.Status = EnumStatus.处理中.ToString();
+            company.StatusCode = (int)EnumStatus.处理中;
             company.Save();
             #endregion
 
@@ -28,13 +30,15 @@ namespace WangJun.Admin
 
             #region 激活用户权限
             HTTP.GetInstance().GetString("http://localhost:9990/API.ashx?c=WangJun.Admin.AdminWebAPI&m=ActiveUser&p0=" + superUser.ID + "&p1=01");
-
             #endregion
 
+            company.Status = EnumStatus.正常.ToString();
+            company.StatusCode = (int)EnumStatus.正常;
+            company.Save();
 
             var sessionStr = HTTP.GetInstance().GetString("http://localhost:9990/API.ashx?c=WangJun.Yun.YunUser&m=Login&p0=" + Convertor.FromObjectToJson(new { LoginID = superUser.LoginEmail }));
 
-            return Convertor.FromJsonToObject2<SESSION>(sessionStr);
+            return sessionStr;
         }
         #endregion
 
@@ -47,7 +51,6 @@ namespace WangJun.Admin
              #region 初始化用户管理App和管理权限
             HTTP.GetInstance().GetString("http://localhost:9990/API.ashx?c=WangJun.App.YunUserAPI&m=RegisterApp&p0=" + companyID + "&p1=01");
             HTTP.GetInstance().GetString("http://localhost:9990/API.ashx?c=WangJun.App.YunUserAPI&m=SetManagerID&p0=" + userID + "&p1=true&p2=00");
-
             #endregion
 
             #region 初始化新闻发布App和管理权限
