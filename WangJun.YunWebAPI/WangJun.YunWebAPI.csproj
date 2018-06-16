@@ -7,7 +7,7 @@
     <ProjectGuid>{AB28A8F1-0D15-4E57-B272-4712435BC1D4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WangJun.YunWebAPI</RootNamespace>
+    <RootNamespace>WangJun.Yun</RootNamespace>
     <AssemblyName>WangJun.YunWebAPI</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\WebAPI\bin\YunWebAPI\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -55,9 +55,45 @@
       <Project>{9B69D6EB-AFDB-47E3-816C-67EEA53B7784}</Project>
       <Name>WangJun.Entity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WangJun.Net\WangJun.Net.csproj">
+      <Project>{D7B3F2F3-86A9-4196-A050-BE22F530BBF4}</Project>
+      <Name>WangJun.Net</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WangJun.Utility\WangJun.Utility.csproj">
       <Project>{ECA8641B-DDB9-481A-BF78-76FB5A8E1DE3}</Project>
       <Name>WangJun.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WangJun.YunAI\WangJun.YunAI.csproj">
+      <Project>{86b21657-90c5-4073-9b11-83de31b93320}</Project>
+      <Name>WangJun.YunAI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WangJun.YunArticle\WangJun.YunArticle.csproj">
+      <Project>{bfb774ba-b7fa-4f7a-b76b-6392dc59a95d}</Project>
+      <Name>WangJun.YunArticle</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WangJun.YunBehavior\WangJun.YunBehavior.csproj">
+      <Project>{406418ce-1274-4268-afc3-f9510499bd18}</Project>
+      <Name>WangJun.YunBehavior</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WangJun.YunCategory\WangJun.YunCategory.csproj">
+      <Project>{f41364e7-c71b-438c-b257-f9fb741d4570}</Project>
+      <Name>WangJun.YunCategory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WangJun.YunComment\WangJun.YunComment.csproj">
+      <Project>{63287879-30d9-4521-8f98-c1b6e02ed1bc}</Project>
+      <Name>WangJun.YunComment</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WangJun.YunCompany\WangJun.YunCompany.csproj">
+      <Project>{9455d8e8-7dd4-4e03-a6ba-8c2f54601516}</Project>
+      <Name>WangJun.YunCompany</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WangJun.YunFile\WangJun.YunFile.csproj">
+      <Project>{528c7fac-df7e-466b-9430-bc429ed24937}</Project>
+      <Name>WangJun.YunFile</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WangJun.YunUser\WangJun.YunUser.csproj">
+      <Project>{934bc61e-4a2c-4046-af08-4d5d0afff7a3}</Project>
+      <Name>WangJun.YunUser</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

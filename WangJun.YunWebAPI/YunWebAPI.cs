@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using WangJun.Entity;
 using WangJun.Utility;
 
-namespace WangJun.Yun
+namespace WangJun.App
 {
     public class YunWebAPI: IApp
     {

@@ -86,10 +86,6 @@
       <Project>{ECA8641B-DDB9-481A-BF78-76FB5A8E1DE3}</Project>
       <Name>WangJun.Utility</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WangJun.YunNews\WangJun.YunNews.csproj">
-      <Project>{b3539da2-9c83-47f4-be30-df49f932bf20}</Project>
-      <Name>WangJun.YunNews</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="YunConfig.txt" />

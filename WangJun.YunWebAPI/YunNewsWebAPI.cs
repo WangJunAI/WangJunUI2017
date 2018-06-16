@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Dynamic;
-using System.Linq;
-using WangJun.Config;
+using System.Linq; 
 using WangJun.Entity;
 using WangJun.Net;
 using WangJun.Utility;

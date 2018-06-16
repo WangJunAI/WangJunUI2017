@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using WangJun.Config;
+using System.Text; 
 using WangJun.Entity;
 using WangJun.Utility;
 using WangJun.Yun;
