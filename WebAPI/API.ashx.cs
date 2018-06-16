@@ -115,17 +115,17 @@ namespace WebAPI
         {
             var dict = new Dictionary<string, string>();
             dict.Add("WangJun.Config.YunConfig." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.Config.dll"));
-            dict.Add("WangJun.YunDoc.YunDocWebAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/YunDoc/WangJun.YunDoc.dll"));
-            dict.Add("WangJun.YunNote.YunNoteWebAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/YunNote/WangJun.YunNote.dll"));
-            dict.Add("WangJun.YunPan.YunPanWebAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/YunPan/WangJun.YunPan.dll"));
-            dict.Add("WangJun.YunProject.YunProjectWebAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/YunProject/WangJun.YunProject.dll"));
+            dict.Add("WangJun.YunDoc.YunDocWebAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/YunWebAPI/WangJun.YunWebAPI.dll"));
+            dict.Add("WangJun.YunNote.YunNoteWebAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/YunWebAPI/WangJun.YunWebAPI.dll"));
+            dict.Add("WangJun.YunPan.YunPanWebAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/YunWebAPI/WangJun.YunWebAPI.dll"));
+            dict.Add("WangJun.YunProject.YunProjectWebAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/YunWebAPI/WangJun.YunWebAPI.dll"));
             dict.Add("WangJun.Admin.AdminWebAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/Admin/WangJun.Admin.dll"));
-            dict.Add("WangJun.YunNews.YunNewsWebAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/YunNews/WangJun.YunNews.dll"));
-            dict.Add("WangJun.YunQun.YunQunWebAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/YunQun/WangJun.YunQun.dll"));
+            dict.Add("WangJun.YunNews.YunNewsWebAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/YunWebAPI/WangJun.YunWebAPI.dll"));
+            dict.Add("WangJun.YunQun.YunQunWebAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/YunWebAPI/WangJun.YunWebAPI.dll"));
             dict.Add("WangJun.Tools.DataSourceBaidu." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.DataSource.dll"));
             dict.Add("WangJun.HTML.HTMLItem." + methodName, HttpContext.Current.Server.MapPath("./bin/Html/WangJun.HTML.dll"));
-            dict.Add("WangJun.Yun.YunUser." + methodName, HttpContext.Current.Server.MapPath("./bin/YunUser/WangJun.YunUser.dll"));
-            dict.Add("WangJun.App.YunUserAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/YunUser/WangJun.YunUserAPI.dll"));
+            dict.Add("WangJun.Yun.YunUser." + methodName, HttpContext.Current.Server.MapPath("./bin/YunWebAPI/WangJun.YunUser.dll"));
+            dict.Add("WangJun.App.YunUserAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/YunWebAPI/WangJun.YunWebAPI.dll"));
             dict.Add("WangJun.Yun.YunAI." + methodName, HttpContext.Current.Server.MapPath("./bin/YunAI/WangJun.YunAI.dll"));
 
 

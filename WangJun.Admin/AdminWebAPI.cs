@@ -36,9 +36,10 @@ namespace WangJun.Admin
             company.StatusCode = (int)EnumStatus.正常;
             company.Save();
 
-            var sessionStr = HTTP.GetInstance().GetString("http://localhost:9990/API.ashx?c=WangJun.Yun.YunUser&m=Login&p0=" + Convertor.FromObjectToJson(new { LoginID = superUser.LoginEmail }));
 
-            return sessionStr;
+            ///用超级管理员登录 
+            var session = new YunUser().Login(Convertor.FromObjectToJson(new { LoginID = superUser.LoginEmail }));
+            return session;
         }
         #endregion
 

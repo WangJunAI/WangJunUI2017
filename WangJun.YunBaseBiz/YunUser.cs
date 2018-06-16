@@ -121,9 +121,9 @@ namespace WangJun.Yun
             var dict = Convertor.FromJsonToDict2(jsonInput);
             var loginID = dict["LoginID"].ToString();
             var session = new SESSION();
-             var query = "{'LoginEmail':'" + loginID + "'}";
+            var query = string.Format("{{$or:[{{'LoginEmail':'{0}'}},{{'LoginPhone':'{0}'}},{{'LoginQQ':'{0}'}},{{'LoginWeChat':'{0}'}},{{'LoginName':'{0}'}}]}}", loginID);
             var res = EntityManager.GetInstance().Get<YunUser>("WangJun", "YunUser", query);
-            var res2 = EntityManager.GetInstance().Get<YunUser>(p => p.LoginEmail == loginID);
+            var res2 = EntityManager.GetInstance().Get<YunUser>(p => p.LoginEmail == loginID|| p.LoginPhone == loginID|| p.LoginQQ == loginID || p.LoginWeChat == loginID || p.LoginName == loginID);
 
 
             ///查找权限
