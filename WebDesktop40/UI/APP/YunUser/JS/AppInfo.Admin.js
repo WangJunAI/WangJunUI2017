@@ -176,7 +176,7 @@ App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "全选", Method: "", Sor
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "姓名", Method: "Doc.TableRowClick", Sort: "", PropertyName: "Name", DataType: "string" });
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "部门", Method: "", Sort: "", PropertyName: "ParentName", DataType: "string" });
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "岗位", Method: "", Sort: "", PropertyName: "PositionName", DataType: "string" });
-App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "邮箱", Method: "", Sort: "", PropertyName: "Email", DataType: "string" });
+App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "邮箱", Method: "", Sort: "", PropertyName: "LoginEmail", DataType: "string" });
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "电话", Method: "", Sort: "", PropertyName: "Phone", DataType: "string" });
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "QQ/微信", Method: "", Sort: "", PropertyName: "QQ", DataType: "string" });
 

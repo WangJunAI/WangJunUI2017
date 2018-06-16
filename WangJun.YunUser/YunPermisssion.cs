@@ -14,7 +14,7 @@ namespace WangJun.Yun
             var iSysItem = this as ISysItem;
             iSysItem.ClassFullName = this.GetType().FullName;
             iSysItem._DbName = "WangJun";
-            iSysItem._CollectionName = "YunPermisssion";
+            iSysItem._CollectionName = "YunPermission";
             var iTime = this as ITime;
             iTime.CreateTime = DateTime.Now;
             iTime.UpdateTime = DateTime.Now;

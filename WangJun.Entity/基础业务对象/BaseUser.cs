@@ -25,6 +25,10 @@ namespace WangJun.Entity
 
         public string LoginPhone { get; set; }
 
+        public string LoginQQ { get; set; }
+
+        public string LoginWeChat { get; set; }
+
         public string LoginName { get; set; }
 
         public int UserType { get; set; }

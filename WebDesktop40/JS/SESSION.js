@@ -78,7 +78,7 @@ SESSION.Initial = function () {
         }
         else if ("Desktop" === pageName) {
             var session = SESSION.Current();
-            $("#personIcon").attr("href", "../APP/Staff/Detail.html?id=[id]".replace("[id]", session.UserID));
+            $("#personIcon").attr("href", "../APP/YunUser/Detail.html?id=[id]".replace("[id]", session.UserID));
         }
         else if ("TouTiao" === pageName) {
             $("[data-PropertyName='Name']").text(SESSION.Current().UserName);

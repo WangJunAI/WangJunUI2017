@@ -12,15 +12,7 @@ namespace WangJun.Entity
     public class BasePermission : IPermission, ISysItem,ICompany    ,ITime
     {
         [Key]
-        public Guid _ID
-        {
-            get
-            {
-                return
-                    SUID.CreateNewID(new Guid[] { this.ObjectID, this.OperatorID });
-            }
-            set { }
-        }
+        public Guid _ID { get; set; }
         public Guid  GroupID { get; set; }
 
         public string  GroupName { get; set; }
