@@ -4,7 +4,7 @@ using System.Text;
 using WangJun.Entity;
 using WangJun.Utility;
 using WangJun.Yun;
-
+using WangJun.App;
 namespace WangJun.YunPan
 {
     /// <summary>

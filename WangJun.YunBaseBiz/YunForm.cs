@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WangJun.YunBaseBiz
+namespace WangJun.Yun
 {
-    public class Class1
+    public class YunForm
     {
     }
 }

@@ -3,7 +3,8 @@ using WangJun.App;
 using WangJun.Entity; 
 using WangJun.Net;
 using WangJun.Utility;
-using WangJun.Yun; 
+using WangJun.Yun;
+
 namespace WangJun.Admin
 {
     public class AdminWebAPI
@@ -59,6 +60,9 @@ namespace WangJun.Admin
             #endregion
 
             #region 初始化文档服务App和管理权限 
+            HTTP.GetInstance().GetString("http://localhost:9990/API.ashx?c=WangJun.YunDoc.YunDocWebAPI&m=RegisterApp&p0=" + companyID + "&p1=01");
+            HTTP.GetInstance().GetString("http://localhost:9990/API.ashx?c=WangJun.YunDoc.YunDocWebAPI&m=PersonalAppInitial&p0=" + userID + "&p1=01");
+            HTTP.GetInstance().GetString("http://localhost:9990/API.ashx?c=WangJun.YunDoc.YunDocWebAPI&m=SetManagerID&p0=" + userID + "&p1=true&p2=00");
             new WangJun.YunDoc.YunDocWebAPI().RegisterApp(companyID, "");
             new WangJun.YunDoc.YunDocWebAPI().PersonalAppInitial(userID, "");
             new WangJun.YunDoc.YunDocWebAPI().SetManagerID(userID, "true", "");
@@ -66,25 +70,27 @@ namespace WangJun.Admin
             #endregion
 
             #region 初始化笔记服务App和管理权限 
+            HTTP.GetInstance().GetString("http://localhost:9990/API.ashx?c=WangJun.YunNote.YunNoteWebAPI&m=PersonalAppInitial&p0=" + userID + "&p1=01");
+            HTTP.GetInstance().GetString("http://localhost:9990/API.ashx?c=WangJun.YunNote.YunNoteWebAPI&m=SetManagerID&p0=" + userID + "&p1=true&p2=00");
             new WangJun.YunNote.YunNoteWebAPI().RegisterApp(companyID, "");
             new WangJun.YunNote.YunNoteWebAPI().PersonalAppInitial(userID, "");
             #endregion
 
             #region 初始化群组服务App和管理权限 
-            new WangJun.YunQun.YunQunWebAPI().RegisterApp(companyID, "");
-            new WangJun.YunQun.YunQunWebAPI().PersonalAppInitial(userID, "");
+            HTTP.GetInstance().GetString("http://localhost:9990/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=RegisterApp&p0=" + companyID + "&p1=01");
+            HTTP.GetInstance().GetString("http://localhost:9990/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=SetManagerID&p0=" + userID + "&p1=true&p2=00");
             #endregion
 
             #region 初始化云项目服务App和管理权限 
-            new WangJun.YunProject.YunProjectWebAPI().RegisterApp(companyID, "");
-            new WangJun.YunProject.YunProjectWebAPI().PersonalAppInitial(userID, "");
-            new WangJun.YunProject.YunProjectWebAPI().SetManagerID(userID, "true", "");
+            HTTP.GetInstance().GetString("http://localhost:9990/API.ashx?c=WangJun.YunProject.YunProjectWebAPI&m=RegisterApp&p0=" + companyID + "&p1=01");
+            HTTP.GetInstance().GetString("http://localhost:9990/API.ashx?c=WangJun.YunProject.YunProjectWebAPI&m=PersonalAppInitial&p0=" + userID + "&p1=01");
+            HTTP.GetInstance().GetString("http://localhost:9990/API.ashx?c=WangJun.YunProject.YunProjectWebAPI&m=SetManagerID&p0=" + userID + "&p1=true&p2=00");
             #endregion
 
-            #region 初始化云盘服务App和管理权限  
-            new WangJun.YunPan.YunPanWebAPI().RegisterApp(companyID, "");
-            new WangJun.YunPan.YunPanWebAPI().PersonalAppInitial(userID, "");
-            new WangJun.YunPan.YunPanWebAPI().SetManagerID(userID, "true", "");
+            #region 初始化云盘服务App和管理权限 
+            HTTP.GetInstance().GetString("http://localhost:9990/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=RegisterApp&p0=" + companyID + "&p1=01");
+            HTTP.GetInstance().GetString("http://localhost:9990/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=PersonalAppInitial&p0=" + userID + "&p1=01");
+            HTTP.GetInstance().GetString("http://localhost:9990/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=SetManagerID&p0=" + userID + "&p1=true&p2=00");
             #endregion
 
             return 0;

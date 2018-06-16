@@ -64,13 +64,13 @@ namespace WangJun.YunQun
         #endregion
 
         #region 初始化个人应用
-        public int PersonalAppInitial()
+        public int PersonalAppInitial(string userID, string securityCode)
         {
+            var user = YunUser.Load(userID);
+            var userName = SESSION.Current.UserName;
             var company = YunCompany.Load(SESSION.Current.CompanyID);
             var companyID = company.CompanyID;
-            var companyName = company.CompanyID;
-            var userID = SESSION.Current.UserID;
-            var userName = SESSION.Current.UserName;
+            var companyName = company.CompanyID; 
 
             var count = EntityManager.GetInstance().Count<YunCategory>(p => p.OwnerID == userID);
             if (0 == count)

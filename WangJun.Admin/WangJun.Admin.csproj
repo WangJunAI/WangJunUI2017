@@ -41,10 +41,6 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="WangJun.HumanResource, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\WebAPI\bin\WangJun.HumanResource.dll</HintPath>
-    </Reference>
     <Reference Include="WangJun.Net, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\WebAPI\bin\WangJun.Net.dll</HintPath>
@@ -67,17 +63,13 @@
       <Project>{ECA8641B-DDB9-481A-BF78-76FB5A8E1DE3}</Project>
       <Name>WangJun.Utility</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WangJun.YunCategory\WangJun.YunCategory.csproj">
-      <Project>{f41364e7-c71b-438c-b257-f9fb741d4570}</Project>
-      <Name>WangJun.YunCategory</Name>
+    <ProjectReference Include="..\WangJun.YunBaseBiz\WangJun.YunBaseBiz.csproj">
+      <Project>{6C036AE2-3629-4856-914A-9D724C45F691}</Project>
+      <Name>WangJun.YunBaseBiz</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WangJun.YunCompany\WangJun.YunCompany.csproj">
-      <Project>{9455D8E8-7DD4-4E03-A6BA-8C2F54601516}</Project>
-      <Name>WangJun.YunCompany</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WangJun.YunUser\WangJun.YunUser.csproj">
-      <Project>{934bc61e-4a2c-4046-af08-4d5d0afff7a3}</Project>
-      <Name>WangJun.YunUser</Name>
+    <ProjectReference Include="..\WangJun.YunWebAPI\WangJun.YunWebAPI.csproj">
+      <Project>{ab28a8f1-0d15-4e57-b272-4712435bc1d4}</Project>
+      <Name>WangJun.YunWebAPI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
