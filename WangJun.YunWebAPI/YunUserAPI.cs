@@ -10,7 +10,7 @@ namespace WangJun.App
     /// <summary>
     /// 
     /// </summary>
-    public class YunUserAPI : IApp
+    public class YunUserAPI : YunWebAPI
     { 
 
         #region  IApp

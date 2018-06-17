@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Dynamic;
-using System.Linq; 
+using System.Linq;
+using WangJun.App;
 using WangJun.Entity;
 using WangJun.Net;
 using WangJun.Utility;
@@ -12,7 +13,7 @@ namespace WangJun.YunNews
     /// <summary>
     /// 
     /// </summary>
-    public class YunNewsWebAPI:IApp
+    public class YunNewsWebAPI: YunWebAPI
     { 
 
         #region  IApp

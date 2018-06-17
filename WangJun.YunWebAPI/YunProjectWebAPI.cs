@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text; 
+using System.Text;
+using WangJun.App;
 using WangJun.Entity;
 using WangJun.Utility;
 using WangJun.Yun;
@@ -10,7 +11,7 @@ namespace WangJun.YunProject
     /// <summary>
     /// 
     /// </summary>
-    public class YunProjectWebAPI : IApp
+    public class YunProjectWebAPI : YunWebAPI
     { 
 
         #region  IApp
