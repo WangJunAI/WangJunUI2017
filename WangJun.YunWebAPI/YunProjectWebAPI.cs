@@ -125,69 +125,7 @@ namespace WangJun.YunProject
         }
         #endregion
 
-        #region 目录操作
-        /// <summary>
-        /// 保存一个目录
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="parentId"></param>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public int SaveCategory(string jsonInput)
-        {
-            var ar = Convertor.FromJsonToObject2<YunCategory>(jsonInput);
-            ar.AppCode = this.CurrentApp.AppCode;
-            ar.AppName = this.CurrentApp.AppName;
-            ar.Version = this.CurrentApp.Version;
-             
-            ar.Save();
-
-            return 0;
-        }
-
-        /// <summary>
-        /// 加载目录
-        /// </summary>
-        /// <param name="query"></param>
-        /// <param name="protection"></param>
-        /// <param name="sort"></param>
-        /// <param name="pageIndex"></param>
-        /// <param name="pageSize"></param>
-        /// <returns></returns>
-        public List<YunCategory> LoadCategoryList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
-        {
-            var dict = Convertor.FromJsonToDict2(query);
- 
-                query = "{$and:[" + query + ",{'CompanyID':'" + SESSION.Current.CompanyID + "','AppCode':" + this.CurrentApp.AppCode + "},{'StatusCode':{$eq:" + (int)EnumStatus.正常 + "}}]}";
-
-            ///MongoDB
-            var res = EntityManager.GetInstance().Find<YunCategory>(query, protection, sort, pageIndex, pageSize);
-
-            /// SQLServer
-            var res2 = EntityManager.GetInstance().Find<YunCategory>(p=>p.CompanyID == SESSION.Current.CompanyID&& p.AppCode == this.AppCode,p=>p.CreateTime,0,1000,false).ToList();
-            return res;
-        }
-
-
-        /// <summary>
-        /// 删除一个目录
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public int RemoveCategory(string id)
-        {
-            YunCategory.Remove(id);
-            return 0;
-        }
-
-        public YunCategory GetCategory(string id)
-        {
-            var inst = YunCategory.Load(id);
-
-            return inst;
-        }
-
-        #endregion
+         
 
         #region 文档操作
         /// <summary>
