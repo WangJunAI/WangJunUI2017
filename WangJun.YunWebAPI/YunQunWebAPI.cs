@@ -149,27 +149,7 @@ namespace WangJun.YunQun
         }
         #endregion
 
-        #region 管理账号操作
-        public int SetManagerID(string userID, string canManage, string securityCode)
-        {
-            var user = YunUser.Load(userID);
-            var per1 = new YunPermission { };
-            per1.Allow = true;
-            per1.OperatorID = user._GID;
-            per1.OperatorName = user.Name;
-            per1.OperatorType = (int)EnumOperatorType.用户;
-            per1.AppCode = this.CurrentApp.AppCode;
-            per1.AppName = this.CurrentApp.AppName;
-            per1.ObjectID = SUID.FromStringToGuid("FFFFFFFFFFFFFF" + this.AppCode);
-            per1.ObjectType = (int)EnumObjectType.应用管理;
-            per1.ObjectTypeName = EnumObjectType.应用管理.ToString();
-            per1.CompanyID = user.CompanyID;
-            per1.CompanyName = user.CompanyName;
-            per1.Save();
-
-            return (int)EnumResult.成功;
-        }
-        #endregion
+         
 
          
 
