@@ -384,12 +384,7 @@ namespace WangJun.App
             return null;
         }
         #endregion
-
-        #region 服务状态检测
-        public string APICheck(string input) {
-            return Convertor.FromObjectToJson(this.CurrentApp);
-        }
-        #endregion
+         
 
     }
 }

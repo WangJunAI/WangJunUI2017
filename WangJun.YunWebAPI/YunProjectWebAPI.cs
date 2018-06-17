@@ -433,12 +433,6 @@ namespace WangJun.YunProject
             return list;
         }
         #endregion
-
-        #region 服务状态检测
-        public string APICheck(string input)
-        {
-            return Convertor.FromObjectToJson(this.CurrentApp);
-        }
-        #endregion
+         
     }
 }

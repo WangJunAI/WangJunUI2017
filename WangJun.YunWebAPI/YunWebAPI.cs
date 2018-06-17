@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -87,6 +88,95 @@ namespace WangJun.App
             var inst = YunCategory.Load(id);
 
             return inst;
+        }
+
+        #endregion
+
+        #region 用户行为 点赞 收藏 阅读
+        /// <summary>
+        /// 添加点赞行为
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public object AddLikeCount(string id)
+        {
+            try
+            {
+                var article = YunArticle.Load(id);
+                YunBehavior.Save(operateTypeCode: (int)EnumBehaviorType.点赞, operateType: EnumBehaviorType.点赞.ToString()
+                                             , targetTypeCode: (int)EnumBizType.文章, targetType: EnumBizType.文章.ToString()
+                                             , operatorID: SUID.FromStringToGuid(SESSION.Current.UserID), operatorName: SESSION.Current.UserName
+                                             , targetID: SUID.FromStringToGuid(id), targetName: article.Title
+                                             , appCode: this.CurrentApp.AppCode, appName: this.CurrentApp.AppName
+                                             , companyID: SESSION.Current.CompanyID, companyName: SESSION.Current.CompanyName);
+
+
+                return (int)EnumResult.成功;
+            }
+            catch (Exception e)
+            {
+
+            }
+            return (int)EnumResult.失败;
+        }
+
+        /// <summary>
+        /// 添加收藏行为
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public object AddFavoriteCount(string id)
+        {
+            try
+            {
+                var article = YunArticle.Load(id);
+                YunBehavior.Save(operateTypeCode: (int)EnumBehaviorType.收藏, operateType: EnumBehaviorType.收藏.ToString()
+                                         , targetTypeCode: (int)EnumBizType.文章, targetType: EnumBizType.文章.ToString()
+                                         , operatorID: SUID.FromStringToGuid(SESSION.Current.UserID), operatorName: SESSION.Current.UserName
+                                         , targetID: SUID.FromStringToGuid(id), targetName: article.Title
+                                         , appCode: this.CurrentApp.AppCode, appName: this.CurrentApp.AppName
+                                         , companyID: SESSION.Current.CompanyID, companyName: SESSION.Current.CompanyName);
+                return (int)EnumResult.成功;
+            }
+            catch (Exception e)
+            {
+
+            }
+            return (int)EnumResult.失败;
+        }
+
+        public int ClientRead(string id)
+        {
+            try
+            {
+                var article = YunArticle.Load(id);
+                YunBehavior.Save(operateTypeCode: (int)EnumBehaviorType.阅读, operateType: EnumBehaviorType.阅读.ToString()
+                             , targetTypeCode: (int)EnumBizType.文章, targetType: EnumBizType.文章.ToString()
+                             , operatorID: SUID.FromStringToGuid(SESSION.Current.UserID), operatorName: SESSION.Current.UserName
+                             , targetID: SUID.FromStringToGuid(id), targetName: article.Title
+                             , appCode: this.CurrentApp.AppCode, appName: this.CurrentApp.AppName
+                             , companyID: SESSION.Current.CompanyID, companyName: SESSION.Current.CompanyName);
+                return (int)EnumResult.成功;
+            }
+            catch (Exception e)
+            {
+
+            }
+            return (int)EnumResult.失败;
+        }
+
+        public object GetBehaviorByArticleID(string id)
+        {
+            var userID = SUID.FromStringToGuid(SESSION.Current.UserID);
+            var dataSource = YunBehavior.LoadBehaviorList(id);
+            dynamic stat = new ExpandoObject();
+            stat.ReadList = dataSource.Where(p => p.OperateTypeCode == (int)EnumBehaviorType.阅读);
+            stat.LikeList = dataSource.Where(p => p.OperateTypeCode == (int)EnumBehaviorType.点赞);
+            stat.FavoriteList = dataSource.Where(p => p.OperateTypeCode == (int)EnumBehaviorType.收藏);
+            stat.CommentList = dataSource.Where(p => p.OperateTypeCode == (int)EnumBehaviorType.参与评论);
+            stat.HasLike = 0 < dataSource.Where(p => p.OperateTypeCode == (int)EnumBehaviorType.点赞 && p.OperatorID == userID).Count();
+            stat.HasFavorite = 0 < dataSource.Where(p => p.OperateTypeCode == (int)EnumBehaviorType.收藏 && p.OperatorID == userID).Count();
+            return stat;
         }
 
         #endregion

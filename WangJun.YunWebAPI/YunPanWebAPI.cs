@@ -502,14 +502,7 @@ namespace WangJun.YunPan
             var res2 = EntityManager.GetInstance().Find<YunFile>(( p=>objectIDList.Contains(p._GID)));
              return list;
         }
-        #endregion
-
-        #region 服务状态检测
-        public string APICheck(string input)
-        {
-            return Convertor.FromObjectToJson(this.CurrentApp);
-        }
-        #endregion
+        #endregion 
 
     }
 }
