@@ -196,46 +196,7 @@ namespace WangJun.YunQun
 
             return 0;
         }
-
-        /// <summary>
-        /// 加载目录
-        /// </summary>
-        /// <param name="query"></param>
-        /// <param name="protection"></param>
-        /// <param name="sort"></param>
-        /// <param name="pageIndex"></param>
-        /// <param name="pageSize"></param>
-        /// <returns></returns>
-        public List<YunArticle> LoadEntityList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
-        {
-            ///MongoDB
-            query = "{$and:[" + query + ",{'StatusCode':{$eq:" + (int)EnumStatus.正常 + "}},{'AppCode':" + this.CurrentApp.AppCode + "}]}";
-            var res = EntityManager.GetInstance().Find<YunArticle>(query, protection, sort, pageIndex, pageSize);
-
-            /// SQLServer
-            var res2 = EntityManager.GetInstance().Find<YunArticle>(p => p.CompanyID == SESSION.Current.CompanyID && p.AppCode == this.CurrentApp.AppCode&&p.StatusCode==(int)EnumStatus.正常,p=>p.CreateTime,pageIndex ,pageSize,true);
-
-            return res;
-        }
-
-
-        /// <summary>
-        /// 删除一个目录
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public int RemoveEntity(string id)
-        {
-            YunArticle.Remove(id);
-
-            return 0;
-        }
-
-        public YunArticle GetEntity(string id)
-        {
-            var inst = YunArticle.Load(id);
-            return inst;
-        }
+         
         #endregion
 
          
@@ -260,43 +221,7 @@ namespace WangJun.YunQun
         }
         #endregion
 
-        #region 回收站
-        public List<YunArticle> LoadRecycleBinEntityList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
-        {
-            ///MongoDB
-            query = "{$and:[" + "{}" + ",{'OwnerID':'" + SESSION.Current.CompanyID + "','AppCode':" + this.AppCode + "},{'StatusCode':{$eq:" +(int)EnumStatus.删除 + "}}]}";
-            var res = EntityManager.GetInstance().Find<YunArticle>(query, protection, sort, pageIndex, pageSize);
-
-            /// SQLServer
-            var res2 = EntityManager.GetInstance().Find<YunArticle>(p => p.CompanyID == SESSION.Current.CompanyID && p.AppCode == this.AppCode && p.StatusCode == (int)EnumStatus.删除,p => p.CreateTime,pageIndex ,pageSize,true).ToList();
-
-            return res;
-             
-        }
-
-        /// <summary>
-        /// 彻底删除实体
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public int DeleteEntity(string id)
-        {
-            YunArticle.Delete(id);
-
-            return 0;
-        }
-
-        public int EmptyRecycleBin()
-        {
-            var list = this.LoadRecycleBinEntityList("{}", "{}", "{}", 0, int.MaxValue);
-            foreach (YunArticle item in list)
-            {
-                YunArticle.Delete(item.ID);
-            }
-             
-            return 0;
-        }
-        #endregion
+         
 
 
         #region 聚合计算

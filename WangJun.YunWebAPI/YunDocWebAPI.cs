@@ -248,43 +248,7 @@ namespace WangJun.YunDoc
         }
         #endregion
 
-        #region 回收站
-        public List<YunArticle> LoadRecycleBinEntityList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
-        {
-            ///MongoDB
-            query = "{$and:[" + "{}" + ",{'OwnerID':'" + SESSION.Current.CompanyID + "','AppCode':" + this.AppCode + "},{'StatusCode':{$eq:" +(int)EnumStatus.删除 + "}}]}";
-            var res = EntityManager.GetInstance().Find<YunArticle>(query, protection, sort, pageIndex, pageSize);
-
-            /// SQLServer
-            var res2 = EntityManager.GetInstance().Find<YunArticle>(p => p.CompanyID == SESSION.Current.CompanyID && p.AppCode == this.AppCode && p.StatusCode == (int)EnumStatus.删除,p => p.CreateTime,pageIndex ,pageSize,true).ToList();
-
-            return res;
-             
-        }
-
-        /// <summary>
-        /// 彻底删除实体
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public int DeleteEntity(string id)
-        {
-            YunArticle.Delete(id);
-
-            return 0;
-        }
-
-        public int EmptyRecycleBin()
-        {
-            var list = this.LoadRecycleBinEntityList("{}", "{}", "{}", 0, int.MaxValue);
-            foreach (YunArticle item in list)
-            {
-                YunArticle.Delete(item.ID);
-            }
-             
-            return 0;
-        }
-        #endregion
+         
 
 
         #region 聚合计算
