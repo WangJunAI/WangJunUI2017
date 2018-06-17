@@ -222,47 +222,8 @@ namespace WangJun.YunDoc
 
             return 0;
         }
+         
 
-        /// <summary>
-        /// 加载目录
-        /// </summary>
-        /// <param name="query"></param>
-        /// <param name="protection"></param>
-        /// <param name="sort"></param>
-        /// <param name="pageIndex"></param>
-        /// <param name="pageSize"></param>
-        /// <returns></returns>
-        public List<YunArticle> LoadEntityList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
-        {
-            ///MongoDB
-            query = "{$and:[" + query + ",{'StatusCode':{$eq:" + (int)EnumStatus.正常 + "}},{'AppCode':" + this.CurrentApp.AppCode + "}]}";
-            var res = EntityManager.GetInstance().Find<YunArticle>(query, protection, sort, pageIndex, pageSize);
-
-            /// SQLServer
-            var res2 = EntityManager.GetInstance().Find<YunArticle>(p => p.CompanyID == SESSION.Current.CompanyID && p.AppCode == this.AppCode && p.StatusCode == (int)EnumStatus.正常, p => p.CreateTime, pageIndex, pageSize, true);
-
-
-            return res;
-        }
-
-
-        /// <summary>
-        /// 删除一个目录
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public int RemoveEntity(string id)
-        {
-            YunArticle.Remove(id);
-
-            return 0;
-        }
-
-        public YunArticle GetEntity(string id)
-        {
-            var inst = YunArticle.Load(id);
-            return inst;
-        }
         #endregion
 
         #region 评论操作

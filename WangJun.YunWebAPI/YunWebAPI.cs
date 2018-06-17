@@ -114,6 +114,40 @@ namespace WangJun.App
 
         #endregion
 
+        #region 文档操作
+        public List<YunArticle> LoadEntityList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
+        {
+            ///MongoDB
+            query = "{$and:[" + query + ",{'StatusCode':{$eq:" + (int)EnumStatus.正常 + "}},{'AppCode':" + this.CurrentApp.AppCode + "}]}";
+            var res = EntityManager.GetInstance().Find<YunArticle>(query, protection, sort, pageIndex, pageSize);
+
+            /// SQLServer
+            var res2 = EntityManager.GetInstance().Find<YunArticle>(p => p.CompanyID == SESSION.Current.CompanyID && p.AppCode == this.AppCode && p.StatusCode == (int)EnumStatus.正常, p => p.CreateTime, pageIndex, pageSize, true);
+
+
+            return res;
+        }
+
+
+        /// <summary>
+        /// 删除一个目录
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public int RemoveEntity(string id)
+        {
+            YunArticle.Remove(id);
+
+            return 0;
+        }
+
+        public YunArticle GetEntity(string id)
+        {
+            var inst = YunArticle.Load(id);
+            return inst;
+        }
+        #endregion
+
         #region 用户行为 点赞 收藏 阅读
         /// <summary>
         /// 添加点赞行为

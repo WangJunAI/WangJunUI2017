@@ -152,45 +152,7 @@ namespace WangJun.YunProject
             return 0;
         }
 
-        /// <summary>
-        /// 加载目录
-        /// </summary>
-        /// <param name="query"></param>
-        /// <param name="protection"></param>
-        /// <param name="sort"></param>
-        /// <param name="pageIndex"></param>
-        /// <param name="pageSize"></param>
-        /// <returns></returns>
-        public List<YunArticle> LoadEntityList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
-        {
-            ///MongoDB
-            query = "{$and:[" + query + ",{'StatusCode':{$eq:" + (int)EnumStatus.正常 + "}},{'AppCode':" + this.CurrentApp.AppCode + "}]}";
-            var res = EntityManager.GetInstance().Find<YunArticle>(query, protection, sort, pageIndex, pageSize);
-
-            /// SQLServer
-            var res2 = EntityManager.GetInstance().Find<YunArticle>(p => p.CompanyID == SESSION.Current.CompanyID && p.AppCode == this.AppCode&&p.StatusCode==(int)EnumStatus.正常,p=>p.CreateTime,pageIndex ,pageSize,true);
-
-            return res;
-        }
-
-
-        /// <summary>
-        /// 删除一个目录
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public int RemoveEntity(string id)
-        {
-            YunArticle.Remove(id);
-
-            return 0;
-        }
-
-        public YunArticle GetEntity(string id)
-        {
-            var inst = YunArticle.Load(id);
-            return inst;
-        }
+ 
         #endregion
 
         #region 评论操作
@@ -337,64 +299,7 @@ namespace WangJun.YunProject
         #endregion
 
 
-        #region 用户行为
-        /// <summary>
-        /// 添加点赞行为
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public object AddLikeCount(string id)
-        { 
-            YunBehavior.Save(operateTypeCode: (int)EnumBehaviorType.点赞, operateType: EnumBehaviorType.点赞.ToString()
-                                         , targetTypeCode: (int)EnumBizType.文章, targetType: EnumBizType.文章.ToString()
-                                         , operatorID: SUID.FromStringToGuid(SESSION.Current.UserID), operatorName: SESSION.Current.UserName
-                                         , targetID: SUID.FromStringToGuid(id), targetName: "暂空"
-                                         , appCode: this.CurrentApp.AppCode, appName: this.CurrentApp.AppName
-                                         , companyID: SESSION.Current.CompanyID, companyName: SESSION.Current.CompanyName);
-
-
-            return 0;
-        }
-
-        /// <summary>
-        /// 添加收藏行为
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public object AddFavoriteCount(string id)
-        {
-            YunBehavior.Save(operateTypeCode: (int)EnumBehaviorType.收藏, operateType: EnumBehaviorType.收藏.ToString()
-                                         , targetTypeCode: (int)EnumBizType.文章, targetType: EnumBizType.文章.ToString()
-                                         , operatorID: SUID.FromStringToGuid(SESSION.Current.UserID), operatorName: SESSION.Current.UserName
-                                         , targetID: SUID.FromStringToGuid(id), targetName: "暂空"
-                                         , appCode: this.CurrentApp.AppCode, appName: this.CurrentApp.AppName
-                                         , companyID: SESSION.Current.CompanyID, companyName: SESSION.Current.CompanyName);
-            return 0;
-        }
-
  
-        #endregion
-
-        #region ClientRead
-        public int ClientRead(string id)
-        {
-             YunBehavior.Save(operateTypeCode: (int)EnumBehaviorType.阅读, operateType: EnumBehaviorType.阅读.ToString()
-                             , targetTypeCode: (int)EnumBizType.文章, targetType: EnumBizType.文章.ToString()
-                             , operatorID: SUID.FromStringToGuid(SESSION.Current.UserID), operatorName: SESSION.Current.UserName
-                             , targetID: SUID.FromStringToGuid(id), targetName: "暂空"
-                             , appCode: this.CurrentApp.AppCode, appName: this.CurrentApp.AppName
-                             , companyID: SESSION.Current.CompanyID, companyName: SESSION.Current.CompanyName);
-            return 0;
-        }
-        #endregion
-
-        #region ClientRead
-        public object GetBehaviorByArticleID(string id)
-        {
-            //return ClientBehaviorItem.LoadByDBID(id);
-            return null;
-        }
-        #endregion
 
         #region 获取分享列表
         public List<YunArticle> LoadShareArticleList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
