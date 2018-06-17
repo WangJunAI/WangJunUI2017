@@ -263,71 +263,7 @@ namespace WangJun.YunPan
         }
         #endregion
 
-        #region 评论操作
-        /// <summary>
-        /// 保存一个目录
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="parentId"></param>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public int SaveComment(string jsonInput)
-        {
-
-            var ar = Convertor.FromJsonToObject2<YunComment>(jsonInput);
-            ar.AppCode = this.CurrentApp.AppCode;
-            ar.AppName = this.CurrentApp.AppName;
-            ar.Version = this.CurrentApp.Version;
-
-            ar.Save();
-
-
-            return 0;
-        }
-
-        /// <summary>
-        /// 加载目录
-        /// </summary>
-        /// <param name="query"></param>
-        /// <param name="protection"></param>
-        /// <param name="sort"></param>
-        /// <param name="pageIndex"></param>
-        /// <param name="pageSize"></param>
-        /// <returns></returns>
-        public List<YunComment> LoadCommentList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
-        {
-            var dict = Convertor.FromJsonToDict2(query);
-            var rootID=dict["RootID"].ToString();
-            query = "{$and:[" + query + ",{'StatusCode':{$eq:" +(int)EnumStatus.正常 + "}}]}";
-            var res = EntityManager.GetInstance().Find<YunComment>(query, protection, sort, pageIndex, pageSize);
-
-            /// SQLServer
-            var res2 = EntityManager.GetInstance().Find<YunComment>(p => p.RootID == rootID && p.CompanyID == SESSION.Current.CompanyID && p.AppCode == this.AppCode && p.StatusCode == (int)EnumStatus.正常, p => p.CreateTime, pageIndex, pageSize, true);
-
-
-            return res;
-        }
-
-
-        /// <summary>
-        /// 删除一个目录
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public int RemoveComment(string id)
-        {
-            YunComment.Remove(id);
-
-            return 0;
-        }
-
-        public YunComment GetComment(string id)
-        {
-            var inst = YunComment.Load(id);
-
-            return inst;
-        }
-        #endregion
+         
 
 
         #region 统计操作
