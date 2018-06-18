@@ -12,6 +12,12 @@ namespace WangJun.App
 {
     public class YunWebAPI: IApp
     {
+        public YunWebAPI(string appName,long appCode,long Version) {
+            this.AppName = appName;
+            this.AppCode =appCode;
+            this.Version = Version;
+        }
+
         #region  IApp
         public long Version { get { return 1; } set { } }
 
@@ -29,7 +35,7 @@ namespace WangJun.App
         #endregion
 
         #region 管理账号操作
-        public int SetManagerID(string userID, string canManage, string securityCode)
+        public int SetManagerID(string userID)
         {
             var user = YunUser.Load(userID);
             var per1 = new YunPermission { };
@@ -48,6 +54,7 @@ namespace WangJun.App
 
             return (int)EnumResult.成功;
         }
+         
         #endregion
 
         #region 目录操作

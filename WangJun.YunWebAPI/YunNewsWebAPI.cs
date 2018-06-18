@@ -14,16 +14,12 @@ namespace WangJun.YunNews
     /// 
     /// </summary>
     public class YunNewsWebAPI: YunWebAPI
-    { 
+    {
+        public YunNewsWebAPI() : base("新闻发布应用", 1803001006, 1)
+        {
 
-        #region  IApp
-        public long Version { get { return 1; } set { } }
+        } 
 
-        public string AppName { get { return "新闻发布应用"; } set { } }
-
-        public long AppCode { get { return 1803001006; } set { } }
-        public IApp CurrentApp {get { return (this as IApp); }}
-        #endregion
 
         #region 初始化应用
         public int RegisterApp(string companyID,string securityCode)

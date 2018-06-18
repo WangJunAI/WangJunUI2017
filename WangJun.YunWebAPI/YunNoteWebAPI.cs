@@ -12,16 +12,11 @@ namespace WangJun.YunNote
     /// 
     /// </summary>
     public class YunNoteWebAPI : YunWebAPI
-    { 
+    {
+        public YunNoteWebAPI() : base("云笔记应用", 1803001002, 1)
+        {
 
-        #region  IApp
-        public long Version { get { return 1; } set { } }
-
-        public string AppName { get { return "云笔记应用"; } set { } }
-
-        public long AppCode { get { return 1803001002; } set { } }
-        public IApp CurrentApp {get { return (this as IApp); }}
-        #endregion
+        } 
 
         #region 初始化应用
         public int RegisterApp(string companyID,string securityCode)

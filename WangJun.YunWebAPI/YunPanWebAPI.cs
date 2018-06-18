@@ -11,17 +11,12 @@ namespace WangJun.YunPan
     /// 
     /// </summary>
     public class YunPanWebAPI: YunWebAPI
-    { 
+    {
+        public YunPanWebAPI() : base("云盘应用", 1803001004, 1)
+        {
 
-        #region  IApp
-        public long Version { get { return 1; } set { } }
-
-        public string AppName { get { return "云盘应用"; } set { } }
-
-        public long AppCode { get { return 1803001004; } set { } }
-        public IApp CurrentApp {get { return (this as IApp); }}
-        #endregion
-
+        }
+         
         #region 初始化应用
         public int RegisterApp(string companyID,string securityCode)
         {

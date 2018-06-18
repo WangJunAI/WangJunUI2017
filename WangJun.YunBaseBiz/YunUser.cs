@@ -111,41 +111,7 @@ namespace WangJun.Yun
             return EntityManager.GetInstance().DeleteOne<YunUser>(id);
         }
 
-        /// <summary>
-        /// 用户登录
-        /// </summary>
-        /// <param name="jsonInput"></param>
-        /// <returns></returns>
-        public SESSION Login(string jsonInput)
-        {
-            var dict = Convertor.FromJsonToDict2(jsonInput);
-            var loginID = dict["LoginID"].ToString();
-            var session = new SESSION();
-            var query = string.Format("{{$or:[{{'LoginEmail':'{0}'}},{{'LoginPhone':'{0}'}},{{'LoginQQ':'{0}'}},{{'LoginWeChat':'{0}'}},{{'LoginName':'{0}'}}]}}", loginID);
-            var res = EntityManager.GetInstance().Get<YunUser>("WangJun", "YunUser", query);
-            var res2 = EntityManager.GetInstance().Get<YunUser>(p => p.LoginEmail == loginID|| p.LoginPhone == loginID|| p.LoginQQ == loginID || p.LoginWeChat == loginID || p.LoginName == loginID);
 
-
-            ///查找权限
-            var permissionList = YunPermission.LoadAppPermission(res.ID);
-
-            #region session设置
-            session.UserID = res.ID;
-            session.UserName = res.NickName;
-            session.CompanyID = res.CompanyID;
-            session.CompanyName = res.CompanyName;
-            session.IsSuperAdmin = true;
-            session.CanManageYunNews = true;
-            session.CanManageYunDoc = true;
-            session.CanManageYunNote = true;
-            session.CanManageYunQun=true;
-            session.CanManageStaff = true;
-            session.CanManageYunPan = true;
-            session.CanManageYunProject = true;
-            SESSION.Set(session);
-            #endregion
-            return session;
-        }
 
         #region 基本方法
         public static YunUser CreateAsSuperAdmin(string loginEmail,ICompany iCompany)

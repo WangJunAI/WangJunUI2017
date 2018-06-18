@@ -13,16 +13,11 @@ namespace WangJun.YunDoc
     /// 
     /// </summary>
     public class YunDocWebAPI: YunWebAPI
-    { 
-
-        #region  IApp
-        public long Version { get { return 1; } set { } }
-
-        public string AppName { get { return "文档库应用"; } set { } }
-
-        public long AppCode { get { return 1803001007; } set { } }
-        public IApp CurrentApp {get { return (this as IApp); }}
-        #endregion
+    {
+        public YunDocWebAPI() : base("文档库应用", 1803001007,1) {
+          
+        }
+         
 
         #region 初始化应用
         public int RegisterApp(string companyID,string securityCode)

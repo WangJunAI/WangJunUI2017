@@ -12,16 +12,11 @@ namespace WangJun.YunProject
     /// 
     /// </summary>
     public class YunProjectWebAPI : YunWebAPI
-    { 
+    {
+        public YunProjectWebAPI() : base("项目管理应用", 1803001003, 1)
+        {
 
-        #region  IApp
-        public long Version { get { return 1; } set { } }
-
-        public string AppName { get { return "项目管理应用"; } set { } }
-
-        public long AppCode { get { return 1803001003; } set { } }
-        public IApp CurrentApp {get { return (this as IApp); }}
-        #endregion
+        } 
 
         #region 初始化应用
         public int RegisterApp(string companyID,string securityCode)

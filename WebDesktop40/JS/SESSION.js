@@ -4,7 +4,7 @@
 var SESSION = {
     ServerHost: YunConfig.ServerHost(this) //("localhost" === window.location.hostname) ? window.location.protocol + "//" + window.location.hostname + ":9990" : "http://aifuwu.wang",
 };
-SESSION.LoginUrl = SESSION.ServerHost + "/API.ashx?c=WangJun.Yun.YunUser&m=Login";
+SESSION.LoginUrl = SESSION.ServerHost + "/API.ashx?c=WangJun.App.YunUserAPI&m=Login";
 SESSION.RegisterUrl = SESSION.ServerHost + "/API.ashx?c=WangJun.Admin.AdminWebAPI&m=CreateCompany";
 
 
@@ -119,7 +119,9 @@ SESSION.Register = function () {
 
     var callback = function (res) {
         LOGGER.Log(res);
-        res = JSON.parse(res);
+        if (true === PARAM_CHECKER.IsNotEmptyString()) {
+            res = JSON.parse(res);
+        }
         $.cookie("SESSION", JSON.stringify(res), { path: '/' });
         alert("注册成功" + res.CompanyName + " ，将以超级管理员 " + res.UserName + "身份登录");
         window.location.href = "../Desktop/Desktop.html";

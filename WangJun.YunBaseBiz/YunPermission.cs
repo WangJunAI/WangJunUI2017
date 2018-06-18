@@ -20,7 +20,7 @@ namespace WangJun.Yun
             iTime.UpdateTime = DateTime.Now;
         }
 
-        public static List<YunPermission> Load(string userID,string objectID,int appCode,int behaviorType)
+        public static List<YunPermission> Load(string userID,string objectID,long appCode,int behaviorType)
         {
             var operatorID = SUID.FromStringToGuid(userID);
             var query = string.Format("{{'OperatorID':UUID('{0}'),'ObjectID':UUID('{0}')}}", operatorID, objectID);
@@ -38,6 +38,17 @@ namespace WangJun.Yun
 
             var res = EntityManager.GetInstance().Find<YunPermission>(p => p.OperatorID == operatorID);
             return permissionList;
+        }
+
+        public static bool CanManageApp(string userID, long appCode)
+        {
+            var operatorID = SUID.FromStringToGuid(userID);
+            var objectID = SUID.FromStringToGuid("FFFFFFFFFFFFFF" + appCode);
+            var query = string.Format("{{'OperatorID':UUID('{0}'),'ObjectID':UUID('{0}')}}", operatorID, objectID);
+            var permissionList = EntityManager.GetInstance().Find<YunPermission>(query);
+
+            var res = EntityManager.GetInstance().Find<YunPermission>(p => p.OperatorID == operatorID && p.ObjectID == objectID);
+            return 1 ==permissionList.Count();
         }
 
         public static List<YunPermission> LoadSharePermission(string userID, long appCode,int behaviorType)

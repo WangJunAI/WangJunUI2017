@@ -4,6 +4,12 @@ using WangJun.Entity;
 using WangJun.Net;
 using WangJun.Utility;
 using WangJun.Yun;
+using WangJun.YunDoc;
+using WangJun.YunNews;
+using WangJun.YunNote;
+using WangJun.YunPan;
+using WangJun.YunProject;
+using WangJun.YunQun;
 
 namespace WangJun.App
 {
@@ -11,16 +17,12 @@ namespace WangJun.App
     /// 
     /// </summary>
     public class YunUserAPI : YunWebAPI
-    { 
+    {
 
-        #region  IApp
-        public long Version { get { return 1; } set { } }
+        public YunUserAPI() : base("用户及组织应用", 1803001001, 1)
+        {
 
-        public string AppName { get { return "用户及组织应用"; } set { } }
-
-        public long AppCode { get { return 1803001001; } set { } }
-        public IApp CurrentApp {get { return (this as IApp); }}
-        #endregion
+        } 
 
         #region 初始化应用
         public int RegisterApp(string companyID,string securityCode)
@@ -304,10 +306,44 @@ namespace WangJun.App
             //return res;
             return null;
         }
-        #endregion 
+        #endregion
 
- 
-         
+        /// <summary>
+        /// 用户登录
+        /// </summary>
+        /// <param name="jsonInput"></param>
+        /// <returns></returns>
+        public SESSION Login(string jsonInput)
+        {
+            var dict = Convertor.FromJsonToDict2(jsonInput);
+            var loginID = dict["LoginID"].ToString();
+            var session = new SESSION();
+            var query = string.Format("{{$or:[{{'LoginEmail':'{0}'}},{{'LoginPhone':'{0}'}},{{'LoginQQ':'{0}'}},{{'LoginWeChat':'{0}'}},{{'LoginName':'{0}'}}]}}", loginID);
+            var res = EntityManager.GetInstance().Get<YunUser>("WangJun", "YunUser", query);
+            var res2 = EntityManager.GetInstance().Get<YunUser>(p => p.LoginEmail == loginID || p.LoginPhone == loginID || p.LoginQQ == loginID || p.LoginWeChat == loginID || p.LoginName == loginID);
+
+
+            ///查找权限
+            var permissionList = YunPermission.LoadAppPermission(res.ID);
+
+            #region session设置
+            session.UserID = res.ID;
+            session.UserName = res.NickName;
+            session.CompanyID = res.CompanyID;
+            session.CompanyName = res.CompanyName;
+            session.IsSuperAdmin = true;
+            session.CanManageYunDoc = YunPermission.CanManageApp(session.UserID,new YunDocWebAPI().AppCode);
+            session.CanManageYunNews = YunPermission.CanManageApp(session.UserID, new YunNewsWebAPI().AppCode);
+            session.CanManageYunNote = YunPermission.CanManageApp(session.UserID,new YunNoteWebAPI().AppCode);
+            session.CanManageYunQun = YunPermission.CanManageApp(session.UserID,new YunQunWebAPI().AppCode) ;
+            session.CanManageStaff = YunPermission.CanManageApp(session.UserID,new YunUserAPI().AppCode); 
+            session.CanManageYunPan = YunPermission.CanManageApp(session.UserID,new YunPanWebAPI().AppCode); 
+            session.CanManageYunProject = YunPermission.CanManageApp(session.UserID,new YunProjectWebAPI().AppCode); 
+            SESSION.Set(session);
+            #endregion
+            return session;
+        }
+
 
     }
 }
