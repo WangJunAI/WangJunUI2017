@@ -119,7 +119,7 @@ namespace WebAPI
             dict.Add("WangJun.YunNote.YunNoteWebAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/YunWebAPI/WangJun.YunWebAPI.dll"));
             dict.Add("WangJun.YunPan.YunPanWebAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/YunWebAPI/WangJun.YunWebAPI.dll"));
             dict.Add("WangJun.YunProject.YunProjectWebAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/YunWebAPI/WangJun.YunWebAPI.dll"));
-            dict.Add("WangJun.Admin.AdminWebAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/Admin/WangJun.Admin.dll"));
+            dict.Add("WangJun.Admin.AdminWebAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/YunWebAPI/WangJun.YunWebAPI.dll"));
             dict.Add("WangJun.YunNews.YunNewsWebAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/YunWebAPI/WangJun.YunWebAPI.dll"));
             dict.Add("WangJun.YunQun.YunQunWebAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/YunWebAPI/WangJun.YunWebAPI.dll"));
             dict.Add("WangJun.Tools.DataSourceBaidu." + methodName, HttpContext.Current.Server.MapPath("./bin/WangJun.DataSource.dll"));

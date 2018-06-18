@@ -52,10 +52,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WangJun.Admin\WangJun.Admin.csproj">
-      <Project>{4f722223-ac4d-4085-a348-6942a2650f54}</Project>
-      <Name>WangJun.Admin</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WangJun.AI\WangJun.AI.csproj">
       <Project>{5A7CC1A8-74C0-49F8-968B-514FFD44F9F7}</Project>
       <Name>WangJun.AI</Name>

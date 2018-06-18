@@ -69,11 +69,13 @@ namespace WangJun.Admin
             #region 初始化笔记服务App和管理权限 
             new WangJun.YunNote.YunNoteWebAPI().RegisterApp(companyID, "");
             new WangJun.YunNote.YunNoteWebAPI().PersonalAppInitial(userID, "");
+            new WangJun.YunNote.YunNoteWebAPI().SetManagerID(userID);
             #endregion
 
             #region 初始化群组服务App和管理权限 
             new WangJun.YunQun.YunQunWebAPI().RegisterApp(companyID, "");
             new WangJun.YunQun.YunQunWebAPI().PersonalAppInitial(userID, "");
+            new WangJun.YunQun.YunQunWebAPI().SetManagerID(userID);
             #endregion
 
             #region 初始化云项目服务App和管理权限 

@@ -19,11 +19,11 @@ namespace WangJun.App
         }
 
         #region  IApp
-        public long Version { get { return 1; } set { } }
+        public long Version { get; set; }
 
-        public string AppName { get { return "基础应用"; } set { } }
+        public string AppName { get; set; }
 
-        public long AppCode { get { return 1803000000; } set { } }
+        public long AppCode { get; set; }
         public IApp CurrentApp { get { return (this as IApp); } }
         #endregion
 
