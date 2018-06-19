@@ -59,6 +59,10 @@ Doc.LoadSummaryListTo = function (target, data, option) {
         var html = tplHtml.replace("[列表]", listHtml).replace("[ListTitle]", "") + "<a href='javascript:;' class='summaryListPager' data-Index=1 onclick='Doc.SummaryListPagerClick()'>加载更多...</a>";
         Doc.LoadHtmlTo(target, html);
     }
+    else if (0 === data.length && 0 === pageIndex) {
+        var html = tplHtml.replace("[列表]", listHtml).replace("[ListTitle]", "") + "<a href='javascript:;' class='summaryListPager' data-Index=1 onclick='Doc.SummaryListPagerClick()'>没有更多数据...</a>";
+        Doc.LoadHtmlTo(target, html);
+    }
     else if (0 < data.length && 0 < pageIndex) {
         $("#summaryList").append(listHtml);
     }

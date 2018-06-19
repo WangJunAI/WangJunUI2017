@@ -66,6 +66,9 @@ Doc.LoadTreeTo = function (target, data,excludeIdArray,option) {
         else if (true === PARAM_CHECKER.IsObject(option) && "AllStaff" === option.Source) {
             option.Click(event, treeId, treeNode);///根据业务自定义事件，来自于侧面栏
         }
+        else if ("Main" === pageName && true === PARAM_CHECKER.IsFunction(option.Click)) {
+            option.Click(event, treeId, treeNode);///根据业务自定义事件
+        }
         else if ("Main" === pageName) {
             var query = Doc.GetQuery();
             if (true === PARAM_CHECKER.IsArray(query)) {

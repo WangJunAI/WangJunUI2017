@@ -48,24 +48,34 @@ Doc.LeftMenuClick = function (id) {
         Doc.ShowContent(YunConfig.RedirectPage);
         var listQuery = JSON.stringify({ _RedirectID: null, OwnerID: SESSION.Current().UserID, 'StatusCode': { $ne: -1 } });//        var query = [, {}, { CreateTime: -1 }];
          var index=0
-        var callback2 = function (index) {
-            Doc.LoadData_Doc(context = [listQuery, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", index, App.Doc.Data.Pager.Size], function (res2) {
+        var callback2 = function (index,query) {
+            //listQuery = Doc.GetQuery();
+            Doc.LoadData_Doc([query, JSON.stringify({ "Content": 0 }), "{CreateTime:-1}", index, App.Doc.Data.Pager.Size], function (res2) {
                 Doc.LoadSummaryListTo("#leftPart2", res2, {
                     SummaryListPagerCallback: function () {
                         var pagerIndex = parseInt($(event.target).attr("data-Index"));
                         $(event.target).attr("data-Index", pagerIndex + 1);
-                        callback2(pagerIndex);
+                        callback2(pagerIndex, query);
                     }
                     ,PageIndex:index
                 });
                  
             });
         }
-        callback2(0);
+        callback2(0,listQuery);
         
 
         var param = [JSON.stringify({ OwnerID: SESSION.Current().UserID}), "{}", "{}", 0, 1000]
-        Doc.LoadData_Category(param, function (res1) { Doc.LoadTreeTo("#leftPart1", res1, [], { header: "小提示：修改目录双击即可" }); });
+        Doc.LoadData_Category(param, function (res1) {
+            Doc.LoadTreeTo("#leftPart1", res1, [], {
+                header: "小提示：修改目录双击即可",
+                Click: function (event, treeId, treeNode) {
+                    var name = treeNode.Name;
+                    var parentID = treeNode.ID;
+                    listQuery = JSON.stringify({ _RedirectID: null, ParentID:parentID,OwnerID: SESSION.Current().UserID, 'StatusCode': { $ne: -1 } }); 
+
+                    callback2(0, listQuery);
+                } }); });
         Doc.SetQuery(listQuery);
     }
     else if ("LeftMenu.与我共享" == id) {

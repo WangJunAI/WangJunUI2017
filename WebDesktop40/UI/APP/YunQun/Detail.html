@@ -178,6 +178,11 @@
                         },
                         header: "<div class='margin_l05em fontweight700'>请选择分类</div>"
                     });
+
+                    var root = res1[0];
+                    $("[data-propertyName='ParentID']").attr("data-propertyValue", root.ID);
+                    $("[data-propertyName='ParentName']").attr("data-propertyValue", root.Name).text(root.Name);
+
                 }); ///加载目录
 
                 Doc.LoadData_All([], function (res1) {

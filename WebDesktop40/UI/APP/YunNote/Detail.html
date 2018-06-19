@@ -146,7 +146,7 @@
                         Click: function (event, treeId, treeNode) {
                             var name = treeNode.Name;
                             $('#category').hide();
-                            $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.id);
+                            $("[data-propertyName='ParentID']").attr("data-propertyValue", treeNode.ID);
                             $("[data-propertyName='ParentName']").attr("data-propertyValue", name);
                             $("[data-propertyName='ParentName']").text(name);
 
