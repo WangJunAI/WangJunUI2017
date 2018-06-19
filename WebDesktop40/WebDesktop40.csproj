@@ -1441,6 +1441,7 @@
     <Content Include="MP4\722787363.mp4" />
     <Content Include="MP4\748310191.mp4" />
     <Content Include="MP4\MVI_0358.mp4" />
+    <Content Include="redirect.html" />
     <Content Include="UI\APP\YunUser\AppInfo.html" />
     <Content Include="UI\APP\YunUser\Category.html" />
     <Content Include="UI\APP\YunUser\Chart1.html" />
@@ -1552,6 +1553,7 @@
     <Content Include="UI\Desktop\CSS\Desktop.css" />
     <Content Include="UI\Desktop\Desktop.html" />
     <Content Include="UI\Desktop\JS\Desktop.js" />
+    <Content Include="favicon.ico" />
     <Content Include="UI\Login\Register.mp4" />
     <Content Include="UI\Login\FindPassword.mp4" />
     <Content Include="UI\Login\FindPassword.html" />

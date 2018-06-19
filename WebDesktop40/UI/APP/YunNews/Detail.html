@@ -66,7 +66,7 @@
     <input type="hidden" id="pageName" value="Detail.Company" />
     <div class="global">
 
-        <div class="title"><input type="text" placeholder="请输入新闻标题" title="请输入新闻标题，建议30字之内..." data-FormName="Default" data-propertyName="Title" data-propertyValue="" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" /></div>
+        <div class="title"><input type="text" placeholder="请输入新闻标题" title="请输入新闻标题，建议30字之内..." data-inputcheck="{'checkas':'string','limit':30}" data-FormName="Default" data-propertyName="Title" data-propertyValue="" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" /></div>
         <script id="editor" type="text/plain">
         </script>
 
@@ -76,14 +76,14 @@
                     <div class="item">
                         <div class="key">分类</div>
                         <div class="value" data-FormName="Default" data-propertyName="ParentID" data-propertyValue="">
-                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">尚未选择分类</a>
+                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue=""  title="请选择新闻所属分类" data-inputcheck="{'checkas':'parentNodeSelected'}">尚未选择分类</a>
                             <div style="position: absolute;z-index:9999;">
                                 <div id="category" class="dropdownlist" style="top:-16em;">
                                 </div>
                             </div>
                         </div>
                         <div class="inputcheck cred">
-                            检查信息
+                            请选择新闻所属分类
                         </div>
                     </div>
                 </li>
@@ -92,8 +92,7 @@
         </div>
         <div class="buttons">
             <a href="jajavscript:;" class="btn" onclick="Doc.SaveDetail()">发布</a>
-            <a href="jajavscript:;" class="btn" id="deleteBtn" style="display:none;" onclick="Doc.RemoveDetail()">删除</a>
-            <a href="http://localhost:39641/TouTiao/TouTiaoArticle.html?id=[id]" id="preView" target="_blank" class="btn">预览</a>
+            <a href="jajavscript:;" class="btn" id="deleteBtn" style="display:none;" onclick="Doc.RemoveDetail()">删除</a> 
             <a href="jajavscript:;" class="btn" onclick="$(window.parent.document).find('#detailWindow').hide(); window.close();">取消</a>
         </div>
     </div>
@@ -115,7 +114,7 @@
                 UE.getEditor('editor', { autoHeightEnabled: false, initialFrameWidth: $(".global").width() }); ///创建编辑器
 
                 Doc.LoadDetail();
-                Doc.LoadData_Category([JSON.stringify({ OwnerID: SESSION.Current().CompanyID }), "{}", "{}", 0, 1000], function (res1) {
+                Doc.LoadData_Category([JSON.stringify({ OwnerID: SESSION.Current().CompanyID }), JSON.stringify({ _OID:0}), "{}", 0, 1000], function (res1) {
                     Doc.LoadTreeTo("#category", res1, [], {
                         Click: function (event, treeId, treeNode) {
                             $('#category').hide();
@@ -126,6 +125,8 @@
                         },
                         header: "<div class='margin_l05em fontweight700'>请选择新闻所属分类</div>"
                     });
+
+                    
                 }); ///加载目录
             }
             var clientCallback = function () {

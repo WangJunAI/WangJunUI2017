@@ -1,4 +1,5 @@
 ﻿ 
+ 
 
 Doc.CloseLeftList = function () {
     $("#leftList").hide();
@@ -75,7 +76,7 @@ Doc.ShowWindow = function (url) {
 
 
 Doc.CloseWindow = function (option) {
-    url = "redirect.html";
+    url = window.location.origin + "/redirect.html";
     if (false === PARAM_CHECKER.IsTopWindow()) {
         Doc.ShowDialog();
         var tId = setTimeout(function () {
@@ -145,4 +146,29 @@ Doc.AutoCloseCtrl = function (selector) {
         $(selector).hide();
     }
 
+}
+
+Doc.CheckInput = function () {
+    var ctrls = $("[data-FormName='Default'][data-inputcheck]");
+    ctrls.tooltip();
+    var checkResult = true;
+    for (var k = 0; k < ctrls.length; k++) {
+        var rules = JSON.parse($(ctrls[k]).attr("data-inputcheck").replace(/'/g, '"'));
+        var val = $(ctrls[k]).val();
+        if ("string" === rules.checkas && (0 == val.length || rules.limit < val.length)) {
+            $(ctrls[k]).tooltip("open");
+            checkResult = false;
+        }
+        else if ("parentNodeSelected".toLowerCase() == rules.checkas.toLowerCase()) {
+            var parentName = $("[data-propertyName='ParentName']").attr("data-propertyValue");
+            var parentID = $("[data-propertyName='ParentID']").attr("data-propertyValue");
+            if (true === PARAM_CHECKER.IsEmptyString(parentName)) {
+                $(ctrls[k]).tooltip("open");
+                checkResult = false;
+            }
+        }
+
+    }
+
+    return checkResult;
 }

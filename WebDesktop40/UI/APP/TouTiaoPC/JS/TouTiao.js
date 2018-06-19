@@ -1,4 +1,5 @@
 ﻿ 
+ 
 
 var TouTiao = {};
 
@@ -312,7 +313,8 @@ TouTiao.Initial = function (type) {
 TouTiao.ShowMessage = function () {
     $("#message").show({
         effect: "blind", duration: 1000, complete: function () {
-            $("#message").hide({ effect: "blind", duration: 1000 });
+            setTimeout(function () { $("#message").hide({ effect: "blind", duration: 500 });},500);
+
         }
     });
 }

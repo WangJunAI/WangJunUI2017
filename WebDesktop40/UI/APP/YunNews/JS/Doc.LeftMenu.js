@@ -81,12 +81,7 @@ Doc.LeftMenuClick = function (id) {
         Doc.ShowView2();
         Doc.LoadTopButton(topButtonId);
         Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{}", App.Doc.Data.RecycleBin.Info);
-    }
-    else if ("LeftMenu.存储管理" == id) {
-        Doc.ShowView3();
-        Doc.LoadTopButton(topButtonId);
-        Doc.ShowContent("Chart1.html");
-    }
+    } 
     else if ("LeftMenu.使用帮助" == id) {
         Doc.ShowView2();
         Doc.LoadTopButton(topButtonId);

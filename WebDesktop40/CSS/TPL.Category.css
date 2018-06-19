@@ -88,6 +88,11 @@
             margin-left: 0.5em;
         }
 
+        .global > .options .inputcheck {
+            display: inline-block;
+            float: right;
+            margin-right:0.5em;
+        }
 
     .global .buttons
     {
