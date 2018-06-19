@@ -67,7 +67,7 @@
     <input type="hidden" id="pageName" value="Detail" />
     <div class="global">
 
-        <div class="title"><input type="text" placeholder="请输入标题" data-FormName="Default" data-propertyName="Title" data-propertyValue="" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" /></div>
+        <div class="title"><input type="text" placeholder="请输入标题" data-FormName="Default" data-propertyName="Title" data-propertyValue=""  title="请输入个人文档标题，建议30字之内..." data-inputcheck="{'checkas':'string','limit':30}" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" /></div>
         <script id="editor" type="text/plain">
         </script>
         <div class="options">
@@ -76,7 +76,7 @@
                     <div class="item">
                         <div class="key">所在目录</div>
                         <div class="value" data-FormName="Default" data-propertyName="ParentID" data-propertyValue="">
-                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">未选择所在目录</a>
+                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="" title="请选择个人文档所在目录" data-inputcheck="{'checkas':'parentNodeSelected'}">未选择所在目录</a>
                             <div style="position: absolute;z-index: 9999;">
                                 <div id="category" class="dropdownlist">
                                 </div>
@@ -157,6 +157,7 @@
     <script type="text/javascript">
         ///初始化
         $(document).ready(function () {
+            $(document).tooltip();
             var adminCallback = function () {
 
             }

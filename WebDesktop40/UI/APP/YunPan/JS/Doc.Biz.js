@@ -1,5 +1,8 @@
 ﻿///保存一个目录
 Doc.SaveCategory = function () {
+    var checkRes = Doc.CheckInput();
+    if (false === checkRes) { return; }///检测不合格不提交
+
     var submitId = Doc.SubmitStart();
     var item = {};
 

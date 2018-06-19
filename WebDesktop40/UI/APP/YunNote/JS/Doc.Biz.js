@@ -1,5 +1,8 @@
 ﻿///保存一个目录
 Doc.SaveCategory = function () {
+    var checkRes = Doc.CheckInput();
+    if (false === checkRes) { return; }///检测不合格不提交
+
     var submitId = Doc.SubmitStart();
     var item = {};
 
@@ -62,6 +65,9 @@ Doc.LoadData_All = function (param, callback) {
 
 ///保存一个文档
 Doc.SaveDetail = function () {
+    var checkRes = Doc.CheckInput();
+    if (false === checkRes) { return; }///检测不合格不提交
+
     var submitId = Doc.SubmitStart();
     
      var item = {};
@@ -100,8 +106,15 @@ Doc.SaveDetail = function () {
 
 ///移除一个文档
 Doc.RemoveDetail = function (id, callback) {
+    var submitId = Doc.SubmitStart();
+
     var id = (true === PARAM_CHECKER.IsNotEmptyString(id)) ? id : $("#ID").val();
     var context = [id];
+    var callback = function (res) {
+        LOGGER.Log(res);
+        Doc.SubmitEnd(submitId); 
+        top.window.Doc.LeftMenuClick("LeftMenu.个人笔记");
 
+    }
     NET.PostData(App.Doc.Server.Url9, callback, context);
 }

@@ -1,5 +1,9 @@
 ﻿///保存一个目录
 Doc.SaveCategory = function () {
+    var checkRes = Doc.CheckInput();
+    if (false === checkRes) { return; }///检测不合格不提交
+
+
     var submitId = Doc.SubmitStart();
     var item = {};
 
@@ -73,6 +77,10 @@ Doc.LoadData_All = function (param, callback) {
 
 ///保存一个文档
 Doc.SaveDetail = function () {
+    var checkRes = Doc.CheckInput();
+    if (false === checkRes) { return; }///检测不合格不提交
+
+
     var submitId = Doc.SubmitStart();
     
      var item = {};

@@ -68,8 +68,11 @@ Doc.LoadSummaryListTo = function (target, data, option) {
 
 
     $("#summaryList .listItem3").on("click", function () {
+        option.EventTarget = this;
         Doc.SummaryListItemClick(option);
     });
+
+    
 
     ///设置滚动条
     if (true === PARAM_CHECKER.IsFunction($(target).mCustomScrollbar)) {
@@ -77,14 +80,23 @@ Doc.LoadSummaryListTo = function (target, data, option) {
         //$(".mCSB_container").css("margin-right","11px");
     }
 
+    $("#summaryList .listItem3").first().click();
 }
 
 Doc.SummaryListItemClick = function (option) {
     ///加载详细
-    var id = $(event.target).attr("data-param");
-    if (false === PARAM_CHECKER.IsNotEmptyString(id)) {
-        id = $(event.target).parents("[data-param]").attr("data-param");
+    var id = "";
+
+    if (true === PARAM_CHECKER.IsValid(option) && true === PARAM_CHECKER.IsValid(option.EventTarget)) {
+        id = $(option.EventTarget).attr("data-param");
     }
+    else {
+        id = $(event.target).attr("data-param");
+        if (false === PARAM_CHECKER.IsNotEmptyString(id)) {
+            id = $(event.target).parents("[data-param]").attr("data-param");
+        }
+    }
+     
     var url = "detail.html?id=[id]";
     if (true === PARAM_CHECKER.IsValid(option) && true === PARAM_CHECKER.IsNotEmptyString(option.Url)) {
         url = option.Url;

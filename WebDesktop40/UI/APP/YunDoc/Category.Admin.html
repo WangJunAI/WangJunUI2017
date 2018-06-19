@@ -28,6 +28,12 @@
     <script src="../../../JS/jquery.cookie.js"></script>
     <script src="../../../JS/SESSION.js"></script>
 
+    <!--Jquery UI-->
+    <link href="../../../JS/Base/jquery-ui-1.12.1/jquery-ui.structure.css" rel="stylesheet" />
+    <link href="../../../JS/Base/jquery-ui-1.12.1/jquery-ui.theme.css" rel="stylesheet" />
+    <script src="../../../JS/Base/jquery-ui-1.12.1/jquery-ui.js"></script>
+
+
     <!--ZTree组件-->
     <link href="../../../JS/Base/zTree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
     <script src="../../../JS/Base/zTree/js/jquery.ztree.all.js"></script>
@@ -58,7 +64,7 @@
     <input type="hidden" id="OwnerID" data-FormName="Default" data-propertyName="OwnerID" data-propertyValue="" />
 
     <div class="global">
-        <div class="title"><input type="text" data-FormName="Default" data-propertyName="Name" data-propertyValue="" placeholder="请输入目录名称" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" /></div>
+        <div class="title"><input type="text"  title="企业知识库目录名称建议10个字以内..." data-inputcheck="{'checkas':'string','limit':11}"  data-FormName="Default" data-propertyName="Name" data-propertyValue="" placeholder="请输入目录名称" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" /></div>
 
         <div class="options">
             <ul>
@@ -66,7 +72,7 @@
                     <div class="item">
                         <div class="key">上级目录</div>
                         <div class="value" data-FormName="Default" data-propertyName="ParentID" data-propertyValue="">
-                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">未选择上级目录</a>
+                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue=""   title="请选择上级目录" data-inputcheck="{'checkas':'parentNodeSelected'}">未选择上级目录</a>
                             <div style="position: absolute;">
                                 <div id="category" class="dropdownlist">
                                 </div>

@@ -28,14 +28,16 @@
     <script src="../../../JS/jquery.cookie.js"></script>
     <script src="../../../JS/SESSION.js"></script>
 
-    <!--ZTree组件-->
-    <link href="../../../JS/Base/zTree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
-    <script src="../../../JS/Base/zTree/js/jquery.ztree.all.js"></script>
-
     <!--Jquery UI-->
     <link href="../../../JS/Base/jquery-ui-1.12.1/jquery-ui.structure.css" rel="stylesheet" />
     <link href="../../../JS/Base/jquery-ui-1.12.1/jquery-ui.theme.css" rel="stylesheet" />
     <script src="../../../JS/Base/jquery-ui-1.12.1/jquery-ui.js"></script>
+
+    <!--ZTree组件-->
+    <link href="../../../JS/Base/zTree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
+    <script src="../../../JS/Base/zTree/js/jquery.ztree.all.js"></script>
+
+
 
     <!--共用业务JS-->
     <script src="../../../JS/TPL/TPL.Initial.js"></script>
@@ -68,7 +70,7 @@
                     <div class="item">
                         <div class="key">上级分类</div>
                         <div class="value" data-FormName="Default" data-propertyName="ParentID" data-propertyValue="">
-                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">尚未选择上级分类</a>
+                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue=""    title="请选择上级分类" data-inputcheck="{'checkas':'parentNodeSelected'}">尚未选择上级分类</a>
                             <div style="position: absolute;">
                                 <div id="category" class="dropdownlist">
                                 </div>
