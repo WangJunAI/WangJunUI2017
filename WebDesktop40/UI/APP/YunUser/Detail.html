@@ -79,7 +79,7 @@
                     <div class="item">
                         <div class="key">工号</div>
                         <div class="value">
-                            <input type="text" placeholder="请输入工号" data-FormName="Default" data-propertyName="LoginName" data-propertyValue="" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" />
+                            <input type="text"   title="请输入工号，可用于登录..." data-inputcheck="{'checkas':'string','limit':30}"  placeholder="请输入工号" data-FormName="Default" data-propertyName="LoginName" data-propertyValue="" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" />
                         </div>
                         <div class="inputcheck cred">
                             检查信息
@@ -90,7 +90,7 @@
                     <div class="item">
                         <div class="key">QQ</div>
                         <div class="value">
-                            <input type="text" class="w30em" placeholder="请输入微信/QQ" data-FormName="Default" data-propertyName="LoginQQ" data-propertyValue="" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" />
+                            <input type="text" class="w30em"  title="请输入QQ号，可用于登录..." data-inputcheck="{'checkas':'string','limit':30}"   placeholder="请输入QQ号" data-FormName="Default" data-propertyName="LoginQQ" data-propertyValue="" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" />
                         </div>
                         <div class="inputcheck cred">
                             检查信息
@@ -101,7 +101,7 @@
                     <div class="item">
                         <div class="key">微信</div>
                         <div class="value">
-                            <input type="text" class="w30em" placeholder="请输入微信/QQ" data-FormName="Default" data-propertyName="LoginWeChat" data-propertyValue="" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" />
+                            <input type="text" class="w30em"   title="请输入微信号，可用于登录..." data-inputcheck="{'checkas':'string','limit':30}"   placeholder="请输入微信号" data-FormName="Default" data-propertyName="LoginWeChat" data-propertyValue="" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" />
                         </div>
                         <div class="inputcheck cred">
                             检查信息
@@ -112,7 +112,7 @@
                     <div class="item">
                         <div class="key">手机</div>
                         <div class="value">
-                            <input type="text" class="w30em" placeholder="请输入手机" data-FormName="Default" data-propertyName="LoginPhone" data-propertyValue="" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" />
+                            <input type="text" class="w30em"  title="请输入手机号，可用于登录..." data-inputcheck="{'checkas':'string','limit':11}"   placeholder="请输入手机号，可用于登录" data-FormName="Default" data-propertyName="LoginPhone" data-propertyValue="" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" />
                         </div>
                         <div class="inputcheck cred">
                             检查信息
@@ -123,7 +123,7 @@
                     <div class="item">
                         <div class="key">邮箱</div>
                         <div class="value">
-                            <input type="text" class="w30em" placeholder="请输入邮箱" data-FormName="Default" data-propertyName="LoginEmail" data-propertyValue="" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" />
+                            <input type="text" class="w30em"  title="请输入邮箱，可用于登录和找回密码..." data-inputcheck="{'checkas':'string','limit':30}" placeholder="请输入邮箱" data-FormName="Default" data-propertyName="LoginEmail" data-propertyValue="" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" />
                         </div>
                         <div class="inputcheck cred">
                             检查信息
@@ -134,7 +134,7 @@
                     <div class="item">
                         <div class="key">部门</div>
                         <div class="value " data-FormName="Default" data-propertyName="ParentID" data-propertyValue="">
-                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category1').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">未选择所在部门</a>
+                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category1').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue=""  title="请选择所在部门" data-inputcheck="{'checkas':'parentNodeSelected'}">未选择所在部门</a>
                             <div style="position: absolute;">
                                 <div id="category1" class="dropdownlist">
                                 </div>
@@ -180,7 +180,7 @@
                     <div class="item">
                         <div class="key">入职时间</div>
                         <div class="value">
-                            <input data-FormName="Default" data-propertyName="EntryTime" data-propertyValue="" type="text" placeholder="入职时间" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" /><span>合同期限</span><select id="publishHour"><option>01</option> <option>02</option> <option>03</option> <option>04</option>  </select>
+                            <input title="请选择入职时间..." data-inputcheck="{'checkas':'string','limit':30}" placeholder="请选择入职时间"  data-FormName="Default" data-propertyName="EntryTime" data-propertyValue="" type="text"  onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" /><span>合同期限</span><select id="publishHour"><option>01</option> <option>02</option> <option>03</option> <option>04</option>  </select>
                         </div>
                         <div class="inputcheck cred">
                             检查信息
