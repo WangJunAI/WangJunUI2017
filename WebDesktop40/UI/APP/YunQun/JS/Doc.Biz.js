@@ -165,7 +165,12 @@ Doc.AddComment = function () {
         var html = $("#tplCommentItem").html().replace("[CreatorName]", SESSION.Current().UserName).replace("[CreatorID]", SESSION.Current().UserID)
             .replace("[LikeCount]", 0).replace("[CreateTime]", Convertor.DateFormat(new Date().toString(), "yyyy-MM-dd hh:mm")).replace("[id]", "")
             .replace("[Content]", $("#comment").val());
-        $(html).insertBefore($("#commentList").children().first());
+        if (0 < $("#commentList").children().length) {
+            $(html).insertBefore($("#commentList").children().first());
+        }
+        else {
+            $("#commentList").append(html);
+        }
 
         $("#comment").val("");
     }
