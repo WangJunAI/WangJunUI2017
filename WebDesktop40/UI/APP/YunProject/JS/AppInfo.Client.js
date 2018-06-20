@@ -38,6 +38,7 @@ App.Doc.Server = {
     Url17: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunProject.ClientBehaviorManager&m=Aggregate",
     Url18: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunProject.DocWebAPI&m=RecycleBinCount",///回收站数量
     Url19: App.Doc.ServerHost + "/API.ashx?c=WangJun.App.YunUserAPI&m=LoadAll",///回收站数量
+    Url20: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunProject.YunProjectWebAPI&m=GetTaskGroup",///回收站数量
     Url90: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunProject.YunProjectWebAPI&m=EmptyRecycleBin",///加载回收站
     Url70: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=SaveComment",
     Url71: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=LoadCommentList"

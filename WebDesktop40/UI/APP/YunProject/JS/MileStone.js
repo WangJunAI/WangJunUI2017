@@ -92,13 +92,18 @@ Milestone.CompleteTask = function () {
 
 
 Milestone.LoadData = function (data) { 
-    if (true === PARAM_CHECKER.IsArray(data) && 0 < data.length) {
-        
+    var rootID = NET.GetQueryParam("id");
+    var callback = function (res) {
+        if (true === PARAM_CHECKER.IsArray(res) && 0 < res.length) {
+
+        }
+        else {
+            res = [{ Status: "新增按钮", TaskArray: [] }];
+        }
+        Milestone.ShowData(res);
     }
-    else {
-        data = [{ Status: "新增按钮", TaskArray: [] }];
-    }
-    Milestone.ShowData(data);
+    NET.LoadData(App.Doc.Server.Url20, callback, [rootID], NET.POST);
+     
 }
 
 Milestone.GetData = function () {

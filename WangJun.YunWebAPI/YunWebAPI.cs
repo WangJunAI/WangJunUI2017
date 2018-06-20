@@ -28,9 +28,10 @@ namespace WangJun.App
         #endregion
 
         #region 服务状态检测
-        public string APICheck(string input)
+        public object APICheck(string input)
         {
-            return Convertor.FromObjectToJson(this.CurrentApp);
+            var inst =  new { AppCode = this.AppCode, AppName = this.AppName, Version = this.Version };
+            return inst;
         }
         #endregion
 

@@ -17,14 +17,14 @@ namespace WangJun.YunProject
         public YunProjectWebAPI() : base("项目管理应用", 1803001003, 1)
         {
 
-        } 
+        }
 
         #region 初始化应用
-        public int RegisterApp(string companyID,string securityCode)
+        public int RegisterApp(string companyID, string securityCode)
         {
             var company = YunCompany.Load(companyID);
 
- 
+
             return (int)EnumResult.成功;
         }
         #endregion
@@ -99,9 +99,9 @@ namespace WangJun.YunProject
         }
         #endregion
 
-         
 
-         
+
+
 
         #region 文档操作
         /// <summary>
@@ -121,14 +121,15 @@ namespace WangJun.YunProject
             ar.Save();
 
             #region 时间点保存
-            if (dict.ContainsKey("Milestone")&& null != dict["Milestone"]) {
+            if (dict.ContainsKey("Milestone") && null != dict["Milestone"])
+            {
                 var checkPointList = dict["Milestone"] as ArrayList;
                 foreach (Dictionary<string, object> checkPoint in checkPointList)
                 {
                     checkPoint["ID"] = SUID.New().ToString();
                     var cp = Convertor.FromDictionaryToObject<YunTask>(checkPoint);
                     var taskList = checkPoint["TaskArray"] as ArrayList;
-                    foreach (Dictionary<string,object> task in taskList)
+                    foreach (Dictionary<string, object> task in taskList)
                     {
                         task["ID"] = SUID.New().ToString();
                         var t = Convertor.FromDictionaryToObject<YunTask>(task);
@@ -170,10 +171,10 @@ namespace WangJun.YunProject
             return 0;
         }
 
- 
+
         #endregion
 
-         
+
 
 
         #region 统计操作
@@ -195,7 +196,7 @@ namespace WangJun.YunProject
         }
         #endregion
 
-         
+
 
 
         #region 聚合计算
@@ -217,7 +218,7 @@ namespace WangJun.YunProject
         #endregion
 
 
- 
+
 
         #region 获取分享列表
         public List<YunArticle> LoadShareArticleList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
@@ -236,6 +237,15 @@ namespace WangJun.YunProject
             return list;
         }
         #endregion
-         
+
+        #region 获取里程碑
+        public List<YunTask> GetTaskGroup(string rootID)
+        {
+            var query = "{RootID:'" + rootID + "'}";
+            var list = EntityManager.GetInstance().Find<YunTask>(query);
+            return list;
+        }
+        #endregion
+
     }
 }

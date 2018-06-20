@@ -30,6 +30,8 @@
     });
 }
 
+ 
+
 Doc.ShowDetail = function (data,option) {
     if (true === PARAM_CHECKER.IsObject(data)) {
         if (true === PARAM_CHECKER.IsNotEmptyString(data.Content) && "<" === data.Content[0]) {
