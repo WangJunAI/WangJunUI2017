@@ -93,6 +93,10 @@ namespace WangJun.Utility
                             {
                                 property.SetValue(item, int.Parse(data[key].ToString()), null);
                             }
+                            else if (property.PropertyType == typeof(DateTime))
+                            {
+                                property.SetValue(item, DateTime.Parse(data[key].ToString()), null);
+                            }
                             else
                             {
                                 property.SetValue(item, data[key], null);

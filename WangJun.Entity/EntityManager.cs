@@ -63,7 +63,7 @@ namespace WangJun.Entity
                 var db = DataStorage.GetInstance(DBType.MongoDB);
 
                 var query = MongoDBFilterCreator.SearchByObjectId(iSysItem.ID);
-                db.Save3(iSysItem._DbName, iSysItem._CollectionName, "{StatusCode:" + CONST.APP.Status.删除 + ",Status:'" + CONST.APP.Status.GetString(CONST.APP.Status.删除) + "'}", query, false);
+                db.Save3(iSysItem._DbName, iSysItem._CollectionName, "{StatusCode:" + (int)EnumStatus.删除 + ",Status:'" + EnumStatus.删除.ToString() + "'}", query, false);
 
 
                 var res = EntityManager.GetInstance<T>().List.Find(new object[] { SUID.FromStringToGuid(id) });

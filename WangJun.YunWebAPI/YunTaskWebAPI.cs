@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using WangJun.App;
@@ -12,9 +11,9 @@ namespace WangJun.YunProject
     /// <summary>
     /// 
     /// </summary>
-    public class YunProjectWebAPI : YunWebAPI
+    public class YunTaskWebAPI : YunWebAPI
     {
-        public YunProjectWebAPI() : base("项目管理应用", 1803001003, 1)
+        public YunTaskWebAPI() : base("项目管理应用", 1803001003, 1)
         {
 
         } 
@@ -113,33 +112,11 @@ namespace WangJun.YunProject
         /// <returns></returns>
         public int SaveEntity(string jsonInput)
         {
-            var dict = Convertor.FromJsonToDict2(jsonInput);
             var ar = Convertor.FromJsonToObject2<YunArticle>(jsonInput);
             ar.AppCode = this.CurrentApp.AppCode;
             ar.AppName = this.CurrentApp.AppName;
             ar.Version = this.CurrentApp.Version;
             ar.Save();
-
-            #region 时间点保存
-            if (dict.ContainsKey("Milestone")&& null != dict["Milestone"]) {
-                var checkPointList = dict["Milestone"] as ArrayList;
-                foreach (Dictionary<string, object> checkPoint in checkPointList)
-                {
-                    checkPoint["ID"] = SUID.New().ToString();
-                    var cp = Convertor.FromDictionaryToObject<YunTask>(checkPoint);
-                    var taskList = checkPoint["TaskArray"] as ArrayList;
-                    foreach (Dictionary<string,object> task in taskList)
-                    {
-                        task["ID"] = SUID.New().ToString();
-                        var t = Convertor.FromDictionaryToObject<YunTask>(task);
-                        t.Save();
-                    }
-                    cp.Save();
-                }
-
-            }
-
-            #endregion
 
 
             #region 权限保存

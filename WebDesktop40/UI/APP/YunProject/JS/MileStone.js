@@ -15,7 +15,7 @@ Milestone.AddCheckPoint = function (target, data) {
             $(target).append("<li>  <a href='javascript:;' class='addbtn' onclick='Milestone.AddCheckPoint()'>添加新时间节点</a>  </li>");
         }
         else {
-            var itemHtml = $("#tpl_Milestone_6").html().replace(/\[CheckPointTitle\]/g, data.Title).replace(/\[CheckPointSummary\]/g, data.Summary);
+            var itemHtml = $("#tpl_Milestone_6").html().replace(/\[Title\]/g, data.Title).replace(/\[Summary\]/g, data.Summary);
             $(target).append(itemHtml);
         }
     }
@@ -30,7 +30,7 @@ Milestone.EditCheckPoint = function (mode) {
             data[propertyName] = $(this).val();
         });
 
-        var itemHtml = $("#tpl_Milestone_6").html().replace(/\[CheckPointTitle\]/g, data.Title).replace(/\[CheckPointSummary\]/g, data.Summary);
+        var itemHtml = $("#tpl_Milestone_6").html().replace(/\[Title\]/g, data.Title).replace(/\[Summary\]/g, data.Summary);
         $(itemHtml).insertBefore($(event.target).parent().parent());
 
         $(event.target).parent().parent().remove();
@@ -45,7 +45,7 @@ Milestone.EditTask = function (mode) {
             data[propertyName] = $(this).val();
         });
 
-        var itemHtml = $("#tpl_Milestone_5").html().replace("[Content]", data.Content).replace("[ExpectedEndTime]", data.ExpectedEndTime);
+        var itemHtml = $("#tpl_Milestone_5").html().replace("[Title]", data.Title).replace("[ExpectedStopTime]", data.ExpectedStopTime);
         $(itemHtml).insertBefore($(event.target).parent().parent().parent());
         $(event.target).parent().parent().parent().remove();
     }
@@ -60,13 +60,13 @@ Milestone.AddTask = function (target, data) {
     }
     else {
         if ("已完成" === data.Status) {
-            itemHtml = $("#tpl_Milestone_3").html().replace(/\[Content\]/g, data.Content).replace(/\[ExpectedEndTime\]/g, data.ExpectedEndTime).replace("[ID]", data.ID);
+            itemHtml = $("#tpl_Milestone_3").html().replace(/\[Title\]/g, data.Title).replace(/\[ExpectedStopTime\]/g, data.ExpectedStopTime).replace("[ID]", data.ID);
         }
         else if ("未开始" === data.Status) {
-            itemHtml = $("#tpl_Milestone_5").html().replace(/\[Content\]/g, data.Content).replace(/\[ExpectedEndTime\]/g, data.ExpectedEndTime).replace("[ID]", data.ID);
+            itemHtml = $("#tpl_Milestone_5").html().replace(/\[Title\]/g, data.Title).replace(/\[ExpectedStopTime\]/g, data.ExpectedStopTime).replace("[ID]", data.ID);
         }
         else if ("进行中" === data.Status) {
-            itemHtml = $("#tpl_Milestone_4").html().replace(/\[Content\]/g, data.Content).replace(/\[ExpectedEndTime\]/g, data.ExpectedEndTime).replace("[ID]", data.ID);
+            itemHtml = $("#tpl_Milestone_4").html().replace(/\[Title\]/g, data.Title).replace(/\[ExpectedStopTime\]/g, data.ExpectedStopTime).replace("[ID]", data.ID);
         }
         else if ("新增按钮" === data.Status) {
             itemHtml = "<li><a href='javascript:;' class='addbtn' onclick= 'Milestone.AddTask()'> 添加新任务</a></li>";
@@ -80,10 +80,10 @@ Milestone.CompleteTask = function () {
    
     var $sourceCtrl = $(event.target).parentsUntil("ul").last();
     var item = {};
-    item.Content = $sourceCtrl.find("[data-propertyname='Content']").attr("data-PropertyValue");
-    item.ExpectedEndTime = $sourceCtrl.find("[data-propertyname='ExpectedEndTime']").attr("data-PropertyValue");
-    item.ActualEndTime = Convertor.DateFormat(new Date().toString(), "yyyy/MM/dd");
-    var html = $("#tpl_Milestone_3").html().replace(/\[Content\]/g, item.Content).replace(/\[ExpectedEndTime\]/g, item.ExpectedEndTime).replace(/\[ActualEndTime\]/g, item.ActualEndTime);
+    item.Title = $sourceCtrl.find("[data-propertyname='Title']").attr("data-PropertyValue");
+    item.ExpectedStopTime = $sourceCtrl.find("[data-propertyname='ExpectedStopTime']").attr("data-PropertyValue");
+    item.ActualStopTime = Convertor.DateFormat(new Date().toString(), "yyyy/MM/dd");
+    var html = $("#tpl_Milestone_3").html().replace(/\[Title\]/g, item.Title).replace(/\[ExpectedStopTime\]/g, item.ExpectedStopTime).replace(/\[ActualStopTime\]/g, item.ActualStopTime);
     $(html).insertBefore($sourceCtrl);
 
     $(event.target).parentsUntil("ul").last().remove();
@@ -91,19 +91,7 @@ Milestone.CompleteTask = function () {
 }
 
 
-Milestone.LoadData = function (data) {
-    //var data = [{
-    //    Title: "完成界面代码", Summary: "预计2017年12月18日结束，当前完成度63.5%，剩余时间 4天", Status: ""
-    //    , TaskArray: [{ "Status": "已完成", "Content": "将数据提交上去", "ExpectedEndTime": "2017/12/12" }, { "Status": "未开始", "Content": "将数据获取出来", "ExpectedEndTime": "2017/12/12" }, { "Status": "处理中", "Content": "最后完整检查一遍", "ExpectedEndTime": "2017/12/12" }, { "Status": "新增按钮" }]
-    //}
-    //    , {
-    //        Title: "完成JS测试", Summary: "预计2017年12月18日结束，当前完成度23.5%，剩余时间 4天"
-    //        , TaskArray: [{ "Status": "已完成", "Content": "将数据提交上去", "ExpectedEndTime": "2017/12/12" }, { "Status": "未开始", "Content": "将数据获取出来", "ExpectedEndTime": "2017/12/12" }, { "Status": "处理中", "Content": "最后完整检查一遍", "ExpectedEndTime": "2017/12/12" }, { "Status": "新增按钮" }]
-
-    //    }
-    //    , { Status: "新增按钮", TaskArray: [] }];
-
-    //data = [{ Status: "新增按钮", TaskArray: [] }];
+Milestone.LoadData = function (data) { 
     if (true === PARAM_CHECKER.IsArray(data) && 0 < data.length) {
         
     }

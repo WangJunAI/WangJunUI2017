@@ -72,6 +72,7 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="基础业务对象\BaseBehavior.cs" />
+    <Compile Include="基础业务对象\BaseTask.cs" />
     <Compile Include="枚举\EnumOperatorType.cs" />
     <Compile Include="枚举\EnumObjectType.cs" />
     <Compile Include="枚举\EnumBehavior.cs" />

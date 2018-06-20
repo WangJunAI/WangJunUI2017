@@ -1,30 +1,25 @@
 ﻿using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web;
 using WangJun.Entity;
-using WangJun.Net;
 using WangJun.Utility;
 
 namespace WangJun.Yun
 {
-    public class YunFile:BaseFile
+    public class YunTask : BaseTask
     {
-
-        public YunFile()
-        {
+        public YunTask() {
             var iSysItem = this as ISysItem;
             iSysItem.ClassFullName = this.GetType().FullName;
             iSysItem._DbName = "WangJun";
-            iSysItem._CollectionName = "YunFile";
+            iSysItem._CollectionName = "YunTask";
 
         }
 
-        public int Save()
+        public   int Save()
         {
             var session = SESSION.Current;
             var iRelationshipObjectId = this as IRelationshipObjectId;
@@ -57,7 +52,7 @@ namespace WangJun.Yun
                 iOperator.CreatorName = session.UserName;
                 iOperator.ModifierID = session.UserID;
                 iOperator.ModifierName = session.UserName;
-                if (StringChecker.IsZeroString(iOperator.OwnerID)) ///企业的应该界面赋值
+                if (StringChecker.IsZeroString(iOperator.OwnerID)|| string.IsNullOrWhiteSpace( iOperator.OwnerID)) ///企业的应该界面赋值
                 {
                     iOperator.OwnerID = session.UserID; ///数据所有者
                     iOperator.OwnerName = session.UserName;
@@ -81,35 +76,66 @@ namespace WangJun.Yun
             }
             #endregion
 
+            
+
             #region iSysItem
             if (null != iSysItem)
             {
-                EntityManager.GetInstance().Save<YunFile>(this);
+                EntityManager.GetInstance().Save<YunTask>(this);
                 return (int)EnumResult.成功;
             }
             #endregion
 
+
+            
+
+
+
             return (int)EnumResult.失败;
         }
-        public static YunFile Load(string id)
+        public static YunTask Load(string id)
         {
-            var res = EntityManager.GetInstance().Get<YunFile>(id);
+            var res = EntityManager.GetInstance().Get<YunTask>(id);
             return res;
         }
 
         public static int Remove(string id)
         {
-            return EntityManager.GetInstance().Remove<YunFile>(id);
+            return EntityManager.GetInstance().Remove<YunTask>(id);
         }
 
         public static int Delete(string id)
         {
-            return EntityManager.GetInstance().DeleteOne<YunFile>(id);
+            return EntityManager.GetInstance().DeleteOne<YunTask>(id);
         }
 
+        #region 基本方法
+        public static YunTask CreateAsCheckPoint(string title)
+        {
+            var inst = new YunTask();
 
-        public void SaveToGridFS() {
+            inst.Title = title;
 
+            var iTime = inst as ITime;
+            iTime.CreateTime = DateTime.Now;
+            iTime.UpdateTime = iTime.CreateTime;
+
+
+            return inst;
         }
+        public static YunTask CreateAsTask(string title)
+        {
+            var inst = new YunTask();
+
+            inst.Title = title;
+
+            var iTime = inst as ITime;
+            iTime.CreateTime = DateTime.Now;
+            iTime.UpdateTime = iTime.CreateTime;
+
+
+            return inst;
+        }
+        #endregion
     }
 }

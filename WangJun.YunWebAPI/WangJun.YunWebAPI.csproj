@@ -45,6 +45,7 @@
     <Compile Include="YunNewsWebAPI.cs" />
     <Compile Include="YunNoteWebAPI.cs" />
     <Compile Include="YunPanWebAPI.cs" />
+    <Compile Include="YunTaskWebAPI.cs" />
     <Compile Include="YunProjectWebAPI.cs" />
     <Compile Include="YunQunWebAPI.cs" />
     <Compile Include="YunUserAPI.cs" />
