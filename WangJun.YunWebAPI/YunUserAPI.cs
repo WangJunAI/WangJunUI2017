@@ -25,7 +25,7 @@ namespace WangJun.App
         } 
 
         #region 初始化应用
-        public int RegisterApp(string companyID,string securityCode)
+        public int RegisterApp(string companyID,string superAdminID,string securityCode)
         {
             var company = YunCompany.Load(companyID);
 
@@ -53,11 +53,16 @@ namespace WangJun.App
             yunCategory1.OwnerID = company.ID;
             yunCategory1.OwnerName = company.Name;
             yunCategory1.Save();
- 
+
 
             #endregion
-            #region 初始化第一篇文章
-
+            #region 设置管理员所属组织
+            var superAdmin = YunUser.Load(superAdminID);
+            superAdmin.ParentID = yunCategory0.ID;
+            superAdmin.ParentName = yunCategory0.Name;
+            superAdmin.RootID = yunCategory0.ID;
+            superAdmin.RootName = yunCategory0.Name;
+            superAdmin.Save();
             #endregion
 
             return (int)EnumResult.成功;

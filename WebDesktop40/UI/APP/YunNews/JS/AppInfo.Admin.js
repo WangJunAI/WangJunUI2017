@@ -15,7 +15,7 @@ App.Doc.CSS.LeftList.View1 = {};
 App.Doc.CSS.LeftList.View1.Width = { Value: 30, Unit: "em" };
 
 App.Doc.CSS.LeftList.View3 = {};
-App.Doc.CSS.LeftList.View3.Width = { Value: 12, Unit: "em" };
+App.Doc.CSS.LeftList.View3.Width = { Value: 18, Unit: "em" };
 
 App.Doc.ServerHost = ("localhost" === window.location.hostname) ? window.location.protocol + "//" + window.location.hostname + ":9990" : "http://aifuwu.wang";
 App.Doc.Server = {
@@ -40,6 +40,7 @@ App.Doc.Server = {
     Url19: App.Doc.ServerHost + "/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=LoadAll",///回收站数量
     Url90: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunNews.YunNewsWebAPI&m=EmptyRecycleBin",///加载回收站
     Url91: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunNews.YunNewsWebAPI&m=DeleteEntity",///加载回收站
+    Url50:"Chart.html"
 };
 
 
@@ -54,8 +55,8 @@ App.Doc.LeftMenu.push({ Name: "企业新闻", ID: "LeftMenu.企业新闻", Metho
 
 App.Doc.LeftMenu.push({ Name: "数据分析", ID: "LeftMenu.数据分析", Method: "Doc.LeftMenuGroupToggle", ParentID: null });
 App.Doc.LeftMenu.push({ Name: "新闻分析", ID: "LeftMenu.新闻分析", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析", TopButtonGroupID: "左侧菜单.新闻分析.TopButton" });
-App.Doc.LeftMenu.push({ Name: "热度分析", ID: "LeftMenu.评论分析", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析", TopButtonGroupID: "左侧菜单.评论分析.TopButton" });
-App.Doc.LeftMenu.push({ Name: "用户分析", ID: "LeftMenu.用户参与", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析", TopButtonGroupID: "左侧菜单.用户参与.TopButton" });
+App.Doc.LeftMenu.push({ Name: "热度分析", ID: "LeftMenu.热度分析", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析", TopButtonGroupID: "左侧菜单.评论分析.TopButton" });
+App.Doc.LeftMenu.push({ Name: "用户分析", ID: "LeftMenu.用户分析", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析", TopButtonGroupID: "左侧菜单.用户参与.TopButton" });
 
 ///系统管理
 App.Doc.LeftMenu.push({ Name: "系统管理", ID: "LeftMenu.系统管理", Method: "Doc.LeftMenuGroupToggle", ParentID: null });

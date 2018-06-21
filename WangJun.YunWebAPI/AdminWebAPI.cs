@@ -50,7 +50,7 @@ namespace WangJun.Admin
             var companyID = user.CompanyID;
 
              #region 初始化用户管理App和管理权限
-            new YunUserAPI().RegisterApp(companyID, "");
+            new YunUserAPI().RegisterApp(companyID,userID, "");
             new YunUserAPI().SetManagerID(userID);
             #endregion
 

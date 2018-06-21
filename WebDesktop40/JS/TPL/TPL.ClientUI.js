@@ -156,15 +156,26 @@ Doc.CheckInput = function () {
         var rules = JSON.parse($(ctrls[k]).attr("data-inputcheck").replace(/'/g, '"'));
         var val = $(ctrls[k]).val();
         if ("string" === rules.checkas && (0 == val.length || rules.limit < val.length)) {
-            $(ctrls[k]).tooltip("open");
+            $(ctrls[k]).tooltip().tooltip("open");
             checkResult = false;
         }
         else if ("parentNodeSelected".toLowerCase() == rules.checkas.toLowerCase()) {
             var parentName = $("[data-propertyName='ParentName']").attr("data-propertyValue");
             var parentID = $("[data-propertyName='ParentID']").attr("data-propertyValue");
             if (true === PARAM_CHECKER.IsEmptyString(parentName)) {
-                $(ctrls[k]).tooltip("open");
+                $(ctrls[k]).tooltip().tooltip("open");
                 checkResult = false;
+            }
+        }
+        else if ("treeNodeSelected".toLowerCase() == rules.checkas.toLowerCase()) {
+            var propertyNameArray = rules.PropertyNameArray;
+            for (var m = 0; m < propertyNameArray.length; m++) {
+                var propertyName = propertyNameArray[m];
+                var propertyVal = $("[data-propertyName='" + propertyName + "']").attr("data-propertyValue");
+                if (true === PARAM_CHECKER.IsEmptyString(propertyVal)) {
+                    $(ctrls[k]).tooltip().tooltip("open");
+                    checkResult = false;
+                }
             }
         }
 

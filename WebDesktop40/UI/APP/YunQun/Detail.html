@@ -71,7 +71,7 @@
             <a href="javascript:;" class="btn" onclick="Doc.SaveDetail()">保存</a>
             <a href="javascript:;" class="btn" onclick="Doc.RemoveDetail()">删除</a>
         </div>
-        <div class="title"><input type="text" placeholder="请输入群组名称" data-FormName="Default" data-propertyName="Title" data-propertyValue="" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" /></div>
+        <div class="title"><input type="text" placeholder="请输入群组名称"  title="请输入群组名称，建议30字之内..." data-inputcheck="{'checkas':'string','limit':30}" data-FormName="Default" data-propertyName="Title" data-propertyValue="" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" /></div>
 
 
 
@@ -83,7 +83,7 @@
                     <div class="item">
                         <div class="key">分类</div>
                         <div class="value" data-FormName="Default" data-propertyName="ParentID" data-propertyValue="">
-                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">未选择分类</a>
+                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue=""   title="请选择分类" data-inputcheck="{'checkas':'parentNodeSelected'}">未选择分类</a>
                             <div style="position: absolute;z-index:9999;">
                                 <div id="category" class="dropdownlist">
                                 </div>
@@ -106,7 +106,7 @@
                     <div class="item">
                         <div class="key">参与人员</div>
                         <div class="value" data-FormName="Default" data-propertyName="UserAllowedArray" data-propertyValue="" data-propertyType="CheckBoxArray">
-                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category3').toggle();" data-FormName="Default" data-propertyName="UserAllowedArrayText" data-propertyValue="">未选择参与人员</a>
+                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category3').toggle();" data-FormName="Default" data-propertyName="UserAllowedArrayText" data-propertyValue=""   title="请选择参与人员" data-inputcheck="{'checkas':'treeNodeSelected','PropertyNameArray':['UserAllowedArrayText']}">未选择参与人员</a>
                             <div style="position: absolute;z-index:9999;">
                                 <div id="category3" class="dropdownlist">
                                 </div>

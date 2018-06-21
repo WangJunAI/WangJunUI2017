@@ -1,7 +1,4 @@
-﻿/// <reference path="appinfo.doc.js" />
-/// <reference path="doc.topbutton.js" />
-/// <reference path="doc.table.js" />
-
+﻿ 
 ///加载左侧菜单
 Doc.LoadMenu = function (menuArray) {
     var menuArray = App.Doc.LeftMenu;
@@ -55,28 +52,23 @@ Doc.LeftMenuClick = function (id) {
     }
     else if ("LeftMenu.新闻分析" === id) {
         Doc.LoadTopButton(topButtonId);
-        Doc.ShowContent("Chart1.html");
+        Doc.ShowContent(App.Doc.Server.Url50);
         Doc.ShowView3();
-        Doc.LoadSummaryList(0, 10, [{ Title: "分类下新闻比例" }, { Title: "分类活跃度" }, { Title: "文章热度" }, { Title: "发文计数" }, { Title: "最活跃用户" }]);
+        Doc.LoadSummaryList(0, 10, [{ Title: "发布统计" }, { Title: "分词统计" }, { Title: "点赞统计" }]);
     }
-    else if ("LeftMenu.共享分析" === id) {
+    else if ("LeftMenu.热度分析" === id) {
         Doc.LoadTopButton(topButtonId);
-        Doc.ShowContent("Chart1.html");
+        Doc.ShowContent(App.Doc.Server.Url50);
         Doc.ShowView3();
-        Doc.LoadSummaryList(0, 10, [{ Title: "分类下新闻比例" }, { Title: "分类活跃度" }, { Title: "文章热度" }, { Title: "发文计数" }, { Title: "最活跃用户" }]);
-    }
-    else if ("LeftMenu.用户参与" === id) {
+        Doc.LoadSummaryList(0, 10, [{ Title: "阅读统计" }, { Title: "评论统计" }, { Title: "点赞统计" }, { Title: "收藏统计" }, { Title: "搜索统计" }]);
+    }  
+    else if ("LeftMenu.用户分析" === id) {
         Doc.LoadTopButton(topButtonId);
-        Doc.ShowContent("Chart1.html");
+        Doc.ShowContent(App.Doc.Server.Url50);
         Doc.ShowView3();
-        Doc.LoadSummaryList(0, 10, [{ Title: "分类下新闻比例" }, { Title: "分类活跃度" }, { Title: "文章热度" }, { Title: "发文计数" }, { Title: "最活跃用户" }]);
-    }
-    else if ("LeftMenu.外网关联" === id) {
-        Doc.LoadTopButton(topButtonId);
-        Doc.ShowContent("Chart1.html");
-        Doc.ShowView3();
-        Doc.LoadSummaryList(0, 10, [{ Title: "分类下新闻比例" }, { Title: "分类活跃度" }, { Title: "文章热度" }, { Title: "发文计数" }, { Title: "最活跃用户" }]);
-    }
+        Doc.LoadSummaryList(0, 10, [ { Title: "最活跃用户统计" },{ Title: "阅读最多用户统计" }, { Title: "评论最多用户统计" }, { Title: "点赞最多用户统计" }, { Title: "收藏最多用户统计" }]);
+    }  
+ 
     else if ("LeftMenu.回收站" == id) {
         Doc.ShowView2();
         Doc.LoadTopButton(topButtonId);
