@@ -249,7 +249,7 @@ TouTiao.LoadArticle = function (param,callback) {
         LOGGER.Log(res);
         TouTiao.ShowArticle(res);
         ClientBehavior.LoadBehaviorByArticleID();
-        //ClientBehavior.Read();
+        ClientBehavior.Read();
     }
     NET.LoadData(App.TouTiao.Server.Url3, callback, context, NET.POST);
 }

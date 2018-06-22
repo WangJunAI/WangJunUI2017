@@ -40,7 +40,9 @@ App.Doc.Server = {
     Url19: App.Doc.ServerHost + "/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=LoadAll",///回收站数量
     Url90: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunNews.YunNewsWebAPI&m=EmptyRecycleBin",///加载回收站
     Url91: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunNews.YunNewsWebAPI&m=DeleteEntity",///加载回收站
-    Url50:"Chart1.html"
+    Url50: "Chart1.html",
+    Url51: "Chart2.html",
+    Url52: "Chart3.html",
 };
 
 

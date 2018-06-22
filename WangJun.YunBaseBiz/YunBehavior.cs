@@ -49,21 +49,27 @@ namespace WangJun.Yun
             inst.CompanyID = companyID;
             inst.CompanyName = companyName;
 
-            var list = YunBehavior.LoadBehaviorList(inst.TargetID.ToString(), inst.OperatorID.ToString()).Where(p=> p.OperateTypeCode == operateTypeCode);
-
-            if (0 < list.Count())
+            if ((int)EnumBehaviorType.收藏 == operateTypeCode || (int)EnumBehaviorType.点赞 == operateTypeCode)
             {
-                foreach (var listItem in list)
-                {
-                    YunBehavior.Remove(listItem.ID);
-                }
+                var list = YunBehavior.LoadBehaviorList(inst.TargetID.ToString(), inst.OperatorID.ToString()).Where(p => p.OperateTypeCode == operateTypeCode);
 
+                if (0 < list.Count())
+                {
+                    foreach (var listItem in list)
+                    {
+                        YunBehavior.Remove(listItem.ID);
+                    }
+
+                }
+                else
+                {
+                    EntityManager.GetInstance().Save<YunBehavior>(inst);
+                }
             }
-            else
-            { 
+            else if ((int)EnumBehaviorType.阅读 == operateTypeCode)
+            {
                 EntityManager.GetInstance().Save<YunBehavior>(inst);
             }
-
 
         }
 

@@ -58,13 +58,13 @@ Doc.LeftMenuClick = function (id) {
     }
     else if ("LeftMenu.热度分析" === id) {
         Doc.LoadTopButton(topButtonId);
-        Doc.ShowContent(App.Doc.Server.Url50);
+        Doc.ShowContent(App.Doc.Server.Url51);
         Doc.ShowView3();
-        Doc.LoadSummaryList(0, 10, [{ Title: "阅读统计" }, { Title: "评论统计" }, { Title: "点赞统计" }, { Title: "收藏统计" }, { Title: "搜索统计" }]);
+        Doc.LoadSummaryList(0, 10, [{ Title: "阅读统计" }, { Title: "评论统计" }, { Title: "点赞统计" }, { Title: "收藏统计" }]);
     }  
     else if ("LeftMenu.用户分析" === id) {
         Doc.LoadTopButton(topButtonId);
-        Doc.ShowContent(App.Doc.Server.Url50);
+        Doc.ShowContent(App.Doc.Server.Url52);
         Doc.ShowView3();
         Doc.LoadSummaryList(0, 10, [ { Title: "最活跃用户统计" },{ Title: "阅读最多用户统计" }, { Title: "评论最多用户统计" }, { Title: "点赞最多用户统计" }, { Title: "收藏最多用户统计" }]);
     }  
