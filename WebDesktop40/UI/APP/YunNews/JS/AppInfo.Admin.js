@@ -34,13 +34,13 @@ App.Doc.Server = {
     Url13: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunNews.YunNewsWebAPI&m=MoveToRecycleBin", ///移除到回收站
     Url14: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunNews.YunNewsWebAPI&m=LoadRecycleBinEntityList",///加载回收站
     Url15: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunNews.DataAnalysor&m=GetHotWords",///暂未使用
-    Url16: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunNews.DocWebAPI&m=Aggregate",///聚合查询
+    Url16: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunNews.YunNewsWebAPI&m=Aggregate",///聚合查询
     Url17: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunNews.ClientBehaviorManager&m=Aggregate",
     Url18: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunNews.DocWebAPI&m=RecycleBinCount",///回收站数量
     Url19: App.Doc.ServerHost + "/API.ashx?c=WangJun.HumanResource.StaffWebAPI&m=LoadAll",///回收站数量
     Url90: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunNews.YunNewsWebAPI&m=EmptyRecycleBin",///加载回收站
     Url91: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunNews.YunNewsWebAPI&m=DeleteEntity",///加载回收站
-    Url50:"Chart.html"
+    Url50:"Chart1.html"
 };
 
 

@@ -362,5 +362,16 @@ namespace WangJun.App
             return 0;
         }
         #endregion
+
+        #region 聚合计算
+        public object Aggregate(string itemType, string match, string group)
+        {
+            var iSysItem = new YunArticle() as ISysItem;
+            var res = EntityManager.GetInstance().Aggregate(iSysItem._DbName, iSysItem._CollectionName, match, group);
+            return res;
+
+        }
+        #endregion
+
     }
 }

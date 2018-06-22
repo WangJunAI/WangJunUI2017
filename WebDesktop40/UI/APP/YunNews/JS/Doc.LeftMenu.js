@@ -54,7 +54,7 @@ Doc.LeftMenuClick = function (id) {
         Doc.LoadTopButton(topButtonId);
         Doc.ShowContent(App.Doc.Server.Url50);
         Doc.ShowView3();
-        Doc.LoadSummaryList(0, 10, [{ Title: "发布统计" }, { Title: "分词统计" }, { Title: "点赞统计" }]);
+        Doc.LoadSummaryList(0, 10, [{ Title: "发布统计" }, { Title: "分词统计" }, { Title: "目录统计" }]);
     }
     else if ("LeftMenu.热度分析" === id) {
         Doc.LoadTopButton(topButtonId);

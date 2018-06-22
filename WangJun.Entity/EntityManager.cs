@@ -38,7 +38,6 @@ namespace WangJun.Entity
         public int Save<T>(T item) where T : class,/* IRelationshipGuid, IName, ITime, IRelationshipObjectId, IStatus, IOperator, IApp, ISysItem,*/ICompany , new()
         {
             var db = DataStorage.GetInstance(DBType.MongoDB); 
-
             var iSysItem = item as ISysItem;
             #region ISysItem
             if (null != iSysItem && !string.IsNullOrWhiteSpace(iSysItem._DbName) && !string.IsNullOrWhiteSpace(iSysItem._CollectionName))

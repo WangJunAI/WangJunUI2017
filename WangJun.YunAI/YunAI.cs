@@ -22,5 +22,10 @@ namespace WangJun.Yun
             return res;
 
         }
+
+        public object FenCi(string input) {
+            var res = WangJun.AI.FenCi.GetResult(input);
+            return res;
+        }
     }
 }
