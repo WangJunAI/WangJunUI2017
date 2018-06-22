@@ -40,7 +40,10 @@ App.Doc.ServerHost = YunConfig.ServerHost(this);
     Url18: App.Doc.ServerHost+"/API.ashx?c=WangJun.App.YunUserAPI&m=RecycleBinCount",///回收站数量
     Url19: App.Doc.ServerHost+"/API.ashx?c=WangJun.App.YunUserAPI&m=LoadAll",///回收站数量
     Url90: App.Doc.ServerHost+"/API.ashx?c=WangJun.App.YunUserAPI&m=EmptyRecycleBin",///加载回收站
-    Url91: App.Doc.ServerHost+"/API.ashx?c=WangJun.App.YunUserAPI&m=DeleteEntity",///加载回收站
+     Url91: App.Doc.ServerHost + "/API.ashx?c=WangJun.App.YunUserAPI&m=DeleteEntity",///加载回收站
+     Url50: "Chart1.html",
+     Url51: "Chart2.html",
+
 };
  
 
@@ -56,15 +59,15 @@ App.Doc.LeftMenu.push({ Name: "我的同事", ID: "LeftMenu.我的同事", Metho
 
 
 
-App.Doc.LeftMenu.push({ Name: "权限设置", ID: "LeftMenu.权限设置", Method: "Doc.LeftMenuGroupToggle", ParentID: null });
-App.Doc.LeftMenu.push({ Name: "新建角色", ID: "LeftMenu.新建角色", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.权限设置" });
-App.Doc.LeftMenu.push({ Name: "角色列表", ID: "LeftMenu.角色列表", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.权限设置", TopButtonGroupID: "左侧菜单.角色列表.TopButton" });
+//App.Doc.LeftMenu.push({ Name: "权限设置", ID: "LeftMenu.权限设置", Method: "Doc.LeftMenuGroupToggle", ParentID: null });
+//App.Doc.LeftMenu.push({ Name: "新建角色", ID: "LeftMenu.新建角色", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.权限设置" });
+//App.Doc.LeftMenu.push({ Name: "角色列表", ID: "LeftMenu.角色列表", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.权限设置", TopButtonGroupID: "左侧菜单.角色列表.TopButton" });
 //App.Doc.LeftMenu.push({ Name: "使用说明", ID: "LeftMenu.使用说明", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.权限设置", TopButtonGroupID: "左侧菜单.使用说明.TopButton" });
 
 
 App.Doc.LeftMenu.push({ Name: "数据分析", ID: "LeftMenu.数据分析", Method: "Doc.LeftMenuGroupToggle" , ParentID: null });
 App.Doc.LeftMenu.push({ Name: "人员分析", ID: "LeftMenu.人员分析", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析", TopButtonGroupID: "左侧菜单.文档分析.TopButton"});
-//App.Doc.LeftMenu.push({ Name: "组织分析", ID: "LeftMenu.组织分析", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析", TopButtonGroupID: "左侧菜单.评论分析.TopButton" });
+App.Doc.LeftMenu.push({ Name: "组织分析", ID: "LeftMenu.组织分析", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析", TopButtonGroupID: "左侧菜单.评论分析.TopButton" });
 //App.Doc.LeftMenu.push({ Name: "角色分析", ID: "LeftMenu.角色分析", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析", TopButtonGroupID: "左侧菜单.评论分析.TopButton" });
 
 ///系统管理

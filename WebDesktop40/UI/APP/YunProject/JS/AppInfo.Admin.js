@@ -43,6 +43,8 @@ App.Doc.Server = {
     Url70: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunProject.YunProjectWebAPI&m=SaveComment",
     Url71: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunProject.YunProjectWebAPI&m=LoadCommentList",
     Url81: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunProject.YunProjectWebAPI&m=LoadShareArticleList",///加载回收站
+    Url50: "Chart1.html",
+    Url51: "Chart2.html",
 };
 
 
@@ -60,8 +62,8 @@ App.Doc.LeftMenu.push({ Name: "已结束项目", ID: "LeftMenu.已结束项目",
 
 
 App.Doc.LeftMenu.push({ Name: "数据分析", ID: "LeftMenu.数据分析", Method: "Doc.LeftMenuGroupToggle", ParentID: null });
-App.Doc.LeftMenu.push({ Name: "项目分析", ID: "LeftMenu.文档分析", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析", TopButtonGroupID: "左侧菜单.文档分析.TopButton" });
-App.Doc.LeftMenu.push({ Name: "用户参与", ID: "LeftMenu.用户参与", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析", TopButtonGroupID: "左侧菜单.用户参与.TopButton" });
+App.Doc.LeftMenu.push({ Name: "项目分析", ID: "LeftMenu.项目分析", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析", TopButtonGroupID: "左侧菜单.项目分析.TopButton" });
+App.Doc.LeftMenu.push({ Name: "用户分析", ID: "LeftMenu.用户分析", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析", TopButtonGroupID: "左侧菜单.用户分析.TopButton" });
 
 ///系统管理
 App.Doc.LeftMenu.push({ Name: "系统管理", ID: "LeftMenu.系统管理", Method: "Doc.LeftMenuGroupToggle", ParentID: null });

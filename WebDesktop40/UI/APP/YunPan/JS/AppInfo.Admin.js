@@ -43,7 +43,10 @@ App.Doc.Server = {
     Url18: App.Doc.ServerHost +"/API.ashx?c=WangJun.YunPan.DocWebAPI&m=RecycleBinCount",///回收站数量
     Url19: App.Doc.ServerHost +"/API.ashx?c=WangJun.App.YunUserAPI&m=LoadAll",///回收站数量
     Url90: App.Doc.ServerHost +"/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=EmptyRecycleBin",///加载回收站
-    Url91: App.Doc.ServerHost +"/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=DeleteEntity",///加载回收站
+    Url91: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunPan.YunPanWebAPI&m=DeleteEntity",///加载回收站
+    Url50: "Chart1.html",
+    Url51: "Chart2.html",
+    Url52: "Chart3.html",
 };
 
 
@@ -60,11 +63,13 @@ App.Doc.LeftMenu.push({ Name: "员工云盘", ID: "LeftMenu.员工云盘", Metho
 
 App.Doc.LeftMenu.push({ Name: "数据分析", ID: "LeftMenu.数据分析", Method: "Doc.LeftMenuGroupToggle", ParentID: null });
 App.Doc.LeftMenu.push({ Name: "云盘分析", ID: "LeftMenu.云盘分析", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析", TopButtonGroupID: "左侧菜单.云盘分析.TopButton" });
+App.Doc.LeftMenu.push({ Name: "分享分析", ID: "LeftMenu.分享分析", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析", TopButtonGroupID: "左侧菜单.云盘分析.TopButton" });
+App.Doc.LeftMenu.push({ Name: "用户分析", ID: "LeftMenu.用户分析", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析", TopButtonGroupID: "左侧菜单.云盘分析.TopButton" });
+
 
 ///系统管理
 App.Doc.LeftMenu.push({ Name: "系统管理", ID: "LeftMenu.系统管理", Method: "Doc.LeftMenuGroupToggle", ParentID: null });
 App.Doc.LeftMenu.push({ Name: "回收站", ID: "LeftMenu.回收站", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.系统管理", TopButtonGroupID: "左侧菜单.回收站.TopButton" });
-App.Doc.LeftMenu.push({ Name: "存储管理", ID: "LeftMenu.存储管理", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.系统管理", TopButtonGroupID: "左侧菜单.存储管理.TopButton" });
 App.Doc.LeftMenu.push({ Name: "使用帮助", ID: "LeftMenu.使用帮助", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.系统管理", TopButtonGroupID: "左侧菜单.使用帮助.TopButton" });
 
 App.Doc.Content = {};

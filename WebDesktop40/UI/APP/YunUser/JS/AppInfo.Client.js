@@ -40,7 +40,9 @@ App.Doc.ServerHost = YunConfig.ServerHost(this);
     Url18: App.Doc.ServerHost+"/API.ashx?c=WangJun.App.YunUserAPI&m=RecycleBinCount",///回收站数量
     Url19: App.Doc.ServerHost+"/API.ashx?c=WangJun.App.YunUserAPI&m=LoadAll",///回收站数量
     Url90: App.Doc.ServerHost+"/API.ashx?c=WangJun.App.YunUserAPI&m=EmptyRecycleBin",///加载回收站
-    Url91: App.Doc.ServerHost+"/API.ashx?c=WangJun.App.YunUserAPI&m=DeleteEntity",///加载回收站
+     Url91: App.Doc.ServerHost + "/API.ashx?c=WangJun.App.YunUserAPI&m=DeleteEntity",///加载回收站
+     Url50: "Chart1.html",
+     Url51: "Chart2.html",
 };
  
 

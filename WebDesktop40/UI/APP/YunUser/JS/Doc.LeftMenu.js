@@ -103,20 +103,16 @@ Doc.LeftMenuClick = function (id) {
      }
      else if ("LeftMenu.人员分析" === id) {
          Doc.LoadTopButton(topButtonId);
-         Doc.ShowContent("Chart1.html");
+         Doc.ShowContent(App.Doc.Server.Url50);
          Doc.ShowView3();
-         Doc.LoadSummaryList(0, 10, [{ Title: "目录下文档比例" }, { Title: "目录活跃度" }, { Title: "文章热度" }, { Title: "发文计数" }, { Title: "最活跃用户" }]);
+         Doc.LoadSummaryList(0, 10, [{ Title: "发布统计" }, { Title: "目录统计" }]);
      }
      else if ("LeftMenu.组织分析" === id) {
-         Doc.ShowView3();
          Doc.LoadTopButton(topButtonId);
-         Doc.ShowContent("Chart1.html");
-     }
-     else if ("LeftMenu.角色分析" === id) {
+         Doc.ShowContent(App.Doc.Server.Url51);
          Doc.ShowView3();
-         Doc.LoadTopButton(topButtonId);
-         Doc.ShowContent("Chart1.html");
-     }
+         Doc.LoadSummaryList(0, 10, [{ Title: "发布统计" }, { Title: "目录统计" }]);
+     } 
     else if ("LeftMenu.回收站" == id) {
          Doc.ShowView2();
          Doc.LoadTopButton(topButtonId);

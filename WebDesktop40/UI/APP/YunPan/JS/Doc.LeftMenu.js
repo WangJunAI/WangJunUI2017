@@ -91,20 +91,27 @@ Doc.LeftMenuClick = function (id) {
     }
     else if ("LeftMenu.云盘分析" === id) {
         Doc.LoadTopButton(topButtonId);
-        Doc.ShowContent("Chart.html");
+        Doc.ShowContent(App.Doc.Server.Url50);
         Doc.ShowView3();
         Doc.LoadSummaryListTo("#leftList", [{ Title: "空间使用" }, { Title: "文件分类" }, { Title: "分享数量" }], { Url:"chart1.html?id=[id]"}); 
+    }
+    else if ("LeftMenu.分享分析" === id) {
+        Doc.LoadTopButton(topButtonId);
+        Doc.ShowContent(App.Doc.Server.Url51);
+        Doc.ShowView3();
+        Doc.LoadSummaryListTo("#leftList", [{ Title: "空间使用" }, { Title: "文件分类" }, { Title: "分享数量" }], { Url: "chart1.html?id=[id]" });
+    }
+    else if ("LeftMenu.用户分析" === id) {
+        Doc.LoadTopButton(topButtonId);
+        Doc.ShowContent(App.Doc.Server.Url52);
+        Doc.ShowView3();
+        Doc.LoadSummaryListTo("#leftList", [{ Title: "空间使用" }, { Title: "文件分类" }, { Title: "分享数量" }], { Url: "chart1.html?id=[id]" });
     }
     else if ("LeftMenu.回收站" == id) {
         Doc.ShowView2();
         Doc.LoadTopButton(topButtonId);
         Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{}", App.Doc.Data.RecycleBin.Info);
-    }
-    else if ("LeftMenu.存储管理" == id) {
-        Doc.ShowView3();
-        Doc.LoadTopButton(topButtonId);
-        Doc.ShowContent("Chart1.html");
-    }
+    } 
     else if ("LeftMenu.使用帮助" == id) {
         Doc.ShowView2();
         Doc.LoadTopButton(topButtonId);
