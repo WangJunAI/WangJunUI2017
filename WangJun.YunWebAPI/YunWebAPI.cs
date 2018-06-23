@@ -371,6 +371,14 @@ namespace WangJun.App
             {
                 iSysItem = Activator.CreateInstance<YunBehavior>() as ISysItem;
             }
+            else if ("YunUser" == itemType)
+            {
+                iSysItem = Activator.CreateInstance<YunUser>() as ISysItem;
+            }
+            else
+            {
+                iSysItem = Activator.CreateInstance(Type.GetType(itemType)) as ISysItem;
+            }
             var res = EntityManager.GetInstance().Aggregate(iSysItem._DbName, iSysItem._CollectionName, match, group);
             return res;
 

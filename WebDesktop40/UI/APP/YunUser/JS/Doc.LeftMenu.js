@@ -107,11 +107,11 @@ Doc.LeftMenuClick = function (id) {
          Doc.ShowView3();
          Doc.LoadSummaryList(0, 10, [{ Title: "发布统计" }, { Title: "目录统计" }]);
      }
-     else if ("LeftMenu.组织分析" === id) {
+     else if ("LeftMenu.工作分析" === id) {
          Doc.LoadTopButton(topButtonId);
          Doc.ShowContent(App.Doc.Server.Url51);
          Doc.ShowView3();
-         Doc.LoadSummaryList(0, 10, [{ Title: "发布统计" }, { Title: "目录统计" }]);
+         Doc.LoadSummaryList(0, 10, [{ Title: "新闻互动统计" }, { Title: "笔记使用统计" }, { Title: "知识库使用统计" }, { Title: "群组使用统计" }, { Title: "项目使用统计" }, { Title: "云盘使用统计" }]);
      } 
     else if ("LeftMenu.回收站" == id) {
          Doc.ShowView2();

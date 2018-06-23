@@ -35,7 +35,7 @@ App.Doc.ServerHost = YunConfig.ServerHost(this);
     Url13: App.Doc.ServerHost+"/API.ashx?c=WangJun.Doc.DocWebAPI&m=MoveToRecycleBin", ///移除到回收站
     Url14: App.Doc.ServerHost+"/API.ashx?c=WangJun.App.YunUserAPI&m=LoadRecycleBinEntityList",///加载回收站
     Url15: App.Doc.ServerHost+"/API.ashx?c=WangJun.Doc.DataAnalysor&m=GetHotWords",///暂未使用
-    Url16: App.Doc.ServerHost+"/API.ashx?c=WangJun.Doc.DocWebAPI&m=Aggregate",///聚合查询
+     Url16: App.Doc.ServerHost +"/API.ashx?c=WangJun.App.YunUserAPI&m=Aggregate",///聚合查询
     Url17: App.Doc.ServerHost+"/API.ashx?c=WangJun.Doc.ClientBehaviorManager&m=Aggregate",
     Url18: App.Doc.ServerHost+"/API.ashx?c=WangJun.App.YunUserAPI&m=RecycleBinCount",///回收站数量
     Url19: App.Doc.ServerHost+"/API.ashx?c=WangJun.App.YunUserAPI&m=LoadAll",///回收站数量
@@ -66,8 +66,8 @@ App.Doc.LeftMenu.push({ Name: "我的同事", ID: "LeftMenu.我的同事", Metho
 
 
 App.Doc.LeftMenu.push({ Name: "数据分析", ID: "LeftMenu.数据分析", Method: "Doc.LeftMenuGroupToggle" , ParentID: null });
-App.Doc.LeftMenu.push({ Name: "人员分析", ID: "LeftMenu.人员分析", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析", TopButtonGroupID: "左侧菜单.文档分析.TopButton"});
-App.Doc.LeftMenu.push({ Name: "组织分析", ID: "LeftMenu.组织分析", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析", TopButtonGroupID: "左侧菜单.评论分析.TopButton" });
+App.Doc.LeftMenu.push({ Name: "人员分析", ID: "LeftMenu.人员分析", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析", TopButtonGroupID: "左侧菜单.人员分析.TopButton"});
+App.Doc.LeftMenu.push({ Name: "工作分析", ID: "LeftMenu.工作分析", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析", TopButtonGroupID: "左侧菜单.工作分析.TopButton" });
 //App.Doc.LeftMenu.push({ Name: "角色分析", ID: "LeftMenu.角色分析", Method: "Doc.LeftMenuClick", ParentID: "LeftMenu.数据分析", TopButtonGroupID: "左侧菜单.评论分析.TopButton" });
 
 ///系统管理

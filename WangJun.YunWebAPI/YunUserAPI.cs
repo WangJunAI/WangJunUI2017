@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq; 
 using WangJun.Entity;
 using WangJun.Net;
@@ -168,19 +169,63 @@ namespace WangJun.App
         /// <returns></returns>
         public int SaveEntity(string jsonInput)
         {
-            var ar = Convertor.FromJsonToObject2<YunUser>(jsonInput);
-            ar.AppCode = this.CurrentApp.AppCode;
-            ar.AppName = this.CurrentApp.AppName;
-            ar.Version = this.CurrentApp.Version;
-            ar.Save();
+            try
+            {
+                var dict = Convertor.FromJsonToDict2(jsonInput);
+                var ar = Convertor.FromJsonToObject2<YunUser>(jsonInput);
+                ar.AppCode = this.CurrentApp.AppCode;
+                ar.AppName = this.CurrentApp.AppName;
+                ar.Version = this.CurrentApp.Version;
+                ar.Save();
 
-            ///设置权限
-            
-            HTTP.GetInstance().GetString("http://localhost:9990/API.ashx?c=WangJun.YunNews.YunNewsWebAPI&m=SetManagerID&p0=" + ar.ID + "&p1=true&p2=00");
-            HTTP.GetInstance().GetString("http://localhost:9990/API.ashx?c=WangJun.YunDoc.YunDocWebAPI&m=SetManagerID&p0=" + ar.ID + "&p1=true&p2=00");
-            //HTTP.GetInstance().GetString("http://localhost:9990/API.ashx?c=WangJun.YunDoc.YunDocWebAPI&m=SetManagerID&p0=" + ar.ID + "&p1=true&p2=00");
+                ///设置权限
+                var canManageYunPan = bool.Parse(dict["CanManageYunPan"].ToString());
+                var canManageYunQun = bool.Parse(dict["CanManageYunQun"].ToString());
+                var canManageYunProject = bool.Parse(dict["CanManageYunProject"].ToString());
+                var canManageYunDoc = bool.Parse(dict["CanManageYunDoc"].ToString());
+                var canManageYunNews = bool.Parse(dict["CanManageYunNews"].ToString());
+                var canManageYunNote = bool.Parse(dict["CanManageYunNote"].ToString());
+                var canManageUser = bool.Parse(dict["CanManageStaff"].ToString());
 
-            return 0;
+                if (canManageYunPan)
+                {
+                    new YunPanWebAPI().SetManagerID(ar.ID);
+                }
+
+                if (canManageYunQun)
+                {
+                    new YunQunWebAPI().SetManagerID(ar.ID);
+                }
+
+                if (canManageYunProject)
+                {
+                    new YunProjectWebAPI().SetManagerID(ar.ID);
+                }
+
+                if (canManageYunDoc)
+                {
+                    new YunDocWebAPI().SetManagerID(ar.ID);
+                }
+
+
+                if (canManageYunNews)
+                {
+                    new YunNewsWebAPI().SetManagerID(ar.ID);
+                }
+
+                if (canManageUser)
+                {
+                    new YunUserAPI().SetManagerID(ar.ID);
+                }
+                return (int)EnumResult.成功;
+            }
+            catch (Exception e)
+            {
+
+            }
+
+
+            return (int)EnumResult.失败;
         }
 
         /// <summary>
@@ -293,25 +338,7 @@ namespace WangJun.App
             return 0;
         }
         #endregion
-
-
-        #region 聚合计算
-        public object Aggregate(string itemType, string match, string group)
-        {
-            //var item = new BaseItem();
-            //if ("Entity" == itemType)
-            //{
-            //    item = new YunNewsItem();
-            //}
-            //else if ("Category" == itemType)
-            //{
-            //    item = new CategoryItem();
-            //}
-            //var res = EntityManager.GetInstance().Aggregate(item._DbName, item._CollectionName, match, group);
-            //return res;
-            return null;
-        }
-        #endregion
+         
 
         /// <summary>
         /// 用户登录

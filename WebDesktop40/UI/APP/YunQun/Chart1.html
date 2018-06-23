@@ -29,7 +29,7 @@
 </head>
 <body>
     <!-- 图表容器 DOM -->
-    <h1>目录下文档占比</h1>
+    <h1>部门人员统计</h1>
     <div id="container1" style="width: 600px;height:400px;"></div>
     <h1>目录活跃度</h1>
     <div id="container2" style="width: 600px;height:400px;"></div>
@@ -49,7 +49,7 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            Doc.LoadChart("container1", App.Doc.Server.Url16, ["Entity","{$match:{}}", "{$group:{_id:'$CategoryName',Count:{$sum:1}}}"], function (res) {
+            Doc.LoadChart("container1", App.Doc.Server.Url16, ["Entity","{$match:{}}", "{$group:{_id:'$ParentName',Count:{$sum:1}}}"], function (res) {
                 //return[item["_id"], item["total"]];
                 var arr = [];
                 for (var k = 0; k < res.length; k++) {

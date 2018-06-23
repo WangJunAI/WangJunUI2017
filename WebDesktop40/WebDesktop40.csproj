@@ -1446,6 +1446,7 @@
     <Content Include="UI\APP\YunNews\Chart2.html" />
     <Content Include="UI\APP\YunUser\AppInfo.html" />
     <Content Include="UI\APP\YunUser\Category.html" />
+    <Content Include="UI\APP\YunUser\Chart2.html" />
     <Content Include="UI\APP\YunUser\Chart1.html" />
     <Content Include="UI\APP\YunUser\Detail.html" />
     <Content Include="UI\APP\YunUser\JS\AppInfo.Admin.js" />
