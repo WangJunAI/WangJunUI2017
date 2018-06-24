@@ -86,6 +86,10 @@
       <Project>{ECA8641B-DDB9-481A-BF78-76FB5A8E1DE3}</Project>
       <Name>WangJun.Utility</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WangJun.YunWebAPI\WangJun.YunWebAPI.csproj">
+      <Project>{ab28a8f1-0d15-4e57-b272-4712435bc1d4}</Project>
+      <Name>WangJun.YunWebAPI</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="YunConfig.txt" />

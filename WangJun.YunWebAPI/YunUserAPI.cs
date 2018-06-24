@@ -189,33 +189,43 @@ namespace WangJun.App
 
                 if (canManageYunPan)
                 {
-                    new YunPanWebAPI().SetManagerID(ar.ID);
+                    new YunPanWebAPI().PersonalAppInitial(ar.ID, "");
+                    new YunPanWebAPI().SetManagerID(ar.ID,true);
                 }
 
                 if (canManageYunQun)
                 {
-                    new YunQunWebAPI().SetManagerID(ar.ID);
+                    new YunQunWebAPI().PersonalAppInitial(ar.ID, "");
+                    new YunQunWebAPI().SetManagerID(ar.ID, true);
                 }
 
                 if (canManageYunProject)
                 {
-                    new YunProjectWebAPI().SetManagerID(ar.ID);
+                    new YunProjectWebAPI().PersonalAppInitial(ar.ID, "");
+                    new YunProjectWebAPI().SetManagerID(ar.ID, true);
                 }
 
                 if (canManageYunDoc)
                 {
-                    new YunDocWebAPI().SetManagerID(ar.ID);
+                    new YunDocWebAPI().PersonalAppInitial(ar.ID, "");
+                    new YunDocWebAPI().SetManagerID(ar.ID, true);
                 }
 
 
                 if (canManageYunNews)
                 {
-                    new YunNewsWebAPI().SetManagerID(ar.ID);
+                    new YunNewsWebAPI().SetManagerID(ar.ID, true);
+                }
+
+                if (canManageYunNote)
+                {
+                    new YunNoteWebAPI().PersonalAppInitial(ar.ID, "");
+                    new YunNoteWebAPI().SetManagerID(ar.ID, true);
                 }
 
                 if (canManageUser)
                 {
-                    new YunUserAPI().SetManagerID(ar.ID);
+                    new YunUserAPI().SetManagerID(ar.ID, true);
                 }
                 return (int)EnumResult.成功;
             }

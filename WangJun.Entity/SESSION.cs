@@ -55,10 +55,17 @@ namespace WangJun.Entity
             get
             {
                 var session = new SESSION();
-                string _SID = HttpContext.Current.Request.QueryString["_SID"];
-                if (null != HttpContext.Current&& StringChecker.IsObjectId(_SID))
+                if (null != HttpContext.Current)
                 {
-                    session = SESSION.Get(_SID); 
+                    string _SID = HttpContext.Current.Request.QueryString["_SID"];
+                    if (StringChecker.IsObjectId(_SID))
+                    {
+                        session = SESSION.Get(_SID);
+                    }
+                    else
+                    {
+                        throw new Exception("会话出现错误");
+                    }
  
                 }
                 else

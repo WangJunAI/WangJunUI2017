@@ -51,43 +51,43 @@ namespace WangJun.Admin
 
              #region 初始化用户管理App和管理权限
             new YunUserAPI().RegisterApp(companyID,userID, "");
-            new YunUserAPI().SetManagerID(userID);
+            new YunUserAPI().SetManagerID(userID, true);
             #endregion
 
             #region 初始化新闻发布App和管理权限
             new WangJun.YunNews.YunNewsWebAPI().RegisterApp(companyID, "");
-            new WangJun.YunNews.YunNewsWebAPI().SetManagerID(userID);
+            new WangJun.YunNews.YunNewsWebAPI().SetManagerID(userID,true);
             #endregion
 
             #region 初始化文档服务App和管理权限 
             new WangJun.YunDoc.YunDocWebAPI().RegisterApp(companyID, "");
             new WangJun.YunDoc.YunDocWebAPI().PersonalAppInitial(userID, "");
-            new WangJun.YunDoc.YunDocWebAPI().SetManagerID(userID);
+            new WangJun.YunDoc.YunDocWebAPI().SetManagerID(userID, true);
 
             #endregion
 
             #region 初始化笔记服务App和管理权限 
             new WangJun.YunNote.YunNoteWebAPI().RegisterApp(companyID, "");
             new WangJun.YunNote.YunNoteWebAPI().PersonalAppInitial(userID, "");
-            new WangJun.YunNote.YunNoteWebAPI().SetManagerID(userID);
+            new WangJun.YunNote.YunNoteWebAPI().SetManagerID(userID, true);
             #endregion
 
             #region 初始化群组服务App和管理权限 
             new WangJun.YunQun.YunQunWebAPI().RegisterApp(companyID, "");
             new WangJun.YunQun.YunQunWebAPI().PersonalAppInitial(userID, "");
-            new WangJun.YunQun.YunQunWebAPI().SetManagerID(userID);
+            new WangJun.YunQun.YunQunWebAPI().SetManagerID(userID, true);
             #endregion
 
             #region 初始化云项目服务App和管理权限 
             new WangJun.YunProject.YunProjectWebAPI().RegisterApp(companyID, "");
             new WangJun.YunProject.YunProjectWebAPI().PersonalAppInitial(userID, "");
-            new WangJun.YunProject.YunProjectWebAPI().SetManagerID(userID);
+            new WangJun.YunProject.YunProjectWebAPI().SetManagerID(userID, true);
             #endregion
 
             #region 初始化云盘服务App和管理权限  
             new WangJun.YunPan.YunPanWebAPI().RegisterApp(companyID, "");
             new WangJun.YunPan.YunPanWebAPI().PersonalAppInitial(userID, "");
-            new WangJun.YunPan.YunPanWebAPI().SetManagerID(userID);
+            new WangJun.YunPan.YunPanWebAPI().SetManagerID(userID, true);
             #endregion
 
             return 0;

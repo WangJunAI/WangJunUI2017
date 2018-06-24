@@ -223,10 +223,10 @@ namespace WangJun.Entity
             return null;
         }
 
-        public object SaveFile()
+        public string SaveFile(string sourceFileUrl, string fileName)
         {
-            //MongoDB.Driver.GridFS.
-            return 0;
+            var db = DataStorage.GetInstance(DBType.MongoDB);
+            return db.SaveFile(sourceFileUrl, fileName);
         }
 
     }

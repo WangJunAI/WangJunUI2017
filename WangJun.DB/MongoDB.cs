@@ -7,6 +7,7 @@ using WangJun.Utility;
 using MongoDB.Driver.GridFS;
 using System.IO;
 using System.Dynamic;
+using WangJun.Net;
 
 namespace WangJun.DB
 {
@@ -579,25 +580,21 @@ namespace WangJun.DB
         /// <param name="fileName"></param>
         /// <returns></returns>
         public string SaveFile(string sourceFileUrl,string fileName) {
-            var db = this.client.GetDatabase("WangJunFile");
-            GridFSBucketOptions gfbOptions = new GridFSBucketOptions()
+
+            var stream = new MemoryStream() as Stream;
+            var res = string.Empty;
+            if (StringChecker.IsHttpUrl(sourceFileUrl))
             {
-                BucketName = "file1",
-                ChunkSizeBytes = 1 * 1024 * 1024,
-                ReadConcern = null,
-                ReadPreference = null,
-                WriteConcern = null
-            };
-            var bucket = new GridFSBucket(db, new GridFSBucketOptions
+                var byteArray = HTTP.GetInstance().GetFile(sourceFileUrl);
+                stream = new MemoryStream(byteArray);
+            }
+            else if (File.Exists(sourceFileUrl))
             {
-                BucketName = "file1",
-                ChunkSizeBytes = 1048576, // 1MB  
-                WriteConcern = WriteConcern.WMajority,
-                ReadPreference = ReadPreference.Secondary
-            });
-            var fileStream = new FileStream(@"F:\test.txt",FileMode.Open);
-            var id = bucket.UploadFromStream("test.txt", fileStream);
-            return "";
+                stream =  new FileStream(sourceFileUrl, FileMode.Open);
+            }
+
+            res = this.SaveFile(stream, fileName);
+            return res;
         }
 
         public string SaveFile(Stream sourceStream, string fileName)

@@ -36,8 +36,9 @@ namespace WangJun.App
         #endregion
 
         #region 管理账号操作
-        public int SetManagerID(string userID)
-        {
+        public int SetManagerID(string userID,bool canManage)
+        { 
+
             var user = YunUser.Load(userID);
             var per1 = new YunPermission { };
             per1.Allow = true;
@@ -51,7 +52,20 @@ namespace WangJun.App
             per1.ObjectTypeName = EnumObjectType.应用管理.ToString();
             per1.CompanyID = user.CompanyID;
             per1.CompanyName = user.CompanyName;
-            per1.Save();
+
+            var permissionList = YunPermission.LoadAppPermission(userID).Where(p => p.ObjectID == per1.ObjectID && p.ObjectType == per1.ObjectType);
+            var isExist = 0<permissionList.Count();
+            if (!isExist && canManage)
+            {
+                per1.Save();
+            }
+            else if (isExist && !canManage)
+            {
+                foreach (var permission in permissionList)
+                {
+                    YunPermission.Remove(permission.ID);
+                }
+            }
 
             return (int)EnumResult.成功;
         }

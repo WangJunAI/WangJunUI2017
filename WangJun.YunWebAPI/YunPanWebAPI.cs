@@ -258,8 +258,7 @@ namespace WangJun.YunPan
         }
         #endregion
 
-         
-
+          
 
         #region 统计操作
         /// <summary>
@@ -337,9 +336,7 @@ namespace WangJun.YunPan
         }
         #endregion
 
- 
   
-
         #region 获取分享列表
         public List<YunFile> LoadShareArticleList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
         {
@@ -356,7 +353,18 @@ namespace WangJun.YunPan
             var res2 = EntityManager.GetInstance().Find<YunFile>(( p=>objectIDList.Contains(p._GID)));
              return list;
         }
-        #endregion 
+        #endregion
+
+        #region 云盘转储
+        public void SaveToGridFS()
+        {
+            var list = this.LoadEntityList("{}");
+            foreach (var item in list)
+            {
+                EntityManager.GetInstance().SaveFile(item.FileHttpUrl, item.Name);
+            }
+        }
+        #endregion
 
     }
 }
