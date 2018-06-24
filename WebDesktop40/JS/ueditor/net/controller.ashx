@@ -71,7 +71,7 @@ public class UEditorHandler : IHttpHandler
                     var yunRes = "";
                     try
                     {
-                        yunRes = System.Text.Encoding.UTF8.GetString(new System.Net.WebClient().UploadFile("http://localhost:9990/YunFile.ashx?m=save", filePath));
+                        //yunRes = System.Text.Encoding.UTF8.GetString(new System.Net.WebClient().UploadFile("http://localhost:9990/YunFile.ashx?m=save", filePath));
                     }
                     catch (Exception e)
                     {

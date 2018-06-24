@@ -110,12 +110,19 @@ namespace WangJun.Yun
         }
 
         #region 基本方法
-        public static YunTask CreateAsCheckPoint(string title)
+        public static YunTask CreateAsCheckPoint(Dictionary<string,object> data)
         {
+            var title = data["Title"].ToString();
+            var summary = data["Summary"].ToString();
+ 
             var inst = new YunTask();
 
             inst.Title = title;
+            inst.Summary = summary;
+            if (inst._GID == Guid.Empty)
+            {
 
+            }
             var iTime = inst as ITime;
             iTime.CreateTime = DateTime.Now;
             iTime.UpdateTime = iTime.CreateTime;
@@ -123,11 +130,19 @@ namespace WangJun.Yun
 
             return inst;
         }
-        public static YunTask CreateAsTask(string title)
+        public static YunTask CreateAsTask(Dictionary<string, object> data)
         {
+            var title = data["Title"].ToString();
+            var expectedStopTime =DateTime.Parse( data["ExpectedStopTime"].ToString());
+            var status =  data["Status"].ToString();
+            var statusCode = int.Parse(Enum.Parse(typeof(EnumStatus), status).ToString());
+
             var inst = new YunTask();
 
             inst.Title = title;
+            inst.ExpectedStopTime = expectedStopTime;
+            inst.Status = status;
+            inst.StatusCode = statusCode;
 
             var iTime = inst as ITime;
             iTime.CreateTime = DateTime.Now;

@@ -9,6 +9,10 @@ Milestone.AddCheckPoint = function (target, data) {
     if (false === PARAM_CHECKER.IsValid(data)) {
         var itemHtml = $("#tpl_Milestone_1").html();
         $(itemHtml).insertBefore($(event.target).parent());
+        $('[placeholder="请填写计划开始时间"]').datepicker({
+            //inline: true
+            dateFormat: "yy/mm/dd"
+        });
     }
     else {
         if ("新增按钮" === data.Status) {
@@ -57,16 +61,22 @@ Milestone.AddTask = function (target, data) {
     if (false === PARAM_CHECKER.IsValid(data)) {
         var itemHtml = $("#tpl_Milestone_7").html();
         $(itemHtml).insertBefore($(event.target).parent());
+        $('[data-propertyName="ExpectedStopTime"]').datepicker({
+            //inline: true
+            dateFormat: "yy/mm/dd"
+        });
     }
     else {
+        var date = "预计"+Convertor.DateFormat(eval("new " + data.ExpectedStopTime.replace(/\//g, "")), "yyyy/MM/dd")+"结束";
+
         if ("已完成" === data.Status) {
-            itemHtml = $("#tpl_Milestone_3").html().replace(/\[Title\]/g, data.Title).replace(/\[ExpectedStopTime\]/g, data.ExpectedStopTime).replace("[ID]", data.ID);
+            itemHtml = $("#tpl_Milestone_3").html().replace(/\[Title\]/g, data.Title).replace(/\[ExpectedStopTime\]/g, date).replace("[ID]", data.ID);
         }
         else if ("未开始" === data.Status) {
-            itemHtml = $("#tpl_Milestone_5").html().replace(/\[Title\]/g, data.Title).replace(/\[ExpectedStopTime\]/g, data.ExpectedStopTime).replace("[ID]", data.ID);
+            itemHtml = $("#tpl_Milestone_5").html().replace(/\[Title\]/g, data.Title).replace(/\[ExpectedStopTime\]/g, date).replace("[ID]", data.ID);
         }
         else if ("进行中" === data.Status) {
-            itemHtml = $("#tpl_Milestone_4").html().replace(/\[Title\]/g, data.Title).replace(/\[ExpectedStopTime\]/g, data.ExpectedStopTime).replace("[ID]", data.ID);
+            itemHtml = $("#tpl_Milestone_4").html().replace(/\[Title\]/g, data.Title).replace(/\[ExpectedStopTime\]/g, date).replace("[ID]", data.ID);
         }
         else if ("新增按钮" === data.Status) {
             itemHtml = "<li><a href='javascript:;' class='addbtn' onclick= 'Milestone.AddTask()'> 添加新任务</a></li>";
@@ -80,13 +90,13 @@ Milestone.CompleteTask = function () {
    
     var $sourceCtrl = $(event.target).parentsUntil("ul").last();
     var item = {};
-    item.Title = $sourceCtrl.find("[data-propertyname='Title']").attr("data-PropertyValue");
-    item.ExpectedStopTime = $sourceCtrl.find("[data-propertyname='ExpectedStopTime']").attr("data-PropertyValue");
+    item.Title = $sourceCtrl.find("[data-propertyname='Title']").text();
+    item.ExpectedStopTime = $sourceCtrl.find("[data-propertyname='ExpectedStopTime']").text().replace("预计", "").replace("结束", "");;
     item.ActualStopTime = Convertor.DateFormat(new Date().toString(), "yyyy/MM/dd");
     var html = $("#tpl_Milestone_3").html().replace(/\[Title\]/g, item.Title).replace(/\[ExpectedStopTime\]/g, item.ExpectedStopTime).replace(/\[ActualStopTime\]/g, item.ActualStopTime);
     $(html).insertBefore($sourceCtrl);
 
-    $(event.target).parentsUntil("ul").last().remove();
+    $(event.target).parentsUntil("ul").last().hide();//.remove();
 
 }
 
@@ -98,7 +108,7 @@ Milestone.LoadData = function (data) {
 
         }
         else {
-            res = [{ Status: "新增按钮", TaskArray: [] }];
+            res = [{ IsNew:true,Status: "新增按钮", TaskArray: [] }];
         }
         Milestone.ShowData(res);
     }
@@ -139,7 +149,6 @@ Milestone.GetData = function () {
             })
 
             if (true === PARAM_CHECKER.IsNotEmptyObject(taskItem)) {
-                taskItem["ID"] = new Date().getTime();
                 checkPoint.TaskArray.push(taskItem);
             }
         }
@@ -149,6 +158,27 @@ Milestone.GetData = function () {
 }
 
 Milestone.ShowData = function (dataArray) {
+    if (1 != dataArray.length && true != dataArray[0].IsNew) {
+        var rootID = NET.GetQueryParam("id");
+
+        var source = [];
+        for (var k = 0; k < dataArray.length; k++) {
+            if ("000000000000000000000000" === dataArray[k].ParentID) {
+                source.push(dataArray[k]);
+                dataArray[k].TaskArray = [];
+                for (var m = 0; m < dataArray.length; m++) {
+                    if (dataArray[k].ID === dataArray[m].ParentID) {
+                        dataArray[k].TaskArray.push(dataArray[m]);
+                    }
+                }
+            }
+        }
+
+        dataArray = source;
+
+    }
+
+
     $("#milestone").empty();
     for (var k = 0; k < dataArray.length; k++) {
         var checkPoint = dataArray[k];

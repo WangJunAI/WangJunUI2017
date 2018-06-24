@@ -79,6 +79,12 @@ namespace WangJun.Utility
             return Guid.Empty;
         }
 
+        public static Guid FromLongToGuid(long value)
+        {
+            string str = value.ToString().PadLeft(32 - value.ToString().Length, '0');
+            return Guid.Parse(str);
+        }
+
         public static Guid FromMD5ToGuid(byte[] md5Array) {
             return new Guid(md5Array);
         }

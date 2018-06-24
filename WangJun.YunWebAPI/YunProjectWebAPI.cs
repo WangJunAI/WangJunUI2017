@@ -126,16 +126,27 @@ namespace WangJun.YunProject
                 var checkPointList = dict["Milestone"] as ArrayList;
                 foreach (Dictionary<string, object> checkPoint in checkPointList)
                 {
-                    checkPoint["ID"] = SUID.New().ToString();
+                    if (!checkPoint.ContainsKey("ID"))
+                    {
+                        checkPoint["ID"] = SUID.New().ToString();
+                    }
+                    
                     var cp = Convertor.FromDictionaryToObject<YunTask>(checkPoint);
+                    cp.RootID = ar.ID;
+                    cp.Save();
                     var taskList = checkPoint["TaskArray"] as ArrayList;
                     foreach (Dictionary<string, object> task in taskList)
                     {
-                        task["ID"] = SUID.New().ToString();
+                        if (!task.ContainsKey("ID"))
+                        {
+                            task["ID"] = SUID.New().ToString();
+                        }
                         var t = Convertor.FromDictionaryToObject<YunTask>(task);
+                        t.ParentID = cp.ID;
+                        t.RootID = cp.RootID;
                         t.Save();
                     }
-                    cp.Save();
+                    
                 }
 
             }
@@ -243,6 +254,9 @@ namespace WangJun.YunProject
         {
             var query = "{RootID:'" + rootID + "'}";
             var list = EntityManager.GetInstance().Find<YunTask>(query);
+            var listRes = new List<Dictionary<string, object>>(); 
+
+
             return list;
         }
         #endregion

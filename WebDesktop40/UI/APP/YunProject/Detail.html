@@ -169,7 +169,7 @@
         <li>
             <div class="checkpoint">
                 <input type="text" placeholder="简述时间节点任务" data-propertyName="Title" />
-                <span class="separator">|</span><span class="progress"> <input type="text" placeholder="请填写预计结束时间" data-propertyName="Summary" /></span>
+                <span class="separator">|</span><span class="progress"> <input type="text" placeholder="请填写计划开始时间" data-propertyName="Summary" /></span>
                 <a href="javascript:;" class="addbtn" onclick="$(this).parents('li').remove();">删除</a>
             </div>
             <ul>
@@ -182,8 +182,8 @@
     <script type="text/html" id="tpl_Milestone_2">
         <li>
             <div class="row">
-                <div class="content"><input type="text" value="简述要完成的工作项"></div>
-                <div class="info"><span class="status">未开始<input type="hidden" data-propertyName="Status" value="进行中" /></span><span class="time"> <input type="text" value="请填写预计结束时间"> </span><a href="javascript:;" class="btn" onclick="$(this).parents('li').remove();">删除</a></div>
+                <div class="content"><input type="text" value="简述要完成的工作项2"></div>
+                <div class="info"><span class="status">未开始<input type="hidden" data-propertyName="Status" value="未开始" /></span><span class="time"> <input type="text" value="请填写预计结束时间"> </span><a href="javascript:;" class="btn" onclick="$(this).parents('li').remove();">删除</a></div>
             </div>
         </li>
     </script>
@@ -193,7 +193,7 @@
                 <div class="content" data-propertyName="Title" data-propertyValue="[Title]">[Title]</div>
                 <div class="info">
                     <span class="status" data-propertyName="Status" data-propertyValue="已完成">已完成</span>
-                    <span class="time" data-propertyName="ExpectedStopTime" data-propertyValue="[ExpectedStopTime]">预计[ExpectedStopTime]结束</span>
+                    <span class="time" data-propertyName="ExpectedStopTime" data-propertyValue="[ExpectedStopTime]">[ExpectedStopTime]</span>
                     <span class="time" data-propertyName="ActualStopTime" data-propertyValue="[ActualStopTime]">实际[ActualStopTime]结束</span>
                 </div>
             </div>
@@ -201,11 +201,11 @@
     </script>
     <script type="text/html" id="tpl_Milestone_4">
         <li>
-            <div class="row">
+            <div class="row" >
                 <div class="content" data-propertyName="Title" data-propertyValue="[Title]">[Title]</div>
                 <div class="info">
                     <span class="status">进行中<input type="hidden" data-propertyName="Status" value="进行中" /></span>
-                    <span class="time" data-propertyName="ExpectedStopTime" data-propertyValue="[ExpectedStopTime]">预计[ExpectedStopTime]结束</span>
+                    <span class="time" data-propertyName="ExpectedStopTime" data-propertyValue="[ExpectedStopTime]">[ExpectedStopTime]</span>
                     <a href="javascript:;" class="btn" data-propertyName="ID" data-propertyValue="[ID]" onclick="Milestone.CompleteTask()">确认完成</a>
                 </div>
             </div>
@@ -214,8 +214,9 @@
     <script type="text/html" id="tpl_Milestone_5">
         <li>
             <div class="row">
-                <div class="content" data-propertyName="Title">[Title]</div>
-                <div class="info"><span class="status" data-propertyName="Status">进行中</span><span class="time" data-propertyName="ExpectedStopTime">预计[ExpectedStopTime]结束</span><a href="javascript:;" class="btn">确认完成</a></div>
+                <div class="content" data-propertyName="Title" data-PropertyValue="[Title]">[Title]</div>
+                <div class="info"><span class="status" data-propertyName="Status" data-propertyValue="进行中">进行中</span><span class="time" data-propertyName="ExpectedStopTime" data-PropertyValue>[ExpectedStopTime]</span>
+                <a href="javascript:;" class="btn" data-propertyName="ID" data-propertyValue="[ID]"  onclick="Milestone.CompleteTask()">确认完成</a></div>
             </div>
         </li>
     </script>
@@ -237,8 +238,8 @@
     <script type="text/html" id="tpl_Milestone_7">
         <li>
             <div class="row">
-                <div class="content"><input type="text" placeholder="简述要完成的工作项" data-propertyName="Title"></div>
-                <div class="info"><span class="status">未开始<input type="hidden" data-propertyName="Status" value="进行中" /></span><span class="time"> <input type="text" data-propertyName="ExpectedStopTime" placeholder="请填写预计结束时间"> </span><a href="javascript:;" class="btn" onclick="$(this).parentsUntil('ul').remove();">删除</a></div>
+                <div class="content"><input type="text" placeholder="简述要完成的工作项7" data-propertyName="Title"></div>
+                <div class="info"><span class="status">未开始<input type="hidden" data-propertyName="Status" value="未开始" /></span><span class="time"> <input type="text" data-propertyName="ExpectedStopTime" placeholder="请填写预计结束时间"> </span><a href="javascript:;" class="btn" onclick="$(this).parentsUntil('ul').remove();">删除</a></div>
             </div>
         </li>
     </script>
@@ -268,7 +269,7 @@
                 $(".global").width(window.parent.$("#content").width() - 30);
                 UE.getEditor('editor', { initialFrameWidth: $(".global").width() }); ///创建编辑器
                  
-                Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) {
+                Doc.LoadData_Category([JSON.stringify({OwnerID:SESSION.Current().UserID}), "{}", "{}", 0, 1000], function (res1) {
                     Doc.LoadTreeTo("#category", res1, [], {
                         Click: function (event, treeId, treeNode) {
                             var name = treeNode.Name;
@@ -297,6 +298,7 @@
 
                 }); ///加载目录
                 Doc.LoadDetail();
+                Milestone.LoadData();
                 Doc.LoadCommentList(0);
             }
             Doc.Initial(SESSION.Current().CanManageYunProject, clientCallback, clientCallback);//初始化
