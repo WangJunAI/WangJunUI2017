@@ -189,34 +189,34 @@
     </script>
     <script type="text/html" id="tpl_Milestone_3">
         <li>
-            <div class="row">
+            <div class="row" >
                 <div class="content" data-propertyName="Title" data-propertyValue="[Title]">[Title]</div>
-                <div class="info">
+                <div class="info" data-propertyName="ID" data-propertyValue="[ID]">
                     <span class="status" data-propertyName="Status" data-propertyValue="已完成">已完成</span>
                     <span class="time" data-propertyName="ExpectedStopTime" data-propertyValue="[ExpectedStopTime]">[ExpectedStopTime]</span>
-                    <span class="time" data-propertyName="ActualStopTime" data-propertyValue="[ActualStopTime]">实际[ActualStopTime]结束</span>
+                    <span class="time" data-propertyName="ActualStopTime" data-propertyValue="[ActualStopTime]">[ActualStopTime]</span>
                 </div>
             </div>
         </li>
     </script>
     <script type="text/html" id="tpl_Milestone_4">
         <li>
-            <div class="row" >
+            <div class="row"  >
                 <div class="content" data-propertyName="Title" data-propertyValue="[Title]">[Title]</div>
-                <div class="info">
+                <div class="info" data-propertyName="ID" data-propertyValue="[ID]">
                     <span class="status">进行中<input type="hidden" data-propertyName="Status" value="进行中" /></span>
                     <span class="time" data-propertyName="ExpectedStopTime" data-propertyValue="[ExpectedStopTime]">[ExpectedStopTime]</span>
-                    <a href="javascript:;" class="btn" data-propertyName="ID" data-propertyValue="[ID]" onclick="Milestone.CompleteTask()">确认完成</a>
+                    <a href="javascript:;" onclick="Milestone.CompleteTask()">确认完成</a>
                 </div>
             </div>
         </li>
     </script>
     <script type="text/html" id="tpl_Milestone_5">
         <li>
-            <div class="row">
+            <div class="row"  >
                 <div class="content" data-propertyName="Title" data-PropertyValue="[Title]">[Title]</div>
-                <div class="info"><span class="status" data-propertyName="Status" data-propertyValue="进行中">进行中</span><span class="time" data-propertyName="ExpectedStopTime" data-PropertyValue>[ExpectedStopTime]</span>
-                <a href="javascript:;" class="btn" data-propertyName="ID" data-propertyValue="[ID]"  onclick="Milestone.CompleteTask()">确认完成</a></div>
+                <div class="info" data-propertyName="ID" data-propertyValue="[ID]"><span class="status" data-propertyName="Status" data-propertyValue="进行中">进行中</span><span class="time" data-propertyName="ExpectedStopTime" data-PropertyValue>[ExpectedStopTime]</span>
+                <a href="javascript:;" class="btn"onclick="Milestone.CompleteTask()">确认完成</a></div>
             </div>
         </li>
     </script>
@@ -224,7 +224,7 @@
         <li>
             <h2 class="checkpoint">
                 <span class="title" data-propertyName="Title" data-propertyValue="[Title]">[Title]</span>
-                <span class="separator">|</span>
+                <span class="separator" data-propertyName="ID" data-propertyValue="[ID]"  >|</span>
                 <span class="progress" data-propertyName="Summary" data-propertyValue="[Summary]">[Summary]</span>
             </h2>
             <ul>

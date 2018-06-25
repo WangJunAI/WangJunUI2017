@@ -19,7 +19,7 @@ Milestone.AddCheckPoint = function (target, data) {
             $(target).append("<li>  <a href='javascript:;' class='addbtn' onclick='Milestone.AddCheckPoint()'>添加新时间节点</a>  </li>");
         }
         else {
-            var itemHtml = $("#tpl_Milestone_6").html().replace(/\[Title\]/g, data.Title).replace(/\[Summary\]/g, data.Summary);
+            var itemHtml = $("#tpl_Milestone_6").html().replace(/\[Title\]/g, data.Title).replace(/\[Summary\]/g, data.Summary).replace(/\[ID\]/g, data.ID);
             $(target).append(itemHtml);
         }
     }
@@ -67,16 +67,17 @@ Milestone.AddTask = function (target, data) {
         });
     }
     else {
-        var date = "预计"+Convertor.DateFormat(eval("new " + data.ExpectedStopTime.replace(/\//g, "")), "yyyy/MM/dd")+"结束";
+        var date1 = "预计" + Convertor.DateFormat(eval("new " + data.ExpectedStopTime.replace(/\//g, "")), "yyyy/MM/dd") + "结束";
+        var date2 = "预计" + Convertor.DateFormat(eval("new " + data.ActualStopTime.replace(/\//g, "")), "yyyy/MM/dd") + "结束";
 
         if ("已完成" === data.Status) {
-            itemHtml = $("#tpl_Milestone_3").html().replace(/\[Title\]/g, data.Title).replace(/\[ExpectedStopTime\]/g, date).replace("[ID]", data.ID);
+            itemHtml = $("#tpl_Milestone_3").html().replace(/\[Title\]/g, data.Title).replace(/\[ExpectedStopTime\]/g, date1).replace(/\[ActualStopTime\]/g, date2).replace("[ID]", data.ID);
         }
         else if ("未开始" === data.Status) {
-            itemHtml = $("#tpl_Milestone_5").html().replace(/\[Title\]/g, data.Title).replace(/\[ExpectedStopTime\]/g, date).replace("[ID]", data.ID);
+            itemHtml = $("#tpl_Milestone_5").html().replace(/\[Title\]/g, data.Title).replace(/\[ExpectedStopTime\]/g, date1).replace("[ID]", data.ID);
         }
         else if ("进行中" === data.Status) {
-            itemHtml = $("#tpl_Milestone_4").html().replace(/\[Title\]/g, data.Title).replace(/\[ExpectedStopTime\]/g, date).replace("[ID]", data.ID);
+            itemHtml = $("#tpl_Milestone_4").html().replace(/\[Title\]/g, data.Title).replace(/\[ExpectedStopTime\]/g, date1).replace("[ID]", data.ID);
         }
         else if ("新增按钮" === data.Status) {
             itemHtml = "<li><a href='javascript:;' class='addbtn' onclick= 'Milestone.AddTask()'> 添加新任务</a></li>";
@@ -90,13 +91,14 @@ Milestone.CompleteTask = function () {
    
     var $sourceCtrl = $(event.target).parentsUntil("ul").last();
     var item = {};
+    item.ID = $sourceCtrl.find("[data-propertyname='ID']").attr("data-PropertyValue");
     item.Title = $sourceCtrl.find("[data-propertyname='Title']").text();
-    item.ExpectedStopTime = $sourceCtrl.find("[data-propertyname='ExpectedStopTime']").text().replace("预计", "").replace("结束", "");;
+    item.ExpectedStopTime = $sourceCtrl.find("[data-propertyname='ExpectedStopTime']").text().replace("预计", "").replace("结束", "");
     item.ActualStopTime = Convertor.DateFormat(new Date().toString(), "yyyy/MM/dd");
-    var html = $("#tpl_Milestone_3").html().replace(/\[Title\]/g, item.Title).replace(/\[ExpectedStopTime\]/g, item.ExpectedStopTime).replace(/\[ActualStopTime\]/g, item.ActualStopTime);
+    var html = $("#tpl_Milestone_3").html().replace(/\[Title\]/g, item.Title).replace(/\[ExpectedStopTime\]/g, item.ExpectedStopTime).replace(/\[ActualStopTime\]/g, item.ActualStopTime).replace(/\[ID\]/g, item.ID);
     $(html).insertBefore($sourceCtrl);
 
-    $(event.target).parentsUntil("ul").last().hide();//.remove();
+    $(event.target).parentsUntil("ul").last().remove();
 
 }
 
@@ -130,7 +132,6 @@ Milestone.GetData = function () {
             }
             else {
                 checkPoint[propertyName] = $(this).attr("data-PropertyValue");
-
             }
         })
 
@@ -145,6 +146,9 @@ Milestone.GetData = function () {
                 }
                 else {
                     taskItem[propertyName] = $(this).attr("data-PropertyValue");
+                    if ("ExpectedStopTime" === propertyName || "ActualStopTime" === propertyName) {
+                        taskItem[propertyName] = taskItem[propertyName].replace("预计", "").replace("结束", "").replace("实际", "");
+                    }
                 }
             })
 

@@ -293,15 +293,19 @@ namespace WangJun.App
         public List<YunComment> LoadCommentList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
         {
             var dict = Convertor.FromJsonToDict2(query);
-            var rootID = dict["RootID"].ToString();
-            query = "{$and:[" + query + ",{'StatusCode':{$eq:" + (int)EnumStatus.正常 + "}}]}";
-            var res = EntityManager.GetInstance().Find<YunComment>(query, protection, sort, pageIndex, pageSize);
+            if (dict.ContainsKey("RootID"))
+            {
+                var rootID = dict["RootID"].ToString();
+                query = "{$and:[" + query + ",{'StatusCode':{$eq:" + (int)EnumStatus.正常 + "}}]}";
+                var res = EntityManager.GetInstance().Find<YunComment>(query, protection, sort, pageIndex, pageSize);
 
-            /// SQLServer
-            var res2 = EntityManager.GetInstance().Find<YunComment>(p => p.RootID == rootID && p.CompanyID == SESSION.Current.CompanyID && p.AppCode == this.AppCode && p.StatusCode == (int)EnumStatus.正常, p => p.CreateTime, pageIndex, pageSize, true);
+                /// SQLServer
+                var res2 = EntityManager.GetInstance().Find<YunComment>(p => p.RootID == rootID && p.CompanyID == SESSION.Current.CompanyID && p.AppCode == this.AppCode && p.StatusCode == (int)EnumStatus.正常, p => p.CreateTime, pageIndex, pageSize, true);
 
 
-            return res;
+                return res;
+            }
+            return new List<YunComment>();
         }
 
 
