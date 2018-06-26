@@ -37,7 +37,7 @@ App.Doc.ServerHost = YunConfig.ServerHost(this);
     Url15: App.Doc.ServerHost+"/API.ashx?c=WangJun.Doc.DataAnalysor&m=GetHotWords",///暂未使用
      Url16: App.Doc.ServerHost +"/API.ashx?c=WangJun.App.YunUserAPI&m=Aggregate",///聚合查询
     Url17: App.Doc.ServerHost+"/API.ashx?c=WangJun.Doc.ClientBehaviorManager&m=Aggregate",
-    Url18: App.Doc.ServerHost+"/API.ashx?c=WangJun.App.YunUserAPI&m=RecycleBinCount",///回收站数量
+    Url18: App.Doc.ServerHost+"/API.ashx?c=WangJun.App.YunUserAPI&m=Count",///回收站数量
     Url19: App.Doc.ServerHost+"/API.ashx?c=WangJun.App.YunUserAPI&m=LoadAll",///回收站数量
     Url90: App.Doc.ServerHost+"/API.ashx?c=WangJun.App.YunUserAPI&m=EmptyRecycleBin",///加载回收站
      Url91: App.Doc.ServerHost + "/API.ashx?c=WangJun.App.YunUserAPI&m=DeleteEntity",///加载回收站
@@ -134,9 +134,6 @@ App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", Gro
 App.Doc.Content.TopButton.push({ Name: "用户参与", ID: "TopButton.用户参与", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.用户参与.TopButton", Type: "Title" });
 App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.用户参与.TopButton" });
 
-///外网关联菜单
-App.Doc.Content.TopButton.push({ Name: "外网关联", ID: "TopButton.外网关联", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.外网关联.TopButton", Type: "Title" });
-App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.外网关联.TopButton" });
 
 
 ///回收站TopButton菜单
@@ -147,17 +144,13 @@ App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", Gro
 App.Doc.Content.TopButton.push({ Name: "清空回收站", ID: "TopButton.清空回收站", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.回收站.TopButton", Type: "Button" });  
 
 ///存储管理菜单
-App.Doc.Content.TopButton.push({ Name: "存储管理", ID: "TopButton.存储管理", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.存储管理.TopButton", Type: "Title" });
-App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.存储管理.TopButton" });
+//App.Doc.Content.TopButton.push({ Name: "存储管理", ID: "TopButton.存储管理", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.存储管理.TopButton", Type: "Title" });
+//App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.存储管理.TopButton" });
 
 ///使用帮助菜单
 App.Doc.Content.TopButton.push({ Name: "使用帮助", ID: "TopButton.使用帮助", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.使用帮助.TopButton", Type: "Title" });
 App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.使用帮助.TopButton" });
-
-///云笔记测试菜单
-App.Doc.Content.TopButton.push({ Name: "云笔记测试", ID: "TopButton.云笔记测试", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.云笔记测试.TopButton", Type: "Title" });
-App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.云笔记测试.TopButton" });
-
+ 
 
 App.Doc.Data = {};
 
@@ -180,15 +173,16 @@ App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "姓名", Method: "Doc.Ta
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "部门", Method: "", Sort: "", PropertyName: "ParentName", DataType: "string" });
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "岗位", Method: "", Sort: "", PropertyName: "PositionName", DataType: "string" });
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "邮箱", Method: "", Sort: "", PropertyName: "LoginEmail", DataType: "string" });
-App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "电话", Method: "", Sort: "", PropertyName: "Phone", DataType: "string" });
-App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "QQ/微信", Method: "", Sort: "", PropertyName: "QQ", DataType: "string" });
+App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "电话", Method: "", Sort: "", PropertyName: "LoginPhone", DataType: "string" });
+App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "QQ", Method: "", Sort: "", PropertyName: "LoginQQ", DataType: "string" });
+App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "微信", Method: "", Sort: "", PropertyName: "LoginWeChat", DataType: "string" });
 
 
 App.Doc.Data.DocTable.Info.Pager.PagerIndexClick = function () {
     LOGGER.Log("App.Doc.Data.DocTable.Info.Pager.PagerIndexClick");
     var index = $(event.target).attr("data-Index");
-
-    Doc.LoadTable(parseInt(index), App.Doc.Data.Pager.Size, "{}", App.Doc.Data.DocTable.Info);
+    var query = Doc.GetQuery();
+    Doc.LoadTable(parseInt(index), App.Doc.Data.Pager.Size, query, App.Doc.Data.DocTable.Info);
 }
 
 
@@ -197,7 +191,7 @@ App.Doc.Data.RecycleBin = {};
 App.Doc.Data.RecycleBin.Info = {
     Column: [],
     Pager: {
-        Url: App.Doc.Server.Url18, PagerIndexClick: function () { }
+        Url: App.Doc.Server.Url2, PagerIndexClick: function () { }
     },
     Data: { Url: App.Doc.Server.Url14 }
 }
@@ -205,9 +199,11 @@ App.Doc.Data.RecycleBin.Info.Column.push({ ID: "", Text: "全选", Method: "", S
 App.Doc.Data.RecycleBin.Info.Column.push({ ID: "", Text: "标题", Method: "Doc.TableRowClick", Sort: "", PropertyName: "Name", DataType: "string" });
 App.Doc.Data.RecycleBin.Info.Column.push({ ID: "", Text: "类别", Method: "", Sort: "", PropertyName: "Type", DataType: "string" });
 App.Doc.Data.RecycleBin.Info.Column.push({ ID: "", Text: "删除时间", Method: "", Sort: "", PropertyName: "DeleteTime", DataType: "date" });
-App.Doc.Data.RecycleBin.Info.Column.push({ ID: "", Text: "详细", Method: "Doc.TableRowClick", Sort: "", PropertyName: "Type", DataType: "link", Value: "详细" });
+//App.Doc.Data.RecycleBin.Info.Column.push({ ID: "", Text: "详细", Method: "Doc.TableRowClick", Sort: "", PropertyName: "Type", DataType: "link", Value: "详细" });
 App.Doc.Data.RecycleBin.Info.Pager.PagerIndexClick = function () {
     LOGGER.Log("App.Doc.Data.RecycleBin.Info.Pager.PagerIndexClick");
     var index = $(event.target).attr("data-Index");
-    Doc.LoadTable(parseInt(index), App.Doc.Data.Pager.Size, "{}", App.Doc.Data.RecycleBin.Info);
+    var query = [{  CompanyID: SESSION.Current().CompanyID, 'StatusCode': { $eq: -1 } }, {   }, { CreateTime: -1 }];
+
+    Doc.LoadTable(parseInt(index), App.Doc.Data.Pager.Size, query, App.Doc.Data.RecycleBin.Info);
 }

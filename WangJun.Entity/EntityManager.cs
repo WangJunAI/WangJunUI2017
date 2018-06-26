@@ -167,6 +167,7 @@ namespace WangJun.Entity
         {
 
             var list = new List<T>();
+            return list;
             if (null == orderBy)
             {
                 list = EntityManager.GetInstance<T>().List.Where(where).ToList();

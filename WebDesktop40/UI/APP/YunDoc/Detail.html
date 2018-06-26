@@ -191,9 +191,14 @@
                     });
                     
                 }); ///加载目录
-                Doc.LoadDetail();
 
-                Doc.LoadPermissionToDetail();
+
+                Doc.LoadPermissionToDetail(function () {
+                    Doc.LoadDetail();
+                });
+
+
+
             }
             Doc.Initial(SESSION.Current().CanManageYunDoc, clientCallback, clientCallback);//初始化
         });

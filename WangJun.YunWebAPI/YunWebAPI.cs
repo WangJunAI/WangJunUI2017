@@ -339,6 +339,7 @@ namespace WangJun.App
             dynamic stat = new ExpandoObject();
             stat.CanRead = 0 < dataSource.Where(p => p.BehaviorType == (int)EnumBehaviorType.分享阅读 && p.OperatorID == userID).Count();
             stat.CanEdit = 0 < dataSource.Where(p => p.BehaviorType == (int)EnumBehaviorType.分享编辑 && p.OperatorID == userID).Count() || article.OwnerID == SESSION.Current.UserID;
+            stat.CanDelete = 0 < dataSource.Where(p => p.BehaviorType == (int)EnumBehaviorType.物理删除 && p.OperatorID == userID).Count() || article.OwnerID == SESSION.Current.UserID;
             return stat;
         }
         #endregion
@@ -400,6 +401,30 @@ namespace WangJun.App
             var res = EntityManager.GetInstance().Aggregate(iSysItem._DbName, iSysItem._CollectionName, match, group);
             return res;
 
+        }
+        #endregion
+
+        #region 消息通知
+        public void SendNotice()
+        {
+
+        }
+
+        public void LoadNoticeList()
+        {
+
+        }
+
+        public void RemoveNotice()
+        {
+
+        }
+        #endregion
+
+        #region 权限控制
+        public virtual bool CanInvoke(string _sid)
+        {
+            return true;
         }
         #endregion
 

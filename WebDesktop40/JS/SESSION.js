@@ -11,8 +11,11 @@ SESSION.RegisterUrl = SESSION.ServerHost + "/API.ashx?c=WangJun.Admin.AdminWebAP
 
 
 SESSION.Login = function () {
+
+
     $(event.target).attr("disabled", "disabled");
     $(event.target).val("登录中,请稍后...");
+    $.cookie("SESSION", JSON.stringify({ "UserID": "Login" }), { path: '/' });
     var url = SESSION.LoginUrl;
     ///保存一个目录
          var item = {};

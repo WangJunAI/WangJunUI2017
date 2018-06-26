@@ -41,6 +41,7 @@ App.Doc.Server = {
     Url19: App.Doc.ServerHost + "/API.ashx?c=WangJun.App.YunUserAPI&m=LoadAll",///回收站数量
     Url90: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunNote.YunNoteWebAPI&m=EmptyRecycleBin",///加载回收站
     Url81: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunNote.YunNoteWebAPI&m=LoadShareArticleList",///加载回收站
+    Url82: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunDoc.YunDocWebAPI&m=GetPermissionByArticleID",///加载回收站
     Url50: "Chart1.html",
     Url51: "Chart2.html",
 };

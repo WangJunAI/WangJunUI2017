@@ -118,3 +118,4 @@ Doc.RemoveDetail = function (id, callback) {
     }
     NET.PostData(App.Doc.Server.Url9, callback, context);
 }
+

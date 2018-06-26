@@ -183,3 +183,22 @@ Doc.CheckInput = function () {
 
     return checkResult;
 }
+
+Doc.LoadPermissionToDetail = function (callback1) {
+    var context = [NET.GetQueryParam("id")];
+
+    var callback2 = function (res) {
+        LOGGER.Log(res);
+        if (res[0].Value === true && res[1].Value === false) {
+            ///只读模式
+            $(".buttons").remove();
+            $(".minibuttons").remove();
+            $(".options").remove();
+
+        }
+        if (PARAM_CHECKER.IsFunction(callback1)) {
+            callback1(res);
+        }
+    }
+    NET.PostData(App.Doc.Server.Url82, callback2, context);
+}

@@ -43,6 +43,7 @@ namespace WangJun.Entity
         /// <param name="t"></param>
         public void Save(T t)
         {
+            return;
             if (null != t)
             {
                 var id = t.GetType().GetProperty("ID").GetValue(t).ToString();
@@ -67,7 +68,7 @@ namespace WangJun.Entity
 
         public T Get(string id)
         {
-            
+            return new T();
             var res = this.List.Find(new object[] {SUID.FromStringToGuid(id) }) as T;
             return (null != res) ? res : new T();
         }
@@ -78,6 +79,7 @@ namespace WangJun.Entity
         /// <param name="t"></param>
         public void Remove(T t)
         {
+            return;
             if (null != t)
             {
                 this.Entry(t).State = EntityState.Deleted;
@@ -89,6 +91,7 @@ namespace WangJun.Entity
 
         public void Remove(string id)
         {
+            return;
             if (string.IsNullOrWhiteSpace(id))
             {
                 var res = EntityManager.GetInstance<T>().List.Find(new object[] { id });

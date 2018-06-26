@@ -40,8 +40,8 @@ Doc.LeftMenuClick = function (id) {
     }
     else if ("LeftMenu.企业新闻" == id) {
         var keywords = $("#searchInput").val();
-        //var query = [{ Title: { '$regex': keywords, '$options': 'g' }, _RedirectID: null, CompanyID: SESSION.Current().CompanyID, 'StatusCode': { $ne: -1 } }, {}, { CreateTime: -1 }];
-        var query = [{ _RedirectID: null, CompanyID: SESSION.Current().CompanyID, 'StatusCode': { $ne: -1 } }, {}, { CreateTime: -1 }];
+
+        var query = [{ _RedirectID: null, CompanyID: SESSION.Current().CompanyID, 'StatusCode': { $ne: -1 } }, { Content: 0, PlainText: 0, Summary: 0 }, { CreateTime: -1 }];
         Doc.ShowView3();
         Doc.LoadTopButton(topButtonId);
         Doc.LoadData_Category([JSON.stringify({ OwnerID: SESSION.Current().CompanyID }), "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], { header:"小提示：修改目录双击即可"}); });
@@ -72,7 +72,8 @@ Doc.LeftMenuClick = function (id) {
     else if ("LeftMenu.回收站" == id) {
         Doc.ShowView2();
         Doc.LoadTopButton(topButtonId);
-        Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{}", App.Doc.Data.RecycleBin.Info);
+        var query = [{ _RedirectID: null, CompanyID: SESSION.Current().CompanyID, 'StatusCode': { $eq: -1 } }, { Content: 0, PlainText:0 }, { CreateTime: -1 }];
+        Doc.LoadTable(0, App.Doc.Data.Pager.Size, query, App.Doc.Data.RecycleBin.Info);
     } 
     else if ("LeftMenu.使用帮助" == id) {
         Doc.ShowView2();

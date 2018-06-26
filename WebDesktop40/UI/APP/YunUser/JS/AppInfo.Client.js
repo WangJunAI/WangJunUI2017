@@ -146,17 +146,14 @@ App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", Gro
 App.Doc.Content.TopButton.push({ Name: "清空回收站", ID: "TopButton.清空回收站", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.回收站.TopButton", Type: "Button" });  
 
 ///存储管理菜单
-App.Doc.Content.TopButton.push({ Name: "存储管理", ID: "TopButton.存储管理", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.存储管理.TopButton", Type: "Title" });
-App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.存储管理.TopButton" });
+//App.Doc.Content.TopButton.push({ Name: "存储管理", ID: "TopButton.存储管理", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.存储管理.TopButton", Type: "Title" });
+//App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.存储管理.TopButton" });
 
 ///使用帮助菜单
 App.Doc.Content.TopButton.push({ Name: "使用帮助", ID: "TopButton.使用帮助", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.使用帮助.TopButton", Type: "Title" });
 App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.使用帮助.TopButton" });
 
-///云笔记测试菜单
-App.Doc.Content.TopButton.push({ Name: "云笔记测试", ID: "TopButton.云笔记测试", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.云笔记测试.TopButton", Type: "Title" });
-App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.云笔记测试.TopButton" });
-
+ 
 
 App.Doc.Data = {};
 
@@ -178,16 +175,20 @@ App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "全选", Method: "", Sor
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "姓名", Method: "Doc.TableRowClick", Sort: "", PropertyName: "Name", DataType: "string" });
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "部门", Method: "", Sort: "", PropertyName: "ParentName", DataType: "string" });
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "岗位", Method: "", Sort: "", PropertyName: "PositionName", DataType: "string" });
-App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "邮箱", Method: "", Sort: "", PropertyName: "Email", DataType: "string" });
-App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "电话", Method: "", Sort: "", PropertyName: "Phone", DataType: "string" });
-App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "QQ/微信", Method: "", Sort: "", PropertyName: "QQ", DataType: "string" });
+App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "邮箱", Method: "", Sort: "", PropertyName: "LoginEmail", DataType: "string" });
+App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "电话", Method: "", Sort: "", PropertyName: "LoginPhone", DataType: "string" });
+App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "QQ", Method: "", Sort: "", PropertyName: "LoginQQ", DataType: "string" });
+App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "微信", Method: "", Sort: "", PropertyName: "LoginWeChat", DataType: "string" });
+
+
 
 
 App.Doc.Data.DocTable.Info.Pager.PagerIndexClick = function () {
     LOGGER.Log("App.Doc.Data.DocTable.Info.Pager.PagerIndexClick");
     var index = $(event.target).attr("data-Index");
+    var query = Doc.GetQuery();
 
-    Doc.LoadTable(parseInt(index), App.Doc.Data.Pager.Size, "{}", App.Doc.Data.DocTable.Info);
+    Doc.LoadTable(parseInt(index), App.Doc.Data.Pager.Size, query, App.Doc.Data.DocTable.Info);
 }
 
 

@@ -44,7 +44,7 @@ TouTiao.CategoryButtonClick = function () {
 ///加载列表
 TouTiao.LoadList = function (categoryId, pageIndex, append) { 
     
-    var query = "{}";
+    var query = JSON.stringify({ CompanyID: SESSION.Current().CompanyID });
     var pageSize = App.TouTiao.Pager.Size;
     if (true === PARAM_CHECKER.IsNotEmptyString(categoryId)) {
         query = "{'ParentID':'[ParentID]'}".replace('[ParentID]', categoryId);

@@ -1477,7 +1477,6 @@
     <Content Include="UI\APP\YunNews\JS\AppInfo.Admin.js" />
     <Content Include="UI\APP\YunNews\JS\Doc.Biz.js" />
     <Content Include="UI\APP\YunNews\JS\Doc.Detail.js" />
-    <Content Include="UI\APP\YunNews\JS\Doc.js" />
     <Content Include="UI\APP\YunNews\JS\Doc.LeftMenu.js" />
     <Content Include="UI\APP\YunNews\JS\Doc.TopButton.js" />
     <Content Include="UI\APP\YunNews\Main.html" />
@@ -1486,7 +1485,6 @@
     <Content Include="UI\APP\YunDoc\Detail.html" />
     <Content Include="UI\APP\YunDoc\JS\Doc.Biz.js" />
     <Content Include="UI\APP\YunDoc\JS\Doc.Detail.js" />
-    <Content Include="UI\APP\YunDoc\JS\Doc.js" />
     <Content Include="UI\APP\YunDoc\JS\Doc.LeftMenu.js" />
     <Content Include="UI\APP\YunDoc\JS\Doc.TopButton.js" />
     <Content Include="UI\APP\YunDoc\Main.html" />
@@ -1509,7 +1507,6 @@
     <Content Include="UI\APP\YunQun\JS\AppInfo.Admin.js" />
     <Content Include="UI\APP\YunQun\JS\Doc.Biz.js" />
     <Content Include="UI\APP\YunQun\JS\Doc.Detail.js" />
-    <Content Include="UI\APP\YunQun\JS\Doc.js" />
     <Content Include="UI\APP\YunQun\JS\Doc.LeftMenu.js" />
     <Content Include="UI\APP\YunQun\JS\Doc.TopButton.js" />
     <Content Include="UI\APP\YunQun\Main.html" />
@@ -1525,7 +1522,6 @@
     <Content Include="JS\TPL\TPL.Category.js" />
     <Content Include="JS\TPL\TPL.ClientUI.js" />
     <Content Include="UI\APP\YunProject\JS\Doc.Detail.js" />
-    <Content Include="UI\APP\YunProject\JS\Doc.js" />
     <Content Include="JS\TPL\TPL.Nav.SummaryList.js" />
     <Content Include="UI\APP\YunProject\JS\Doc.LeftMenu.js" />
     <Content Include="UI\APP\YunProject\JS\Doc.TopButton.js" />

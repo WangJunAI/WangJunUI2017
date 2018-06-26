@@ -89,8 +89,7 @@ Doc.ShowDetail = function (data,option) {
             $("#deleteBtn").removeAttr("style");
         }
    
-
-        $("#preView").attr("href", "http://localhost:39641/TouTiao/TouTiaoArticle.html?id=[id]".replace("[id]", data.id));
+         
     }
  
 }

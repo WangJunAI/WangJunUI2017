@@ -13,7 +13,7 @@ namespace WangJun.YunProject
     /// </summary>
     public class YunTaskWebAPI : YunWebAPI
     {
-        public YunTaskWebAPI() : base("项目管理应用", 1803001003, 1)
+        public YunTaskWebAPI() : base("任务通知应用", 1803001010, 1)
         {
 
         } 

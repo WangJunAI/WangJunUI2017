@@ -98,10 +98,7 @@ App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", Gro
 App.Doc.Content.TopButton.push({ Name: "用户参与", ID: "TopButton.用户参与", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.用户参与.TopButton", Type: "Title" });
 App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.用户参与.TopButton" });
 
-///外网关联菜单
-App.Doc.Content.TopButton.push({ Name: "外网关联", ID: "TopButton.外网关联", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.外网关联.TopButton", Type: "Title" });
-App.Doc.Content.TopButton.push({ Name: "|", ID: "TopButton.|.1", Method: "", GroupID: "左侧菜单.外网关联.TopButton" });
-
+ 
 
 ///回收站TopButton菜单
 App.Doc.Content.TopButton.push({ Name: "回收站", ID: "TopButton.回收站", Method: "Doc.TopButtonClick", GroupID: "左侧菜单.回收站.TopButton", Type: "Title" });
@@ -129,7 +126,9 @@ App.Doc.Data.DocTable = {};
 App.Doc.Data.DocTable.Info = {
     Column: [],
     Pager: {
-        Url: App.Doc.Server.Url2, PagerIndexClick: function () { }
+        Url: App.Doc.Server.Url2, PagerIndexClick: function () {
+
+        }
     },
     Data: { Url: App.Doc.Server.Url1 },
     RowClickDetailUrl:"Detail.html?"
@@ -143,32 +142,34 @@ App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "评论量", Method: "", 
 //App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "发布时间", Method: "", Sort: "", PropertyName: "PublishTime", DataType: "date" });
 App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "创建时间", Method: "", Sort: "", PropertyName: "CreateTime", DataType: "date"  });
 //App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "状态", Method: "", Sort: "", PropertyName: "Status", DataType: "string" });
-App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "详细", Method: "", Sort: "", PropertyName: "Type", DataType: "link", Value: "详细"  });
+//App.Doc.Data.DocTable.Info.Column.push({ ID: "", Text: "详细", Method: "", Sort: "", PropertyName: "Type", DataType: "link", Value: "详细"  });
 
 App.Doc.Data.DocTable.Info.Pager.PagerIndexClick = function () {
     LOGGER.Log("App.Doc.Data.DocTable.Info.Pager.PagerIndexClick");
     var index = $(event.target).attr("data-Index");
-    
-    Doc.LoadTable(parseInt(index), App.Doc.Data.Pager.Size, "{}", App.Doc.Data.DocTable.Info);
+    var query = Doc.GetQuery();
+
+    Doc.LoadTable(parseInt(index), App.Doc.Data.Pager.Size, query, App.Doc.Data.DocTable.Info);
 }
 
 App.Doc.Data.RecycleBin = {};
 App.Doc.Data.RecycleBin.Info = {
     Column: [],
     Pager: {
-        Url: App.Doc.Server.Url18, PagerIndexClick: function () { }
+        Url: App.Doc.Server.Url2, PagerIndexClick: function () { }
     },
-    Data: { Url: App.Doc.Server.Url14}
+    Data: { Url: App.Doc.Server.Url18}
 }
 App.Doc.Data.RecycleBin.Info.Column.push({ ID: "", Text: "全选", Method: "", Sort: "", PropertyName: "Type", DataType: "checkbox" });
 App.Doc.Data.RecycleBin.Info.Column.push({ ID: "", Text: "标题", Method: "Doc.TableRowClick", Sort: "", PropertyName: "Title", DataType: "string" });
-App.Doc.Data.RecycleBin.Info.Column.push({ ID: "", Text: "类别", Method: "", Sort: "", PropertyName: "Type", DataType: "string" });
+App.Doc.Data.RecycleBin.Info.Column.push({ ID: "", Text: "类别", Method: "", Sort: "", PropertyName: "ParentName", DataType: "string" });
 App.Doc.Data.RecycleBin.Info.Column.push({ ID: "", Text: "删除时间", Method: "", Sort: "", PropertyName: "DeleteTime", DataType: "date" });
 App.Doc.Data.RecycleBin.Info.Column.push({ ID: "", Text: "详细", Method: "Doc.TableRowClick", Sort: "", PropertyName: "Type", DataType: "link", Value: "详细" });
 App.Doc.Data.RecycleBin.Info.Pager.PagerIndexClick = function () {
     LOGGER.Log("App.Doc.Data.RecycleBin.Info.Pager.PagerIndexClick");
     var index = $(event.target).attr("data-Index");
-    Doc.LoadTable(parseInt(index), App.Doc.Data.Pager.Size, "{}", App.Doc.Data.RecycleBin.Info);
+    var query = [{ _RedirectID: null, CompanyID: SESSION.Current().CompanyID, 'StatusCode': { $eq: -1 } }, { Content: 0, PlainText: 0 }, { CreateTime: -1 }];
+    Doc.LoadTable(parseInt(index), App.Doc.Data.Pager.Size, query, App.Doc.Data.RecycleBin.Info);
 }
 
 /////查询条件/////

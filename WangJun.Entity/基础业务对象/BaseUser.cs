@@ -31,6 +31,8 @@ namespace WangJun.Entity
 
         public string LoginName { get; set; }
 
+        public string PositionName { get; set; }
+
         public int UserType { get; set; }
 
         #region IName

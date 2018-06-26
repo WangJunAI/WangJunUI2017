@@ -106,9 +106,10 @@
      
 
     <script type="text/javascript">
-        ///初始化
-        $(document).ready(function () {
-            $(document).tooltip();
+        ///初始化 
+            $(document).ready(function () {
+ 
+
             var adminCallback = function () {
                 $(".global").width(window.parent.$("#content").width() - 30);
                 UE.getEditor('editor', { autoHeightEnabled: false, initialFrameWidth: $(".global").width() }); ///创建编辑器

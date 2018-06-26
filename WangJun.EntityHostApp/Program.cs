@@ -38,7 +38,8 @@ namespace WangJun.EntityHostApp
                 new YunPanWebAPI().SaveToGridFS();
                 LOGGER.Log("处理完毕");
             }).Start() ;
-
         }
+
+        
     }
 }

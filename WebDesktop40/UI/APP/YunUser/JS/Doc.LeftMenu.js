@@ -42,7 +42,7 @@ Doc.LeftMenuClick = function (id) {
          Doc.ShowWindow(url);
      }
      else if ("LeftMenu.在职人员" == id) {
-         var query = { CompanyID: SESSION.Current().CompanyID };
+         var query = [{ CompanyID: SESSION.Current().CompanyID, 'StatusCode': { $ne: -1 } }, {  }, { CreateTime: -1 }];
          Doc.ShowView3();
          Doc.LoadTopButton(topButtonId);
          Doc.LoadData_Category([JSON.stringify({ OwnerID: SESSION.Current().CompanyID }), "{}", "{}", 0, 1000], function (res1) {
@@ -116,13 +116,9 @@ Doc.LeftMenuClick = function (id) {
     else if ("LeftMenu.回收站" == id) {
          Doc.ShowView2();
          Doc.LoadTopButton(topButtonId);
-         Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{}", App.Doc.Data.RecycleBin.Info);
-    }  
-    else if ("LeftMenu.存储管理" == id) {
-        Doc.ShowView3();
-        Doc.LoadTopButton(topButtonId);
-        Doc.ShowContent("Chart1.html");
-    }
+         var query = [{  CompanyID: SESSION.Current().CompanyID, 'StatusCode': { $eq: -1 } }, { }, { CreateTime: -1 }];
+         Doc.LoadTable(0, App.Doc.Data.Pager.Size, query, App.Doc.Data.RecycleBin.Info);
+    }   
     else if ("LeftMenu.使用帮助" == id) {
         Doc.ShowView2();
         Doc.LoadTopButton(topButtonId);

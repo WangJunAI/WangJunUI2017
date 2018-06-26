@@ -457,6 +457,14 @@ body {
             margin-left: 0.2em;
         }
 
+        .listItem3 > .row1 > .green1 {
+            font-size: 0.8em;
+            color: #35B34A;
+            border: 1px solid #35B34A;
+            margin-left: 0.2em;
+        }
+
+
         .listItem3 > .row1 > .category {
             margin-left: 0.5em;
             font-weight: 900;

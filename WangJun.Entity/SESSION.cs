@@ -62,11 +62,17 @@ namespace WangJun.Entity
                     {
                         session = SESSION.Get(_SID);
                     }
-                    else
+                    else if ("CreateCompany" == _SID)
                     {
-                        throw new Exception("会话出现错误");
+                        session = new SESSION { UserID = ObjectId.Empty.ToString(), UserName = "系统服务程序", CompanyID = ObjectId.Empty.ToString(), CompanyName = "系统", LastestRequestUrl = HttpContext.Current.Request.RawUrl };
                     }
- 
+                    else if ("Login" == _SID)
+                    {
+                        session = new SESSION { UserID = ObjectId.Empty.ToString(), UserName = "系统服务程序", CompanyID = ObjectId.Empty.ToString(), CompanyName = "系统", LastestRequestUrl = HttpContext.Current.Request.RawUrl };
+                    }
+                    else {
+                        throw new Exception("会话出现错误");
+                    } 
                 }
                 else
                 {

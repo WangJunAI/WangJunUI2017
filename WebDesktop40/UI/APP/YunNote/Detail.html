@@ -141,7 +141,7 @@
                 $(".global").width(window.parent.$("#content").width() - 30);
                 UE.getEditor('editor', { autoHeightEnabled: true, initialFrameWidth: $(".global").width() }); ///创建编辑器
 
-                Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) {
+                Doc.LoadData_Category([JSON.stringify({ OwnerID: SESSION.Current().UserID }), "{}", "{}", 0, 1000], function (res1) {
                     Doc.LoadTreeTo("#category", res1, [], {
                         Click: function (event, treeId, treeNode) {
                             var name = treeNode.Name;
@@ -168,8 +168,11 @@
                     });
                     
 
-                }); ///加载目录
-                Doc.LoadDetail();
+                }); 
+
+                Doc.LoadPermissionToDetail(function () {
+                    Doc.LoadDetail();
+                });
             }
             Doc.Initial(SESSION.Current().CanManageYunNote, clientCallback, clientCallback);//初始化
         });
