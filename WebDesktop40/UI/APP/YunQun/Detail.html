@@ -194,11 +194,16 @@
                             $("[data-propertyName='UserAllowedArrayText']").text("已选中 " + treeNode.Name + fix + idArray.length + "人");
                             $("[data-propertyName='UserAllowedArrayText']").attr("data-propertyvalue", "已选中 " + treeNode.Name + fix + idArray.length + "人");
                         },
-                    });
+                    }); 
+                }); ///加载目录
 
+                Doc.LoadPermissionToDetail(function () {
                     Doc.LoadDetail();
                     Doc.LoadCommentList(0);
-                }); ///加载目录
+                });
+
+
+                
             }
             var clientCallback = function () {
 

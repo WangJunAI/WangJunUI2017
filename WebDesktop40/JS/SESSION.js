@@ -6,7 +6,7 @@ var SESSION = {
 };
 SESSION.LoginUrl = SESSION.ServerHost + "/API.ashx?c=WangJun.App.YunUserAPI&m=Login";
 SESSION.RegisterUrl = SESSION.ServerHost + "/API.ashx?c=WangJun.Admin.AdminWebAPI&m=CreateCompany";
-
+SESSION.Heartbeat = SESSION.ServerHost + "/API.ashx?c=WangJun.App.YunUserAPI&m=Heartbeat";
 
 
 
@@ -44,8 +44,16 @@ SESSION.Current = function () {
     var session = $.cookie("SESSION");
     if ("{}" === session || undefined === session) {
         var pageName = $("#pageName").val();
-        if ("Login" != pageName) {
+        if ("Login" != pageName && "Main" === pageName) {
+            window.location.href = "../../Login/Login.html";
+        }
+        else if ("Desktop" === pageName) {
             window.location.href = "../Login/Login.html";
+
+        }
+        else if ("Detail" === pageName || "Detail.Company" === pageName) {
+            window.location.href = "../../Login/Login.html";
+
         }
         return { UserID: "_" };
     }
@@ -53,16 +61,20 @@ SESSION.Current = function () {
         var res = JSON.parse(session);
         $("#userName").text(res.UserName);
 
-
+        SESSION.SendHeartbeat();
         return res;
     }
 }
 
-///
+SESSION.HeartbeatCount = 0;
 SESSION.SendHeartbeat = function () {
-    //setInterval(function () {
-    //    var current = SESSION.Current();
-    //},5000);
+    var pageName = $("#pageName").val();
+    if (0 === SESSION.HeartbeatCount && "Desktop" === pageName) {
+        SESSION.HeartbeatCount = 1;
+        setInterval(function () {
+            var current = SESSION.Current();
+        }, 10000);
+    }
 }
 
 
@@ -96,7 +108,7 @@ SESSION.Initial = function () {
             $("[data-propertyName='OwnerID']").attr("data-PropertyValue", SESSION.Current().CompanyID);
         }
 
-        SESSION.SendHeartbeat();
+        
     });
 }
 

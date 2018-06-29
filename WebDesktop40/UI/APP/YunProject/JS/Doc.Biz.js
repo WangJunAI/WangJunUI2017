@@ -102,15 +102,24 @@ Doc.SaveDetail = function () {
         LOGGER.Log(res);
         Doc.SubmitEnd(submitId);
         Doc.CloseWindow();
+        top.window.Doc.LeftMenuClick("LeftMenu.发起的项目");
+
     }
     NET.PostData(App.Doc.Server.Url4, callback, param);
 }
 
 ///移除一个文档
 Doc.RemoveDetail = function (id, callback) {
+    var submitId = Doc.SubmitStart();
+
     var id = (true === PARAM_CHECKER.IsNotEmptyString(id)) ? id : $("#ID").val();
     var context = [id];
- 
+    var callback = function (res) {
+        LOGGER.Log(res);
+        Doc.SubmitEnd(submitId);
+        top.window.Doc.LeftMenuClick("LeftMenu.发起的项目");
+
+    }
     NET.PostData(App.Doc.Server.Url9, callback, context);
 }
 

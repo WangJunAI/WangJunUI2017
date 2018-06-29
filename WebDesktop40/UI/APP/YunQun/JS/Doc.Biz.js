@@ -109,7 +109,12 @@ Doc.SaveDetail = function () {
 Doc.RemoveDetail = function (id, callback) {
     var id = (true === PARAM_CHECKER.IsNotEmptyString(id)) ? id : $("#ID").val();
     var context = [id];
+    var callback = function (res) {
+        LOGGER.Log(res);
+        Doc.SubmitEnd(submitId);
+        top.window.Doc.LeftMenuClick("LeftMenu.LeftMenu.创建的群组");
 
+    }
     NET.PostData(App.Doc.Server.Url9, callback, context);
 }
 
@@ -188,21 +193,4 @@ Doc.ShowCommentMessage = function () {
 }
 
 
-Doc.LoadPermissionToDetail = function (callback1) {
-    var context = [NET.GetQueryParam("id")];
-
-    var callback2 = function (res) {
-        LOGGER.Log(res);
-        if (res[0].Value === true && res[1].Value === false) {
-            ///只读模式
-            $(".buttons").remove();
-            $(".minibuttons").remove();
-            $(".options").remove();
-
-        }
-        if (PARAM_CHECKER.IsFunction(callback1)) {
-            callback1(res);
-        }
-    }
-    NET.PostData(App.Doc.Server.Url82, callback2, context);
-}
+ 

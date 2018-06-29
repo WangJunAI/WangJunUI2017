@@ -44,6 +44,7 @@ App.Doc.Server = {
     Url70: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=SaveComment",
     Url71: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=LoadCommentList",
     Url81: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=LoadShareArticleList",///加载回收站
+    Url82: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunQun.YunQunWebAPI&m=GetPermissionByArticleID",///加载回收站
     Url50: "Chart1.html",
     Url51: "Chart2.html",
 };

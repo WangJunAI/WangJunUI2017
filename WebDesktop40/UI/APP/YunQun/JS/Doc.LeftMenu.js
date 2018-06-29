@@ -66,6 +66,7 @@ Doc.LeftMenuClick = function (id) {
     }
     else if ("LeftMenu.参与的群组" == id) {
         Doc.LoadTopButton(topButtonId);
+        Doc.ShowContent(YunConfig.RedirectPage);
 
         var listQuery = JSON.stringify({ _RedirectID: { $ne: null }, OwnerID: SESSION.Current().UserID, 'StatusCode': { $ne: -1 } });
 

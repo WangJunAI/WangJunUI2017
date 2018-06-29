@@ -315,7 +315,7 @@ namespace WangJun.App
         public List<YunUser> LoadRecycleBinEntityList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
         {
             ///MongoDB
-            query = "{$and:[" + "{}" + ",{'OwnerID':'" + SESSION.Current.CompanyID + "','AppCode':" + this.AppCode + "},{'StatusCode':{$eq:" +(int)EnumStatus.删除 + "}}]}";
+            query = "{$and:[" + query + ",{'OwnerID':'" + SESSION.Current.CompanyID + "','AppCode':" + this.AppCode + "},{'StatusCode':{$eq:" +(int)EnumStatus.删除 + "}}]}";
             var res = EntityManager.GetInstance().Find<YunUser>(query, protection, sort, pageIndex, pageSize);
 
             /// SQLServer
@@ -380,7 +380,9 @@ namespace WangJun.App
             session.CanManageYunQun = YunPermission.CanManageApp(session.UserID,new YunQunWebAPI().AppCode) ;
             session.CanManageStaff = YunPermission.CanManageApp(session.UserID,new YunUserAPI().AppCode); 
             session.CanManageYunPan = YunPermission.CanManageApp(session.UserID,new YunPanWebAPI().AppCode); 
-            session.CanManageYunProject = YunPermission.CanManageApp(session.UserID,new YunProjectWebAPI().AppCode); 
+            session.CanManageYunProject = YunPermission.CanManageApp(session.UserID,new YunProjectWebAPI().AppCode);
+            session.LoginTime = DateTime.Now;
+            session.LastUpdateTime = DateTime.Now;
             SESSION.Set(session);
             #endregion
             return session;
@@ -399,6 +401,11 @@ namespace WangJun.App
             return null != this.GetUser(loginID);
         }
 
-
+        public void Heartbeat(string input) {
+            var _sid = SESSION.Current.UserID;
+            var session = SESSION.Get(_sid);
+            session.LastUpdateTime = DateTime.Now;
+            SESSION.Set(session);
+        }
     }
 }

@@ -58,11 +58,11 @@ namespace WangJun.Yun
                 iOperator.CreatorName = session.UserName;
                 iOperator.ModifierID = session.UserID;
                 iOperator.ModifierName = session.UserName;
-                if (StringChecker.IsZeroString(iOperator.OwnerID)) ///企业的应该界面赋值
-                {
-                    iOperator.OwnerID = session.UserID; ///数据所有者
-                    iOperator.OwnerName = session.UserName;
-                }
+                //if (StringChecker.IsZeroString(iOperator.OwnerID)) ///企业的应该界面赋值
+                //{
+                    iOperator.OwnerID = session.CompanyID; ///数据所有者
+                    iOperator.OwnerName = session.CompanyName;
+                //}
             }
             #endregion
 

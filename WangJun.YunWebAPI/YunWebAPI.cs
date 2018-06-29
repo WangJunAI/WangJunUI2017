@@ -348,7 +348,7 @@ namespace WangJun.App
         public List<YunArticle> LoadRecycleBinEntityList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
         {
             ///MongoDB
-            query = "{$and:[" + "{}" + ",{'OwnerID':'" + SESSION.Current.CompanyID + "','AppCode':" + this.AppCode + "},{'StatusCode':{$eq:" + (int)EnumStatus.删除 + "}}]}";
+            query = "{$and:[" + "{}" + ",{'OwnerID':'" + SESSION.Current.UserID + "','AppCode':" + this.AppCode + "},{'StatusCode':{$eq:" + (int)EnumStatus.删除 + "}}]}";
             var res = EntityManager.GetInstance().Find<YunArticle>(query, protection, sort, pageIndex, pageSize);
 
             /// SQLServer
@@ -425,6 +425,11 @@ namespace WangJun.App
         public virtual bool CanInvoke(string _sid)
         {
             return true;
+        }
+
+        public virtual void InvokeOver(dynamic data)
+        {
+
         }
         #endregion
 
