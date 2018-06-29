@@ -74,6 +74,8 @@ Doc.LoadData_All = function (param, callback) {
 ///保存一个文档
 Doc.SaveDetail = function (resInfo) {
     //var submitId = Doc.SubmitStart();
+    var checkRes = Doc.CheckInput();
+    if (false === checkRes) { return; }///检测不合格不提交
 
     var item = {};
 

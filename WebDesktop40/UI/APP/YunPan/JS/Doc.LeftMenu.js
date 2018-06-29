@@ -110,7 +110,8 @@ Doc.LeftMenuClick = function (id) {
     else if ("LeftMenu.回收站" == id) {
         Doc.ShowView2();
         Doc.LoadTopButton(topButtonId);
-        Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{}", App.Doc.Data.RecycleBin.Info);
+        var query = [{ _RedirectID: null, OwnerID: SESSION.Current().UserID, 'StatusCode': { $eq: -1 } }, { Content: 0, PlainText: 0 }, { CreateTime: -1 }];
+        Doc.LoadTable(0, App.Doc.Data.Pager.Size, query, App.Doc.Data.RecycleBin.Info);
     } 
     else if ("LeftMenu.使用帮助" == id) {
         Doc.ShowView2();

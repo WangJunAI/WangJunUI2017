@@ -72,7 +72,7 @@ Doc.LeftMenuClick = function (id) {
     else if ("LeftMenu.回收站" == id) {
         Doc.ShowView2();
         Doc.LoadTopButton(topButtonId);
-        var query = [{ _RedirectID: null, CompanyID: SESSION.Current().CompanyID, 'StatusCode': { $eq: -1 } }, { Content: 0, PlainText:0 }, { CreateTime: -1 }];
+        var query = [{ _RedirectID: null, OwnerID: SESSION.Current().CompanyID, 'StatusCode': { $eq: -1 } }, { Content: 0, PlainText:0 }, { CreateTime: -1 }];
         Doc.LoadTable(0, App.Doc.Data.Pager.Size, query, App.Doc.Data.RecycleBin.Info);
     } 
     else if ("LeftMenu.使用帮助" == id) {

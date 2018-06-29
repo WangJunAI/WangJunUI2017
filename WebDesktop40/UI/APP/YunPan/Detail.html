@@ -100,7 +100,7 @@
                     <div class="item">
                         <div class="key">上传至</div>
                         <div class="value" data-FormName="Default" data-propertyName="ParentID" data-propertyValue="">
-                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue="">未选择上传目录</a>
+                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category').toggle();" data-FormName="Default" data-propertyName="ParentName" data-propertyValue=""  title="请选择上传文件所在文件夹" data-inputcheck="{'checkas':'parentNodeSelected'}">未选择上传目录</a>
                             <div style="position: absolute;z-index:9999;">
                                 <div id="category" class="dropdownlist">
                                 </div>
@@ -127,7 +127,7 @@
                 <li>
                     <div class="item">
                         <div class="key">上传文件</div>
-                        <a href="javascript:;" class="checkbox selected" data-single="Permission1" onclick="$('[name=file]').click()">添加文件</a><a href="javascript:;" class="checkbox" data-single="Permission1" onclick="uploader.upload()">开始上传</a>
+                        <a href="javascript:;" class="checkbox selected" data-single="Permission1" onclick="if (false === Doc.CheckInput()) { return; } $('[name=file]').click();">添加文件</a><a href="javascript:;" class="checkbox" data-single="Permission1" onclick="if (false === Doc.CheckInput()) { return; } uploader.upload()">开始上传</a>
                         <div id="uploader" style="display:none;">
                             <div id="picker">选择文件</div>
                         </div>
