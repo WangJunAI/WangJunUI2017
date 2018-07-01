@@ -6,8 +6,24 @@
     <title>WeUI</title>
     <link rel="stylesheet" href="../style/weui.css" />
     <link rel="stylesheet" href="./example.css" />
+
+    <script src="../../../../../../JS/Base/jquery-3.1.1.min.js"></script>
+    <script src="../../../../../../JS/Base/CryptoJS/core-min.js"></script>
+    <script src="../../../../../../JS/Base/CryptoJS/enc-base64-min.js"></script>
+    <script src="../../../../../../JS/Base/NET.js"></script>
+    <script src="../../../../../../JS/Base/PARAM_CHECKER.js"></script>
+    <script src="../../../../../../JS/Base/Convertor.js"></script>
+    <script src="../../../../../../JS/Base/DEBUG.js"></script>
+
+
+    <script src="../../../../../../JS/YunConfig.js"></script>
+    <script src="../../../../../../JS/jquery.cookie.js"></script>
+    <script src="../../../../../../JS/SESSION.js"></script>
+
+    <script src="App.js"></script>
 </head>
 <body ontouchstart>
+    <input type="hidden" id="PageName" value="WeUI" />
     <div class="weui-toptips weui-toptips_warn js_tooltips">错误提示</div>
     <div class="container" id="container"></div>
     <script type="text/html" id="tpl_home">
@@ -828,7 +844,7 @@
                             <div class="weui-cell">
                                 <div class="weui-cell__hd"><label class="weui-label">登录名</label></div>
                                 <div class="weui-cell__bd">
-                                    <input class="weui-input" type="text" pattern="[0-9]*" placeholder="请输入qq/微信/手机号/邮箱" />
+                                    <input class="weui-input" type="text" pattern="[0-9]*" placeholder="请输入qq/微信/手机号/邮箱" value="turingai@outlook.com" data-FormName="Default" data-propertyName="LoginID" data-propertyValue="turingai@outlook.com" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" />
                                 </div>
                             </div>
                             <div class="weui-cell">
@@ -846,7 +862,7 @@
                             </span>
                         </label>
                         <div class="weui-btn-area">
-                            <a class="weui-btn weui-btn_primary" href="javascript:" id="showTooltips">确定</a>
+                            <a class="weui-btn weui-btn_primary" href="javascript:" id="showTooltips" onclick="SESSION.Login()" >确定</a>
                         </div>
                     </div><!--登录-->
                     <div class="weui-tab__panel" id="tab1">
@@ -992,7 +1008,7 @@
                                     <p style="font-size: 13px;color: #888888;">摘要信息</p>
                                 </div>
                             </div>
-                            <div class="weui-cell">
+                            <div class="weui-cell" targetId="tab6">
                                 <div class="weui-cell__hd" style="position: relative;margin-right: 10px;">
                                     <img src="images/pic_160.png" style="width: 50px;display: block" />
                                     <span class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">8</span>
@@ -1002,7 +1018,7 @@
                                     <p style="font-size: 13px;color: #888888;">摘要信息</p>
                                 </div>
                             </div>
-                            <div class="weui-cell">
+                            <div class="weui-cell" targetId="tab7">
                                 <div class="weui-cell__hd" style="position: relative;margin-right: 10px;">
                                     <img src="images/pic_160.png" style="width: 50px;display: block" />
                                     <span class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">8</span>
@@ -1012,7 +1028,7 @@
                                     <p style="font-size: 13px;color: #888888;">摘要信息</p>
                                 </div>
                             </div>
-                            <div class="weui-cell">
+                            <div class="weui-cell" targetId="tab8">
                                 <div class="weui-cell__hd" style="position: relative;margin-right: 10px;">
                                     <img src="images/pic_160.png" style="width: 50px;display: block" />
                                     <span class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">8</span>
@@ -1022,7 +1038,7 @@
                                     <p style="font-size: 13px;color: #888888;">摘要信息</p>
                                 </div>
                             </div>
-                            <div class="weui-cell">
+                            <div class="weui-cell" targetId="tab9">
                                 <div class="weui-cell__hd" style="position: relative;margin-right: 10px;">
                                     <img src="images/pic_160.png" style="width: 50px;display: block" />
                                     <span class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">8</span>
@@ -1032,7 +1048,7 @@
                                     <p style="font-size: 13px;color: #888888;">摘要信息</p>
                                 </div>
                             </div>
-                            <div class="weui-cell">
+                            <div class="weui-cell" targetId="tab10">
                                 <div class="weui-cell__hd" style="position: relative;margin-right: 10px;">
                                     <img src="images/pic_160.png" style="width: 50px;display: block" />
                                     <span class="weui-badge" style="position: absolute;top: -.4em;right: -.4em;">8</span>
@@ -1483,68 +1499,68 @@
 
             $(function () {
 
-                $('.weui-tabbar__item').on('click', function () {
-                    $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
-                    var targetId = $(this).attr("targetId");
-                    $(".weui-tab__panel").hide();
-                    $("#" + targetId).show();
-                });
+                //$('.weui-tabbar__item').on('click', function () {
+                //    $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
+                //    var targetId = $(this).attr("targetId");
+                //    $(".weui-tab__panel").hide();
+                //    $("#" + targetId).show();
+                //});
 
-                $("#tab3 .weui-cell").on("click", function () {
+                //$("#tab3 .weui-cell").on("click", function () {
 
-                    var targetId = $(this).attr("targetId");
-                    $(".weui-tab__panel").hide();
-                    $("#" + targetId).show();
-                });
+                //    var targetId = $(this).attr("targetId");
+                //    $(".weui-tab__panel").hide();
+                //    $("#" + targetId).show();
+                //});
 
-                $(".weui-media-box").on("click", function () {
-                    var targetId = $(this).attr("targetId");
-                    $(".weui-tab__panel").hide();
-                    $("#" + targetId).show();
-                });
+                //$(".weui-media-box").on("click", function () {
+                //    var targetId = $(this).attr("targetId");
+                //    $(".weui-tab__panel").hide();
+                //    $("#" + targetId).show();
+                //});
 
-                ///通讯录
-                var $searchBar = $('#searchBar'),
-                    $searchResult = $('#searchResult'),
-                    $searchText = $('#searchText'),
-                    $searchInput = $('#searchInput'),
-                    $searchClear = $('#searchClear'),
-                    $searchCancel = $('#searchCancel');
+                /////通讯录
+                //var $searchBar = $('#searchBar'),
+                //    $searchResult = $('#searchResult'),
+                //    $searchText = $('#searchText'),
+                //    $searchInput = $('#searchInput'),
+                //    $searchClear = $('#searchClear'),
+                //    $searchCancel = $('#searchCancel');
 
-                function hideSearchResult() {
-                    $searchResult.hide();
-                    $searchInput.val('');
-                }
-                function cancelSearch() {
-                    hideSearchResult();
-                    $searchBar.removeClass('weui-search-bar_focusing');
-                    $searchText.show();
-                }
+                //function hideSearchResult() {
+                //    $searchResult.hide();
+                //    $searchInput.val('');
+                //}
+                //function cancelSearch() {
+                //    hideSearchResult();
+                //    $searchBar.removeClass('weui-search-bar_focusing');
+                //    $searchText.show();
+                //}
 
-                $searchText.on('click', function () {
-                    $searchBar.addClass('weui-search-bar_focusing');
-                    $searchInput.focus();
-                });
-                $searchInput
-                    .on('blur', function () {
-                        if (!this.value.length) cancelSearch();
-                    })
-                    .on('input', function () {
-                        if (this.value.length) {
-                            $searchResult.show();
-                        } else {
-                            $searchResult.hide();
-                        }
-                    })
-                    ;
-                $searchClear.on('click', function () {
-                    hideSearchResult();
-                    $searchInput.focus();
-                });
-                $searchCancel.on('click', function () {
-                    cancelSearch();
-                    $searchInput.blur();
-                });
+                //$searchText.on('click', function () {
+                //    $searchBar.addClass('weui-search-bar_focusing');
+                //    $searchInput.focus();
+                //});
+                //$searchInput
+                //    .on('blur', function () {
+                //        if (!this.value.length) cancelSearch();
+                //    })
+                //    .on('input', function () {
+                //        if (this.value.length) {
+                //            $searchResult.show();
+                //        } else {
+                //            $searchResult.hide();
+                //        }
+                //    })
+                //    ;
+                //$searchClear.on('click', function () {
+                //    hideSearchResult();
+                //    $searchInput.focus();
+                //});
+                //$searchCancel.on('click', function () {
+                //    cancelSearch();
+                //    $searchInput.blur();
+                //});
             });
         </script>
     </script>

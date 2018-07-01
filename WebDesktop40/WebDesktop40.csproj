@@ -1442,6 +1442,7 @@
     <Content Include="MP4\748310191.mp4" />
     <Content Include="MP4\MVI_0358.mp4" />
     <Content Include="redirect.html" />
+    <Content Include="UI\APP\TouTiaoPhone\weui-master\dist\example\App.js" />
     <Content Include="UI\APP\TouTiaoPhone\weui-master\dist\example\login.html" />
     <Content Include="UI\APP\TouTiaoPhone\weui-master\dist\example\index1.html" />
     <Content Include="UI\APP\YunNews\Chart3.html" />
