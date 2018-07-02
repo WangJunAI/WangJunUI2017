@@ -1459,7 +1459,6 @@
     <Content Include="UI\APP\YunUser\JS\AppInfo.Client.js" />
     <Content Include="UI\APP\YunUser\JS\Doc.Biz.js" />
     <Content Include="UI\APP\YunUser\JS\Doc.Detail.js" />
-    <Content Include="UI\APP\YunUser\JS\Doc.js" />
     <Content Include="UI\APP\YunUser\JS\Doc.LeftMenu.js" />
     <Content Include="UI\APP\YunUser\JS\Doc.TopButton.js" />
     <Content Include="UI\APP\YunUser\Main.html" />

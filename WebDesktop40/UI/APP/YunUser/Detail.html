@@ -145,37 +145,19 @@
                         </div>
                     </div>
                 </li>
-                <li style="display:none;">
+                <li>
                     <div class="item">
                         <div class="key">岗位</div>
-                        <div class="value" data-FormName="Default" data-propertyName="PositionID" data-propertyValue="">
-                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category2').toggle();" data-FormName="Default" data-propertyName="PositionName" data-propertyValue="">默认分类</a>
-                            <div style="position: absolute;">
-                                <div id="category2" class="dropdownlist">
-                                </div>
-                            </div>
-
+                        <div class="value" data-FormName="Default" data-propertyName="PositionName" data-propertyValue="员工">
+ 
+                         <select onchange="$('[data-propertyName=\'PositionName\']').attr('data-propertyValue', $(this).val());"><option value="员工">员工</option><option value="经理">经理</option><option value="总监">总监</option><option value="高管">高管</option></select>
                         </div>
                         <div class="inputcheck cred">
                             检查信息
                         </div>
                     </div>
                 </li>
-                <li style="display:none;">
-                    <div class="item">
-                        <div class="key">角色</div>
-                        <div class="value" data-FormName="Default" data-propertyName="ParentID" data-propertyValue="">
-                            <a href="javascript:;" class="button w20em txtleft" onclick="$('#category3').toggle();" data-FormName="Default" data-propertyName="RoleName" data-propertyValue="">未选择角色</a>
-                            <div style="position: absolute;">
-                                <div id="category3" class="dropdownlist">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="inputcheck cred">
-                            检查信息
-                        </div>
-                    </div>
-                </li>
+                 
                 <li>
                     <div class="item">
                         <div class="key">入职时间</div>
@@ -311,22 +293,7 @@
                         header: "<div class='margin_l05em fontweight700'>请选择所在部门</div>"
                     });
                 }); ///加载目录
-                Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) {
-                    Doc.LoadTreeTo("#category2", res1, [], {
-                        Click: function (event, treeId, treeNode) {
-                            var name = treeNode.Name;
-                            $('#category2').hide();
-                            $("[data-propertyName='PositionID']").attr("data-propertyValue", treeNode.ID);
-                            $("[data-propertyName='PositionName']").attr("data-propertyValue", name);
-                            $("[data-propertyName='PositionName']").text(name);
-                        }
-                    });
-                }); ///加载目录
-                Doc.LoadData_All([], function (res1) {
-                    Doc.LoadTreeTo("#category3", res1, [], {
-                        ShowMode: "checkbox", Check: function (event, treeId, treeNode) { }
-                    });
-                }); ///加载目录
+ 
             }
             var clientCallback = function () {
 

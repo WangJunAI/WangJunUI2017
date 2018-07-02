@@ -96,6 +96,9 @@ Doc.SaveDetail = function () {
             else if ("CheckBox" === propertyType) {
                 item[propertyName] = ("true" === propertyValue) || ("是" === propertyValue);
             }
+            else if ("CheckBox" === propertyType) {
+                item[propertyName] = ("true" === propertyValue) || ("是" === propertyValue);
+            }
             else {
                 item[propertyName.trim()] = propertyValue;
             }
