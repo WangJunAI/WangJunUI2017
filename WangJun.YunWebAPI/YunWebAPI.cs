@@ -433,5 +433,30 @@ namespace WangJun.App
         }
         #endregion
 
+
+        public List<YunArticle> LoadBehaviorList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
+        {
+            var list = new List<YunArticle>();
+            var opeID = SUID.FromStringToGuid(SESSION.Current.UserID);
+
+            ///MongoDB
+            query = "{$and:[" + query + ",{'OperatorID':UUID('" + opeID + "'),'AppCode':" + this.AppCode + " }]}";
+            var objectIDList = EntityManager.GetInstance().Find<YunBehavior>(query, protection, sort, pageIndex, pageSize).Select(p => p.TargetID);
+
+             query = "{{ _GID: {{ $in: [ {0} ] }} }}";
+            var stringBuilder = new StringBuilder();
+            foreach (var objectID in objectIDList)
+            {
+                stringBuilder.AppendFormat(",UUID('{0}')", objectID);
+            }
+            query = string.Format(query, stringBuilder.ToString().Trim(','));
+            list = EntityManager.GetInstance().Find<YunArticle>(query);
+
+            /// SQLServer
+            //var res2 = EntityManager.GetInstance().Find<YunArticle>(p => p.CompanyID == SESSION.Current.CompanyID && p.AppCode == this.AppCode && p.StatusCode == (int)EnumStatus.删除, p => p.CreateTime, pageIndex, pageSize, true).ToList();
+
+            return list;
+        }
+
     }
 }

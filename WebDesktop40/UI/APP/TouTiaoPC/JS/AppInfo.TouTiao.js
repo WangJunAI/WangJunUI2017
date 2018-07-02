@@ -19,7 +19,8 @@ App.TouTiao.Server = {
     Url6: App.TouTiao.ServerHost +"/API.ashx?c=WangJun.YunNews.YunNewsWebAPI&m=AddLikeCount",
     Url7: App.TouTiao.ServerHost +"/API.ashx?c=WangJun.YunNews.YunNewsWebAPI&m=AddFavoriteCount",
     Url8: App.TouTiao.ServerHost +"/API.ashx?c=WangJun.YunNews.YunNewsWebAPI&m=ClientRead",
-    Url9: App.TouTiao.ServerHost +"/API.ashx?c=WangJun.YunNews.YunNewsWebAPI&m=GetBehaviorByArticleID"
+    Url9: App.TouTiao.ServerHost + "/API.ashx?c=WangJun.YunNews.YunNewsWebAPI&m=GetBehaviorByArticleID",
+    Url10: App.TouTiao.ServerHost + "/API.ashx?c=WangJun.YunNews.YunNewsWebAPI&m=LoadBehaviorList"
 
 };
  

@@ -1,5 +1,6 @@
 ﻿ 
  
+ 
 
 var TouTiao = {};
 
@@ -8,8 +9,8 @@ TouTiao.LoadCategory = function () {
 
     var callback = function (res) {
         LOGGER.Log(res);
-        res.push({ Name: "搜索" });
-        res.push({ Name: "收藏" });
+        res.push({ Name: "搜索",ID:"搜索" });
+        res.push({ Name: "收藏",ID:"收藏" });
         
         TouTiao.ShowCategory(res);
     }
@@ -34,6 +35,7 @@ TouTiao.LoadMore = function () {
 
 }
 
+
 TouTiao.CategoryButtonClick = function () {
     var categoryId = $(event.target).attr("data-param");
     $("#category").find(".selected").removeClass("selected");
@@ -46,8 +48,15 @@ TouTiao.LoadList = function (categoryId, pageIndex, append) {
     
     var query = JSON.stringify({ CompanyID: SESSION.Current().CompanyID });
     var pageSize = App.TouTiao.Pager.Size;
-    if (true === PARAM_CHECKER.IsNotEmptyString(categoryId)) {
+    if (true === PARAM_CHECKER.IsNotEmptyString(categoryId) && !("搜索" === categoryId || "收藏" === categoryId)) {
         query = "{'ParentID':'[ParentID]'}".replace('[ParentID]', categoryId);
+    }
+    else if ("搜索" === categoryId) {
+        var keyword = $("#keyword").val();
+        query = JSON.stringify({ Title: { '$regex': keyword, '$options': 'g' } });
+    }
+    else if ("收藏" === categoryId) {
+        return TouTiao.LoadBehaviorList(categoryId, pageIndex, append);
     }
 
     if (false === PARAM_CHECKER.IsInt(pageIndex)) {
@@ -319,3 +328,28 @@ TouTiao.ShowMessage = function () {
     });
 }
 
+///加载列表
+TouTiao.LoadBehaviorList = function (categoryId, pageIndex, append) {
+
+    var query = JSON.stringify({ CompanyID: SESSION.Current().CompanyID, OperateTypeCode:3 });
+    var pageSize = App.TouTiao.Pager.Size;
+ 
+
+    if (false === PARAM_CHECKER.IsInt(pageIndex)) {
+        pageIndex = 0;
+    }
+    else {
+        pageIndex = parseInt(pageIndex);
+    }
+
+    var context = [query, JSON.stringify({  }), "{CreateTime:-1}", pageIndex, pageSize];
+    var callback = function (res) {
+        LOGGER.Log(res);
+        TouTiao.ShowMessage();
+        TouTiao.ShowList(res, pageIndex, categoryId, append);
+    }
+
+    NET.PostData(App.TouTiao.Server.Url10, callback, context);
+}
+
+ 
