@@ -93,10 +93,17 @@ App.LoadTab3 = function () {
 }
 
 App.LoadTab5 = function () {
+    TouTiao.Initial("list");
+
+
+
+}
+
+App.Tab11Click = function () {
     $(".weui-media-box").on("click", function () {
         var targetId = $(this).attr("targetId");
         $(".weui-tab__panel").hide();
         $("#" + targetId).show();
+        TouTiao.LoadArticle();
     });
-
 }
