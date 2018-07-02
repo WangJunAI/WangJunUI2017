@@ -105,5 +105,16 @@ App.Tab11Click = function () {
         $(".weui-tab__panel").hide();
         $("#" + targetId).show();
         TouTiao.LoadArticle();
+        
     });
 }
+
+App.ShowMessage = function () {
+    var $toast = $('#toast');
+    if ($toast.css('display') != 'none') return;
+
+        $toast.fadeIn(100);
+        setTimeout(function () {
+            $toast.fadeOut(100);
+        }, 2000); 
+ }

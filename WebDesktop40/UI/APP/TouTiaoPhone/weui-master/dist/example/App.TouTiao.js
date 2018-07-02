@@ -100,7 +100,7 @@ TouTiao.ShowList = function (data, pageIndex, categoryId, append) {
 
 ///加载评论列表
 TouTiao.LoadCommentList = function (pageIndex) {
-    var targetId = NET.GetQueryParam("id");
+    var targetId = $("#articleId").val();
     var data = [JSON.stringify({ "RootID": targetId }), "{}", "{'CreateTime':-1}", pageIndex, 5];
     NET.LoadData(App.TouTiao.Server.Url5, function (res) {
         LOGGER.Log(res);
@@ -113,7 +113,7 @@ TouTiao.LoadCommentList = function (pageIndex) {
 TouTiao.ShowCommentList = function (data) {
     if (PARAM_CHECKER.IsArray(data)&&0<data.length) {
         //$("#commentList").empty();
-        var html = $("#tplCommentItem").html();
+        var html = $("#tlpListItem2").html();
         var array = [];
         for (var k = 0; k < data.length; k++) {
             var itemData = data[k];
@@ -133,15 +133,15 @@ TouTiao.ShowCommentList = function (data) {
 }
 
 TouTiao.AddComment = function () {
-    TouTiao.ShowMessage();
+    TouTiao.ShowMessage("Loading");
     var item = {};
-    var targetId = NET.GetQueryParam("id");
+    var targetId = $("#articleId").val();
     item.Content = $("#comment").val().trim();
     item.RootID = targetId;
     var context = [Convertor.ToBase64String(JSON.stringify(item), true), { 0: "base64" }];
     var callback = function (res) {
         LOGGER.Log(res);
-
+        TouTiao.ShowMessage("OK");
         //TouTiao.LoadCommentList();
         $("#comment").val("");
         
@@ -222,6 +222,7 @@ TouTiao.LoadArticle =  function (param, callback) {
     var callback = function (res) {
         LOGGER.Log(res);
         TouTiao.ShowArticle(res);
+        TouTiao.LoadCommentList(0);
         ClientBehavior.LoadBehaviorByArticleID();
         ClientBehavior.Read();
     }
@@ -250,6 +251,7 @@ TouTiao.ShowArticle = function (data) {
         $("#Title").text(data.Title);
         $("#CreatorName").text(data.CreatorName);
         $("#CreateTime").text(data.CreateTime);
+        $("#articleId").val(data.ID);
 
 
 
@@ -284,11 +286,6 @@ TouTiao.Initial = function (type) {
 }
 
 TouTiao.ShowMessage = function () {
-    $("#message").show({
-        effect: "blind", duration: 1000, complete: function () {
-            setTimeout(function () { $("#message").hide({ effect: "blind", duration: 500 });},500);
-
-        }
-    });
+    App.ShowMessage();
 }
 
