@@ -68,6 +68,7 @@ body {
         .global > .options .inputcheck {
             display: inline-block;
             float: right;
+            display:none;
         }
         .global > .options .checkbox {
             display: inline-block;

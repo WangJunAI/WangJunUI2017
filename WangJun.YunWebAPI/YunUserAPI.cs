@@ -371,6 +371,7 @@ namespace WangJun.App
             #region session设置
             session.UserID = res.ID;
             session.UserName = res.NickName;
+            session.PositionName = res.PositionName;
             session.CompanyID = res.CompanyID;
             session.CompanyName = res.CompanyName;
             session.IsSuperAdmin = true;

@@ -13,7 +13,7 @@ SESSION.IsFromPC = (function () {
 
 
 SESSION.Login = function () {
-    if (true === SESSION.IsFromPC) {
+    if (true === SESSION.IsFromPC()) {
         $(event.target).attr("disabled", "disabled");
         $(event.target).val("登录中,请稍后...");
     }
@@ -113,11 +113,11 @@ SESSION.Initial = function () {
         }
         else if ("TouTiao" === pageName) {
             $("[data-PropertyName='Name']").text(SESSION.Current().UserName);
-            $("[data-PropertyName='Position']").text(SESSION.Current().Position);
+            $("[data-PropertyName='PositionName']").text(SESSION.Current().PositionName);
         }
         else if ("TouTiaoArticle" === pageName) {
             $("[data-PropertyName='Name']").text(SESSION.Current().UserName);
-            $("[data-PropertyName='Position']").text(SESSION.Current().Position);
+            $("[data-PropertyName='PositionName']").text(SESSION.Current().PositionName);
         }
         if (("Detail.Company" === pageName || "Category.Company" === pageName) && true === SESSION.Current().IsSuperAdmin) {
             $('<input type="hidden" data-FormName="Default" data-propertyName="OwnerID" />').appendTo(document.body);
@@ -129,7 +129,7 @@ SESSION.Initial = function () {
 }
 
 SESSION.Register = function () {
-    if (true === SESSION.IsFromPC) {
+    if (true === SESSION.IsFromPC()) {
         $(event.target).attr("disabled", "disabled");
         $(event.target).val("正在注册,请稍后...");
     }

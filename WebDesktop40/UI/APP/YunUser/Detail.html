@@ -147,7 +147,7 @@
                 </li>
                 <li>
                     <div class="item">
-                        <div class="key">岗位</div>
+                        <div class="key">职能</div>
                         <div class="value" data-FormName="Default" data-propertyName="PositionName" data-propertyValue="员工">
  
                          <select onchange="$('[data-propertyName=\'PositionName\']').attr('data-propertyValue', $(this).val());"><option value="员工">员工</option><option value="经理">经理</option><option value="总监">总监</option><option value="高管">高管</option></select>
@@ -162,29 +162,13 @@
                     <div class="item">
                         <div class="key">入职时间</div>
                         <div class="value">
-                            <input title="请选择入职时间..." data-inputcheck="{'checkas':'string','limit':30}" placeholder="请选择入职时间"  data-FormName="Default" data-propertyName="EntryTime" data-propertyValue="" type="text"  onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" /><span>合同期限</span><select id="publishHour"><option>01</option> <option>02</option> <option>03</option> <option>04</option>  </select>
+                            <input title="请选择入职时间..." data-inputcheck="{'checkas':'string','limit':30}" placeholder="请选择入职时间"  data-FormName="Default" data-propertyName="EntryTime" data-propertyValue="" type="text"  onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" />
                         </div>
                         <div class="inputcheck cred">
                             检查信息
                         </div>
                     </div>
-                </li>
-                <li style="display:none;">
-                    <div class="item">
-                        <div class="key">离职时间</div>
-                        <div class="value">
-                            <!--<input data-FormName="Default" data-propertyName="DepartureTime" data-propertyValue="" type="text" placeholder="离职时间" onkeyup="$(this).attr('data-propertyValue', $(this).val());" onchange="$(this).attr('data-propertyValue', $(this).val());" />-->
-                        </div>
-                    </div>
-                </li>
-                <li style="display:none;">
-                    <div class="item">
-                        <div class="key">相关证件</div>
-                        <div class="value" data-FormName="Default" data-propertyName="Attachment" data-propertyValue="">
-                            <a href="javascript:;" class="checkbox selected" data-single="Attachment">上传</a>
-                        </div>
-                    </div>
-                </li>
+                </li>  
                 <li>
                     <div class="item">
                         <div class="key" data-FormName="Default">权限</div>
@@ -272,16 +256,16 @@
             //inline: true
             dateFormat: "yy/mm/dd"
         });
-        $('[data-propertyName="DepartureTime"]').datepicker({
-            //inline: true
-            dateFormat: "yy/mm/dd"
-        });
+        //$('[data-propertyName="DepartureTime"]').datepicker({
+        //    //inline: true
+        //    dateFormat: "yy/mm/dd"
+        //});
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
             var adminCallback = function () {
                 Doc.LoadDetail();
-                Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) {
+                Doc.LoadData_Category([JSON.stringify({ OwnerID: SESSION.Current().CompanyID }), "{}", "{}", 0, 1000], function (res1) {
                     Doc.LoadTreeTo("#category1", res1, [], {
                         Click: function (event, treeId, treeNode) {
                             var name = treeNode.Name;

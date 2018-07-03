@@ -157,6 +157,9 @@ body {
             text-align: center;
         }
 
+#topButton .panelheader {
+    color:#222;
+}
 
 .main > .list {
     position: absolute;

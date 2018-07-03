@@ -187,9 +187,11 @@ Doc.CheckInput = function () {
 Doc.LoadPermissionToDetail = function (callback1) {
     var id = NET.GetQueryParam("id");
     var context = [id];
+    var res1 = null;
     var isNotNew = (PARAM_CHECKER.IsNotEmptyString(id) && 24 === id.length);
     if (true === isNotNew) {
         var callback2 = function (res) {
+            res1 = res;
             LOGGER.Log(res);
             if (res[1].Value === false) {
                 ///只读模式
@@ -197,10 +199,10 @@ Doc.LoadPermissionToDetail = function (callback1) {
                 $(".minibuttons").remove();
                 $(".options").remove();
             }
-            if (PARAM_CHECKER.IsFunction(callback1)) {
-                callback1(res);
-            }
         }
         NET.PostData(App.Doc.Server.Url82, callback2, context);
+    }
+    if (PARAM_CHECKER.IsFunction(callback1)) {
+        callback1(res1);
     }
 }

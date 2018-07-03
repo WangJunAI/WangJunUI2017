@@ -385,7 +385,7 @@ namespace WangJun.App
         #region 聚合计算
         public object Aggregate(string itemType, string match, string group)
         {
-            var iSysItem = new YunArticle() as ISysItem;
+            ISysItem iSysItem = null;
             if ("YunBehavior" == itemType)
             {
                 iSysItem = Activator.CreateInstance<YunBehavior>() as ISysItem;
@@ -394,9 +394,9 @@ namespace WangJun.App
             {
                 iSysItem = Activator.CreateInstance<YunUser>() as ISysItem;
             }
-            else
+            else if("YunArticle" == itemType)
             {
-                iSysItem = Activator.CreateInstance(Type.GetType(itemType)) as ISysItem;
+                iSysItem = Activator.CreateInstance<YunArticle>() as ISysItem;
             }
             var res = EntityManager.GetInstance().Aggregate(iSysItem._DbName, iSysItem._CollectionName, match, group);
             return res;

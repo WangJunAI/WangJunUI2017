@@ -22,6 +22,8 @@ namespace WangJun.Entity
 
         public string Password { get; set; }
 
+        public string PositionName { get; set; }
+
         public string CompanyID { get; set; }
 
         public string CompanyName { get; set; }

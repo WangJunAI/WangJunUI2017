@@ -83,24 +83,7 @@ Doc.LeftMenuClick = function (id) {
          Doc.LoadData_Category([JSON.stringify({ OwnerID: SESSION.Current().CompanyID }), "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], { header:"小提示：修改目录双击即可"}); });
          Doc.LoadTable(0, App.Doc.Data.Pager.Size, query, App.Doc.Data.DocTable.Info);
          Doc.SetQuery(query);
-     }
-     else if ("LeftMenu.新建角色" === id) {
-         var url = App.Doc.Server.Url6 + "?t=" + (new Date().getTime());
-         Doc.ShowWindow(url);
-     }
-     else if ("LeftMenu.角色列表" == id) {
-         Doc.ShowView3();
-         Doc.LoadTopButton(topButtonId);
-         ///加载树状目录
-         Doc.LoadData_Category(["{}", "{}", "{}", 0, 1000], function (res1) { Doc.LoadTreeTo("#leftList", res1, [], { header: "小提示：修改目录双击即可"}); });
-         Doc.LoadTable(0, App.Doc.Data.Pager.Size, "{'Status':'待发布'}");
-         $("#topButton").attr("data-status", "待发布");
-     }
-     else if ("LeftMenu.使用说明" == id) {
-         Doc.ShowView2();
-         Doc.LoadTopButton(topButtonId);
-         Doc.ShowContent("AppInfo.html");
-     }
+     }  
      else if ("LeftMenu.人员分析" === id) {
          Doc.LoadTopButton(topButtonId);
          Doc.ShowContent(App.Doc.Server.Url50);
