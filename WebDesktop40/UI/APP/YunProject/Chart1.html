@@ -49,7 +49,7 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            Doc.LoadChart("container1", App.Doc.Server.Url16, ["Entity","{$match:{}}", "{$group:{_id:'$CategoryName',Count:{$sum:1}}}"], function (res) {
+            Doc.LoadChart("container1", App.Doc.Server.Url16, ["YunArticle","{$match:{}}", "{$group:{_id:'$CategoryName',Count:{$sum:1}}}"], function (res) {
                 //return[item["_id"], item["total"]];
                 var arr = [];
                 for (var k = 0; k < res.length; k++) {
