@@ -436,6 +436,7 @@
     <Content Include="JS\Base\mCustomScrollbar\jquery.mCustomScrollbar.css" />
     <Content Include="JS\Base\NET.js" />
     <Content Include="JS\Base\PARAM_CHECKER.js" />
+    <Content Include="JS\Base\vue.js" />
     <Content Include="JS\Base\zTree\api\apiCss\api.js" />
     <Content Include="JS\Base\zTree\api\apiCss\common.css" />
     <Content Include="JS\Base\zTree\api\apiCss\common_ie6.css" />
