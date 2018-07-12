@@ -139,7 +139,8 @@ namespace WangJun.YunNews
             {
                 ar.ImageUrl = YunAI.GetInstance().GetPicByKeyword(ar.Title);
             }
-
+            ar.OwnerID = SESSION.Current.CompanyID;
+            ar.OwnerName = SESSION.Current.CompanyName;
 
             ar.Save();
 
@@ -148,10 +149,24 @@ namespace WangJun.YunNews
             return 0;
         }
 
- 
+
         #endregion
 
-         
+        #region 回收站
+        public List<YunArticle> LoadRecycleBinEntityList(string query, string protection = "{}", string sort = "{}", int pageIndex = 0, int pageSize = 50)
+        {
+            ///MongoDB
+            query = "{$and:[" + "{}" + ",{'OwnerID':'" + SESSION.Current.CompanyID + "','AppCode':" + this.AppCode + "},{'StatusCode':{$eq:" + (int)EnumStatus.删除 + "}}]}";
+            var res = EntityManager.GetInstance().Find<YunArticle>(query, protection, sort, pageIndex, pageSize);
+
+            /// SQLServer
+            var res2 = EntityManager.GetInstance().Find<YunArticle>(p => p.CompanyID == SESSION.Current.CompanyID && p.AppCode == this.AppCode && p.StatusCode == (int)EnumStatus.删除, p => p.CreateTime, pageIndex, pageSize, true).ToList();
+
+            return res;
+
+        }
+        #endregion
+
 
 
         #region 统计操作

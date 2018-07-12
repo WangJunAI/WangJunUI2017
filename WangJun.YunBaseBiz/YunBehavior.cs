@@ -26,7 +26,11 @@ namespace WangJun.Yun
             , long appCode, string appName,string companyID,string companyName
             )
         {
-
+            var readCount = 0;
+            var likeCount = 0;
+            var commentCount = 0;
+            var favoriteCount = 0;
+ 
 
             var inst = new YunBehavior();
             inst.CreateTime = DateTime.Now;
@@ -59,17 +63,33 @@ namespace WangJun.Yun
                     {
                         YunBehavior.Remove(listItem.ID);
                     }
-
+                    likeCount = ((int)EnumBehaviorType.点赞 == operateTypeCode) ? -1 : 0;
+                    favoriteCount = ((int)EnumBehaviorType.收藏 == operateTypeCode) ? -1 : 0;
                 }
                 else
                 {
                     EntityManager.GetInstance().Save<YunBehavior>(inst);
+                    likeCount = ((int)EnumBehaviorType.点赞 == operateTypeCode) ? 1 : 0;
+                    favoriteCount = ((int)EnumBehaviorType.收藏 == operateTypeCode) ? 1 : 0;
                 }
             }
             else if ((int)EnumBehaviorType.阅读 == operateTypeCode)
             {
                 EntityManager.GetInstance().Save<YunBehavior>(inst);
+
+                readCount = 1;
             }
+             
+            if (targetTypeCode == (int)EnumBizType.文章)
+            {
+                var target = YunArticle.Load(SUID.FromGuidToObjectId(targetID).ToString());
+                target.ReadCount += readCount;
+                target.LikeCount += likeCount;
+                target.FavoriteCount += favoriteCount;
+                target.CommentCount += commentCount;
+                target.Save();
+            }
+
 
         }
 

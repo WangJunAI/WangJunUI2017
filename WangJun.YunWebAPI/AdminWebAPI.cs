@@ -25,6 +25,7 @@ namespace WangJun.Admin
             #region 创建超级管理员
             superUser.CompanyID = company.ID;
             superUser.CompanyName = company.Name;
+            superUser.PositionName = "超级管理员";
             superUser.Save();
             #endregion
 

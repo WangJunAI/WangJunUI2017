@@ -119,6 +119,7 @@ namespace WangJun.Yun
             var inst = new YunUser();
             inst._GID = SUID.New();
             inst.NickName = "超级管理员";
+            inst.RealName = "超级管理员";
             inst.LoginEmail = loginEmail;
 
             inst.CompanyID = iCompany.CompanyID;
