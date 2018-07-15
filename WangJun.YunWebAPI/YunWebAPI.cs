@@ -398,6 +398,10 @@ namespace WangJun.App
             {
                 iSysItem = Activator.CreateInstance<YunArticle>() as ISysItem;
             }
+            else if ("YunPermission" == itemType)
+            {
+                iSysItem = Activator.CreateInstance<YunPermission>() as ISysItem;
+            }
             var res = EntityManager.GetInstance().Aggregate(iSysItem._DbName, iSysItem._CollectionName, match, group);
             return res;
 

@@ -1451,6 +1451,7 @@
     <Content Include="UI\APP\TouTiaoPhone\weui-master\dist\example\App.TouTiao.js" />
     <Content Include="UI\APP\YunNews\Chart3.html" />
     <Content Include="UI\APP\YunNews\Chart2.html" />
+    <Content Include="UI\APP\YunNote\Chart2.html" />
     <Content Include="UI\APP\YunUser\AppInfo.html" />
     <Content Include="UI\APP\YunUser\Category.html" />
     <Content Include="UI\APP\YunUser\Chart1.html" />

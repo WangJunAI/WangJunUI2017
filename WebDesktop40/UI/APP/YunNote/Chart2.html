@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>数据分析</title>
+    <script src="../../../JS/YunConfig.js"></script>
+
+
+    <!--基础JS-->
+    <script src="../../../JS/Base/jquery-3.1.1.min.js"></script>
+    <script src="../../../JS/Base/PARAM_CHECKER.js"></script>
+    <script src="../../../JS/Base/DEBUG.js"></script>
+    <script src="../../../JS/Base/Convertor.js"></script>
+    <script src="../../../JS/Base/NET.js"></script>
+    <!--base64加密-->
+    <script src="../../../JS/Base/CryptoJS/core-min.js"></script>
+    <script src="../../../JS/Base/CryptoJS/enc-base64-min.js"></script>
+
+    <!--SESSION相关-->
+    <script src="../../../JS/jquery.cookie.js"></script>
+    <script src="../../../JS/SESSION.js"></script>
+
+
+    <script src="../../../JS/TPL/TPL.Initial.js"></script>
+    <!--图表方法-->
+    <script src="JS/AppInfo.Admin.js"></script>
+
+    <!--图表公用方法-->
+    <script src="../../../JS/TPL/TPL.Chart.js"></script>
+</head>
+<body>
+    <!-- 图表容器 DOM -->
+    <h1>共享分析</h1>
+    <div id="container1" style="width: 80%;height:400px;"></div>
+    <h1>最受欢迎排行</h1>
+    <div id="container2" style="width: 80%;height:400px;"></div>
+    <h1>收藏统计</h1>
+    <div id="container3" style="width: 80%;height:400px;"></div>
+    <!-- 引入 highcharts.js -->
+    <script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+    <script>
+
+    </script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () { 
+            var query1 = ["YunPermission", "{$match:{'BehaviorType':5}}", "{$group:{_id:'$ObjectID',Count:{$sum:1}}}"];
+            Doc.LoadChart("container1", App.Doc.Server.Url16,query1, function (res) {
+                 var categories = []; 
+                var readCountData = { name: "分享", data: [] }; 
+                for (var k = 0; k < res.length; k++) {
+                    var item = res[k];
+                     categories.push(item["_id"]); 
+                    readCountData.data.push(item["Count"]); 
+                }
+
+                var option = Doc.GetChartOption("基础条形图");
+                option.title.text = "分享统计";
+                option.subtitle.text = "汪俊";
+                option.xAxis.categories = categories; 
+                option.series = [readCountData];
+
+                return option;
+            });
+ 
+            var query2 = ["YunBehavior", "{$match:{'OperateTypeCode':2}}", "{$group:{_id:'$TargetName',Count:{$sum:1}}}"];
+            Doc.LoadChart("container2", App.Doc.Server.Url16, query2, function (res) {
+                var categories = [];
+                var readCountData = { name: "点赞", data: [] };
+                for (var k = 0; k < res.length; k++) {
+                    var item = res[k];
+                    categories.push(item["_id"]);
+                    readCountData.data.push(item["Count"]);
+                }
+
+                var option = Doc.GetChartOption("基础条形图");
+                option.title.text = "点赞统计";
+                option.subtitle.text = "汪俊";
+                option.xAxis.categories = categories;
+                option.series = [readCountData];
+
+                return option;
+            });
+
+            var query2 = ["YunBehavior", "{$match:{'OperateTypeCode':3}}", "{$group:{_id:'$TargetName',Count:{$sum:1}}}"];
+            Doc.LoadChart("container3", App.Doc.Server.Url16, query2, function (res) {
+                var categories = [];
+                var readCountData = { name: "收藏", data: [] };
+                for (var k = 0; k < res.length; k++) {
+                    var item = res[k];
+                    categories.push(item["_id"]);
+                    readCountData.data.push(item["Count"]);
+                }
+
+                var option = Doc.GetChartOption("基础条形图");
+                option.title.text = "收藏统计";
+                option.subtitle.text = "汪俊";
+                option.xAxis.categories = categories;
+                option.series = [readCountData];
+
+                return option;
+            });
+        });
+
+    </script>
+</body>
+</html>
