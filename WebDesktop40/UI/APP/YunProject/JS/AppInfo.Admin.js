@@ -34,7 +34,7 @@ App.Doc.Server = {
     Url13: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunProject.YunProjectWebAPI&m=MoveToRecycleBin", ///移除到回收站
     Url14: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunProject.YunProjectWebAPI&m=LoadRecycleBinEntityList",///加载回收站
     Url15: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunProject.DataAnalysor&m=GetHotWords",///暂未使用
-    Url16: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunProject.DocWebAPI&m=Aggregate",///聚合查询
+    Url16: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunProject.YunProjectWebAPI&m=Aggregate",///聚合查询
     Url17: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunProject.ClientBehaviorManager&m=Aggregate",
     Url18: App.Doc.ServerHost + "/API.ashx?c=WangJun.YunProject.DocWebAPI&m=RecycleBinCount",///回收站数量
     Url19: App.Doc.ServerHost + "/API.ashx?c=WangJun.App.YunUserAPI&m=LoadAll",///回收站数量
