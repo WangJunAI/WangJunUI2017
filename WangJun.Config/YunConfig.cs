@@ -33,6 +33,9 @@ namespace WangJun.Config
             dict["Windows开发环境"]["mongodb"] = "mongodb://192.168.0.150:27017";
             dict["Windows开发环境"]["sqlserver"] = "Data Source=qds165298153.my3w.com;Initial Catalog=qds165298153_db;Persist Security Info=True;User ID=qds165298153;Password=75737573";
 
+            dict["百度云"]["mongodb"] = "mongodb://106.12.24.68:27017";
+            dict["百度云"]["sqlserver"] = "Data Source=qds165298153.my3w.com;Initial Catalog=qds165298153_db;Persist Security Info=True;User ID=qds165298153;Password=75737573";
+
 
             if (dict.ContainsKey(keyName))
             {

@@ -127,6 +127,7 @@ namespace WebAPI
             dict.Add("WangJun.Yun.YunUser." + methodName, HttpContext.Current.Server.MapPath("./bin/YunWebAPI/WangJun.YunUser.dll"));
             dict.Add("WangJun.App.YunUserAPI." + methodName, HttpContext.Current.Server.MapPath("./bin/YunWebAPI/WangJun.YunWebAPI.dll"));
             dict.Add("WangJun.Yun.YunAI." + methodName, HttpContext.Current.Server.MapPath("./bin/YunAI/WangJun.YunAI.dll"));
+            dict.Add("WangJun.Yun.YunTools." + methodName, HttpContext.Current.Server.MapPath("./bin/YunWebAPI/WangJun.YunBaseBiz.dll"));
 
 
             var dllPath = dict[classFullName + "." + methodName];

@@ -106,4 +106,5 @@ namespace WangJun.Utility
             return Guid.Empty.ToString().Replace("-", string.Empty).Replace("0", "F") == input || ObjectId.Empty.ToString().Replace("0", "F") == input;
         }
     }
+ 
 }

@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="YunTask.cs" />
+    <Compile Include="YunTools.cs" />
     <Compile Include="YunWorkflow.cs" />
     <Compile Include="YunForm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
