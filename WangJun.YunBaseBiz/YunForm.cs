@@ -125,6 +125,7 @@ namespace WangJun.Yun
 
             return inst;
         }
-        #endregion
+        #endregion
+
     }
 }

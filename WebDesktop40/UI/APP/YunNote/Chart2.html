@@ -30,7 +30,7 @@
 </head>
 <body>
     <!-- 图表容器 DOM -->
-    <h1>共享分析</h1>
+    <h1>我共享出去的分析</h1>
     <div id="container1" style="width: 80%;height:400px;"></div>
     <h1>最受欢迎排行</h1>
     <div id="container2" style="width: 80%;height:400px;"></div>
@@ -45,7 +45,7 @@
 
     <script type="text/javascript">
         $(document).ready(function () { 
-            var query1 = ["YunPermission", "{$match:{'BehaviorType':5}}", "{$group:{_id:'$ObjectID',Count:{$sum:1}}}"];
+            var query1 = ["YunPermission", "{$match:{'BehaviorType':5,'OperatorID':UUID('" +"00000000-5b46-aa1b-26b0-1a052821d83b"+"')}}", "{$group:{_id:'$ObjectID',Count:{$sum:1}}}"];
             Doc.LoadChart("container1", App.Doc.Server.Url16,query1, function (res) {
                  var categories = []; 
                 var readCountData = { name: "分享", data: [] }; 
@@ -64,7 +64,7 @@
                 return option;
             });
  
-            var query2 = ["YunBehavior", "{$match:{'OperateTypeCode':2}}", "{$group:{_id:'$TargetName',Count:{$sum:1}}}"];
+            var query2 = ["YunPermission", "{$match:{'BehaviorType':5}}", "{$group:{_id:'$TargetName',Count:{$sum:1}}}"];
             Doc.LoadChart("container2", App.Doc.Server.Url16, query2, function (res) {
                 var categories = [];
                 var readCountData = { name: "点赞", data: [] };

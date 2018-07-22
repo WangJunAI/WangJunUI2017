@@ -30,7 +30,7 @@
 </head>
 <body>
     <!-- 图表容器 DOM -->
-    <h1>发布统计</h1>
+    <h1>笔记发布统计</h1>
     <div id="container1" style="width: 80%;height:80%;"></div> 
     <h1>分类统计</h1>
     <div id="container3" style="width: 80%;height:400px;"></div>
@@ -44,7 +44,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-            Doc.LoadChart("container3", App.Doc.Server.Url16, ["YunArticle","{$match:{}}", "{$group:{_id:'$ParentName',Count:{$sum:1}}}"], function (res) {
+            Doc.LoadChart("container3", App.Doc.Server.Url16, ["YunArticle","{$match:{'AppCode':1803001002}}", "{$group:{_id:'$ParentName',Count:{$sum:1}}}"], function (res) {
                 //return[item["_id"], item["total"]];
                 var arr = [];
                 for (var k = 0; k < res.length; k++) {
@@ -108,7 +108,7 @@
             //});
 
             //var query1 = ["", "{$match:{}}", "{$group:{'_id':{ 'month': { '$month': '$CreateTime' }, 'day': { '$dayOfMonth': '$CreateTime' }, 'year': { '$year': '$CreateTime' } },'Count':{'$sum':1}}}"];
-            var query1 = ["YunArticle", "{$match:{}}", "{$group:{'_id':{ 'month': { '$hour': '$CreateTime' }, 'day': { '$dayOfMonth': '$CreateTime' }, 'year': { '$minute': '$CreateTime' } },'Count':{'$sum':1}}}"];
+            var query1 = ["YunArticle", "{$match:{'AppCode':1803001002}}", "{$group:{'_id':{ 'month': { '$hour': '$CreateTime' }, 'day': { '$dayOfMonth': '$CreateTime' }, 'year': { '$minute': '$CreateTime' } },'Count':{'$sum':1}}}"];
 
             Doc.LoadChart("container1", App.Doc.Server.Url16,query1, function (res) {
                 var categories = [];
