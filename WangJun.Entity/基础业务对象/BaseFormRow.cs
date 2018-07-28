@@ -11,22 +11,17 @@ using WangJun.Utility;
 
 namespace WangJun.Entity
 {
-    public class BaseForm :  IRelationshipGuid, IRelationshipObjectId, IOperator, ITime, IName,IApp,ICompany,IStatus,ISysItem
+    public class BaseFormRow:  IRelationshipGuid, IRelationshipObjectId, IOperator, ITime, IName,IApp,ICompany,IStatus,ISysItem
     {
-  
-        public List<BaseFormRow> Rows { get; set; }
 
+        public string KeyName { get; set; }
 
-        #region IName
+        public string Value { get; set; }
 
-        public string Name { get; set; }
+        public string ValueType { get; set; }
 
-        public string ParentName { get; set; }
+        public int Sort { get; set; }
 
-        public string RootName { get; set; }
-
-        public string Path { get; set; }
-        #endregion
 
         #region IRelationshipGuid
         [Key]
@@ -112,6 +107,18 @@ namespace WangJun.Entity
         public DateTime DeleteTime { get; set; }
         #endregion
 
+        #region ICount
+        public int ReadCount { get; set; }
+
+        public int LikeCount { get; set; }
+
+        public int FavoriteCount { get; set; }
+
+        public int CommentCount { get; set; }
+
+        public int DownloadCount { get; set; }
+        #endregion
+
         #region IOperator
 
         public string CreatorID { get; set; }
@@ -134,6 +141,18 @@ namespace WangJun.Entity
         public long AppCode { get; set; }
         #endregion
 
+        #region IEntity
+        public virtual int Save()
+        {
+
+            return 0;
+
+        }
+        public virtual int Remove() { return 0; }
+
+        public virtual int Load() { return 0; }
+        #endregion
+
         #region ICompany
         public string CompanyID { get; set; }
         public string CompanyName { get; set; }
@@ -144,19 +163,6 @@ namespace WangJun.Entity
 
         public int StatusCode { get; set; }
         #endregion 
-
-        #region IEntity
-        public virtual int Save()
-        {
-
-            return 0;
-
-        } 
-
-        public virtual int Remove() { return 0; }
-
-        public static   int Load() { return 0; }
-        #endregion
 
         #region IPermission 
         public Guid PermissionGroupID { get; set; }
@@ -173,6 +179,17 @@ namespace WangJun.Entity
 
         public string _SourceID { get; set; }
 
+        #endregion
+
+        #region IName
+
+        public string Name { get; set; }
+
+        public string ParentName { get; set; }
+
+        public string RootName { get; set; }
+
+        public string Path { get; set; }
         #endregion
 
         #region 权限控制
@@ -205,14 +222,13 @@ namespace WangJun.Entity
 
         #endregion
 
-
         #region 基本方法
-
-
-        public static BaseCategory CreateAsNew(string name)
+        public static BaseFormRow CreateAsHtml()
         {
-            var inst = new BaseCategory();
-            inst.Name = name;
+            var inst = new BaseFormRow();
+
+            var iArticle = inst as IArticle;
+            iArticle.ContentType = "html";
 
             var iTime = inst as ITime;
             iTime.CreateTime = DateTime.Now;
@@ -222,5 +238,6 @@ namespace WangJun.Entity
             return inst;
         }
         #endregion
+
     }
 }

@@ -9,6 +9,9 @@ using WangJun.Utility;
 
 namespace WangJun.Yun
 {
+    /// <summary>
+    /// 云表单
+    /// </summary>
     public class YunForm:BaseForm
     {
         public YunForm()
@@ -94,6 +97,16 @@ namespace WangJun.Yun
 
             return (int)EnumResult.失败;
         }
+
+        public  int SaveJson(string jsonInput)
+        {
+            var inst =Convertor.FromJsonToObject2<YunForm>(jsonInput);
+            var res=inst.Save();
+
+            return res;
+        }
+
+
         public static YunForm Load(string id)
         {
             var res = EntityManager.GetInstance().Get<YunForm>(id);

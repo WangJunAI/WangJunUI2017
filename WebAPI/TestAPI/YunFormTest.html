@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>云表单测试</title>
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="vue.js"></script>
+</head>
+<body>
+
+    <script type="text/javascript">
+        var TestYunForm = function () {
+            var data = {
+                Name: "Test",
+                Rows: [{ KeyName: "姓名", Value: "汪俊" }]
+            };
+
+
+
+            var option = {
+                url: "http://localhost:9990/API.ashx?_SID=5b4b75db26b0194f70d12a4a&c=WangJun.App.YunWebAPI&m=SaveJson",
+                method: "POST",
+                data:JSON.stringify(["YunForm",JSON.stringify(data)]),
+                success: function (res1) {
+                    console.log(res1);
+                },
+                error: function (res2) {
+                    console.log(res2);
+                },
+
+            };
+            $.ajax(option);
+        }
+    </script>
+</body>
+</html>

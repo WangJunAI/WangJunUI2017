@@ -12,6 +12,7 @@ namespace WangJun.App
 {
     public class YunWebAPI: IApp
     {
+        public YunWebAPI() { }
         public YunWebAPI(string appName,long appCode,long Version) {
             this.AppName = appName;
             this.AppCode =appCode;
@@ -460,6 +461,17 @@ namespace WangJun.App
             //var res2 = EntityManager.GetInstance().Find<YunArticle>(p => p.CompanyID == SESSION.Current.CompanyID && p.AppCode == this.AppCode && p.StatusCode == (int)EnumStatus.删除, p => p.CreateTime, pageIndex, pageSize, true).ToList();
 
             return list;
+        }
+
+        public int SaveJson(string bizType , string data)
+        {
+            if ("YunForm" == bizType)
+            {
+                var inst = Convertor.FromJsonToObject<YunForm>(data);
+                inst.Save();
+
+            }
+            return -1;
         }
 
     }

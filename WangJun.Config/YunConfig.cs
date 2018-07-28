@@ -21,6 +21,7 @@ namespace WangJun.Config
             dict["ubuntu开发环境"] = new Dictionary<string, string>();
             dict["docker开发环境"] = new Dictionary<string, string>();
             dict["Windows开发环境"] = new Dictionary<string, string>();
+            dict["百度云"] = new Dictionary<string, string>();
 
 
             dict["阿里云按量计费"]["mongodb"] = "mongodb://101.200.49.75:27017";
