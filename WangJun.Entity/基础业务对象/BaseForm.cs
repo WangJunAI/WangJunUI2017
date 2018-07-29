@@ -13,8 +13,8 @@ namespace WangJun.Entity
 {
     public class BaseForm :  IRelationshipGuid, IRelationshipObjectId, IOperator, ITime, IName,IApp,ICompany,IStatus,ISysItem
     {
-  
-        public List<BaseFormRow> Rows { get; set; }
+  //[NotMapped]
+  //      public List<BaseFormRow> Rows { get; set; }
 
 
         #region IName

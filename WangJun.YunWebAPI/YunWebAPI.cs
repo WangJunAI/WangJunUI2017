@@ -469,7 +469,6 @@ namespace WangJun.App
             {
                 var inst = Convertor.FromJsonToObject<YunForm>(data);
                 inst.Save();
-
             }
             return -1;
         }

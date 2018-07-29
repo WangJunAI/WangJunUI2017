@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Common;
@@ -7,6 +8,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WangJun.DB;
 using WangJun.Utility;
 
 namespace WangJun.Entity
@@ -27,9 +29,17 @@ namespace WangJun.Entity
         /// <typeparam name="T"></typeparam>
         /// <param name="connectionString"></param>
         /// <returns></returns>
-        public static EntityDbContext<T> CreateInstance(string connectionString)  
+        public static EntityDbContext<T> CreateInstance(string connectionString, DBType dbType=DBType.SQLServer) 
         {
-            return new EntityDbContext<T>(new SqlConnection(connectionString));
+            if (dbType == DBType.SQLServer)
+            {
+                return new EntityDbContext<T>(new SqlConnection(connectionString));
+            }
+            else if (dbType == DBType.MySQL)
+            {
+                return new EntityDbContext<T>(new MySqlConnection(connectionString));
+            }
+            return null;
         }
 
         /// <summary>
@@ -43,7 +53,6 @@ namespace WangJun.Entity
         /// <param name="t"></param>
         public void Save(T t)
         {
-            return;
             if (null != t)
             {
                 var id = t.GetType().GetProperty("ID").GetValue(t).ToString();

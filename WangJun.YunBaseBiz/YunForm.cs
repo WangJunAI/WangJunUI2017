@@ -1,6 +1,7 @@
 ﻿using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,9 @@ namespace WangJun.Yun
     /// </summary>
     public class YunForm:BaseForm
     {
+        [NotMapped]
+        public List<YunFormRow> Rows { get; set; }
+
         public YunForm()
         {
             var iSysItem = this as ISysItem;
@@ -80,7 +84,15 @@ namespace WangJun.Yun
             }
             #endregion
 
-
+            #region YunFormRow
+            if (null != this.Rows)
+            {
+                foreach (YunFormRow row in this.Rows)
+                {
+                    row.Save();
+                }
+            }
+            #endregion
 
             #region iSysItem
             if (null != iSysItem)
@@ -102,6 +114,8 @@ namespace WangJun.Yun
         {
             var inst =Convertor.FromJsonToObject2<YunForm>(jsonInput);
             var res=inst.Save();
+
+
 
             return res;
         }
