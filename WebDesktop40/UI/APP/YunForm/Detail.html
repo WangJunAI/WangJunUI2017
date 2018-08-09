@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>新建表单</title>
+    <script src="../../../JS/YunConfig.js"></script>
+    <!--共用样式表-->
+    <link href="../../../CSS/TPL.SIZE.PC.1080.css" rel="stylesheet" />
+    <link href="../../../CSS/TPL.Font.css" rel="stylesheet" />
+    <link href="../../../CSS/TPL.Color.css" rel="stylesheet" />
+
+    <!--Detail页面样式-->
+    <link href="../../../CSS/TPL.Detail.css?ver=2" rel="stylesheet" />
+
+    <!--基础JS-->
+    <script src="../../../JS/Base/jquery-3.1.1.min.js"></script>
+    <script src="../../../JS/Base/PARAM_CHECKER.js"></script>
+    <script src="../../../JS/Base/DEBUG.js"></script>
+    <script src="../../../JS/Base/Convertor.js"></script>
+    <script src="../../../JS/Base/NET.js"></script>
+    <!--base64加密-->
+    <script src="../../../JS/Base/CryptoJS/core-min.js"></script>
+    <script src="../../../JS/Base/CryptoJS/enc-base64-min.js"></script>
+
+    <!--SESSION相关-->
+    <script src="../../../JS/jquery.cookie.js"></script>
+    <script src="../../../JS/SESSION.js"></script>
+
+    <!--ZTree组件-->
+    <link href="../../../JS/Base/zTree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
+    <script src="../../../JS/Base/zTree/js/jquery.ztree.all.js"></script>
+
+    <!--VUE-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <link href="../../../JS/Base/jquery-ui-1.12.1/jquery-ui.structure.css" rel="stylesheet" />
+    <link href="../../../JS/Base/jquery-ui-1.12.1/jquery-ui.theme.css" rel="stylesheet" />
+    <script src="../../../JS/Base/jquery-ui-1.12.1/jquery-ui.js"></script>
+
+
+
+    <!--共用业务JS-->
+    <script src="../../../JS/TPL/TPL.Initial.js"></script>
+    <script src="../../../JS/TPL/TPL.App.js"></script>
+    <script src="../../../JS/TPL/TPL.Category.js"></script>
+    <script src="../../../JS/TPL/TPL.ClientUI.js"></script>
+    <script src="../../../JS/TPL/TPL.Nav.SummaryList.js"></script>
+    <script src="../../../JS/TPL/TPL.Nav.Ztree.js"></script>
+    <script src="../../../JS/TPL/TPL.Table.js"></script>
+    <script src="../../../JS/TPL/TPL.View.js"></script>
+
+    <!--自定业务-->
+    <script src="JS/Doc.LeftMenu.js"></script>
+    <script src="JS/Doc.TopButton.js"></script>
+    <script src="JS/Doc.Detail.js"></script>
+    <script src="JS/Doc.Biz.js"></script>
+
+</head>
+<body>
+    <input type="hidden" id="ID" data-FormName="Default" data-propertyName="ID" />
+    <input type="hidden" id="pageName" value="Detail" />
+    <div class="global">
+        <div class="options">
+            <ul>
+                <li>
+                    <div class="item">
+                        <div class="key"><input type="text" value="" class="w10em" placeholder="键名" /></div>
+                        <div class="value">
+                            <input type="text" placeholder="数值" />
+                        </div>
+                        <div class="inputcheck cred">
+                            检查信息
+                        </div>
+                    </div>
+                </li>
+                <li><a href="javascript:;" onclick="AddFormRow()">添加新的表单行</a></li>
+            </ul>
+        </div>
+        <div class="buttons">
+            <a href="javascript:;" class="btn" onclick="SaveForm()">保存</a>
+        </div>
+    </div>
+
+    <div id="modal"></div>
+    <div id="dialog">
+        <div class="title">标题</div>
+        <div class="message">操作成功！</div>
+        <div class="bottom"><a href="javascript:;" onclick="$('#modal').hide();$('#dialog').hide()">关闭</a></div>
+    </div>
+    <script type="text/html" id="tpl_formrow">
+        <li data-rowId="[rowId]">
+            <div class="item">
+                <div class="key"><input type="text" value="" class="w10em" placeholder="键名" data-propertyName="KeyName" /></div>
+                <div class="value">
+                    <input type="text" placeholder="数值"  data-propertyName="Value"/>
+                </div>
+                <div class="inputcheck cred">
+                    检查信息
+                </div>
+            </div>
+        </li>
+    </script>
+    <script type="text/javascript">
+        AddFormRow = function () {
+            var html = $("#tpl_formrow").html().replace("[rowId]",Math.random());
+            $(html).insertBefore($(event.target).parent());
+        }
+
+        SaveForm = function () {
+            var form = {Name:"测试",Rows:[]};
+            var ctrls = $("[data-rowid]").each(function () {
+                var rowId = $(this).attr("data-rowId");
+                var keyName = $(this).find("[data-propertyName='KeyName']").val();
+                var value = $(this).find("[data-propertyName='Value']").val();
+                var formRow = {
+                    KeyName: keyName,
+                    Value:value
+                };
+
+                form.Rows.push(formRow);
+            });
+
+ 
+
+
+
+            var option = {
+                url: "http://localhost:9990/API.ashx?_SID=Test&c=WangJun.App.YunWebAPI&m=SaveJson",
+                method: "POST",
+                data: JSON.stringify(["YunForm", JSON.stringify(form)]),
+                success: function (res1) {
+                    console.log(res1);
+                },
+                error: function (res2) {
+                    console.log(res2);
+                },
+
+            };
+            $.ajax(option);
+        }
+    </script>
+
+</body>
+</html>

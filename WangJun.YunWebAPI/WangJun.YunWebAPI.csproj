@@ -48,6 +48,7 @@
     <Compile Include="YunTaskWebAPI.cs" />
     <Compile Include="YunProjectWebAPI.cs" />
     <Compile Include="YunQunWebAPI.cs" />
+    <Compile Include="YunFormAPI.cs" />
     <Compile Include="YunUserAPI.cs" />
     <Compile Include="YunWebAPI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

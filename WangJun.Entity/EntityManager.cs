@@ -47,7 +47,7 @@ namespace WangJun.Entity
             }
             #endregion
 
-            EntityManager.GetInstance<T>().Save(item);
+            //EntityManager.GetInstance<T>().Save(item);
 
             return 0;
         }

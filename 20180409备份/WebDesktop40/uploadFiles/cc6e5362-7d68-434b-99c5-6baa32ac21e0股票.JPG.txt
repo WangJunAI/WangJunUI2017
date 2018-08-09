@@ -1,1 +1,0 @@
-﻿{"ServerFileName":"cc6e5362-7d68-434b-99c5-6baa32ac21e0股票.JPG","ServerFilePath":"E:\\WangJunUI2017\\WangJunUI2017\\WebDesktop40\\uploadFiles\\cc6e5362-7d68-434b-99c5-6baa32ac21e0股票.JPG","FileNameInClient":"股票.JPG","FileLength":154523,"FileLengthText":"150KB","HttpUrl":"http://localhost:14000/uploadFiles/cc6e5362-7d68-434b-99c5-6baa32ac21e0股票.JPG"}
