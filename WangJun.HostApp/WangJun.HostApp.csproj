@@ -103,6 +103,10 @@
       <Project>{ECA8641B-DDB9-481A-BF78-76FB5A8E1DE3}</Project>
       <Name>WangJun.Utility</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WangJun.WeChatAPI\WangJun.WeChatAPI.csproj">
+      <Project>{E014526A-D740-42B4-8FAF-0AC58F69D8EE}</Project>
+      <Name>WangJun.WeChatAPI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WangJun.YunBaseBiz\WangJun.YunBaseBiz.csproj">
       <Project>{6C036AE2-3629-4856-914A-9D724C45F691}</Project>
       <Name>WangJun.YunBaseBiz</Name>

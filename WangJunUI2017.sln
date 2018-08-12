@@ -59,6 +59,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WangJun.YunWebAPI", "WangJu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WangJun.YunBaseBiz", "WangJun.YunBaseBiz\WangJun.YunBaseBiz.csproj", "{6C036AE2-3629-4856-914A-9D724C45F691}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WangJun.WeChatAPI", "WangJun.WeChatAPI\WangJun.WeChatAPI.csproj", "{E014526A-D740-42B4-8FAF-0AC58F69D8EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -141,6 +143,10 @@ Global
 		{6C036AE2-3629-4856-914A-9D724C45F691}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C036AE2-3629-4856-914A-9D724C45F691}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C036AE2-3629-4856-914A-9D724C45F691}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E014526A-D740-42B4-8FAF-0AC58F69D8EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E014526A-D740-42B4-8FAF-0AC58F69D8EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E014526A-D740-42B4-8FAF-0AC58F69D8EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E014526A-D740-42B4-8FAF-0AC58F69D8EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

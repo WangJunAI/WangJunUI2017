@@ -13,5 +13,19 @@ namespace WangJun.Yun
         {
             return SUID.New();
         }
+
+        public object CreateSUIDArray(int count=10)
+        {
+            if (count < 100)
+            {
+                var list = new List<Guid>();
+                for (int k = 0; k < count; k++)
+                {
+                    list.Add(SUID.New());
+                }
+                return list;
+            }
+            return null;
+        }
     }
 }
