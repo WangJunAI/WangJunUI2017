@@ -468,9 +468,9 @@ namespace WangJun.App
             if ("YunForm" == bizType)
             {
                 var inst = Convertor.FromJsonToObject<YunForm>(data);
-                inst.Save();
+                return inst.Save();
             }
-            return -1;
+            return (int)EnumResult.失败;
         }
 
     }

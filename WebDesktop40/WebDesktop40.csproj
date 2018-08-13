@@ -1443,6 +1443,8 @@
     <Content Include="MP4\748310191.mp4" />
     <Content Include="MP4\MVI_0358.mp4" />
     <Content Include="redirect.html" />
+    <Content Include="UI\APP\DataJin10\JS\AppInfo.Admin.js" />
+    <Content Include="UI\APP\DataJin10\Main.html" />
     <Content Include="UI\APP\TouTiaoPhone\weui-master\dist\example\App.js" />
     <Content Include="UI\APP\TouTiaoPhone\weui-master\dist\example\AppInfo.TouTiao.js" />
     <Content Include="UI\APP\TouTiaoPhone\weui-master\dist\example\iscroll.js" />
@@ -2076,6 +2078,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="UI\APP\DataJin10\CSS\" />
     <Folder Include="UI\APP\Stock\CSS\" />
     <Folder Include="UI\APP\YunDoc\CSS\" />
     <Folder Include="UI\APP\YunForm\CSS\" />

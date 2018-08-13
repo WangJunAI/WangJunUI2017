@@ -89,6 +89,7 @@ namespace WangJun.Yun
             {
                 foreach (YunFormRow row in this.Rows)
                 {
+                    row.ParentID = this.ID;
                     row.Save();
                 }
             }

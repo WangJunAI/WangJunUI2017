@@ -9,7 +9,7 @@ Convertor.DateFormat = function (date, format) {
         date = new Date(date);
         var year = date.getFullYear();
         var month = (10 <= date.getMonth() + 1) ? (date.getMonth() + 1) : "0" + (date.getMonth() + 1); 
-        var day = (10 <= date.getDate() + 1)?(date.getDate() + 1): "0" +( date.getDate() + 1);
+        var day = (10 <= date.getDate())?(date.getDate() ): "0" +( date.getDate() );
         var hour = (10 <= date.getHours() + 1) ? (date.getHours() + 1) : "0" + (date.getHours() + 1);  
         var minutes = (10 <= date.getMinutes() + 1) ? (date.getMinutes() + 1) : "0" + (date.getMinutes() + 1);  
         var str = format.replace("yyyy", year).replace("MM", month).replace("dd", day).replace("hh", hour).replace("mm", minutes);

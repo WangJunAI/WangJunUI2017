@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>页面分析</title>
+ 
+
+    <!--基础JS-->
+    <script src="../../../JS/Base/jquery-3.1.1.min.js"></script>
+    <script src="../../../JS/Base/PARAM_CHECKER.js"></script>
+    <script src="../../../JS/Base/DEBUG.js"></script>
+    <script src="../../../JS/Base/Convertor.js"></script>
+    <script src="../../../JS/Base/NET.js"></script>
+    <!--base64加密-->
+    <script src="../../../JS/Base/CryptoJS/core-min.js"></script>
+    <script src="../../../JS/Base/CryptoJS/enc-base64-min.js"></script>
+     
+    <script src="JS/AppInfo.Admin.js"></script>
+ 
+</head>
+<body>
+    <div id="res">
+
+    </div>
+   
+ <script type="text/javascript">
+     var count = 0;
+     var GetNews = function () {
+         var option = {
+             url: "http://localhost:9990/API.ashx?c=WangJun.Yun.YunTools&m=HTTPGet&p0=https://www.jin10.com/",
+             success: function (res1) {
+                 $(res1).find(".jin-flash_item").each(function (res3) {
+                     var text = $(this).text();
+                     var id = $(this).html().split('ref="//view.jin10.com/news')[1].substring(0, 20);
+                     var form = {
+                         Name: text, Version: 1, AppName: "金10财经", AppCode: 20180814,
+                         Rows: []
+                     };
+                     formRow = {
+                         KeyName: id,
+                         Value: text,
+                         Version: 1, AppName: "金10财经", AppCode: 20180814,
+                     };
+                     form.Rows.push(formRow);
+
+                     var option2 = {
+                         url: "http://localhost:9990/API.ashx?_SID=Test&c=WangJun.App.YunWebAPI&m=SaveJson",
+                         method: "POST",
+                         data: JSON.stringify(["YunForm", JSON.stringify(form)]),
+                         success: function (res3) {
+                             console.log(res3);
+                             ++count;
+                             $("#res").text(count);
+                         },
+                         error: function (res4) {
+                             console.log(res4);
+                         },
+                     };
+                     $.ajax(option2);
+                 });
+             },
+             error: function (res2) {
+                 console.log(res2);
+             }
+         };
+         $.ajax(option);
+     }
+
+     setInterval(function () {
+         GetNews();
+     }, 1000 * 60 * 60 * 2);
+     
+  </script>
+</body>
+</html>

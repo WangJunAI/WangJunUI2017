@@ -107,14 +107,15 @@
         }
 
         SaveForm = function () {
-            var form = {Name:"测试",Rows:[]};
+            var form = { Name: "测试", Rows:[]};
             var ctrls = $("[data-rowid]").each(function () {
                 var rowId = $(this).attr("data-rowId");
                 var keyName = $(this).find("[data-propertyName='KeyName']").val();
                 var value = $(this).find("[data-propertyName='Value']").val();
                 var formRow = {
                     KeyName: keyName,
-                    Value:value
+                    Value: value,
+                   
                 };
 
                 form.Rows.push(formRow);

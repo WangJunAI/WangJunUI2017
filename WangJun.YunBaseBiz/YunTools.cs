@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WangJun.Net;
 using WangJun.Utility;
 
 namespace WangJun.Yun
@@ -14,9 +15,10 @@ namespace WangJun.Yun
             return SUID.New();
         }
 
-        public object CreateSUIDArray(int count=10)
+        public object CreateSUIDArray(string input)
         {
-            if (count < 100)
+            var count = int.Parse(input);
+            if (count < 1000)
             {
                 var list = new List<Guid>();
                 for (int k = 0; k < count; k++)
@@ -26,6 +28,11 @@ namespace WangJun.Yun
                 return list;
             }
             return null;
+        }
+
+        public object HTTPGet(string url) {
+
+            return HTTP.GetInstance().GetString(url);
         }
     }
 }
