@@ -22,7 +22,7 @@ namespace WangJun.Entity
 
         public static EntityDbContext<T> GetInstance<T>() where T : class,new()
         {
-            var connStr = @"Data Source=hds260381389.my3w.com;Initial Catalog=hds260381389_db;Persist Security Info=True;User ID=hds260381389;Password=75737573";
+            var connStr = @"Data Source=106.12.24.68;Initial Catalog=WangJun;Persist Security Info=True;User ID=sa;Password=111qqq!!!";
             //var connStr = @"Data Source=192.168.0.150\SQL2016;Initial Catalog=WangJun;Persist Security Info=True;User ID=sa;Password=111qqq!!!";
             var context = EntityDbContext<T>.CreateInstance(connStr);
             return context;
@@ -47,7 +47,7 @@ namespace WangJun.Entity
             }
             #endregion
 
-            //EntityManager.GetInstance<T>().Save(item);
+            EntityManager.GetInstance<T>().Save(item);
 
             return 0;
         }
@@ -66,8 +66,9 @@ namespace WangJun.Entity
 
 
                 var res = EntityManager.GetInstance<T>().List.Find(new object[] { SUID.FromStringToGuid(id) });
-                if (null != res) {
-                    (res as IStatus).StatusCode =(int) EnumStatus.删除;
+                if (null != res)
+                {
+                    (res as IStatus).StatusCode = (int)EnumStatus.删除;
                     (res as IStatus).Status = EnumStatus.删除.ToString();
                     EntityManager.GetInstance<T>().Save(res);
                 }
@@ -129,6 +130,7 @@ namespace WangJun.Entity
         }
         public T Get<T>(Expression<Func<T, bool>> where) where T : class, new()
         {
+            return new T();
             var res = EntityManager.GetInstance<T>().List.Where(where).Take(1);
 
             return res.FirstOrDefault();
@@ -201,6 +203,7 @@ namespace WangJun.Entity
 
         public int Count<T>(Expression<Func<T, bool>> where) where T : class, new()
         {
+            return 0;
             var count = EntityManager.GetInstance<T>().List.Where(where).Count();
 
             return count;

@@ -53,6 +53,7 @@ namespace WangJun.Entity
         /// <param name="t"></param>
         public void Save(T t)
         {
+            return;
             if (null != t)
             {
                 var id = t.GetType().GetProperty("ID").GetValue(t).ToString();
