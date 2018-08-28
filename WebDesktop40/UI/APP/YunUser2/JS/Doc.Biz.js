@@ -132,7 +132,8 @@ Doc.SaveDetail = function () {
                 console.log(res4);
             },
         };
-        $.ajax(option2);
+        $.ajax(option2);
+
         ///
 
 
