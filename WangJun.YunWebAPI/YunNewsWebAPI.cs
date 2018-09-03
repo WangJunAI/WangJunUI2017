@@ -115,10 +115,7 @@ namespace WangJun.YunNews
             return (int)EnumResult.成功;
         }
         #endregion
-
-          
-
-         
+        
 
         #region 文档操作
         /// <summary>

@@ -32,21 +32,16 @@
                  $(res1).find(".jin-flash_item").each(function (res3) {
                      var text = $(this).text();
                      var id = $(this).html().split('ref="//view.jin10.com/news')[1].substring(0, 20);
-                     var form = {
-                         Name: text, Version: 1, AppName: "金10财经", AppCode: 20180814,
-                         Rows: []
+                     var article = {
+                         Title: "",Content:text, Version: 1,Name:id, AppName: "金10财经", AppCode: 20180814,
                      };
-                     formRow = {
-                         KeyName: id,
-                         Value: text,
-                         Version: 1, AppName: "金10财经", AppCode: 20180814,
-                     };
-                     form.Rows.push(formRow);
+
+                      
 
                      var option2 = {
                          url: "http://localhost:9990/API.ashx?_SID=Test&c=WangJun.App.YunWebAPI&m=SaveJson",
                          method: "POST",
-                         data: JSON.stringify(["YunForm", JSON.stringify(form)]),
+                         data: JSON.stringify(["YunArticle", JSON.stringify(article)]),
                          success: function (res3) {
                              console.log(res3);
                              ++count;

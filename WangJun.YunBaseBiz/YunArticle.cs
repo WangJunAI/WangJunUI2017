@@ -87,12 +87,27 @@ namespace WangJun.Yun
             #endregion
 
 
-            
+
+
+
 
 
 
             return (int)EnumResult.失败;
         }
+
+        public int SaveJson(string jsonInput)
+        {
+            var inst = Convertor.FromJsonToObject2<YunArticle>(jsonInput);
+            var res = inst.Save();
+
+
+
+            return res;
+        }
+
+
+
         public static YunArticle Load(string id)
         {
             var res = EntityManager.GetInstance().Get<YunArticle>(id);
