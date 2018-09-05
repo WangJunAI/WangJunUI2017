@@ -151,6 +151,26 @@ namespace WangJun.App
             return res;
         }
 
+        /// <summary>
+        /// 加载一个列表
+        /// </summary>
+        /// <param name="bizType"></param>
+        /// <param name="query"></param>
+        /// <param name="protection"></param>
+        /// <param name="sort"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public object LoadList(string bizType,string query = "{}", string protection = "{}", string sort = "{}", string pageIndex = "0", string pageSize = "50")
+        {
+            var res = new object();
+            if ("YunArticle" == bizType)
+            {
+                res = EntityManager.GetInstance().Find<YunArticle>(query, protection, sort,int.Parse( pageIndex), int.Parse(pageSize));
+                
+            }
+            return res;
+        }
 
         /// <summary>
         /// 删除一个目录
