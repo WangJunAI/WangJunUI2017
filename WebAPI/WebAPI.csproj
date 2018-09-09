@@ -76,6 +76,7 @@
     <Content Include="TestAPI\YunTools.html" />
     <Content Include="TestAPI\目录服务测试.html" />
     <Content Include="YunConfig.txt" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

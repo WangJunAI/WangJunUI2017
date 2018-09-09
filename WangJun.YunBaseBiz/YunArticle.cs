@@ -19,8 +19,11 @@ namespace WangJun.Yun
 
         }
 
-        public   int Save()
-        {
+        public int Save()
+        { 
+
+
+
             var session = SESSION.Current;
             var iRelationshipObjectId = this as IRelationshipObjectId;
             var iTime = this as ITime;
@@ -76,7 +79,10 @@ namespace WangJun.Yun
             }
             #endregion
 
-            
+            #region 
+
+            #endregion
+
 
             #region iSysItem
             if (null != iSysItem)
@@ -85,14 +91,7 @@ namespace WangJun.Yun
                 return (int)EnumResult.成功;
             }
             #endregion
-
-
-
-
-
-
-
-
+             
             return (int)EnumResult.失败;
         }
 
@@ -106,6 +105,11 @@ namespace WangJun.Yun
             return res;
         }
 
+        public bool HasExist()
+        {
+            var guid = this.MD5;
+            return EntityManager.GetInstance().HasExist<YunArticle>("MD5", guid.ToString());
+        }
 
 
         public static YunArticle Load(string id)

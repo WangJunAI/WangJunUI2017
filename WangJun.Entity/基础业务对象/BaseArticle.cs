@@ -11,7 +11,7 @@ using WangJun.Utility;
 
 namespace WangJun.Entity
 {
-    public class BaseArticle: IArticle, IRelationshipGuid,ITime,ICount ,IApp, IEntity,ICompany, IRelationshipObjectId, ISysItem,IStatus,IOperator
+    public class BaseArticle: IArticle, IRelationshipGuid,ITime,ICount ,IApp, IEntity,ICompany, IRelationshipObjectId, ISysItem,IStatus,IOperator, IUnique
     {
 
         #region IArticle
@@ -227,6 +227,19 @@ namespace WangJun.Entity
         public string _RedirectID { get; set; }
 
         #endregion
+
+        #region IUnique
+        public Guid MD5
+        {
+            get
+            {
+                var guid = Convertor.EncodeToMD5GUID(this.Content);
+                return guid;
+            }
+        }
+
+        #endregion
+
 
         #region 基本方法
         public static BaseArticle CreateAsHtml()

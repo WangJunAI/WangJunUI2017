@@ -621,6 +621,14 @@ namespace WangJun.Utility
             return BitConverter.ToString(hashedBytes).Replace("-", string.Empty);
         }
 
+        public static Guid EncodeToMD5GUID(string input)
+        {
+            byte[] cleanBytes = Encoding.Default.GetBytes(input);
+            byte[] hashedBytes = System.Security.Cryptography.MD5.Create().ComputeHash(cleanBytes);
+            var guid = new Guid(hashedBytes);
+            return guid;
+        }
+
         /// <summary>
         /// Json对象转C#代码
         /// </summary>

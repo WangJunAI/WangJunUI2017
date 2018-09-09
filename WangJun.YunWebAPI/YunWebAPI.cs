@@ -493,7 +493,10 @@ namespace WangJun.App
             else if ("YunArticle" == bizType)
             {
                 var inst = Convertor.FromJsonToObject<YunArticle>(data);
-                return inst.Save();
+                if (!inst.HasExist())
+                {
+                    return inst.Save();
+                }
             }
             return (int)EnumResult.失败;
         }

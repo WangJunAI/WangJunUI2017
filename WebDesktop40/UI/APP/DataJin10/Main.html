@@ -33,11 +33,9 @@
                      var text = $(this).text();
                      var id = $(this).html().split('ref="//view.jin10.com/news')[1].substring(0, 20);
                      var article = {
-                         Title: "",Content:text, Version: 1,Name:id, AppName: "金10财经", AppCode: 20180814,
+                         Title: "", Content: text, Version: 1, Name: id, AppName: "金10财经", AppCode: 20180814,
                      };
-
                       
-
                      var option2 = {
                          url: "http://localhost:9990/API.ashx?_SID=Test&c=WangJun.App.YunWebAPI&m=SaveJson",
                          method: "POST",
@@ -59,12 +57,33 @@
              }
          };
          $.ajax(option);
-     }
+     };
 
      setInterval(function () {
          GetNews();
      }, 1000 * 60 * 60 * 2);
-     
+
+
+     var TestSave = function () {
+
+         var article = {
+             Title: "", Content: "Test", Version: 1, Name: "1", AppName: "金10财经", AppCode: 20180814
+         };
+         var option2 = {
+             url: "http://localhost:9990/API.ashx?_SID=Test&c=WangJun.App.YunWebAPI&m=SaveJson",
+             method: "POST",
+             data: JSON.stringify(["YunArticle", JSON.stringify(article)]),
+             success: function (res3) {
+                 console.log(res3);
+                 ++count;
+                 $("#res").text(count);
+             },
+             error: function (res4) {
+                 console.log(res4);
+             },
+         };
+         $.ajax(option2);
+     }
   </script>
 </body>
 </html>

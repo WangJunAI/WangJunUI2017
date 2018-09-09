@@ -119,6 +119,20 @@ namespace WangJun.Entity
             return new T();
         }
 
+        public bool HasExist<T>(string keyName,string value) where T : class, new()
+        {
+            var inst = new T();
+            var iSystem = inst as ISysItem;
+            if (!StringChecker.IsZeroString(keyName) &&!StringChecker.IsZeroString(value))
+            {
+                var db = DataStorage.GetInstance(DBType.MongoDB);
+                var query = MongoDBFilterCreator.SearchByGuid(keyName,value);
+                var data = db.Get(iSystem._DbName, iSystem._CollectionName, query);
+                return null != data;
+            }
+            return false;
+        }
+
         public T Get<T>(string dbName, string collectionName, string query) where T : class, new()
         {
 
