@@ -125,6 +125,18 @@ namespace WangJun.Net
             return data;
         }
 
+        /// <summary>
+        /// 通过Get方式下载字符串
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public string GetHtml(string url,string encoding)
+        {
+            this.http.Encoding = Encoding.GetEncoding(encoding);
+            string data = this.http.DownloadString(url);
+            return data;
+        }
+
         #region 通过POST方法获取结果
         public string Post(string url,Encoding encoding, string postData, Dictionary<string, string> headers = null)
         {

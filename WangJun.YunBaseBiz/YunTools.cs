@@ -30,9 +30,9 @@ namespace WangJun.Yun
             return null;
         }
 
-        public object HTTPGet(string url) {
+        public object HTTPGet(string url,string encoding="utf8") {
 
-            return HTTP.GetInstance().GetString(url);
+            return HTTP.GetInstance().GetHtml(url, encoding);
         }
     }
 }

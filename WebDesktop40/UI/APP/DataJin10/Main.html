@@ -27,7 +27,7 @@
      var count = 0;
      var GetNews = function () {
          var option = {
-             url: "http://localhost:9990/API.ashx?c=WangJun.Yun.YunTools&m=HTTPGet&p0=https://www.jin10.com/",
+             url: "http://localhost:9990/API.ashx?c=WangJun.Yun.YunTools&m=HTTPGet&p0=https://www.jin10.com/&p1=utf8",
              success: function (res1) {
                  $(res1).find(".jin-flash_item").each(function (res3) {
                      var text = $(this).text();
@@ -59,8 +59,47 @@
          $.ajax(option);
      };
 
+     var GetNews_THS_QH = function () {
+         var option = {
+             url: "http://localhost:9990/API.ashx?c=WangJun.Yun.YunTools&m=HTTPGet&p0=http://goodsfu.10jqka.com.cn/futuresnews_list/&p1=gbk",
+             success: function (res1) {
+                 $(res1).find(".list-con a").each(function (res3) {
+                     var href = $(this).attr("href");
+                     if (true === PARAM_CHECKER.IsUrl(href)) {
+
+                         var option2 = {
+                             url: "http://localhost:9990/API.ashx?c=WangJun.Yun.YunTools&m=HTTPGet&p0=" + href + "&p1=gbk",
+                             success: function (res4) {
+
+                                 var $html = $(res4);
+                                 var title = $html.find(".main-title").text().trim();
+                                 var content = $html.find(".main-text").html();
+                                 var createTime = $html.find("#pubtime_baidu").text().trim();
+                                 var source = $html.find("#sourcename").text().trim();
+                                 var article = { Title: title, Content: content, Version: 1, Name: createTime, ParentName: source, AppName: "同花顺期货资讯", AppCode: 20180925 }
+                                 console.log(article);
+                                 SaveArticle(article)
+                             },
+                             error: function (res5) {
+                                 console.log(res5);
+                             },
+                         };
+                         $.ajax(option2);
+                     }
+
+
+                 });
+             },
+             error: function (res2) {
+                 console.log(res2);
+             }
+         };
+         $.ajax(option);
+     };
+
      setInterval(function () {
          GetNews();
+         GetNews_THS_QH();
      }, 1000 * 60 * 60 * 2);
 
 
@@ -80,6 +119,23 @@
              },
              error: function (res4) {
                  console.log(res4);
+             },
+         };
+         $.ajax(option2);
+     }
+
+     function SaveArticle(article) {
+         var option2 = {
+             url: "http://localhost:9990/API.ashx?_SID=Test&c=WangJun.App.YunWebAPI&m=SaveJson",
+             method: "POST",
+             data: JSON.stringify(["YunArticle", Convertor.ToBase64String(JSON.stringify(article), true), { 1: "base64" }]),
+             success: function (res5) {
+                 console.log(res5);
+                 ++count;
+                 $("#res").text(count);
+             },
+             error: function (res6) {
+                 console.log(res6);
              },
          };
          $.ajax(option2);

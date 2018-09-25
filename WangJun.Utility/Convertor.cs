@@ -623,10 +623,14 @@ namespace WangJun.Utility
 
         public static Guid EncodeToMD5GUID(string input)
         {
-            byte[] cleanBytes = Encoding.Default.GetBytes(input);
-            byte[] hashedBytes = System.Security.Cryptography.MD5.Create().ComputeHash(cleanBytes);
-            var guid = new Guid(hashedBytes);
-            return guid;
+            if (!string.IsNullOrWhiteSpace(input))
+            {
+                byte[] cleanBytes = Encoding.Default.GetBytes(input);
+                byte[] hashedBytes = System.Security.Cryptography.MD5.Create().ComputeHash(cleanBytes);
+                var guid = new Guid(hashedBytes);
+                return guid;
+            }
+            return Guid.Empty;
         }
 
         /// <summary>
