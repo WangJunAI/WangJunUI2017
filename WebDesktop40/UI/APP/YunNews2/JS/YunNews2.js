@@ -7,12 +7,18 @@ App.YunNews2.Info.Name = "汪俊头条2";
 App.YunNews2.Info.Version =1;
 
 App.YunNews2.Server = {
-    Url01: "http://localhost:9990/API.ashx?_SID=Test&c=WangJun.App.YunWebAPI&m=LoadList&p0=YunArticle&p1={}&p2={}&p3={}&p4=[pageIndex]&p5=[pageSize]"
+    Url01: "http://localhost:9990/API.ashx?_SID=Test&c=WangJun.App.YunWebAPI&m=LoadList&p0=YunArticle&p1={}&p2={}&p3={'CreateTime':-1}&p4=[pageIndex]&p5=[pageSize]"
 };
 App.YunNews2.VM01 = new Vue({
     el: '#list',
     data: {
         list: []
+    },
+    filters: {
+        FormatContent: function (item) {
+            $div = $("<div></div>").html(item.Content);
+            return $div.text().trim();
+        }
     }
 });
 
