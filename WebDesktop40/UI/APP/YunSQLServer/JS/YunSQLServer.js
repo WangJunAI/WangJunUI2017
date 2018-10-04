@@ -9,7 +9,7 @@ var vm = new Vue({
 
 function Save() {
     var sql = $("#sql").val();
-    var data = { SQL: "INSERT INTO [T1] ([Name])  VALUES ('测试')"};
+    var data = { SQL: sql};
     $.ajax({
         method: "POST",
         url: host +"/API.ashx?c=WangJun.Yun.YunSQLServer&m=Execute",
