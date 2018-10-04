@@ -332,14 +332,16 @@ namespace WangJun.Utility
         public static List<Dictionary<string,object>> FromDataTableToList(DataSet dataSet)
         {
             List<Dictionary<string, object>> list = new List<Dictionary<string, object>>();
-
-            DataRowCollection rows = dataSet.Tables[0].Rows;
-            foreach (DataRow row in rows)
+            if (0 < dataSet.Tables.Count)
             {
-                Dictionary<string, object> item = Convertor.FromDataRowToDict(row);
-                list.Add(item);
+                DataRowCollection rows = dataSet.Tables[0].Rows;
+                foreach (DataRow row in rows)
+                {
+                    Dictionary<string, object> item = Convertor.FromDataRowToDict(row);
+                    list.Add(item);
+                }
+                dataSet.Dispose();
             }
-            dataSet.Dispose();
             return list;
         }
 
